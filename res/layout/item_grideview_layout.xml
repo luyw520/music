@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/rl_grid"
+    android:padding="10dp" >
+
+    <ImageView
+        android:id="@+id/img_griditem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ic_navigation_more_monthlytraffic" />
+
+    <TextView
+        android:id="@+id/tv__griditem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_griditem"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="包流量畅听"
+        android:textColor="@color/text_color"
+        android:textSize="15sp" />
+
+</RelativeLayout>

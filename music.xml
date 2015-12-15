@@ -1,0 +1,53 @@
+<result>
+
+    <count>
+1
+    </count>
+
+    <url>
+
+        <encode>
+http://zhangmenshiting.baidu.com/data2/music/2013328301/Y2JkZ2hob2thY2GhpWl2sJShl5lybpmaZWuVmptqa3CSa2dom2-Za5RmlZVpZplpamqZbZltm5uWZGZqaZxnb2JqZWluXKShlW9jYmlrb3FqaWNqZWdramplMw$$
+        </encode>
+
+        <decode>
+2013328301.mp3?xcode=8bb49bff448a944f9b3c4ba40b198f9d7dce2364f0718259&mid=0.45899706014293
+        </decode>
+
+        <type>
+1
+        </type>
+
+        <lrcid>
+0
+        </lrcid>
+
+        <flag>
+0
+        </flag>
+    </url>
+
+    <durl>
+
+        <encode>
+http://zhangmenshiting2.baidu.com/data2/music/2013328301/Y2JkZ2hob2thY2GhpWl2sJShl5lybpmaZWuVmptqa3CSa2dom2-Za5RmlZVpZplpamqZbZltm5uWZGZqaZxnb2JqZWluXKShlW9jYmlrb3FqaWNqZWdramplMw$$
+        </encode>
+
+        <decode>
+2013328301.mp3?xcode=8bb49bff448a944f9b3c4ba40b198f9d7dce2364f0718259&mid=0.45899706014293
+        </decode>
+
+        <type>
+1
+        </type>
+
+        <lrcid>
+0
+        </lrcid>
+
+        <flag>
+0
+        </flag>
+    </durl>
+
+</result>
