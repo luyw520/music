@@ -1,7 +1,7 @@
 package com.music.broadcastreceiver;
 
-import com.music.lu.utils.ConnectionUtil;
-import com.music.lu.utils.LogUtil;
+import com.music.utils.ConnectionUtil;
+import com.music.utils.LogUtil;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;

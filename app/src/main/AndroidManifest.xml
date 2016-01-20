@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.music.lu"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="18" />
+    <!-- 【必须】 信鸽SDK所需权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVER_USER_PRESENT" />
+    <!-- 扫一扫权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    
+	 <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <application
+        android:name="com.music.MusicApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/playing_bar_default_avatar"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <!-- 请将value改为MTA分配的appkey，即开放平台appid加上“Aqc”前缀 < -->
+        <meta-data
+            android:name="TA_APPKEY"
+            android:value="Aqc1104335219" />
+        <!-- 请将value改为app发布对应的渠道，不同的发布渠道使用不同的名字 < -->
+        <meta-data
+            android:name="InstallChannel"
+            android:value="play" />
+
+        <!-- 友盟AppKey， 需要替换成你自己的 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="55028e77fd98c50811000616" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Umeng" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="148835bc1ea0800a08156276986072f4" >
+        </meta-data>
+
+        <!-- begin: baidu speech sdk -->
+        <meta-data
+            android:name="com.baidu.speech.API_KEY"
+            android:value="U8gYPgqDSCXVKHUYfddnlIDU" />
+        <meta-data
+            android:name="com.baidu.speech.SECRET_KEY"
+            android:value="75niqVHM10wnbj6Gvc9y5FtxUEh21Zr0" />
+
+
+        <activity
+            android:name="com.baidu.voicerecognition.android.ui.BaiduASRDigitalDialog"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" >
+            <intent-filter>
+                <action android:name="com.baidu.action.RECOGNIZE_SPEECH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- end : baidu speech sdk -->
+
+
+        <!--
+App ID: 5486426
+API Key: U8gYPgqDSCXVKHUYfddnlIDU
+Secret Key: 75niqVHM10wnbj6Gvc9y5FtxUEh21Zr0
+        -->
+        <activity
+            android:name="com.music.MainActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.music.MainContentActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.music.LocalMusicActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.music.Main_ViewPagerActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:taskAffinity="" >
+        </activity>
+        <activity android:name="com.music.welcome.WelcomeActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.music.PlayerActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity android:name="com.music.SearchMusicActivity" >
+        </activity>
+        <activity android:name="com.music.ListMusicActivity" >
+        </activity>
+        <activity android:name="org.abrantix.rockon.rockonnggl.lu.MyRockOnNextGenGL" >
+        </activity>
+        <activity android:name="com.music.LrcSearchActivity" >
+        </activity>
+        <activity android:name="com.music.SettingActivity" >
+        </activity>
+        <activity android:name="com.music.LoginActivity" >
+        </activity>
+        <activity android:name="com.music.ChangeBgActivity" >
+        </activity>
+        <activity android:name="com.music.activity.imagefactory.ImageFactoryActivity" >
+        </activity>
+        <activity android:name="com.music.activity.gesturepassword.CreateGesturePasswordActivity" >
+        </activity>
+        <activity android:name="com.music.activity.gesturepassword.GuideGesturePasswordActivity" >
+        </activity>
+        <activity android:name="com.music.activity.gesturepassword.UnlockGesturePasswordActivity" >
+        </activity>
+        <activity android:name="com.music.activity.gesturepassword.GresturePasswordSetActivity" >
+        </activity>
+        <activity
+            android:name="com.music.lockscreen.LockScreenActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity android:name="com.music.ScanActivity" />
+        <activity android:name="com.music.MipcaCaptureActivity" />
+
+        <!-- 腾讯登陆页面 -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" >
+                </category>
+                <category android:name="android.intent.category.BROWSABLE" >
+                </category>
+
+                <data android:scheme="tencent1104335219" >
+                </data>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.tencent.connect.common.AssistActivity" >
+        </activity>
+
+        <!-- *************************    umeng分享相关的注册 START **************************** -->
+        <!-- 分享内容编辑页 -->
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+        </activity>
+        <!-- 注册服务 -->
+
+        <service android:name="com.music.lockscreen.LockScreenService" >
+        </service>
+        <service android:name="com.music.service.MyPlayerService" >
+        </service>
+        <service android:name="com.music.service.MyPlayerNewService" >
+            <intent-filter>
+                <action android:name="com.music.service.myplayerService" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="com.music.broadcastreceiver.NotificationReceiver" >
+            <intent-filter>
+                <action android:name="com.lu.myaction" />
+            </intent-filter>
+        </receiver>
+
+        <!--
+    【必须】 信鸽receiver广播接收
+    <receiver
+        android:name="com.tencent.android.tpush.XGPushReceiver"
+        android:process=":xg_service_v2" >
+        <intent-filter android:priority="0x7fffffff" >
+            【必须】 信鸽SDK的内部广播
+            <action android:name="com.tencent.android.tpush.action.SDK" />
+            <action android:name="com.tencent.android.tpush.action.INTERNAL_PUSH_MESSAGE" />
+            【必须】 系统广播：开屏和网络切换
+            <action android:name="android.intent.action.USER_PRESENT" />
+            <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            
+            【可选】 一些常用的系统广播，增强信鸽service的复活机会，请根据需要选择。当然，你也可以添加APP自定义的一些广播让启动service
+            <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
+            <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+            <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+        </intent-filter>
+    </receiver>
+    
+    【必须】 (2.30及以上版新增)展示通知的activity
+    【注意】 如果被打开的activity是启动模式为SingleTop，SingleTask或SingleInstance，请根据通知的异常自查列表第8点处理
+     <activity
+         android:name="com.tencent.android.tpush.XGPushActivity"
+         android:exported="true" >
+         <intent-filter>
+            若使用AndroidStudio，请设置android:name="android.intent.action"
+             <action android:name="" />
+         </intent-filter>
+    </activity>
+
+    【必须】 信鸽service
+    <service
+        android:name="com.tencent.android.tpush.service.XGPushService"
+        android:exported="true"
+        android:persistent="true"
+        android:process=":xg_service_v2" />
+ 
+    【必须】 通知service，此选项有助于提高抵达率
+    <service
+        android:name="com.tencent.android.tpush.rpc.XGRemoteService"
+        android:exported="true" >
+        <intent-filter>
+            <action android:name="com.music.lu.PUSH_ACTION" />
+        </intent-filter>
+    </service>
+
+    【必须】 请将YOUR_ACCESS_ID修改为APP的AccessId，“21”开头的10位数字，中间没空格
+    <meta-data 
+        android:name="XG_V2_ACCESS_ID"
+        android:value="2100124556" />
+    【必须】 请将YOUR_ACCESS_KEY修改为APP的AccessKey，“A”开头的12位字符串，中间没空格
+    <meta-data 
+        android:name="XG_V2_ACCESS_KEY" 
+        android:value="A6GXK63V34QD" />
+    
+    <receiver android:name="com.music.broadcastreceiver.CustomPushReceiver"   >
+        <intent-filter>
+            
+             接收消息透传
+                <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />
+                监听注册、反注册、设置/删除标签、通知被点击等处理结果
+                <action android:name="com.tencent.android.tpush.action.FEEDBACK" />
+        </intent-filter>
+        
+    </receiver>
+        -->
+        <!-- 友盟推送 -->
+
+        <receiver
+            android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
+            android:exported="false"
+            android:process=":push" >
+        </receiver>
+        <receiver
+            android:name="com.umeng.message.SystemReceiver"
+            android:process=":push" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.umeng.message.MessageReceiver"
+            android:process=":push" >
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.RECEIVE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.umeng.message.ElectionReceiver"
+            android:process=":push" >
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.ELECTION_RESULT_V4" />
+
+                <category android:name="umeng" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.umeng.message.RegistrationReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.music.lu.intent.action.COMMAND" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.umeng.message.UmengMessageBootReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.umeng.message.UmengService"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":push" >
+            <intent-filter>
+                <action android:name="com.music.lu.intent.action.START" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.music.lu.intent.action.COCKROACH" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.PING_V4" />
+
+                <category android:name="umeng" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.umeng.message.UmengIntentService"
+            android:process=":push" />
+        <service
+            android:name="com.umeng.message.UmengMessageIntentReceiverService"
+            android:exported="true"
+            android:process=":push" >
+            <intent-filter>
+                <action android:name="org.android.agoo.client.MessageReceiverService" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.android.agoo.client.ElectionReceiverService" />
+            </intent-filter>
+        </service>
+        <!-- V1.3.0添加的service，负责下载通知的资源 -->
+        <service android:name="com.umeng.message.UmengDownloadResourceService" />
+    </application>
+
+</manifest>

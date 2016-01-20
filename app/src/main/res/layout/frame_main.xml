@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:background="@color/half_transparent"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的首页"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_text_sp" />
+    </LinearLayout>
+
+    
+    
+    <GridView
+        android:id="@+id/gridview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/top_layout"
+        android:layout_margin="8.0dip"
+        android:horizontalSpacing="6.0dip"
+        android:numColumns="3"
+        android:verticalSpacing="6.0dip" />
+    
+    <com.music.widget.slidingdrawer.MySlidingDrawer
+        android:id="@+id/slidingDrawer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/sliding_bg"
+        android:content="@+id/content"
+        android:handle="@+id/handle"
+        android:visibility="invisible" >
+
+        <include layout="@layout/sliding_handle" />
+
+        <include layout="@layout/sliding_content" />
+    </com.music.widget.slidingdrawer.MySlidingDrawer>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="invisible" >
+    </android.support.v4.view.ViewPager>
+    
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPagerSub"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="invisible" >
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>

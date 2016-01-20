@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+      android:background="@drawable/skin_bg_player" >
+      <ImageView
+            android:id="@+id/iv_needle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/play_needle" />
+     <RelativeLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:background="@drawable/btn_white_normal_prs"
+        android:alpha="0.6">
+
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/ic_common_title_bar_back" />
+
+        <ImageButton
+            android:id="@+id/ib_changebg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/ic_changebg" />
+
+        <ImageButton
+            android:id="@+id/img_favourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_toLeftOf="@+id/ib_changebg"
+            android:background="@drawable/icon_favourite_normal"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/img_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/ib_changebg"
+            android:background="@drawable/share" />
+
+        <com.music.widget.AlwaysMarqueeTextView
+            android:id="@+id/musicTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:layout_toLeftOf="@+id/img_favourite"
+            android:layout_toRightOf="@+id/ib_back"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:gravity="center_horizontal"
+            android:singleLine="true"
+            android:text="歌曲名字"
+            android:textSize="15sp" />
+
+        <com.music.widget.AlwaysMarqueeTextView
+            android:id="@+id/musicArtist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/musicTitle"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:singleLine="true"
+            android:text="歌手"
+            android:textSize="18sp" />
+	
+        <ImageButton
+            android:id="@+id/ibtn_searchLrc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_common_title_bar_search"
+            android:visibility="gone" />
+    </RelativeLayout>
+ 
+      <View
+			android:layout_width="match_parent"
+            android:layout_height="30dp"
+			android:background="@drawable/abs__ab_bottom_transparent_dark_holo"
+			/>
+</RelativeLayout>

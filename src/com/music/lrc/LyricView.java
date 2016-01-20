@@ -1,11 +1,9 @@
 package com.music.lrc;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.music.bean.LyricSentence;
-
-import android.R.integer;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -16,20 +14,25 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.hp.hpl.sparta.xpath.ThisNodeTest;
+import com.music.bean.LyricSentence;
+import com.music.utils.DeBug;
+
 public class LyricView extends View {
+	@SuppressWarnings("unused")
 	private static final String TAG = "LyricView";
 	/**
 	 * 没有歌词
 	 */
-	public static final int NO_LRC=0;
+	public static final int NO_LRC = 0;
 	/**
 	 * 歌词正在加载...
 	 */
-	public static final int LRC_LOADIGN=1;
+	public static final int LRC_LOADIGN = 1;
 	/**
 	 * 歌词加载成功
 	 */
-	public static final int LRC_LOADED=2;
+	public static final int LRC_LOADED = 2;
 	private Paint mPaint;
 	/** 半宽 */
 	private float mX;
@@ -48,7 +51,7 @@ public class LyricView extends View {
 	public float drifty;//
 	public int index = 0;
 	public float mTouchHistoryY;
-	private int loadLrc=0;
+	private int loadLrc = 0;
 	private LyricViewClickListener lyricViewClickListener;
 
 	public void setLyricViewClickListener(LyricViewClickListener l) {
@@ -110,28 +113,37 @@ public class LyricView extends View {
 	public void setMaps(List<Map<String, String>> maps) {
 		this.maps = maps;
 	}
-	private LyricLoadHelper loadHelper;
-	public void setLyricLoadHelper(LyricLoadHelper loadHelper){
-		this.loadHelper=loadHelper;
+
+	public void setLyricLoadHelper(LyricLoadHelper loadHelper) {
 	}
-	private List<LyricSentence> lyricSentences;
-	public void setLyricSentences(List<LyricSentence> lyricSentences){
-		this.lyricSentences=lyricSentences;
+
+	private List<LyricSentence> lyricSentences=new ArrayList<LyricSentence>();
+
+	public void setLyricSentences(List<LyricSentence> l) {
+		lyricSentences.clear();
+		if(l!=null){
+			lyricSentences.addAll(l);
+		}
+		loadLrc=LRC_LOADED;
+		index = 0;
+	}
+	public void reset(){
+		index = 0;
+		
 	}
 	/**
 	 * 将原来的背景清除
 	 */
 	public void clear() {
 		index = 0;
+		loadLrc=LRC_LOADIGN;
+		lyricSentences.clear();
 	}
+
 	private boolean isClick = false;
 
 	protected void onDraw(Canvas canvas) {
-
-		super.onDraw(canvas);
-		// Log.i("LyricView", "onDraw()方法调用");
-		// 滑动相关
-		// 显示进度相关
+//		DeBug.d(this, "onDraw,,,,,,,,,,,,,,,,,,,,,,,,,,index:"+index);
 		int j = (int) (-drifty / 40);
 		if (temp < j) {
 			temp++;
@@ -151,48 +163,24 @@ public class LyricView extends View {
 		p2.setTextAlign(Paint.Align.CENTER);
 
 		isClick = false;
-//		if (maps == null || maps.size() == 0) {
-//			isClick = true;
-//			canvas.drawText("暂无歌词", mX, middleY, p2);
-//			return;
-//		}
-		if (lyricSentences == null || lyricSentences.size() == 0 || loadLrc==0) {
+		if (lyricSentences == null || lyricSentences.size() == 0 || loadLrc == 0) {
 			isClick = true;
-			
+
 			canvas.drawText("暂无歌词", mX, middleY, p2);
 			return;
 		}
-		if(loadLrc==1){
-			
+		if (loadLrc == 1) {
+
 			canvas.drawText("歌词正在加载中...", mX, middleY, p2);
 			return;
 		}
-//		Log.i(TAG, "middleY=" + middleY + ",drift_r=" + drift_r);
-//		Log.i(TAG, "x=" + mX + ",y=" + (middleY + drift_r) + ",lrc="
-//				+ maps.get(index).get("lrc"));
-		// 先画当前行，之后再画他的前面和后面，这样就保持了当前行在中间的位置
-		// canvas.drawText(text[index], mX, middleY + drift_r, p2);
-//		canvas.drawText(maps.get(index).get("lrc"), mX, middleY + drift_r, p2);
 		p2.setTextSize(60);
-		
-		if(index>lyricSentences.size()){
+
+		if (index > lyricSentences.size()) {
 			return;
 		}
 		canvas.drawText(lyricSentences.get(index).getContentText(), mX, middleY + drift_r, p2);
-		// canvas.drawText(maps.get(index).get("lrc"), mX, middleY , p2);
 
-		// if (showprogress && index + temp < maps.size() - 1) {
-		// p2.setTextAlign(Paint.Align.LEFT);
-		// if (index + temp >= 0) {
-		// canvas.drawText(
-		// TimeParseTool.MsecParseTime(maps.get(index + temp).get("time2")), 0,
-		// middleY, p2);
-		// } else
-		// canvas.drawText("00:00", 0, middleY, p2);
-		//
-		//
-		// canvas.drawLine(0, middleY + 1, mX * 2, middleY + 1, p2);
-		// }
 		p.setTextSize(40);
 		float tempY = middleY + drift_r;
 		// 画出本句之前的句子
@@ -202,9 +190,7 @@ public class LyricView extends View {
 			if (tempY < 0) {
 				break;
 			}
-//			canvas.drawText(maps.get(i).get("lrc"), mX, tempY, p);
 			canvas.drawText(lyricSentences.get(i).getContentText(), mX, tempY, p);
-			// canvas.drawText(text[i], mX, tempY, p);
 		}
 		tempY = middleY + drift_r;
 		// 画出本句之后的句子
@@ -215,7 +201,6 @@ public class LyricView extends View {
 				break;
 			}
 			canvas.drawText(lyricSentences.get(i).getContentText(), mX, tempY, p);
-//			canvas.drawText(maps.get(i).get("lrc"), mX, tempY, p);
 		}
 
 	}
@@ -236,7 +221,7 @@ public class LyricView extends View {
 		mX = w * 0.5f;// 屏幕中心坐标(转换为float?)
 		mY = h;
 		middleY = h * 0.5f;
-//		Log.i("LyricView", "onSizeChanged方法调用");
+		// Log.i("LyricView", "onSizeChanged方法调用");
 	}
 
 	/**
@@ -244,63 +229,46 @@ public class LyricView extends View {
 	 *            当前歌词的时间轴
 	 */
 	public void updateindex(int CurrentPosition) {
-		// Log.i("LyricView", "updateindex()方法调用");
 		if (lyricSentences != null) {
-//			if (index < maps.size() - 1) {
-				if (index < lyricSentences.size() - 1) {
+			// if (index < maps.size() - 1) {
+			if (index < lyricSentences.size() - 1) {
 				// 歌词数组的序号
 
-//				if (index == 0) {
-//					
-//				} else {
-					
-					
-					if (CurrentPosition >= (lyricSentences.get(index + 1).getStartTime())) {
+				if (CurrentPosition >= (lyricSentences.get(index + 1).getStartTime())) {
 
-						currentDuringtime2 = (lyricSentences.get(index + 1).getStartTime())
-								- (lyricSentences.get(index).getStartTime());
-						index++;
-						drifty = 0;
-						driftx = 0;
-					} else if(index==0){
-						currentDuringtime2 = (lyricSentences.get(index).getStartTime());
-					}else if(CurrentPosition < (lyricSentences.get(
-							index - 1).getStartTime())) {
-						
-						for (int i = 0,size= lyricSentences.size()-1; i <size; i++) {
-							if (CurrentPosition >= (lyricSentences.get(
-									i).getStartTime())&&CurrentPosition<(lyricSentences.get(
-											i+1).getStartTime())) {
-								currentDuringtime2 = (lyricSentences.get(
-										i + 1).getStartTime())
-										- (lyricSentences.get(i).getStartTime());
-								index = i;
-//								Log.i(TAG, "index=" + index);
-								break;
-							}
+					currentDuringtime2 = (lyricSentences.get(index + 1).getStartTime()) - (lyricSentences.get(index).getStartTime());
+					index++;
+					drifty = 0;
+					driftx = 0;
+				} else if (index == 0) {
+					currentDuringtime2 = (lyricSentences.get(index).getStartTime());
+				} else if (CurrentPosition < (lyricSentences.get(index - 1).getStartTime())) {
 
+					for (int i = 0, size = lyricSentences.size() - 1; i < size; i++) {
+						if (CurrentPosition >= (lyricSentences.get(i).getStartTime()) && CurrentPosition < (lyricSentences.get(i + 1).getStartTime())) {
+							currentDuringtime2 = (lyricSentences.get(i + 1).getStartTime()) - (lyricSentences.get(i).getStartTime());
+							index = i;
+							
+							break;
 						}
+
 					}
-
 				}
-//			}
-		}
 
-//		 Log.i(TAG, "CurrentPoition"+CurrentPosition);
-		// Log.i(TAG, "drifty="+drifty);
-//		Log.i(TAG, "index=" + index);
+			}
+			// }
+		}
+		 Log.i(TAG, "index=" + index);
 		if (drifty > -40.0)
 			if (currentDuringtime2 > 100) {
 				drifty = (float) (drifty - 40.0 / (currentDuringtime2 / 100));
 			} else {
 				drifty = 0;
 			}
-//		 Log.i(TAG, "drifty="+drifty);
 		invalidate();
 	}
 
 	public boolean repair() {
-		// Log.i("LyricView", "repair()方法调用");
 		if (index <= 0) {
 			index = 0;
 			return false;

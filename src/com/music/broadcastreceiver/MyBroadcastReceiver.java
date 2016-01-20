@@ -4,15 +4,16 @@ package com.music.broadcastreceiver;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.music.lu.utils.ConstantUtil;
+import com.music.utils.ConstantUtil;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.util.Log;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
-//	private static final String TAG="MyBroadcastReceiver";
+	private static final String TAG="MyBroadcastReceiver";
 	
 	private List<State> states=new ArrayList<State>();
 	State state;
@@ -40,7 +41,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		
 		String action = intent.getAction();
-//		Log.i(TAG, "action="+action);
+		Log.i(TAG, "action="+action);
 		if (action.equals(ConstantUtil.MUSIC_CURRENT)) {
 			state.currentState(intent);
 		} else if (action.equals(ConstantUtil.MUSIC_DURATION)) {

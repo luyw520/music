@@ -14,7 +14,7 @@ import android.graphics.RectF;
 import android.media.FaceDetector;
 import android.os.Handler;
 
-import com.music.activity.imagefactory.ImageFactoryCrop;
+import com.music.view.ImageFactoryCrop;
 
 
 /**

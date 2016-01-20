@@ -9,7 +9,6 @@
 	    android:id="@+id/tv_songName"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:text="刘惜君-我很快乐.mp3"
 	    android:layout_centerVertical="true"
 	    android:layout_marginLeft="5dp"
 	    android:textSize="20sp"

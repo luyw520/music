@@ -1,9 +1,9 @@
 package com.music.bean;
 
-import com.music.lu.utils.AsyncTaskUtil;
-import com.music.lu.utils.BitmapCacheUtil;
-import com.music.lu.utils.PhotoUtils;
-import com.music.lu.utils.AsyncTaskUtil.IAsyncTaskCallBack;
+import com.music.utils.AsyncTaskUtil;
+import com.music.utils.BitmapCacheUtil;
+import com.music.utils.PhotoUtils;
+import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
 
 import android.app.Activity;
 import android.content.Context;

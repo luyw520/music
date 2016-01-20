@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
-import com.music.LocalMusicActivity;
 import com.music.lu.R;
-import com.music.lu.utils.MyLog;
+import com.music.utils.DeBug;
+import com.music.view.activity.LocalMusicActivity;
 import com.nineoldandroids.view.ViewHelper;
 /**
  * 
@@ -159,15 +159,15 @@ public class SlidingMenu extends HorizontalScrollView {
 //			}
 			if (scrollX > mHalfMenuWidth) {
 				this.smoothScrollTo(mMenuWidth, 0);
-				MyLog.d(TAG, "smoothScrollTo(mMenuWidth, 0)");
+				DeBug.d(TAG, "smoothScrollTo(mMenuWidth, 0)");
 				isOpen=false;
 				
 			} else {
 				this.smoothScrollTo(0, 0);
-				MyLog.d(TAG, "smoothScrollTo(0, 0)");
+				DeBug.d(TAG, "smoothScrollTo(0, 0)");
 				isOpen=true;
 			}
-			MyLog.d(TAG, "ontouch isOpen="+isOpen);
+			DeBug.d(TAG, "ontouch isOpen="+isOpen);
 			 return false;
 		}
 //		return false;

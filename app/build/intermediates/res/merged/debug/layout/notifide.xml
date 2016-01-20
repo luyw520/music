@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/img"
+        android:background="@drawable/icon"
+        />
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/tv_title"
+        android:text="还珠格格-雨蝶"
+        />
+	
+	<Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/btn_play"
+      android:background="@drawable/ic_playing_bar_play_default"
+        />
+	<Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/btn_next"
+         android:background="@drawable/ic_playing_bar_next_default"
+        />
+	<Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/btn_exit"
+        android:layout_alignParentRight="true"
+        android:text="退出"
+        />
+</RelativeLayout>

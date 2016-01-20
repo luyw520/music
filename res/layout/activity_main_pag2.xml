@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
-        <com.music.circluarimage.CircularImage
+        <com.music.view.widget.CircularImage
             android:id="@+id/iv_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

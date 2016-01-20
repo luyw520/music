@@ -15,7 +15,7 @@
             android:layout_height="wrap_content" 
              android:background="@drawable/selector_music_btn">
 
-            <com.music.circluarimage.CircularImage
+            <com.music.view.widget.CircularImage
                 android:id="@+id/iv_header"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

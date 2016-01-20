@@ -3,7 +3,7 @@ package com.music.bean;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.music.lu.utils.SharedPreHelper;
+import com.music.utils.SharedPreHelper;
 
 import android.content.Context;
 import android.content.res.AssetManager;

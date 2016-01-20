@@ -1,0 +1,118 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/skin_bg_player" >
+
+        <com.jfeinstein.jazzyviewpager.JazzyViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <RelativeLayout
+            android:id="@+id/music_about_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:alpha="0.9"
+            android:background="@color/player_track_color2" >
+
+            <ImageView
+                android:id="@+id/iv_music_album"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/playing_bar_default_avatar" />
+
+            <TextView
+                android:id="@+id/tv_music_title"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/iv_music_album"
+                android:layout_marginLeft="10.0dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/iv_music_album"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="播放的歌曲名"
+                android:textColor="#0f0f0f"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_music_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_music_Artist"
+                android:layout_marginLeft="10.0dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/iv_music_album"
+                android:text="00:00"
+                android:textColor="#505050" />
+
+            <TextView
+                android:id="@+id/tv_music_Artist"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_music_title"
+                android:layout_marginLeft="10.0dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/iv_music_album"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="王杰王杰王杰王杰王杰王杰王杰"
+                android:textColor="#505050"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_music_currenttime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/iv_music_album"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:text="2:30"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/rl_btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/tv_music_currenttime"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp" >
+
+                <ImageButton
+                    android:id="@+id/btn_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/img_button_notification_play_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_btn_playing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/rl_btn_next" >
+
+                <ImageButton
+                    android:id="@+id/btn_playing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/img_button_notification_play_play" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

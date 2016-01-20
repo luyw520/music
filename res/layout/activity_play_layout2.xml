@@ -141,7 +141,7 @@
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/play_disc" />
 
-                <com.music.circluarimage.RoundImageView
+                <com.music.view.widget.RoundImageView
                     android:id="@+id/iv_music_album"
                     android:layout_width="156dp"
                     android:layout_height="156dp"

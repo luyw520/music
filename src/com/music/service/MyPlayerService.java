@@ -1,19 +1,5 @@
 package com.music.service;
-import java.util.TimerTask;
-
 import android.annotation.SuppressLint;
-import android.app.Service;
-import android.content.Intent;
-import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
-import android.util.Log;
-
-import com.music.lu.utils.AppConstant;
-import com.music.lu.utils.ConstantUtil;
-import com.music.lu.utils.Mp3Util;
 
 /**
  * 播放音乐服务
@@ -22,14 +8,16 @@ import com.music.lu.utils.Mp3Util;
  * 
  */
 @SuppressLint("HandlerLeak") 
-public class MyPlayerService extends Service {
+public class MyPlayerService 
+//extends Service 
+{/*
 	
 	private MediaPlayer mediaPlayer; // 媒体播放器对象
 	private String path; // 音乐文件路径
 	private int msg; // 播放信息
-	/**
+	*//**
 	 * 当前播放进度
-	 */
+	 *//*
 	private int currentTime; // 当前播放进度
 	private int duration; // 播放长度
 
@@ -40,9 +28,9 @@ public class MyPlayerService extends Service {
 
 		@SuppressLint("HandlerLeak") @Override
 		public void handleMessage(Message msg) {
-			/**
+			*//**
 			 * 歌曲进度
-			 */
+			 *//*
 			if (msg.what == 1) {
 				if (mediaPlayer != null) {
 					// 得到当前播放的进度,发送广播出去
@@ -52,17 +40,17 @@ public class MyPlayerService extends Service {
 						intent.setAction(ConstantUtil.MUSIC_CURRENT);
 						intent.putExtra("currentTime", currentTime);
 						sendBroadcast(intent);
-						/**
+						*//**
 						 * 每隔一秒钟把当前播放的音乐播放时间和当前播放
-						 */
+						 *//*
 						handler.sendEmptyMessageDelayed(1, 1000);
 					}
 					
 				}
 			}
-			/**
+			*//**
 			 * 歌词进度
-			 */
+			 *//*
 			if (msg.what == 2) {
 				if (mediaPlayer != null) {
 					// 得到当前播放的进度,发送广播出去
@@ -72,9 +60,9 @@ public class MyPlayerService extends Service {
 						intent.setAction(ConstantUtil.LRC_CURRENT);
 						intent.putExtra("currentTime", currentTime);
 						sendBroadcast(intent);
-						/**
+						*//**
 						 * 每隔豪秒钟把当前播放的音乐播放时间和当前播放
-						 */
+						 *//*
 						handler.sendEmptyMessageDelayed(2, 100);
 					}
 					
@@ -90,9 +78,9 @@ public class MyPlayerService extends Service {
 		Log.i("MyPlayerService", "MyPlayerService");
 		mediaPlayer = new MediaPlayer();
 		mp3Util=Mp3Util.getDefault();
-		/**
+		*//**
 		 * 设置音乐播放完成时的监听器
-		 */
+		 *//*
 		mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
 
 			@Override
@@ -104,7 +92,7 @@ public class MyPlayerService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		
-		/**是否是自定义任务栏里面的控件发来的消息*/
+		*//**是否是自定义任务栏里面的控件发来的消息*//*
 		if(intent==null){
 			return 0;
 		}
@@ -166,11 +154,11 @@ public class MyPlayerService extends Service {
 
 	}
 
-	/**
+	*//**
 	 * 从当前时间currentTime处开始播放
 	 * 
 	 * @param currentTime
-	 */
+	 *//*
 	private void play(int postion) {
 		try {
 			mediaPlayer.reset();
@@ -214,9 +202,9 @@ public class MyPlayerService extends Service {
 				if(mp3Util.isPlaying()){
 					currentTime = mediaPlayer.getCurrentPosition();
 					Log.d(TAG, "MyTask currentTime:"+currentTime);
-					/**
+					*//**
 					 * 歌词跟新广播
-					 */
+					 *//*
 					if(mp3Util.isShowLrc()){
 						Intent intentLrc = new Intent();
 						intentLrc.setAction(ConstantUtil.LRC_CURRENT);
@@ -224,9 +212,9 @@ public class MyPlayerService extends Service {
 						sendBroadcast(intentLrc);
 					}
 					
-					/**
+					*//**
 					 * 歌曲进度广播
-					 */
+					 *//*
 					Intent intent = new Intent();
 					intent.setAction(ConstantUtil.MUSIC_CURRENT);
 					intent.putExtra("currentTime", currentTime);
@@ -250,4 +238,4 @@ public class MyPlayerService extends Service {
 		}
 		mp3Util.setCurrentTime(0);
 	}
-}
+*/}

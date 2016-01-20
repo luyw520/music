@@ -39,7 +39,7 @@
                 android:alpha="0.8"
                 android:background="@color/player_track_color2" >
 
-                <com.music.circluarimage.RoundImageView
+                <com.music.view.widget.RoundImageView
                     android:id="@+id/iv_music_album"
                     android:layout_width="70dp"
                     android:layout_height="70dp"

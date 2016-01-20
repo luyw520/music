@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/catalog"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#E0E0E0"
+        android:paddingBottom="5dip"
+        android:paddingLeft="20dip"
+        android:paddingTop="5dip"
+        android:text="A"
+        android:textColor="#454545" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/selector_press" >
+
+        <ImageView
+            android:id="@+id/albumImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/img_favourite_normal" />
+
+        <TextView
+            android:id="@+id/music_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/albumImage"
+            android:ellipsize="end"
+            android:maxEms="10"
+            android:singleLine="true"
+            android:text="不分手的恋爱"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_below="@+id/music_title"
+            android:id="@+id/music_album"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/albumImage"
+            android:ellipsize="end"
+            android:maxEms="10"
+            android:singleLine="true"
+            android:text="专辑"
+            android:layout_marginTop="3dp"
+            android:textColor="#818181"
+            android:textSize="14sp" />
+    </RelativeLayout>
+	<View   
+	    android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#E0E0E0"/>
+</LinearLayout>

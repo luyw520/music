@@ -8,9 +8,9 @@ import android.os.AsyncTask;
 import android.os.Handler;
 
 import com.music.bean.LrcInfo;
-import com.music.lu.utils.AppConstant;
-import com.music.lu.utils.DialogUtil;
-import com.music.lu.utils.Mp3Util;
+import com.music.utils.AppConstant;
+import com.music.utils.DialogUtil;
+import com.music.utils.Mp3Util;
 
 
 public class LrcUtil {

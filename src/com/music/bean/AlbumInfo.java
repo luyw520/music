@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.music.lu.utils.StringUtil;
+import com.music.utils.StringUtil;
 
 
 @SuppressWarnings("rawtypes")

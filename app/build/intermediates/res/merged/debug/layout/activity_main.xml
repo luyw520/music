@@ -1,0 +1,154 @@
+<com.music.widget.slidingmenu.SlidingMenu 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    xmlns:imagecontrol="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/slidingMenu"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="@drawable/skin_bg_player"
+    android:scrollbars="none"
+    zhy:rightPadding="150dp" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+
+        <include layout="@layout/layout_menu" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/RelativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/skin_bg_player" >
+
+                <include
+                    android:id="@+id/include_content"
+                    layout="@layout/activity_listmusicactivity" />
+
+                <RelativeLayout
+                    android:id="@+id/music_about_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:alpha="0.9"
+                    android:background="@color/player_track_color2" >
+
+
+                    <com.music.circluarimage.RoundImageView
+                        android:id="@+id/iv_music_album"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        imagecontrol:border_inside_color="#fff7f2e9"
+                        imagecontrol:border_outside_color="#ffd5d1c8"
+                        imagecontrol:border_thickness="2dp" />
+
+                    <com.music.widget.AlwaysMarqueeTextView
+                        android:id="@+id/tv_music_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/iv_music_album"
+                        android:layout_marginLeft="10.0dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@id/iv_music_album"
+                        android:ellipsize="marquee"
+                         android:focusable="true"
+                         android:marqueeRepeatLimit="marquee_forever"
+                          android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:focusableInTouchMode="true"
+                        android:text="不浪漫的罪名"
+                        android:textColor="#0f0f0f"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_music_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_music_Artist"
+                        android:layout_marginLeft="10.0dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@+id/iv_music_album"
+                        android:layout_toLeftOf="@+id/rl_btn_next2"
+                        android:text="00:00"
+                        android:textColor="#505050" />
+
+                    <ImageView
+                        android:id="@+id/img_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/tv_music_time"
+                        android:layout_margin="3dp"
+                        android:layout_toRightOf="@+id/tv_music_time" />
+
+                    <TextView
+                        android:id="@+id/tv_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/tv_music_time"
+                        android:layout_toRightOf="@+id/img_state"
+                        android:textSize="12sp"
+                        android:text="vivo" />
+
+                    <com.music.widget.AlwaysMarqueeTextView
+                        android:id="@+id/tv_music_Artist"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_music_title"
+                        android:layout_marginLeft="10.0dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@id/iv_music_album"
+                        android:ellipsize="marquee"
+                         android:focusable="true"
+                         android:focusableInTouchMode="true"
+                        android:singleLine="true"
+                        android:text="王杰"
+                        android:textColor="#505050"
+                        android:textSize="12sp" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_btn_next2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp" >
+
+                        <ImageButton
+                            android:id="@+id/btn_next2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/img_button_notification_play_next"
+                            android:background="@drawable/selector_music_btn"
+                            android:onClick="nextMusic" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_btn_playing2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:layout_toLeftOf="@+id/rl_btn_next2" >
+
+                        <ImageButton
+                            android:id="@+id/btn_playing2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/img_button_notification_play_play"
+                            android:onClick="playMusic" />
+                    </RelativeLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</com.music.widget.slidingmenu.SlidingMenu>

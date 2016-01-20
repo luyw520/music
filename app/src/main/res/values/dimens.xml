@@ -1,0 +1,46 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- BUTTON DIMENSIONS -->
+    <dimen name="button_default_width">64dp</dimen>
+    <dimen name="button_default_double_width">128dp</dimen>
+    <dimen name="button_default_height">64dp</dimen>
+    <dimen name="button_default_double_height">128dp</dimen>
+    <dimen name="button_small_padding">28dp</dimen>
+    <dimen name="button_medium_padding">24dp</dimen>
+    <dimen name="button_large_padding">20dp</dimen>
+
+    <!-- SHADE DIMENSIONS -->
+    <dimen name="navigator_shading_height">8dp</dimen>
+    <dimen name="navigator_shading_width">8dp</dimen>
+
+    <!-- DONATE BUTTONS -->
+    <dimen name="donate_button_height">64dp</dimen>
+
+    <!-- ALBUM ART CHOOSER GRID -->
+    <dimen name="album_art_dimension">150dp</dimen>
+
+    <!-- WIDGET -->
+    <dimen name="widget_cover_margin_top">0dp</dimen>
+    <dimen name="widget_cover_margin_bottom">0dp</dimen>
+    <dimen name="widget_cover_margin_left">0dp</dimen>
+    <dimen name="widget_cover_margin_right">0dp</dimen>
+    <dimen name="widget_small_button_padding">12dp</dimen>
+    <dimen name="layout_marginRight">25dp</dimen>
+    <dimen name="login_font_size">14sp</dimen>
+    <dimen name="setting_state_font_size">12sp</dimen>
+    <dimen name="slidingmenu_offset">100dp</dimen>
+ <!-- 60dp -->
+    <dimen name="shadow_width">15dp</dimen>
+ <!-- 15dp -->
+
+    <dimen name="playqueue_dialog_marginright">0dp</dimen>
+    <dimen name="playqueue_dialog_marginbottom">60dp</dimen>
+    <dimen name="playqueue_dialog_width">250dp</dimen>
+    <dimen name="playqueue_dialog_height">380dp</dimen>
+    <dimen name="title_text_sp">18sp</dimen>
+
+</resources>
