@@ -48,7 +48,6 @@ public class FolderInfoDao {
 	}
 	
 	/**
-	 * 数据库中是否有数�?
 	 * @return
 	 */
 	public boolean hasData() {

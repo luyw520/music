@@ -1,19 +1,15 @@
 package com.music.bean;
 
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+
 @SuppressWarnings("rawtypes")
-public class Mp3Info implements Comparable,MusicBaseInfo{
+public class Mp3Info extends MusicBaseInfo implements Comparable {
 	private long id; // 歌曲ID 3
-	private String title; // 歌曲名称 0
 	private String album; // 专辑 7
-	private long albumId;//专辑ID 6
-	private String displayName; //显示名称 4
-	private String artist; // 歌手名称 2
-	private long duration; // 歌曲时长 1
+	private String displayName; // 显示名称 4
 	private long size; // 歌曲大小 8
 	private String url; // 歌曲路径 5
-	
+
 	private String songName;
 	private String songer;
 	/**
@@ -21,25 +17,24 @@ public class Mp3Info implements Comparable,MusicBaseInfo{
 	 */
 	private String downUrl;
 	private String lrcTitle; // 歌词名称
-	private String lrcSize; // 歌词大小 
-	private String titlepinyin;//歌曲首字母拼音
+	private String lrcSize; // 歌词大小
+	private String titlepinyin;// 歌曲首字母拼音
 	@SuppressWarnings("unused")
 	private String fisrtPinYin;
 	/**
 	 * 头像图片资源
 	 */
 	private byte[] bitMap;
-	
+
 	private Bitmap bitmap;
-	
-	public String decode,encode;
+
+	public String decode, encode;
+
 	public Mp3Info() {
 		super();
 	}
 
-	public Mp3Info(long id, String title, String album, long albumId,
-			String displayName, String artist, long duration, long size,
-			String url, String lrcTitle, String lrcSize) {
+	public Mp3Info(int id, String title, String album, int albumId, String displayName, String artist, int duration, long size, String url, String lrcTitle, String lrcSize) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -56,21 +51,18 @@ public class Mp3Info implements Comparable,MusicBaseInfo{
 
 	@Override
 	public String toString() {
-		return "Mp3Info [id=" + id + ", title=" + title + ", album=" + album
-				+ ", albumId=" + albumId + ", displayName=" + displayName
-				+ ", artist=" + artist + ", duration=" + duration + ", size="
-				+ size + ", url=" + url + ", lrcTitle=" + lrcTitle
-				+ ", lrcSize=" + lrcSize + "]";
+		return "Mp3Info [id=" + id + ", title=" + title + ", album=" + album + ", albumId=" + albumId + ", displayName=" + displayName + ", artist=" + artist + ", duration="
+				+ duration + ", size=" + size + ", url=" + url + ", lrcTitle=" + lrcTitle + ", lrcSize=" + lrcSize + "]";
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
-		
-		Mp3Info mp3Info=(Mp3Info) o;
-		
-		
+
+		Mp3Info mp3Info = (Mp3Info) o;
+
 		return this.title.equals(mp3Info.getTitle());
 	}
+
 	public long getId() {
 		return id;
 	}
@@ -95,13 +87,11 @@ public class Mp3Info implements Comparable,MusicBaseInfo{
 		this.album = album;
 	}
 
-	
-
 	public long getAlbumId() {
 		return albumId;
 	}
 
-	public void setAlbumId(long albumId) {
+	public void setAlbumId(int albumId) {
 		this.albumId = albumId;
 	}
 
@@ -117,7 +107,7 @@ public class Mp3Info implements Comparable,MusicBaseInfo{
 		return duration;
 	}
 
-	public void setDuration(long duration) {
+	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 
@@ -161,51 +151,50 @@ public class Mp3Info implements Comparable,MusicBaseInfo{
 		this.displayName = displayName;
 	}
 
-	
-
 	public void setTitlepinyin(String titlepinyin) {
-		
+
 		this.titlepinyin = titlepinyin;
 	}
-	public String getTitlepingyin(){
+
+	public String getTitlepingyin() {
 		return this.titlepinyin;
 	}
-	
+
 	@Override
 	public int compareTo(Object another) {
-		Mp3Info mp3Info=(Mp3Info) another;
-		int i=0;
-		boolean flag=false;
-		for(;i<this.titlepinyin.length();i++){
-			if(i<mp3Info.titlepinyin.length()){
-				if(titlepinyin.charAt(i)!=mp3Info.titlepinyin.charAt(i)){
+		Mp3Info mp3Info = (Mp3Info) another;
+		int i = 0;
+		boolean flag = false;
+		for (; i < this.titlepinyin.length(); i++) {
+			if (i < mp3Info.titlepinyin.length()) {
+				if (titlepinyin.charAt(i) != mp3Info.titlepinyin.charAt(i)) {
 					break;
-				}else{
+				} else {
 					continue;
-				}	
-			}else{
-				flag=true;
+				}
+			} else {
+				flag = true;
 				break;
-				
+
 			}
-				
+
 		}
-		//mp3Info.titlepinyin歌曲长度大于titlepinyin
-		if(i==titlepinyin.length()){
+		// mp3Info.titlepinyin歌曲长度大于titlepinyin
+		if (i == titlepinyin.length()) {
 			return -1;
 		}
-		//titlepinyin歌曲长度大于mp3Info.titlepinyin
-		if(flag){
+		// titlepinyin歌曲长度大于mp3Info.titlepinyin
+		if (flag) {
 			return 1;
 		}
-		return this.titlepinyin.charAt(i)-mp3Info.titlepinyin.charAt(i);
+		return this.titlepinyin.charAt(i) - mp3Info.titlepinyin.charAt(i);
 	}
 
 	public String getFisrtPinYin() {
 		return getTitlepingyin().substring(0, 1).toUpperCase();
 	}
 
-	@SuppressLint("DefaultLocale") public void setFisrtPinYin(String fisrtPinYin) {
+	public void setFisrtPinYin(String fisrtPinYin) {
 		this.fisrtPinYin = fisrtPinYin;
 	}
 
@@ -248,7 +237,5 @@ public class Mp3Info implements Comparable,MusicBaseInfo{
 	public void setBitmap(Bitmap bitmap) {
 		this.bitmap = bitmap;
 	}
-	
-	
 
 }

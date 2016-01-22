@@ -19,7 +19,6 @@ import com.music.bean.LyricSentence;
 import com.music.utils.DeBug;
 
 public class LyricView extends View {
-	@SuppressWarnings("unused")
 	private static final String TAG = "LyricView";
 	/**
 	 * 没有歌词
@@ -43,7 +42,7 @@ public class LyricView extends View {
 	private long currentDuringtime2;
 	/** Y轴中间 */
 	private float middleY;//
-	private final int DY = 60;// 每一行的间隔
+	private final int DY = 80;// 每一行的间隔
 
 	/** x偏移量 */
 	public float driftx;// x偏移量
@@ -117,33 +116,40 @@ public class LyricView extends View {
 	public void setLyricLoadHelper(LyricLoadHelper loadHelper) {
 	}
 
-	private List<LyricSentence> lyricSentences=new ArrayList<LyricSentence>();
+	private List<LyricSentence> lyricSentences = new ArrayList<LyricSentence>();
 
-	public void setLyricSentences(List<LyricSentence> l) {
-		lyricSentences.clear();
-		if(l!=null){
-			lyricSentences.addAll(l);
-		}
-		loadLrc=LRC_LOADED;
-		index = 0;
-	}
-	public void reset(){
-		index = 0;
+	public void setLyricSentences(List<LyricSentence> l,boolean isInit) {
+//		DeBug.d(this,"List<LyricSentence>:"+l.toString());
 		
+		if (l != null && isInit) {
+			for(LyricSentence lSentence:l){
+				DeBug.d(this, "StartTime:"+lSentence.getStartTime()+",DuringTime:"+lSentence.getDuringTime()+",ContentText:"+lSentence.getContentText());
+			}
+			lyricSentences.clear();
+			lyricSentences.addAll(l);
+			index = 0;
+		}
+		loadLrc = LRC_LOADED;
 	}
+
+	public void reset() {
+		index = 0;
+
+	}
+
 	/**
 	 * 将原来的背景清除
 	 */
 	public void clear() {
 		index = 0;
-		loadLrc=LRC_LOADIGN;
+		loadLrc = LRC_LOADIGN;
 		lyricSentences.clear();
 	}
 
 	private boolean isClick = false;
 
 	protected void onDraw(Canvas canvas) {
-//		DeBug.d(this, "onDraw,,,,,,,,,,,,,,,,,,,,,,,,,,index:"+index);
+		// DeBug.d(this, "onDraw,,,,,,,,,,,,,,,,,,,,,,,,,,index:"+index);
 		int j = (int) (-drifty / 40);
 		if (temp < j) {
 			temp++;
@@ -229,36 +235,39 @@ public class LyricView extends View {
 	 *            当前歌词的时间轴
 	 */
 	public void updateindex(int CurrentPosition) {
-		if (lyricSentences != null) {
-			// if (index < maps.size() - 1) {
-			if (index < lyricSentences.size() - 1) {
-				// 歌词数组的序号
 
-				if (CurrentPosition >= (lyricSentences.get(index + 1).getStartTime())) {
-
-					currentDuringtime2 = (lyricSentences.get(index + 1).getStartTime()) - (lyricSentences.get(index).getStartTime());
-					index++;
-					drifty = 0;
-					driftx = 0;
-				} else if (index == 0) {
-					currentDuringtime2 = (lyricSentences.get(index).getStartTime());
-				} else if (CurrentPosition < (lyricSentences.get(index - 1).getStartTime())) {
-
-					for (int i = 0, size = lyricSentences.size() - 1; i < size; i++) {
-						if (CurrentPosition >= (lyricSentences.get(i).getStartTime()) && CurrentPosition < (lyricSentences.get(i + 1).getStartTime())) {
-							currentDuringtime2 = (lyricSentences.get(i + 1).getStartTime()) - (lyricSentences.get(i).getStartTime());
-							index = i;
-							
-							break;
-						}
-
-					}
-				}
-
-			}
-			// }
+		Log.i(TAG, "start................index=" + index);
+		if (lyricSentences == null) {
+			return;
 		}
-		 Log.i(TAG, "index=" + index);
+		// if (index < maps.size() - 1) {
+		if (index < lyricSentences.size() - 1) {
+			// 歌词数组的序号
+
+			if (CurrentPosition >= (lyricSentences.get(index + 1).getStartTime())) {
+				currentDuringtime2 = (lyricSentences.get(index + 1).getStartTime()) - (lyricSentences.get(index).getStartTime());
+				index++;
+				drifty = 0;
+				driftx = 0;
+
+				Log.i(TAG, "start................CurrentPosition is in index+1 ");
+			} else if (index == 0) {
+				currentDuringtime2 = (lyricSentences.get(index).getStartTime());
+			} else if (CurrentPosition < (lyricSentences.get(index - 1).getStartTime())) {
+				Log.i(TAG, "start................find index ");
+				for (int i = 0, size = lyricSentences.size() - 1; i < size; i++) {
+					if (CurrentPosition >= (lyricSentences.get(i).getStartTime()) && CurrentPosition < (lyricSentences.get(i + 1).getStartTime())) {
+						currentDuringtime2 = (lyricSentences.get(i + 1).getStartTime()) - (lyricSentences.get(i).getStartTime());
+						index = i;
+
+						break;
+					}
+
+				}
+			}
+
+		}
+		Log.i(TAG, "CurrentPosition:" + CurrentPosition + ",index=" + index);
 		if (drifty > -40.0)
 			if (currentDuringtime2 > 100) {
 				drifty = (float) (drifty - 40.0 / (currentDuringtime2 / 100));

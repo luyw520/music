@@ -144,7 +144,7 @@ public class PlayerActivity extends BaseActivity implements
 		setViewOnclickListener();
 		setPlayType();
 		registerReceiver();
-		findMp3Lrc();
+		findMp3Lrc(true);
 	}
 
 	private class MyLyricListener implements LyricListener {
@@ -154,7 +154,7 @@ public class PlayerActivity extends BaseActivity implements
 				int indexOfCurSentence) {
 			Log.i(TAG, "加载成功");
 			lyricModel.putLyric(mp3Util.getCurrentMp3Info().getTitle(), lyricSentences);
-			lyricView.setLyricSentences(lyricSentences);
+			lyricView.setLyricSentences(lyricSentences,true);
 			lyricView.setLoadLrc(LyricView.LRC_LOADED);
 		}
 
@@ -168,10 +168,10 @@ public class PlayerActivity extends BaseActivity implements
 	/**
 	 * 加载歌词
 	 */
-	private void findMp3Lrc() {
+	private void findMp3Lrc(boolean isInit) {
 		String title=mp3Util.getCurrentMp3Info().getTitle();
 		if(lyricModel.isCache(title)){
-			lyricView.setLyricSentences(lyricModel.getLyricSentences(title));
+			lyricView.setLyricSentences(lyricModel.getLyricSentences(title),isInit);
 			lyricView.invalidate();
 			return;
 		}
@@ -181,7 +181,7 @@ public class PlayerActivity extends BaseActivity implements
 			public void onPostExecute(Object result) {
 				// 没有加载到歌词
 				if (lrcPath == null) {
-					lyricView.setLyricSentences(null);
+					lyricView.setLyricSentences(null,false);
 					lyricView.setLoadLrc(LyricView.NO_LRC);
 					Log.d(TAG, "网络加载失败..");
 				}
@@ -283,7 +283,7 @@ public class PlayerActivity extends BaseActivity implements
 			mp3Util.setShowLrc(true);
 			rl_disc.setVisibility(View.GONE);
 			ll_lrc.setVisibility(View.VISIBLE);
-			loadLrc();
+			loadLrc(false);
 			break;
 		case R.id.ll_lrc:
 			mp3Util.setShowLrc(false);
@@ -373,11 +373,11 @@ public class PlayerActivity extends BaseActivity implements
 	/**
 	 * 加载歌词
 	 */
-	private void loadLrc() {
+	private void loadLrc(boolean isInit) {
 
 		if (mp3Util.isShowLrc()) {
 			lyricView.setLoadLrc(LyricView.LRC_LOADIGN);
-			findMp3Lrc();
+			findMp3Lrc(isInit);
 		}
 
 	}
@@ -408,16 +408,18 @@ public class PlayerActivity extends BaseActivity implements
 		}
 
 		Bitmap bmp = MediaUtil
-				.getArtwork(getApplicationContext(), currentMp3Info.getId(),
+				.getArtwork(getApplicationContext(), currentMp3Info.getSongId(),
 						currentMp3Info.getAlbumId(), true, true);
 	
 		
-//		Bitmap bmpBg= MediaUtil
-//				.getArtworkOriginal(getApplicationContext(), currentMp3Info.getId(),
-//						currentMp3Info.getAlbumId(), true, true);
+		Bitmap bmpBg= MediaUtil
+				.getArtworkOriginal(getApplicationContext(), currentMp3Info.getSongId(),
+						currentMp3Info.getAlbumId(), true, false);
 		
 		iv_music_album.setImageBitmap(bmp);
-		ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(bmp, this)));
+//		ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(bmp, this)));
+		ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(bmpBg, this)));
+		
 
 	}
 
@@ -512,7 +514,7 @@ public class PlayerActivity extends BaseActivity implements
 			musicArtist.setText(mp3Util.getCurrentMp3Info().getArtist());
 			initViewData();
 			lyricView.clear();
-			loadLrc();
+			loadLrc(true);
 		}
 
 		@Override

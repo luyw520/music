@@ -43,15 +43,18 @@ public class MediaUtil {
 	 */
 	@SuppressLint("DefaultLocale")
 	public List<Mp3Info> getMp3Infos(Context context) {
+		
+		
+		
+		
 		long time1 = System.currentTimeMillis();
 		Cursor cursor = context.getContentResolver().query(
 				MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,
 				MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
 
-		System.out.println("MediaStore.Audio.Media.EXTERNAL_CONTENT_URI:"
+		LogUtil.d(this, "MediaStore.Audio.Media.EXTERNAL_CONTENT_URI:"
 				+ MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
-		;
-		System.out.println("MediaStore.Audio.Media.DEFAULT_SORT_ORDER:"
+		LogUtil.d(this, "MediaStore.Audio.Media.DEFAULT_SORT_ORDER:"
 				+ MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
 		List<Mp3Info> mp3Infos = new ArrayList<Mp3Info>();
 		System.out.println("cursor.getCount()=" + cursor.getCount());
@@ -78,12 +81,6 @@ public class MediaUtil {
 
 			.getColumnIndex(MediaStore.Audio.Media.DATA)); // 文件路径
 
-			// Log.i(TAG, "i=" + i + ",url=" + url);
-			// Log.i(TAG, "i=" + i + ",title=" + title);
-			// Log.i(TAG, "i=" + i + ",artist=" + artist);
-			// Log.i(TAG, "i=" + i + ",displayName=" + displayName);
-			// Log.i(TAG, "i=" + i + ",size=" + size);
-			// Log.i(TAG, "i=" + i + ",album=" + album);
 
 			int isMusic = cursor.getInt(cursor
 					.getColumnIndex(MediaStore.Audio.Media.IS_MUSIC)); // 是否为音乐
@@ -99,7 +96,7 @@ public class MediaUtil {
 					mp3Info.setDuration(duration);
 					mp3Info.setSize(size);
 					mp3Info.setUrl(url);
-
+					mp3Info.playPath=url;
 					mp3Info.setTitlepinyin(toHanyuPinYin(mp3Info.getTitle()));
 
 					mp3Infos.add(mp3Info);
@@ -108,7 +105,6 @@ public class MediaUtil {
 		}
 		long time2 = System.currentTimeMillis();
 		Log.i(TAG, (time2 - time1) + "ms");
-		// MediaSort.sortMp3Infos(mp3Infos);
 		return mp3Infos;
 	}
 	/**
@@ -206,14 +202,23 @@ public class MediaUtil {
 	public static Bitmap getDefaultArtwork(Context context, boolean small) {
 		BitmapFactory.Options opts = new BitmapFactory.Options();
 		opts.inPreferredConfig = Bitmap.Config.RGB_565;
+		DeBug.d(MediaUtil.class,".............small:"+small);
 		if (small) { // 返回小图片
+			
 			return BitmapFactory.decodeStream(context.getResources()
-					.openRawResource(R.drawable.playing_bar_default_avatar),
+					.openRawResource(R.drawable.lmusic),
 					null, opts);
+//			return BitmapFactory.decodeStream(context.getResources()
+//					.openRawResource(R.drawable.playing_bar_default_avatar),
+//					null, opts);
 		}
-		return BitmapFactory.decodeStream(context.getResources()
-				.openRawResource(R.drawable.playing_bar_default_avatar), null,
-				opts);
+		return BitmapFactory.decodeResource(context.getResources(), R.drawable.ymusic);
+//		return BitmapFactory.decodeStream(context.getResources()
+//				.openRawResource(R.drawable.ymusic), null,
+//				opts);
+//		return BitmapFactory.decodeStream(context.getResources()
+//				.openRawResource(R.drawable.playing_bar_default_avatar), null,
+//				opts);
 	}
 
 	/**
@@ -392,12 +397,15 @@ public class MediaUtil {
 			long album_id, boolean allowdefalut, boolean small) {
 		if (album_id < 0) {
 			if (song_id < 0) {
+				DeBug.d(MediaUtil.class,".............song_id:"+song_id+",album_id:"+album_id);
 				Bitmap bm = getArtworkFromFileOriginal(context, song_id, -1);
 				if (bm != null) {
+					DeBug.d(MediaUtil.class,".............get bitmap from  getArtworkFromFileOriginal");
 					return bm;
 				}
 			}
 			if (allowdefalut) {
+				DeBug.d(MediaUtil.class,".............start get bitmap from  getDefaultArtwork");
 				return getDefaultArtwork(context, small);
 			}
 			return null;
@@ -442,7 +450,7 @@ public class MediaUtil {
 	 * @param target
 	 * @return
 	 */
-	public static int computeSampleSize(Options options, int target) {
+	private static int computeSampleSize(Options options, int target) {
 		int w = options.outWidth;
 		int h = options.outHeight;
 		int candidateW = w / target;

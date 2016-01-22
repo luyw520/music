@@ -35,7 +35,10 @@ import com.music.widget.slidingmenu.SlidingMenu;
  *
  */
 @SuppressLint("HandlerLeak")
-public class MainContentActivity extends BaseFragmentActivity implements IConstants,GridViewItemClick {
+public class MainContentActivity 
+extends BaseFragmentActivity 
+//implements IConstants,GridViewItemClick
+{/*
 
 	public static final String ALARM_CLOCK_BROADCAST = "alarm_clock_broadcast";
 	public SlidingMenu mSlidingMenu;
@@ -95,7 +98,7 @@ public class MainContentActivity extends BaseFragmentActivity implements IConsta
 		
 	}
 
-	private void initSDCard() {/*
+	private void initSDCard() {
 		IntentFilter intentFilter = new IntentFilter();
 		intentFilter.setPriority(1000);// 设置最高优先级
 		intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);// sd卡被插入，且已经挂载
@@ -108,7 +111,7 @@ public class MainContentActivity extends BaseFragmentActivity implements IConsta
 		// intentFilter.addAction(Intent.ACTION_MEDIA_SCANNER_FINISHED);// 扫描完成
 		intentFilter.addDataScheme("file");
 		registerReceiver(sdCardReceiver, intentFilter);// 注册监听函数
-		*/
+		
 		EventBus.getDefault().register(this);
 	}
 	@Subscriber()
@@ -193,7 +196,7 @@ public class MainContentActivity extends BaseFragmentActivity implements IConsta
 //				listener.onBack();
 //			}
 //		}
-//	*/}
+//}
 
 //	private final BroadcastReceiver sdCardReceiver = new BroadcastReceiver() {
 //		@Override
@@ -207,10 +210,10 @@ public class MainContentActivity extends BaseFragmentActivity implements IConsta
 //				Toast.makeText(MainContentActivity.this, "SD卡以外拔出，本地数据没法初始化!",
 //						Toast.LENGTH_SHORT).show();
 //			}
-//		*/}
+//		}
 //	};
 
-	public void showSleepDialog() {/*
+	public void showSleepDialog() {
 
 		if (MusicApp.mIsSleepClockSetting) {
 			cancleSleepClock();
@@ -263,14 +266,9 @@ public class MainContentActivity extends BaseFragmentActivity implements IConsta
 
 		cancleBtn.setOnClickListener(listener);
 		okBtn.setOnClickListener(listener);
-	*/}
+	}
 
-	/**
-	 * 设置睡眠闹钟
-	 * 
-	 * @param timeS
-	 */
-	private void setSleepClock(String timeS) {/*
+	private void setSleepClock(String timeS) {
 		Intent intent = new Intent(ALARM_CLOCK_BROADCAST);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(
 				MainContentActivity.this, 0, intent, 0);
@@ -283,19 +281,16 @@ public class MainContentActivity extends BaseFragmentActivity implements IConsta
 		MusicApp.mIsSleepClockSetting = true;
 		Toast.makeText(getApplicationContext(), "将在"+timeS+"分钟后退出软件", Toast.LENGTH_SHORT)
 				.show();
-	*/}
+	}
 
-	/**
-	 * 取消睡眠闹钟
-	 */
-	private void cancleSleepClock() {/*
+	private void cancleSleepClock() {
 		Intent intent = new Intent(ALARM_CLOCK_BROADCAST);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(
 				MainContentActivity.this, 0, intent, 0);
 		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		am.cancel(pendingIntent);
 		MusicApp.mIsSleepClockSetting = false;
-	*/}
+	}
 	
 	private BroadcastReceiver mAlarmReceiver = new BroadcastReceiver() {
 
@@ -335,4 +330,4 @@ public class MainContentActivity extends BaseFragmentActivity implements IConsta
 		.replace(R.id.frame_main, contentFragment).commit();
 	}
 
-}
+*/}

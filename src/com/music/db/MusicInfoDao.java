@@ -6,6 +6,8 @@ package com.music.db;
 import java.util.ArrayList;
 import java.util.List;
 
+import u.aly.db;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -18,13 +20,16 @@ public class MusicInfoDao implements IConstants {
 	
 	private static final String TABLE_MUSIC = "music_info";
 	private Context mContext;
-	
+	@SuppressWarnings("unused")
+	private List<MusicInfo> musicInfos;
 	public MusicInfoDao(Context context) {
 		this.mContext = context;
 	}
 	
 	public void saveMusicInfo(List<MusicInfo> list) {
+		
 		SQLiteDatabase db = DatabaseHelper.getInstance(mContext);
+		db.delete(TABLE_MUSIC, null, null);
 		for (MusicInfo music : list) {
 			ContentValues cv = new ContentValues();
 			cv.put("songid", music.songId);
@@ -48,12 +53,12 @@ public class MusicInfoDao implements IConstants {
 		return parseCursor(db.rawQuery(sql, null));
 	}
 	
-	private List<MusicInfo> parseCursor(Cursor cursor) {
+	public List<MusicInfo> parseCursor(Cursor cursor) {
 		List<MusicInfo> list = new ArrayList<MusicInfo>();
 		while(cursor.moveToNext()) {
 			MusicInfo music = new MusicInfo();
 			music._id = cursor.getInt(cursor.getColumnIndex("_id"));
-			music.songId = cursor.getInt(cursor.getColumnIndex("songid"));
+//			music.songId = cursor.getInt(cursor.getColumnIndex("songid"));
 			music.albumId = cursor.getInt(cursor.getColumnIndex("albumid"));
 			music.duration = cursor.getInt(cursor.getColumnIndex("duration"));
 			music.musicName = cursor.getString(cursor.getColumnIndex("musicname"));
@@ -63,6 +68,9 @@ public class MusicInfoDao implements IConstants {
 			music.musicNameKey = cursor.getString(cursor.getColumnIndex("musicnamekey"));
 			music.artistKey = cursor.getString(cursor.getColumnIndex("artistkey"));
 			music.favorite = cursor.getInt(cursor.getColumnIndex("favorite"));
+			
+			music.title=music.musicName;
+			music.playPath=music.data;
 			list.add(music);
 		}
 		cursor.close();
@@ -100,6 +108,7 @@ public class MusicInfoDao implements IConstants {
 			int count = cursor.getInt(0);
 			if(count > 0) {
 				has = true;
+//				musicInfos=parseCursor(cursor);
 			}
 		}
 		cursor.close();

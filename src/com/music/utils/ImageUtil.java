@@ -30,6 +30,8 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 /**
  * 图片工具类 2013/7/3
@@ -152,7 +154,60 @@ public class ImageUtil {
 		canvas.drawBitmap(src, rect, rect, paint);
 		return bitmap;
 	}
+	/**
+	 * 获取圆角图片
+	 * 
+	 * @param bitmap
+	 * @param pixels
+	 * @return
+	 */
+	public static Bitmap toRoundCorner(Bitmap bitmap, int pixels) {
 
+		Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+				bitmap.getHeight(), Config.ARGB_8888);
+		Canvas canvas = new Canvas(output);
+
+		final int color = 0xff424242;
+		final Paint paint = new Paint();
+		final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+		final RectF rectF = new RectF(rect);
+		final float roundPx = pixels;
+
+		paint.setAntiAlias(true);
+		canvas.drawARGB(0, 0, 0, 0);
+		paint.setColor(color);
+		canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+
+		paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+		canvas.drawBitmap(bitmap, rect, rect, paint);
+
+		return output;
+	}
+	/**
+	 * 获取颜色的圆角bitmap
+	 * 
+	 * @param context
+	 * @param color
+	 * @return
+	 */
+	public static Bitmap getRoundBitmap(Context context, int color) {
+		DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+		int width = Math.round(TypedValue.applyDimension(
+				TypedValue.COMPLEX_UNIT_DIP, 12.0f, metrics));
+		int height = Math.round(TypedValue.applyDimension(
+				TypedValue.COMPLEX_UNIT_DIP, 4.0f, metrics));
+		int round = Math.round(TypedValue.applyDimension(
+				TypedValue.COMPLEX_UNIT_DIP, 2.0f, metrics));
+		Bitmap bitmap = Bitmap.createBitmap(width, height,
+				Bitmap.Config.ARGB_8888);
+		Canvas canvas = new Canvas(bitmap);
+		Paint paint = new Paint();
+		paint.setAntiAlias(true);
+		paint.setColor(color);
+		canvas.drawRoundRect(new RectF(0.0F, 0.0F, width, height), round,
+				round, paint);
+		return bitmap;
+	}
 	/**
 	 * 创建选中带提示图片
 	 * 
@@ -526,6 +581,13 @@ public class ImageUtil {
 
 	public static int clamp(int x, int a, int b) {
 		return (x < a) ? a : (x > b) ? b : x;
+	}
+	
+	
+	public  static Bitmap blurBitmap( int res,Context context){  
+		Bitmap bitmap=BitmapFactory.decodeResource(context.getResources(), res);
+		
+		return blurBitmap(bitmap, context);
 	}
 	/**
 	 *  RenderScript是Android在API 11之后加入的，用于高效的图片处理，包括模糊、混合、矩阵卷积计算等

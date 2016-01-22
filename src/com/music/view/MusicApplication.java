@@ -1,12 +1,21 @@
 package com.music.view;
 
+import java.io.File;
+
 import android.app.Application;
+import android.content.Context;
 
 import com.music.utils.BitmapCacheUtil;
+import com.music.utils.FileUtils;
 import com.music.utils.Mp3Util_New;
 import com.music.utils.MusicUtils;
 import com.music.utils.DeBug;
 import com.music.widget.lockpatternview.LockPatternUtils;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 public class MusicApplication extends Application {
 	private static final String TAG = "MusicApplication";
@@ -29,6 +38,19 @@ public class MusicApplication extends Application {
 		
 		setmLockPatternUtils(new LockPatternUtils(this));
 		setMusicApplication(this);
+		
+		initImageLoader(getApplicationContext());
+	}
+	private void initImageLoader(Context applicationContext) {
+		ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(applicationContext);
+		config.threadPriority(Thread.NORM_PRIORITY - 2);
+		config.denyCacheImageMultipleSizesInMemory();
+		config.diskCacheFileNameGenerator(new Md5FileNameGenerator());
+		config.diskCacheSize(50 * 1024 * 1024); // 50 MiB
+		config.tasksProcessingOrder(QueueProcessingType.LIFO);
+		config.writeDebugLogs(); // Remove for release app
+		config.diskCache(new UnlimitedDiskCache(new File(FileUtils.imgPathPath())));
+		ImageLoader.getInstance().init(config.build());
 	}
 	public static MusicApplication getInstance() {
 		return musicApplication;

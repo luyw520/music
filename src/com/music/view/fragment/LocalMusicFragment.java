@@ -3,7 +3,6 @@ package com.music.view.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.R.integer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;

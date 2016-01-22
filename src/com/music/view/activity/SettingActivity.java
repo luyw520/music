@@ -15,6 +15,7 @@ import com.music.utils.BitmapCacheUtil;
 import com.music.utils.DialogUtil;
 import com.music.utils.LogUtil;
 import com.music.utils.Mp3Util;
+import com.music.utils.Mp3Util_New;
 import com.music.utils.ScreenShotUtil;
 import com.music.utils.SensorManagerUtil;
 import com.music.utils.SensorManagerUtil.SensorChangedListener;
@@ -120,7 +121,7 @@ public class SettingActivity extends BaseActivity {
 	}
 	
 	private void setQieGeState(int index) {
-		LogUtil.log(this.getClass(), "index="+index);
+		LogUtil.d(this.getClass(), "index="+index);
 		sensorManagerUtil.registerListener();
 		switch (index) {
 		case 0:
@@ -231,8 +232,8 @@ public class SettingActivity extends BaseActivity {
 		@Override
 		public void onSensorChanged() {
 			
-			Mp3Util mp3Util=Mp3Util.getDefault();
-			mp3Util.nextMusic();
+			Mp3Util_New mp3Util=Mp3Util_New.getDefault();
+			mp3Util.nextMusic(false);
 			LogUtil.i(SettingActivity.this.getClass(), "onSensorChanged");
 		}
 	};

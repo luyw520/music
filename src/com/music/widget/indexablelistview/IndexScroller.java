@@ -55,7 +55,11 @@ public class IndexScroller {
 	private static final int STATE_SHOWING = 1;
 	private static final int STATE_SHOWN = 2;
 	private static final int STATE_HIDING = 3;
-	
+	private Paint indexbarPaint;
+	private Paint previewPaint;
+	Paint previewTextPaint;
+	Paint indexPaint;
+	RectF previewRect;
 	public IndexScroller(Context context, ListView lv) {
 		mDensity = context.getResources().getDisplayMetrics().density;
 		mScaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
@@ -65,6 +69,29 @@ public class IndexScroller {
 		mIndexbarWidth = 20 * mDensity;
 		mIndexbarMargin = 10 * mDensity;
 		mPreviewPadding = 5 * mDensity;
+		
+		indexbarPaint = new Paint();
+		indexbarPaint.setColor(Color.BLACK);
+		indexbarPaint.setAlpha((int) (64 * mAlphaRate));
+		indexbarPaint.setAntiAlias(true);
+		
+		
+		previewPaint = new Paint();
+		previewPaint.setColor(Color.BLACK);
+		previewPaint.setAlpha(96);
+		previewPaint.setAntiAlias(true);
+		previewPaint.setShadowLayer(3, 0, 0, Color.argb(64, 0, 0, 0));
+		
+		previewTextPaint = new Paint();
+		previewTextPaint.setColor(Color.WHITE);
+		previewTextPaint.setAntiAlias(true);
+		previewTextPaint.setTextSize(50 * mScaledDensity);
+		
+		indexPaint = new Paint();
+		indexPaint.setColor(Color.WHITE);
+		indexPaint.setAlpha((int) (255 * mAlphaRate));
+		indexPaint.setAntiAlias(true);
+		indexPaint.setTextSize(12 * mScaledDensity);
 	}
 
 	public void draw(Canvas canvas) {
@@ -72,29 +99,15 @@ public class IndexScroller {
 //			return;
 		
 		// mAlphaRate determines the rate of opacity
-		Paint indexbarPaint = new Paint();
-		indexbarPaint.setColor(Color.BLACK);
-		indexbarPaint.setAlpha((int) (64 * mAlphaRate));
-		indexbarPaint.setAntiAlias(true);
+		
 		canvas.drawRoundRect(mIndexbarRect, 5 * mDensity, 5 * mDensity, indexbarPaint);
 		
 		if (mSections != null && mSections.length > 0) {
 			// Preview is shown when mCurrentSection is set
 			if (mCurrentSection >= 0) {
-				Paint previewPaint = new Paint();
-				previewPaint.setColor(Color.BLACK);
-				previewPaint.setAlpha(96);
-				previewPaint.setAntiAlias(true);
-				previewPaint.setShadowLayer(3, 0, 0, Color.argb(64, 0, 0, 0));
-				
-				Paint previewTextPaint = new Paint();
-				previewTextPaint.setColor(Color.WHITE);
-				previewTextPaint.setAntiAlias(true);
-				previewTextPaint.setTextSize(50 * mScaledDensity);
-				
 				float previewTextWidth = previewTextPaint.measureText(mSections[mCurrentSection]);
 				float previewSize = 2 * mPreviewPadding + previewTextPaint.descent() - previewTextPaint.ascent();
-				RectF previewRect = new RectF((mListViewWidth - previewSize) / 2
+				previewRect = new RectF((mListViewWidth - previewSize) / 2
 						, (mListViewHeight - previewSize) / 2
 						, (mListViewWidth - previewSize) / 2 + previewSize
 						, (mListViewHeight - previewSize) / 2 + previewSize);
@@ -104,11 +117,7 @@ public class IndexScroller {
 						, previewRect.top + mPreviewPadding - previewTextPaint.ascent() + 1, previewTextPaint);
 			}
 			
-			Paint indexPaint = new Paint();
-			indexPaint.setColor(Color.WHITE);
-			indexPaint.setAlpha((int) (255 * mAlphaRate));
-			indexPaint.setAntiAlias(true);
-			indexPaint.setTextSize(12 * mScaledDensity);
+			
 			
 			float sectionHeight = (mIndexbarRect.height() - 2 * mIndexbarMargin) / mSections.length;
 			float paddingTop = (sectionHeight - (indexPaint.descent() - indexPaint.ascent())) / 2;
@@ -140,14 +149,12 @@ public class IndexScroller {
 			break;
 		case MotionEvent.ACTION_MOVE:
 			if (mIsIndexing) {
-				// If this event moves inside index bar
 				if (contains(ev.getX(), ev.getY())) {
 					// Determine which section the point is in, and move the list to that section
 					mCurrentSection = getSectionByPoint(ev.getY());
 					if(mIndexer.getPositionForSection(mCurrentSection)!=-1){
 						mListView.setSelection(mIndexer.getPositionForSection(mCurrentSection));
 					}
-//					mListView.setSelection(mIndexer.getPositionForSection(mCurrentSection));
 				}
 				return true;
 			}

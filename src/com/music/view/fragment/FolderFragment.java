@@ -17,6 +17,7 @@ import com.music.lu.R;
 import com.music.service.IConstants;
 import com.music.service.IMediaService;
 import com.music.utils.LogUtil;
+import com.music.utils.MusicUtils;
 import com.music.view.activity.LocalMusicActivity;
 import com.music.view.adapter.LuAdapter;
 import com.music.widget.indexablelistview.IndexableListView;
@@ -66,7 +67,7 @@ public class FolderFragment extends Fragment {
 		mMusiclist.setOnItemClickListener(musicListItemClickListener);
 		
 		
-		folderInfos = com.music.utils.MusicUtils.queryFolder(getActivity());
+		folderInfos = MusicUtils.getDefault().queryFolder(getActivity());
 		listAdapter = new ArtistAdapter(getActivity(),folderInfos,R.layout.item_listview_folder);
 		
 		

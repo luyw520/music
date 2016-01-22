@@ -26,6 +26,7 @@ import com.music.service.IConstants;
 import com.music.service.IMediaService;
 import com.music.utils.BitmapCacheUtil;
 import com.music.utils.LogUtil;
+import com.music.utils.MusicUtils;
 import com.music.utils.StringUtil;
 import com.music.view.activity.LocalMusicActivity;
 import com.music.view.adapter.LuAdapter;
@@ -86,7 +87,7 @@ public class ArtistFragment extends Fragment {
 		mMusiclist.setOnItemClickListener(musicListItemClickListener);
 		
 		
-		artistInfos = com.music.utils.MusicUtils.queryArtist(getActivity());
+		artistInfos = MusicUtils.getDefault().queryArtist(getActivity());
 		listAdapter = new ArtistAdapter(getActivity(),artistInfos,R.layout.item_listview_album);
 		
 		LinearLayout listViewFoodView = new LinearLayout(getActivity());

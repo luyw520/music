@@ -101,7 +101,7 @@ public class Mp3Util_New {
 	public final static int PLAY_BY_BLUM = 2;
 	public final static int PLAY_BY_FOLDER = 3;
 	private int mPlayListType;
-
+	private MusicUtils musicUtils;
 	@SuppressWarnings("unchecked")
 	public void addMp3(Mp3Info mp3Info) {
 
@@ -188,6 +188,8 @@ public class Mp3Util_New {
 
 	private void init() {
 		mediaUtil = new MediaUtil();
+		
+		musicUtils=MusicUtils.getDefault();
 		initCurrentMusicInfo(context);
 		isPlaying = false;
 		isSortByTime = false;
@@ -202,6 +204,7 @@ public class Mp3Util_New {
 			@Override
 			public void run() {
 				mp3Infos = mediaUtil.sortMp3InfosByTitle(context);
+//				mp3Infos = musicUtils.getMusicInfos();
 				musicBaseInfos = mp3Infos;
 				currentMp3Info = musicBaseInfos.get(listPosition);
 				DeBug.d(Mp3Util_New.this, "..........listPosition:"+listPosition);
@@ -356,7 +359,7 @@ public class Mp3Util_New {
 		try {
 			switch (msg) {
 			case AppConstant.PlayerMsg.PLAY_MSG:
-				mService.play(currentMp3Info.getUrl());
+				mService.play(currentMp3Info.playPath);
 				break;
 			case AppConstant.PlayerMsg.PLAYING_MSG:
 				mService.cotinuePlay();

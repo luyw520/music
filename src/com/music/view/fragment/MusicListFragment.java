@@ -109,27 +109,27 @@ public class MusicListFragment extends Fragment implements IConstants{
 		switch (flag) {
 		case START_FROM_ARTIST:
 			ArtistInfo artistInfo = (ArtistInfo) object;
-			musicInfos=(MusicUtils.queryMusic(context,
+			musicInfos=(MusicUtils.getDefault().queryMusic(context,
 					select.toString(), artistInfo.artist_name,
 					START_FROM_ARTIST));
 			mPlayListType=1;
 			break;
 		case START_FROM_ALBUM:
 			AlbumInfo albumInfo = (AlbumInfo) object;
-			musicInfos=(MusicUtils.queryMusic(context,
+			musicInfos=(MusicUtils.getDefault().queryMusic(context,
 					select.toString(), albumInfo.album_id + "",
 					START_FROM_ALBUM));
 			mPlayListType=2;
 			break;
 		case START_FROM_FOLDER:
 			FolderInfo folderInfo = (FolderInfo) object;
-			musicInfos=(MusicUtils.queryMusic(context,
+			musicInfos=(MusicUtils.getDefault().queryMusic(context,
 					select.toString(), folderInfo.folder_path,
 					START_FROM_FOLDER));
 			mPlayListType=3;
 			break;
 		case START_FROM_FAVORITE:
-			musicInfos=(MusicUtils.queryFavorite(context));
+			musicInfos=(MusicUtils.getDefault().queryFavorite(context));
 			break;
 		}
 	}
@@ -167,7 +167,7 @@ public class MusicListFragment extends Fragment implements IConstants{
 			
 //			helper.setString(R.id.albumImage,folderInfo.folder_name);
 			helper.setString(R.id.music_album,musicInfo.artist);
-			helper.setString(R.id.music_title,musicInfo.musicName);
+			helper.setString(R.id.music_title,musicInfo.title);
 			helper.getView(R.id.catalog).setVisibility(View.GONE);
 		}
 

@@ -51,6 +51,7 @@ import com.music.view.gesturepressword.UnlockGesturePasswordActivity;
 import com.music.view.widget.CircularImage;
 import com.music.view.widget.RoundImageView;
 import com.music.widget.slidingmenu2.SlidingMenu;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  *
@@ -190,20 +191,33 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	}
 
 	private void initData() {
+		final long start=System.currentTimeMillis();
 		new AsyncTaskUtil(
 				new com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack() {
 					@Override
 					public Object doInBackground(String... arg0) {
-						MusicUtils.queryMusic(getApplication(),
+						MusicUtils.getDefault().queryMusic(getApplication(),
 								START_FROM_LOCAL);
 						MusicUtils.getDefault().queryAlbums(getApplication());
-						MusicUtils.queryArtist(getApplication());
-						MusicUtils.queryFolder(getApplication());
+						MusicUtils.getDefault().queryArtist(getApplication());
+						MusicUtils.getDefault().queryFolder(getApplication());
 						return null;
 					}
 					@Override
 					public void onPostExecute(Object result) {
-						DeBug.d(LocalMusicActivity.this, "..........onPostExecute");
+						
+						long end=System.currentTimeMillis();
+						int speedTime=(int) ((end-start));
+						
+						DeBug.d(LocalMusicActivity.this, "..........onPostExecute, speedTime:"+speedTime);
+						if(speedTime<3000){
+							try {
+								Thread.sleep(3000-speedTime);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 						mSplashScreen.removeSplashScreen();
 						initWidget();
 						resetPlayState();
@@ -214,7 +228,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		LogUtil.i(getClass(), "resultCode=" + resultCode);
-
 		switch (requestCode) {
 		case REQUESTCODE_LOGIN:
 			loginResult(data);
@@ -233,9 +246,10 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		DialogUtil.showToast(getApplicationContext(), "µÇÂ¼³É¹¦");
 		String username = UserManager.getInstance().getUserBean().getUsername();
 		tv_username.setText(username);
-		String userHeader=UserManager.getInstance().getUserBean().getHeadPath();
+		String userHeaderUrl=UserManager.getInstance().getUserBean().getHeadPath();
 		
-		UserManager.getInstance().downUserHeader(userHeader,iv_header);
+//		UserManager.getInstance().downUserHeader(userHeader,iv_header);
+		ImageLoader.getInstance().displayImage(userHeaderUrl, iv_header);
 	}
 
 	
@@ -245,7 +259,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		tv_music_title.setText(currentMp3Info.getTitle());
 		tv_music_Artist.setText(currentMp3Info.getArtist());
 		Bitmap bmp = MediaUtil
-				.getArtwork(getApplicationContext(), currentMp3Info.getId(),
+				.getArtwork(getApplicationContext(), currentMp3Info.getSongId(),
 						currentMp3Info.getAlbumId(), true, true);
 		iv_music_album.setImageBitmap(bmp);
 	}

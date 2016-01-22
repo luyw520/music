@@ -4,11 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
-import android.R.integer;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Environment;
 
@@ -22,10 +19,10 @@ public class FileUtils {
 	
 	private static final String TAG="FileUtils";
 	/**
-	 * 应用程序路径
+	 * 应用程序存储路径
 	 */
 	
-	private static String dataPath=SDCardRoot+"lu";
+	private static String dataPath=SDCardRoot+"lu"+File.separator+"music";
 	/**
 	 * 下载路径
 	 */

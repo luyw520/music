@@ -68,7 +68,7 @@ public class SongFragment extends Fragment implements IConstants{
 		mMusiclist=(IndexableListView) view.findViewById(R.id.listview);
 		
 		
-		mMusiclist.setFastScrollEnabled(true);
+		mMusiclist.setFastScrollEnabled(false);
 		
 		
 		mp3Infos=mp3Util.getMp3Infos();

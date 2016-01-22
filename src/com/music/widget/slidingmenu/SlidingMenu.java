@@ -28,7 +28,6 @@ public class SlidingMenu extends HorizontalScrollView {
 	 */
 	private int mMenuRightPadding;
 	/**
-	 * 菜单的宽�???
 	 */
 	private int mMenuWidth;
 	private int mHalfMenuWidth;
@@ -44,7 +43,7 @@ public class SlidingMenu extends HorizontalScrollView {
 	private ViewGroup mMenu;
 	private ViewGroup mContent;
 	
-	private int x,y;
+	private int x;
 	
 	public SlidingMenu(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
@@ -83,8 +82,11 @@ public class SlidingMenu extends HorizontalScrollView {
 //		MyLog.d(TAG, "LocalMusicActivity.isFirst");
 		int x=(int) ev.getX();
 //		System.out.println("x="+x);
-//		MyLog.d(TAG, "isOpen:"+isOpen);
-		if(x<100 || isOpen){
+//		DeBug.d(TAG, "onInterceptTouchEvent...............x:"+x);
+//		if(x<100 || isOpen){
+//			return super.onInterceptTouchEvent(ev);
+//		}
+		if(isOpen||x<200){
 			return super.onInterceptTouchEvent(ev);
 		}
 		return false;
@@ -127,11 +129,11 @@ public class SlidingMenu extends HorizontalScrollView {
 	public boolean onTouchEvent(MotionEvent ev) {
 		int action = ev.getAction();
 		switch (action) {
-		// Up时，进行判断，如果显示区域大于菜单宽度一半则完全显示，否则隐�???
+		// Up时，进行判断，如果显示区域大于菜单宽度一半则完全显示，否则隐
 		case MotionEvent.ACTION_DOWN:
 			x=(int) ev.getX();
-			y=(int) ev.getY();
-			System.out.println("x="+x);
+//			y=(int) ev.getY();
+//			System.out.println("x="+x);
 			break;
 //		case MotionEvent.ACTION_MOVE:
 ////			System.out.println("move");
@@ -146,17 +148,6 @@ public class SlidingMenu extends HorizontalScrollView {
 //			break;
 		case MotionEvent.ACTION_UP:
 			int scrollX = getScrollX();
-//			int x2=(int) ev.getX();
-//			int y2=(int) ev.getY();
-//			System.out.println("x2="+x2+",x="+x+",scrollX="+scrollX+",mHalfMenuWidth="+mHalfMenuWidth+",mMenuWidth="+mMenuWidth);
-			
-//			if((x2-x)>100){
-//				this.smoothScrollTo(mMenuWidth, 0);
-//				isOpen=true;
-//			}else{
-//				this.smoothScrollTo(0, 0);
-//				isOpen=false;
-//			}
 			if (scrollX > mHalfMenuWidth) {
 				this.smoothScrollTo(mMenuWidth, 0);
 				DeBug.d(TAG, "smoothScrollTo(mMenuWidth, 0)");

@@ -11,13 +11,14 @@ import com.music.bean.LrcInfo;
 import com.music.utils.AppConstant;
 import com.music.utils.DialogUtil;
 import com.music.utils.Mp3Util;
+import com.music.utils.Mp3Util_New;
 
 
 public class LrcUtil {
 	private static LrcUtil lrcUtil=null;
 	private LrcTool lrcTool;
 	private Context context;
-	private Mp3Util mp3Util;
+	private Mp3Util_New mp3Util;
 //	private Handler handler;
 	/**
 	 * 手动查找
@@ -47,7 +48,7 @@ public class LrcUtil {
 	private void init(){
 		lrcTool=new LrcTool();
 		lrcInfos=new ArrayList<LrcInfo>();
-		mp3Util=Mp3Util.getDefault();
+		mp3Util=Mp3Util_New.getDefault();
 	}
 	/**
 	 * 匹配所有歌词

@@ -28,7 +28,8 @@ public class PlayPauseDrawable extends Drawable {
     private boolean mAnimationMode=false;
     private long mAnimationDuration;
     private static final Interpolator ANIMATION_INTERPOLATOR = new DecelerateInterpolator();
-    private static final String TAG = PlayPauseDrawable.class.getSimpleName();
+    @SuppressWarnings("unused")
+	private static final String TAG = PlayPauseDrawable.class.getSimpleName();
 
     private Paint mLinePaint;
     private Paint mBackgroundPaint;
@@ -145,7 +146,8 @@ public class PlayPauseDrawable extends Drawable {
 
 
 
-    public void animatePause() {
+    @SuppressWarnings("unchecked")
+	public void animatePause() {
         AnimatorSet set = new AnimatorSet();
         set.playTogether(
                 ObjectAnimator.ofFloat(this, mPropertyPointAX, mBounds.left + shiftY),
@@ -180,7 +182,8 @@ public class PlayPauseDrawable extends Drawable {
     }
 
 
-    public void animatePlay() {
+    @SuppressWarnings("unchecked")
+	public void animatePlay() {
         AnimatorSet set = new AnimatorSet();
         set.playTogether(
                 ObjectAnimator.ofFloat(this, mPropertyPointAX, mBounds.left + shiftY),

@@ -67,7 +67,7 @@ public class MyNotification {
 		
 		remoteViews.setTextViewText(R.id.tv_title_notification, mp3Util_New.getCurrentMp3Info().getTitle());
 		Bitmap bitmap = MediaUtil.getArtwork(context,
-				mp3Util_New.getCurrentMp3Info().getId(), mp3Util_New
+				mp3Util_New.getCurrentMp3Info().getSongId(), mp3Util_New
 						.getCurrentMp3Info().getAlbumId(), true, true);
 		remoteViews.setImageViewBitmap(R.id.iv_notification, bitmap);
 		
@@ -126,7 +126,7 @@ public class MyNotification {
 		
 		
 		Bitmap bitmap = MediaUtil.getArtwork(context,
-				mp3Util_New.getCurrentMp3Info().getId(),  mp3Util_New
+				mp3Util_New.getCurrentMp3Info().getSongId(),  mp3Util_New
 						.getCurrentMp3Info().getAlbumId(), true, true);
 		remoteViews.setImageViewResource(R.id.iv_play_notification,
 				R.drawable.img_button_notification_play_pause);

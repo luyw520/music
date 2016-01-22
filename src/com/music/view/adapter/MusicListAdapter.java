@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.music.lu.R;
 import com.music.bean.Mp3Info;
+import com.music.utils.DeBug;
 import com.music.utils.Mp3Util_New;
 import com.music.widget.indexablelistview.IndexableListView;
 
@@ -92,10 +93,10 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 					viewHolder.catalog.setText(mp3Info.getFisrtPinYin());
 				}
 			}
-			listView.setShow(true);
+//			listView.setShow(true);
 		} else {
 			viewHolder.catalog.setVisibility(View.GONE);
-			listView.setShow(false);
+//			listView.setShow(false);
 		}
 
 		return convertView;
@@ -119,6 +120,7 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 
 	@Override
 	public Object[] getSections() {
+		DeBug.d(this, "getSections.....................");
 		String[] sections = new String[mSections.length()];
 		for (int i = 0; i < mSections.length(); i++)
 			sections[i] = String.valueOf(mSections.charAt(i));
@@ -127,7 +129,7 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 
 	@Override
 	public int getPositionForSection(int section) {
-
+		DeBug.d(this, "getPositionForSection.....................");
 		int result = -1;
 //		boolean isFind=false;
 		String s = mSections.substring(section, section + 1);

@@ -24,7 +24,6 @@ public class FavoriteInfoDao implements IConstants {
 	}
 
 	/**
-	 * 将收藏过的音乐保存起�?
 	 * @param music
 	 */
 	public void saveMusicInfo(MusicInfo music) {
@@ -80,22 +79,8 @@ public class FavoriteInfoDao implements IConstants {
 		return list;
 	}
 
-	//
-	// public List<MusicInfo> getMusicInfoByType(String selection, int type) {
-	// SQLiteDatabase db = DatabaseHelper.getInstance(mContext);
-	// String sql = "";
-	// if(type == START_FROM_ARTIST) {
-	// sql = "select * from " + TABLE_MUSIC + " where artist = ?";
-	// } else if(type == START_FROM_ALBUM) {
-	// sql = "select * from " + TABLE_MUSIC + " where albumid = ?";
-	// } else if(type == START_FROM_FOLDER) {
-	// sql = "select * from " + TABLE_MUSIC + " where folder = ?";
-	// }
-	// return parseCursor(db.rawQuery(sql, new String[]{ selection }));
-	// }
 
 	/**
-	 * 数据库中是否有数�?
 	 * 
 	 * @return
 	 */

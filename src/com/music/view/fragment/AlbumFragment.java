@@ -286,13 +286,7 @@ public class AlbumFragment extends Fragment {
 			Bitmap bitmap = BitmapCacheUtil.getDefalut()
 					.getBitmapFromMemoryCache(album_path);
 
-			// Map<String,Boolean> map=new HashMap<String, Boolean>();
-			// map.put(album_path, false);
-			// loadList.add(map);
 			if (bitmap == null) {
-
-				// loadList.add(new HashM)
-				// BitmapCacheUtil.getDefalut().downAndCache(album_path);
 
 				if (isLoaded[postion] == 2) {
 					return;
@@ -309,10 +303,6 @@ public class AlbumFragment extends Fragment {
 								if (imageView != null && b != null) {
 									imageView.setImageBitmap(b);
 								}
-								// else{
-								// imageView.setBackgroundResource(R.drawable.playing_bar_default_avatar);
-
-								// }
 								taskCollection.remove(this);
 							}
 
@@ -320,21 +310,11 @@ public class AlbumFragment extends Fragment {
 							public Object doInBackground(String... arg0) {
 								Bitmap b = null;
 
-								// if(arg0!=null){
-								// File file=new File(arg0[0]);
-								// if(file!=null&&file.exists()){
-
-//								b = BitmapFactory.decodeFile(arg0[0]);
 								b = PhotoUtils.createBitmap(arg0[0], 50,50);
 								
 								if (b != null) {
 									BitmapCacheUtil.getDefalut()
 											.addBitmapToMemoryCache(arg0[0], b);
-									// Log.d(TAG, "arg0[0]:"+arg0[0]);
-									// Map<String,Boolean> map=new
-									// HashMap<String, Boolean>();
-									// map.put(album_path, true);
-									// loadList.add(map);
 									
 									isLoaded[postion] = 1;
 									DeBug.d(TAG, "b.getWidth():"+b.getWidth());
@@ -343,8 +323,6 @@ public class AlbumFragment extends Fragment {
 								} else {
 									isLoaded[postion] = 2;
 								}
-								// }
-								// }
 
 								return b;
 							}

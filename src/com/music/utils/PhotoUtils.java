@@ -12,25 +12,12 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Paint.FontMetrics;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 
-import com.music.lu.R;
 import com.music.view.ImageFactoryFliter.FilterType;
 import com.music.view.activity.ImageFactoryActivity;
 
@@ -38,11 +25,6 @@ import com.music.view.activity.ImageFactoryActivity;
 /**
  */
 public class PhotoUtils {
-	// 图片在SD卡中的缓存路径
-//	private static final String IMAGE_PATH = Environment
-//			.getExternalStorageDirectory().toString()
-//			+ File.separator
-//			+ "immomo" + File.separator + "Images" + File.separator;
 	
 	private static final String IMAGE_PATH = FileUtils.imgPathPath() + File.separator;
 	
@@ -253,33 +235,7 @@ public class PhotoUtils {
 		return false;
 	}
 
-	/**
-	 * 根据比例缩放图片
-	 * 
-	 * @param screenWidth
-	 *            手机屏幕的宽度
-	 * @param filePath
-	 *            图片的路径
-	 * @param ratio
-	 *            缩放比例
-	 * @return
-	 */
-	public static Bitmap CompressionPhoto(float screenWidth, String filePath,
-			int ratio) {
-		Bitmap bitmap = PhotoUtils.getBitmapFromFile(filePath);
-		Bitmap compressionBitmap = null;
-		float scaleWidth = screenWidth / (bitmap.getWidth() * ratio);
-		float scaleHeight = screenWidth / (bitmap.getHeight() * ratio);
-		Matrix matrix = new Matrix();
-		matrix.postScale(scaleWidth, scaleHeight);
-		try {
-			compressionBitmap = Bitmap.createBitmap(bitmap, 0, 0,
-					bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-		} catch (Exception e) {
-			return bitmap;
-		}
-		return compressionBitmap;
-	}
+	
 
 	/**
 	 * 保存图片到SD卡
@@ -414,120 +370,13 @@ public class PhotoUtils {
 		return acrossFlushBitmap;
 	}
 
-	/**
-	 * 根据文字获取图片
-	 * 
-	 * @param text
-	 * @return
-	 */
-	public static Bitmap getIndustry(Context context, String text) {
-		String color = "#ffefa600";
-		if ("艺".equals(text)) {
-			color = "#ffefa600";
-		} else if ("学".equals(text)) {
-			color = "#ffbe68c1";
-		} else if ("商".equals(text)) {
-			color = "#ffefa600";
-		} else if ("医".equals(text)) {
-			color = "#ff30c082";
-		} else if ("IT".equals(text)) {
-			color = "#ff27a5e3";
-		}
-		Bitmap src = BitmapFactory.decodeResource(context.getResources(),
-				R.drawable.ic_userinfo_group);
-		int x = src.getWidth();
-		int y = src.getHeight();
-		Bitmap bmp = Bitmap.createBitmap(x, y, Bitmap.Config.ARGB_8888);
-		Canvas canvasTemp = new Canvas(bmp);
-		canvasTemp.drawColor(Color.parseColor(color));
-		Paint p = new Paint(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
-		p.setColor(Color.WHITE);
-		p.setFilterBitmap(true);
-		int size = (int) (13 * context.getResources().getDisplayMetrics().density);
-		p.setTextSize(size);
-		float tX = (x - getFontlength(p, text)) / 2;
-		float tY = (y - getFontHeight(p)) / 2 + getFontLeading(p);
-		canvasTemp.drawText(text, tX, tY, p);
+	
 
-		return toRoundCorner(bmp, 2);
-	}
+	
+	
 
-	/**
-	 * @return 返回指定笔和指定字符串的长度
-	 */
-	public static float getFontlength(Paint paint, String str) {
-		return paint.measureText(str);
-	}
 
-	/**
-	 * @return 返回指定笔的文字高度
-	 */
-	public static float getFontHeight(Paint paint) {
-		FontMetrics fm = paint.getFontMetrics();
-		return fm.descent - fm.ascent;
-	}
+	
 
-	/**
-	 * @return 返回指定笔离文字顶部的基准距离
-	 */
-	public static float getFontLeading(Paint paint) {
-		FontMetrics fm = paint.getFontMetrics();
-		return fm.leading - fm.ascent;
-	}
-
-	/**
-	 * 获取圆角图片
-	 * 
-	 * @param bitmap
-	 * @param pixels
-	 * @return
-	 */
-	public static Bitmap toRoundCorner(Bitmap bitmap, int pixels) {
-
-		Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
-				bitmap.getHeight(), Config.ARGB_8888);
-		Canvas canvas = new Canvas(output);
-
-		final int color = 0xff424242;
-		final Paint paint = new Paint();
-		final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-		final RectF rectF = new RectF(rect);
-		final float roundPx = pixels;
-
-		paint.setAntiAlias(true);
-		canvas.drawARGB(0, 0, 0, 0);
-		paint.setColor(color);
-		canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
-
-		paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-		canvas.drawBitmap(bitmap, rect, rect, paint);
-
-		return output;
-	}
-
-	/**
-	 * 获取颜色的圆角bitmap
-	 * 
-	 * @param context
-	 * @param color
-	 * @return
-	 */
-	public static Bitmap getRoundBitmap(Context context, int color) {
-		DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-		int width = Math.round(TypedValue.applyDimension(
-				TypedValue.COMPLEX_UNIT_DIP, 12.0f, metrics));
-		int height = Math.round(TypedValue.applyDimension(
-				TypedValue.COMPLEX_UNIT_DIP, 4.0f, metrics));
-		int round = Math.round(TypedValue.applyDimension(
-				TypedValue.COMPLEX_UNIT_DIP, 2.0f, metrics));
-		Bitmap bitmap = Bitmap.createBitmap(width, height,
-				Bitmap.Config.ARGB_8888);
-		Canvas canvas = new Canvas(bitmap);
-		Paint paint = new Paint();
-		paint.setAntiAlias(true);
-		paint.setColor(color);
-		canvas.drawRoundRect(new RectF(0.0F, 0.0F, width, height), round,
-				round, paint);
-		return bitmap;
-	}
+	
 }

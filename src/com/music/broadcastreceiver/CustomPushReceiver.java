@@ -28,6 +28,7 @@ public class CustomPushReceiver extends XGPushBaseReceiver{
 		if (context == null || message == null) {
 			return;
 		}
+		@SuppressWarnings("unused")
 		String text = "";
 		if (message.getActionType() == XGPushClickedResult.NOTIFACTION_CLICKED_TYPE) {
 			// 通知在通知栏被点击啦。。。。。
@@ -79,6 +80,7 @@ public class CustomPushReceiver extends XGPushBaseReceiver{
 		if (errorCode == XGPushBaseReceiver.SUCCESS) {
 			text = message + "注册成功";
 			// 在这里拿token
+			@SuppressWarnings("unused")
 			String token = message.getToken();
 		} else {
 			text = message + "注册失败，错误码：" + errorCode;
@@ -93,6 +95,7 @@ public class CustomPushReceiver extends XGPushBaseReceiver{
 		if (context == null) {
 			return;
 		}
+		@SuppressWarnings("unused")
 		String text = "";
 		int errorCode=0;
 		if (errorCode == XGPushBaseReceiver.SUCCESS) {
