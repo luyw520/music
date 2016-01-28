@@ -50,7 +50,7 @@ import android.widget.RelativeLayout;
  * 
  * 具有水波纹效果
  */
-@SuppressLint("NewApi") 
+@SuppressLint({ "NewApi"}) 
 public class RippleView extends RelativeLayout {
 
     private int WIDTH;
@@ -77,7 +77,11 @@ public class RippleView extends RelativeLayout {
     private Bitmap originBitmap;
     private int rippleColor;
     private int ripplePadding;
-    private GestureDetector gestureDetector;
+    @SuppressWarnings("unused")
+	private GestureDetector gestureDetector;
+    private MotionEvent upEvent;
+    private boolean isUp=false;
+    private boolean isAnimationEnd=false;
     private final Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -154,21 +158,22 @@ public class RippleView extends RelativeLayout {
         if (animationRunning) {
             if (DURATION <= timer * FRAME_RATE) {
                 animationRunning = false;
+                isAnimationEnd=true;
                 timer = 0;
                 durationEmpty = -1;
                 timerEmpty = 0;
                 canvas.restore();
                 invalidate();
+                if(isUp){
+                	onTouchEvent(upEvent);
+                }
                 return;
-            } else
+            } else{
                 canvasHandler.postDelayed(runnable, FRAME_RATE);
-
+            }
             if (timer == 0)
                 canvas.save();
-
-
             canvas.drawCircle(x, y, (radiusMax * (((float) timer * FRAME_RATE) / DURATION)), paint);
-
             paint.setColor(Color.parseColor("#ffff4444"));
 
             if (rippleType == 1 && originBitmap != null && (((float) timer * FRAME_RATE) / DURATION) > 0.4f) {
@@ -246,20 +251,34 @@ public class RippleView extends RelativeLayout {
     }
 
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (gestureDetector.onTouchEvent(event)) {
-            animateRipple(event);
-            sendClickEvent(false);
-        }
+    @SuppressLint("ClickableViewAccessibility")
+	public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+		case MotionEvent.ACTION_DOWN:
+			animateRipple(event);
+			isUp=false;
+			isAnimationEnd=false;
+			break;
+		case MotionEvent.ACTION_UP:
+			isUp=true;
+			//手指释放时候动画已经结束了
+			if(isAnimationEnd){
+//				return performClick();
+				return super.onTouchEvent(event);
+			}else{
+				upEvent=event;
+				return true;
+			}
+		}
+        
         return super.onTouchEvent(event);
     }
 
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent event) {
-        this.onTouchEvent(event);
-        return super.onInterceptTouchEvent(event);
-    }
+//    @Override
+//    public boolean onInterceptTouchEvent(MotionEvent event) {
+//        this.onTouchEvent(event);
+//        return super.onInterceptTouchEvent(event);
+//    }
 
     private void sendClickEvent(final Boolean isLongClick) {
         if (getParent() instanceof ListView) {

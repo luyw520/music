@@ -17,22 +17,23 @@ import android.widget.Toast;
 
 public class DialogUtil {
 	private static AlertDialog dialog=null;
-	private static Toast toast;
+//	private static Toast toast;
 	/**
 	 * 弹出一个消息框
 	 * @param context
 	 * @param msg 消息内容
 	 */
 	public static void showToast(Context context,String msg){
-		if (toast == null) {
-			toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
-
-		} else {
-			toast.setText(msg);
-			toast.setDuration(Toast.LENGTH_SHORT);
-		}
-		toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-		toast.show();
+		TopNoticeDialog.showToast(context, msg);
+//		if (toast == null) {
+//			toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+//
+//		} else {
+//			toast.setText(msg);
+//			toast.setDuration(Toast.LENGTH_SHORT);
+//		}
+//		toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+//		toast.show();
 	}
 	
 	/**
@@ -108,10 +109,6 @@ public class DialogUtil {
 		dialog.show();
 	
 		
-//		WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-//		params.width = (int) (300);
-//		params.height = (int) (300);
-//		dialog.getWindow().setAttributes(params);
 		dialog.getWindow().setContentView(view);
 		
 	}

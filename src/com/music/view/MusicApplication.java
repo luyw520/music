@@ -24,8 +24,6 @@ public class MusicApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-//		startService(new Intent(this,MyPlayerService.class));
-//		Mp3Util.init(this);
 		long start=System.currentTimeMillis();
 		Mp3Util_New.init(this);
 		long mp3=System.currentTimeMillis();

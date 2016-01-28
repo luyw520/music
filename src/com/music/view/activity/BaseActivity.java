@@ -8,8 +8,11 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.lidroid.xutils.ViewUtils;
+import com.music.utils.ConstantUtil;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends Activity implements ConstantUtil{
+	
+	
 	@TargetApi(19) @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		

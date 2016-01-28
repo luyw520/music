@@ -34,6 +34,7 @@ import android.view.SurfaceHolder;
  * both preview and decoding.
  *
  */
+@SuppressWarnings("deprecation")
 public final class CameraManager {
 
   private static final String TAG = CameraManager.class.getSimpleName();

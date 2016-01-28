@@ -1,14 +1,10 @@
 package com.music.utils;
 
-import android.content.Context;
-import android.util.DisplayMetrics;
-import android.view.Display;
-import android.view.WindowManager;
 /**
  *  常量工具类
  *
  */
-public class ConstantUtil {
+public interface  ConstantUtil {
 	/**
 	 * 更新动作
 	 */
@@ -57,18 +53,26 @@ public class ConstantUtil {
 	 */
 	public static final String LRC_CURRENT="com.lu.lrc.current";
 	public static final String CHANGED_BG = "com.lu.changedgb";
+	
+	
 	/**
-	 * 获取屏幕大小
-	 * @param context
-	 * @return
+	 * 
 	 */
-	public static int[] getScreen(Context context) {
-		WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-		Display display = windowManager.getDefaultDisplay();
-		DisplayMetrics outMetrics = new DisplayMetrics();
-		display.getMetrics(outMetrics);
-		return new int[] {(int) (outMetrics.density * outMetrics.widthPixels),
-				(int)(outMetrics.density * outMetrics.heightPixels)
-		};
-	}
+	public static final String AUTOMATIC_DOWN_LRC="AUTOMATIC_DOWN_LRC";
+	public static final String LISTENER_DOWN="LISTENER_DOWN";
+	public static final String QIEGE="QIEGE";
+//	/**
+//	 * 获取屏幕大小
+//	 * @param context
+//	 * @return
+//	 */
+//	public static int[] getScreen(Context context) {
+//		WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+//		Display display = windowManager.getDefaultDisplay();
+//		DisplayMetrics outMetrics = new DisplayMetrics();
+//		display.getMetrics(outMetrics);
+//		return new int[] {(int) (outMetrics.density * outMetrics.widthPixels),
+//				(int)(outMetrics.density * outMetrics.heightPixels)
+//		};
+//	}
 }

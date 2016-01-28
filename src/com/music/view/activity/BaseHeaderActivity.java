@@ -1,10 +1,7 @@
 package com.music.view.activity;
 
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.music.lu.R;
 
 /**
@@ -14,16 +11,16 @@ import com.music.lu.R;
  */
 public class BaseHeaderActivity extends BaseActivity{
 	
-	@ViewInject(value = R.id.iv_search)
-	protected ImageView iv_search;
-	
-	@ViewInject(value = R.id.iv_more)
-	protected ImageView iv_more;
-	@ViewInject(value = R.id.iv_back)
-	protected ImageView iv_back;
-
-	@ViewInject(value = R.id.tv_title)
-	protected TextView tv_title;
+//	@ViewInject(value = R.id.iv_search)
+//	protected ImageView iv_search;
+//	
+//	@ViewInject(value = R.id.iv_more)
+//	protected ImageView iv_more;
+//	@ViewInject(value = R.id.iv_back)
+//	protected ImageView iv_back;
+//
+//	@ViewInject(value = R.id.tv_title)
+//	protected TextView tv_title;
 	
 	
 	protected void onCreate(android.os.Bundle savedInstanceState) {

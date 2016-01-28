@@ -130,7 +130,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	protected String userHeaderImg;
 
 	public static boolean isFirst = true;
-
+	
+	
 	@TargetApi(19)
 	@Override
 	protected void onCreate(Bundle arg0) {

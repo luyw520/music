@@ -72,7 +72,7 @@ public class GresturePasswordSetActivity extends BaseHeaderActivity {
 		});
 	}
 
-	@OnClick({ R.id.rl_lock, R.id.rl_updatelockpassword })
+	@OnClick({ R.id.rl_lock, R.id.rl_updatelockpassword,R.id.iv_back })
 	public void myOnclik(View view) {
 		switch (view.getId()) {
 		case R.id.rl_lock:
@@ -83,6 +83,9 @@ public class GresturePasswordSetActivity extends BaseHeaderActivity {
 			break;
 		case R.id.rl_updatelockpassword:
 			startActivity(new Intent(this,CreateGesturePasswordActivity.class));
+			break;
+		case R.id.iv_back:
+			finish();
 			break;
 		default:
 			break;

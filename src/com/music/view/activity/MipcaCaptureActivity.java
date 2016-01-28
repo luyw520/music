@@ -17,6 +17,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,8 @@ public class MipcaCaptureActivity extends BaseActivity implements Callback {
 	
 	@ViewInject(value=R.id.iv_more)
 	private ImageView iv_more;
+	@ViewInject(value=R.id.iv_back)
+	private ImageView iv_back;
 	@ViewInject(value=R.id.iv_search)
 	private ImageView iv_search;
 	@ViewInject(value=R.id.tv_title)
@@ -67,8 +70,16 @@ public class MipcaCaptureActivity extends BaseActivity implements Callback {
 		iv_more.setVisibility(View.GONE);
 		iv_search.setVisibility(View.GONE);
 		tv_title.setText("ɨһɨ");
+		
+		iv_back.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 	}
-
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onResume() {

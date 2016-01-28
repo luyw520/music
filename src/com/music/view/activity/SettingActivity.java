@@ -5,6 +5,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -14,11 +15,11 @@ import com.music.utils.ApplicationUtil;
 import com.music.utils.BitmapCacheUtil;
 import com.music.utils.DialogUtil;
 import com.music.utils.LogUtil;
-import com.music.utils.Mp3Util;
 import com.music.utils.Mp3Util_New;
 import com.music.utils.ScreenShotUtil;
 import com.music.utils.SensorManagerUtil;
 import com.music.utils.SensorManagerUtil.SensorChangedListener;
+import com.music.utils.SharedPreHelper;
 import com.music.view.gesturepressword.GresturePasswordSetActivity;
 import com.music.view.gesturepressword.GuideGesturePasswordActivity;
 import com.music.view.popwindow.PopupWindowQieGe;
@@ -74,7 +75,7 @@ public class SettingActivity extends BaseActivity {
 		sensorManagerUtil=SensorManagerUtil.getInstance(this);
 		sensorManagerUtil.setS(sensorChangedListener);
 		initWidget();
-
+//		com.nostra13.universalimageloader.core.ImageLoader.getInstance();
 	};
 
 	private void initWidget() {
@@ -90,6 +91,10 @@ public class SettingActivity extends BaseActivity {
 			ScreenShotUtil.getInstance(this).registerShakeToScrShot();
 		}
 		
+		
+		cb_automatic_down_lrc.setChecked(SharedPreHelper.getBooleanValue(this, AUTOMATIC_DOWN_LRC, false));
+		cb_listener_down.setChecked(SharedPreHelper.getBooleanValue(this, LISTENER_DOWN, false));
+		cb_qiege.setChecked(SharedPreHelper.getBooleanValue(this, QIEGE, false));
 	}
 	public void onCancel(View view){
 		popupWindowQieGe.dismiss();
@@ -159,6 +164,8 @@ public class SettingActivity extends BaseActivity {
 			finish();
 			break;
 		case R.id.rl_down:
+			
+			
 			break;
 		case R.id.rl_clear_memory:
 			DialogUtil.showWaitDialog(this,"缓存清理","清理缓存中...");
@@ -179,15 +186,23 @@ public class SettingActivity extends BaseActivity {
 		case R.id.rl_automatic_down_lrc:
 			cb_automatic_down_lrc
 					.setChecked(!cb_automatic_down_lrc.isChecked());
+			
+			SharedPreHelper.setBooleanValue(this, AUTOMATIC_DOWN_LRC, cb_automatic_down_lrc.isChecked());
+			DialogUtil.showToast(this, "设置成功");
 			break;
 		case R.id.rl_listener_down:
 			cb_listener_down.setChecked(!cb_listener_down.isChecked());
+			
+			SharedPreHelper.setBooleanValue(this, LISTENER_DOWN, cb_listener_down.isChecked());
+			DialogUtil.showToast(this, "设置成功");
 			break;
 		case R.id.rl_yaoyiyao:
 			popupWindowQieGe.showWindow(ll_parent);
 			break;
 		case R.id.rl_qiege:
 			cb_qiege.setChecked(!cb_qiege.isChecked());
+			SharedPreHelper.setBooleanValue(this, QIEGE, cb_qiege.isChecked());
+			DialogUtil.showToast(this, "设置成功");
 			if(cb_qiege.isChecked()){
 				ScreenShotUtil.getInstance(this).registerShakeToScrShot();
 				ApplicationUtil.setYaoYiYao(this, true);
