@@ -1,5 +1,6 @@
 package com.music.utils;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class Mp3Util_New {
 	/**
 	 * 当前播放列表
 	 */
-	private List<? extends MusicBaseInfo> musicBaseInfos;
+	private List<? extends MusicBaseInfo> musicBaseInfos=new ArrayList<MusicBaseInfo>();
 	private IMediaService mService;
 
 	private ServiceConnection conn;
@@ -308,6 +309,11 @@ public class Mp3Util_New {
 	 */
 	public void playMusic(Mp3Info mp3Info) {
 		currentMp3Info = mp3Info;
+		if(!mp3Infos.contains(currentMp3Info)){
+//			musicBaseInfos.add(currentMp3Info);
+			mp3Infos.add(mp3Info);
+			musicBaseInfos=mp3Infos;
+		}
 		sendService(AppConstant.PlayerMsg.PLAY_MSG, 0);
 	}
 

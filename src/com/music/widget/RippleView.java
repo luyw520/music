@@ -57,7 +57,7 @@ public class RippleView extends RelativeLayout {
     private int HEIGHT;
     private int FRAME_RATE = 10;
 //    private int DURATION = 400;
-    private int DURATION = 600;
+    private int DURATION = 400;
     private int PAINT_ALPHA = 90;
     private Handler canvasHandler;
     private float radiusMax = 0;
@@ -273,13 +273,6 @@ public class RippleView extends RelativeLayout {
         
         return super.onTouchEvent(event);
     }
-
-//    @Override
-//    public boolean onInterceptTouchEvent(MotionEvent event) {
-//        this.onTouchEvent(event);
-//        return super.onInterceptTouchEvent(event);
-//    }
-
     private void sendClickEvent(final Boolean isLongClick) {
         if (getParent() instanceof ListView) {
             final int position = ((ListView) getParent()).getPositionForView(this);

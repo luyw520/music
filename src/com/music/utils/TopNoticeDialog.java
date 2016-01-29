@@ -1,8 +1,8 @@
 package com.music.utils;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.CountDownTimer;
@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,11 +43,12 @@ public class TopNoticeDialog {
      * @param text
      * @param type
      */
-    private static void createDialog(Context context,CharSequence text,TipType type){
+    @SuppressLint("InflateParams")
+	private static void createDialog(Context context,CharSequence text,TipType type){
         wm= (WindowManager) context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         final WindowManager.LayoutParams params = mParams;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        params.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
         params.format = PixelFormat.TRANSLUCENT;
 //        params.windowAnimations = com.android.internal.R.style.Animation_Toast;
         params.type = WindowManager.LayoutParams.TYPE_TOAST;
@@ -63,8 +63,8 @@ public class TopNoticeDialog {
             view=inflater.inflate(R.layout.top_notice,null);
              ll= (LinearLayout) view.findViewById(R.id.ll);
             tip_txt= (TextView) view.findViewById(R.id.text);
-            LinearLayout.LayoutParams params_ll = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            ll.setLayoutParams(params_ll);
+//            LinearLayout.LayoutParams params_ll = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//            ll.setLayoutParams(params_ll);
         }
         setType(type,ll);
         if (view.getParent() != null) {
@@ -114,14 +114,14 @@ public class TopNoticeDialog {
      * @param linearLayout
      */
     private static void setType(TipType type,LinearLayout linearLayout){
-        switch (type){
-            case SUCCESS_TIP:
-                linearLayout.setBackgroundColor(Color.parseColor("#10D21C"));
-                break;
-            case FAILURE_TIP:
-                linearLayout.setBackgroundColor(Color.parseColor("#EC4018"));
-                break;
-        }
+//        switch (type){
+//            case SUCCESS_TIP:
+//                linearLayout.setBackgroundColor(Color.parseColor("#10D21C"));
+//                break;
+//            case FAILURE_TIP:
+//                linearLayout.setBackgroundColor(Color.parseColor("#EC4018"));
+//                break;
+//        }
     }
 
 

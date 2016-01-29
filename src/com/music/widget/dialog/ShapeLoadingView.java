@@ -23,7 +23,6 @@ public class ShapeLoadingView extends View {
     private Shape mShape = Shape.SHAPE_CIRCLE;
 
     /**
-     * 用赛贝尔曲线画圆
      */
     private float mMagicNumber = 0.55228475f;
 

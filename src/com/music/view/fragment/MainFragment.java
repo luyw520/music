@@ -1,8 +1,6 @@
 package com.music.view.fragment;
 
-import org.simple.eventbus.EventBus;
-
-import android.R.integer;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -37,6 +35,7 @@ import com.music.service.IMediaService;
  * @author longdw(longdawei1988@gmail.com)
  *
  */
+@SuppressLint("InflateParams")
 public class MainFragment extends Fragment implements IConstants{
 
 	private GridView mGridView;
@@ -52,11 +51,15 @@ public class MainFragment extends Fragment implements IConstants{
 //	public UIManager //mUIManager;
 	
 //	private MusicTimer mMusicTimer;
+	@SuppressWarnings("unused")
 	private MusicPlayBroadcast mPlayBroadcast;
 //	private MainBotto//mUIManager mBotto//mUIManager;
 //	private SlidingDrawerManager mSdm;
+	@SuppressWarnings("unused")
 	private RelativeLayout  mMainLayout;
+	@SuppressWarnings("unused")
 	private LinearLayout mBottomLayout;
+	@SuppressWarnings("unused")
 	private Bitmap defaultArtwork;
 //	private ServiceManager mServiceManager;
 	
@@ -180,6 +183,7 @@ public class MainFragment extends Fragment implements IConstants{
 
 			convertView.setOnClickListener(new View.OnClickListener() {
 
+				@SuppressWarnings("unused")
 				@Override
 				public void onClick(View v) {
 					int from = -1;
@@ -248,6 +252,7 @@ public class MainFragment extends Fragment implements IConstants{
 	
 	private class MusicPlayBroadcast extends BroadcastReceiver {
 
+		@SuppressWarnings("unused")
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(BROADCAST_NAME)) {

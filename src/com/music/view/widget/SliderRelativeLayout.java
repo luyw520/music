@@ -3,6 +3,7 @@ package com.music.view.widget;
 import com.music.lu.R;
 import com.music.view.activity.LockScreenActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -68,6 +69,7 @@ public class SliderRelativeLayout extends RelativeLayout {
 
 	/**
 	 */
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		int X = (int) event.getX();
@@ -174,6 +176,7 @@ public class SliderRelativeLayout extends RelativeLayout {
 	 */
 	private int getScreenWidth(){
 		WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		@SuppressWarnings("deprecation")
 		int width = manager.getDefaultDisplay().getWidth();
 		return width;
 	}

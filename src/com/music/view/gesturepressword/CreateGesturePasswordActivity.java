@@ -3,17 +3,7 @@ package com.music.view.gesturepressword;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.music.lu.R;
-import com.music.utils.ApplicationUtil;
-import com.music.view.MusicApplication;
-import com.music.widget.lockpatternview.App;
-import com.music.widget.lockpatternview.LockPatternUtils;
-import com.music.widget.lockpatternview.LockPatternView;
-import com.music.widget.lockpatternview.LockPatternView.Cell;
-import com.music.widget.lockpatternview.LockPatternView.DisplayMode;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -22,6 +12,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.music.lu.R;
+import com.music.utils.ApplicationUtil;
+import com.music.view.MusicApplication;
+import com.music.widget.lockpatternview.LockPatternUtils;
+import com.music.widget.lockpatternview.LockPatternView;
+import com.music.widget.lockpatternview.LockPatternView.Cell;
+import com.music.widget.lockpatternview.LockPatternView.DisplayMode;
 
 /**
  * 创建手势密码类

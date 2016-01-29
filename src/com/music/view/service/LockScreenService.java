@@ -8,8 +8,11 @@ import android.util.Log;
 
 public class LockScreenService extends Service {
 	private final static String TAG = "LockScreenService";
+	@SuppressWarnings("unused")
 	private Intent lockIntent;
+	@SuppressWarnings("unused")
 	private KeyguardManager keyguardManager = null;
+	@SuppressWarnings({ "unused", "deprecation" })
 	private KeyguardManager.KeyguardLock keyguardLock = null;
 	
 	@Override
@@ -35,7 +38,6 @@ public class LockScreenService extends Service {
 	public void onDestroy() {
 		super.onDestroy();
 //		LockScreenService.this.unregisterReceiver(mScreenOffReceiver);
-		//重新启动activity
 //		startService(new Intent(LockScreenService.this, LockScreenService.class));
 	}
 
@@ -45,7 +47,6 @@ public class LockScreenService extends Service {
 	}
 	
 //	/**
-//	 * 屏幕变亮的广播，这里要隐藏系统的锁屏界面
 //	 */
 //	private BroadcastReceiver mScreenOffReceiver = new BroadcastReceiver() {
 //		@Override
@@ -56,9 +57,9 @@ public class LockScreenService extends Service {
 //				
 //				keyguardManager = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
 //				keyguardLock = keyguardManager.newKeyguardLock("");
-//				keyguardLock.disableKeyguard(); //这里就是取消系统默认的锁
+//				keyguardLock.disableKeyguard(); //
 //				
-//				startActivity(lockIntent); //注意这里跳转的意
+//				startActivity(lockIntent); //
 //			}
 //		}
 //	};

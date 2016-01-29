@@ -13,7 +13,6 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import com.music.service.IMediaService;
-import com.music.utils.AppConstant;
 import com.music.utils.ConstantUtil;
 import com.music.utils.Mp3Util_New;
 
@@ -31,6 +30,7 @@ public class MyPlayerNewService extends Service {
 	 * 文件播放路径
 	 */
 	private String playPath; // 音乐文件路径
+	@SuppressWarnings("unused")
 	private int msg; // 播放信息
 	/**
 	 * 当前播放进度
@@ -274,7 +274,7 @@ public class MyPlayerNewService extends Service {
 			
 			
 			mp3Util.setDuration(duration);
-//			mp3Util.getCurrentMp3Info().setDuration(duration);
+			mp3Util.getCurrentMp3Info().setDuration(duration);
 			Log.i(TAG, "duration:"+duration);
 			intent.putExtra("duration", duration);
 			sendBroadcast(intent);

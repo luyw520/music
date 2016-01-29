@@ -3,12 +3,11 @@ package com.music.view.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.music.utils.DeBug;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.ViewGroup;
+
+import com.music.utils.DeBug;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 

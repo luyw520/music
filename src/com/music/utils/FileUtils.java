@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
+import android.util.Log;
 
 /**
  *
@@ -37,7 +38,14 @@ public class FileUtils {
 	 */
 	private static String lrcPath=dataPath+File.separator+"lrc";
 	
+	private static String objPath=dataPath+File.separator+"obj";
 	private static String crashPath=dataPath+File.separator+"crash";
+	
+	public static String objPath(){
+		createDirFile(dataPath);
+		createDirFile(objPath);
+		return objPath;
+	}
 	/**
 	 * œ¬‘ÿµÿ÷∑
 	 * @return
@@ -64,6 +72,22 @@ public class FileUtils {
 		createDirFile(dataPath);
 		createDirFile(lrcPath);
 		return lrcPath;
+	}
+	
+	/**
+	 * find local mp3 
+	 * @param mp3Path
+	 * @return mp3 absolutePath or null
+	 */
+	public static String findLocalMp3(String mp3Path) {
+		File file = new File(FileUtils.downPath());
+		for (File f : file.listFiles()) {
+			if (f.getParent().equals(mp3Path)) {
+				Log.i(TAG, "local mp3 is exist...");
+				return f.getAbsolutePath();
+			}
+		}
+		return null;
 	}
 	/**
 	 *  Õº∆¨µÿ÷∑

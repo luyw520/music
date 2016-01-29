@@ -2,18 +2,17 @@ package com.music.utils;
 
 
 
-import com.music.lu.R;
-import com.music.widget.dialog.LoadingView;
-
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
+
+import com.music.lu.R;
+import com.music.widget.dialog.LoadingView;
 
 public class DialogUtil {
 	private static AlertDialog dialog=null;
@@ -99,6 +98,7 @@ public class DialogUtil {
 		dialog=ProgressDialog.show(context, title, message);
 		dialog.show();
 	}
+	@SuppressLint("InflateParams")
 	public static void showCustomWaitDialog(Context context){
 		AlertDialog.Builder builder=new AlertDialog.Builder(context);
 		dialog=builder.create();

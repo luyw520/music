@@ -16,6 +16,7 @@ package com.music.widget.indexablelistview;
  * limitations under the License.
  */
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
@@ -28,6 +29,7 @@ public class IndexableListView extends ListView {
 	
 	private boolean mIsFastScrollEnabled = false;
 	private IndexScroller mScroller = null;
+	@SuppressWarnings("unused")
 	private GestureDetector mGestureDetector = null;
 	/**
 	 *  «∑Òœ‘ æ≈≈–Ú
@@ -82,11 +84,12 @@ public class IndexableListView extends ListView {
 //			mScroller.draw(canvas);
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
 		// Intercept ListView's touch event
-		if (mScroller != null && mScroller.onTouchEvent(ev))
-			return true;
+//		if (mScroller != null && mScroller.onTouchEvent(ev))
+//			return true;
 		
 //		if(isShow){
 //			if (mGestureDetector == null) {

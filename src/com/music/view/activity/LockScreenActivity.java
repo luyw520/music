@@ -15,14 +15,13 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.music.broadcastreceiver.MyBroadcastReceiver;
+import com.music.broadcastreceiver.State;
 import com.music.lu.R;
 import com.music.utils.DateUtil;
 import com.music.utils.MediaUtil;
-import com.music.utils.Mp3Util;
 import com.music.utils.Mp3Util_New;
 import com.music.view.widget.SliderRelativeLayout;
-import com.music.broadcastreceiver.MyBroadcastReceiver;
-import com.music.broadcastreceiver.State;
 
 @SuppressLint("HandlerLeak") 
 public class LockScreenActivity extends Activity {

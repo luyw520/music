@@ -2,6 +2,7 @@ package com.music.view.adapter;
 
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,7 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 	private int pos = -1;
 	private Mp3Util_New mp3Util;
 //	private Mp3Util mp3Util;
+	@SuppressWarnings("unused")
 	private IndexableListView listView;
 
 	@Override
@@ -56,6 +58,7 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 		return position;
 	}
 
+	@SuppressLint("InflateParams")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder viewHolder = null;

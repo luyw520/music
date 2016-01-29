@@ -1,5 +1,6 @@
 package com.music.widget.slidingmenu;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -11,7 +12,6 @@ import android.widget.LinearLayout;
 
 import com.music.lu.R;
 import com.music.utils.DeBug;
-import com.music.view.activity.LocalMusicActivity;
 import com.nineoldandroids.view.ViewHelper;
 /**
  * 
@@ -43,6 +43,7 @@ public class SlidingMenu extends HorizontalScrollView {
 	private ViewGroup mMenu;
 	private ViewGroup mContent;
 	
+	@SuppressWarnings("unused")
 	private int x;
 	
 	public SlidingMenu(Context context, AttributeSet attrs) {
@@ -65,7 +66,7 @@ public class SlidingMenu extends HorizontalScrollView {
 				mMenuRightPadding = a.getDimensionPixelSize(attr,
 						(int) TypedValue.applyDimension(
 								TypedValue.COMPLEX_UNIT_DIP, 50f,
-								getResources().getDisplayMetrics()));// 默认�???10DP
+								getResources().getDisplayMetrics()));//
 				break;
 			}
 		}
@@ -99,7 +100,6 @@ public class SlidingMenu extends HorizontalScrollView {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		/**
-		 * 显示的设置一个宽�???
 		 */
 		if (!once) {
 			LinearLayout wrapper = (LinearLayout) getChildAt(0);
@@ -125,6 +125,7 @@ public class SlidingMenu extends HorizontalScrollView {
 		}
 	}
 	
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
 		int action = ev.getAction();

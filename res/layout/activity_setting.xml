@@ -24,7 +24,6 @@
        			 android:id="@+id/trylistener"
        			 layout="@layout/settingactivity_try_listener" 
        			 />
-            
 
              <include
        			 android:id="@+id/yaoyiyao"
@@ -36,6 +35,15 @@
 			  <include
        			 android:id="@+id/refresh"
        			 layout="@layout/settingactivity_refresh" />
+			 <!--   <include
+       			 android:id="@+id/refresh"
+       			 layout="@layout/settingactivity_refresh" />
+			    <include
+       			 android:id="@+id/refresh"
+       			 layout="@layout/settingactivity_refresh" />
+			     <include
+       			 android:id="@+id/refresh"
+       			 layout="@layout/settingactivity_refresh" /> -->
            
         </LinearLayout>
     </com.music.widget.CustomScrollView>

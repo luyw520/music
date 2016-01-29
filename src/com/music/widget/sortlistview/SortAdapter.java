@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.music.lu.R;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer{
 		return position;
 	}
 
+	@SuppressLint("InflateParams")
 	public View getView(final int position, View view, ViewGroup arg2) {
 		ViewHolder viewHolder = null;
 		final SortModel mContent = list.get(position);
@@ -90,6 +92,7 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer{
 	/**
 	 * 根据分类的首字母的Char ascii值获取其第一次出现该首字母的位置
 	 */
+	@SuppressLint("DefaultLocale")
 	public int getPositionForSection(int section) {
 		for (int i = 0; i < getCount(); i++) {
 			String sortStr = list.get(i).getSortLetters();
@@ -108,6 +111,7 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer{
 	 * @param str
 	 * @return
 	 */
+	@SuppressLint("DefaultLocale")
 	private String getAlpha(String str) {
 		String  sortStr = str.trim().substring(0, 1).toUpperCase();
 		// 正则表达式，判断首字母是否是英文字母

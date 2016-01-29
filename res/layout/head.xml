@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/iv_more"
-        android:background="@drawable/ic_common_title_bar_search"
+        android:background="@drawable/btn_search_music"
          />
 
     <ImageView

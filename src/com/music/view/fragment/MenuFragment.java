@@ -28,6 +28,7 @@ public class MenuFragment extends Fragment implements OnClickListener,
 	private TextView mMediaCountTv;
 	private TextView mScanTv, mPlayModeTv, mBackgroundTv, mSleepTv, mSettingTv,
 			mExitTv;
+	@SuppressWarnings("unused")
 	private MainContentActivity mMainActivity;
 
 	private int mCurMode;

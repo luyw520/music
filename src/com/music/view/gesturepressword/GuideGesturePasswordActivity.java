@@ -1,14 +1,13 @@
 package com.music.view.gesturepressword;
 
-import com.music.lu.R;
-import com.music.view.MusicApplication;
-import com.music.widget.lockpatternview.App;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import com.music.lu.R;
+import com.music.view.MusicApplication;
 
 /**
  * 用户密码设置引导界面

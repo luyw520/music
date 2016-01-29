@@ -2,6 +2,10 @@ package com.music.utils;
 
 import java.util.Locale;
 
+import com.music.lu.R;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.text.TextUtils;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
@@ -10,6 +14,7 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
+@SuppressLint("DefaultLocale")
 public class StringUtil {
 	private final static char KOREAN_UNICODE_START ='a';
 	private final static char KOREAN_UNICODE_END  ='a' ;
@@ -140,5 +145,19 @@ public class StringUtil {
 			e.printStackTrace();
 		}
 		return output;
+	}
+	public static boolean isDataVaild(String... params){
+		return isDataVaild(null, params);
+	}
+	public static boolean isDataVaild(Context context,String... params){
+		for(String s:params){
+			if(TextUtils.isEmpty(s)){
+				if(context!=null){
+					DialogUtil.showToast(context, context.getString(R.string.is_not_empty_tips));
+				}
+				return false;
+			}
+		}
+		return true;
 	}
 }

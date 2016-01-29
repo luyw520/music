@@ -4,8 +4,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -24,7 +22,6 @@ import com.music.bean.ArtistInfo;
 import com.music.lu.R;
 import com.music.service.IConstants;
 import com.music.service.IMediaService;
-import com.music.utils.BitmapCacheUtil;
 import com.music.utils.LogUtil;
 import com.music.utils.MusicUtils;
 import com.music.utils.StringUtil;

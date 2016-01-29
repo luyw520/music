@@ -18,7 +18,12 @@
 	<string name="operation">将此歌曲处理为</string>
 	<string name="playing">正在播放。。。</string>
 	
-	
+	<string name="down_success">下载成功</string>
+	<string name="down_faild">下载失败</string>
+	<string name="clear_search_history">清除历史</string>
+	<string name="searching_music">正在搜索音乐&#8230;</string>
+	<string name="search_music">搜索音乐</string>
+	<string name="is_not_empty_tips">输入的数据不能为空</string>
 	<!--	BROWSING CATEGORIES-->
 	<string name="browse_cat_album">Albums</string>
 	<string name="browse_cat_artists">Artists</string>

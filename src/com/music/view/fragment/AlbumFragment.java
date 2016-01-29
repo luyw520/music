@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -65,6 +66,7 @@ public class AlbumFragment extends Fragment {
 	// private Mp3Util_New mp3Util;
 	private List<AlbumInfo> albumInfos;
 	private MusicListItemClickListener musicListItemClickListener;
+	@SuppressWarnings("unused")
 	private List<Map<String, Boolean>> loadList;
 	private int[] isLoaded;
 
@@ -173,6 +175,7 @@ public class AlbumFragment extends Fragment {
 			return position;
 		}
 
+		@SuppressLint("InflateParams")
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder viewHolder = null;

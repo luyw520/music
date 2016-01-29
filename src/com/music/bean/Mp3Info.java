@@ -1,7 +1,11 @@
 package com.music.bean;
 
+import com.music.utils.MediaUtil;
+
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 
+@SuppressLint("DefaultLocale")
 @SuppressWarnings("rawtypes")
 public class Mp3Info extends MusicBaseInfo implements Comparable {
 	private long id; // ¸èÇúID 3
@@ -77,6 +81,7 @@ public class Mp3Info extends MusicBaseInfo implements Comparable {
 
 	public void setTitle(String title) {
 		this.title = title;
+		setTitlepinyin(MediaUtil.toHanyuPinYin(title));
 	}
 
 	public String getAlbum() {

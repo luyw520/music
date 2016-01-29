@@ -1,5 +1,6 @@
 package com.music.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -27,7 +28,9 @@ public class CustomScrollView extends ScrollView {
 
 //	private View View;
 
+	@SuppressWarnings("unused")
 	private int initTop, initbottom;// 初始高度
+	@SuppressWarnings("unused")
 	private int top, bottom;// 拖动时时高度。
 	
 //	private int 
@@ -52,6 +55,7 @@ public class CustomScrollView extends ScrollView {
 	}
 
 	/** touch 事件处理 **/
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
 		if (inner != null) {

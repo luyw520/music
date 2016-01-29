@@ -1,12 +1,11 @@
 package com.music.view.activity;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -64,18 +63,15 @@ public class SettingActivity extends BaseActivity {
 	private View ll_parent;
 	
 	private SensorManagerUtil sensorManagerUtil;
-	
+	private Handler handle=new Handler();
 	protected void onCreate(android.os.Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ViewUtils.inject(this);
-		
 		
 		popupWindowQieGe = new PopupWindowQieGe(this);
 		popupWindowQieGe.setPopupWindowUIOnClickListener(popupWindowUIOnClickListener);
 		sensorManagerUtil=SensorManagerUtil.getInstance(this);
 		sensorManagerUtil.setS(sensorChangedListener);
 		initWidget();
-//		com.nostra13.universalimageloader.core.ImageLoader.getInstance();
 	};
 
 	private void initWidget() {
@@ -169,13 +165,14 @@ public class SettingActivity extends BaseActivity {
 			break;
 		case R.id.rl_clear_memory:
 			DialogUtil.showWaitDialog(this,"缓存清理","清理缓存中...");
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			DialogUtil.closeAlertDialog();
-			tv_cache.setText("0M");
+			handle.postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					DialogUtil.closeAlertDialog();
+					tv_cache.setText("0M");
+				}
+			}, 1000);
 			break;
 		case R.id.rl_refresh:
 			break;
@@ -200,25 +197,10 @@ public class SettingActivity extends BaseActivity {
 			popupWindowQieGe.showWindow(ll_parent);
 			break;
 		case R.id.rl_qiege:
-			cb_qiege.setChecked(!cb_qiege.isChecked());
-			SharedPreHelper.setBooleanValue(this, QIEGE, cb_qiege.isChecked());
-			DialogUtil.showToast(this, "设置成功");
-			if(cb_qiege.isChecked()){
-				ScreenShotUtil.getInstance(this).registerShakeToScrShot();
-				ApplicationUtil.setYaoYiYao(this, true);
-			}else{
-				ScreenShotUtil.getInstance(this).unregisterShakeListener();
-				ApplicationUtil.setYaoYiYao(this, false);
-			}
+			qiege();
 			break;
 		case R.id.rl_lockpasswordstate:
-			if (tv_lockpasswordstate.getText().equals("未设置")) {
-				startActivity(new Intent(this,
-						GuideGesturePasswordActivity.class));
-			} else {
-				startActivity(new Intent(this,
-						GresturePasswordSetActivity.class));
-			}
+			setLock();
 			break;
 		case R.id.rl_dlna:
 			cb_dlna.setChecked(!cb_dlna.isChecked());
@@ -231,6 +213,29 @@ public class SettingActivity extends BaseActivity {
 		}
 
 	}
+	private void setLock() {
+		if (tv_lockpasswordstate.getText().equals("未设置")) {
+			startActivity(new Intent(this,
+					GuideGesturePasswordActivity.class));
+		} else {
+			startActivity(new Intent(this,
+					GresturePasswordSetActivity.class));
+		}
+	}
+
+	private void qiege() {
+		cb_qiege.setChecked(!cb_qiege.isChecked());
+		SharedPreHelper.setBooleanValue(this, QIEGE, cb_qiege.isChecked());
+		DialogUtil.showToast(this, "设置成功");
+		if(cb_qiege.isChecked()){
+			ScreenShotUtil.getInstance(this).registerShakeToScrShot();
+			ApplicationUtil.setYaoYiYao(this, true);
+		}else{
+			ScreenShotUtil.getInstance(this).unregisterShakeListener();
+			ApplicationUtil.setYaoYiYao(this, false);
+		}
+	}
+
 	private void scan() {
 		startActivity(ScanActivity.class);
 	}

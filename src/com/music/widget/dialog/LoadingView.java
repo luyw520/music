@@ -1,6 +1,5 @@
 package com.music.widget.dialog;
 
-
 import com.music.lu.R;
 
 import android.animation.Animator;
@@ -20,208 +19,199 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-
-
 /**
  * Created by zzz40500 on 15/4/6.
  */
-@SuppressLint("NewApi") 
-public class LoadingView  extends FrameLayout {
+@SuppressLint({ "NewApi", "InflateParams" })
+public class LoadingView extends FrameLayout {
 
+	private ShapeLoadingView shapeLoadingView;
 
-    private ShapeLoadingView shapeLoadingView;
+	private ImageView indicationIm;
 
-    private ImageView indicationIm;
+	private TextView loadTextView;
 
-    private TextView loadTextView;
+	private static final int ANIMATION_DURATION = 500;
 
+	private String loadText;
 
-    private   static  final int ANIMATION_DURATION=500;
+	private float mDistance = 200;
 
-    private String loadText;
+	public LoadingView(Context context) {
+		super(context);
+	}
 
+	public LoadingView(Context context, AttributeSet attrs) {
+		super(context, attrs, 0);
+		init(context, attrs);
 
-    private     float mDistance =200;
-    public LoadingView(Context context) {
-        super(context);
-    }
+	}
 
-    public LoadingView(Context context, AttributeSet attrs) {
-        super(context, attrs,0);
-        init(context,attrs);
+	private void init(Context context, AttributeSet attrs) {
 
-    }
+		TypedArray typedArray = context.obtainStyledAttributes(attrs,
+				R.styleable.LoadingView);
+		loadText = typedArray.getString(R.styleable.LoadingView_loadingText);
 
-    private void init(Context context,AttributeSet attrs) {
+		typedArray.recycle();
+	}
 
-        TypedArray typedArray= context
-                .obtainStyledAttributes(attrs, R.styleable.LoadingView);
-        loadText=  typedArray.getString(R.styleable.LoadingView_loadingText);
+	public LoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init(context, attrs);
+	}
 
-        typedArray.recycle();
-    }
+	// public LoadingView(Context context, AttributeSet attrs, int defStyleAttr,
+	// int defStyleRes) {
+	// super(context, attrs, defStyleAttr, defStyleRes);
+	// init(context,attrs);
+	// }
+	public int dip2px(float dipValue) {
+		final float scale = getContext().getResources().getDisplayMetrics().density;
+		return (int) (dipValue * scale + 0.5f);
+	}
 
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+		View view = LayoutInflater.from(getContext()).inflate(
+				R.layout.load_view, null);
+		mDistance = dip2px(54f);
 
-    public LoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init(context,attrs);
-    }
+		LayoutParams layoutParams = new LayoutParams(
+				ViewGroup.LayoutParams.WRAP_CONTENT,
+				ViewGroup.LayoutParams.WRAP_CONTENT);
 
-//    public LoadingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-//        super(context, attrs, defStyleAttr, defStyleRes);
-//        init(context,attrs);
-//    }
-    public  int dip2px( float dipValue){
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int)(dipValue * scale + 0.5f);
-    }
+		layoutParams.gravity = Gravity.CENTER;
 
+		shapeLoadingView = (ShapeLoadingView) view
+				.findViewById(R.id.shapeLoadingView);
 
+		indicationIm = (ImageView) view.findViewById(R.id.indication);
+		loadTextView = (TextView) view.findViewById(R.id.promptTV);
 
+		setLoadingText(loadText);
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-      View view=  LayoutInflater.from(getContext()).inflate(R.layout.load_view,null);
-        mDistance =dip2px(54f);
+		addView(view, layoutParams);
 
-        LayoutParams layoutParams=new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		this.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				freeFall();
+			}
+		}, 500);
 
-        layoutParams.gravity= Gravity.CENTER;
+	}
 
-        shapeLoadingView= (ShapeLoadingView) view.findViewById(R.id.shapeLoadingView);
+	public void setLoadingText(CharSequence loadingText) {
+		loadTextView.setText(loadingText);
+	}
 
-        indicationIm= (ImageView) view.findViewById(R.id.indication);
-        loadTextView= (TextView) view.findViewById(R.id.promptTV);
-
-        setLoadingText(loadText);
-
-        addView(view,layoutParams);
-
-        this.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                freeFall();
-            }
-        },500);
-
-
-    }
-
-    public void setLoadingText(CharSequence loadingText){
-        loadTextView.setText(loadingText);
-    }
-    /**
-     * 上抛
+	/**
      */
-    @SuppressLint("NewApi") 
-    public void upThrow( ){
+	@SuppressLint("NewApi")
+	public void upThrow() {
 
-        ObjectAnimator objectAnimator=ObjectAnimator.ofFloat(shapeLoadingView,"translationY", mDistance,0);
-        ObjectAnimator scaleIndication=ObjectAnimator.ofFloat(indicationIm,"scaleX",0.2f,1);
+		ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(
+				shapeLoadingView, "translationY", mDistance, 0);
+		ObjectAnimator scaleIndication = ObjectAnimator.ofFloat(indicationIm,
+				"scaleX", 0.2f, 1);
 
+		ObjectAnimator objectAnimator1 = null;
+		switch (shapeLoadingView.getShape()) {
+		case SHAPE_RECT:
 
-        ObjectAnimator objectAnimator1=null;
-        switch (shapeLoadingView.getShape()){
-            case SHAPE_RECT:
+			objectAnimator1 = ObjectAnimator.ofFloat(shapeLoadingView,
+					"rotation", 0, -120);
 
+			break;
+		case SHAPE_CIRCLE:
+			objectAnimator1 = ObjectAnimator.ofFloat(shapeLoadingView,
+					"rotation", 0, 180);
 
-                objectAnimator1 = ObjectAnimator.ofFloat(shapeLoadingView, "rotation", 0, -120);
+			break;
+		case SHAPE_TRIANGLE:
 
-                break;
-            case SHAPE_CIRCLE:
-                objectAnimator1=   ObjectAnimator.ofFloat(shapeLoadingView,"rotation",0,180);
+			objectAnimator1 = ObjectAnimator.ofFloat(shapeLoadingView,
+					"rotation", 0, 180);
 
-                break;
-            case SHAPE_TRIANGLE:
+			break;
+		}
 
-                objectAnimator1 = ObjectAnimator.ofFloat(shapeLoadingView, "rotation", 0, 180);
+		objectAnimator.setDuration(ANIMATION_DURATION);
+		objectAnimator1.setDuration(ANIMATION_DURATION);
+		objectAnimator.setInterpolator(new DecelerateInterpolator());
+		objectAnimator1.setInterpolator(new DecelerateInterpolator());
+		AnimatorSet animatorSet = new AnimatorSet();
+		animatorSet.setDuration(ANIMATION_DURATION);
+		animatorSet.playTogether(objectAnimator, objectAnimator1,
+				scaleIndication);
 
-                break;
-        }
+		animatorSet.addListener(new Animator.AnimatorListener() {
+			@Override
+			public void onAnimationStart(Animator animation) {
 
+			}
 
-        objectAnimator.setDuration(ANIMATION_DURATION);
-        objectAnimator1.setDuration(ANIMATION_DURATION);
-        objectAnimator.setInterpolator(new DecelerateInterpolator());
-        objectAnimator1.setInterpolator(new DecelerateInterpolator());
-        AnimatorSet animatorSet=new AnimatorSet();
-        animatorSet.setDuration(ANIMATION_DURATION);
-        animatorSet.playTogether(objectAnimator,objectAnimator1,scaleIndication);
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				freeFall();
 
+			}
 
-        animatorSet.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
+			@Override
+			public void onAnimationCancel(Animator animation) {
 
-            }
+			}
 
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                freeFall();
+			@Override
+			public void onAnimationRepeat(Animator animation) {
 
+			}
+		});
+		animatorSet.start();
 
-            }
+	}
 
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
-        animatorSet.start();
-
-
-    }
-
-    /**
-     * 下落
+	/**
      */
-    public void freeFall(){
+	public void freeFall() {
 
-        ObjectAnimator objectAnimator=ObjectAnimator.ofFloat(shapeLoadingView,"translationY",0, mDistance);
-        ObjectAnimator scaleIndication=ObjectAnimator.ofFloat(indicationIm,"scaleX",1,0.2f);
+		ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(
+				shapeLoadingView, "translationY", 0, mDistance);
+		ObjectAnimator scaleIndication = ObjectAnimator.ofFloat(indicationIm,
+				"scaleX", 1, 0.2f);
 
+		objectAnimator.setDuration(ANIMATION_DURATION);
+		objectAnimator.setInterpolator(new AccelerateInterpolator());
+		AnimatorSet animatorSet = new AnimatorSet();
+		animatorSet.setDuration(ANIMATION_DURATION);
+		animatorSet.playTogether(objectAnimator, scaleIndication);
+		animatorSet.addListener(new Animator.AnimatorListener() {
+			@Override
+			public void onAnimationStart(Animator animation) {
 
-        objectAnimator.setDuration(ANIMATION_DURATION);
-        objectAnimator.setInterpolator(new AccelerateInterpolator());
-        AnimatorSet animatorSet=new AnimatorSet();
-        animatorSet.setDuration(ANIMATION_DURATION);
-        animatorSet.playTogether(objectAnimator,scaleIndication);
-        animatorSet.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
+			}
 
-            }
+			@Override
+			public void onAnimationEnd(Animator animation) {
 
-            @Override
-            public void onAnimationEnd(Animator animation) {
+				shapeLoadingView.changeShape();
+				upThrow();
+			}
 
+			@Override
+			public void onAnimationCancel(Animator animation) {
 
+			}
 
-                shapeLoadingView.changeShape();
-                upThrow();
-            }
+			@Override
+			public void onAnimationRepeat(Animator animation) {
 
-            @Override
-            public void onAnimationCancel(Animator animation) {
+			}
+		});
+		animatorSet.start();
 
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
-        animatorSet.start();
-
-
-
-    }
+	}
 
 }

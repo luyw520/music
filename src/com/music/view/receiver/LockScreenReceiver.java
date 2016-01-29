@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 
 /**
- * 启动activity
  * @author lihua
  *
  */
@@ -18,7 +17,7 @@ public class LockScreenReceiver extends BroadcastReceiver {
 	@SuppressWarnings("deprecation")
 	private KeyguardManager.KeyguardLock keyguardLock = null;
 	
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "unused" })
 	@Override
 	public void onReceive(Context context, Intent intent) {
 			
@@ -31,9 +30,9 @@ public class LockScreenReceiver extends BroadcastReceiver {
 		
 			keyguardManager = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
 			keyguardLock = keyguardManager.newKeyguardLock("");
-			keyguardLock.disableKeyguard(); //这里就是取消系统默认的锁
-			
-//			context.startActivity(lockIntent); //注意这里跳转的意
+			keyguardLock.disableKeyguard(); //
+//			
+//			context.startActivity(lockIntent); //
 		}
 	}
 

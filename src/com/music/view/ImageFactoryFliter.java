@@ -82,6 +82,7 @@ public class ImageFactoryFliter extends ImageFactory {
 		mFilterItems.add(filterItem_8);
 	}
 
+	@SuppressWarnings("unused")
 	private void initFilterBlocks() {
 		mFliterBlocks = new View[8];
 		mFliterBlocks[0] = findViewById(R.id.imagefactory_fliter_item_1);
