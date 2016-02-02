@@ -43,12 +43,18 @@ public class MusicUtils implements IConstants {
 		this.musicInfos = musicInfos;
 	}
 
-	private static String[] proj_music = new String[] { MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TITLE, MediaStore.Audio.Media.DATA, MediaStore.Audio.Media.ALBUM_ID,
-			MediaStore.Audio.Media.ARTIST, MediaStore.Audio.Media.ARTIST_ID, MediaStore.Audio.Media.DURATION };
+	private static String[] proj_music = new String[] {
+			MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TITLE,
+			MediaStore.Audio.Media.DATA, MediaStore.Audio.Media.ALBUM_ID,
+			MediaStore.Audio.Media.ARTIST, MediaStore.Audio.Media.ARTIST_ID,
+			MediaStore.Audio.Media.DURATION };
 
-	private static String[] proj_album = new String[] { Albums.ALBUM, Albums.NUMBER_OF_SONGS, Albums._ID, Albums.ALBUM_ART };
+	private static String[] proj_album = new String[] { Albums.ALBUM,
+			Albums.NUMBER_OF_SONGS, Albums._ID, Albums.ALBUM_ART };
 
-	private static String[] proj_artist = new String[] { MediaStore.Audio.Artists.ARTIST, MediaStore.Audio.Artists.NUMBER_OF_TRACKS };
+	private static String[] proj_artist = new String[] {
+			MediaStore.Audio.Artists.ARTIST,
+			MediaStore.Audio.Artists.NUMBER_OF_TRACKS };
 
 	private static String[] proj_folder = new String[] { FileColumns.DATA };
 
@@ -125,11 +131,15 @@ public class MusicUtils implements IConstants {
 		if (mFolderInfoDao == null) {
 			mFolderInfoDao = new FolderInfoDao(context);
 		}
-		// SPStorage sp = new SPStorage(context);
+		// if (mFolderInfoDao.hasData()) {
+		// return mFolderInfoDao.getFolderInfo();
+		// }
 		Uri uri = MediaStore.Files.getContentUri("external");
 		ContentResolver cr = context.getContentResolver();
-		StringBuilder mSelection = new StringBuilder(FileColumns.MEDIA_TYPE + " = " + FileColumns.MEDIA_TYPE_AUDIO + " and " + "(" + FileColumns.DATA + " like'%.mp3' or "
-				+ Media.DATA + " like'%.wma')");
+		StringBuilder mSelection = new StringBuilder(FileColumns.MEDIA_TYPE
+				+ " = " + FileColumns.MEDIA_TYPE_AUDIO + " and " + "("
+				+ FileColumns.DATA + " like'%.mp3' or " + Media.DATA
+				+ " like'%.wma')");
 		// 查询语句：检索出.mp3为后缀名，时长大于1分钟，文件大小大于1MB的媒体文件
 		// if(sp.getFilterSize()) {
 		mSelection.append(" and " + Media.SIZE + " > " + FILTER_SIZE);
@@ -138,13 +148,10 @@ public class MusicUtils implements IConstants {
 		mSelection.append(" and " + Media.DURATION + " > " + FILTER_DURATION);
 		// }
 		mSelection.append(") group by ( " + FileColumns.PARENT);
-		if (mFolderInfoDao.hasData()) {
-			return mFolderInfoDao.getFolderInfo();
-		} else {
-			List<FolderInfo> list = getFolderList(cr.query(uri, proj_folder, mSelection.toString(), null, null));
-			mFolderInfoDao.saveFolderInfo(list);
-			return list;
-		}
+		List<FolderInfo> list = getFolderList(cr.query(uri, proj_folder,
+				mSelection.toString(), null, null));
+		// mFolderInfoDao.saveFolderInfo(list);
+		return list;
 	}
 
 	/**
@@ -157,15 +164,16 @@ public class MusicUtils implements IConstants {
 		if (mArtistInfoDao == null) {
 			mArtistInfoDao = new ArtistInfoDao(context);
 		}
+		// if (mArtistInfoDao.hasData()) {
+		// return mArtistInfoDao.getArtistInfo();
+		// }
 		Uri uri = MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
 		ContentResolver cr = context.getContentResolver();
-		if (mArtistInfoDao.hasData()) {
-			return mArtistInfoDao.getArtistInfo();
-		} else {
-			List<ArtistInfo> list = getArtistList(cr.query(uri, proj_artist, null, null, MediaStore.Audio.Artists.NUMBER_OF_TRACKS + " desc"));
-			mArtistInfoDao.saveArtistInfo(list);
-			return list;
-		}
+		d("queryArtist.....................uri:"+uri.toString());
+		List<ArtistInfo> list = getArtistList(cr.query(uri, proj_artist, null,
+				null, MediaStore.Audio.Artists.NUMBER_OF_TRACKS + " desc"));
+//		mArtistInfoDao.saveArtistInfo(list);
+		return list;
 	}
 
 	/**
@@ -187,7 +195,9 @@ public class MusicUtils implements IConstants {
 
 		Uri uri = Albums.EXTERNAL_CONTENT_URI;
 		ContentResolver cr = context.getContentResolver();
-		StringBuilder where = new StringBuilder(Albums._ID + " in (select distinct " + Media.ALBUM_ID + " from audio_meta where (1=1 ");
+		StringBuilder where = new StringBuilder(Albums._ID
+				+ " in (select distinct " + Media.ALBUM_ID
+				+ " from audio_meta where (1=1 ");
 
 		// if(sp.getFilterSize()) {
 		where.append(" and " + Media.SIZE + " > " + FILTER_SIZE);
@@ -201,7 +211,8 @@ public class MusicUtils implements IConstants {
 		// return mAlbumInfoDao.getAlbumInfo();
 		// } else {
 		// Media.ALBUM_KEY 按专辑名称排序
-		albumInfos = getAlbumList(cr.query(uri, proj_album, where.toString(), null, Media.ALBUM_KEY));
+		albumInfos = getAlbumList(cr.query(uri, proj_album, where.toString(),
+				null, Media.ALBUM_KEY));
 		// mAlbumInfoDao.saveAlbumInfo(list);
 		Collections.sort(albumInfos);
 		return albumInfos;
@@ -228,11 +239,12 @@ public class MusicUtils implements IConstants {
 	 *            local,artist,album,folder
 	 * @return
 	 */
-	public List<MusicInfo> queryMusic(Context context, String selections, String selection, int from) {
+	public List<MusicInfo> queryMusic(Context context, String selections,
+			String selection, int from) {
 
-//		if (musicInfos.size() > 0) {
-//			return musicInfos;
-//		}
+		// if (musicInfos.size() > 0) {
+		// return musicInfos;
+		// }
 		if (mMusicInfoDao == null) {
 			mMusicInfoDao = new MusicInfoDao(context);
 		}
@@ -248,18 +260,24 @@ public class MusicUtils implements IConstants {
 		switch (from) {
 		case START_FROM_LOCAL:
 			// if local database has data
-//			if (mMusicInfoDao.hasData()) {
-//				musicInfos = mMusicInfoDao.getMusicInfo();
-//			} else {
-				// query android media database
-				Cursor cursor = cr.query(uri, proj_music, select.toString(), null, MediaStore.Audio.Media.ARTIST_KEY);
-				musicInfos = getMusicList(cursor);
-				mMusicInfoDao.saveMusicInfo(musicInfos);
-//			}
-				break;
+			// if (mMusicInfoDao.hasData()) {
+			// musicInfos = mMusicInfoDao.getMusicInfo();
+			// } else {
+			// query android media database
+			long a = System.currentTimeMillis();
+			Cursor cursor = cr.query(uri, proj_music, select.toString(), null,
+					MediaStore.Audio.Media.ARTIST_KEY);
+			musicInfos = getMusicList(cursor);
+			d("query music spend time:" + (System.currentTimeMillis() - a)
+					/ 1000.0 + " s");
+			d("uri:" + uri.toString());
+			mMusicInfoDao.saveMusicInfo(musicInfos);
+			// }
+			break;
 		case START_FROM_ARTIST:
 			if (mMusicInfoDao.hasData()) {
-				musicInfos = mMusicInfoDao.getMusicInfoByType(selection, START_FROM_ARTIST);
+				musicInfos = mMusicInfoDao.getMusicInfoByType(selection,
+						START_FROM_ARTIST);
 			} else {
 				// return getMusicList(cr.query(uri, proj_music,
 				// select.toString(), null,
@@ -268,12 +286,14 @@ public class MusicUtils implements IConstants {
 			break;
 		case START_FROM_ALBUM:
 			if (mMusicInfoDao.hasData()) {
-				musicInfos = mMusicInfoDao.getMusicInfoByType(selection, START_FROM_ALBUM);
+				musicInfos = mMusicInfoDao.getMusicInfoByType(selection,
+						START_FROM_ALBUM);
 			}
 			break;
 		case START_FROM_FOLDER:
 			if (mMusicInfoDao.hasData()) {
-				musicInfos = mMusicInfoDao.getMusicInfoByType(selection, START_FROM_FOLDER);
+				musicInfos = mMusicInfoDao.getMusicInfoByType(selection,
+						START_FROM_FOLDER);
 			}
 			break;
 
@@ -281,25 +301,36 @@ public class MusicUtils implements IConstants {
 		return musicInfos;
 	}
 
+	private static void d(String msg) {
+		DeBug.d(MusicUtils.class, msg);
+	}
+
 	public static ArrayList<MusicInfo> getMusicList(Cursor cursor) {
 		if (cursor == null) {
 			return null;
 		}
 		ArrayList<MusicInfo> musicList = new ArrayList<MusicInfo>();
+		DeBug.d(MusicUtils.class,
+				"getMusicList,local music,size:" + cursor.getCount());
 		while (cursor.moveToNext()) {
 			MusicInfo music = new MusicInfo();
-			music.songId = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media._ID));
-			music.albumId = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID));
-			music.duration = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
-			music.title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
-			music.artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
-			
-			music.musicName=music.title;
-			String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+			music.songId = cursor.getInt(cursor
+					.getColumnIndex(MediaStore.Audio.Media._ID));
+			music.albumId = cursor.getInt(cursor
+					.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID));
+			music.duration = cursor.getInt(cursor
+					.getColumnIndex(MediaStore.Audio.Media.DURATION));
+			music.title = cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Media.TITLE));
+			music.artist = cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+			music.musicName = music.title;
+			String filePath = cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Media.DATA));
 			music.playPath = filePath;
-			
-			music.data=filePath;
-			String folderPath = filePath.substring(0, filePath.lastIndexOf(File.separator));
+			music.data = filePath;
+			String folderPath = filePath.substring(0,
+					filePath.lastIndexOf(File.separator));
 			music.folder = folderPath;
 			music.musicNameKey = StringUtil.getPingYin(music.title);
 			music.artistKey = StringUtil.getPingYin(music.artist);
@@ -309,32 +340,34 @@ public class MusicUtils implements IConstants {
 		return musicList;
 	}
 
-	public  List<AlbumInfo> getAlbumList(Cursor cursor) {
+	public List<AlbumInfo> getAlbumList(Cursor cursor) {
 		List<AlbumInfo> list = new ArrayList<AlbumInfo>();
+		d("album,size:" + cursor.getCount());
 		while (cursor.moveToNext()) {
 			AlbumInfo info = new AlbumInfo();
-			info.album_name = cursor.getString(cursor.getColumnIndex(Albums.ALBUM));
+			info.album_name = cursor.getString(cursor
+					.getColumnIndex(Albums.ALBUM));
 			info.pinyin = StringUtil.getPingYin(info.album_name);
 			info.album_id = cursor.getInt(cursor.getColumnIndex(Albums._ID));
-			info.number_of_songs = cursor.getInt(cursor.getColumnIndex(Albums.NUMBER_OF_SONGS));
-
-			info.album_path = cursor.getString(cursor.getColumnIndex(Albums.ALBUM_ART));
-
-			;
-
-			// System.out.println(info.album_name);
+			info.number_of_songs = cursor.getInt(cursor
+					.getColumnIndex(Albums.NUMBER_OF_SONGS));
+			info.album_path = cursor.getString(cursor
+					.getColumnIndex(Albums.ALBUM_ART));
 			list.add(info);
 		}
 		cursor.close();
 		return list;
 	}
 
-	public  List<ArtistInfo> getArtistList(Cursor cursor) {
+	public List<ArtistInfo> getArtistList(Cursor cursor) {
+		d("getArtistList:...........................size:"+cursor.getCount());
 		List<ArtistInfo> list = new ArrayList<ArtistInfo>();
 		while (cursor.moveToNext()) {
 			ArtistInfo info = new ArtistInfo();
-			info.artist_name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Artists.ARTIST));
-			info.number_of_tracks = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Artists.NUMBER_OF_TRACKS));
+			info.artist_name = cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Artists.ARTIST));
+			info.number_of_tracks = cursor.getInt(cursor
+					.getColumnIndex(MediaStore.Audio.Artists.NUMBER_OF_TRACKS));
 			// info.number_of_tracks = cursor.getInt(cursor
 			// .getColumnIndex(MediaStore.Audio.Artists.));
 
@@ -345,12 +378,16 @@ public class MusicUtils implements IConstants {
 	}
 
 	public static List<FolderInfo> getFolderList(Cursor cursor) {
+		d("getFolderList,,,,,,,,,,,,,,,,size:" + cursor.getCount());
 		List<FolderInfo> list = new ArrayList<FolderInfo>();
 		while (cursor.moveToNext()) {
 			FolderInfo info = new FolderInfo();
-			String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA));
-			info.folder_path = filePath.substring(0, filePath.lastIndexOf(File.separator));
-			info.folder_name = info.folder_path.substring(info.folder_path.lastIndexOf(File.separator) + 1);
+			String filePath = cursor.getString(cursor
+					.getColumnIndex(MediaStore.Files.FileColumns.DATA));
+			info.folder_path = filePath.substring(0,
+					filePath.lastIndexOf(File.separator));
+			info.folder_name = info.folder_path.substring(info.folder_path
+					.lastIndexOf(File.separator) + 1);
 			list.add(info);
 		}
 		cursor.close();

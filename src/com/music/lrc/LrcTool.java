@@ -29,13 +29,12 @@ import com.music.bean.Mp3Info;
 
 	
 	/**
-	 * �?有lrc文件的集�?
 	 */
 	private List<File> fileList=new ArrayList<File>();
 	@SuppressLint("SdCardPath")
 	private final String DIR="/sdcard/lu/";
 	private final String FILE_NAME="lyw";
-	/**存储匹配到的歌词的集�?*/
+	/**存储匹配到的歌词的集�?*/
 	private File file;
 	
 	public List<File> getFileList() {
@@ -50,7 +49,7 @@ import com.music.bean.Mp3Info;
 		file=new File(dir, FILE_NAME);
 	}
 	/**
-	 * 根据歌曲名匹配歌曲，匹配到了返回�?个List<Map<String, String>>集合。否则返回null
+	 * 根据歌曲名匹配歌曲，匹配到了返回�?个List<Map<String, String>>集合。否则返回null
 	 * @param song
 	 */
 	public List<Map<String, String>>  matchSongLrc(String song){
@@ -64,7 +63,7 @@ import com.music.bean.Mp3Info;
 	/**
 	 * 根据mp3Infos集合里面的歌曲匹配所有的.lrc文件,并将集合写入文件
 	 * @param mp3Infos
-	 * @return 匹配到的�?有{@link LrcInfo} 集合
+	 * @return 匹配到的�?有{@link LrcInfo} 集合
 	 */
 	public List<LrcInfo> matchAllMp3(List<Mp3Info> mp3Infos){
 		
@@ -73,7 +72,6 @@ import com.music.bean.Mp3Info;
 		
 		List<LrcInfo> list=new ArrayList<LrcInfo>();
 		
-		//寻找�?有可匹配的lrc文件.若找�?,放到lrcInfos�?
 		for(int i=0,size=mp3Infos.size();i<size;i++){
 			List<Map<String, String>> maps = matchSongLrc(mp3Infos.get(i)
 					.getTitle());
@@ -92,10 +90,8 @@ import com.music.bean.Mp3Info;
 		
 	}
 	/**
-	 * 遍历文件中所有的lrc文件并添加到fileList集合�?
 	 */
 	public void getAllLrcFile(){
-		//如果本地查找了一�?,存在fileList集合�?.不再查找
 		if(fileList.size()==0){
 			File file=Environment.getExternalStorageDirectory();
 			addLrcFile(file);
@@ -103,7 +99,6 @@ import com.music.bean.Mp3Info;
 		
 	}
 	/**
-	 * 将file目录下的lrc文件添加到fileList集合�?
 	 * @param file 
 	 * @param fileList2 
 	 */
@@ -125,14 +120,14 @@ import com.music.bean.Mp3Info;
 		
 	}
 	/**
-	 * 将所有匹配到的Lrc集合保存到文�?
+	 * 将所有匹配到的Lrc集合保存到文�?
 	 */
 	public void writeLrcFile(List<LrcInfo> lrcInfos){
 		
 		Log.i(TAG, "lrcInfos.size="+lrcInfos.size());
 		ObjectOutput objectOutput=null;
 		try {
-			//如果文件存在则删�?,重新写入
+			//如果文件存在则删�?,重新写入
 			if(file.exists()){
 				Log.i(TAG, "file.delete()="+file.delete());
 			}
@@ -160,7 +155,7 @@ import com.music.bean.Mp3Info;
 			};
 		}
 	}
-	/**从文件中读取匹配到的�?有歌�?,
+	/**从文件中读取匹配到的�?有歌�?,
 	 * 没有返回null
 	 * */
 	@SuppressWarnings("unchecked")
@@ -190,7 +185,6 @@ import com.music.bean.Mp3Info;
 		return file.getAbsolutePath().endsWith(".lrc");
 	}
 	/**
-	 * 解析�?个lrc文件，将歌词信息放在list集合中并返回
 	 * @param file
 	 * @return
 	 */
@@ -207,7 +201,7 @@ import com.music.bean.Mp3Info;
 				
 				
 				if(line!=null){
-					//�?'[',':','.'去掉.如果全是数字，则表示是歌词部�?
+					//�?'[',':','.'去掉.如果全是数字，则表示是歌词部�?
 					String string=strings[0].replace("[", "").replace(":", "").replace(".", "").replaceAll("0", "");
 					try{
 						

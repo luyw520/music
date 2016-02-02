@@ -6,10 +6,10 @@ import android.app.Application;
 import android.content.Context;
 
 import com.music.utils.BitmapCacheUtil;
+import com.music.utils.DeBug;
 import com.music.utils.FileUtils;
 import com.music.utils.Mp3Util_New;
 import com.music.utils.MusicUtils;
-import com.music.utils.DeBug;
 import com.music.widget.lockpatternview.LockPatternUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -24,6 +24,7 @@ public class MusicApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		DeBug.d(TAG, "MusicApplication ............onCreate:");
 		long start=System.currentTimeMillis();
 		Mp3Util_New.init(this);
 		long mp3=System.currentTimeMillis();
@@ -38,6 +39,12 @@ public class MusicApplication extends Application {
 		setMusicApplication(this);
 		
 		initImageLoader(getApplicationContext());
+		
+		
+//		FontsOverride.setDefaultFont(this, "DEFAULT", "fonts/a.ttf");
+//        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/a.ttf");
+//        FontsOverride.setDefaultFont(this, "SERIF", "fonts/a.ttf");
+//        FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/a.ttf");
 	}
 	private void initImageLoader(Context applicationContext) {
 		ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(applicationContext);

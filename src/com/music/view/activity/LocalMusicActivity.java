@@ -12,11 +12,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,12 +33,12 @@ import com.music.lu.R;
 import com.music.service.IConstants;
 import com.music.utils.ApplicationUtil;
 import com.music.utils.AsyncTaskUtil;
+import com.music.utils.DeBug;
 import com.music.utils.DialogUtil;
 import com.music.utils.LogUtil;
 import com.music.utils.MediaUtil;
 import com.music.utils.Mp3Util_New;
 import com.music.utils.MusicUtils;
-import com.music.utils.DeBug;
 import com.music.utils.PhotoUtils;
 import com.music.view.MyNotification;
 import com.music.view.PlayPauseDrawable;
@@ -52,6 +50,8 @@ import com.music.view.widget.CircularImage;
 import com.music.view.widget.RoundImageView;
 import com.music.widget.slidingmenu2.SlidingMenu;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.PushAgent;
 
 /**
  *
@@ -148,14 +148,21 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		initData();
 		registerReceiver();
 		handler.sendEmptyMessageDelayed(0, 500);
+		
+		
+		//umeng push 
+		PushAgent.getInstance(this).onAppStart();
+		
+		
+		//开启推送并设置注册的回调处理
+		PushAgent.getInstance(this).enable(new IUmengRegisterCallback() {
 
-		// 透明状态栏
-		getWindow()
-				.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-		// //透明导航栏
-		getWindow().addFlags(
-				WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+			@Override
+			public void onRegistered(String registrationId) {
+				DeBug.d(LocalMusicActivity.this, "onRegistered....................registrationId:"+registrationId);
+			}
+		});
+		
 	}
 
 	public void changeFragment(int flag, Object object) {
@@ -457,13 +464,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		}
 
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -496,11 +496,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	public void exit() {
 
 		unregisterReceiver();
-		// stopService(intent);
 		ApplicationUtil.setAppToBack(this, 1);
 		mp3Util.saveCurrentMusicInfo(this);
 		myNotification.cancel();
-		// mp3Util.serviceDestory();
 		mp3Util.unBindService();
 		finish();
 	};

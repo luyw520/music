@@ -36,6 +36,7 @@ import com.music.lrc.LyricLoadHelper.LyricListener;
 import com.music.lrc.LyricView;
 import com.music.lu.R;
 import com.music.model.LyricModel;
+import com.music.model.ShareModel;
 import com.music.utils.AppConstant;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
@@ -46,10 +47,6 @@ import com.music.utils.MediaUtil;
 import com.music.utils.Mp3Util_New;
 import com.music.view.animator.ActivityAnimator;
 import com.music.view.widget.RoundImageView;
-import com.umeng.socialize.controller.UMServiceFactory;
-import com.umeng.socialize.controller.UMSocialService;
-import com.umeng.socialize.sso.QZoneSsoHandler;
-import com.umeng.socialize.sso.UMQQSsoHandler;
 
 /**
  * 歌曲播放界面类
@@ -277,7 +274,8 @@ public class PlayerActivity extends BaseActivity implements
 		case R.id.img_favourite:
 			break;
 		case R.id.img_share:
-			umengShareMusic();
+//			ShareModel share=new ShareModel();
+			new ShareModel().umengShareMusic(this);
 			break;
 		case R.id.rl_disc:
 			mp3Util.setShowLrc(true);
@@ -298,24 +296,7 @@ public class PlayerActivity extends BaseActivity implements
 		}
 
 	}
-	/**
-	 * umeng share api
-	 */
-	private void umengShareMusic() {
-		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(this,
-				"1104335219", "J68iUn08AUZwHWrJ");
-		qZoneSsoHandler.addToSocialSDK();
-		UMQQSsoHandler qHandler = new UMQQSsoHandler(this, "1104335219",
-				"J68iUn08AUZwHWrJ");
-		qHandler.addToSocialSDK();
-
-		UMSocialService service = UMServiceFactory
-				.getUMSocialService("com.umeng.share");
-
-		service.setShareContent("hehehe");
-		service.openShare(this, false);
-	}
-
+	
 	/**
 	 * 根据播放类型 设置背景图
 	 * 

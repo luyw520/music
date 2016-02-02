@@ -1,13 +1,7 @@
-/**
- * Copyright (c) www.longdw.com
- */
 package com.music.db;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import u.aly.db;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

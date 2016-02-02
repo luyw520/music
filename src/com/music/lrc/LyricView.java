@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.hp.hpl.sparta.xpath.ThisNodeTest;
 import com.music.bean.LyricSentence;
 import com.music.utils.DeBug;
 

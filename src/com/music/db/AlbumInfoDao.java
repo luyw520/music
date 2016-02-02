@@ -1,6 +1,3 @@
-/**
- * Copyright (c) www.longdw.com
- */
 package com.music.db;
 
 import java.util.ArrayList;

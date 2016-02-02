@@ -10,7 +10,6 @@ import android.os.Handler;
 import com.music.bean.LrcInfo;
 import com.music.utils.AppConstant;
 import com.music.utils.DialogUtil;
-import com.music.utils.Mp3Util;
 import com.music.utils.Mp3Util_New;
 
 
@@ -89,6 +88,7 @@ public class LrcUtil {
 	@SuppressWarnings("rawtypes")
 	class MyAsyncTask extends AsyncTask{
 		
+		@SuppressWarnings({ "unused" })
 		private String songName;
 		public MyAsyncTask(String songName) {
 			this.songName=songName;

@@ -17,6 +17,7 @@ import java.net.URLEncoder;
 import android.content.Context;
 import android.util.Log;
 
+import com.music.utils.DeBug;
 import com.music.utils.FileUtils;
 
 
@@ -35,6 +36,7 @@ public class LyricDownloadManager {
 	private URL mUrl = null;
 	private int mDownloadLyricId = -1;
 
+	@SuppressWarnings("unused")
 	private Context mContext = null;
 
 	public LyricDownloadManager(Context c) {
@@ -45,7 +47,7 @@ public class LyricDownloadManager {
 	 * 根据歌曲名和歌手名取得该歌的XML信息文件 返回歌词保存路径
 	 */
 	public String searchLyricFromWeb(String musicName, String singerName) {
-		Log.i(TAG, "下载前，歌曲名:" + musicName + ",歌手名:" + singerName);
+		DeBug.d(TAG, "下载前，歌曲名:" + musicName + ",歌手名:" + singerName);
 
 		// 传进来的如果是汉字，那么就要进行编码转化
 		try {
@@ -62,7 +64,7 @@ public class LyricDownloadManager {
 		// 生成URL
 		try {
 			mUrl = new URL(strUrl);
-			Log.i(TAG, "请求获取歌词信息的URL：" + mUrl);
+			DeBug.d(TAG, "请求获取歌词信息的URL：" + mUrl);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -72,11 +74,11 @@ public class LyricDownloadManager {
 					.openConnection();
 			httpConn.setReadTimeout(mTimeOut);
 			if (httpConn.getResponseCode() != HttpURLConnection.HTTP_OK) {
-				Log.i(TAG, "http连接失败");
+				DeBug.d(TAG, "http连接失败");
 				return null;
 			}
 			httpConn.connect();
-			Log.i(TAG, "http连接成功");
+			DeBug.d(TAG, "http连接成功");
 
 			// 将百度音乐盒的返回的输入流传递给自定义的XML解析器，解析出歌词的下载ID
 			mDownloadLyricId = mLyricXMLParser.parseLyricId(httpConn
@@ -84,11 +86,11 @@ public class LyricDownloadManager {
 			httpConn.disconnect();
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			Log.i(TAG, "http连接连接IO异常");
+			DeBug.d(TAG, "http连接连接IO异常");
 			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
-			Log.i(TAG, "XML解析错误");
+			DeBug.d(TAG, "XML解析错误");
 			return null;
 		}
 		return fetchLyricContent(musicName, singerName);
@@ -98,7 +100,7 @@ public class LyricDownloadManager {
 	 * @param musicInfo */
 	private String fetchLyricContent(String musicName, String singerName) {
 		if (mDownloadLyricId == -1) {
-			Log.i(TAG, "未指定歌词下载ID");
+			DeBug.d(TAG, "未指定歌词下载ID");
 			return null;
 		}
 		BufferedReader br = null;
@@ -106,7 +108,7 @@ public class LyricDownloadManager {
 		String temp = null;
 		String lyricURL = "http://box.zhangmen.baidu.com/bdlrc/"
 				+ mDownloadLyricId / 100 + "/" + mDownloadLyricId + ".lrc";
-		Log.i(TAG, "歌词的真实下载地址:" + lyricURL);
+		DeBug.d(TAG, "歌词的真实下载地址:" + lyricURL);
 
 		try {
 			mUrl = new URL(lyricURL);
@@ -124,13 +126,13 @@ public class LyricDownloadManager {
 				// 逐行获取歌词文本
 				while ((temp = br.readLine()) != null) {
 					content.append(temp);
-					Log.i(TAG, "<Lyric>" + temp);
+					DeBug.d(TAG, "<Lyric>" + temp);
 				}
 				br.close();
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			Log.i(TAG, "歌词获取失败");
+			DeBug.d(TAG, "歌词获取失败");
 		}
 
 		try {
@@ -154,7 +156,7 @@ public class LyricDownloadManager {
 			String savePath = folderPath + File.separator + singerName+"-"+musicName
 					+ ".lrc";
 //			String savePath = folderPath + File.separator + musicName + ".lrc";
-			Log.i(TAG, "歌词保存路径:" + savePath);
+			DeBug.d(TAG, "歌词保存路径:" + savePath);
 
 			saveLyric(content.toString(), savePath);
 
@@ -176,8 +178,8 @@ public class LyricDownloadManager {
 			out.close();
 		} catch (java.io.IOException e) {
 			e.printStackTrace();
-			Log.i(TAG, "很遗憾，将歌词写入外存时发生了IO错误");
+			DeBug.d(TAG, "很遗憾，将歌词写入外存时发生了IO错误");
 		}
-		Log.i(TAG, "歌词保存成功");
+		DeBug.d(TAG, "歌词保存成功");
 	}
 }
