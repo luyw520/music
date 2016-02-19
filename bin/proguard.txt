@@ -1,0 +1,252 @@
+# view res/layout/navigator_main.xml #generated:147
+-keep class android.opengl.GLSurfaceView { <init>(...); }
+
+# view res/layout/activity_welcomecactivity.xml #generated:7
+# view res/layout/fragment_localmusic.xml #generated:140
+# view res/layout/frame_main.xml #generated:51
+# view res/layout/frame_main.xml #generated:58
+-keep class android.support.v4.view.ViewPager { <init>(...); }
+
+# view AndroidManifest.xml #generated:96
+-keep class com.baidu.voicerecognition.android.ui.BaiduASRDigitalDialog { <init>(...); }
+
+# view res/layout/activity_main_viewpager.xml #generated:13
+-keep class com.jfeinstein.jazzyviewpager.JazzyViewPager { <init>(...); }
+
+# view AndroidManifest.xml #generated:208
+-keep class com.music.broadcastreceiver.NotificationReceiver { <init>(...); }
+
+# view res/layout/activity_play_layout.xml #generated:98
+# view res/layout/activity_play_layout2.xml #generated:107
+-keep class com.music.lrc.LyricView { <init>(...); }
+
+# view AndroidManifest.xml #generated:56
+-keep class com.music.view.MusicApplication { <init>(...); }
+
+# view res/layout/base.xml #generated:1
+-keep class com.music.view.SwipeBackLayout { <init>(...); }
+
+# view AndroidManifest.xml #generated:149
+-keep class com.music.view.activity.ChangeBgActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:151
+-keep class com.music.view.activity.ImageFactoryActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:124
+-keep class com.music.view.activity.LocalMusicActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:160
+-keep class com.music.view.activity.LockScreenActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:147
+-keep class com.music.view.activity.LoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:165
+-keep class com.music.view.activity.MipcaCaptureActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:137
+-keep class com.music.view.activity.PlayerActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:164
+-keep class com.music.view.activity.ScanActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:141
+-keep class com.music.view.activity.SearchMusicActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:145
+-keep class com.music.view.activity.SettingActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:130
+-keep class com.music.view.activity.WelcomeActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:153
+-keep class com.music.view.gesturepressword.CreateGesturePasswordActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:159
+-keep class com.music.view.gesturepressword.GresturePasswordSetActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:155
+-keep class com.music.view.gesturepressword.GuideGesturePasswordActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:157
+-keep class com.music.view.gesturepressword.UnlockGesturePasswordActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:199
+-keep class com.music.view.service.LockScreenService { <init>(...); }
+
+# view AndroidManifest.xml #generated:201
+-keep class com.music.view.service.MyPlayerNewService { <init>(...); }
+
+# view res/layout/activity_main_pag2.xml #generated:12
+# view res/layout/layout_menu.xml #generated:18
+-keep class com.music.view.widget.CircularImage { <init>(...); }
+
+# view res/layout/activity_localmusic.xml #generated:42
+# view res/layout/activity_main.xml #generated:44
+# view res/layout/activity_maincontent.xml #generated:22
+# view res/layout/activity_play_layout.xml #generated:135
+# view res/layout/activity_play_layout2.xml #generated:144
+-keep class com.music.view.widget.RoundImageView { <init>(...); }
+
+# view res/layout/activity_lock_screen.xml #generated:8
+-keep class com.music.view.widget.SliderRelativeLayout { <init>(...); }
+
+# view res/layout/activity_localmusic.xml #generated:51
+# view res/layout/activity_localmusic.xml #generated:98
+# view res/layout/activity_main.xml #generated:52
+# view res/layout/activity_main.xml #generated:99
+# view res/layout/activity_maincontent.xml #generated:30
+# view res/layout/activity_maincontent.xml #generated:76
+# view res/layout/activity_play_layout.xml #generated:51
+# view res/layout/activity_play_layout.xml #generated:67
+# view res/layout/activity_play_layout2.xml #generated:55
+# view res/layout/activity_play_layout2.xml #generated:70
+# view res/layout/head.xml #generated:18
+# view res/layout/test.xml #generated:53
+# view res/layout/test.xml #generated:68
+-keep class com.music.widget.AlwaysMarqueeTextView { <init>(...); }
+
+# view res/layout/activity_setting.xml #generated:12
+-keep class com.music.widget.CustomScrollView { <init>(...); }
+
+# view res/layout/settingactivity_down.xml #generated:10
+# view res/layout/settingactivity_down.xml #generated:49
+# view res/layout/settingactivity_refresh.xml #generated:38
+# view res/layout/settingactivity_refresh.xml #generated:9
+# view res/layout/settingactivity_try_listener.xml #generated:45
+# view res/layout/settingactivity_try_listener.xml #generated:79
+# view res/layout/settingactivity_try_listener.xml #generated:9
+# view res/layout/settingactivity_yaoyiyao.xml #generated:104
+# view res/layout/settingactivity_yaoyiyao.xml #generated:142
+# view res/layout/settingactivity_yaoyiyao.xml #generated:49
+# view res/layout/settingactivity_yaoyiyao.xml #generated:82
+# view res/layout/settingactivity_yaoyiyao.xml #generated:9
+-keep class com.music.widget.RippleView { <init>(...); }
+
+# view res/layout/activity_searchmusic.xml #generated:57
+# view res/layout/dialog_custom_wait.xml #generated:12
+-keep class com.music.widget.dialog.LoadingView { <init>(...); }
+
+# view res/layout/load_view.xml #generated:27
+-keep class com.music.widget.dialog.ShapeLoadingView { <init>(...); }
+
+# view res/layout/activity_listmusicactivity.xml #generated:60
+# view res/layout/fragment.xml #generated:64
+-keep class com.music.widget.indexablelistview.IndexableListView { <init>(...); }
+
+# view res/layout/activity_gesturepassword_create.xml #generated:130
+# view res/layout/activity_gesturepassword_unlock.xml #generated:72
+-keep class com.music.widget.lockpatternview.LockPatternView { <init>(...); }
+
+# view res/layout/include_imagefactory_crop.xml #generated:7
+-keep class com.music.widget.photoview.CropImageView { <init>(...); }
+
+# view res/layout/include_imagefactory_fliter.xml #generated:7
+-keep class com.music.widget.photoview.RotateImageView { <init>(...); }
+
+# view res/layout/frame_main.xml #generated:37
+-keep class com.music.widget.slidingdrawer.MySlidingDrawer { <init>(...); }
+
+# view res/layout/activity_localmusic.xml #generated:2
+# view res/layout/activity_main.xml #generated:1
+-keep class com.music.widget.slidingmenu.SlidingMenu { <init>(...); }
+
+# view res/layout/activity_listmusicactivity.xml #generated:82
+# view res/layout/fragment.xml #generated:86
+-keep class com.music.widget.sortlistview.SideBar { <init>(...); }
+
+# view res/layout/activity_mipcacapture.xml #generated:16
+-keep class com.music.zxing.view.ViewfinderView { <init>(...); }
+
+# view AndroidManifest.xml #generated:184
+-keep class com.tencent.connect.common.AssistActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:168
+-keep class com.tencent.tauth.AuthActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:244
+-keep class com.umeng.message.ElectionReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:237
+-keep class com.umeng.message.MessageReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:217
+-keep class com.umeng.message.NotificationProxyBroadcastReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:253
+-keep class com.umeng.message.RegistrationReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:222
+-keep class com.umeng.message.SystemReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:298
+-keep class com.umeng.message.UmengDownloadResourceService { <init>(...); }
+
+# view AndroidManifest.xml #generated:283
+-keep class com.umeng.message.UmengIntentService { <init>(...); }
+
+# view AndroidManifest.xml #generated:260
+-keep class com.umeng.message.UmengMessageBootReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:286
+-keep class com.umeng.message.UmengMessageIntentReceiverService { <init>(...); }
+
+# view AndroidManifest.xml #generated:266
+-keep class com.umeng.message.UmengService { <init>(...); }
+
+# view AndroidManifest.xml #generated:189
+-keep class com.umeng.socialize.view.ShareActivity { <init>(...); }
+
+# view res/layout/umeng_socialize_post_share.xml #generated:2
+# view sw550dp-large-v13\res/layout-sw550dp-large-v13/umeng_socialize_post_share.xml #generated:2
+-keep class com.umeng.socialize.view.wigets.KeyboardListenRelativeLayout { <init>(...); }
+
+# view res/layout/umeng_socialize_at_view.xml #generated:21
+-keep class com.umeng.socialize.view.wigets.SearchBox { <init>(...); }
+
+# view res/layout/umeng_socialize_at_view.xml #generated:38
+-keep class com.umeng.socialize.view.wigets.SectionListView { <init>(...); }
+
+# view res/layout/umeng_socialize_at_view.xml #generated:47
+-keep class com.umeng.socialize.view.wigets.SlideBar { <init>(...); }
+
+# view AndroidManifest.xml #generated:111
+-keep class com.unuse.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:118
+-keep class com.unuse.MainContentActivity { <init>(...); }
+
+# view res/layout/navigator_main.xml #generated:179
+-keep class org.abrantix.rockon.rockonnggl.AlbumArtistSwitcherView { <init>(...); }
+
+# view res/layout/navigator_main.xml #generated:186
+-keep class org.abrantix.rockon.rockonnggl.NavScrollerView { <init>(...); }
+
+# view res/layout/song_label_and_progress.xml #generated:10
+-keep class org.abrantix.rockon.rockonnggl.ProgressBarView { <init>(...); }
+
+# view res/layout/circle_layout.xml #generated:24
+-keep class org.taptwo.android.widget.CircleFlowIndicator { <init>(...); }
+
+# view res/layout/circle_layout.xml #generated:9
+-keep class org.taptwo.android.widget.ViewFlow { <init>(...); }
+
+# onClick res/layout/activity_lock_screen.xml #generated:155
+-keepclassmembers class * { *** next(...); }
+
+# onClick res/layout/activity_main.xml #generated:123
+# onClick res/layout/activity_maincontent.xml #generated:100
+# onClick res/layout/main_buttom.xml #generated:81
+-keepclassmembers class * { *** nextMusic(...); }
+
+# onClick res/layout/popupwindow_qiege.xml #generated:134
+-keepclassmembers class * { *** onCancel(...); }
+
+# onClick res/layout/activity_main.xml #generated:141
+# onClick res/layout/activity_maincontent.xml #generated:118
+# onClick res/layout/main_buttom.xml #generated:98
+-keepclassmembers class * { *** playMusic(...); }
+
+# onClick res/layout/activity_lock_screen.xml #generated:147
+-keepclassmembers class * { *** player(...); }
+

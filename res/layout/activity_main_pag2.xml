@@ -159,7 +159,7 @@
             android:padding="10dp" >
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textView55"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -169,11 +169,11 @@
                 android:textSize="14sp" />
 
             <ImageView
-                android:id="@+id/img6"
+                android:id="@+id/img66"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/textView5"
+                android:layout_toLeftOf="@+id/textView55"
                 android:background="@drawable/ic_navigation_singer" />
         </RelativeLayout>
     </LinearLayout>
@@ -198,7 +198,7 @@
             android:padding="10dp" >
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textView555"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -208,11 +208,11 @@
                 android:textSize="14sp" />
 
             <ImageView
-                android:id="@+id/img6"
+                android:id="@+id/img666"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/textView5"
+                android:layout_toLeftOf="@+id/textView555"
                 android:background="@drawable/ic_navigation_mv" />
         </RelativeLayout>
 
@@ -232,15 +232,15 @@
             android:padding="10dp" >
 
             <ImageView
-                android:id="@+id/img6"
+                android:id="@+id/img66666"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/textView5"
+                android:layout_toLeftOf="@+id/textView55555"
                 android:background="@drawable/ic_navigation_nearby" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textView55555"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"

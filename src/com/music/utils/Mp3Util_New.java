@@ -44,7 +44,7 @@ public class Mp3Util_New {
 	/**
 	 * 当前播放列表
 	 */
-	private List<? extends MusicBaseInfo> musicBaseInfos=new ArrayList<MusicBaseInfo>();
+	private List<? extends MusicBaseInfo> musicBaseInfos = new ArrayList<MusicBaseInfo>();
 	private IMediaService mService;
 
 	private ServiceConnection conn;
@@ -86,6 +86,7 @@ public class Mp3Util_New {
 	 */
 	private boolean isShowLrc;
 
+	private boolean isBindService=false;
 	private Mp3Util_New(Context context) {
 		this.context = context;
 		init();
@@ -102,7 +103,9 @@ public class Mp3Util_New {
 	public final static int PLAY_BY_BLUM = 2;
 	public final static int PLAY_BY_FOLDER = 3;
 	private int mPlayListType;
+	@SuppressWarnings("unused")
 	private MusicUtils musicUtils;
+
 	@SuppressWarnings("unchecked")
 	public void addMp3(Mp3Info mp3Info) {
 
@@ -132,12 +135,13 @@ public class Mp3Util_New {
 			public void onServiceConnected(ComponentName name, IBinder service) {
 				// TODO Auto-generated method stub
 				mService = IMediaService.Stub.asInterface(service);
+				isBindService=true;
 				Log.d(TAG, "服务绑定成功....");
 			}
 
 			@Override
 			public void onServiceDisconnected(ComponentName name) {
-
+				isBindService=false;
 			}
 		};
 		context.bindService(service, conn, Context.BIND_AUTO_CREATE);
@@ -189,8 +193,8 @@ public class Mp3Util_New {
 
 	private void init() {
 		mediaUtil = new MediaUtil();
-		
-		musicUtils=MusicUtils.getDefault();
+
+		musicUtils = MusicUtils.getDefault();
 		initCurrentMusicInfo(context);
 		isPlaying = false;
 		isSortByTime = false;
@@ -205,10 +209,11 @@ public class Mp3Util_New {
 			@Override
 			public void run() {
 				mp3Infos = mediaUtil.sortMp3InfosByTitle(context);
-//				mp3Infos = musicUtils.getMusicInfos();
+				// mp3Infos = musicUtils.getMusicInfos();
 				musicBaseInfos = mp3Infos;
 				currentMp3Info = musicBaseInfos.get(listPosition);
-				DeBug.d(Mp3Util_New.this, "..........listPosition:"+listPosition);
+				DeBug.d(Mp3Util_New.this, "..........listPosition:"
+						+ listPosition);
 			}
 		}).start();
 	};
@@ -236,9 +241,11 @@ public class Mp3Util_New {
 	public boolean isSortByTime() {
 		return isSortByTime;
 	}
-	public void completeNextMusic(){
+
+	public void completeNextMusic() {
 		Log.i(TAG, "completeNextMusic()");
 	}
+
 	/**
 	 * 根据播放类型发送下一首歌曲播放服务
 	 */
@@ -249,7 +256,7 @@ public class Mp3Util_New {
 			listPosition = randomNum();
 			break;
 		case AppConstant.PlayerMsg.PLAYING_REPEAT:
-			if(isComplete){
+			if (isComplete) {
 				break;
 			}
 		case AppConstant.PlayerMsg.PLAYING_QUEUE:
@@ -258,8 +265,10 @@ public class Mp3Util_New {
 			break;
 
 		}
+		Log.d(TAG, "listpostion:" + listPosition);
 		playMusic(listPosition);
 	}
+
 	/**
 	 * 发送播放或暂停音乐服务 如是当前是播放状态,则暂停.反之亦然
 	 * 
@@ -298,6 +307,9 @@ public class Mp3Util_New {
 			this.isPlaying = true;
 			this.listPosition = listPosition;
 			this.currentMp3Info = musicBaseInfos.get(listPosition);
+			
+			Log.d(TAG, "listpostion:" + listPosition);
+			Log.d(TAG, "getTitle:" + currentMp3Info.getTitle());
 			sendService(AppConstant.PlayerMsg.PLAY_MSG, 0);
 		}
 	}
@@ -309,10 +321,10 @@ public class Mp3Util_New {
 	 */
 	public void playMusic(Mp3Info mp3Info) {
 		currentMp3Info = mp3Info;
-		if(!mp3Infos.contains(currentMp3Info)){
-//			musicBaseInfos.add(currentMp3Info);
+		if (!mp3Infos.contains(currentMp3Info)) {
+			// musicBaseInfos.add(currentMp3Info);
 			mp3Infos.add(mp3Info);
-			musicBaseInfos=mp3Infos;
+			musicBaseInfos = mp3Infos;
 		}
 		sendService(AppConstant.PlayerMsg.PLAY_MSG, 0);
 	}
@@ -380,7 +392,6 @@ public class Mp3Util_New {
 				break;
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -433,15 +444,18 @@ public class Mp3Util_New {
 	}
 
 	public void unBindService() {
-		// if(conn!=null){
-		// context.unbindService(conn);
-		// }
-		try {
-			mService.exit();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (conn != null&&isBindService) {
+			context.unbindService(conn);
+			isBindService=false;
 		}
+	
+//		try {
+//			mService.exit();
+//
+//		} catch (RemoteException e) {
+//			
+//			e.printStackTrace();
+//		}
 	}
 
 	public List<? extends MusicBaseInfo> getMusicBaseInfos() {

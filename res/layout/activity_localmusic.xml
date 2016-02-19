@@ -55,8 +55,8 @@
                     android:layout_alignTop="@id/iv_music_album"
                     android:layout_marginLeft="10.0dp"
                     android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@id/iv_music_album"
                     android:layout_toLeftOf="@+id/rl_btn_playing2"
+                    android:layout_toRightOf="@id/iv_music_album"
                     android:ellipsize="marquee"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
@@ -125,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:background="@drawable/selector_music_btn"
-                        android:onClick="nextMusic"
+                       
                         android:src="@drawable/img_button_notification_play_next" />
                 </RelativeLayout>
 
@@ -142,8 +142,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:background="@drawable/img_button_notification_play_play"
-                        android:onClick="playMusic" />
+                        android:background="@drawable/selector_music_btn"
+                        
+                        android:src="@drawable/img_button_notification_play_play" />
                 </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>
