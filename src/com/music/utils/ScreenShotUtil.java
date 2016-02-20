@@ -23,7 +23,7 @@ public class ScreenShotUtil {
 	/**
 	 * 摇一摇控制器
 	 */
-	private static Activity mActivity;
+	private  Activity mActivity;
 	
 	
 	private static ScreenShotUtil screenShotUtil=null;
@@ -31,32 +31,42 @@ public class ScreenShotUtil {
 	
 	
 	
-	private ScreenShotUtil(Activity activity){
+	private ScreenShotUtil(){
+		
+	}
+	public void setShakeActivity(Activity activity){
 		mActivity=activity;
 	}
-	public static ScreenShotUtil getInstance(Activity activity){
-		
+	public static ScreenShotUtil getInstance(){
 		if(screenShotUtil==null){
-			screenShotUtil=new ScreenShotUtil(activity);
-		}
-		if(mActivity.getClass()!=activity.getClass()){
-			Log.i(TAG, "类型不相等");
-			mActivity=activity;
+			screenShotUtil=new ScreenShotUtil();
 		}
 		
 		return screenShotUtil;
 	}
-	private UMShakeService mShakeController = UMShakeServiceFactory
-			.getShakeService(Constants.DESCRIPTOR);
+	
+//	private UMShakeService mShakeController = UMShakeServiceFactory
+//			.getShakeService(Constants.DESCRIPTOR);
 
 	public void registerShakeToScrShot() {
-		
-		mShakeController.registerShakeToScrShot(mActivity, new UMAppAdapter(
+		UMShakeServiceFactory
+		.getShakeService(Constants.DESCRIPTOR).registerShakeToScrShot(mActivity, new UMAppAdapter(
 				mActivity), mScreenshotListener);
 	}
-
+	public void registerShakeToScrShot(Activity activity) {
+		
+		if(mActivity!=activity){
+			mActivity=activity;
+			DeBug.d(this, "mActivity:"+mActivity);
+			UMShakeServiceFactory
+			.getShakeService(Constants.DESCRIPTOR).registerShakeToScrShot(mActivity, new UMAppAdapter(
+					mActivity), mScreenshotListener);
+		}
+		
+	}
 	public void unregisterShakeListener() {
-		mShakeController.unregisterShakeListener(mActivity);
+		UMShakeServiceFactory
+		.getShakeService(Constants.DESCRIPTOR).unregisterShakeListener(mActivity);
 	};
 
 	private OnScreenshotListener mScreenshotListener = new OnScreenshotListener() {

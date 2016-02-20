@@ -1337,11 +1337,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int cancelBtn=0x7f080164;
         public static final int cancel_btn=0x7f0800cf;
         public static final int catalog=0x7f0800ff;
+        public static final int cbScreenShot=0x7f080156;
         public static final int cb_automatic_down_lrc=0x7f08014e;
         public static final int cb_dlna=0x7f08015d;
         public static final int cb_listener_down=0x7f080151;
         public static final int cb_lock=0x7f08003e;
-        public static final int cb_qiege=0x7f080156;
         public static final int checkedImageView=0x7f080180;
         public static final int closeImageView=0x7f080170;
         public static final int confirm_btn=0x7f0800d0;
@@ -1569,6 +1569,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int right=0x7f08001e;
         public static final int rightRing=0x7f080065;
         public static final int right_btn=0x7f080039;
+        public static final int rlScreenShot=0x7f080155;
         public static final int rl_about_software=0x7f08014a;
         public static final int rl_album=0x7f0800d5;
         public static final int rl_artist=0x7f0800d4;
@@ -1592,7 +1593,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int rl_more=0x7f080093;
         public static final int rl_nouse=0x7f080137;
         public static final int rl_putong=0x7f08013d;
-        public static final int rl_qiege=0x7f080155;
         public static final int rl_refresh=0x7f080149;
         public static final int rl_scan=0x7f080157;
         public static final int rl_setting=0x7f080110;

@@ -115,9 +115,13 @@
 
 -keep public interface com.facebook.**
 -keep public interface com.tencent.**
--keep public interface com.umeng.socialize.**
+
+#”—√À
+-keep class com.umeng.socialize.sensor.**
+-keep class com.umeng.scrshot.**
 -keep public interface com.umeng.socialize.sensor.**
--keep public interface com.umeng.scrshot.**
+-keep public interface com.umeng.scrshot.**  
+
 
 -keep public class com.umeng.socialize.* {*;}
 -keep public class javax.**

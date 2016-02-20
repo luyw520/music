@@ -12,8 +12,10 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
+import com.music.utils.ApplicationUtil;
 import com.music.utils.ConstantUtil;
 import com.music.utils.DeBug;
+import com.music.utils.ScreenShotUtil;
 import com.umeng.analytics.MobclickAgent;
 
 public class BaseActivity extends Activity implements ConstantUtil{
@@ -58,6 +60,9 @@ public class BaseActivity extends Activity implements ConstantUtil{
 //		long start=System.currentTimeMillis();
 //		changeFont(root);
 //		DeBug.d(this, "changeFont spend time :"+(System.currentTimeMillis()-start)/1000.0+" s");
+		if(ApplicationUtil.getYaoYiYao(this)){
+			ScreenShotUtil.getInstance().registerShakeToScrShot(this);
+		}
 	}
 	@Override
 	protected void onPause() {

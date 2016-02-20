@@ -47,7 +47,7 @@
         android:background="#e0e0e0" />
 
     <com.music.widget.RippleView
-        android:id="@+id/rl_qiege"
+        android:id="@+id/rlScreenShot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/menu_setting_selector"
@@ -62,7 +62,7 @@
             android:text="摇一摇截屏" />
 
         <CheckBox
-            android:id="@+id/cb_qiege"
+            android:id="@+id/cbScreenShot"
             android:layout_width="50dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"

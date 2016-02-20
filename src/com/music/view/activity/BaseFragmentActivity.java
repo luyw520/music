@@ -1,7 +1,9 @@
 package com.music.view.activity;
 
 import com.lidroid.xutils.ViewUtils;
+import com.music.utils.ApplicationUtil;
 import com.music.utils.DeBug;
+import com.music.utils.ScreenShotUtil;
 import com.umeng.analytics.MobclickAgent;
 
 import android.annotation.TargetApi;
@@ -56,6 +58,9 @@ public class BaseFragmentActivity extends FragmentActivity {
 		MobclickAgent.onResume(this);
 //		ViewGroup root = (ViewGroup) this.getWindow().getDecorView();
 //		changeFont(root);
+		if(ApplicationUtil.getYaoYiYao(this)){
+			ScreenShotUtil.getInstance().registerShakeToScrShot(this);
+		}
 	}
 
 	@Override

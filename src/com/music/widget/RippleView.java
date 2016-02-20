@@ -78,7 +78,7 @@ public class RippleView extends RelativeLayout {
     private int rippleColor;
     private int ripplePadding;
     @SuppressWarnings("unused")
-	private GestureDetector gestureDetector;
+//	private GestureDetector gestureDetector;
     private MotionEvent upEvent;
     private boolean isUp=false;
     private boolean isAnimationEnd=false;
@@ -128,27 +128,27 @@ public class RippleView extends RelativeLayout {
         paint.setAlpha(PAINT_ALPHA);
         this.setWillNotDraw(false);
 
-        gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public void onLongPress(MotionEvent event) {
-                super.onLongPress(event);
-                animateRipple(event);
-                sendClickEvent(true);
-            }
-
-            @Override
-            public boolean onSingleTapConfirmed(MotionEvent e) {
-                return true;
-            }
-
-            @Override
-            public boolean onSingleTapUp(MotionEvent e) {
-                return true;
-            }
-        });
+//        gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+//            @Override
+//            public void onLongPress(MotionEvent event) {
+//                super.onLongPress(event);
+//                animateRipple(event);
+//                sendClickEvent(true);
+//            }
+//
+//            @Override
+//            public boolean onSingleTapConfirmed(MotionEvent e) {
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onSingleTapUp(MotionEvent e) {
+//                return true;
+//            }
+//        });
 
         this.setDrawingCacheEnabled(true);
-        this.setClickable(true);
+//        this.setClickable(true);
     }
 
 
@@ -253,23 +253,23 @@ public class RippleView extends RelativeLayout {
 
     @SuppressLint("ClickableViewAccessibility")
 	public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			animateRipple(event);
-			isUp=false;
-			isAnimationEnd=false;
-			break;
-		case MotionEvent.ACTION_UP:
-			isUp=true;
-			//手指释放时候动画已经结束了
-			if(isAnimationEnd){
-//				return performClick();
-				return super.onTouchEvent(event);
-			}else{
-				upEvent=event;
-				return true;
-			}
-		}
+//        switch (event.getAction()) {
+//		case MotionEvent.ACTION_DOWN:
+//			animateRipple(event);
+//			isUp=false;
+//			isAnimationEnd=false;
+//			break;
+//		case MotionEvent.ACTION_UP:
+//			isUp=true;
+//			//手指释放时候动画已经结束了
+//			if(isAnimationEnd){
+////				return performClick();
+//				return super.onTouchEvent(event);
+//			}else{
+//				upEvent=event;
+//				return true;
+//			}
+//		}
         
         return super.onTouchEvent(event);
     }

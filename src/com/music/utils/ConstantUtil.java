@@ -60,7 +60,7 @@ public interface  ConstantUtil {
 	 */
 	public static final String AUTOMATIC_DOWN_LRC="AUTOMATIC_DOWN_LRC";
 	public static final String LISTENER_DOWN="LISTENER_DOWN";
-	public static final String QIEGE="QIEGE";
+	public static final String SCREEN_SHOT="SCREEN_SHOT";
 //	/**
 //	 * 获取屏幕大小
 //	 * @param context

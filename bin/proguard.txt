@@ -109,7 +109,7 @@
 # view res/layout/test.xml #generated:68
 -keep class com.music.widget.AlwaysMarqueeTextView { <init>(...); }
 
-# view res/layout/activity_setting.xml #generated:12
+# view res/layout/activity_setting.xml #generated:13
 -keep class com.music.widget.CustomScrollView { <init>(...); }
 
 # view res/layout/settingactivity_down.xml #generated:10

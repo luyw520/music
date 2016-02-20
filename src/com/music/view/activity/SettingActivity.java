@@ -29,6 +29,9 @@ public class SettingActivity extends BaseActivity {
 
 	protected static final String TAG = "SettingActivity";
 	@ViewInject(value = R.id.iv_search)
+	
+	
+	
 	private ImageView iv_search;
 	@ViewInject(value = R.id.iv_more)
 	private ImageView iv_more;
@@ -52,8 +55,9 @@ public class SettingActivity extends BaseActivity {
 	private CheckBox cb_automatic_down_lrc;
 	@ViewInject(value = R.id.cb_dlna)
 	private CheckBox cb_dlna;
-	@ViewInject(value = R.id.cb_qiege)
-	private CheckBox cb_qiege;
+	
+	@ViewInject(value = R.id.cbScreenShot)
+	private CheckBox cbScreenShot;
 	@ViewInject(value = R.id.cb_listener_down)
 	private CheckBox cb_listener_down;
 
@@ -81,16 +85,16 @@ public class SettingActivity extends BaseActivity {
 		
 		tv_cache.setText(BitmapCacheUtil.getDefalut().formatFileSize());
 		
-		cb_qiege.setChecked(ApplicationUtil.getYaoYiYao(this));
+		cbScreenShot.setChecked(ApplicationUtil.getYaoYiYao(this));
 		
 		if(ApplicationUtil.getYaoYiYao(this)){
-			ScreenShotUtil.getInstance(this).registerShakeToScrShot();
+			ScreenShotUtil.getInstance().registerShakeToScrShot(this);
 		}
 		
 		
 		cb_automatic_down_lrc.setChecked(SharedPreHelper.getBooleanValue(this, AUTOMATIC_DOWN_LRC, false));
 		cb_listener_down.setChecked(SharedPreHelper.getBooleanValue(this, LISTENER_DOWN, false));
-		cb_qiege.setChecked(SharedPreHelper.getBooleanValue(this, QIEGE, false));
+		cbScreenShot.setChecked(SharedPreHelper.getBooleanValue(this, SCREEN_SHOT, false));
 	}
 	public void onCancel(View view){
 		popupWindowQieGe.dismiss();
@@ -151,7 +155,7 @@ public class SettingActivity extends BaseActivity {
 	@OnClick({ R.id.iv_back, R.id.rl_down, R.id.rl_clear_memory,
 			R.id.rl_refresh, R.id.rl_about_software, R.id.rl_trylistener,
 			R.id.rl_automatic_down_lrc, R.id.rl_listener_down,
-			R.id.rl_yaoyiyao, R.id.rl_qiege, R.id.rl_lockpasswordstate,
+			R.id.rl_yaoyiyao, R.id.rlScreenShot, R.id.rl_lockpasswordstate,
 			R.id.rl_dlna,R.id.rl_scan })
 	public void onClick(View view) {
 
@@ -160,13 +164,10 @@ public class SettingActivity extends BaseActivity {
 			finish();
 			break;
 		case R.id.rl_down:
-			
-			
 			break;
 		case R.id.rl_clear_memory:
 			DialogUtil.showWaitDialog(this,"缓存清理","清理缓存中...");
 			handle.postDelayed(new Runnable() {
-				
 				@Override
 				public void run() {
 					DialogUtil.closeAlertDialog();
@@ -183,7 +184,6 @@ public class SettingActivity extends BaseActivity {
 		case R.id.rl_automatic_down_lrc:
 			cb_automatic_down_lrc
 					.setChecked(!cb_automatic_down_lrc.isChecked());
-			
 			SharedPreHelper.setBooleanValue(this, AUTOMATIC_DOWN_LRC, cb_automatic_down_lrc.isChecked());
 			DialogUtil.showToast(this, "设置成功");
 			break;
@@ -196,8 +196,8 @@ public class SettingActivity extends BaseActivity {
 		case R.id.rl_yaoyiyao:
 			popupWindowQieGe.showWindow(ll_parent);
 			break;
-		case R.id.rl_qiege:
-			qiege();
+		case R.id.rlScreenShot:
+			setScreenShot();
 			break;
 		case R.id.rl_lockpasswordstate:
 			setLock();
@@ -223,15 +223,15 @@ public class SettingActivity extends BaseActivity {
 		}
 	}
 
-	private void qiege() {
-		cb_qiege.setChecked(!cb_qiege.isChecked());
-		SharedPreHelper.setBooleanValue(this, QIEGE, cb_qiege.isChecked());
+	private void setScreenShot() {
+		cbScreenShot.setChecked(!cbScreenShot.isChecked());
+		SharedPreHelper.setBooleanValue(this, SCREEN_SHOT, cbScreenShot.isChecked());
 		DialogUtil.showToast(this, "设置成功");
-		if(cb_qiege.isChecked()){
-			ScreenShotUtil.getInstance(this).registerShakeToScrShot();
+		if(cbScreenShot.isChecked()){
+			ScreenShotUtil.getInstance().registerShakeToScrShot(this);
 			ApplicationUtil.setYaoYiYao(this, true);
 		}else{
-			ScreenShotUtil.getInstance(this).unregisterShakeListener();
+			ScreenShotUtil.getInstance().unregisterShakeListener();
 			ApplicationUtil.setYaoYiYao(this, false);
 		}
 	}
