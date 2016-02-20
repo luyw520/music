@@ -1,33 +1,8 @@
 package com.unuse;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.simple.eventbus.EventBus;
-import org.simple.eventbus.Subscriber;
-
 import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.v4.app.Fragment;
 
-import com.music.db.MusicInfoDao;
-import com.music.lu.R;
-import com.music.service.IConstants;
-import com.music.utils.AsyncTaskUtil;
-import com.music.utils.DialogUtil;
-import com.music.utils.MusicUtils;
-import com.music.view.SplashScreen;
 import com.music.view.activity.BaseFragmentActivity;
-import com.music.view.fragment.ClickEvent;
-import com.music.view.fragment.LocalMusicFragment;
-import com.music.view.fragment.MainFragment;
-import com.music.view.fragment.MainFragment.GridViewItemClick;
-import com.music.widget.slidingmenu.SlidingMenu;
 
 /**
  * 主类，首次进入应用会到这里
