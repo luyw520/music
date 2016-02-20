@@ -6,20 +6,42 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.content.Context;
+
 import com.music.bean.LyricSentence;
+import com.music.lrc.LyricDownloadManager;
+import com.music.lrc.LyricLoadHelper;
+import com.music.lrc.LyricLoadHelper.LyricListener;
 import com.music.utils.DeBug;
 import com.music.utils.FileUtils;
 
 public class LyricModel {
 	private Map<String, List<LyricSentence>> lycsList=new HashMap<String,List<LyricSentence>>();
-//	private LyricModel(){
-//	}
-//	public static LyricModel getInstance(){
-//		return LyricModelInClass.lyricModel;
-//	}
-//	static class LyricModelInClass{
-//		static LyricModel lyricModel=new LyricModel();
-//	}
+	
+	private LyricDownloadManager manager;
+	private LyricLoadHelper loadHelper;
+	
+	public LyricModel(Context context){
+		
+		manager = new LyricDownloadManager(context);
+		loadHelper = new LyricLoadHelper();
+		
+	}
+	public void setLyricListener(LyricListener l){
+		loadHelper.setLyricListener(l);
+	}
+	/**
+	 * search lrc from web 
+	 * @param songName
+	 * @param songer
+	 * @return
+	 */
+	public String searchLyricFromWeb(String songName, String songer){
+		return manager.searchLyricFromWeb(songName, songer);
+	}
+	public void loadLyric(String lrcPath){
+		loadHelper.loadLyric(lrcPath);
+	}
 	public boolean isCache(String title){
 		return lycsList.containsKey(title);
 	}

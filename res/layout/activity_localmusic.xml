@@ -75,7 +75,6 @@
                     android:layout_marginLeft="10.0dp"
                     android:layout_marginTop="5dp"
                     android:layout_toRightOf="@+id/iv_music_album"
-                    android:text="00:00"
                     android:textColor="#505050" />
 
                 <ImageView
@@ -92,8 +91,13 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/tv_music_time"
                     android:layout_toRightOf="@+id/img_state"
-                    android:text="vivo"
-                    android:textSize="12sp" />
+                    />
+
+                <com.music.view.widget.MusicTimeProgressView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/musicTimeProgressView" 
+                    android:layout_below="@+id/tv_mobile"/>
 
                 <com.music.widget.AlwaysMarqueeTextView
                     android:id="@+id/tv_music_Artist"
@@ -125,7 +129,6 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:background="@drawable/selector_music_btn"
-                       
                         android:src="@drawable/img_button_notification_play_next" />
                 </RelativeLayout>
 
@@ -143,7 +146,6 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:background="@drawable/selector_music_btn"
-                        
                         android:src="@drawable/img_button_notification_play_play" />
                 </RelativeLayout>
             </RelativeLayout>

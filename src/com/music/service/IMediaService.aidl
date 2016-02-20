@@ -7,8 +7,8 @@ interface IMediaService {
 	void cotinuePlay();
 	int duration();
     int position();
-    void seekTo(int progress);
-    int getPlayState();
+    void seekTo(int progress,String playPath);
+    boolean getPlayState();
     int getPlayMode();
     void setPlayMode(int mode);
     void sendPlayStateBrocast();

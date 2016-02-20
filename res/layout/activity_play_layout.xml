@@ -20,8 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/selector_press" 
-            android:src="@drawable/ic_common_title_bar_back"/>
+            android:background="@drawable/selector_press"
+            android:src="@drawable/ic_common_title_bar_back" />
 
         <ImageButton
             android:id="@+id/ib_changebg"
@@ -213,7 +213,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="30dp"
                 android:layout_toRightOf="@+id/play_music"
-                android:background="@drawable/btn_next" />
+                android:background="@drawable/selector_press"
+                android:src="@drawable/btn_next" />
 
             <ImageButton
                 android:id="@+id/repeat_music"
@@ -238,7 +239,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="30dp"
                 android:layout_toLeftOf="@+id/play_music"
-                android:background="@drawable/btn_prew" />
+                android:background="@drawable/selector_press"
+                android:src="@drawable/btn_prew" />
 
             <ImageButton
                 android:id="@+id/play_music"

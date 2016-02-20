@@ -20,7 +20,6 @@ import android.widget.RelativeLayout;
 import com.music.lu.R;
 import com.music.service.IConstants;
 import com.music.utils.DeBug;
-import com.music.view.activity.LocalMusicActivity;
 import com.music.view.adapter.ViewPagerAdapter;
 
 /**

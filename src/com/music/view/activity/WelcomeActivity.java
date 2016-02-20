@@ -19,7 +19,6 @@ import android.widget.RadioGroup;
 import com.music.lu.R;
 import com.music.utils.ApplicationUtil;
 import com.music.view.animator.ActivityAnimator;
-import com.music.view.gesturepressword.UnlockGesturePasswordActivity;
 
 public class WelcomeActivity extends Activity{
 	

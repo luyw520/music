@@ -52,6 +52,7 @@ public class RoundImageView extends ImageView {
 		mBorderThickness = a.getDimensionPixelSize(R.styleable.roundedimageview_border_thickness, 0);
 		mBorderOutsideColor = a.getColor(R.styleable.roundedimageview_border_outside_color, defaultColor);
 		mBorderInsideColor = a.getColor(R.styleable.roundedimageview_border_inside_color, defaultColor);
+		a.recycle();
 	}
 
 	@Override
@@ -107,13 +108,12 @@ public class RoundImageView extends ImageView {
 		int squareWidth = 0, squareHeight = 0;
 		int x = 0, y = 0;
 		Bitmap squareBitmap;
-		if (bmpHeight > bmpWidth) {// 高大于宽
+		if (bmpHeight > bmpWidth) {
 			squareWidth = squareHeight = bmpWidth;
 			x = 0;
 			y = (bmpHeight - bmpWidth) / 2;
-			// 截取正方形图�?
 			squareBitmap = Bitmap.createBitmap(bmp, x, y, squareWidth, squareHeight);
-		} else if (bmpHeight < bmpWidth) {// 宽大于高
+		} else if (bmpHeight < bmpWidth) {
 			squareWidth = squareHeight = bmpHeight;
 			x = (bmpWidth - bmpHeight) / 2;
 			y = 0;
@@ -121,10 +121,8 @@ public class RoundImageView extends ImageView {
 		} else {
 			squareBitmap = bmp;
 		}
-
 		if (squareBitmap.getWidth() != diameter || squareBitmap.getHeight() != diameter) {
 			scaledSrcBmp = Bitmap.createScaledBitmap(squareBitmap, diameter, diameter, true);
-
 		} else {
 			scaledSrcBmp = squareBitmap;
 		}
@@ -141,29 +139,19 @@ public class RoundImageView extends ImageView {
 		canvas.drawCircle(scaledSrcBmp.getWidth() / 2, scaledSrcBmp.getHeight() / 2, scaledSrcBmp.getWidth() / 2, paint);
 		paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
 		canvas.drawBitmap(scaledSrcBmp, rect, rect, paint);
-		// bitmap回收(recycle导致在布�?文件XML看不到效�?)
-		// bmp.recycle();
-		// squareBitmap.recycle();
-		// scaledSrcBmp.recycle();
 		bmp = null;
 		squareBitmap = null;
 		scaledSrcBmp = null;
 		return output;
 	}
 
-	/**
-	 * 边缘画圆
-	 */
 	private void drawCircleBorder(Canvas canvas, int radius, int color) {
 		Paint paint = new Paint();
-		/* 去锯�? */
 		paint.setAntiAlias(true);
 		paint.setFilterBitmap(true);
 		paint.setDither(true);
 		paint.setColor(color);
-		/* 设置paint的�??style�?为STROKE：空�? */
 		paint.setStyle(Paint.Style.STROKE);
-		/* 设置paint的外框宽�? */
 		paint.setStrokeWidth(mBorderThickness);
 		canvas.drawCircle(defaultWidth / 2, defaultHeight / 2, radius, paint);
 	}

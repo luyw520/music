@@ -42,7 +42,7 @@ public class ScreenManager {
 	}
 
 	// 退出栈中所有Activity
-	public void popAllActivityExceptOne(Class cls) {
+	public void popAllActivityExceptOne(Class<?> cls) {
 		while (true) {
 			Activity activity = currentActivity();
 			if (activity == null) {

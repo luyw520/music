@@ -11,11 +11,9 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.music.bean.LyricSentence;
-import com.music.utils.DeBug;
 
 public class LyricView extends View {
 	private static final String TAG = "LyricView";
@@ -44,31 +42,31 @@ public class LyricView extends View {
 	private final int DY = 80;// 每一行的间隔
 
 	/** x偏移量 */
-	public float driftx;// x偏移量
+//	private float driftx;// x偏移量
 	/** y偏移量 */
-	public float drifty;//
-	public int index = 0;
-	public float mTouchHistoryY;
+	private float drifty;//
+	private int index = 0;
+//	private float mTouchHistoryY;
 	private int loadLrc = 0;
-	private LyricViewClickListener lyricViewClickListener;
+//	private LyricViewClickListener lyricViewClickListener;
 
-	public void setLyricViewClickListener(LyricViewClickListener l) {
-		this.lyricViewClickListener = l;
-	}
+//	public void setLyricViewClickListener(LyricViewClickListener l) {
+//		this.lyricViewClickListener = l;
+//	}
 
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-
-		if (isClick) {
-			lyricViewClickListener.lyricViewClick();
-		}
-		return super.onTouchEvent(event);
-	}
+//	@Override
+//	public boolean onTouchEvent(MotionEvent event) {
+//
+//		if (isClick) {
+//			lyricViewClickListener.lyricViewClick();
+//		}
+//		return super.onTouchEvent(event);
+//	}
 
 	private float drift_r = 0;
 	/** 滑动时显示进度 */
-	public boolean showprogress;//
-	public int temp = 0;
+//	private boolean showprogress;//
+//	public int temp = 0;
 	@SuppressWarnings("unused")
 	private Context mContext;
 
@@ -95,13 +93,14 @@ public class LyricView extends View {
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mPaint.setTextSize(25);
-		mPaint.setColor(Color.WHITE);
+		mPaint.setColor(Color.GRAY);
 		mPaint.setTypeface(Typeface.SERIF);
+		
 		// 高亮部分 当前歌词
 		mPathPaint = new Paint();
 		mPathPaint.setAntiAlias(true);
 		mPathPaint.setTextSize(40);
-		mPathPaint.setColor(Color.RED);
+		mPathPaint.setColor(Color.WHITE);
 		mPathPaint.setTypeface(Typeface.SANS_SERIF);
 
 	}
@@ -120,11 +119,12 @@ public class LyricView extends View {
 	public void setLyricSentences(List<LyricSentence> l,boolean isInit) {
 //		DeBug.d(this,"List<LyricSentence>:"+l.toString());
 		
-		if (l != null && isInit) {
-			for(LyricSentence lSentence:l){
-				DeBug.d(this, "StartTime:"+lSentence.getStartTime()+",DuringTime:"+lSentence.getDuringTime()+",ContentText:"+lSentence.getContentText());
-			}
-			lyricSentences.clear();
+		if (l != null && lyricSentences.isEmpty()) {
+//			for(LyricSentence lSentence:l){
+//				DeBug.d(this, "StartTime:"+lSentence.getStartTime()+",DuringTime:"+lSentence.getDuringTime()+",ContentText:"+lSentence.getContentText());
+//			}
+//			if(lyricSentences.size()==0)
+//			lyricSentences.clear();
 			lyricSentences.addAll(l);
 			index = 0;
 		}
@@ -145,16 +145,8 @@ public class LyricView extends View {
 		lyricSentences.clear();
 	}
 
-	private boolean isClick = false;
 
 	protected void onDraw(Canvas canvas) {
-		// DeBug.d(this, "onDraw,,,,,,,,,,,,,,,,,,,,,,,,,,index:"+index);
-		int j = (int) (-drifty / 40);
-		if (temp < j) {
-			temp++;
-		} else if (temp > j) {
-			temp--;
-		}
 
 		drift_r = drifty;
 
@@ -167,15 +159,13 @@ public class LyricView extends View {
 			return;
 		p2.setTextAlign(Paint.Align.CENTER);
 
-		isClick = false;
+//		isClick = false;
 		if (lyricSentences == null || lyricSentences.size() == 0 || loadLrc == 0) {
-			isClick = true;
-
+//			isClick = true;
 			canvas.drawText("暂无歌词", mX, middleY, p2);
 			return;
 		}
 		if (loadLrc == 1) {
-
 			canvas.drawText("歌词正在加载中...", mX, middleY, p2);
 			return;
 		}
@@ -226,7 +216,6 @@ public class LyricView extends View {
 		mX = w * 0.5f;// 屏幕中心坐标(转换为float?)
 		mY = h;
 		middleY = h * 0.5f;
-		// Log.i("LyricView", "onSizeChanged方法调用");
 	}
 
 	/**
@@ -235,7 +224,7 @@ public class LyricView extends View {
 	 */
 	public void updateindex(int CurrentPosition) {
 
-		Log.i(TAG, "start................index=" + index);
+//		Log.i(TAG, "start................index=" + index);
 		if (lyricSentences == null) {
 			return;
 		}
@@ -247,18 +236,13 @@ public class LyricView extends View {
 				currentDuringtime2 = (lyricSentences.get(index + 1).getStartTime()) - (lyricSentences.get(index).getStartTime());
 				index++;
 				drifty = 0;
-				driftx = 0;
-
-				Log.i(TAG, "start................CurrentPosition is in index+1 ");
 			} else if (index == 0) {
 				currentDuringtime2 = (lyricSentences.get(index).getStartTime());
 			} else if (CurrentPosition < (lyricSentences.get(index - 1).getStartTime())) {
-				Log.i(TAG, "start................find index ");
 				for (int i = 0, size = lyricSentences.size() - 1; i < size; i++) {
 					if (CurrentPosition >= (lyricSentences.get(i).getStartTime()) && CurrentPosition < (lyricSentences.get(i + 1).getStartTime())) {
 						currentDuringtime2 = (lyricSentences.get(i + 1).getStartTime()) - (lyricSentences.get(i).getStartTime());
 						index = i;
-
 						break;
 					}
 
@@ -266,14 +250,17 @@ public class LyricView extends View {
 			}
 
 		}
-		Log.i(TAG, "CurrentPosition:" + CurrentPosition + ",index=" + index);
-		if (drifty > -40.0)
+		
+		if (drifty > -40.0){
 			if (currentDuringtime2 > 100) {
 				drifty = (float) (drifty - 40.0 / (currentDuringtime2 / 100));
 			} else {
 				drifty = 0;
 			}
-		invalidate();
+		}
+			
+//		Log.i(TAG, "CurrentPosition:" + CurrentPosition + ",index:" + index+",drifty:"+drifty);
+//		invalidate();
 	}
 
 	public boolean repair() {

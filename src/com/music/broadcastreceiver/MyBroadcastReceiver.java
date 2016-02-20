@@ -41,7 +41,6 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		
 		String action = intent.getAction();
-//		Log.i(TAG, "action="+action);
 		if (action.equals(ConstantUtil.MUSIC_CURRENT)) {
 			state.currentState(intent);
 		} else if (action.equals(ConstantUtil.MUSIC_DURATION)) {

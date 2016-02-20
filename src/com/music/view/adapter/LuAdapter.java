@@ -25,7 +25,6 @@ public abstract class LuAdapter<T> extends BaseAdapter{
 
 	@Override
 	public T getItem(int position) {
-		// TODO Auto-generated method stub
 		return datas.get(position);
 	}
 

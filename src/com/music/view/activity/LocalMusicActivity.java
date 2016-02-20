@@ -47,6 +47,7 @@ import com.music.view.fragment.LocalMusicFragment;
 import com.music.view.fragment.MusicListFragment;
 import com.music.view.gesturepressword.UnlockGesturePasswordActivity;
 import com.music.view.widget.CircularImage;
+import com.music.view.widget.MusicTimeProgressView;
 import com.music.view.widget.RoundImageView;
 import com.music.widget.slidingmenu2.SlidingMenu;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -104,6 +105,12 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	private ImageView iv_back;
 	@ViewInject(value = R.id.iv_search)
 	private ImageView iv_search;
+	
+	
+	@ViewInject(value = R.id.musicTimeProgressView)
+	private MusicTimeProgressView musicTimeProgressView;
+
+	
 
 	/** ‘≤–ŒÕ∑œÒ¿‡ */
 	@ViewInject(value = R.id.iv_header)
@@ -260,13 +267,10 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 					MusicUtils.getDefault().queryFolder(getApplication());
 					return null;
 				}
-
 				@Override
 				public void onPostExecute(Object result) {
-
 					long end = System.currentTimeMillis();
 					int speedTime = (int) ((end - start));
-
 					DeBug.d(LocalMusicActivity.this,
 							"..........onPostExecute, speedTime:" + speedTime);
 					if (speedTime < 3000) {
@@ -298,19 +302,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			LogUtil.i(getClass(), "..............unLockSuccess="
 					+ unLockSuccess);
 			if (!unLockSuccess) {
-				// finish();
 				exit();
-				// unregisterReceiver();
-				// LogUtil.i(getClass(), "..............unregisterReceiver");
-				// ApplicationUtil.setAppToBack(this, 1);
-				// mp3Util.saveCurrentMusicInfo(this);
-				// myNotification.cancel();
-				// LogUtil.i(getClass(),
-				// "..............myNotification.cancel()");
-				// // mp3Util.unBindService();
-				// LogUtil.i(getClass(),
-				// "..............mp3Util.unBindService()");
-				// finish();
 			}
 			break;
 		default:
@@ -345,6 +337,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), true,
 				true);
 		iv_music_album.setImageBitmap(bmp);
+		
+		DeBug.d(this, "currentMp3Info.getDuration():"+currentMp3Info.getDuration());
+		musicTimeProgressView.setMaxProgress(currentMp3Info.getDuration());
 	}
 
 	private void initWidgetData() {
@@ -356,7 +351,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 				.commitAllowingStateLoss();
 		tv_mobile.setText(android.os.Build.MODEL);
 		myNotification = new MyNotification(this);
-		// playPauseDrawable.animatePause();
 	}
 
 	@OnClick({ R.id.iv_back, R.id.btn_next2, R.id.btn_playing2,
@@ -564,6 +558,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			int currentTime = intent.getIntExtra("currentTime", -1);
 			mp3Util.setCurrentTime(currentTime);
 			tv_music_CurrentTime.setText(MediaUtil.formatTime(currentTime));
+			musicTimeProgressView.setCurrentProgress(currentTime);
 		}
 
 		@Override

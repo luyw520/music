@@ -5,8 +5,6 @@ import java.util.List;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
@@ -30,8 +28,6 @@ import com.music.bean.LyricSentence;
 import com.music.bean.MusicBaseInfo;
 import com.music.broadcastreceiver.MyBroadcastReceiver;
 import com.music.broadcastreceiver.State;
-import com.music.lrc.LyricDownloadManager;
-import com.music.lrc.LyricLoadHelper;
 import com.music.lrc.LyricLoadHelper.LyricListener;
 import com.music.lrc.LyricView;
 import com.music.lu.R;
@@ -40,7 +36,6 @@ import com.music.model.ShareModel;
 import com.music.utils.AppConstant;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
-import com.music.utils.ConstantUtil;
 import com.music.utils.DialogUtil;
 import com.music.utils.ImageUtil;
 import com.music.utils.MediaUtil;
@@ -55,8 +50,7 @@ import com.music.view.widget.RoundImageView;
  */
 @SuppressLint("NewApi")
 @ContentView(value = R.layout.activity_play_layout)
-public class PlayerActivity extends BaseActivity implements
-		LyricView.LyricViewClickListener {
+public class PlayerActivity extends BaseActivity {
 	private final static String TAG = "PlayerActivity";
 
 	@ViewInject(value = R.id.musicTitle)
@@ -87,7 +81,7 @@ public class PlayerActivity extends BaseActivity implements
 
 	@ViewInject(value = R.id.iv_music_album)
 	private RoundImageView iv_music_album;
-	
+
 	@ViewInject(value = R.id.iv_needle)
 	private ImageView iv_needle;
 
@@ -102,11 +96,8 @@ public class PlayerActivity extends BaseActivity implements
 
 	@ViewInject(value = R.id.ll_lrc)
 	private LinearLayout ll_lrc;
-	
-	private int currentTime; // 当前歌曲播放时间
 
 	private MyBroadcastReceiver playerBroadcastReceiver;
-
 
 	@ViewInject(value = R.id.lyricView)
 	private LyricView lyricView;
@@ -116,27 +107,25 @@ public class PlayerActivity extends BaseActivity implements
 	@ViewInject(value = R.id.ll_bg)
 	private LinearLayout ll_bg;
 
-	private LyricDownloadManager manager;
-	private LyricLoadHelper loadHelper;
-	
+	// private LyricDownloadManager manager;
+	// private LyricLoadHelper loadHelper;
+
 	private ObjectAnimator animatorPlay;
 	private RotateAnimation animatorNeedlePlay;
 	private RotateAnimation animatorNeedlePause;
 
-//	private Map<String, List<LyricSentence>> lycsList=new HashMap<String,List<LyricSentence>>();
 	private AsyncTaskUtil asyncTaskUtil;
 	private LyricModel lyricModel;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mp3Util = Mp3Util_New.getDefault();
-		
-		lyricModel=new LyricModel();
-		manager = new LyricDownloadManager(this);
-		loadHelper = new LyricLoadHelper();
-		loadHelper.setLyricListener(new MyLyricListener());
+
+		lyricModel = new LyricModel(this);
+		lyricModel.setLyricListener(new MyLyricListener());
 		asyncTaskUtil = new AsyncTaskUtil();
-		
+
 		initViewData();
 		setViewOnclickListener();
 		setPlayType();
@@ -145,105 +134,98 @@ public class PlayerActivity extends BaseActivity implements
 	}
 
 	private class MyLyricListener implements LyricListener {
-
 		@Override
 		public void onLyricLoaded(List<LyricSentence> lyricSentences,
 				int indexOfCurSentence) {
 			Log.i(TAG, "加载成功");
-			lyricModel.putLyric(mp3Util.getCurrentMp3Info().getTitle(), lyricSentences);
-			lyricView.setLyricSentences(lyricSentences,true);
+			lyricModel.putLyric(mp3Util.getCurrentMp3Info().getTitle(),
+					lyricSentences);
+			lyricView.setLyricSentences(lyricSentences, true);
 			lyricView.setLoadLrc(LyricView.LRC_LOADED);
 		}
-
 		@Override
 		public void onLyricSentenceChanged(int indexOfCurSentence) {
-
 		}
 
 	}
 
-	/**
-	 * 加载歌词
-	 */
 	private void findMp3Lrc(boolean isInit) {
-		String title=mp3Util.getCurrentMp3Info().getTitle();
-		if(lyricModel.isCache(title)){
-			lyricView.setLyricSentences(lyricModel.getLyricSentences(title),isInit);
-			lyricView.invalidate();
+		String title = mp3Util.getCurrentMp3Info().getTitle();
+		if (lyricModel.isCache(title)) {
+			lyricView.setLyricSentences(lyricModel.getLyricSentences(title),
+					isInit);
+			lyricView.postInvalidate();
 			return;
 		}
-		asyncTaskUtil.setIAsyncTaskCallBack(new IAsyncTaskCallBack() {
-			String lrcPath = null;
-			@Override
-			public void onPostExecute(Object result) {
-				// 没有加载到歌词
-				if (lrcPath == null) {
-					lyricView.setLyricSentences(null,false);
-					lyricView.setLoadLrc(LyricView.NO_LRC);
-					Log.d(TAG, "网络加载失败..");
-				}
-				lyricView.invalidate();
-			}
-			@Override
-			public Object doInBackground(String... arg0) {
-				// TODO Auto-generated method stub
-				currentMp3Info = mp3Util.getCurrentMp3Info();
-				String songName = currentMp3Info.getTitle();
-				String songer = currentMp3Info.getArtist();
-				// 查看本地
-				lrcPath = lyricModel.findLocalLrc(songer, songName);
-				if (lrcPath == null) {
-					// 本地没有，网络加载
-					lrcPath = manager.searchLyricFromWeb(songName, songer);
-					Log.d(TAG, "网络加载歌词..");
-				}
-				if (lrcPath != null) {
-					// 解析歌词
-					loadHelper.loadLyric(lrcPath);
-				}
-
-				return null;
-			}
-		});
+		asyncTaskUtil.setIAsyncTaskCallBack(new FindLrcCallBack());
 		asyncTaskUtil.execute("");
-
 	}
+	private class FindLrcCallBack implements IAsyncTaskCallBack{
+		String lrcPath = null;
+		@Override
+		public void onPostExecute(Object result) {
+			if (lrcPath == null) {
+				lyricView.setLyricSentences(null, false);
+				lyricView.setLoadLrc(LyricView.NO_LRC);
+				Log.d(TAG, "网络加载失败..");
+			}
+			lyricView.invalidate();
+		}
+		@Override
+		public Object doInBackground(String... arg0) {
+			currentMp3Info = mp3Util.getCurrentMp3Info();
+			String songName = currentMp3Info.getTitle();
+			String songer = currentMp3Info.getArtist();
+			// 查看本地
+			lrcPath = lyricModel.findLocalLrc(songer, songName);
+			if (lrcPath == null) {
+				lrcPath = lyricModel.searchLyricFromWeb(songName, songer);
+			}
+			if (lrcPath != null) {
+				lyricModel.loadLyric(lrcPath);
+			}
 
-
-	private void initAnimation() {
+			return null;
+		}
+	
+	}
+	private void initAnimatorPlay(){
 		if (animatorPlay == null) {
-			animatorPlay = ObjectAnimator.ofFloat(iv_music_album, "rotation", 0,
-					360);
+			animatorPlay = ObjectAnimator.ofFloat(iv_music_album, "rotation",
+					0, 360);
 			animatorPlay.setDuration(20 * 1000);
 			animatorPlay.setRepeatCount(-1);
-
-			if(mp3Util.isPlaying()){
+			if (mp3Util.isPlaying()) {
 				animatorPlay.start();
 			}
 		}
-		
-		if(animatorNeedlePlay==null){
-			animatorNeedlePlay=new RotateAnimation(0, -20, 0, 0);
-			animatorNeedlePlay.setDuration(3*1000);
+	}
+	private void initAnimation() {
+		initAnimatorPlay();
+		initAnimatorNeedlePlay();
+		initAnimatorNeedlePause();
+	}
+	private void initAnimatorNeedlePause(){
+		if (animatorNeedlePause == null) {
+			animatorNeedlePause = new RotateAnimation(-20, 0, 0, 0);
+			animatorNeedlePause.setDuration(3 * 1000);
+			animatorNeedlePause.setFillAfter(true);
+		}
+	}
+	private void initAnimatorNeedlePlay() {
+		if (animatorNeedlePlay == null) {
+			animatorNeedlePlay = new RotateAnimation(0, -20, 0, 0);
+			animatorNeedlePlay.setDuration(3 * 1000);
 			animatorNeedlePlay.setFillAfter(true);
-			if(!mp3Util.isPlaying()){
+			if (!mp3Util.isPlaying()) {
 				iv_needle.startAnimation(animatorNeedlePlay);
 			}
 		}
 		
-		if(animatorNeedlePause==null){
-			animatorNeedlePause=new RotateAnimation(-20, 0, 0, 0);
-			animatorNeedlePause.setDuration(3*1000);
-			animatorNeedlePause.setFillAfter(true);
-		}
-		
-		
 	}
-
 	private void setViewOnclickListener() {
 		music_progressBar
 				.setOnSeekBarChangeListener(new OnSeekBarChangeListenerImpl());
-		lyricView.setLyricViewClickListener(this);
 
 	}
 
@@ -274,19 +256,13 @@ public class PlayerActivity extends BaseActivity implements
 		case R.id.img_favourite:
 			break;
 		case R.id.img_share:
-//			ShareModel share=new ShareModel();
 			new ShareModel().umengShareMusic(this);
 			break;
 		case R.id.rl_disc:
-			mp3Util.setShowLrc(true);
-			rl_disc.setVisibility(View.GONE);
-			ll_lrc.setVisibility(View.VISIBLE);
-			loadLrc(false);
+			isShowLrc(true);
 			break;
 		case R.id.ll_lrc:
-			mp3Util.setShowLrc(false);
-			rl_disc.setVisibility(View.VISIBLE);
-			ll_lrc.setVisibility(View.GONE);
+			isShowLrc(false);
 			break;
 		case R.id.ib_play_list:
 			finishAnimator();
@@ -296,7 +272,19 @@ public class PlayerActivity extends BaseActivity implements
 		}
 
 	}
-	
+
+	private void isShowLrc(boolean isShowLrc) {
+		mp3Util.setShowLrc(isShowLrc);
+		if (isShowLrc) {
+			rl_disc.setVisibility(View.GONE);
+			ll_lrc.setVisibility(View.VISIBLE);
+			loadLrc(false);
+		} else {
+			rl_disc.setVisibility(View.VISIBLE);
+			ll_lrc.setVisibility(View.GONE);
+		}
+	}
+
 	/**
 	 * 根据播放类型 设置背景图
 	 * 
@@ -332,7 +320,6 @@ public class PlayerActivity extends BaseActivity implements
 	private void changePlayType() {
 		mp3Util.changePlayType();
 		setPlayType();
-
 	}
 
 	/**
@@ -340,7 +327,6 @@ public class PlayerActivity extends BaseActivity implements
 	 */
 	public void previous_music() {
 		mp3Util.previous_music();
-		// loadLrc();
 	}
 
 	/**
@@ -355,7 +341,6 @@ public class PlayerActivity extends BaseActivity implements
 	 * 加载歌词
 	 */
 	private void loadLrc(boolean isInit) {
-
 		if (mp3Util.isShowLrc()) {
 			lyricView.setLoadLrc(LyricView.LRC_LOADIGN);
 			findMp3Lrc(isInit);
@@ -371,7 +356,6 @@ public class PlayerActivity extends BaseActivity implements
 		currentMp3Info = mp3Util.getCurrentMp3Info();
 		musicTitle.setText(currentMp3Info.getTitle());
 		musicArtist.setText(currentMp3Info.getArtist());
-
 		music_progressBar.setMax((int) currentMp3Info.getDuration());
 		music_progressBar.setProgress(mp3Util.getCurrentTime());
 
@@ -379,7 +363,6 @@ public class PlayerActivity extends BaseActivity implements
 				.getCurrentTime()));
 		tv_finalProgress.setText(MediaUtil.formatTime(mp3Util
 				.getCurrentMp3Info().getDuration()));
-
 		if (mp3Util.isPlaying()) {
 			playBtn.setBackgroundResource(R.drawable.btn_pause);
 			animatorPlay.start();
@@ -388,31 +371,28 @@ public class PlayerActivity extends BaseActivity implements
 			iv_music_album.clearAnimation();
 		}
 
-		Bitmap bmp = MediaUtil
-				.getArtwork(getApplicationContext(), currentMp3Info.getSongId(),
-						currentMp3Info.getAlbumId(), true, true);
-	
-		
-		Bitmap bmpBg= MediaUtil
-				.getArtworkOriginal(getApplicationContext(), currentMp3Info.getSongId(),
-						currentMp3Info.getAlbumId(), true, false);
-		
+		Bitmap bmp = MediaUtil.getArtwork(getApplicationContext(),
+				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), true,
+				true);
+		Bitmap bmpBg = MediaUtil.getArtworkOriginal(getApplicationContext(),
+				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), true,
+				false);
+
 		iv_music_album.setImageBitmap(bmp);
-//		ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(bmp, this)));
-		ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(bmpBg, this)));
-		
+		// ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(bmp,
+		// this)));
+		ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(
+				bmpBg, this)));
 
 	}
 
 	/**
 	 * 进度条改变事件监听器
 	 * 
-	 * @author luyuanwei
 	 * 
 	 */
 	private class OnSeekBarChangeListenerImpl implements
 			OnSeekBarChangeListener {
-
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress,
 				boolean fromUser) {
@@ -424,9 +404,11 @@ public class PlayerActivity extends BaseActivity implements
 				break;
 			}
 		}
+
 		@Override
 		public void onStartTrackingTouch(SeekBar seekBar) {
 		}
+
 		@Override
 		public void onStopTrackingTouch(SeekBar seekBar) {
 		}
@@ -438,7 +420,6 @@ public class PlayerActivity extends BaseActivity implements
 	 * @param progress
 	 */
 	public void sb_progressChange(int progress) {
-//		mp3Util.sb_progressChange(progress);
 		mp3Util.audioTrackChange(progress);
 	}
 
@@ -449,10 +430,6 @@ public class PlayerActivity extends BaseActivity implements
 		IntentFilter filter = new IntentFilter();
 		playerBroadcastReceiver = new MyBroadcastReceiver(state, filter);
 		registerReceiver(playerBroadcastReceiver, filter);
-
-		IntentFilter filterlrc = new IntentFilter();
-		filterlrc.addAction(ConstantUtil.LRC_CURRENT);
-		registerReceiver(LrcBroadcastReceiver, filterlrc);
 	}
 
 	/**
@@ -465,7 +442,6 @@ public class PlayerActivity extends BaseActivity implements
 		@Override
 		public void playMusicState() {
 			playBtn.setBackgroundResource(R.drawable.btn_pause);
-
 			if (animatorPlay.isPaused()) {
 				animatorPlay.resume();
 			} else {
@@ -476,19 +452,21 @@ public class PlayerActivity extends BaseActivity implements
 
 		@Override
 		public void currentState(Intent intent) {
-			currentTime = intent.getIntExtra("currentTime", -1);
-//			DeBug.d(PlayerActivity.this, "currentState currentTime:"+currentTime);
+			int currentTime = intent.getIntExtra("currentTime", -1);
 			mp3Util.setCurrentTime(currentTime);
-
 			tv_current_progress.setText(MediaUtil.formatTime(currentTime));
-			music_progressBar.setProgress(currentTime);				 
+			music_progressBar.setProgress(currentTime);
+
+			lyricView.updateindex(currentTime);
+			if (mp3Util.isShowLrc()) {
+				lyricView.postInvalidate();
+			}
 		}
 
 		@Override
 		public void duration(Intent intent) {
-			
 			int duration = intent.getIntExtra("duration", -1);
-			Log.i(TAG, "duration:"+duration); 
+			Log.i(TAG, "duration:" + duration);
 			music_progressBar.setMax(duration);
 			tv_finalProgress.setText(MediaUtil.formatTime(duration));
 			musicTitle.setText(mp3Util.getCurrentMp3Info().getTitle());
@@ -502,7 +480,6 @@ public class PlayerActivity extends BaseActivity implements
 		public void pauseMusicState() {
 			playBtn.setBackgroundResource(R.drawable.btn_play);
 			animatorPlay.pause();
-			
 			iv_needle.startAnimation(animatorNeedlePlay);
 		}
 
@@ -513,7 +490,6 @@ public class PlayerActivity extends BaseActivity implements
 		if (playerBroadcastReceiver != null) {
 			unregisterReceiver(playerBroadcastReceiver);
 		}
-		unregisterReceiver(LrcBroadcastReceiver);
 	}
 
 	@Override
@@ -521,19 +497,26 @@ public class PlayerActivity extends BaseActivity implements
 		unregisterReceiver();
 		super.onDestroy();
 	}
-	/**
-	 * 显示歌词的控件接收服务发来的消息,每0.1s刷新一次
-	 */
-	private BroadcastReceiver LrcBroadcastReceiver = new BroadcastReceiver() {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			if (mp3Util.isShowLrc()) {
-				int currentTime = intent.getIntExtra("currentTime", -1);
-//				DeBug.d(PlayerActivity.this, "currentTime:"+currentTime);
-				lyricView.updateindex(currentTime);
-			}
-		}
-	};
+
+	// /**
+	// * 显示歌词的控件接收服务发来的消息,每0.1s刷新一次
+	// */
+	// private BroadcastReceiver LrcBroadcastReceiver = new BroadcastReceiver()
+	// {
+	// @Override
+	// public void onReceive(Context context, Intent intent) {
+	// int currentTime = intent.getIntExtra("currentTime", -1);
+	// lyricView.updateindex(currentTime);
+	// if (mp3Util.isShowLrc()) {
+	// lyricView.postInvalidate();
+	// }
+	//
+	// currentTime = intent.getIntExtra("currentTime", -1);
+	// mp3Util.setCurrentTime(currentTime);
+	// tv_current_progress.setText(MediaUtil.formatTime(currentTime));
+	// music_progressBar.setProgress(currentTime);
+	// }
+	// };
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -556,17 +539,6 @@ public class PlayerActivity extends BaseActivity implements
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void lyricViewClick() {
-	}
-
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		
 	}
 
 }

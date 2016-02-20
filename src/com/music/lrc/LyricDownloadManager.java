@@ -15,7 +15,6 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.music.utils.DeBug;
 import com.music.utils.FileUtils;
@@ -35,7 +34,8 @@ public class LyricDownloadManager {
 	private LyricXMLParser mLyricXMLParser = new LyricXMLParser();
 	private URL mUrl = null;
 	private int mDownloadLyricId = -1;
-
+	private final static String BAIDU_MUSIC_URL="http://box.zhangmen.baidu.com/x?op=12&count=1&title=";
+	private final static String BAIDU_LRC_URL="http://box.zhangmen.baidu.com/bdlrc/";
 	@SuppressWarnings("unused")
 	private Context mContext = null;
 
@@ -58,7 +58,7 @@ public class LyricDownloadManager {
 		}
 
 		// 百度音乐盒的API
-		String strUrl = "http://box.zhangmen.baidu.com/x?op=12&count=1&title="
+		String strUrl = BAIDU_MUSIC_URL
 				+ musicName + "$$" + singerName + "$$$$";
 
 		// 生成URL
@@ -106,7 +106,7 @@ public class LyricDownloadManager {
 		BufferedReader br = null;
 		StringBuilder content = null;
 		String temp = null;
-		String lyricURL = "http://box.zhangmen.baidu.com/bdlrc/"
+		String lyricURL = BAIDU_LRC_URL
 				+ mDownloadLyricId / 100 + "/" + mDownloadLyricId + ".lrc";
 		DeBug.d(TAG, "歌词的真实下载地址:" + lyricURL);
 

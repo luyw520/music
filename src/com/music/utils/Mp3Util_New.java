@@ -386,7 +386,7 @@ public class Mp3Util_New {
 				mService.pause();
 				break;
 			case AppConstant.PlayerMsg.PROGRESS_CHANGE:
-				mService.seekTo(progress);
+				mService.seekTo(progress,currentMp3Info.playPath);
 				break;
 			default:
 				break;
@@ -448,14 +448,6 @@ public class Mp3Util_New {
 			context.unbindService(conn);
 			isBindService=false;
 		}
-	
-//		try {
-//			mService.exit();
-//
-//		} catch (RemoteException e) {
-//			
-//			e.printStackTrace();
-//		}
 	}
 
 	public List<? extends MusicBaseInfo> getMusicBaseInfos() {
