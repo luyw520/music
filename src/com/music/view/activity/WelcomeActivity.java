@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import com.music.lu.R;
 import com.music.utils.ApplicationUtil;
 import com.music.view.animator.ActivityAnimator;
+import com.music.view.gesturepressword.UnlockGesturePasswordActivity;
 
 public class WelcomeActivity extends Activity{
 	
@@ -32,13 +33,9 @@ public class WelcomeActivity extends Activity{
 	private Button button;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_welcomecactivity);
-		
-		
 		if(!ApplicationUtil.isFirstRun(this)){
 			startMainActivity();
 		}else{
@@ -116,6 +113,7 @@ public class WelcomeActivity extends Activity{
 		});
 	}
 	private void startMainActivity(){
+//		Intent intent=new Intent(WelcomeActivity.this,UnlockGesturePasswordActivity.class);
 		Intent intent=new Intent(WelcomeActivity.this,LocalMusicActivity.class);
 //		Intent intent=new Intent(WelcomeActivity.this,MainContentActivity.class);
 //		Intent intent=new Intent(WelcomeActivity.this,MainActivity.class);
@@ -125,7 +123,6 @@ public class WelcomeActivity extends Activity{
 		try {
 			activityAnimator.getClass().getMethod(activityAnimator.randomAnimator(), Activity.class).invoke(activityAnimator, WelcomeActivity.this);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finish();

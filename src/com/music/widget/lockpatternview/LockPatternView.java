@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 
 import com.music.lu.R;
+import com.music.utils.DeBug;
 
 
 /**
@@ -354,7 +355,8 @@ public class LockPatternView extends View {
 			if (mPattern.size() == 0) {
 				throw new IllegalStateException(
 						"you must have a pattern to "
-								+ "animate if you want to set the display mode to animate");
+								+ "animate if you want to set " +
+								"the display mode to animate");
 			}
 			mAnimatingPeriodStart = SystemClock.elapsedRealtime();
 			final Cell first = mPattern.get(0);
@@ -619,7 +621,9 @@ public class LockPatternView extends View {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		DeBug.d(this, "onTouchEvent....................."+SystemClock.currentThreadTimeMillis());
 		if (!mInputEnabled || !isEnabled()) {
+			DeBug.d(this, "onTouchEvent.............return");
 			return false;
 		}
 

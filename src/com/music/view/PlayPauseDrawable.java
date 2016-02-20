@@ -1,5 +1,7 @@
 package com.music.view;
 
+import com.music.utils.DeBug;
+
 import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
@@ -80,7 +82,7 @@ public class PlayPauseDrawable extends Drawable {
     @Override
     protected void onBoundsChange(Rect bounds) {
         super.onBoundsChange(bounds);
-
+        DeBug.d(this, "onBoundsChange..................");
         int padding = bounds.centerX()/2;
         shiftY = bounds.centerY()/8;
         mBounds.left = bounds.left + padding;
@@ -114,7 +116,7 @@ public class PlayPauseDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-
+    	DeBug.d(this, "draw..................");
         canvas.drawCircle(mBounds.centerX(), mBounds.centerY(), mBounds.centerX(), mBackgroundPaint);
         Picture picture = new Picture() ;
         picture.draw(canvas);
@@ -132,7 +134,6 @@ public class PlayPauseDrawable extends Drawable {
         canvas.rotate(180 * mRotation, (x(4) + x(5)) / 2, (y(4) + y(5)) / 2);
         canvas.drawLine(x(4), y(4), x(5), y(5), mLinePaint);
         canvas.restore();
-//        animatePlay();
     }
 
     public void toggle() {

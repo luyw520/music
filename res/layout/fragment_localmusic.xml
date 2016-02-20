@@ -83,7 +83,6 @@
                 android:orientation="horizontal" >
 
                 <ImageView
-                    android:id="@+id/iv_song"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/tab_icn_alb" />
@@ -111,7 +110,6 @@
                 android:orientation="horizontal" >
 
                 <ImageView
-                    android:id="@+id/iv_song"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/tab_icn_folder" />

@@ -24,17 +24,15 @@ public class DialogUtil {
 	 */
 	public static void showToast(Context context,String msg){
 		TopNoticeDialog.showToast(context, msg);
-//		if (toast == null) {
-//			toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
-//
-//		} else {
-//			toast.setText(msg);
-//			toast.setDuration(Toast.LENGTH_SHORT);
-//		}
-//		toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-//		toast.show();
 	}
-	
+	/**
+	 * 弹出一个消息框
+	 * @param context
+	 * @param msg 消息内容
+	 */
+	public static void showToast(Context context,CharSequence msg){
+		TopNoticeDialog.showToast(context, msg);
+	}
 	/**
 	 * 弹出一个选择对话框
 	 * @param context

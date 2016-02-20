@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -67,6 +67,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 	public static final String TAG = null;
 	private static final int REQUESTCODE_LOGIN = 0;
+	private static final int LOCK_PASSWORD = 1;
 	public Fragment contentFragment;
 
 	private SplashScreen mSplashScreen;
@@ -109,17 +110,17 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	private CircularImage iv_header;
 	@ViewInject(value = R.id.tv_username)
 	private TextView tv_username;
-	
-	
+
+	@SuppressWarnings("unused")
 	private PlayPauseDrawable playPauseDrawable;
 	private int playColor = 0XFFE91E63;
 	private int pauseColor = 0XFFffffff;
-	private int dwableDuaration = 300;
+	private int dwableDuaration = 200;
 	private MusicBaseInfo currentMp3Info;
 	private Mp3Util_New mp3Util;
 
-	MusicListFragment musicListFragment = null;
-	FragmentTransaction transaction;
+	private MusicListFragment musicListFragment = null;
+	private FragmentTransaction transaction;
 	private LocalMusicFragment localMusicFragment;
 	private MyBroadcastReceiver myBroadcastReceiver;
 	@SuppressWarnings("unused")
@@ -129,14 +130,29 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	 */
 	protected String userHeaderImg;
 
-	public static boolean isFirst = true;
-	
-	
+	private boolean isFirst = true;
+
+	private boolean unLockSuccess = true;
+
+	// private boolean
 	@TargetApi(19)
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-
+		LogUtil.d(this, "onCreate.................");
+		
+		
+//		if (ApplicationUtil.getAppLockState(this) == 1) {
+//			isFirst = false;
+//			ApplicationUtil.setAppToBack(this, 0);
+//			Intent intent = new Intent(this,
+//					UnlockGesturePasswordActivity.class);
+//			startActivityForResult(intent, LOCK_PASSWORD);
+//			
+//		}
+//		
+		
+		
 		mSplashScreen = new SplashScreen(this);
 		mSplashScreen.show(R.drawable.image_splash_background_new,
 				SplashScreen.SLIDE_UP);
@@ -144,25 +160,54 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		mp3Util = Mp3Util_New.getDefault();
 		playPauseDrawable = new PlayPauseDrawable(30, playColor, pauseColor,
 				dwableDuaration);
-		btn_musicPlaying.setImageDrawable(playPauseDrawable);
+		// btn_musicPlaying.setImageDrawable(playPauseDrawable);
+		// playPauseDrawable.animatePlay();
+		// btn_musicPlaying.setBackground(playPauseDrawable);
+		// playPauseDrawable.animatePlay();
+		long start1=SystemClock.currentThreadTimeMillis();
 		initData();
+		long start2=SystemClock.currentThreadTimeMillis();
+		DeBug.d(this, "initData:"+(start2-start1)/1000.0+" s");
 		registerReceiver();
-		handler.sendEmptyMessageDelayed(0, 500);
+		long start3=SystemClock.currentThreadTimeMillis();
+		DeBug.d(this, "registerReceiver:"+(start3-start2)/1000.0+" s");
+		// handler.sendEmptyMessageDelayed(0, 500);
+		initUmeng();
+		long start4=SystemClock.currentThreadTimeMillis();
+		DeBug.d(this, "initUmeng:"+(start4-start3)/1000.0+" s");
 		
 		
-		//umeng push 
+		
+	}
+
+	@Override
+	public void onAttachedToWindow() {
+		super.onAttachedToWindow();
+		DeBug.d(this, "onAttachedToWindow..................");
+		// if (!mp3Util.isPlaying()) {
+		// DeBug.d(LocalMusicActivity.this, "............animatePlay");
+		// playPauseDrawable.animatePlay();
+		// }
+		// else{
+		// DeBug.d(LocalMusicActivity.this, "............animatePause");
+		// playPauseDrawable.animatePause();
+		// }
+
+	}
+
+	private void initUmeng() {
+		// umeng push
 		PushAgent.getInstance(this).onAppStart();
-		
-		
-		//开启推送并设置注册的回调处理
+		// 开启推送并设置注册的回调处理
 		PushAgent.getInstance(this).enable(new IUmengRegisterCallback() {
 
 			@Override
 			public void onRegistered(String registrationId) {
-				DeBug.d(LocalMusicActivity.this, "onRegistered....................registrationId:"+registrationId);
+				DeBug.d(LocalMusicActivity.this,
+						"onRegistered....................registrationId:"
+								+ registrationId);
 			}
 		});
-		
 	}
 
 	public void changeFragment(int flag, Object object) {
@@ -199,53 +244,83 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	}
 
 	private void initData() {
-		final long start=System.currentTimeMillis();
-		new AsyncTaskUtil(
-				new com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack() {
-					@Override
-					public Object doInBackground(String... arg0) {
-						MusicUtils.getDefault().queryMusic(getApplication(),
-								START_FROM_LOCAL);
-						MusicUtils.getDefault().queryAlbums(getApplication());
-						MusicUtils.getDefault().queryArtist(getApplication());
-						MusicUtils.getDefault().queryFolder(getApplication());
-						return null;
-					}
-					@Override
-					public void onPostExecute(Object result) {
-						
-						long end=System.currentTimeMillis();
-						int speedTime=(int) ((end-start));
-						
-						DeBug.d(LocalMusicActivity.this, "..........onPostExecute, speedTime:"+speedTime);
-						if(speedTime<3000){
-							try {
-								Thread.sleep(3000-speedTime);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-						mSplashScreen.removeSplashScreen();
-						initWidget();
-						resetPlayState();
-					}
-				}).execute("");
+		loadDataAsyncTaskUtil.execute("");
 	}
+
+	private AsyncTaskUtil loadDataAsyncTaskUtil = new AsyncTaskUtil(
+			new AsyncTaskUtil.IAsyncTaskCallBack() {
+				final long start = System.currentTimeMillis();
+
+				@Override
+				public Object doInBackground(String... arg0) {
+					MusicUtils.getDefault().queryMusic(getApplication(),
+							START_FROM_LOCAL);
+					MusicUtils.getDefault().queryAlbums(getApplication());
+					MusicUtils.getDefault().queryArtist(getApplication());
+					MusicUtils.getDefault().queryFolder(getApplication());
+					return null;
+				}
+
+				@Override
+				public void onPostExecute(Object result) {
+
+					long end = System.currentTimeMillis();
+					int speedTime = (int) ((end - start));
+
+					DeBug.d(LocalMusicActivity.this,
+							"..........onPostExecute, speedTime:" + speedTime);
+					if (speedTime < 3000) {
+						try {
+							Thread.sleep(3000 - speedTime);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+					mSplashScreen.removeSplashScreen();
+					initWidgetData();
+					resetPlayState();
+				}
+			});
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		LogUtil.i(getClass(), "resultCode=" + resultCode);
+		LogUtil.i(getClass(), "onActivityResult..............resultCode="
+				+ resultCode);
 		switch (requestCode) {
 		case REQUESTCODE_LOGIN:
 			loginResult(data);
 			break;
+
+		case LOCK_PASSWORD:
+			unLockSuccess = (data != null);
+
+			LogUtil.i(getClass(), "..............unLockSuccess="
+					+ unLockSuccess);
+			if (!unLockSuccess) {
+				// finish();
+				exit();
+				// unregisterReceiver();
+				// LogUtil.i(getClass(), "..............unregisterReceiver");
+				// ApplicationUtil.setAppToBack(this, 1);
+				// mp3Util.saveCurrentMusicInfo(this);
+				// myNotification.cancel();
+				// LogUtil.i(getClass(),
+				// "..............myNotification.cancel()");
+				// // mp3Util.unBindService();
+				// LogUtil.i(getClass(),
+				// "..............mp3Util.unBindService()");
+				// finish();
+			}
+			break;
 		default:
-			UserManager.getInstance().chooseHeaderImg(requestCode, resultCode, data,this,iv_header,userHeaderImg);
+			UserManager.getInstance().chooseHeaderImg(requestCode, resultCode,
+					data, this, iv_header, userHeaderImg);
 			break;
 		}
 
 	}
+
 	private void loginResult(Intent data) {
 		if (data == null) {
 			DialogUtil.showToast(getApplicationContext(), "登陆失败");
@@ -254,55 +329,44 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		DialogUtil.showToast(getApplicationContext(), "登录成功");
 		String username = UserManager.getInstance().getUserBean().getUsername();
 		tv_username.setText(username);
-		String userHeaderUrl=UserManager.getInstance().getUserBean().getHeadPath();
-		
-//		UserManager.getInstance().downUserHeader(userHeader,iv_header);
+		String userHeaderUrl = UserManager.getInstance().getUserBean()
+				.getHeadPath();
+
+		// UserManager.getInstance().downUserHeader(userHeader,iv_header);
 		ImageLoader.getInstance().displayImage(userHeaderUrl, iv_header);
 	}
 
-	
 	private void resetPlayState() {
 
 		currentMp3Info = mp3Util.getCurrentMp3Info();
 		tv_music_title.setText(currentMp3Info.getTitle());
 		tv_music_Artist.setText(currentMp3Info.getArtist());
-		Bitmap bmp = MediaUtil
-				.getArtwork(getApplicationContext(), currentMp3Info.getSongId(),
-						currentMp3Info.getAlbumId(), true, true);
+		Bitmap bmp = MediaUtil.getArtwork(getApplicationContext(),
+				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), true,
+				true);
 		iv_music_album.setImageBitmap(bmp);
 	}
 
-	private void initWidget() {
+	private void initWidgetData() {
 		if (localMusicFragment == null) {
 			localMusicFragment = new LocalMusicFragment();
 		}
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.id_frame, localMusicFragment).commit();
+				.replace(R.id.id_frame, localMusicFragment)
+				.commitAllowingStateLoss();
 		tv_mobile.setText(android.os.Build.MODEL);
 		myNotification = new MyNotification(this);
+		// playPauseDrawable.animatePause();
 	}
 
 	@OnClick({ R.id.iv_back, R.id.btn_next2, R.id.btn_playing2,
-			R.id.music_about_layout, R.id.rl_setting,R.id.rl_exit,R.id.iv_header,R.id.iv_search })
+			R.id.music_about_layout, R.id.rl_setting, R.id.rl_exit,
+			R.id.iv_header, R.id.iv_search })
 	public void onclick(View view) {
 
 		switch (view.getId()) {
 		case R.id.iv_back:
-			if (!isHome) {
-				transaction = getSupportFragmentManager().beginTransaction();
-				transaction.remove(musicListFragment);
-				transaction.commit();
-				tv_title.setText("本地音乐");
-				isHome = true;
-			} else {
-				slidingMenu.toggle();
-				if (slidingMenu.isOpen()) {
-					iv_back.setImageResource(R.drawable.ic_common_title_bar_forward);
-				} else {
-					iv_back.setImageResource(R.drawable.ic_common_title_bar_back);
-				}
-				break;
-			}
+			back();
 			break;
 		case R.id.btn_playing2:
 			Mp3Util_New.getDefault().playMusic();
@@ -320,14 +384,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			showExitDialog();
 			break;
 		case R.id.iv_header:
-			if(!UserManager.isLogin()){
-				DialogUtil.showToast(getApplicationContext(), "您还未登陆,请先登陆");
-				Intent intent2 = new Intent(this,
-						LoginActivity.class);
-				startActivityForResult(intent2, REQUESTCODE_LOGIN);
-			}else{
-				chooseHeaderImgDialog();
-			}
+			chooseHeader();
 			break;
 		case R.id.iv_search:
 			startActivity(SearchMusicActivity.class);
@@ -337,7 +394,34 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		}
 
 	}
-	
+
+	private void chooseHeader() {
+		if (!UserManager.isLogin()) {
+			DialogUtil.showToast(getApplicationContext(), "您还未登陆,请先登陆");
+			Intent intent2 = new Intent(this, LoginActivity.class);
+			startActivityForResult(intent2, REQUESTCODE_LOGIN);
+		} else {
+			chooseHeaderImgDialog();
+		}
+	}
+
+	private void back() {
+		if (!isHome) {
+			transaction = getSupportFragmentManager().beginTransaction();
+			transaction.remove(musicListFragment);
+			transaction.commit();
+			tv_title.setText("本地音乐");
+			isHome = true;
+		} else {
+			slidingMenu.toggle();
+			if (slidingMenu.isOpen()) {
+				iv_back.setImageResource(R.drawable.ic_common_title_bar_forward);
+			} else {
+				iv_back.setImageResource(R.drawable.ic_common_title_bar_back);
+			}
+		}
+	}
+
 	/**
 	 * 选择头像
 	 */
@@ -363,15 +447,20 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 					}
 				});
 	}
-	private Handler handler = new Handler() {
-		public void handleMessage(android.os.Message msg) {
 
-			if (!mp3Util.isPlaying()) {
-				playPauseDrawable.animatePlay();
-			}
-
-		};
-	};
+//	private Handler handler = new Handler() {
+//		public void handleMessage(android.os.Message msg) {
+//
+//			if (!mp3Util.isPlaying()) {
+//				DeBug.d(LocalMusicActivity.this, "............animatePlay");
+//				playPauseDrawable.animatePlay();
+//			} else {
+//				DeBug.d(LocalMusicActivity.this, "............animatePause");
+//				playPauseDrawable.animatePause();
+//			}
+//
+//		};
+//	};
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -395,19 +484,53 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		
-		
-		if(ApplicationUtil.getAppLockState(this) == 1){
-			if (ApplicationUtil.getAppToBack(this)==1) {
-				Log.i(TAG, "Intent..............");
-				Intent intent=new Intent(this, UnlockGesturePasswordActivity.class);
-//				intent.putExtra("flag", 1);
-				startActivity(intent);
+		LogUtil.i(getClass(), "onResume..............unLockSuccess:"
+				+ unLockSuccess);
+		LogUtil.i(getClass(),
+				"onResume..............ApplicationUtil.getAppLockState(this):"
+						+ ApplicationUtil.getAppLockState(this));
+		LogUtil.i(getClass(),
+				"onResume..............ApplicationUtil.getAppToBack(this):"
+						+ ApplicationUtil.getAppToBack(this));
+		if (ApplicationUtil.getAppLockState(this) == 1) {
+
+			if (isFirst) {
+				Intent intent = new Intent(this,
+						UnlockGesturePasswordActivity.class);
+				startActivityForResult(intent, LOCK_PASSWORD);
+				isFirst = false;
+			} else {
+				if (ApplicationUtil.getAppToBack(this) == 1) {
+					Intent intent = new Intent(this,
+							UnlockGesturePasswordActivity.class);
+					startActivityForResult(intent, LOCK_PASSWORD);
+				}
+				// else{
+				// if (!unLockSuccess) {
+				// ApplicationUtil.setAppToBack(this, 1);
+				// finish();
+				// }
+				// }
 			}
-			
 		}
+		// if (
+		// ApplicationUtil.getAppToBack(this) == 1 &&
+		// unLockSuccess) {
+		//
+		// } else {
+		// // android.os.Process.killProcess(android.os.Process.myPid());
+		// // exit();
+		// // System.exit(0);
+		// // ActivityManager am = (ActivityManager)getSystemService
+		// (Context.ACTIVITY_SERVICE);
+		// // am.killBackgroundProcesses(getPackageName());
+		// ApplicationUtil.setAppToBack(this, 1);
+		// finish();
+		// }
+		// }
+
+		// }
 	}
 
 	/**
@@ -452,18 +575,23 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 		@Override
 		public void pauseMusicState() {
-			playPauseDrawable.animatePlay();
+			// playPauseDrawable.animatePlay();
+			btn_musicPlaying
+					.setImageResource(R.drawable.img_button_notification_play_play);
 			myNotification.setPlayImageState(false);
 		}
 
 		@Override
 		public void playMusicState() {
-			playPauseDrawable.animatePause();
+			// playPauseDrawable.animatePause();
+			btn_musicPlaying
+					.setImageResource(R.drawable.img_button_notification_play_pause);
 			myNotification.setPlayImageState(true);
 
 		}
 
 	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -494,13 +622,15 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	 * 应用程序退出
 	 */
 	public void exit() {
-
 		unregisterReceiver();
 		ApplicationUtil.setAppToBack(this, 1);
 		mp3Util.saveCurrentMusicInfo(this);
 		myNotification.cancel();
-		mp3Util.unBindService();
+		mp3Util.unBindService();	
 		finish();
+		System.exit(0);
+		
+//		onDestroy();
 	};
 
 	public void unregisterReceiver() {

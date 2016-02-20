@@ -24,6 +24,11 @@ public class ApplicationUtil {
 		}
 		return false;
 	}
+	/**
+	 * app lock is on or off 
+	 * @param contex
+	 * @return 1 on , 0 off
+	 */
 	public static int getAppLockState(Context contex){
 		final SharedPreferences sharedPreferences=contex.getSharedPreferences(APPINFO, Context.MODE_PRIVATE);
 		int  isLock=sharedPreferences.getInt("isLock", 0);
@@ -46,6 +51,11 @@ public class ApplicationUtil {
 		int  isLock=sharedPreferences.getInt("moveTaskToBack", 1);
 		return isLock;
 	}
+	/**
+	 * app state 
+	 * @param contex
+	 * @param state 1 
+	 */
 	public static void setAppToBack(Context contex,int state){
 		final SharedPreferences sharedPreferences=contex.getSharedPreferences(APPINFO, Context.MODE_PRIVATE);
 		Editor editor=sharedPreferences.edit();

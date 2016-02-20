@@ -2,25 +2,31 @@ package com.music.view.gesturepressword;
 
 import java.util.List;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.view.Gravity;
+import android.os.SystemClock;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.lidroid.xutils.view.annotation.ContentView;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.music.lu.R;
 import com.music.utils.ApplicationUtil;
+import com.music.utils.DeBug;
+import com.music.utils.DialogUtil;
 import com.music.view.MusicApplication;
+import com.music.view.activity.BaseActivity;
 import com.music.widget.lockpatternview.LockPatternUtils;
 import com.music.widget.lockpatternview.LockPatternView;
 import com.music.widget.lockpatternview.LockPatternView.Cell;
-
-public class UnlockGesturePasswordActivity extends Activity {
+@ContentView(R.layout.activity_gesturepassword_unlock)
+public class UnlockGesturePasswordActivity extends BaseActivity {
 	/** 中间解锁图案 **/
 	private LockPatternView mLockPatternView;
 	/** 解锁错误次数 **/
@@ -33,31 +39,32 @@ public class UnlockGesturePasswordActivity extends Activity {
 	private TextView mHeadTextView;
 	private Animation mShakeAnim;
 
-	private Toast mToast;
-
+	@ViewInject(R.id.gesturepwd_unlock_forget)
+	private TextView gesturepwd_unlock_forget;
 	/**
 	 * 弹出提示信息
 	 * 
 	 * @param message
 	 */
 	private void showToast(CharSequence message) {
-		if (null == mToast) {
-			mToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-			mToast.setGravity(Gravity.CENTER, 0, 0);
-		} else {
-			mToast.setText(message);
-		}
-
-		mToast.show();
+		DialogUtil.showToast(this, message);
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		long start=SystemClock.currentThreadTimeMillis();
 		super.onCreate(savedInstanceState);
-
+		DeBug.d(this, "onCreate........");
 		// 设置布局
-		setContentView(R.layout.activity_gesturepassword_unlock);
+//		setContentView(R.layout.activity_gesturepassword_unlock);
 
+		
+		
+//		if (ApplicationUtil.getAppLockState(this) != 1) {
+//			startActivity(LocalMusicActivity.class);
+//			finish();
+//			return;
+//		}
 		// 根据id在布局中找到控件对象
 		mLockPatternView = (LockPatternView) this
 				.findViewById(R.id.gesturepwd_unlock_lockview);
@@ -65,6 +72,9 @@ public class UnlockGesturePasswordActivity extends Activity {
 		mLockPatternView.setTactileFeedbackEnabled(true);
 		mHeadTextView = (TextView) findViewById(R.id.gesturepwd_unlock_text);
 		mShakeAnim = AnimationUtils.loadAnimation(this, R.anim.shake_x);
+		
+		DeBug.d(this, ".......onCreate:"+(SystemClock.currentThreadTimeMillis()-start)/1000.0+" s");
+		
 	}
 
 	@Override
@@ -85,7 +95,20 @@ public class UnlockGesturePasswordActivity extends Activity {
 		if (mCountdownTimer != null)// 不为空
 			mCountdownTimer.cancel();// 取消计时器
 	}
+	@OnClick({R.id.gesturepwd_unlock_forget})
+	public void viewClick(View view){
+		DeBug.d(this, "...........viewClick");
+		switch (view.getId()) {
+		case R.id.gesturepwd_unlock_forget:
+			
+			startActivity(new Intent(this,CreateGesturePasswordActivity.class));
+//			finish();
+			break;
 
+		default:
+			break;
+		}
+	}
 	/**
 	 * 清除绘制的图案,恢复到初始状态
 	 */
@@ -94,18 +117,14 @@ public class UnlockGesturePasswordActivity extends Activity {
 			mLockPatternView.clearPattern();
 		}
 	};
-
 	protected LockPatternView.OnPatternListener mChooseNewLockPatternListener = new LockPatternView.OnPatternListener() {
-
 		public void onPatternStart() {
 			mLockPatternView.removeCallbacks(mClearPatternRunnable);
 			patternInProgress();
 		}
-
 		public void onPatternCleared() {
 			mLockPatternView.removeCallbacks(mClearPatternRunnable);
 		}
-
 		public void onPatternDetected(List<LockPatternView.Cell> pattern) {
 
 			if (pattern == null)// 判断pattern是否为空
@@ -128,6 +147,7 @@ public class UnlockGesturePasswordActivity extends Activity {
 				showToast("解锁成功");
 				ApplicationUtil.setAppToBack(
 						UnlockGesturePasswordActivity.this, 0);
+				setResult(0, new Intent());
 				// 结束当前的Activity
 				finish();
 

@@ -99,11 +99,11 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 		public void onPageSelected(int position) {
 			
 			
-			if(position==0){
-				LocalMusicActivity.isFirst=true;
-			}else{
-				LocalMusicActivity.isFirst=false;
-			}
+//			if(position==0){
+//				LocalMusicActivity.isFirst=true;
+//			}else{
+//				LocalMusicActivity.isFirst=false;
+//			}
 		}
 
 		@Override
@@ -142,11 +142,11 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		LocalMusicActivity.isFirst=false;
+//		LocalMusicActivity.isFirst=false;
 		switch (v.getId()) {
 		case R.id.rl_song:
 			viewPager.setCurrentItem(0);
-			LocalMusicActivity.isFirst=true;
+//			LocalMusicActivity.isFirst=true;
 			break;
 		case R.id.rl_artist:
 			viewPager.setCurrentItem(1);

@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="18" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES"></uses-permission>
     <!-- 【必须】 信鸽SDK所需权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -197,7 +198,8 @@
 
         <service android:name="com.music.view.service.LockScreenService" >
         </service>
-        <service android:name="com.music.view.service.MyPlayerNewService" >
+        <service android:name="com.music.view.service.MyPlayerNewService" 
+            >
             <intent-filter>
                 <action android:name="com.music.service.myplayerService"></action>
             </intent-filter>
@@ -215,11 +217,11 @@
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
             android:exported="false"
-            android:process=":push" >
+             >
         </receiver>
         <receiver
             android:name="com.umeng.message.SystemReceiver"
-            android:process=":push" >
+             >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -234,14 +236,14 @@
         </receiver>
         <receiver
             android:name="com.umeng.message.MessageReceiver"
-            android:process=":push" >
+             >
             <intent-filter>
                 <action android:name="org.agoo.android.intent.action.RECEIVE" />
             </intent-filter>
         </receiver>
         <receiver
             android:name="com.umeng.message.ElectionReceiver"
-            android:process=":push" >
+            >
             <intent-filter>
                 <action android:name="org.agoo.android.intent.action.ELECTION_RESULT_V4" />
 
@@ -265,7 +267,7 @@
             android:name="com.umeng.message.UmengService"
             android:exported="true"
             android:label="PushService"
-            android:process=":push" >
+            >
             <intent-filter>
                 <action android:name="com.music.lu.intent.action.START" />
             </intent-filter>
@@ -280,11 +282,11 @@
         </service>
         <service
             android:name="com.umeng.message.UmengIntentService"
-            android:process=":push" />
+            />
         <service
             android:name="com.umeng.message.UmengMessageIntentReceiverService"
             android:exported="true"
-            android:process=":push" >
+            >
             <intent-filter>
                 <action android:name="org.android.agoo.client.MessageReceiverService" />
             </intent-filter>

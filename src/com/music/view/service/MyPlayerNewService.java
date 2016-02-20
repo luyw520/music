@@ -14,6 +14,7 @@ import android.util.Log;
 
 import com.music.service.IMediaService;
 import com.music.utils.ConstantUtil;
+import com.music.utils.DeBug;
 import com.music.utils.Mp3Util_New;
 
 /**
@@ -92,7 +93,7 @@ public class MyPlayerNewService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		Log.i("MyPlayerService", "MyPlayerService");
+		DeBug.d(this, "MyPlayerService..................onCreate");
 		mediaPlayer = new MediaPlayer();
 		mp3Util=Mp3Util_New.getDefault();
 		/**
@@ -109,7 +110,7 @@ public class MyPlayerNewService extends Service {
 	}
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		
+		DeBug.d(this, "MyPlayerService..................onStartCommand");
 		/**是否是自定义任务栏里面的控件发来的消息*/
 		if(intent==null){
 			return 0;
@@ -163,50 +164,47 @@ public class MyPlayerNewService extends Service {
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
+		DeBug.d(this, "..................onBind");
 		return mIBinder;
 	}
 	class MediaServiceSub extends IMediaService.Stub{
 
 		@Override
 		public int duration() throws RemoteException {
-			// TODO Auto-generated method stub
-			return 0;
+			return duration;
 		}
 		@Override
 		public int position() throws RemoteException {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public int getPlayState() throws RemoteException {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public int getPlayMode() throws RemoteException {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public void setPlayMode(int mode) throws RemoteException {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void sendPlayStateBrocast() throws RemoteException {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void exit() throws RemoteException {
-			// TODO Auto-generated method stub
-			System.exit(0);
+//			System.exit(0);
+			release();
+//			stopSelf();
 			
+//			System.exit(0);
 //			Intent service = new Intent(Mp3Util_New.playService);
 //			MyPlayerNewService.this.onUnbind(service);
 			
@@ -321,24 +319,27 @@ public class MyPlayerNewService extends Service {
 		}
 		
 	}
-	public void stop(){
-		
-	}
 	@Override
 	public boolean onUnbind(Intent intent) {
+		DeBug.d(this, "...........................onUnbind");
 		
+		release();
+		return super.onUnbind(intent);
+	}
+	private void release(){
 		if (mediaPlayer != null) {
 			mediaPlayer.stop();
 			mediaPlayer.release();
 			mediaPlayer = null;
 		}
+		handler.removeMessages(1);
+		handler.removeMessages(2);
 		mp3Util.setCurrentTime(0);
-		
-		return super.onUnbind(intent);
 	}
 	@Override
 	public void onDestroy() {
-		
+		DeBug.d(this, "...........................onDestroy");
+		release();
 //		timer.cancel();
 		
 		

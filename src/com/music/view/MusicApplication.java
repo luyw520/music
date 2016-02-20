@@ -5,6 +5,7 @@ import java.io.File;
 import android.app.Application;
 import android.content.Context;
 
+import com.music.model.ScreenManager;
 import com.music.utils.BitmapCacheUtil;
 import com.music.utils.DeBug;
 import com.music.utils.FileUtils;
@@ -21,9 +22,12 @@ public class MusicApplication extends Application {
 	private static final String TAG = "MusicApplication";
 	private static MusicApplication musicApplication;
 	private LockPatternUtils mLockPatternUtils;
+	@SuppressWarnings("unused")
+	private ScreenManager screenManager;
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		screenManager=ScreenManager.getScreenManager();
 		DeBug.d(TAG, "MusicApplication ............onCreate:");
 		long start=System.currentTimeMillis();
 		Mp3Util_New.init(this);
@@ -46,6 +50,7 @@ public class MusicApplication extends Application {
 //        FontsOverride.setDefaultFont(this, "SERIF", "fonts/a.ttf");
 //        FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/a.ttf");
 	}
+	
 	private void initImageLoader(Context applicationContext) {
 		ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(applicationContext);
 		config.threadPriority(Thread.NORM_PRIORITY - 2);
