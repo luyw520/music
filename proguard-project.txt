@@ -18,16 +18,19 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--optimizationpasses 5  
--dontusemixedcaseclassnames  
--dontskipnonpubliclibraryclasses  
--dontpreverify  
--verbose  
--optimizations !code/simplification/arithmetic,!field/*,!class/merging/*  
+
+-ignorewarnings						# 忽略警告，避免打包时某些警告出现 
+
+-optimizationpasses 5  				# 指定代码的压缩级别
+-dontusemixedcaseclassnames 		 # 是否使用大小写混合  
+-dontskipnonpubliclibraryclasses  	# 是否混淆第三方jar
+-dontpreverify  					# 混淆时是否做预校验
+-verbose  							# 混淆时是否记录日志
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*  # 混淆时所采用的算法  
   
--keepattributes *Annotation*  
--keepattributes Signature  
+ #把所有你的jar包都申明进来
   
+ #指定要处理的应用程序jar,war,ear和目录所需要的程序库文件
 -libraryjars libs/adapter.jar
 -libraryjars libs/android-support-v4.jar
 -libraryjars libs/androideventbus-1.0.2.jar
@@ -57,11 +60,20 @@
 -libraryjars libs/xUtils-2.6.14.jar
 -libraryjars libs/zxing.jar  
 
--ignorewarnings
--libraryjars libs/android-support-v4.jar
+
+
 -dontwarn android.support.v4.** 
 -dontwarn org.apache.commons.net.**
 -dontwarn com.tencent.** 
+
+#不要混淆xUtils中的注解类型
+-keep class * extends java.lang.annotation.Annotation { *; }
+-keep class com.lidroid.** { *; }
+
+#保留所有具有公有访问权限的类和其公共成员
+-keepclasseswithmembers class *{
+    public *;
+}
 
 -keepclasseswithmembernames class * {
     native <methods>;
@@ -133,3 +145,5 @@
 -keep public class * extends android.preference.Preference
 -keep public class * extends android.support.v4.**
 -keep public class com.android.vending.licensing.ILicensingService
+#保持R文件不被混淆
+-keep class **.R$* {*;}
