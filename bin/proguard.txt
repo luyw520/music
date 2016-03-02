@@ -7,20 +7,20 @@
 # view res/layout/frame_main.xml #generated:58
 -keep class android.support.v4.view.ViewPager { <init>(...); }
 
-# view AndroidManifest.xml #generated:96
+# view AndroidManifest.xml #generated:97
 -keep class com.baidu.voicerecognition.android.ui.BaiduASRDigitalDialog { <init>(...); }
 
 # view res/layout/activity_main_viewpager.xml #generated:13
 -keep class com.jfeinstein.jazzyviewpager.JazzyViewPager { <init>(...); }
 
-# view AndroidManifest.xml #generated:208
+# view AndroidManifest.xml #generated:216
 -keep class com.music.broadcastreceiver.NotificationReceiver { <init>(...); }
 
 # view res/layout/activity_play_layout.xml #generated:98
 # view res/layout/activity_play_layout2.xml #generated:107
 -keep class com.music.lrc.LyricView { <init>(...); }
 
-# view AndroidManifest.xml #generated:56
+# view AndroidManifest.xml #generated:59
 -keep class com.music.view.MusicApplication { <init>(...); }
 
 # view res/layout/base.xml #generated:1
@@ -35,19 +35,19 @@
 # view AndroidManifest.xml #generated:124
 -keep class com.music.view.activity.LocalMusicActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:160
+# view AndroidManifest.xml #generated:161
 -keep class com.music.view.activity.LockScreenActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:147
 -keep class com.music.view.activity.LoginActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:165
+# view AndroidManifest.xml #generated:166
 -keep class com.music.view.activity.MipcaCaptureActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:137
 -keep class com.music.view.activity.PlayerActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:164
+# view AndroidManifest.xml #generated:165
 -keep class com.music.view.activity.ScanActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:141
@@ -71,10 +71,10 @@
 # view AndroidManifest.xml #generated:157
 -keep class com.music.view.gesturepressword.UnlockGesturePasswordActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:199
+# view AndroidManifest.xml #generated:207
 -keep class com.music.view.service.LockScreenService { <init>(...); }
 
-# view AndroidManifest.xml #generated:201
+# view AndroidManifest.xml #generated:209
 -keep class com.music.view.service.MyPlayerNewService { <init>(...); }
 
 # view res/layout/activity_main_pag2.xml #generated:12
@@ -161,43 +161,43 @@
 # view res/layout/activity_mipcacapture.xml #generated:16
 -keep class com.music.zxing.view.ViewfinderView { <init>(...); }
 
-# view AndroidManifest.xml #generated:184
+# view AndroidManifest.xml #generated:185
 -keep class com.tencent.connect.common.AssistActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:168
+# view AndroidManifest.xml #generated:169
 -keep class com.tencent.tauth.AuthActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:244
+# view AndroidManifest.xml #generated:246
 -keep class com.umeng.message.ElectionReceiver { <init>(...); }
 
-# view AndroidManifest.xml #generated:237
+# view AndroidManifest.xml #generated:241
 -keep class com.umeng.message.MessageReceiver { <init>(...); }
 
-# view AndroidManifest.xml #generated:217
+# view AndroidManifest.xml #generated:224
 -keep class com.umeng.message.NotificationProxyBroadcastReceiver { <init>(...); }
 
 # view AndroidManifest.xml #generated:253
 -keep class com.umeng.message.RegistrationReceiver { <init>(...); }
 
-# view AndroidManifest.xml #generated:222
+# view AndroidManifest.xml #generated:228
 -keep class com.umeng.message.SystemReceiver { <init>(...); }
 
-# view AndroidManifest.xml #generated:298
+# view AndroidManifest.xml #generated:294
 -keep class com.umeng.message.UmengDownloadResourceService { <init>(...); }
 
-# view AndroidManifest.xml #generated:283
+# view AndroidManifest.xml #generated:282
 -keep class com.umeng.message.UmengIntentService { <init>(...); }
 
 # view AndroidManifest.xml #generated:260
 -keep class com.umeng.message.UmengMessageBootReceiver { <init>(...); }
 
-# view AndroidManifest.xml #generated:286
+# view AndroidManifest.xml #generated:283
 -keep class com.umeng.message.UmengMessageIntentReceiverService { <init>(...); }
 
 # view AndroidManifest.xml #generated:266
 -keep class com.umeng.message.UmengService { <init>(...); }
 
-# view AndroidManifest.xml #generated:189
+# view AndroidManifest.xml #generated:190
 -keep class com.umeng.socialize.view.ShareActivity { <init>(...); }
 
 # view res/layout/umeng_socialize_post_share.xml #generated:2
@@ -212,6 +212,12 @@
 
 # view res/layout/umeng_socialize_at_view.xml #generated:47
 -keep class com.umeng.socialize.view.wigets.SlideBar { <init>(...); }
+
+# view AndroidManifest.xml #generated:199
+-keep class com.umeng.update.UpdateDialogActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:205
+-keep class com.umeng.update.net.DownloadingService { <init>(...); }
 
 # view AndroidManifest.xml #generated:111
 -keep class com.unuse.MainActivity { <init>(...); }

@@ -53,6 +53,8 @@ import com.music.widget.slidingmenu2.SlidingMenu;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
+import com.umeng.update.UmengUpdateAgent;
+import com.umeng.update.UpdateConfig;
 
 /**
  *
@@ -215,6 +217,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 								+ registrationId);
 			}
 		});
+		UmengUpdateAgent.update(this);
+		UpdateConfig.setDebug(true);
 	}
 
 	public void changeFragment(int flag, Object object) {

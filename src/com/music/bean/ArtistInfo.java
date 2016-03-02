@@ -1,6 +1,3 @@
-/**
- * Copyright (c) www.longdw.com
- */
 package com.music.bean;
 
 import android.os.Bundle;

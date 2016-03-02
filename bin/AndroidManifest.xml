@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.music.lu"
-    android:versionCode="2"
-    android:versionName="2.0" >
+    android:versionCode="1"
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="18" />
-    <uses-permission android:name="android.permission.RESTART_PACKAGES"></uses-permission>
+
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" >
+    </uses-permission>
     <!-- 【必须】 信鸽SDK所需权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -51,13 +53,13 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    
-	 <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:name="com.music.view.MusicApplication"
         android:allowBackup="true"
         android:icon="@drawable/playing_bar_default_avatar"
-        
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
@@ -92,7 +94,6 @@
             android:name="com.baidu.speech.SECRET_KEY"
             android:value="75niqVHM10wnbj6Gvc9y5FtxUEh21Zr0" />
 
-
         <activity
             android:name="com.baidu.voicerecognition.android.ui.BaiduASRDigitalDialog"
             android:configChanges="orientation|keyboardHidden|screenLayout"
@@ -107,24 +108,23 @@
         </activity>
         <!-- end : baidu speech sdk -->
 
-
         <activity
             android:name="com.unuse.MainActivity"
             android:excludeFromRecents="true"
-            android:label="@string/app_name"
             android:hardwareAccelerated="false"
+            android:label="@string/app_name"
             android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="com.unuse.MainContentActivity"
-            android:label="@string/app_name"
             android:hardwareAccelerated="false"
+            android:label="@string/app_name"
             android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="com.music.view.activity.LocalMusicActivity"
-            android:label="@string/app_name"
             android:hardwareAccelerated="false"
+            android:label="@string/app_name"
             android:launchMode="singleTask" >
         </activity>
         <activity android:name="com.music.view.activity.WelcomeActivity" >
@@ -139,8 +139,8 @@
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:windowSoftInputMode="stateUnchanged|adjustPan" 
-            android:name="com.music.view.activity.SearchMusicActivity" >
+            android:name="com.music.view.activity.SearchMusicActivity"
+            android:windowSoftInputMode="stateUnchanged|adjustPan" >
         </activity>
         <activity android:name="com.music.view.activity.SettingActivity" >
         </activity>
@@ -154,9 +154,10 @@
         </activity>
         <activity android:name="com.music.view.gesturepressword.GuideGesturePasswordActivity" >
         </activity>
-        <activity android:name="com.music.view.gesturepressword.UnlockGesturePasswordActivity">
+        <activity android:name="com.music.view.gesturepressword.UnlockGesturePasswordActivity" >
         </activity>
-        <activity android:name="com.music.view.gesturepressword.GresturePasswordSetActivity"></activity>
+        <activity android:name="com.music.view.gesturepressword.GresturePasswordSetActivity" >
+        </activity>
         <activity
             android:name="com.music.view.activity.LockScreenActivity"
             android:launchMode="singleTask" >
@@ -194,14 +195,21 @@
             android:theme="@style/Theme.UMDialog"
             android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
-        <!-- 注册服务 -->
-
+        <!-- 更新 -->
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        
+        <!-- ************************* 注册服务************************* -->
+        <service android:name="com.umeng.update.net.DownloadingService" >
+        </service>
         <service android:name="com.music.view.service.LockScreenService" >
         </service>
-        <service android:name="com.music.view.service.MyPlayerNewService" 
-            >
+        <service android:name="com.music.view.service.MyPlayerNewService" >
             <intent-filter>
-                <action android:name="com.music.service.myplayerService"></action>
+                <action android:name="com.music.service.myplayerService" >
+                </action>
             </intent-filter>
         </service>
 
@@ -211,17 +219,13 @@
             </intent-filter>
         </receiver>
 
-      
         <!-- 友盟推送 -->
 
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
-            android:exported="false"
-             >
+            android:exported="false" >
         </receiver>
-        <receiver
-            android:name="com.umeng.message.SystemReceiver"
-             >
+        <receiver android:name="com.umeng.message.SystemReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -234,16 +238,12 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-        <receiver
-            android:name="com.umeng.message.MessageReceiver"
-             >
+        <receiver android:name="com.umeng.message.MessageReceiver" >
             <intent-filter>
                 <action android:name="org.agoo.android.intent.action.RECEIVE" />
             </intent-filter>
         </receiver>
-        <receiver
-            android:name="com.umeng.message.ElectionReceiver"
-            >
+        <receiver android:name="com.umeng.message.ElectionReceiver" >
             <intent-filter>
                 <action android:name="org.agoo.android.intent.action.ELECTION_RESULT_V4" />
 
@@ -266,8 +266,7 @@
         <service
             android:name="com.umeng.message.UmengService"
             android:exported="true"
-            android:label="PushService"
-            >
+            android:label="PushService" >
             <intent-filter>
                 <action android:name="com.music.lu.intent.action.START" />
             </intent-filter>
@@ -280,13 +279,10 @@
                 <category android:name="umeng" />
             </intent-filter>
         </service>
-        <service
-            android:name="com.umeng.message.UmengIntentService"
-            />
+        <service android:name="com.umeng.message.UmengIntentService" />
         <service
             android:name="com.umeng.message.UmengMessageIntentReceiverService"
-            android:exported="true"
-            >
+            android:exported="true" >
             <intent-filter>
                 <action android:name="org.android.agoo.client.MessageReceiverService" />
             </intent-filter>
