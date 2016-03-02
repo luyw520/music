@@ -109,7 +109,7 @@ public class LyricLoadHelper {
 
 					// 逐行分析歌词文本
 					while ((line = br.readLine()) != null) {
-						Log.i(TAG, "lyric line:" + line);
+//						Log.i(TAG, "lyric line:" + line);
 						parseLine(line);
 					}
 
@@ -258,7 +258,7 @@ public class LyricLoadHelper {
 					// 将每个时间戳对应的一份句子存入句子集合
 					long t = parseTime(string);
 					if (t != -1) {
-						Log.i(TAG, "line content match-->" + content);
+//						Log.i(TAG, "line content match-->" + content);
 						mLyricSentences.add(new LyricSentence(t, content));
 					}
 				}
@@ -268,7 +268,7 @@ public class LyricLoadHelper {
 			lastIndex = index;
 			lastLength = s.length();
 
-			Log.i(TAG, "time match--->" + s);
+//			Log.i(TAG, "time match--->" + s);
 		}
 		// 如果列表为空，则表示本行没有分析出任何标签
 		if (times.isEmpty()) {
@@ -281,7 +281,7 @@ public class LyricLoadHelper {
 		} else {
 			content = trimBracket(line.substring(timeLength));
 		}
-		Log.i(TAG, "line content match-->" + content);
+//		Log.i(TAG, "line content match-->" + content);
 		// 将每个时间戳对应的一份句子存入句子集合
 		for (String s : times) {
 			long t = parseTime(s);

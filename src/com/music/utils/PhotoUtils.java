@@ -283,7 +283,7 @@ public class PhotoUtils {
 	 * @return
 	 */
 	public static Bitmap getFilter(FilterType filterType, Bitmap defaultBitmap) {
-		if (filterType.equals(FilterType.д╛хо)) {
+		if (filterType.equals(FilterType.DEFAULT)) {
 			return defaultBitmap;
 		} else if (filterType.equals(FilterType.LOMO)) {
 			return lomoFilter(defaultBitmap);

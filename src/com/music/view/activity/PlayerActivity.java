@@ -36,6 +36,7 @@ import com.music.model.ShareModel;
 import com.music.utils.AppConstant;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
+import com.music.utils.DeBug;
 import com.music.utils.DialogUtil;
 import com.music.utils.ImageUtil;
 import com.music.utils.MediaUtil;
@@ -352,6 +353,7 @@ public class PlayerActivity extends BaseActivity {
 	 * 初始化控件数据
 	 */
 	public void initViewData() {
+		DeBug.d(this, "initViewData............");
 		initAnimation();
 		currentMp3Info = mp3Util.getCurrentMp3Info();
 		musicTitle.setText(currentMp3Info.getTitle());

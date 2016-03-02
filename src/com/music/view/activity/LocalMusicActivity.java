@@ -48,7 +48,6 @@ import com.music.view.fragment.MusicListFragment;
 import com.music.view.gesturepressword.UnlockGesturePasswordActivity;
 import com.music.view.widget.CircularImage;
 import com.music.view.widget.MusicTimeProgressView;
-import com.music.view.widget.RoundImageView;
 import com.music.widget.slidingmenu2.SlidingMenu;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.message.IUmengRegisterCallback;
@@ -98,7 +97,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	private MyNotification myNotification;
 
 	@ViewInject(value = R.id.iv_music_album)
-	private RoundImageView iv_music_album;
+	private ImageView iv_music_album;
 
 	@ViewInject(value = R.id.slidingMenu)
 	private com.music.widget.slidingmenu.SlidingMenu slidingMenu;
@@ -149,19 +148,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		LogUtil.d(this, "onCreate.................");
-		
-		
-//		if (ApplicationUtil.getAppLockState(this) == 1) {
-//			isFirst = false;
-//			ApplicationUtil.setAppToBack(this, 0);
-//			Intent intent = new Intent(this,
-//					UnlockGesturePasswordActivity.class);
-//			startActivityForResult(intent, LOCK_PASSWORD);
-//			
-//		}
-//		
-		
-		
 		mSplashScreen = new SplashScreen(this);
 		mSplashScreen.show(R.drawable.image_splash_background_new,
 				SplashScreen.SLIDE_UP);
@@ -169,10 +155,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		mp3Util = Mp3Util_New.getDefault();
 		playPauseDrawable = new PlayPauseDrawable(30, playColor, pauseColor,
 				dwableDuaration);
-		// btn_musicPlaying.setImageDrawable(playPauseDrawable);
-		// playPauseDrawable.animatePlay();
-		// btn_musicPlaying.setBackground(playPauseDrawable);
-		// playPauseDrawable.animatePlay();
 		long start1=SystemClock.currentThreadTimeMillis();
 		initData();
 		long start2=SystemClock.currentThreadTimeMillis();
@@ -188,22 +170,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		
 		
 	}
-
-	@Override
-	public void onAttachedToWindow() {
-		super.onAttachedToWindow();
-		DeBug.d(this, "onAttachedToWindow..................");
-		// if (!mp3Util.isPlaying()) {
-		// DeBug.d(LocalMusicActivity.this, "............animatePlay");
-		// playPauseDrawable.animatePlay();
-		// }
-		// else{
-		// DeBug.d(LocalMusicActivity.this, "............animatePause");
-		// playPauseDrawable.animatePause();
-		// }
-
-	}
-
 	private void initUmeng() {
 		// umeng push
 		PushAgent.getInstance(this).onAppStart();
@@ -220,7 +186,11 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		UmengUpdateAgent.update(this);
 		UpdateConfig.setDebug(true);
 	}
-
+	/**
+	 * click ARTIST ,ALBUM,FOLDER jump to musiclistfragment
+	 * @param flag
+	 * @param object
+	 */
 	public void changeFragment(int flag, Object object) {
 		if (musicListFragment == null) {
 			musicListFragment = new MusicListFragment();
@@ -345,7 +315,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		DeBug.d(this, "currentMp3Info.getDuration():"+currentMp3Info.getDuration());
 		musicTimeProgressView.setMaxProgress(currentMp3Info.getDuration());
 	}
-
 	private void initWidgetData() {
 		if (localMusicFragment == null) {
 			localMusicFragment = new LocalMusicFragment();

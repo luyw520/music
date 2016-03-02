@@ -29,16 +29,23 @@
                 android:id="@+id/id_frame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/header" />
+                android:layout_below="@+id/header" 
+                android:layout_above="@+id/music_about_layout"/>
 
             <RelativeLayout
                 android:id="@+id/music_about_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:alpha="0.8"
+               
                 android:background="@color/player_track_color2" >
 
+               <!--  <ImageView
+                    android:id="@+id/iv_music_album"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/header"
+                     /> -->
                 <com.music.view.widget.RoundImageView
                     android:id="@+id/iv_music_album"
                     android:layout_width="70dp"

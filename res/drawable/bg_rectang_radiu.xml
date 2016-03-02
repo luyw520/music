@@ -5,11 +5,11 @@
 <!-- 设置圆角矩形的半径 -->
 
 
-<corners android:radius="10dp"/>
+<corners android:radius="20dp"/>
 
 <!-- 设置矩形的内部填充色 -->
 
 
-<solid android:color="#10D21C"/>
+<solid android:color="#FFFFF0"/>
 
 </shape>

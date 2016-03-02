@@ -10,17 +10,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
@@ -30,19 +26,19 @@ import com.music.lu.R;
 import com.music.service.IConstants;
 import com.music.service.IMediaService;
 import com.music.utils.AsyncTaskUtil;
+import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
 import com.music.utils.BitmapCacheUtil;
-import com.music.utils.LogUtil;
 import com.music.utils.DeBug;
+import com.music.utils.LogUtil;
 import com.music.utils.PhotoUtils;
 import com.music.utils.StringUtil;
-import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
 import com.music.view.activity.LocalMusicActivity;
 import com.music.widget.indexablelistview.IndexableListView;
 
 /**
  *
  */
-public class AlbumFragment extends Fragment {
+public class AlbumFragment extends BaseFragment {
 
 	protected IMediaService mService;
 	private static final String TAG = "AlbumFragment";
@@ -73,7 +69,7 @@ public class AlbumFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		musicListItemClickListener = new MusicListItemClickListener();
+//		musicListItemClickListener = new MusicListItemClickListener();
 		albumInfos = com.music.utils.MusicUtils.getDefault().queryAlbums(
 				getActivity());
 		isLoaded = new int[albumInfos.size()];
@@ -82,7 +78,7 @@ public class AlbumFragment extends Fragment {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
+		super.onCreateView(inflater, container, savedInstanceState);
 		View view = inflater.inflate(R.layout.fragment, container,
 				false);
 		initViewWidget(view);
@@ -111,19 +107,19 @@ public class AlbumFragment extends Fragment {
 		System.out.println("album widget:sort " + (sort - query) / 1000.0);
 		listAdapter = new AlbumAdapter(getActivity(), albumInfos);
 
-		LinearLayout listViewFoodView = new LinearLayout(getActivity());
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		params.topMargin = 15;
-		params.bottomMargin = 200;
-		params.leftMargin = 100;
-		TextView textView = new TextView(getActivity());
-		textView.setGravity(Gravity.CENTER);
-		textView.setText("共" + albumInfos.size() + "首专辑");
+//		LinearLayout listViewFoodView = new LinearLayout(getActivity());
+//		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+//				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+////		params.topMargin = 15;
+////		params.bottomMargin = 200;
+////		params.leftMargin = 100;
+//		TextView textView = new TextView(getActivity());
+//		textView.setGravity(Gravity.CENTER);
+//		textView.setText("共" + albumInfos.size() + "首专辑");
+//
+//		listViewFoodView.addView(textView, params);
 
-		listViewFoodView.addView(textView, params);
-
-		mMusiclist.addFooterView(listViewFoodView);
+		mMusiclist.addFooterView(getFoodView("共" + albumInfos.size() + "首专辑"));
 
 		mMusiclist.setAdapter(listAdapter);
 		System.out.println("album widget: init"

@@ -48,11 +48,11 @@ public class TopNoticeDialog {
         wm= (WindowManager) context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         final WindowManager.LayoutParams params = mParams;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.width = WindowManager.LayoutParams.WRAP_CONTENT;
         params.format = PixelFormat.TRANSLUCENT;
 //        params.windowAnimations = com.android.internal.R.style.Animation_Toast;
         params.type = WindowManager.LayoutParams.TYPE_TOAST;
-        params.gravity= Gravity.TOP;
+        params.gravity= Gravity.CENTER;
         params.setTitle("Toast");
         params.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                 | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE

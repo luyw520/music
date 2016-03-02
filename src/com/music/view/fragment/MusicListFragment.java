@@ -4,15 +4,10 @@ import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -22,7 +17,6 @@ import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
 import com.music.lu.R;
 import com.music.service.IConstants;
-import com.music.service.IMediaService;
 import com.music.utils.LogUtil;
 import com.music.utils.Mp3Util_New;
 import com.music.utils.MusicUtils;
@@ -32,9 +26,9 @@ import com.music.widget.indexablelistview.IndexableListView;
 /**
  *
  */
-public class MusicListFragment extends Fragment implements IConstants{
+public class MusicListFragment extends BaseFragment implements IConstants{
 
-	protected IMediaService mService;
+//	protected IMediaService mService;
 	private static final String TAG = "MusicListFragment";
 
 	private ArtistAdapter listAdapter;
@@ -58,7 +52,7 @@ public class MusicListFragment extends Fragment implements IConstants{
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
+		super.onCreateView(inflater, container, savedInstanceState);
 		View view = inflater.inflate(R.layout.fragment, container,
 				false);
 		initViewWidget(view);
@@ -82,20 +76,22 @@ public class MusicListFragment extends Fragment implements IConstants{
 		listAdapter = new ArtistAdapter(getActivity(),musicInfos,R.layout.item_listview__layout);
 		mMusiclist.setShow(false);
 		
-		LinearLayout listViewFoodView = new LinearLayout(
-				getActivity());
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		params.topMargin = 15;
-		params.bottomMargin = 250;
-		params.leftMargin = 100;
-		TextView textView = new TextView(getActivity());
-		textView.setGravity(Gravity.CENTER);
-		textView.setText("共" + musicInfos.size() + "首歌曲");
+//		LinearLayout listViewFoodView = new LinearLayout(
+//				getActivity());
+//		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+//				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+////		params.topMargin = 15;
+//		
+////		params.bottomMargin = 250;
+////		params.leftMargin = 100;
+//		TextView textView = new TextView(getActivity());
+//		textView.setGravity(Gravity.CENTER);
+//		textView.setPadding(0, 15, 0, 15);
+//		textView.setText("共" + musicInfos.size() + "首歌曲");
 
-		listViewFoodView.addView(textView, params);
+		mMusiclist.addFooterView(getFoodView("共" + musicInfos.size() + "首歌曲"));
 
-		mMusiclist.addFooterView(listViewFoodView);
+//		mMusiclist.addFooterView(listViewFoodView);
 		
 		
 		mMusiclist.setAdapter(listAdapter);

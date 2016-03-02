@@ -64,14 +64,14 @@ public class ImageFactoryFliter extends ImageFactory {
 
 	private void initFilterList() {
 		mFilterItems = new ArrayList<ImageFactoryFliter.FilterItem>();
-		FilterItem filterItem_1 = new FilterItem(FilterType.Ä¬ÈÏ, "Ä¬ÈÏ");
+		FilterItem filterItem_1 = new FilterItem(FilterType.DEFAULT, "Ä¬ÈÏ");
 		FilterItem filterItem_2 = new FilterItem(FilterType.LOMO, "LOMO");
-		FilterItem filterItem_3 = new FilterItem(FilterType.´¿Õæ, "´¿Õæ");
-		FilterItem filterItem_4 = new FilterItem(FilterType.ÖØ²Ê, "ÖØ²Ê");
-		FilterItem filterItem_5 = new FilterItem(FilterType.Î¬Ò²ÄÉ, "Î¬Ò²ÄÉ");
-		FilterItem filterItem_6 = new FilterItem(FilterType.µ­ÑÅ, "µ­ÑÅ");
-		FilterItem filterItem_7 = new FilterItem(FilterType.¿á, "¿á");
-		FilterItem filterItem_8 = new FilterItem(FilterType.Å¨ºñ, "Å¨ºñ");
+		FilterItem filterItem_3 = new FilterItem(FilterType.CHUN_ZHEN, "´¿Õæ");
+		FilterItem filterItem_4 = new FilterItem(FilterType.ZHONG_CAI, "ÖØ²Ê");
+		FilterItem filterItem_5 = new FilterItem(FilterType.wei_ye_lai, "Î¬Ò²ÄÉ");
+		FilterItem filterItem_6 = new FilterItem(FilterType.DAN_YAN, "µ­ÑÅ");
+		FilterItem filterItem_7 = new FilterItem(FilterType.CU, "¿á");
+		FilterItem filterItem_8 = new FilterItem(FilterType.CHUN_HOU, "Å¨ºñ");
 		mFilterItems.add(filterItem_1);
 		mFilterItems.add(filterItem_2);
 		mFilterItems.add(filterItem_3);
@@ -150,6 +150,7 @@ public class ImageFactoryFliter extends ImageFactory {
 	}
 
 	public enum FilterType {
-		Ä¬ÈÏ, LOMO, ´¿Õæ, ÖØ²Ê, Î¬Ò²ÄÉ, µ­ÑÅ, ¿á, Å¨ºñ;
+//		Ä¬ÈÏ, LOMO, ´¿Õæ, ÖØ²Ê, Î¬Ò²ÄÉ, µ­ÑÅ, ¿á, Å¨ºñ;
+		DEFAULT,LOMO,CHUN_ZHEN,ZHONG_CAI,wei_ye_lai,DAN_YAN,CU,CHUN_HOU;
 	}
 }

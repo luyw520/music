@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
-        android:padding="5dp"
+        android:padding="15dp"
         android:gravity="center"
         android:id="@+id/ll"
         android:background="@drawable/bg_rectang_radiu"
@@ -24,8 +24,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginLeft="8dp"
-            android:textSize="14sp"
-            android:text="ddddd"
+            android:textSize="16sp"
             android:textColor="#fff"/>
     </LinearLayout>
 

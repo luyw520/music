@@ -10,12 +10,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.music.bean.LyricSentence;
 
 public class LyricView extends View {
+	@SuppressWarnings("unused")
 	private static final String TAG = "LyricView";
 	/**
 	 * 没有歌词
@@ -29,9 +29,15 @@ public class LyricView extends View {
 	 * 歌词加载成功
 	 */
 	public static final int LRC_LOADED = 2;
+	/**
+	 * // 非高亮部分
+	 */
 	private Paint mPaint;
 	/** 半宽 */
 	private float mX;
+	/**
+	 * 高亮部分 当前歌词
+	 */
 	private Paint mPathPaint;
 	/** 控件的高 */
 	private int mY;
@@ -48,25 +54,8 @@ public class LyricView extends View {
 	private int index = 0;
 //	private float mTouchHistoryY;
 	private int loadLrc = 0;
-//	private LyricViewClickListener lyricViewClickListener;
-
-//	public void setLyricViewClickListener(LyricViewClickListener l) {
-//		this.lyricViewClickListener = l;
-//	}
-
-//	@Override
-//	public boolean onTouchEvent(MotionEvent event) {
-//
-//		if (isClick) {
-//			lyricViewClickListener.lyricViewClick();
-//		}
-//		return super.onTouchEvent(event);
-//	}
 
 	private float drift_r = 0;
-	/** 滑动时显示进度 */
-//	private boolean showprogress;//
-//	public int temp = 0;
 	@SuppressWarnings("unused")
 	private Context mContext;
 
@@ -93,8 +82,9 @@ public class LyricView extends View {
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mPaint.setTextSize(25);
-		mPaint.setColor(Color.GRAY);
+		mPaint.setColor(Color.LTGRAY);
 		mPaint.setTypeface(Typeface.SERIF);
+		mPaint.setTextAlign(Paint.Align.CENTER);
 		
 		// 高亮部分 当前歌词
 		mPathPaint = new Paint();
@@ -102,7 +92,7 @@ public class LyricView extends View {
 		mPathPaint.setTextSize(40);
 		mPathPaint.setColor(Color.WHITE);
 		mPathPaint.setTypeface(Typeface.SANS_SERIF);
-
+		mPathPaint.setTextAlign(Paint.Align.CENTER);
 	}
 
 	public List<Map<String, String>> maps;
@@ -118,13 +108,7 @@ public class LyricView extends View {
 
 	public void setLyricSentences(List<LyricSentence> l,boolean isInit) {
 //		DeBug.d(this,"List<LyricSentence>:"+l.toString());
-		
 		if (l != null && lyricSentences.isEmpty()) {
-//			for(LyricSentence lSentence:l){
-//				DeBug.d(this, "StartTime:"+lSentence.getStartTime()+",DuringTime:"+lSentence.getDuringTime()+",ContentText:"+lSentence.getContentText());
-//			}
-//			if(lyricSentences.size()==0)
-//			lyricSentences.clear();
 			lyricSentences.addAll(l);
 			index = 0;
 		}
@@ -147,36 +131,26 @@ public class LyricView extends View {
 
 
 	protected void onDraw(Canvas canvas) {
-
 		drift_r = drifty;
-
 		canvas.drawColor(0xEFeffff);
-		Paint p = mPaint;
-		Paint p2 = mPathPaint;
-		p.setTextAlign(Paint.Align.CENTER);
-
 		if (index == -1)
 			return;
-		p2.setTextAlign(Paint.Align.CENTER);
-
 //		isClick = false;
 		if (lyricSentences == null || lyricSentences.size() == 0 || loadLrc == 0) {
 //			isClick = true;
-			canvas.drawText("暂无歌词", mX, middleY, p2);
+			canvas.drawText("暂无歌词", mX, middleY, mPathPaint);
 			return;
 		}
 		if (loadLrc == 1) {
-			canvas.drawText("歌词正在加载中...", mX, middleY, p2);
+			canvas.drawText("歌词正在加载中...", mX, middleY, mPathPaint);
 			return;
 		}
-		p2.setTextSize(60);
 
 		if (index > lyricSentences.size()) {
 			return;
 		}
-		canvas.drawText(lyricSentences.get(index).getContentText(), mX, middleY + drift_r, p2);
+		canvas.drawText(lyricSentences.get(index).getContentText(), mX, middleY + drift_r, mPathPaint);
 
-		p.setTextSize(40);
 		float tempY = middleY + drift_r;
 		// 画出本句之前的句子
 		for (int i = index - 1; i >= 0; i--) {
@@ -185,7 +159,7 @@ public class LyricView extends View {
 			if (tempY < 0) {
 				break;
 			}
-			canvas.drawText(lyricSentences.get(i).getContentText(), mX, tempY, p);
+			canvas.drawText(lyricSentences.get(i).getContentText(), mX, tempY, mPaint);
 		}
 		tempY = middleY + drift_r;
 		// 画出本句之后的句子
@@ -195,7 +169,7 @@ public class LyricView extends View {
 			if (tempY > mY) {
 				break;
 			}
-			canvas.drawText(lyricSentences.get(i).getContentText(), mX, tempY, p);
+			canvas.drawText(lyricSentences.get(i).getContentText(), mX, tempY, mPaint);
 		}
 
 	}
