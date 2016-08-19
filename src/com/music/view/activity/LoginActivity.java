@@ -33,7 +33,6 @@ import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.soexample.commons.Constants;
 //import com.umeng.socialize.sensor.controller.UMShakeService;
 //import com.umeng.socialize.sensor.controller.impl.UMShakeServiceFactory;
-import com.unuse.MainActivity;
 
 @ContentView(value = R.layout.activity_login)
 public class LoginActivity extends Activity {
@@ -216,7 +215,7 @@ public class LoginActivity extends Activity {
 					String headPath = info.get("profile_image_url").toString();
 					saveUser(username, "", headPath);
 					intent.putExtra("local", false);
-					setResult(MainActivity.REQUESTCODE_LOGIN, intent);
+					setResult(LocalMusicActivity.REQUESTCODE_LOGIN, intent);
 					finish();
 				}
 			}
@@ -245,7 +244,7 @@ public class LoginActivity extends Activity {
 				saveUser(username, userpasswrod, null);
 				Intent intent = new Intent();
 				intent.putExtra("local", true);
-				setResult(MainActivity.REQUESTCODE_LOGIN, intent);
+				setResult(LocalMusicActivity.REQUESTCODE_LOGIN, intent);
 				finish();
 			} else {
 				DialogUtil.showToast(this, "用户名或密码错误");

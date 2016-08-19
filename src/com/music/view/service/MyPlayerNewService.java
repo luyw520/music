@@ -56,49 +56,6 @@ public class MyPlayerNewService extends Service {
 				
 				
 			}
-			
-			
-//			/**
-//			 * 歌曲进度
-//			 */
-//			if (msg.what == 1) {
-//				if (mediaPlayer != null) {
-//					// 得到当前播放的进度,发送广播出去
-//					if(mediaPlayer.isPlaying()){
-//						currentTime = mediaPlayer.getCurrentPosition();
-//						Intent intent = new Intent();
-//						intent.setAction(ConstantUtil.MUSIC_CURRENT);
-//						intent.putExtra("currentTime", currentTime);
-//						sendBroadcast(intent);
-//						/**
-//						 * 每隔一秒钟把当前播放的音乐播放时间和当前播放
-//						 */
-//						handler.sendEmptyMessageDelayed(1, 1000);
-//					}
-//					
-//				}
-//			}
-//			/**
-//			 * 歌词进度
-//			 */
-//			if (msg.what == 2) {
-//				if (mediaPlayer != null) {
-//					// 得到当前播放的进度,发送广播出去
-//					if(mediaPlayer.isPlaying()){
-//						currentTime = mediaPlayer.getCurrentPosition();
-//						Intent intent = new Intent();
-//						intent.setAction(ConstantUtil.LRC_CURRENT);
-//						intent.putExtra("currentTime", currentTime);
-//						sendBroadcast(intent);
-//						/**
-//						 * 每隔豪秒钟把当前播放的音乐播放时间和当前播放
-//						 */
-//						handler.sendEmptyMessageDelayed(2, 100);
-//					}
-//					
-//				}
-//			}
-			
 		}
 
 	};

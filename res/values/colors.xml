@@ -157,8 +157,9 @@
     <color name="view_bg">#00000000</color>
     <color name="shadow">#bdbdbd</color>
 
-    
-    
+    <!-- 头部背景色 -->
+    <color name="header_bg">#66aaff</color>
+    <color name="header_bg_pre">#66aaee</color>
     
     
     <color name="holo_blue_light">#ff33b5e5</color>

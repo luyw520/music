@@ -67,8 +67,8 @@ public class SearchMusicActivity extends BaseActivity {
 	ImageView iv_search;
 	@ViewInject(value = R.id.iv_more)
 	ImageView iv_more;
-	@ViewInject(value = R.id.iv_searchMusic)
-	ImageView iv_searchMusic;
+//	@ViewInject(value = R.id.iv_searchMusic)
+//	ImageView iv_searchMusic;
 
 	@ViewInject(value = R.id.atvSongName)
 	AutoCompleteTextView atvSongName;
@@ -78,7 +78,6 @@ public class SearchMusicActivity extends BaseActivity {
 	@ViewInject(value = R.id.loadView)
 	private LoadingView loadView;
 
-	private Mp3Info mp3 = new Mp3Info();
 	private List<Mp3Info> datas = new ArrayList<Mp3Info>();
 
 	private MyAdater myAdapter;
@@ -100,7 +99,7 @@ public class SearchMusicActivity extends BaseActivity {
 	private static final String HISTORY_SEARCH = "history_search.lu";
 	private String clearHistory;
 	private Handler handler = new Handler();
-
+	private String key;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -115,12 +114,18 @@ public class SearchMusicActivity extends BaseActivity {
 	public void viewClick(View v) {
 		switch (v.getId()) {
 		case R.id.iv_searchMusic:
+			key = atvSonger.getText().toString();
+			if(!StringUtil.isDataVaild(new String[]{key})){
+				DialogUtil.showToast(this, R.string.empty_key_tips);
+				return;
+			};
+			
 			loadView.setLoadingText(getString(R.string.searching_music));
 			loadView.setVisibility(View.VISIBLE);
 			listView.setVisibility(View.GONE);
 			datas.clear();
 			closeSoftInput();
-			handler.postDelayed(new mRun(), 3000);
+			handler.postDelayed(new mRun(), 2000);
 			break;
 		case R.id.iv_back:
 			finish();
@@ -191,24 +196,10 @@ public class SearchMusicActivity extends BaseActivity {
 	}
 
 	private void searchMusic() {
-		
-		
-		songName = atvSongName.getText().toString();
-		songer = atvSonger.getText().toString();
-		if(!StringUtil.isDataVaild(new String[]{songName,songer})){
-			return;
-		};
 		atvSongName.clearFocus();
 		atvSonger.clearFocus();
 		saveHistorySearch();
-		mp3.setArtist(songer);
-		mp3.setTitle(songName);
-		mp3.setAlbum(songer);
-		mp3.setTitlepinyin(MediaUtil.toHanyuPinYin(songName));
-		mp3.setDisplayName(songer + "-" + songName + ".mp3");
-
-		musicHttpModel.searchMusic(songName, songer, new SearchMusicCallBack());
-
+		musicHttpModel.searchMusicByNetApi(key, new SearchMusicCallBack());
 	}
 	private void saveHistorySearch() {
 		if (historySongName.size() == 0) {
@@ -224,30 +215,29 @@ public class SearchMusicActivity extends BaseActivity {
 		if (!historySonger.contains(songer)) {
 			historySonger.add(0,songer);
 		}
-//		if(historySongName.contains(clearHistory)){
-//			historySongName.
-//		}
 		history.put(HISTORY_SONGER, historySonger);
 		history.put(HISTORY_SONGNAME, historySongName);
 		DataStorageModel.getDefault().saveObjectToFile(history, HISTORY_SEARCH);
 	}
 
-	private class SearchMusicCallBack extends RequestCallBack<String> {
+	private class SearchMusicCallBack extends RequestCallBack {
 		@Override
 		public void onFailure(HttpException arg0, String arg1) {
 			checkHasData();
 		}
 
 		@Override
-		public void onSuccess(ResponseInfo<String> arg0) {
-			Mp3Info tempMp3Info = xmlParseModel.parseMp3FromString(arg0.result);
-			if (tempMp3Info != null) {
-				mp3.setDownUrl(tempMp3Info.getDownUrl());
-				mp3.setUrl(tempMp3Info.getDownUrl());
-				mp3.playPath = tempMp3Info.getDownUrl();
-				mp3.setSize(tempMp3Info.getSize());
-				datas.add(mp3);
-			}
+		public void onSuccess(ResponseInfo arg0) {
+//			Mp3Info tempMp3Info = xmlParseModel.parseMp3FromString(arg0.result);
+//			if (tempMp3Info != null) {
+//				mp3.setDownUrl(tempMp3Info.getDownUrl());
+//				mp3.setUrl(tempMp3Info.getDownUrl());
+//				mp3.playPath = tempMp3Info.getDownUrl();
+//				mp3.setSize(tempMp3Info.getSize());
+//				datas.add(mp3);
+//			}
+			List<Mp3Info> temMp3Infos=(List<Mp3Info>) arg0.result;
+			datas.addAll(temMp3Infos);
 			checkHasData();
 
 		}
@@ -390,7 +380,7 @@ public class SearchMusicActivity extends BaseActivity {
 		@Override
 		public void onClick(View v) {
 			final Button button = (Button) v;
-			play();
+			play(datas.get(position));
 			down(button);
 
 		}
@@ -413,7 +403,7 @@ public class SearchMusicActivity extends BaseActivity {
 
 			@Override
 			public void onSuccess(ResponseInfo<File> arg0) {
-				DialogUtil.showToast(getApplicationContext(), mp3.getTitle()
+				DialogUtil.showToast(getApplicationContext(), datas.get(position).getTitle()
 						+ getString(R.string.down_success));
 			}
 
@@ -427,8 +417,8 @@ public class SearchMusicActivity extends BaseActivity {
 		}
 	}
 
-	private void play() {
-		Mp3Util_New.getDefault().playMusic(mp3);
+	private void play(Mp3Info mp3Info) {
+		Mp3Util_New.getDefault().playMusic(mp3Info);
 		startActivity(new Intent(this, PlayerActivity.class));
 	}
 }

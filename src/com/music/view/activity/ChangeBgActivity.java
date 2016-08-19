@@ -61,7 +61,7 @@ public class ChangeBgActivity extends BaseActivity {
 		tv_title.setText("…Ë÷√±≥æ∞");
 
 		adapter = new LuAdapter<BgBean>(this, bgBeans,
-				R.layout.gridview_changebg_item_layout) {
+				R.layout.item_changebg) {
 
 			@Override
 			public void convert(ViewHolder arg0, BgBean arg1) {

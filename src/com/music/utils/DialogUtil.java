@@ -2,17 +2,11 @@ package com.music.utils;
 
 
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.view.LayoutInflater;
-import android.view.View;
-
-import com.music.lu.R;
-import com.music.widget.dialog.LoadingView;
 
 public class DialogUtil {
 	private static AlertDialog dialog=null;
@@ -24,6 +18,14 @@ public class DialogUtil {
 	 */
 	public static void showToast(Context context,String msg){
 		TopNoticeDialog.showToast(context, msg);
+	}
+	/**
+	 * 弹出一个消息框
+	 * @param context
+	 * @param msg 消息内容
+	 */
+	public static void showToast(Context context,int res){
+		TopNoticeDialog.showToast(context, res);
 	}
 	/**
 	 * 弹出一个消息框
@@ -96,18 +98,5 @@ public class DialogUtil {
 		dialog=ProgressDialog.show(context, title, message);
 		dialog.show();
 	}
-	@SuppressLint("InflateParams")
-	public static void showCustomWaitDialog(Context context){
-		AlertDialog.Builder builder=new AlertDialog.Builder(context);
-		dialog=builder.create();
-		LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view=inflater.inflate(R.layout.dialog_custom_wait, null);
-		LoadingView loadingView=(LoadingView) view.findViewById(R.id.loadView);
-		loadingView.setLoadingText("数据请求中...");
-		dialog.show();
 	
-		
-		dialog.getWindow().setContentView(view);
-		
-	}
 }

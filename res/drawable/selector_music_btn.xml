@@ -7,5 +7,6 @@
     <item android:state_pressed="true"><shape android:shape="rectangle">
             <gradient android:angle="270" android:centerColor="#3b70a3" android:endColor="#3b70a3" android:startColor="#3b70a3" />
         </shape></item>
+    
 
 </selector>

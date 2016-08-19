@@ -51,4 +51,17 @@
     
     
      <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
+     
+     
+     <string name="input_singer">请输入要搜索的歌手名字</string>
+     <string name="input_song">请输入要搜索的歌曲名字</string>
+     <string name="search">搜索</string>
+     
+     <string name="local_music">本地音乐</string>
+     <string name="no_lrc">暂无歌词</string>
+     <string name="no_search_music">没有搜索到歌曲</string>
+     <string name="input_key">请输入关键字</string>
+     
+     <string name="empty_key_tips">关键字为空</string>
+     <string name="click_play">点击播放</string>
 </resources>

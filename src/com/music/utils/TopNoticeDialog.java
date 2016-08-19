@@ -17,9 +17,6 @@ import android.widget.TextView;
 import com.music.lu.R;
 
 /**
- * @author laichunling
- * @Package com.lcl.mybaiduapp
- * @date 2016/1/9 10:19
  */
 public class TopNoticeDialog {
 
@@ -63,8 +60,6 @@ public class TopNoticeDialog {
             view=inflater.inflate(R.layout.top_notice,null);
              ll= (LinearLayout) view.findViewById(R.id.ll);
             tip_txt= (TextView) view.findViewById(R.id.text);
-//            LinearLayout.LayoutParams params_ll = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//            ll.setLayoutParams(params_ll);
         }
         setType(type,ll);
         if (view.getParent() != null) {
@@ -85,6 +80,9 @@ public class TopNoticeDialog {
     }
     public static void showToast(Context context,CharSequence text){
           createDialog(context, text, TipType.SUCCESS_TIP);
+    }
+    public static void showToast(Context context,int res){
+    	createDialog(context, context.getText(res), TipType.SUCCESS_TIP);
     }
     /**
      * @param context

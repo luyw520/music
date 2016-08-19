@@ -68,7 +68,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	}
 
 	public static final String TAG = null;
-	private static final int REQUESTCODE_LOGIN = 0;
+	public static final int REQUESTCODE_LOGIN = 0;
 	private static final int LOCK_PASSWORD = 1;
 	public Fragment contentFragment;
 
@@ -106,12 +106,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	private ImageView iv_back;
 	@ViewInject(value = R.id.iv_search)
 	private ImageView iv_search;
-	
-	
+
 	@ViewInject(value = R.id.musicTimeProgressView)
 	private MusicTimeProgressView musicTimeProgressView;
-
-	
 
 	/** ‘≤–ŒÕ∑œÒ¿‡ */
 	@ViewInject(value = R.id.iv_header)
@@ -155,21 +152,20 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		mp3Util = Mp3Util_New.getDefault();
 		playPauseDrawable = new PlayPauseDrawable(30, playColor, pauseColor,
 				dwableDuaration);
-		long start1=SystemClock.currentThreadTimeMillis();
+		long start1 = SystemClock.currentThreadTimeMillis();
 		initData();
-		long start2=SystemClock.currentThreadTimeMillis();
-		DeBug.d(this, "initData:"+(start2-start1)/1000.0+" s");
+		long start2 = SystemClock.currentThreadTimeMillis();
+		DeBug.d(this, "initData:" + (start2 - start1) / 1000.0 + " s");
 		registerReceiver();
-		long start3=SystemClock.currentThreadTimeMillis();
-		DeBug.d(this, "registerReceiver:"+(start3-start2)/1000.0+" s");
+		long start3 = SystemClock.currentThreadTimeMillis();
+		DeBug.d(this, "registerReceiver:" + (start3 - start2) / 1000.0 + " s");
 		// handler.sendEmptyMessageDelayed(0, 500);
 		initUmeng();
-		long start4=SystemClock.currentThreadTimeMillis();
-		DeBug.d(this, "initUmeng:"+(start4-start3)/1000.0+" s");
-		
-		
-		
+		long start4 = SystemClock.currentThreadTimeMillis();
+		DeBug.d(this, "initUmeng:" + (start4 - start3) / 1000.0 + " s");
+
 	}
+
 	private void initUmeng() {
 		// umeng push
 		PushAgent.getInstance(this).onAppStart();
@@ -183,11 +179,13 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 								+ registrationId);
 			}
 		});
-		UmengUpdateAgent.update(this);
-		UpdateConfig.setDebug(true);
+		// UmengUpdateAgent.update(this);
+		// UpdateConfig.setDebug(true);
 	}
+
 	/**
 	 * click ARTIST ,ALBUM,FOLDER jump to musiclistfragment
+	 * 
 	 * @param flag
 	 * @param object
 	 */
@@ -241,6 +239,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 					MusicUtils.getDefault().queryFolder(getApplication());
 					return null;
 				}
+
 				@Override
 				public void onPostExecute(Object result) {
 					long end = System.currentTimeMillis();
@@ -311,10 +310,12 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), true,
 				true);
 		iv_music_album.setImageBitmap(bmp);
-		
-		DeBug.d(this, "currentMp3Info.getDuration():"+currentMp3Info.getDuration());
+
+		DeBug.d(this,
+				"currentMp3Info.getDuration():" + currentMp3Info.getDuration());
 		musicTimeProgressView.setMaxProgress(currentMp3Info.getDuration());
 	}
+
 	private void initWidgetData() {
 		if (localMusicFragment == null) {
 			localMusicFragment = new LocalMusicFragment();
@@ -415,19 +416,19 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 				});
 	}
 
-//	private Handler handler = new Handler() {
-//		public void handleMessage(android.os.Message msg) {
-//
-//			if (!mp3Util.isPlaying()) {
-//				DeBug.d(LocalMusicActivity.this, "............animatePlay");
-//				playPauseDrawable.animatePlay();
-//			} else {
-//				DeBug.d(LocalMusicActivity.this, "............animatePause");
-//				playPauseDrawable.animatePause();
-//			}
-//
-//		};
-//	};
+	// private Handler handler = new Handler() {
+	// public void handleMessage(android.os.Message msg) {
+	//
+	// if (!mp3Util.isPlaying()) {
+	// DeBug.d(LocalMusicActivity.this, "............animatePlay");
+	// playPauseDrawable.animatePlay();
+	// } else {
+	// DeBug.d(LocalMusicActivity.this, "............animatePause");
+	// playPauseDrawable.animatePause();
+	// }
+	//
+	// };
+	// };
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -473,31 +474,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 							UnlockGesturePasswordActivity.class);
 					startActivityForResult(intent, LOCK_PASSWORD);
 				}
-				// else{
-				// if (!unLockSuccess) {
-				// ApplicationUtil.setAppToBack(this, 1);
-				// finish();
-				// }
-				// }
 			}
 		}
-		// if (
-		// ApplicationUtil.getAppToBack(this) == 1 &&
-		// unLockSuccess) {
-		//
-		// } else {
-		// // android.os.Process.killProcess(android.os.Process.myPid());
-		// // exit();
-		// // System.exit(0);
-		// // ActivityManager am = (ActivityManager)getSystemService
-		// (Context.ACTIVITY_SERVICE);
-		// // am.killBackgroundProcesses(getPackageName());
-		// ApplicationUtil.setAppToBack(this, 1);
-		// finish();
-		// }
-		// }
-
-		// }
 	}
 
 	/**
@@ -594,11 +572,11 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		ApplicationUtil.setAppToBack(this, 1);
 		mp3Util.saveCurrentMusicInfo(this);
 		myNotification.cancel();
-		mp3Util.unBindService();	
+		mp3Util.unBindService();
 		finish();
 		System.exit(0);
-		
-//		onDestroy();
+
+		// onDestroy();
 	};
 
 	public void unregisterReceiver() {

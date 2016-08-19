@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -40,7 +40,7 @@
         <item name="android:shadowColor">#BB000000</item>
         <item name="android:shadowRadius">0</item>
         <item name="android:windowBackground">@color/white</item>
-         <item name="android:keepScreenOn">true</item>
+         <item name="android:keepScreenOn">true</item>
         -->
     </style>
 
@@ -134,22 +134,15 @@
         <item name="android:background">@drawable/common_btn_red</item>
     </style>
 
-    
-    
     <style name="Theme.Timetodo" parent="@android:style/Theme.Holo.Light">
-    
-    	<item name="android:windowTranslucentStatus">
-    	    true</item>
-    	    
-    	<item name="android:windowTranslucentNavigation">true</item>
-    </style>   
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <item name="android:windowTranslucentStatus">    	    true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/sliding_bg</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 </resources>

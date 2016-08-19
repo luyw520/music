@@ -1,5 +1,6 @@
 package com.music.view.activity;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -20,18 +21,25 @@ import com.umeng.analytics.MobclickAgent;
 
 public class BaseActivity extends Activity implements ConstantUtil{
 	
-	
+//	protected SystemBarTintManager mTintManager;
+	@SuppressLint("ResourceAsColor")
 	@TargetApi(19) @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		ViewUtils.inject(this);
-		
 		//Í¸Ã÷×´Ì¬À¸  
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);  
-//        //Í¸Ã÷µ¼º½À¸  
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+      getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);  
+//      //Í¸Ã÷µ¼º½À¸  
+      getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//		mTintManager=new SystemBarTintManager(this);
+//		mTintManager.setStatusBarTintEnabled(true);
+//		mTintManager.setNavigationBarTintEnabled(true);
+//		int color = Color.argb(153, 123, 123,123);
+//		mTintManager.setTintColor(color);
+//		StatusBarCompat.compat(this);
+//		
         
         
 	}

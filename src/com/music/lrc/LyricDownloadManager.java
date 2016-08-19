@@ -15,15 +15,16 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.music.utils.DeBug;
 import com.music.utils.FileUtils;
 
-
 /**
  * 歌词下载
+ * 
  * @author longdw(longdawei1988@gmail.com)
- *
+ * 
  */
 public class LyricDownloadManager {
 	private static final String TAG = LyricDownloadManager.class
@@ -34,8 +35,8 @@ public class LyricDownloadManager {
 	private LyricXMLParser mLyricXMLParser = new LyricXMLParser();
 	private URL mUrl = null;
 	private int mDownloadLyricId = -1;
-	private final static String BAIDU_MUSIC_URL="http://box.zhangmen.baidu.com/x?op=12&count=1&title=";
-	private final static String BAIDU_LRC_URL="http://box.zhangmen.baidu.com/bdlrc/";
+	private final static String BAIDU_MUSIC_URL = "http://box.zhangmen.baidu.com/x?op=12&count=1&title=";
+	private final static String BAIDU_LRC_URL = "http://box.zhangmen.baidu.com/bdlrc/";
 	@SuppressWarnings("unused")
 	private Context mContext = null;
 
@@ -49,8 +50,12 @@ public class LyricDownloadManager {
 	public String searchLyricFromWeb(String musicName, String singerName) {
 		DeBug.d(TAG, "下载前，歌曲名:" + musicName + ",歌手名:" + singerName);
 
+		if (TextUtils.isEmpty(musicName) || TextUtils.isEmpty(singerName)) {
+			return "";
+		}
 		// 传进来的如果是汉字，那么就要进行编码转化
 		try {
+
 			musicName = URLEncoder.encode(musicName, UTF_8);
 			singerName = URLEncoder.encode(singerName, UTF_8);
 		} catch (UnsupportedEncodingException e2) {
@@ -58,8 +63,8 @@ public class LyricDownloadManager {
 		}
 
 		// 百度音乐盒的API
-		String strUrl = BAIDU_MUSIC_URL
-				+ musicName + "$$" + singerName + "$$$$";
+		String strUrl = BAIDU_MUSIC_URL + musicName + "$$" + singerName
+				+ "$$$$";
 
 		// 生成URL
 		try {
@@ -96,8 +101,11 @@ public class LyricDownloadManager {
 		return fetchLyricContent(musicName, singerName);
 	}
 
-	/** 根据歌词下载ID，获取网络上的歌词文本内容 
-	 * @param musicInfo */
+	/**
+	 * 根据歌词下载ID，获取网络上的歌词文本内容
+	 * 
+	 * @param musicInfo
+	 */
 	private String fetchLyricContent(String musicName, String singerName) {
 		if (mDownloadLyricId == -1) {
 			DeBug.d(TAG, "未指定歌词下载ID");
@@ -106,8 +114,8 @@ public class LyricDownloadManager {
 		BufferedReader br = null;
 		StringBuilder content = null;
 		String temp = null;
-		String lyricURL = BAIDU_LRC_URL
-				+ mDownloadLyricId / 100 + "/" + mDownloadLyricId + ".lrc";
+		String lyricURL = BAIDU_LRC_URL + mDownloadLyricId / 100 + "/"
+				+ mDownloadLyricId + ".lrc";
 		DeBug.d(TAG, "歌词的真实下载地址:" + lyricURL);
 
 		try {
@@ -144,18 +152,20 @@ public class LyricDownloadManager {
 		if (content != null) {
 			// 检查保存的目录是否已经创建
 
-//			String folderPath = PreferenceManager.getDefaultSharedPreferences(
-//					mContext).getString(SettingFragment.KEY_LYRIC_SAVE_PATH,
-//					Constant.LYRIC_SAVE_FOLDER_PATH);
+			// String folderPath =
+			// PreferenceManager.getDefaultSharedPreferences(
+			// mContext).getString(SettingFragment.KEY_LYRIC_SAVE_PATH,
+			// Constant.LYRIC_SAVE_FOLDER_PATH);
 			String folderPath = FileUtils.lrcPath();
 
 			File savefolder = new File(folderPath);
 			if (!savefolder.exists()) {
 				savefolder.mkdirs();
 			}
-			String savePath = folderPath + File.separator + singerName+"-"+musicName
-					+ ".lrc";
-//			String savePath = folderPath + File.separator + musicName + ".lrc";
+			String savePath = folderPath + File.separator + singerName + "-"
+					+ musicName + ".lrc";
+			// String savePath = folderPath + File.separator + musicName +
+			// ".lrc";
 			DeBug.d(TAG, "歌词保存路径:" + savePath);
 
 			saveLyric(content.toString(), savePath);

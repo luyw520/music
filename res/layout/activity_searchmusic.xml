@@ -18,40 +18,43 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:padding="10dp" >
 
             <AutoCompleteTextView
                 android:id="@+id/atvSonger"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="输入歌手"
-                android:singleLine="true"
-               />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/editview_height"
+                android:hint="@string/input_key"
+                android:singleLine="true" />
 
+            
             <AutoCompleteTextView
                 android:id="@+id/atvSongName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/iv_searchMusic"
-                android:layout_toRightOf="@+id/atvSonger"
-                 android:singleLine="true"
-                android:hint="输入歌曲名"
-                 />
-
-            <ImageView
+                android:layout_height="@dimen/editview_height"
+                android:layout_below="@+id/atvSonger"
+                android:hint="@string/input_song"
+                android:visibility="gone"
+                android:singleLine="true" />
+            <Button
                 android:id="@+id/iv_searchMusic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/editview_height"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/btn_search_music" />
+                android:layout_below="@+id/atvSonger"
+                android:background="@drawable/selector_btn_search_music"
+                android:text="@string/search"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                />
         </RelativeLayout>
 
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:transcriptMode="normal"
+            
             android:visibility="gone" />
 
         <com.music.widget.dialog.LoadingView
@@ -65,9 +68,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="没有搜索到歌曲"
-            android:textColor="#000000"
-            android:textSize="30sp"
+            android:text="@string/no_search_music"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             android:visibility="gone" />
     </LinearLayout>
 

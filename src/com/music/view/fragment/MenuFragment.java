@@ -14,7 +14,6 @@ import com.music.lu.R;
 import com.music.service.IConstants;
 import com.music.view.activity.SettingActivity;
 import com.music.widget.slidingmenu2.SlidingMenu.OnOpenedListener;
-import com.unuse.MainContentActivity;
 
 /**
  * ²à»¬Menu
@@ -28,8 +27,8 @@ public class MenuFragment extends Fragment implements OnClickListener,
 	private TextView mMediaCountTv;
 	private TextView mScanTv, mPlayModeTv, mBackgroundTv, mSleepTv, mSettingTv,
 			mExitTv;
-	@SuppressWarnings("unused")
-	private MainContentActivity mMainActivity;
+//	@SuppressWarnings("unused")
+//	private MainContentActivity mMainActivity;
 
 	private int mCurMode;
 //	private ServiceManager mServiceManager;
