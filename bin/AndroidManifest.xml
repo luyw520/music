@@ -103,6 +103,7 @@
             android:name="com.music.view.activity.LocalMusicActivity"
             android:hardwareAccelerated="false"
             android:label="@string/app_name"
+            android:theme="@style/FullBleedTheme"
             android:launchMode="singleTask" >
         </activity>
         <activity android:name="com.music.view.activity.WelcomeActivity" 
@@ -120,7 +121,11 @@
             android:name="com.music.view.activity.SearchMusicActivity"
             android:windowSoftInputMode="stateUnchanged|adjustPan" >
         </activity>
-        <activity android:name="com.music.view.activity.SettingActivity" >
+        <activity android:name="com.music.view.activity.SettingActivity" 
+            android:theme="@style/FullBleedTheme">
+        </activity>
+        <activity android:name="com.music.view.activity.TestActivity" 
+            android:theme="@style/FullBleedTheme">
         </activity>
         <activity android:name="com.music.view.activity.LoginActivity" >
         </activity>

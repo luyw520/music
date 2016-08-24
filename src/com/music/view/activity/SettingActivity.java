@@ -33,6 +33,7 @@ public class SettingActivity extends BaseActivity {
 	
 	
 	private ImageView iv_search;
+	
 	@ViewInject(value = R.id.iv_more)
 	private ImageView iv_more;
 	@ViewInject(value = R.id.iv_back)
@@ -70,6 +71,8 @@ public class SettingActivity extends BaseActivity {
 	private Handler handle=new Handler();
 	protected void onCreate(android.os.Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+//		setContentView(R.layout.activity_setting);
+		
 		
 		popupWindowQieGe = new PopupWindowQieGe(this);
 		popupWindowQieGe.setPopupWindowUIOnClickListener(popupWindowUIOnClickListener);
@@ -120,9 +123,6 @@ public class SettingActivity extends BaseActivity {
 		}
 
 		setQieGeState(ApplicationUtil.getQieGeIndex(this));
-		
-		
-		
 	}
 	
 	private void setQieGeState(int index) {

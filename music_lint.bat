@@ -1,0 +1,1 @@
+lint --check "UnusedResources" music >music.txt

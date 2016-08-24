@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/header_bg"
-    android:clipToPadding="false"
     android:fitsSystemWindows="true"
+    android:clipToPadding="false"
      >
 
     <RelativeLayout

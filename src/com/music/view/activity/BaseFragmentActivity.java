@@ -1,11 +1,6 @@
 package com.music.view.activity;
 
-import com.lidroid.xutils.ViewUtils;
-import com.music.utils.ApplicationUtil;
-import com.music.utils.DeBug;
-import com.music.utils.ScreenShotUtil;
-import com.umeng.analytics.MobclickAgent;
-
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -14,24 +9,38 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.lidroid.xutils.ViewUtils;
+import com.music.lu.R;
+import com.music.utils.ApplicationUtil;
+import com.music.utils.DeBug;
+import com.music.utils.ScreenShotUtil;
+import com.music.utils.SystemBarTintManager;
+import com.umeng.analytics.MobclickAgent;
+
 public class BaseFragmentActivity extends FragmentActivity {
+	protected SystemBarTintManager tintManager;
+	@SuppressLint("ResourceAsColor")
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+//		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		// Í¸Ã÷×´Ì¬À¸
 		getWindow()
 				.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-		// //Í¸Ã÷µ¼º½À¸
-		getWindow().addFlags(
-				WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//
+//		// //Í¸Ã÷µ¼º½À¸
+//		getWindow().addFlags(
+//				WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		ViewUtils.inject(this);
+		tintManager = new SystemBarTintManager(this);
+		tintManager.setStatusBarTintEnabled(true);
+		tintManager.setNavigationBarTintEnabled(true);
+		
+		tintManager.setTintColor(getResources().getColor(R.color.transparent));
 	}
 
 	protected void startActivity(Class<?> class1) {

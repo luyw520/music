@@ -591,10 +591,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
-
-         Customize dimensions originally defined in res/values/dimens.xml (such as
-         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
-    
          */
         public static final int activity_horizontal_margin=0x7f070000;
         public static final int activity_vertical_margin=0x7f070001;
@@ -1625,6 +1621,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int youdao=0x7f09002f;
     }
     public static final class style {
+        /**  All customizations that are NOT specific to a particular API-level can go here. 
+         */
+        public static final int ActionBarTheme=0x7f0a001d;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -1638,17 +1637,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
 
         
-
-        Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    
- API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    
- API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f0a0006;
         /**  Application theme. 
@@ -1676,6 +1664,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int CustomTheme=0x7f0a000a;
         public static final int CustomWindowTitleBackground=0x7f0a0008;
         public static final int Dialog_Fullscreen=0x7f0a0004;
+        /**  All customizations that are NOT specific to a particular API-level can go here. 
+         */
+        public static final int FullBleedTheme=0x7f0a001c;
         public static final int Notitle_Fullscreen=0x7f0a0005;
         public static final int SlidingMenu_TextView_ItemTitle=0x7f0a0012;
         public static final int SlidingMenu_TextView_SubTitle=0x7f0a0015;
@@ -1685,8 +1676,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int TTNotificationText=0x7f0a0009;
         public static final int TTNotificationTitle=0x7f0a0010;
         public static final int Theme_Timetodo=0x7f0a001a;
-        public static final int Theme_UMDefault=0x7f0a0025;
-        public static final int Theme_UMDialog=0x7f0a0024;
+        public static final int Theme_UMDefault=0x7f0a0027;
+        public static final int Theme_UMDialog=0x7f0a0026;
         public static final int dialog_anim_fade_out=0x7f0a000e;
         public static final int dialog_anim_slide_left=0x7f0a000c;
         public static final int dialog_anim_slide_up=0x7f0a000d;
@@ -1707,17 +1698,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int scrshot_dlg_style=0x7f0a0000;
         public static final int snapshotDialogWindowAnim=0x7f0a0002;
         public static final int t9_key=0x7f0a000f;
-        public static final int umeng_socialize_action_bar_item_im=0x7f0a001d;
-        public static final int umeng_socialize_action_bar_item_tv=0x7f0a001e;
-        public static final int umeng_socialize_action_bar_itemlayout=0x7f0a001c;
-        public static final int umeng_socialize_dialog_anim_fade=0x7f0a0022;
-        public static final int umeng_socialize_dialog_animations=0x7f0a0021;
-        public static final int umeng_socialize_divider=0x7f0a0026;
-        public static final int umeng_socialize_edit_padding=0x7f0a0028;
-        public static final int umeng_socialize_list_item=0x7f0a0027;
-        public static final int umeng_socialize_popup_dialog=0x7f0a0020;
-        public static final int umeng_socialize_popup_dialog_anim=0x7f0a001f;
-        public static final int umeng_socialize_shareboard_animation=0x7f0a0023;
+        public static final int umeng_socialize_action_bar_item_im=0x7f0a001f;
+        public static final int umeng_socialize_action_bar_item_tv=0x7f0a0020;
+        public static final int umeng_socialize_action_bar_itemlayout=0x7f0a001e;
+        public static final int umeng_socialize_dialog_anim_fade=0x7f0a0024;
+        public static final int umeng_socialize_dialog_animations=0x7f0a0023;
+        public static final int umeng_socialize_divider=0x7f0a0028;
+        public static final int umeng_socialize_edit_padding=0x7f0a002a;
+        public static final int umeng_socialize_list_item=0x7f0a0029;
+        public static final int umeng_socialize_popup_dialog=0x7f0a0022;
+        public static final int umeng_socialize_popup_dialog_anim=0x7f0a0021;
+        public static final int umeng_socialize_shareboard_animation=0x7f0a0025;
     }
     public static final class styleable {
         /** Attributes that can be used with a JazzyViewPager.

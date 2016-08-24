@@ -63,14 +63,14 @@ public class  MusicBaseInfo {
 	public long songId;	//歌曲ID
 	public long albumId;//专辑ID
 	public long duration;	//时长
-	public String title;	//音乐标题
-	public String artist;	//歌手
-	public String folder;	//文件夹
-	public String playPath;//播放路径
-	public String musicName;
-	public String musicNameKey;
-	public String data;
-	public String artistKey;
+	public String title="";	//音乐标题
+	public String artist="";	//歌手
+	public String folder="";	//文件夹
+	public String playPath="";//播放路径
+	public String musicName="";
+	public String musicNameKey="";
+	public String data="";
+	public String artistKey="";
 	/** 0表示没有收藏 1表示收藏 */
 	public int favorite; //
 	

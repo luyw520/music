@@ -86,7 +86,8 @@ public class Mp3Util_New {
 	 */
 	private boolean isShowLrc;
 
-	private boolean isBindService=false;
+	private boolean isBindService = false;
+
 	private Mp3Util_New(Context context) {
 		this.context = context;
 		init();
@@ -135,13 +136,13 @@ public class Mp3Util_New {
 			public void onServiceConnected(ComponentName name, IBinder service) {
 				// TODO Auto-generated method stub
 				mService = IMediaService.Stub.asInterface(service);
-				isBindService=true;
+				isBindService = true;
 				Log.d(TAG, "服务绑定成功....");
 			}
 
 			@Override
 			public void onServiceDisconnected(ComponentName name) {
-				isBindService=false;
+				isBindService = false;
 			}
 		};
 		context.bindService(service, conn, Context.BIND_AUTO_CREATE);
@@ -208,12 +209,17 @@ public class Mp3Util_New {
 
 			@Override
 			public void run() {
+
 				mp3Infos = mediaUtil.sortMp3InfosByTitle(context);
-				// mp3Infos = musicUtils.getMusicInfos();
+
 				musicBaseInfos = mp3Infos;
-				currentMp3Info = musicBaseInfos.get(listPosition);
-				DeBug.d(Mp3Util_New.this, "..........listPosition:"
-						+ listPosition);
+				if (!musicBaseInfos.isEmpty()) {
+					currentMp3Info = musicBaseInfos.get(listPosition);
+					DeBug.d(Mp3Util_New.this, "..........listPosition:"
+							+ listPosition);
+				}else{
+					currentMp3Info=new MusicBaseInfo();
+				}
 			}
 		}).start();
 	};
@@ -307,7 +313,7 @@ public class Mp3Util_New {
 			this.isPlaying = true;
 			this.listPosition = listPosition;
 			this.currentMp3Info = musicBaseInfos.get(listPosition);
-			
+
 			Log.d(TAG, "listpostion:" + listPosition);
 			Log.d(TAG, "getTitle:" + currentMp3Info.getTitle());
 			sendService(AppConstant.PlayerMsg.PLAY_MSG, 0);
@@ -386,7 +392,7 @@ public class Mp3Util_New {
 				mService.pause();
 				break;
 			case AppConstant.PlayerMsg.PROGRESS_CHANGE:
-				mService.seekTo(progress,currentMp3Info.playPath);
+				mService.seekTo(progress, currentMp3Info.playPath);
 				break;
 			default:
 				break;
@@ -444,9 +450,9 @@ public class Mp3Util_New {
 	}
 
 	public void unBindService() {
-		if (conn != null&&isBindService) {
+		if (conn != null && isBindService) {
 			context.unbindService(conn);
-			isBindService=false;
+			isBindService = false;
 		}
 	}
 

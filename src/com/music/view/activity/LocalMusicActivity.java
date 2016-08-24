@@ -52,8 +52,6 @@ import com.music.widget.slidingmenu2.SlidingMenu;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
-import com.umeng.update.UmengUpdateAgent;
-import com.umeng.update.UpdateConfig;
 
 /**
  *
@@ -164,6 +162,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		long start4 = SystemClock.currentThreadTimeMillis();
 		DeBug.d(this, "initUmeng:" + (start4 - start3) / 1000.0 + " s");
 
+		
+//		tintManager.setTintColor(Color.argb(153, 255, 00, 00));
 	}
 
 	private void initUmeng() {
