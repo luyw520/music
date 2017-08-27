@@ -97,16 +97,16 @@ public class BaseActivity extends Activity implements ConstantUtil {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);
-		if (ApplicationUtil.getYaoYiYao(this)) {
-			ScreenShotUtil.getInstance().registerShakeToScrShot(this);
-		}
+//		MobclickAgent.onResume(this);
+//		if (ApplicationUtil.getYaoYiYao(this)) {
+//			ScreenShotUtil.getInstance().registerShakeToScrShot(this);
+//		}
 	}
 
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);
+//		MobclickAgent.onPause(this);
 	}
 }

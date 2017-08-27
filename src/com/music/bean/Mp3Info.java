@@ -31,7 +31,7 @@ public class Mp3Info extends MusicBaseInfo implements Comparable {
 	private Bitmap bitmap;
 
 	public String decode, encode;
-
+	public String picUrl;
 	public Mp3Info() {
 		super();
 	}

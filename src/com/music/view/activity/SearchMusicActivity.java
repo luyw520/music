@@ -33,6 +33,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.music.bean.Mp3Info;
 import com.music.lu.R;
 import com.music.model.DataStorageModel;
+import com.music.model.HttpCallback;
 import com.music.model.MusicHttpModel;
 import com.music.model.XmlParseModel;
 import com.music.utils.DeBug;
@@ -44,6 +45,7 @@ import com.music.utils.StringUtil;
 import com.music.view.adapter.LuAdapter;
 import com.music.view.adapter.ViewHolder;
 import com.music.widget.dialog.LoadingView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * 
@@ -70,8 +72,8 @@ public class SearchMusicActivity extends BaseActivity {
 //	@ViewInject(value = R.id.iv_searchMusic)
 //	ImageView iv_searchMusic;
 
-	@ViewInject(value = R.id.atvSongName)
-	AutoCompleteTextView atvSongName;
+//	@ViewInject(value = R.id.atvSongName)
+//	AutoCompleteTextView atvSongName;
 	@ViewInject(value = R.id.listView)
 	ListView listView;
 
@@ -87,7 +89,6 @@ public class SearchMusicActivity extends BaseActivity {
 	String encode = "";
 	String decode = "";
 	private MusicHttpModel musicHttpModel;
-	private XmlParseModel xmlParseModel;
 	private List<String> historySongName = new ArrayList<String>();
 	private List<String> historySonger = new ArrayList<String>();
 	private Map<String, List<String>> history = new HashMap<String, List<String>>();
@@ -107,7 +108,6 @@ public class SearchMusicActivity extends BaseActivity {
 		clearHistory = getString(R.string.clear_search_history);
 		initWidget();
 		musicHttpModel = new MusicHttpModel();
-		xmlParseModel = new XmlParseModel();
 	}
 
 	@OnClick({ R.id.iv_back, R.id.iv_searchMusic })
@@ -192,10 +192,10 @@ public class SearchMusicActivity extends BaseActivity {
 	}
 
 	private void searchMusic() {
-		atvSongName.clearFocus();
+//		atvSongName.clearFocus();
 		atvSonger.clearFocus();
 		saveHistorySearch();
-		musicHttpModel.searchMusicByNetApi(key, new SearchMusicCallBack());
+		musicHttpModel.searchMusicByNetApi(getApplicationContext(),key, new SearchMusicCallBack());
 	}
 	private void saveHistorySearch() {
 		if (historySongName.size() == 0) {
@@ -216,23 +216,12 @@ public class SearchMusicActivity extends BaseActivity {
 		DataStorageModel.getDefault().saveObjectToFile(history, HISTORY_SEARCH);
 	}
 
-	private class SearchMusicCallBack extends RequestCallBack {
-		@Override
-		public void onFailure(HttpException arg0, String arg1) {
+	private class SearchMusicCallBack implements HttpCallback<List<Mp3Info>> {
+		public void onFailure(Exception arg0) {
 			checkHasData();
 		}
-
-		@Override
-		public void onSuccess(ResponseInfo arg0) {
-//			Mp3Info tempMp3Info = xmlParseModel.parseMp3FromString(arg0.result);
-//			if (tempMp3Info != null) {
-//				mp3.setDownUrl(tempMp3Info.getDownUrl());
-//				mp3.setUrl(tempMp3Info.getDownUrl());
-//				mp3.playPath = tempMp3Info.getDownUrl();
-//				mp3.setSize(tempMp3Info.getSize());
-//				datas.add(mp3);
-//			}
-			List<Mp3Info> temMp3Infos=(List<Mp3Info>) arg0.result;
+		public void onSuccess(List<Mp3Info> result) {
+			List<Mp3Info> temMp3Infos=(List<Mp3Info>) result;
 			datas.addAll(temMp3Infos);
 			checkHasData();
 
@@ -288,14 +277,14 @@ public class SearchMusicActivity extends BaseActivity {
 		historySongerAdapter = new HistoryAdater(this,
 				android.R.layout.simple_dropdown_item_1line, historySonger);
 
-		atvSongName.setThreshold(1);
-		atvSongName.setAdapter(historyNamesAdapter);
+//		atvSongName.setThreshold(1);
+//		atvSongName.setAdapter(historyNamesAdapter);
 
-		atvSonger.setThreshold(1);
-		atvSonger.setAdapter(historySongerAdapter);
+//		atvSonger.setThreshold(1);
+//		atvSonger.setAdapter(historySongerAdapter);
 
 		atvSonger.setOnItemClickListener(new ClearHistoryItemClick(0));
-		atvSongName.setOnItemClickListener(new ClearHistoryItemClick(1));
+//		atvSongName.setOnItemClickListener(new ClearHistoryItemClick(1));
 	}
 
 	class ClearHistoryItemClick implements OnItemClickListener {
@@ -324,7 +313,7 @@ public class SearchMusicActivity extends BaseActivity {
 				historySongName.clear();
 				historyNamesAdapter.notifyDataSetChanged();
 				history.put(HISTORY_SONGNAME, historySongName);
-				atvSongName.setText("");
+//				atvSongName.setText("");
 				DataStorageModel.getDefault().saveObjectToFile(history, HISTORY_SEARCH);
 			}
 
@@ -354,6 +343,7 @@ public class SearchMusicActivity extends BaseActivity {
 			viewHolder.getView(R.id.btn_down).setOnClickListener(
 					new DownOnClick(position));
 
+			ImageLoader.getInstance().displayImage(datas.get(position).picUrl,(ImageView) viewHolder.getView(R.id.img));
 		}
 
 		@Override

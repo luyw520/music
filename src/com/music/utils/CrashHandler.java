@@ -25,32 +25,24 @@ public class CrashHandler implements UncaughtExceptionHandler{
 
 	public static final String TAG = "CrashHandler";
 	
-	//ϵͳĬ�ϵ�UncaughtException������ 
 	private Thread.UncaughtExceptionHandler mDefaultHandler;
-	//CrashHandlerʵ��
 	private static CrashHandler INSTANCE = new CrashHandler();
-	//�����Context����
 	private Context mContext;
-	//�����洢�豸��Ϣ���쳣��Ϣ
 	private Map<String, String> infos = new HashMap<String, String>();
 
-	//���ڸ�ʽ������,��Ϊ��־�ļ�����һ����
 	private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	
 	public String path;
 
-	/** ��ֻ֤��һ��CrashHandlerʵ�� */
 	private CrashHandler() {
 	}
 
-	/** ��ȡCrashHandlerʵ�� ,����ģʽ */
 	public static CrashHandler getInstance() {
 		return INSTANCE;
 	}
 
 	/**
-	 * ��ʼ��
-	 * 
+	 *
 	 * @param context
 	 */
 	public void init(Context context) {

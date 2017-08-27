@@ -43,13 +43,12 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return mp3Infos.size();
+		return mp3Infos==null?0:mp3Infos.size();
 	}
 
 	@Override
 	public Mp3Info getItem(int position) {
-		// TODO Auto-generated method stub
-		return mp3Infos.get(position);
+		return mp3Infos==null?null:mp3Infos.get(position);
 	}
 
 	@Override

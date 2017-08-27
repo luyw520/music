@@ -5,6 +5,7 @@ import java.io.File;
 import android.app.Application;
 import android.content.Context;
 
+import com.music.model.LogMonitor;
 import com.music.model.ScreenManager;
 import com.music.utils.BitmapCacheUtil;
 import com.music.utils.DeBug;
@@ -50,6 +51,8 @@ public class MusicApplication extends Application {
 //        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/a.ttf");
 //        FontsOverride.setDefaultFont(this, "SERIF", "fonts/a.ttf");
 //        FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/a.ttf");
+
+		LogMonitor.getInstance().startMonitor();
 	}
 	
 	private void initImageLoader(Context applicationContext) {

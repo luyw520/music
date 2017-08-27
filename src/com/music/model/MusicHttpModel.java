@@ -1,5 +1,7 @@
 package com.music.model;
 
+import android.content.Context;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,69 +26,57 @@ public class MusicHttpModel extends BaseHttpModel {
 		baseHttpRequest(url, callBack);
 	}
 
-	public void searchMusicByNetApi(String key,
-			final RequestCallBack<Object> callBack) {
-		baseHttpRequest(NET_MUSIC_API + key, new RequestCallBack<String>() {
-
+	public void searchMusicByNetApi(Context context,String key,
+									final HttpCallback<List<Mp3Info>> callBack) {
+		d(NET_MUSIC_API + key);
+		vollyRequset(context,NET_MUSIC_API + key, new HttpCallback<String>() {
 			@Override
-			public void onFailure(HttpException arg0, String arg1) {
-				if (callBack != null) {
-					callBack.onFailure(arg0, arg1);
+			public void onFailure(Exception e) {
+				if (callBack!=null){
+					callBack.onFailure(e);
 				}
 			}
-
-			@Override
-			public void onSuccess(ResponseInfo<String> arg0) {
-				d("onSuccess:"+arg0.result);
-				if (callBack == null) {
-					return;
+			public void onSuccess(String result) {
+				d(result);
+				if (callBack!=null){
+					callBack.onSuccess(resolver(result));
 				}
-				Gson gson = new Gson();
-				NetMusicGsonBean bean = gson.fromJson(arg0.result,
-						NetMusicGsonBean.class);
-				if (bean.code == 200) {
-					List<Song> songs = bean.result.songs;
-					if (songs != null && !songs.isEmpty()) {
-						List<Mp3Info> mp3Infos = new ArrayList<Mp3Info>();
-						for (Song song : songs) {
-							Mp3Info tempMp3Info = new Mp3Info();
-							tempMp3Info.setDownUrl(song.audio);
-							tempMp3Info.setUrl(song.album.picUrl);
-							tempMp3Info.playPath = tempMp3Info.getDownUrl();
-							
-							
-							
-//							mp3.setTitle(songName);
-//							mp3.setAlbum(songer);
-//							mp3.setTitlepinyin(MediaUtil.toHanyuPinYin(songName));
-//							
-							String songName=song.name;
-							tempMp3Info.setTitle(songName);
-							tempMp3Info.setDisplayName(songName);
-							List<Artist> artist = song.artists;
-							if (artist != null && !artist.isEmpty()) {
-								tempMp3Info.setSonger(artist.get(0).name);
-								tempMp3Info.setTitlepinyin(MediaUtil.toHanyuPinYin(artist.get(0).name));
-							}else{
-								tempMp3Info.setSonger("δ֪");
-							} 
-								
-							mp3Infos.add(tempMp3Info);
-						}
-						ResponseInfo<Object> response = new ResponseInfo<Object>(
-								null, userTag, false);
-						response.result = mp3Infos;
-						callBack.onSuccess(response);
-						return;
-					}
-				}
-				callBack.onFailure(new HttpException("no song"), "no song");
-
 			}
 
 		});
 	}
+	private List<Mp3Info> resolver(String result){
+		Gson gson = new Gson();
+		NetMusicGsonBean bean = gson.fromJson(result,
+				NetMusicGsonBean.class);
+		List<Mp3Info> mp3Infos = new ArrayList<Mp3Info>();
+		if (bean.code == 200) {
+			List<Song> songs = bean.result.songs;
+			if (songs != null && !songs.isEmpty()) {
 
+				for (Song song : songs) {
+					Mp3Info tempMp3Info = new Mp3Info();
+					tempMp3Info.setDownUrl(song.audio);
+					tempMp3Info.setUrl(song.album.picUrl);
+					tempMp3Info.playPath = tempMp3Info.getDownUrl();
+					String songName=song.name;
+					tempMp3Info.setTitle(songName);
+					tempMp3Info.setDisplayName(songName);
+					List<Artist> artist = song.artists;
+					if (artist != null && !artist.isEmpty()) {
+						tempMp3Info.setSonger(artist.get(0).name);
+						tempMp3Info.setTitlepinyin(MediaUtil.toHanyuPinYin(artist.get(0).name));
+					}else{
+						tempMp3Info.setSonger("songer֪");
+					}
+					tempMp3Info.picUrl=song.album.picUrl;
+
+					mp3Infos.add(tempMp3Info);
+				}
+			}
+		}
+		return mp3Infos;
+	}
 	public void downMusic(String url, String downPath,
 			RequestCallBack<File> callBack) {
 		httpUtils.download(url, downPath, true, callBack);

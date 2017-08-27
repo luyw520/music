@@ -1,5 +1,13 @@
 package com.music.model;
 
+import android.content.Context;
+import android.text.TextUtils;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
@@ -13,6 +21,36 @@ public class BaseHttpModel{
 		httpUtils.send(HttpRequest.HttpMethod.GET, url, requestCallBack);
 	}
 	public void d(String msg){
+		if (msg==null){
+			LogUtil.d(this, "msg is null");
+			return;
+		}
 		LogUtil.d(this, msg);
 	}
+
+
+	public void vollyRequset(Context context,String url,final HttpCallback callback){
+		StringRequest stringRequest = new StringRequest(url,
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+						d(response);
+						if (callback!=null){
+							callback.onSuccess(response);
+						}
+					}
+				}, new Response.ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				d(error.getMessage());
+				error.printStackTrace();
+				if (callback!=null){
+					callback.onFailure(error);
+				}
+			}
+		});
+		RequestQueue mQueue = Volley.newRequestQueue(context);
+		mQueue.add(stringRequest);
+	}
+
 }
