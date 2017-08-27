@@ -16,8 +16,7 @@ import android.os.FileObserver;
 import android.util.Log;
 
 /**
- * 图案解锁加密、解密工具类
- * 
+ *
  * @author way
  * 
  */
@@ -25,20 +24,15 @@ public class LockPatternUtils {
 	private static final String TAG = "LockPatternUtils";
 	private static final String LOCK_PATTERN_FILE = "gesture.key";
 	/**
-	 * 最短输入长度
 	 */
 	public static final int MIN_LOCK_PATTERN_SIZE = 4;
 	/**
-	 * 密码错误输入次数限制 {@link #FAILED_ATTEMPT_TIMEOUT_MS}.
 	 */
 	public static final int FAILED_ATTEMPTS_BEFORE_TIMEOUT = 5;
 	/**
-	 * 最短输入长度 {@link #FAILED_ATTEMPTS_BEFORE_TIMEOUT} and
-	 * {@link #FAILED_ATTEMPTS_BEFORE_RESET}
 	 */
 	public static final int MIN_PATTERN_REGISTER_FAIL = MIN_LOCK_PATTERN_SIZE;
 	/**
-	 * 解锁失败达到最高限制时倒计时时长
 	 */
 	public static final long FAILED_ATTEMPT_TIMEOUT_MS = 30000L;
 
@@ -88,15 +82,13 @@ public class LockPatternUtils {
 	}
 
 	/**
-	 * 清除保存过的密码
 	 */
 	public void clearLock() {
 		saveLockPattern(null);
 	}
 
 	/**
-	 * Deserialize a pattern. 解密,用于保存状态
-	 * 
+	 *
 	 * @param string
 	 *            The pattern serialized with {@link #patternToString}
 	 * @return The pattern.
@@ -113,8 +105,7 @@ public class LockPatternUtils {
 	}
 
 	/**
-	 * Serialize a pattern. 加密
-	 * 
+	 *
 	 * @param pattern
 	 *            The pattern.
 	 * @return The pattern in string form.

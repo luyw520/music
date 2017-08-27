@@ -36,6 +36,7 @@ import com.music.model.ShareModel;
 import com.music.utils.AppConstant;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
+import com.music.utils.BitmapUtils;
 import com.music.utils.DeBug;
 import com.music.utils.DialogUtil;
 import com.music.utils.ImageUtil;
@@ -43,10 +44,10 @@ import com.music.utils.MediaUtil;
 import com.music.utils.Mp3Util_New;
 import com.music.view.animator.ActivityAnimator;
 import com.music.view.widget.RoundImageView;
+import com.music.widget.slidingmenu.ScreenUtils;
 
 /**
- * 歌曲播放界面类
- * 
+ *
  * 
  */
 @SuppressLint("NewApi")
@@ -60,19 +61,19 @@ public class PlayerActivity extends BaseActivity {
 	private TextView musicArtist;
 
 	@ViewInject(value = R.id.previous_music)
-	private ImageButton previousBtn; // 上一首
+	private ImageButton previousBtn; //
 
 	@ViewInject(value = R.id.repeat_music)
-	private ImageButton repeatBtn; // 重复（单曲循环、全部循环）
+	private ImageButton repeatBtn; //
 
 	@ViewInject(value = R.id.play_music)
-	private ImageButton playBtn; // 播放（播放、暂停）
+	private ImageButton playBtn; //
 
 	@ViewInject(value = R.id.next_music)
-	private ImageButton nextBtn; // 下一首
+	private ImageButton nextBtn; //
 
 	@ViewInject(value = R.id.sb_progress)
-	private SeekBar music_progressBar; // 歌曲进度
+	private SeekBar music_progressBar; //
 
 	@ViewInject(value = R.id.ib_back)
 	private ImageButton ib_back;
@@ -81,16 +82,16 @@ public class PlayerActivity extends BaseActivity {
 	private ImageButton img_share;
 
 	@ViewInject(value = R.id.iv_music_album)
-	private RoundImageView iv_music_album;
+	private ImageView iv_music_album;
 
 	@ViewInject(value = R.id.iv_needle)
 	private ImageView iv_needle;
 
 	@ViewInject(value = R.id.tv_current_progress)
-	private TextView tv_current_progress; // 当前进度消耗的时间
+	private TextView tv_current_progress; //
 
 	@ViewInject(value = R.id.tv_final_progress)
-	private TextView tv_finalProgress; // 歌曲时间
+	private TextView tv_finalProgress; //
 
 	@ViewInject(value = R.id.rl_disc)
 	private RelativeLayout rl_disc;
@@ -138,7 +139,6 @@ public class PlayerActivity extends BaseActivity {
 		@Override
 		public void onLyricLoaded(List<LyricSentence> lyricSentences,
 				int indexOfCurSentence) {
-			Log.i(TAG, "加载成功");
 			lyricModel.putLyric(mp3Util.getCurrentMp3Info().getTitle(),
 					lyricSentences);
 			lyricView.setLyricSentences(lyricSentences, true);
@@ -168,7 +168,6 @@ public class PlayerActivity extends BaseActivity {
 			if (lrcPath == null) {
 				lyricView.setLyricSentences(null, false);
 				lyricView.setLoadLrc(LyricView.NO_LRC);
-				Log.d(TAG, "网络加载失败..");
 			}
 			lyricView.invalidate();
 		}
@@ -177,7 +176,6 @@ public class PlayerActivity extends BaseActivity {
 			currentMp3Info = mp3Util.getCurrentMp3Info();
 			String songName = currentMp3Info.getTitle();
 			String songer = currentMp3Info.getArtist();
-			// 查看本地
 			lrcPath = lyricModel.findLocalLrc(songer, songName);
 			if (lrcPath == null) {
 				lrcPath = lyricModel.searchLyricFromWeb(songName, songer);
@@ -236,16 +234,16 @@ public class PlayerActivity extends BaseActivity {
 			R.id.ib_play_list })
 	public void onClick(View view) {
 		switch (view.getId()) {
-		case R.id.play_music: // 点击播放
+		case R.id.play_music: //
 			mp3Util.playMusic();
 			break;
-		case R.id.next_music: // 点击下一首
+		case R.id.next_music: //
 			next_music();
 			break;
-		case R.id.previous_music: // 点击上一首
+		case R.id.previous_music: //
 			previous_music();
 			break;
-		case R.id.repeat_music: // 点击播放顺序
+		case R.id.repeat_music: //
 			changePlayType();
 			break;
 		case R.id.ib_back:
@@ -287,8 +285,7 @@ public class PlayerActivity extends BaseActivity {
 	}
 
 	/**
-	 * 根据播放类型 设置背景图
-	 * 
+	 *
 	 */
 	private void setPlayType() {
 		int drawableId = 0;
@@ -296,15 +293,15 @@ public class PlayerActivity extends BaseActivity {
 		switch (mp3Util.getPlayType()) {
 		case AppConstant.PlayerMsg.PLAYING_QUEUE:
 			drawableId = R.drawable.play_icn_loop;
-			typeString = "顺序播放";
+			typeString = "loop";
 			break;
 		case AppConstant.PlayerMsg.PLAYING_REPEAT:
 			drawableId = R.drawable.play_icn_one;
-			typeString = "单曲循环";
+			typeString = "one";
 			break;
 		case AppConstant.PlayerMsg.PLAYING_SHUFFLE:
 			drawableId = R.drawable.play_icn_shuffle;
-			typeString = "随机播放";
+			typeString = "suffle";
 			break;
 		default:
 			drawableId = R.drawable.playing_queue;
@@ -316,7 +313,6 @@ public class PlayerActivity extends BaseActivity {
 	}
 
 	/**
-	 * 改变播放类型
 	 */
 	private void changePlayType() {
 		mp3Util.changePlayType();
@@ -324,14 +320,12 @@ public class PlayerActivity extends BaseActivity {
 	}
 
 	/**
-	 * 上一曲
 	 */
 	public void previous_music() {
 		mp3Util.previous_music();
 	}
 
 	/**
-	 * 下一曲
 	 */
 	public void next_music() {
 		mp3Util.nextMusic(false);
@@ -339,7 +333,6 @@ public class PlayerActivity extends BaseActivity {
 	}
 
 	/**
-	 * 加载歌词
 	 */
 	private void loadLrc(boolean isInit) {
 		if (mp3Util.isShowLrc()) {
@@ -350,7 +343,6 @@ public class PlayerActivity extends BaseActivity {
 	}
 
 	/**
-	 * 初始化控件数据
 	 */
 	public void initViewData() {
 		DeBug.d(this, "initViewData............");
@@ -376,21 +368,17 @@ public class PlayerActivity extends BaseActivity {
 		Bitmap bmp = MediaUtil.getArtwork(getApplicationContext(),
 				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), true,
 				true);
-		Bitmap bmpBg = MediaUtil.getArtworkOriginal(getApplicationContext(),
-				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), true,
-				false);
+//		Bitmap bmpBg = MediaUtil.getMusicBitmap(getApplicationContext(),
+//				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), ScreenUtils.getScreenWidth(getApplicationContext()),ScreenUtils.getScreenHeight(getApplicationContext()));
 
-		iv_music_album.setImageBitmap(bmp);
-		// ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(bmp,
-		// this)));
-		ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(
-				bmpBg, this)));
+		iv_music_album.setImageBitmap(BitmapUtils.toRound(bmp,true));
+//		ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(
+//				bmpBg, this)));
 
 	}
 
 	/**
-	 * 进度条改变事件监听器
-	 * 
+	 *
 	 * 
 	 */
 	private class OnSeekBarChangeListenerImpl implements
@@ -401,7 +389,7 @@ public class PlayerActivity extends BaseActivity {
 			switch (seekBar.getId()) {
 			case R.id.sb_progress:
 				if (fromUser) {
-					sb_progressChange(progress); // 用户控制进度的改变
+					sb_progressChange(progress); //
 				}
 				break;
 			}
@@ -417,15 +405,13 @@ public class PlayerActivity extends BaseActivity {
 	}
 
 	/**
-	 * 进度条变化时调用该方法发送服务
-	 * 
+	 *
 	 * @param progress
 	 */
 	public void sb_progressChange(int progress) {
 		mp3Util.audioTrackChange(progress);
 	}
 
-	// 注册广播接收器
 	private void registerReceiver() {
 		State state = new MyState();
 
@@ -435,8 +421,7 @@ public class PlayerActivity extends BaseActivity {
 	}
 
 	/**
-	 * 根据播放器的状态改变界面的状态
-	 * 
+	 *
 	 * @author Administrator
 	 * 
 	 */
@@ -500,25 +485,6 @@ public class PlayerActivity extends BaseActivity {
 		super.onDestroy();
 	}
 
-	// /**
-	// * 显示歌词的控件接收服务发来的消息,每0.1s刷新一次
-	// */
-	// private BroadcastReceiver LrcBroadcastReceiver = new BroadcastReceiver()
-	// {
-	// @Override
-	// public void onReceive(Context context, Intent intent) {
-	// int currentTime = intent.getIntExtra("currentTime", -1);
-	// lyricView.updateindex(currentTime);
-	// if (mp3Util.isShowLrc()) {
-	// lyricView.postInvalidate();
-	// }
-	//
-	// currentTime = intent.getIntExtra("currentTime", -1);
-	// mp3Util.setCurrentTime(currentTime);
-	// tv_current_progress.setText(MediaUtil.formatTime(currentTime));
-	// music_progressBar.setProgress(currentTime);
-	// }
-	// };
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -528,19 +494,9 @@ public class PlayerActivity extends BaseActivity {
 		return super.onKeyDown(keyCode, event);
 	}
 
-	/**
-	 * finish后的动画
-	 */
 	private void finishAnimator() {
 		finish();
-		ActivityAnimator animator = new ActivityAnimator();
-		try {
-			animator.getClass()
-					.getMethod(animator.randomAnimator(), Activity.class)
-					.invoke(animator, this);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 	}
 
 }

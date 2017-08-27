@@ -84,7 +84,7 @@ public class SettingActivity extends BaseActivity {
 	private void initWidget() {
 		iv_more.setVisibility(View.GONE);
 		iv_search.setVisibility(View.GONE);
-		tv_title.setText("设置");
+		tv_title.setText("scan");
 		
 		tv_cache.setText(BitmapCacheUtil.getDefalut().formatFileSize());
 		
@@ -108,13 +108,13 @@ public class SettingActivity extends BaseActivity {
 		super.onResume();
 		switch (ApplicationUtil.getAppLockState(this)) {
 		case 0:
-			tv_lockpasswordstate.setText("未设置");
+			tv_lockpasswordstate.setText("wait");
 			break;
 		case 1:
-			tv_lockpasswordstate.setText("已开启");
+			tv_lockpasswordstate.setText("wait");
 			break;
 		case 2:
-			tv_lockpasswordstate.setText("已关闭");
+			tv_lockpasswordstate.setText("tv_lockpasswordstate");
 			break;
 			
 
@@ -130,19 +130,19 @@ public class SettingActivity extends BaseActivity {
 		sensorManagerUtil.registerListener();
 		switch (index) {
 		case 0:
-			tv_yaoyiyao.setText("不开启");
+			tv_yaoyiyao.setText("wait");
 			sensorManagerUtil.unRegisterListener();
 			break;
 		case 1:
-			tv_yaoyiyao.setText("温柔甩");
+			tv_yaoyiyao.setText("wait甩");
 			sensorManagerUtil.setValue(14);
 			break;
 		case 2:
-			tv_yaoyiyao.setText("普通甩");
+			tv_yaoyiyao.setText("wait");
 			sensorManagerUtil.setValue(17);
 			break;
 		case 3:
-			tv_yaoyiyao.setText("用力甩");
+			tv_yaoyiyao.setText("wait");
 			sensorManagerUtil.setValue(20);
 			break;
 
@@ -166,7 +166,7 @@ public class SettingActivity extends BaseActivity {
 		case R.id.rl_down:
 			break;
 		case R.id.rl_clear_memory:
-			DialogUtil.showWaitDialog(this,"缓存清理","清理缓存中...");
+			DialogUtil.showWaitDialog(this,"wait","wait..");
 			handle.postDelayed(new Runnable() {
 				@Override
 				public void run() {
@@ -185,13 +185,13 @@ public class SettingActivity extends BaseActivity {
 			cb_automatic_down_lrc
 					.setChecked(!cb_automatic_down_lrc.isChecked());
 			SharedPreHelper.setBooleanValue(this, AUTOMATIC_DOWN_LRC, cb_automatic_down_lrc.isChecked());
-			DialogUtil.showToast(this, "设置成功");
+			DialogUtil.showToast(this, "lll");
 			break;
 		case R.id.rl_listener_down:
 			cb_listener_down.setChecked(!cb_listener_down.isChecked());
 			
 			SharedPreHelper.setBooleanValue(this, LISTENER_DOWN, cb_listener_down.isChecked());
-			DialogUtil.showToast(this, "设置成功");
+			DialogUtil.showToast(this, "lllll");
 			break;
 		case R.id.rl_yaoyiyao:
 			popupWindowQieGe.showWindow(ll_parent);
@@ -214,7 +214,7 @@ public class SettingActivity extends BaseActivity {
 
 	}
 	private void setLock() {
-		if (tv_lockpasswordstate.getText().equals("未设置")) {
+		if (tv_lockpasswordstate.getText().equals("lll")) {
 			startActivity(new Intent(this,
 					GuideGesturePasswordActivity.class));
 		} else {
@@ -226,7 +226,7 @@ public class SettingActivity extends BaseActivity {
 	private void setScreenShot() {
 		cbScreenShot.setChecked(!cbScreenShot.isChecked());
 		SharedPreHelper.setBooleanValue(this, SCREEN_SHOT, cbScreenShot.isChecked());
-		DialogUtil.showToast(this, "设置成功");
+		DialogUtil.showToast(this, "msg");
 		if(cbScreenShot.isChecked()){
 			ScreenShotUtil.getInstance().registerShakeToScrShot(this);
 			ApplicationUtil.setYaoYiYao(this, true);

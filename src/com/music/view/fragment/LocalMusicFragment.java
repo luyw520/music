@@ -23,7 +23,6 @@ import com.music.utils.DeBug;
 import com.music.view.adapter.ViewPagerAdapter;
 
 /**
- *本地所有歌曲,专辑，歌曲家，文件夹
  */
 public class LocalMusicFragment extends Fragment implements IConstants ,OnClickListener{
 
@@ -97,12 +96,6 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 		@Override
 		public void onPageSelected(int position) {
 			
-			
-//			if(position==0){
-//				LocalMusicActivity.isFirst=true;
-//			}else{
-//				LocalMusicActivity.isFirst=false;
-//			}
 		}
 
 		@Override

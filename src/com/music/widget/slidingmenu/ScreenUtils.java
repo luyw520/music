@@ -53,8 +53,7 @@ public class ScreenUtils
 	}
 
 	/**
-	 * 获得状�?�栏的高�?
-	 * 
+	 *
 	 * @param context
 	 * @return
 	 */
@@ -98,8 +97,7 @@ public class ScreenUtils
 	}
 
 	/**
-	 * 获取当前屏幕截图，不包含状�?�栏
-	 * 
+	 *
 	 * @param activity
 	 * @return
 	 */

@@ -29,7 +29,6 @@ import android.widget.ListView;
 import android.widget.SectionIndexer;
 
 /**
- * ×ó±ßÏÔÊ¾µÄA-ZµÄ×ÖÄ¸
  * @author Administrator
  *
  */

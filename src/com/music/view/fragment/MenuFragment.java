@@ -16,8 +16,7 @@ import com.music.view.activity.SettingActivity;
 import com.music.widget.slidingmenu2.SlidingMenu.OnOpenedListener;
 
 /**
- * 侧滑Menu
- * 该类提供了软件的设置，歌曲的控制等几大功能
+ * 锟洁滑Menu
  * @author longdw(longdawei1988@gmail.com)
  *
  */
@@ -32,7 +31,7 @@ public class MenuFragment extends Fragment implements OnClickListener,
 
 	private int mCurMode;
 //	private ServiceManager mServiceManager;
-	private static final String modeName[] = { "列表循环", "顺序播放", "随机播放", "单曲循环" };
+	private static final String modeName[] = { "1", "2", "3", "4" };
 	private int modeDrawable[] = { R.drawable.icon_list_reapeat,
 			R.drawable.icon_sequence, R.drawable.icon_shuffle,
 			R.drawable.icon_single_repeat };
@@ -101,7 +100,6 @@ public class MenuFragment extends Fragment implements OnClickListener,
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if(requestCode == 1) {
-			//刷新主页内容
 //			((MainContentActivity)getActivity()).mMainFragment.refreshNum();
 		}
 	}

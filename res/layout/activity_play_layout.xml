@@ -5,13 +5,14 @@
     android:id="@+id/ll_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:fitsSystemWindows="true"
     android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/player_progresslayout_bg"
         android:clipToPadding="true"
         android:fitsSystemWindows="true" >
 
@@ -19,9 +20,42 @@
             android:id="@+id/ib_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
             android:background="@drawable/selector_press"
             android:src="@drawable/ic_common_title_bar_back" />
+        <LinearLayout
+            android:id="@+id/ll_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ib_back"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+            <com.music.widget.AlwaysMarqueeTextView
+                android:id="@+id/musicTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:text="aaaa"
+                android:textSize="18sp" />
+
+            <com.music.widget.AlwaysMarqueeTextView
+                android:id="@+id/musicArtist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:singleLine="true"
+                android:text="bbbb"
+                android:textColor="@color/player_track_color2"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/ib_changebg"
@@ -29,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
+            android:layout_centerVertical="true"
             android:background="@drawable/ic_changebg" />
 
         <ImageButton
@@ -36,6 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/ib_changebg"
             android:background="@drawable/icon_favourite_normal"
             android:visibility="gone" />
@@ -45,35 +81,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/ib_changebg"
             android:background="@drawable/share" />
 
-        <com.music.widget.AlwaysMarqueeTextView
-            android:id="@+id/musicTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
-            android:layout_toLeftOf="@+id/img_share"
-            android:layout_toRightOf="@+id/ib_back"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:gravity="center_horizontal"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
 
-        <com.music.widget.AlwaysMarqueeTextView
-            android:id="@+id/musicArtist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/musicTitle"
-            android:layout_centerHorizontal="true"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
 
         <ImageButton
             android:id="@+id/ibtn_searchLrc"
@@ -121,24 +133,23 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="75dp" >
+            android:layout_marginBottom="46dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/play_disc" />
 
-            <com.music.view.widget.RoundImageView
+            <ImageView
                 android:id="@+id/iv_music_album"
-                android:layout_width="156dp"
-                android:layout_height="156dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/girl"
-                imagecontrol:border_inside_color="#fff7f2e9"
-                imagecontrol:border_outside_color="#ffd5d1c8"
-                imagecontrol:border_thickness="2dp" />
+                />
         </RelativeLayout>
 
         <ImageView
@@ -153,7 +164,16 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:visibility="gone"
-            android:background="@drawable/abs__ab_bottom_transparent_dark_holo" />
+            android:background="@drawable/abs__ab_bottom_transparent_dark_holo"
+            android:id="@+id/view" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_above="@+id/view"
+            android:layout_toEndOf="@+id/view"
+            android:layout_toRightOf="@+id/view"
+            android:background="@color/player_track_color2" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -175,24 +195,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:textColor="@color/white" />
+                android:text="00:00"
+                android:textColor="#e0e0e0" />
 
             <SeekBar
                 android:id="@+id/sb_progress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:maxHeight="2dp"
                 android:progressDrawable="@drawable/playback_seekbar"
                 android:thumb="@drawable/playback_seekbar_thumb"
-                android:thumbOffset="12.0dip" />
+                android:thumbOffset="15dp" />
 
             <TextView
                 android:id="@+id/tv_final_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:textColor="@color/white" />
+                android:text="03:00"
+                android:textColor="#999" />
         </LinearLayout>
 
         <RelativeLayout

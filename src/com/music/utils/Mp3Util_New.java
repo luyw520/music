@@ -15,6 +15,8 @@ import android.util.Log;
 import com.music.bean.Mp3Info;
 import com.music.bean.MusicBaseInfo;
 import com.music.service.IMediaService;
+import com.music.view.MusicApplication;
+import com.music.view.service.MyPlayerNewService;
 
 public class Mp3Util_New {
 	private static final String TAG = "Mp3Util_New";
@@ -37,12 +39,10 @@ public class Mp3Util_New {
 	private MediaUtil mediaUtil;;
 	private boolean isSortByTime = false;
 	/**
-	 * 所有的歌曲
 	 */
 	private List<Mp3Info> mp3Infos = null;
 
 	/**
-	 * 当前播放列表
 	 */
 	private List<? extends MusicBaseInfo> musicBaseInfos = new ArrayList<MusicBaseInfo>();
 	private IMediaService mService;
@@ -54,35 +54,28 @@ public class Mp3Util_New {
 	private Context context;
 
 	/**
-	 * 当前正在播放的歌曲类
 	 */
 	// private Mp3Info currentMp3Info;
 	private MusicBaseInfo currentMp3Info;
 
 	/**
-	 * 当前播放歌曲的时长
 	 */
 	private int duration;
 
 	/**
-	 * 当期已播放的时长
 	 */
 	private int currentTime;
 
 	/**
-	 * 当前播放状态
 	 */
 	private boolean isPlaying;
 	/**
-	 * 播放类型
 	 */
 	private int playType;
 	/**
-	 * 当前播放歌曲在所有歌曲中的索引
 	 */
 	private int listPosition;
 	/**
-	 * 是否显示歌词
 	 */
 	private boolean isShowLrc;
 
@@ -94,8 +87,7 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 当前播放列表类型,所有歌曲,
-	 * 
+	 *
 	 * @author Steven
 	 * 
 	 */
@@ -118,8 +110,7 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 进度条变化时调用该方法发送服务
-	 * 
+	 *
 	 * @param progress
 	 */
 	public void audioTrackChange(int progress) {
@@ -128,7 +119,7 @@ public class Mp3Util_New {
 	}
 
 	private void bindService() {
-		Intent service = new Intent(playService);
+		Intent service = new Intent(MusicApplication.getInstance(),MyPlayerNewService.class);
 
 		conn = new ServiceConnection() {
 
@@ -137,7 +128,6 @@ public class Mp3Util_New {
 				// TODO Auto-generated method stub
 				mService = IMediaService.Stub.asInterface(service);
 				isBindService = true;
-				Log.d(TAG, "服务绑定成功....");
 			}
 
 			@Override
@@ -150,7 +140,6 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 改变播放类型
 	 */
 	public void changePlayType() {
 		if ((playType + 1) > AppConstant.PlayerMsg.PLAYING_REPEAT) {
@@ -225,13 +214,12 @@ public class Mp3Util_New {
 	};
 
 	/**
-	 * 应用程序退出时保存当前播放的音乐信息
 	 */
 	public void initCurrentMusicInfo(Context context) {
 
 		listPosition = SharedPreHelper.getIntValue(context, "listPosition", 0);
 		playType = SharedPreHelper.getIntValue(context, "playType", 9);
-		Log.i("Mp3Util", "获取值:listPosition=" + listPosition);
+		Log.i("Mp3Util", "锟斤拷取值:listPosition=" + listPosition);
 		// playType=9;
 
 	}
@@ -253,7 +241,6 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 根据播放类型发送下一首歌曲播放服务
 	 */
 	public void nextMusic(boolean isComplete) {
 		Log.i(TAG, "nextMusic()");
@@ -276,13 +263,12 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 发送播放或暂停音乐服务 如是当前是播放状态,则暂停.反之亦然
-	 * 
+	 *
 	 * 
 	 */
 	public void playMusic() {
 		int MSG = 0;
-		if (isPlaying()) { // 如果正在播放，发送暂停信息
+		if (isPlaying()) { //
 			MSG = AppConstant.PlayerMsg.PAUSE_MSG;
 			isPlaying = false;
 		} else {
@@ -301,10 +287,8 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 指定所有音乐中索引位置的音乐发送播放服务
-	 * 
+	 *
 	 * @param listPosition
-	 *            要播放音乐的索引位置
 	 */
 	public void playMusic(int listPosition) {
 
@@ -321,8 +305,7 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 发送播放或暂停音乐服务 如是当前是播放状态,则暂停.反之亦然
-	 * 
+	 *
 	 * 
 	 */
 	public void playMusic(Mp3Info mp3Info) {
@@ -336,7 +319,6 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 上一曲
 	 */
 	public void previous_music() {
 		switch (playType) {
@@ -354,8 +336,7 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 在所有歌曲当中随机产生一个随机索引
-	 * 
+	 *
 	 * @return
 	 */
 	private int randomNum() {
@@ -363,7 +344,6 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 随机一首
 	 */
 	public void randomPlay() {
 		listPosition = randomNum();
@@ -371,10 +351,8 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 应用程序退出时保存当前播放的音乐信息
 	 */
 	public void saveCurrentMusicInfo(Context context) {
-		Log.i("Mp3Util", "保存值:listPosition=" + listPosition);
 		SharedPreHelper.setIntValue(context, "listPosition", listPosition);
 		SharedPreHelper.setIntValue(context, "playType", playType);
 	}
@@ -461,8 +439,7 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 设置播放列表
-	 * 
+	 *
 	 * @param musicBaseInfos
 	 */
 	private void setMusicBaseInfos(List<? extends MusicBaseInfo> musicBaseInfos) {
@@ -472,8 +449,7 @@ public class Mp3Util_New {
 	}
 
 	/**
-	 * 设置播放列表
-	 * 
+	 *
 	 * @param musicBaseInfos
 	 */
 	public void setMusicBaseInfos(List<? extends MusicBaseInfo> musicBaseInfos,

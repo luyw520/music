@@ -18,7 +18,6 @@ public class ScreenManager {
 		return instance;
 	}
 
-	// 退出栈顶Activity
 	public void popActivity(Activity activity) {
 		if (activity != null) {
 			activity.finish();
@@ -27,13 +26,11 @@ public class ScreenManager {
 		}
 	}
 
-	// 获得当前栈顶Activity
 	public Activity currentActivity() {
 		Activity activity = activityStack.lastElement();
 		return activity;
 	}
 
-	// 将当前Activity推入栈中
 	public void pushActivity(Activity activity) {
 		if (activityStack == null) {
 			activityStack = new Stack<Activity>();
@@ -41,7 +38,6 @@ public class ScreenManager {
 		activityStack.add(activity);
 	}
 
-	// 退出栈中所有Activity
 	public void popAllActivityExceptOne(Class<?> cls) {
 		while (true) {
 			Activity activity = currentActivity();

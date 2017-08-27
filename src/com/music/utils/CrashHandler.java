@@ -25,49 +25,45 @@ public class CrashHandler implements UncaughtExceptionHandler{
 
 	public static final String TAG = "CrashHandler";
 	
-	//系统默认的UncaughtException处理类 
+	//系统默锟较碉拷UncaughtException锟斤拷锟斤拷锟斤拷 
 	private Thread.UncaughtExceptionHandler mDefaultHandler;
-	//CrashHandler实例
+	//CrashHandler实锟斤拷
 	private static CrashHandler INSTANCE = new CrashHandler();
-	//程序的Context对象
+	//锟斤拷锟斤拷锟紺ontext锟斤拷锟斤拷
 	private Context mContext;
-	//用来存储设备信息和异常信息
+	//锟斤拷锟斤拷锟芥储锟借备锟斤拷息锟斤拷锟届常锟斤拷息
 	private Map<String, String> infos = new HashMap<String, String>();
 
-	//用于格式化日期,作为日志文件名的一部分
+	//锟斤拷锟节革拷式锟斤拷锟斤拷锟斤拷,锟斤拷为锟斤拷志锟侥硷拷锟斤拷锟斤拷一锟斤拷锟斤拷
 	private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	
 	public String path;
 
-	/** 保证只有一个CrashHandler实例 */
+	/** 锟斤拷证只锟斤拷一锟斤拷CrashHandler实锟斤拷 */
 	private CrashHandler() {
 	}
 
-	/** 获取CrashHandler实例 ,单例模式 */
+	/** 锟斤拷取CrashHandler实锟斤拷 ,锟斤拷锟斤拷模式 */
 	public static CrashHandler getInstance() {
 		return INSTANCE;
 	}
 
 	/**
-	 * 初始化
+	 * 锟斤拷始锟斤拷
 	 * 
 	 * @param context
 	 */
 	public void init(Context context) {
 		mContext = context;
-		//获取系统默认的UncaughtException处理器
 		mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
-		//设置该CrashHandler为程序的默认处理器
 		Thread.setDefaultUncaughtExceptionHandler(this);
 	}
 
 	/**
-	 * 当UncaughtException发生时会转入该函数来处理
 	 */
 	@Override
 	public void uncaughtException(Thread thread, Throwable ex) {
 		if (!handleException(ex) && mDefaultHandler != null) {
-			//如果用户没有处理则让系统默认的异常处理器来处理
 			mDefaultHandler.uncaughtException(thread, ex);
 		} else {
 			try {
@@ -75,23 +71,19 @@ public class CrashHandler implements UncaughtExceptionHandler{
 			} catch (InterruptedException e) {
 				Log.e(TAG, "error : ", e);
 			}
-			//退出程序
 			android.os.Process.killProcess(android.os.Process.myPid());
 			System.exit(1);
 		}
 	}
 
 	/**
-	 * 自定义错误处理,收集错误信息 发送错误报告等操作均在此完成.
-	 * 
+	 *
 	 * @param ex
-	 * @return true:如果处理了该异常信息;否则返回false.
 	 */
 	private boolean handleException(Throwable ex) {
 		if (ex == null) {
 			return false;
 		}
-		//使用Toast来显示异常信息
 		new Thread() {
 			@Override
 			public void run() {
@@ -100,15 +92,12 @@ public class CrashHandler implements UncaughtExceptionHandler{
 				Looper.loop();
 			}
 		}.start();
-		//收集设备参数信息 
 		collectDeviceInfo(mContext);
-		//保存日志文件 
 		saveCrashInfo2File(ex);
 		return true;
 	}
 	
 	/**
-	 * 收集设备参数信息
 	 * @param ctx
 	 */
 	public void collectDeviceInfo(Context ctx) {
@@ -137,10 +126,8 @@ public class CrashHandler implements UncaughtExceptionHandler{
 	}
 
 	/**
-	 * 保存错误信息到文件中
-	 * 
+	 *
 	 * @param ex
-	 * @return	返回文件名称,便于将文件传送到服务器
 	 */
 	private String saveCrashInfo2File(Throwable ex) {
 		

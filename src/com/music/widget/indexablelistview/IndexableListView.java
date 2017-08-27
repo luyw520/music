@@ -32,7 +32,6 @@ public class IndexableListView extends ListView {
 	@SuppressWarnings("unused")
 	private GestureDetector mGestureDetector = null;
 	/**
-	 *  «∑Òœ‘ æ≈≈–Ú
 	 */
 	private boolean isShow=false;
 	

@@ -27,23 +27,18 @@ import com.music.widget.lockpatternview.LockPatternView;
 import com.music.widget.lockpatternview.LockPatternView.Cell;
 @ContentView(R.layout.activity_gesturepassword_unlock)
 public class UnlockGesturePasswordActivity extends BaseActivity {
-	/** 中间解锁图案 **/
 	private LockPatternView mLockPatternView;
-	/** 解锁错误次数 **/
 	private int mFailedPatternAttemptsSinceLastTimeout = 0;
-	/** 计时器 **/
 	private CountDownTimer mCountdownTimer = null;
 	/** Handler **/
 	private Handler mHandler = new Handler();
-	/** 顶部文本 **/
 	private TextView mHeadTextView;
 	private Animation mShakeAnim;
 
 	@ViewInject(R.id.gesturepwd_unlock_forget)
 	private TextView gesturepwd_unlock_forget;
 	/**
-	 * 弹出提示信息
-	 * 
+	 *
 	 * @param message
 	 */
 	private void showToast(CharSequence message) {
@@ -55,7 +50,6 @@ public class UnlockGesturePasswordActivity extends BaseActivity {
 		long start=SystemClock.currentThreadTimeMillis();
 		super.onCreate(savedInstanceState);
 		DeBug.d(this, "onCreate........");
-		// 设置布局
 //		setContentView(R.layout.activity_gesturepassword_unlock);
 
 		
@@ -65,7 +59,6 @@ public class UnlockGesturePasswordActivity extends BaseActivity {
 //			finish();
 //			return;
 //		}
-		// 根据id在布局中找到控件对象
 		mLockPatternView = (LockPatternView) this
 				.findViewById(R.id.gesturepwd_unlock_lockview);
 		mLockPatternView.setOnPatternListener(mChooseNewLockPatternListener);
@@ -77,23 +70,12 @@ public class UnlockGesturePasswordActivity extends BaseActivity {
 		
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-
-		// 判断是否设置了锁屏密码,如果没设置,跳转到设置界面
-		// if (!App.getInstance().getLockPatternUtils().savedPatternExists()) {
-		// startActivity(new Intent(this, GuideGesturePasswordActivity.class));
-		// finish();
-		// }
-	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		// 判断计时器对象是否为空
-		if (mCountdownTimer != null)// 不为空
-			mCountdownTimer.cancel();// 取消计时器
+		if (mCountdownTimer != null)//
+			mCountdownTimer.cancel();//
 	}
 	@OnClick({R.id.gesturepwd_unlock_forget})
 	public void viewClick(View view){
@@ -110,7 +92,6 @@ public class UnlockGesturePasswordActivity extends BaseActivity {
 		}
 	}
 	/**
-	 * 清除绘制的图案,恢复到初始状态
 	 */
 	private Runnable mClearPatternRunnable = new Runnable() {
 		public void run() {
@@ -127,64 +108,47 @@ public class UnlockGesturePasswordActivity extends BaseActivity {
 		}
 		public void onPatternDetected(List<LockPatternView.Cell> pattern) {
 
-			if (pattern == null)// 判断pattern是否为空
+			if (pattern == null)//
 				return;
 
-			// 判断解锁是否成功
 			if (MusicApplication.getInstance().getLockPatternUtils()
-					.checkPattern(pattern)) {// 成功
+					.checkPattern(pattern)) {//
 
-				// 设置当前模式为正确而模式
 				mLockPatternView
 						.setDisplayMode(LockPatternView.DisplayMode.Correct);
 
-				// 设置Intent跳转目标
-				// Intent intent = new
-				// Intent(UnlockGesturePasswordActivity.this,
-				// GuideGesturePasswordActivity.class);
-				// // 打开新的Activity
-				// startActivity(intent);
-				showToast("解锁成功");
+				showToast("aaa");
 				ApplicationUtil.setAppToBack(
 						UnlockGesturePasswordActivity.this, 0);
 				setResult(0, new Intent());
-				// 结束当前的Activity
 				finish();
 
-			} else {// 未成功
+			} else {
 
-				// 设置当前模式为错误模式
 				mLockPatternView
 						.setDisplayMode(LockPatternView.DisplayMode.Wrong);
 
-				// 判断输入长度
-				if (pattern.size() >= LockPatternUtils.MIN_PATTERN_REGISTER_FAIL) {// 输入长度达到最低要求
+				if (pattern.size() >= LockPatternUtils.MIN_PATTERN_REGISTER_FAIL) {//
 
-					// 统计输入错误次数
 					mFailedPatternAttemptsSinceLastTimeout++;
-					// 统计剩余的解锁次数
 					int retry = LockPatternUtils.FAILED_ATTEMPTS_BEFORE_TIMEOUT
 							- mFailedPatternAttemptsSinceLastTimeout;
-					// 判断剩余的解锁次数
 					if (retry >= 0) {
-						if (retry == 0)// 如果剩余次数等于0,通知用户30秒后重试
-							showToast("您已5次输错密码，请30秒后再试");
-						mHeadTextView.setText("密码错误，还可以再输入" + retry + "次");
+						if (retry == 0)//
+							showToast("bbb");
+						mHeadTextView.setText("bb " + retry + "ss");
 						mHeadTextView.setTextColor(Color.RED);
 						mHeadTextView.startAnimation(mShakeAnim);
 					}
 
-				} else {// 输入长度未达到要求
-					showToast("输入长度不够，请重试");
+				} else {//
+					showToast("ddd");
 				}
 
-				// 判断输入错误次数
-				if (mFailedPatternAttemptsSinceLastTimeout >= LockPatternUtils.FAILED_ATTEMPTS_BEFORE_TIMEOUT) {// 错误次数达到最高限制
-					// 通知禁用解锁区域30秒,30秒后重置获得5次解锁机会
+				if (mFailedPatternAttemptsSinceLastTimeout >= LockPatternUtils.FAILED_ATTEMPTS_BEFORE_TIMEOUT) {// 锟斤拷锟斤拷锟斤拷锟斤拷锏斤拷锟斤拷锟斤拷锟斤拷
 					mHandler.postDelayed(attemptLockout, 2000);
 
-				} else {// 错误次数未达到最高限制
-					// 通知清除绘制的图案,恢复所有图案状态
+				} else {//
 					mLockPatternView.postDelayed(mClearPatternRunnable, 2000);
 				}
 			}
@@ -203,23 +167,18 @@ public class UnlockGesturePasswordActivity extends BaseActivity {
 
 		@Override
 		public void run() {
-			// 清除已经绘制的图案
 			mLockPatternView.clearPattern();
-			// 禁用中间图案解锁
 			mLockPatternView.setEnabled(false);
-			// 使用计时器机型计时
 			mCountdownTimer = new CountDownTimer(
 					LockPatternUtils.FAILED_ATTEMPT_TIMEOUT_MS + 1, 1000) {
 
 				@Override
 				public void onTick(long millisUntilFinished) {
-					// 计算过去的秒数
 					int secondsRemaining = (int) (millisUntilFinished / 1000) - 1;
-					if (secondsRemaining > 0) {// 如果大于0
-						// 每隔一秒更新顶部文本信息
-						mHeadTextView.setText(secondsRemaining + " 秒后重试");
-					} else {// 倒计时结束
-						mHeadTextView.setText("请绘制手势密码");
+					if (secondsRemaining > 0) {//
+						mHeadTextView.setText(secondsRemaining + " ggg");
+					} else {//
+						mHeadTextView.setText("hhhh");
 						mHeadTextView.setTextColor(Color.WHITE);
 					}
 
@@ -227,9 +186,7 @@ public class UnlockGesturePasswordActivity extends BaseActivity {
 
 				@Override
 				public void onFinish() {
-					// 启用中间解锁区域
 					mLockPatternView.setEnabled(true);
-					// 重置输入错误次数
 					mFailedPatternAttemptsSinceLastTimeout = 0;
 				}
 			}.start();

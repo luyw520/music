@@ -20,6 +20,7 @@ import com.music.utils.ConstantUtil;
 import com.music.utils.DeBug;
 import com.music.utils.ScreenShotUtil;
 import com.music.utils.SystemBarTintManager;
+import com.music.view.animator.ActivityAnimator;
 import com.umeng.analytics.MobclickAgent;
 
 public class BaseActivity extends Activity implements ConstantUtil {
@@ -34,9 +35,7 @@ public class BaseActivity extends Activity implements ConstantUtil {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		ViewUtils.inject(this);
-		// Í¸Ã÷×´Ì¬À¸
 		// getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		// //Í¸Ã÷µ¼º½À¸
 		// getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
 		// int color = Color.argb(153, 123, 123,123);
@@ -46,10 +45,10 @@ public class BaseActivity extends Activity implements ConstantUtil {
 			setTranslucentStatus(true);
 		}
 
-		mTintManager = new SystemBarTintManager(this);
-		mTintManager.setStatusBarTintEnabled(true);
-		mTintManager.setNavigationBarTintEnabled(true);
-		mTintManager.setTintColor(getResources().getColor(R.color.header_bg));
+//		mTintManager = new SystemBarTintManager(this);
+//		mTintManager.setStatusBarTintEnabled(true);
+//		mTintManager.setNavigationBarTintEnabled(true);
+//		mTintManager.setTintColor(getResources().getColor(R.color.header_bg));
 	}
 
 	@TargetApi(19)
@@ -81,18 +80,24 @@ public class BaseActivity extends Activity implements ConstantUtil {
 			}
 		}
 	}
+	protected void startActivityWithAnimator(Class<?> clazz) {
+		startActivity(new Intent(this, clazz));
+		startActivityAnimator();
+	}
+	protected void startActivityAnimator(){
+		ActivityAnimator activityAnimator=new ActivityAnimator();
+		try {
+			activityAnimator.getClass().getMethod(activityAnimator.randomAnimator(), Activity.class).invoke(activityAnimator, this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);
-		// ViewGroup root=(ViewGroup) this.getWindow().getDecorView();
-		// long start=System.currentTimeMillis();
-		// changeFont(root);
-		// DeBug.d(this,
-		// "changeFont spend time :"+(System.currentTimeMillis()-start)/1000.0+" s");
-
 		if (ApplicationUtil.getYaoYiYao(this)) {
 			ScreenShotUtil.getInstance().registerShakeToScrShot(this);
 		}

@@ -54,7 +54,6 @@ public class LockScreenActivity extends Activity {
 	}
 	
 	/**
-	 * 注册广播接收�?
 	 */
 	private void registerReceiver() {
 		State state = new MyLockState();

@@ -29,18 +29,13 @@ public class PhotoUtils {
 	private static final String IMAGE_PATH = FileUtils.imgPathPath() + File.separator;
 	
 	
-	// 相册的RequestCode
 	public static final int INTENT_REQUEST_CODE_ALBUM = 0;
-	// 照相的RequestCode
 	public static final int INTENT_REQUEST_CODE_CAMERA = 1;
-	// 裁剪照片的RequestCode
 	public static final int INTENT_REQUEST_CODE_CROP = 2;
-	// 滤镜图片的RequestCode
 	public static final int INTENT_REQUEST_CODE_FLITER = 3;
 
 	/**
-	 * 通过手机相册获取图片
-	 * 
+	 *
 	 * @param activity
 	 */
 	public static void selectPhoto(Activity activity) {
@@ -51,10 +46,8 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 通过手机照相获取图片
-	 * 
+	 *
 	 * @param activity
-	 * @return 照相后图片的路径
 	 */
 	public static String takePicture(Activity activity) {
 		FileUtils.createDirFile(IMAGE_PATH);
@@ -69,12 +62,10 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 裁剪图片
-	 * 
+	 *
 	 * @param context
 	 * @param activity
 	 * @param path
-	 *            需要裁剪的图片路径
 	 */
 	public static void cropPhoto(Context context, Activity activity, String path) {
 		Intent intent = new Intent(context, ImageFactoryActivity.class);
@@ -87,12 +78,10 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 滤镜图片
-	 * 
+	 *
 	 * @param context
 	 * @param activity
 	 * @param path
-	 *            需要滤镜的图片路径
 	 */
 	public static void fliterPhoto(Context context, Activity activity,
 			String path) {
@@ -106,7 +95,6 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 删除图片缓存目录
 	 */
 	public static void deleteImageFile() {
 		File dir = new File(IMAGE_PATH);
@@ -116,10 +104,8 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 从文件中获取图片
-	 * 
+	 *
 	 * @param path
-	 *            图片的路径
 	 * @return
 	 */
 	public static Bitmap getBitmapFromFile(String path) {
@@ -127,12 +113,9 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 从Uri中获取图片
-	 * 
+	 *
 	 * @param cr
-	 *            ContentResolver对象
 	 * @param uri
-	 *            图片的Uri
 	 * @return
 	 */
 	public static Bitmap getBitmapFromUri(ContentResolver cr, Uri uri) {
@@ -145,33 +128,24 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 根据宽度和长度进行缩放图片
-	 * 
-	 * @param path
-	 *            图片的路径
-	 * @param w
-	 *            宽度
-	 * @param h
-	 *            长度
+	 *
 	 * @return
 	 */
 	public static Bitmap createBitmap(String path, int w, int h) {
 		try {
 			BitmapFactory.Options opts = new BitmapFactory.Options();
 			opts.inJustDecodeBounds = true;
-			// 这里是整个方法的关键，inJustDecodeBounds设为true时将不为图片分配内存。
 			BitmapFactory.decodeFile(path, opts);
-			int srcWidth = opts.outWidth;// 获取图片的原始宽度
-			int srcHeight = opts.outHeight;// 获取图片原始高度
+			int srcWidth = opts.outWidth;//
+			int srcHeight = opts.outHeight;//
 			int destWidth = 0;
 			int destHeight = 0;
-			// 缩放的比例
 			double ratio = 0.0;
 			if (srcWidth < w || srcHeight < h) {
 				ratio = 0.0;
 				destWidth = srcWidth;
 				destHeight = srcHeight;
-			} else if (srcWidth > srcHeight) {// 按比例计算缩放后的图片大小，maxLength是长或宽允许的最大长度
+			} else if (srcWidth > srcHeight) {
 				ratio = (double) srcWidth / w;
 				destWidth = w;
 				destHeight = (int) (srcHeight / ratio);
@@ -181,14 +155,10 @@ public class PhotoUtils {
 				destWidth = (int) (srcWidth / ratio);
 			}
 			BitmapFactory.Options newOpts = new BitmapFactory.Options();
-			// 缩放的比例，缩放是很难按准备的比例进行缩放的，目前我只发现只能通过inSampleSize来进行缩放，其值表明缩放的倍数，SDK中建议其值是2的指数值
 			newOpts.inSampleSize = (int) ratio + 1;
-			// inJustDecodeBounds设为false表示把图片读进内存中
 			newOpts.inJustDecodeBounds = false;
-			// 设置大小，这个一般是不准确的，是以inSampleSize的为准，但是如果不设置却不能缩放
 			newOpts.outHeight = destHeight;
 			newOpts.outWidth = destWidth;
-			// 获取缩放后图片
 			return BitmapFactory.decodeFile(path, newOpts);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -197,10 +167,8 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 获取图片的长度和宽度
-	 * 
+	 *
 	 * @param bitmap
-	 *            图片bitmap对象
 	 * @return
 	 */
 	public static Bundle getBitmapWidthAndHeight(Bitmap bitmap) {
@@ -215,10 +183,8 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 判断图片高度和宽度是否过大
-	 * 
+	 *
 	 * @param bitmap
-	 *            图片bitmap对象
 	 * @return
 	 */
 	public static boolean bitmapIsLarge(Bitmap bitmap) {
@@ -238,10 +204,8 @@ public class PhotoUtils {
 	
 
 	/**
-	 * 保存图片到SD卡
-	 * 
+	 *
 	 * @param bitmap
-	 *            图片的bitmap对象
 	 * @return
 	 */
 	public static String savePhotoToSDCard(Bitmap bitmap) {
@@ -274,12 +238,9 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 根据滤镜类型获取图片
-	 * 
+	 *
 	 * @param filterType
-	 *            滤镜类型
 	 * @param defaultBitmap
-	 *            默认图片
 	 * @return
 	 */
 	public static Bitmap getFilter(FilterType filterType, Bitmap defaultBitmap) {
@@ -292,8 +253,7 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 滤镜效果--LOMO
-	 * 
+	 *
 	 * @param bitmap
 	 * @return
 	 */
@@ -337,7 +297,7 @@ public class PhotoUtils {
 
 				newB = B / 2 + 0x25;
 
-				// ==========边缘黑暗==============//
+				// ==========锟斤拷缘锟节帮拷==============//
 				dx = cx - x;
 				dy = cy - y;
 				if (width > height)
@@ -358,7 +318,7 @@ public class PhotoUtils {
 					newG = gi > 255 ? 255 : (gi < 0 ? 0 : gi);
 					newB = bi > 255 ? 255 : (bi < 0 ? 0 : bi);
 				}
-				// ==========边缘黑暗end==============//
+				// ==========锟斤拷缘锟节帮拷end==============//
 
 				dst[pos] = Color.rgb(newR, newG, newB);
 			}

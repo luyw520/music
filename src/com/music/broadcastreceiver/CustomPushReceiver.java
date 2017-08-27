@@ -31,18 +31,12 @@ public class CustomPushReceiver extends XGPushBaseReceiver{
 		@SuppressWarnings("unused")
 		String text = "";
 		if (message.getActionType() == XGPushClickedResult.NOTIFACTION_CLICKED_TYPE) {
-			// 通知在通知栏被点击啦。。。。。
-			// APP自己处理点击的相关动作
-			// 这个动作可以在activity的onResume也能监听，请看第3点相关内容
-			text = "通知被打开 :" + message;
+			text = "aaa" + message;
 		} else if (message.getActionType() == XGPushClickedResult.NOTIFACTION_DELETED_TYPE) {
-			// 通知被清除啦。。。。
-			// APP自己处理通知被清除后的相关动作
-			text = "通知被清除 :" + message;
+			text = "bbb" + message;
 		}
-		Log.d(TAG, "广播接收到通知被点击:" + message.toString()
+		Log.d(TAG, "ccc" + message.toString()
 				);
-		// 获取自定义key-value
 		String customContent = message.getCustomContent();
 		if (customContent != null && customContent.length() != 0) {
 			try {
@@ -78,12 +72,11 @@ public class CustomPushReceiver extends XGPushBaseReceiver{
 		}
 		String text = "";
 		if (errorCode == XGPushBaseReceiver.SUCCESS) {
-			text = message + "注册成功";
-			// 在这里拿token
+			text = message + "aaa";
 			@SuppressWarnings("unused")
 			String token = message.getToken();
 		} else {
-			text = message + "注册失败，错误码：" + errorCode;
+			text = message + "dddd" + errorCode;
 		}
 //		int a =XGPushBaseReceiver.SUCCESS;
 		Log.i(TAG, text);
@@ -99,9 +92,9 @@ public class CustomPushReceiver extends XGPushBaseReceiver{
 		String text = "";
 		int errorCode=0;
 		if (errorCode == XGPushBaseReceiver.SUCCESS) {
-			text = "\"" + tagName + "\"设置成功";
+			text = "\"" + tagName + "\"fff";
 		} else {
-			text = "\"" + tagName + "\"设置失败,错误码：" + errorCode;
+			text = "\"" + tagName + "\"hhhh" + errorCode;
 		}
 //		Log.d(LogTag, text);
 //		show(context, text);
@@ -112,7 +105,7 @@ public class CustomPushReceiver extends XGPushBaseReceiver{
 		Log.i(TAG, "onTextMessage");
 		if(arg0==null || message==null) return;
 		
-		String textString="消息是:"+message.toString();
+		String textString="lll:"+message.toString();
 		Log.i(TAG, textString);
 		String contentString=message.getCustomContent();
 		try { 

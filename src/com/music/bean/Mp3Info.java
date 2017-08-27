@@ -8,25 +8,23 @@ import android.graphics.Bitmap;
 @SuppressLint("DefaultLocale")
 @SuppressWarnings("rawtypes")
 public class Mp3Info extends MusicBaseInfo implements Comparable {
-	private long id; // 歌曲ID 3
-	private String album; // 专辑 7
-	private String displayName; // 显示名称 4
-	private long size; // 歌曲大小 8
-	private String url; // 歌曲路径 5
+	private long id; //
+	private String album; //
+	private String displayName; //
+	private long size; //
+	private String url; //
 
 	private String songName;
 	private String songer;
 	/**
-	 * 网络上的歌曲下载路劲
 	 */
 	private String downUrl;
-	private String lrcTitle; // 歌词名称
-	private String lrcSize; // 歌词大小
-	private String titlepinyin;// 歌曲首字母拼音
+	private String lrcTitle; //
+	private String lrcSize; //
+	private String titlepinyin;//
 	@SuppressWarnings("unused")
 	private String fisrtPinYin;
 	/**
-	 * 头像图片资源
 	 */
 	private byte[] bitMap;
 
@@ -184,11 +182,9 @@ public class Mp3Info extends MusicBaseInfo implements Comparable {
 			}
 
 		}
-		// mp3Info.titlepinyin歌曲长度大于titlepinyin
 		if (i == titlepinyin.length()) {
 			return -1;
 		}
-		// titlepinyin歌曲长度大于mp3Info.titlepinyin
 		if (flag) {
 			return 1;
 		}

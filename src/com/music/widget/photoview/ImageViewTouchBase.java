@@ -48,12 +48,12 @@ public abstract class ImageViewTouchBase extends ImageView {
     float mMaxZoom;
     
     /**
-     * 高亮状�??
+     * 高亮状
      */
     public static final int STATE_HIGHLIGHT = 0x0;
     
     /**
-     * 涂鸦状�??
+     * 涂鸦状
      */
     public static final int STATE_DOODLE = STATE_HIGHLIGHT + 1;
     

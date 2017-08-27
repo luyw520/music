@@ -12,8 +12,7 @@ public class ConnectionUtil {
 	private static NetworkInfo niInfo = null;
 
 	/**
-	 * 检测网络是否可用
-	 * 
+	 *
 	 * @param context
 	 * @return
 	 */
@@ -39,19 +38,19 @@ public class ConnectionUtil {
 				.getSystemService(Context.TELEPHONY_SERVICE);
 		int type = 0;
 		switch (telephonyManager.getNetworkType()) {
-		// 联通3g
+		// 3g
 		case TelephonyManager.NETWORK_TYPE_UMTS:
 		case TelephonyManager.NETWORK_TYPE_HSDPA:
-			// 电信3g
+			// 3g
 		case TelephonyManager.NETWORK_TYPE_EVDO_0:
 		case TelephonyManager.NETWORK_TYPE_EVDO_A:
 		case TelephonyManager.NETWORK_TYPE_EVDO_B:
 			type = 3;
 			break;
-		// 移动联通2g
+		// 2g
 		case TelephonyManager.NETWORK_TYPE_GPRS:
 		case TelephonyManager.NETWORK_TYPE_EDGE:
-			// 电信2g
+			// 2g
 		case TelephonyManager.NETWORK_TYPE_CDMA:
 
 			type = 2;

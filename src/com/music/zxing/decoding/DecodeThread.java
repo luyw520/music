@@ -30,7 +30,6 @@ import com.music.view.activity.MipcaCaptureActivity;
 
 /**
  * This thread does all the heavy lifting of decoding the images.
- * ½âÂëÏß³Ì
  */
 final class DecodeThread extends Thread {
 

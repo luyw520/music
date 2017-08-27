@@ -20,6 +20,9 @@ import android.view.View;
 import com.music.lu.R;
 import com.nineoldandroids.view.ViewHelper;
 
+/**
+ * 带翻页动画的ViewPager
+ */
 public class JazzyViewPager extends ViewPager {
 
 	public static final String TAG = "JazzyViewPager";

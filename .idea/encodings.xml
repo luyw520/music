@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/com/music/bean/AlbumInfo.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/music/service/IConstants.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/music/view/ImageFactoryFliter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/music/view/SplashScreen.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/music/view/activity/BaseActivity.java" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

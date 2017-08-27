@@ -24,7 +24,7 @@ import com.music.view.adapter.LuAdapter;
 import com.music.widget.indexablelistview.IndexableListView;
 
 /**
- *
+ *æ‰€æœ‰æ­Œæ‰‹
  */
 public class ArtistFragment extends BaseFragment {
 
@@ -33,7 +33,7 @@ public class ArtistFragment extends BaseFragment {
 
 	private ArtistAdapter listAdapter;
 	@ViewInject(value = R.id.listview)
-	private IndexableListView mMusiclist; // ÒôÀÖÁÐ±í
+	private IndexableListView mMusiclist; //
 
 	private  List<ArtistInfo> artistInfos;
 	private MusicListItemClickListener musicListItemClickListener;
@@ -57,7 +57,6 @@ public class ArtistFragment extends BaseFragment {
 	}
 
 	/**
-	 * ³õÊ¼»¯viewÉÏÃæµÄ¿Ø¼þ
 	 */
 	private void initViewWidget(View view) {
 
@@ -72,19 +71,8 @@ public class ArtistFragment extends BaseFragment {
 		artistInfos = MusicUtils.getDefault().queryArtist(getActivity());
 		listAdapter = new ArtistAdapter(getActivity(),artistInfos,R.layout.item_listview_album);
 		
-//		LinearLayout listViewFoodView = new LinearLayout(getActivity());
-//		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-//				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-//		params.topMargin = 15;
-//		params.bottomMargin = 200;
-//		params.leftMargin = 100;
-//		TextView textView = new TextView(getActivity());
-//		textView.setGravity(Gravity.CENTER);
-//		textView.setText("¹²" + artistInfos.size() + "¸ö¸èÊÖ");
-//
-//		listViewFoodView.addView(textView, params);
 
-		mMusiclist.addFooterView(getFoodView("¹²" + artistInfos.size() + "¸ö¸èÊÖ"));
+		mMusiclist.addFooterView(getFoodView(getString(R.string.arities_size,artistInfos.size())));
 		mMusiclist.setShow(false);
 		mMusiclist.setAdapter(listAdapter);
 
@@ -146,7 +134,7 @@ public class ArtistFragment extends BaseFragment {
 			ArtistInfo artistInfo=getItem(position);
 			
 			helper.setString(R.id.tv_album_name, artistInfo.artist_name);
-			helper.setString(R.id.tv_number_of_songs, artistInfo.number_of_tracks+"Ê×¸è");
+			helper.setString(R.id.tv_number_of_songs, artistInfo.number_of_tracks+"é¦–æ­Œæ›²");
 			helper.getView(R.id.tv_artist).setVisibility(View.GONE);
 			
 			

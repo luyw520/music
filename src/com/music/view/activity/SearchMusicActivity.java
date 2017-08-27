@@ -30,8 +30,6 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.lu.demo.adapter.LuAdapter;
-import com.lu.demo.adapter.ViewHolder;
 import com.music.bean.Mp3Info;
 import com.music.lu.R;
 import com.music.model.DataStorageModel;
@@ -43,6 +41,8 @@ import com.music.utils.FileUtils;
 import com.music.utils.MediaUtil;
 import com.music.utils.Mp3Util_New;
 import com.music.utils.StringUtil;
+import com.music.view.adapter.LuAdapter;
+import com.music.view.adapter.ViewHolder;
 import com.music.widget.dialog.LoadingView;
 
 /**
@@ -158,13 +158,12 @@ public class SearchMusicActivity extends BaseActivity {
 		public Filter getFilter() {
 			Filter filter = new Filter() {
 				/**
-				 * 本方法在后台线程执行，定义过滤算法
 				 */
 				@Override
 				protected FilterResults performFiltering(CharSequence constraint) {
 					FilterResults filterResults = new FilterResults();
-					filterResults.values = objects; // results是上面的过滤结果
-					filterResults.count = objects.size(); // 结果数量
+					filterResults.values = objects; //
+					filterResults.count = objects.size(); //
 					DeBug.d(SearchMusicActivity.this,
 							"performFiltering------------historys.size():"
 									+ objects.size());
@@ -172,19 +171,16 @@ public class SearchMusicActivity extends BaseActivity {
 				}
 
 				/**
-				 * 本方法在UI线程执行，用于更新自动完成列表
 				 */
 				@Override
 				protected void publishResults(CharSequence constraint,
 						FilterResults results) {
 					if (results != null && results.count > 0) {
-						// 有过滤结果，显示自动完成列表
 						DeBug.d(SearchMusicActivity.this,
 								"publishResults------------objects.size():"
 										+ objects.size());
 						notifyDataSetChanged();
 					} else {
-						// 无过滤结果，关闭列表
 						notifyDataSetInvalidated();
 					}
 				}
@@ -351,7 +347,7 @@ public class SearchMusicActivity extends BaseActivity {
 		}
 
 		@Override
-		public void convert(com.lu.demo.adapter.ViewHolder viewHolder,
+		public void convert(ViewHolder viewHolder,
 				int position) {
 			viewHolder.setString(R.id.tv_songName,
 					(datas.get(position).getDisplayName()));

@@ -74,15 +74,15 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 					.findViewById(R.id.catalog);
 			viewHolder.music_album = (TextView) convertView
 					.findViewById(R.id.music_album);
-			convertView.setTag(viewHolder); // 表示给View添加一个格外的数据，
+			convertView.setTag(viewHolder); //
 
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		mp3Info = mp3Infos.get(position);
 
-		viewHolder.musicTitle.setText(mp3Info.getTitle()); // 显示标题
-		viewHolder.music_album.setText(mp3Info.getAlbum());
+		viewHolder.musicTitle.setText(mp3Info.getTitle()); //
+		viewHolder.music_album.setText(mp3Info.getArtist());
 		if (!mp3Util.isSortByTime()) {
 			viewHolder.catalog.setVisibility(View.VISIBLE);
 			viewHolder.catalog.setText(mp3Info.getFisrtPinYin());
@@ -106,19 +106,15 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 	}
 
 	/**
-	 * 定义一个内部类 声明相应的控件引用
-	 * 
+	 *
 	 * @author wwj
 	 * 
 	 */
 	public class ViewHolder {
-		// 所有控件对象引用
-		public ImageView albumImage; // 专辑图片
-		public TextView musicTitle; // 音乐标题
+		public ImageView albumImage; //
+		public TextView musicTitle; //
 		public TextView catalog;
 		public TextView music_album;
-		// public TextView musicDuration; // 音乐时长
-		// public TextView musicArtist; // 音乐艺术家
 	}
 
 	@Override

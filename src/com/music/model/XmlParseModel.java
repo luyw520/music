@@ -46,11 +46,9 @@ public class XmlParseModel {
 	@SuppressWarnings("unchecked")
 	public  void listNodes(Element node,Mp3Info mp3Info) {  
         System.out.println("node name:" + node.getName());  
-        // 获取当前节点的所有属性节点  
-		
+
 		List<Attribute> list = node.attributes();  
-        // 遍历属性节点  
-        for (Attribute attr : list) {  
+        for (Attribute attr : list) {
             System.out.println(attr.getText() + "-----" + attr.getName()  
                     + "---" + attr.getValue());  
         }  
@@ -67,17 +65,13 @@ public class XmlParseModel {
         	mp3Info.encode=node.getText();
         }
         if (!(node.getTextTrim().equals(""))) {  
-            System.out.println("node.getText：" + node.getText());  
+            System.out.println("node.getText锟斤拷" + node.getText());  
         }  
     	
-        // 当前节点下面子节点迭代器  
-        Iterator<Element> it = node.elementIterator();  
-        // 遍历  
-        while (it.hasNext()) {  
-            // 获取某个子节点对象  
-            Element e = it.next();  
-            // 对子节点进行遍历  
-            listNodes(e,mp3Info);  
+        Iterator<Element> it = node.elementIterator();
+        while (it.hasNext()) {
+            Element e = it.next();
+            listNodes(e,mp3Info);
         }  
     }  
 }

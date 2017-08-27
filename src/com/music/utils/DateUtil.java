@@ -7,7 +7,6 @@ public class DateUtil {
 	
 	/**
 	 * 
-	 * @return 当前日期时间 格式2014-11-18 14:16:33 
 	 */
 	public static String getDate(){
 		
@@ -15,7 +14,6 @@ public class DateUtil {
 	}
 	/**
 	 * 
-	 * @return 当前日期时间 格式2014/11/18 14:16:33 
 	 */
 	public static String getDate2(){
 		
@@ -23,7 +21,6 @@ public class DateUtil {
 	}
 	/**
 	 * 
-	 * @return 当前日期时间 格式2014_11_18_14_16_33 
 	 */
 	public static String getDate3(){
 		
@@ -31,7 +28,6 @@ public class DateUtil {
 	}
 	/**
 	 * 
-	 * @return当前时间 格式14:16:33 
 	 */
 	public static String getTime(){
 		calendar=Calendar.getInstance();
@@ -61,7 +57,6 @@ public class DateUtil {
 	}
 	/**
 	 * 
-	 * @return当前时间 格式14_16_33 
 	 */
 	public static String getTime3(){
 		calendar=Calendar.getInstance();
@@ -91,7 +86,6 @@ public class DateUtil {
 	}
 	/**
 	 * 
-	 * @return当前时间 格式 14:16:33 下午 2:16 
 	 */
 	public static String getTime2(){
 		calendar=Calendar.getInstance();
@@ -99,10 +93,10 @@ public class DateUtil {
 		 int hour=calendar.get(Calendar.HOUR_OF_DAY);
 		
 		if(hour >12){
-			buffer.append("下午  ");
+			buffer.append(" ");
 			hour-=12;
 		}else{
-			buffer.append("上午  ");
+			buffer.append("   ");
 			
 		}
 		
@@ -128,7 +122,6 @@ public class DateUtil {
 	
 	/**
 	 * 
-	 * @return 当前日期 2014-11-27
 	 */
 	public static String getDay(){
 		calendar=Calendar.getInstance();
@@ -159,7 +152,6 @@ public class DateUtil {
 	}
 	/**
 	 * 
-	 * @return 当前日期 2014_11_27
 	 */
 	public static String getDay3(){
 		calendar=Calendar.getInstance();
@@ -190,7 +182,6 @@ public class DateUtil {
 	}
 	/**
 	 * 
-	 * @return 当前日期 2014/11/27
 	 */
 	public static String getDay2(){
 		calendar=Calendar.getInstance();

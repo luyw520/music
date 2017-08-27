@@ -7,7 +7,6 @@ import com.music.lu.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 /**
- * activity切换效果类
  * @author Administrator
  *
  */
@@ -18,7 +17,6 @@ public class ActivityAnimator {
 			"disappearTopLeftAnimation", "appearTopLeftAnimation",
 			"disappearBottomRightAnimation", "unzoomAnimation" };
 	/**
-	 * 随机产生一个动画效果
 	 * @return
 	 */
 	public String randomAnimator(){

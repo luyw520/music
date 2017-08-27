@@ -64,4 +64,8 @@
      
      <string name="empty_key_tips">关键字为空</string>
      <string name="click_play">点击播放</string>
+
+    <string name="music_size">总共有%d首歌曲</string>
+    <string name="arities_size">总共有%d个歌手</string>
+    <string name="album_size">总共有%d个专辑</string>
 </resources>

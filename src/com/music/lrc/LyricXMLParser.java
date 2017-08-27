@@ -13,7 +13,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import android.util.Log;
 
 /**
- * ¸è´Ê½âÎö
+ * ï¿½ï¿½Ê½ï¿½ï¿½ï¿½
  * @author longdw(longdawei1988@gmail.com)
  *
  */
@@ -24,10 +24,10 @@ public class LyricXMLParser {
 	private final String ELEMENT_LRCID = "lrcid";
 
 	public int parseLyricId(InputStream is) throws Exception {
-		SAXParserFactory factory = SAXParserFactory.newInstance(); // È¡µÃSAXParserFactoryÊµÀı
-		SAXParser parser = factory.newSAXParser(); // ´Ófactory»ñÈ¡SAXParserÊµÀı
-		MyHandler handler = new MyHandler(); // ÊµÀı»¯×Ô¶¨ÒåHandler
-		parser.parse(is, handler); // ¸ù¾İ×Ô¶¨ÒåHandler¹æÔò½âÎöÊäÈëÁ÷
+		SAXParserFactory factory = SAXParserFactory.newInstance(); //
+		SAXParser parser = factory.newSAXParser(); //
+		MyHandler handler = new MyHandler(); //
+		parser.parse(is, handler); //
 		is.close();
 		return handler.getFirstLyricId();
 	}
@@ -41,7 +41,6 @@ public class LyricXMLParser {
 			return mSongCount;
 		}
 
-		// Èô½âÎö³ö¶à¸ölyricID£¬Ö»·µ»ØµÚÒ»¸ö
 		public int getFirstLyricId() {
 			if (mSongCount == 0) {
 				return -1;
@@ -65,7 +64,7 @@ public class LyricXMLParser {
 		public void startElement(String uri, String localName, String qName,
 				Attributes attributes) throws SAXException {
 			super.startElement(uri, localName, qName, attributes);
-			mStringBuilder.setLength(0); // ½«×Ö·û³¤¶ÈÉèÖÃÎª0 ÒÔ±ãÖØĞÂ¿ªÊ¼¶ÁÈ¡ÔªËØÄÚµÄ×Ö·û½Úµã
+			mStringBuilder.setLength(0); //
 		}
 
 		@Override
@@ -74,10 +73,10 @@ public class LyricXMLParser {
 			super.endElement(uri, localName, qName);
 			if (localName.equals(ELEMENT_COUNT)) {
 				mSongCount = Integer.valueOf(mStringBuilder.toString());
-				Log.i(TAG, "½âÎö³öµÄÆ¥Åä¸èÇúÊıÄ¿:" + mSongCount);
+				Log.i(TAG, "ggg" + mSongCount);
 			}
 			if (localName.equals(ELEMENT_LRCID)) {
-				Log.i(TAG, "¸è´ÊÏÂÔØid:" + mStringBuilder.toString());
+				Log.i(TAG, "ggg" + mStringBuilder.toString());
 				mLyricIds.add(Integer.valueOf(mStringBuilder.toString()));
 			}
 		}
@@ -86,7 +85,7 @@ public class LyricXMLParser {
 		public void characters(char[] ch, int start, int length)
 				throws SAXException {
 			super.characters(ch, start, length);
-			mStringBuilder.append(ch, start, length); // ½«¶ÁÈ¡µÄ×Ö·ûÊı×é×·¼Óµ½builderÖĞ
+			mStringBuilder.append(ch, start, length); //
 		}
 	}
 }

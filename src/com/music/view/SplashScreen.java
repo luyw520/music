@@ -12,8 +12,7 @@ import android.widget.LinearLayout;
 import com.music.lu.R;
 
 /**
- * Òıµ¼Ò³Í¼Æ¬£¬Í£ÁôÈô¸ÉÃë£¬È»ºó×Ô¶¯ÏûÊ§¡£
- * 
+ *
  */
 public class SplashScreen {
     
@@ -30,10 +29,9 @@ public class SplashScreen {
     }
     
     /**
-     * ÏÔÊ¾¡£
-     * @param imageResource Í¼Æ¬×ÊÔ´
-     * @param millis Í£ÁôÊ±¼ä£¬ÒÔºÁÃëÎªµ¥Î»¡£
-     * @param animation ÏûÊ§Ê±µÄ¶¯»­Ğ§¹û£¬È¡Öµ¿ÉÒÔÊÇ£ºSplashScreen.SLIDE_LEFT, SplashScreen.SLIDE_UP, SplashScreen.FADE
+     * æ˜¾ç¤ºã€‚
+     * @param imageResource å›¾ç‰‡èµ„æº
+     * @param animation æ¶ˆå¤±æ—¶çš„åŠ¨ç”»æ•ˆæœï¼Œå–å€¼å¯ä»¥æ˜¯ï¼šSplashScreen.SLIDE_LEFT, SplashScreen.SLIDE_UP, SplashScreen.FADE
      */
     public void show(final int imageResource, final int animation){
         Runnable runnable = new Runnable() {

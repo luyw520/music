@@ -28,11 +28,9 @@ public class BaseFragmentActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// Í¸Ã÷×´Ì¬À¸
 		getWindow()
 				.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //
-//		// //Í¸Ã÷µ¼º½À¸
 //		getWindow().addFlags(
 //				WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		ViewUtils.inject(this);

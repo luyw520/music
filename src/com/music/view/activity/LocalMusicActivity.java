@@ -54,6 +54,7 @@ import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 
 /**
+ *‰∏ªÁïåÈù¢
  *
  */
 @SuppressLint("HandlerLeak")
@@ -62,7 +63,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		IConstants {
 
 	public interface OnBackListener {
-		public abstract void onBack();
+		void onBack();
 	}
 
 	public static final String TAG = null;
@@ -108,7 +109,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	@ViewInject(value = R.id.musicTimeProgressView)
 	private MusicTimeProgressView musicTimeProgressView;
 
-	/** ‘≤–ŒÕ∑œÒ¿‡ */
 	@ViewInject(value = R.id.iv_header)
 	private CircularImage iv_header;
 	@ViewInject(value = R.id.tv_username)
@@ -129,7 +129,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	@SuppressWarnings("unused")
 	private SlidingMenu mSlidingMenu;
 	/**
-	 * ≈ƒ’’¥´π˝¿¥µƒ’’∆¨¬∑æ∂
 	 */
 	protected String userHeaderImg;
 
@@ -157,31 +156,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		registerReceiver();
 		long start3 = SystemClock.currentThreadTimeMillis();
 		DeBug.d(this, "registerReceiver:" + (start3 - start2) / 1000.0 + " s");
-		// handler.sendEmptyMessageDelayed(0, 500);
-		initUmeng();
-		long start4 = SystemClock.currentThreadTimeMillis();
-		DeBug.d(this, "initUmeng:" + (start4 - start3) / 1000.0 + " s");
-
-		
-//		tintManager.setTintColor(Color.argb(153, 255, 00, 00));
 	}
 
-	private void initUmeng() {
-		// umeng push
-		PushAgent.getInstance(this).onAppStart();
-		// ø™∆ÙÕ∆ÀÕ≤¢…Ë÷√◊¢≤·µƒªÿµ˜¥¶¿Ì
-		PushAgent.getInstance(this).enable(new IUmengRegisterCallback() {
 
-			@Override
-			public void onRegistered(String registrationId) {
-				DeBug.d(LocalMusicActivity.this,
-						"onRegistered....................registrationId:"
-								+ registrationId);
-			}
-		});
-		// UmengUpdateAgent.update(this);
-		// UpdateConfig.setDebug(true);
-	}
 
 	/**
 	 * click ARTIST ,ALBUM,FOLDER jump to musiclistfragment
@@ -216,7 +193,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			title = folderInfo.folder_name;
 			break;
 		case START_FROM_FAVORITE:
-			title = "Œ“œ≤ª∂µƒ";
+			title = " fa";
 			break;
 		}
 		tv_title.setText(title);
@@ -245,14 +222,14 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 					long end = System.currentTimeMillis();
 					int speedTime = (int) ((end - start));
 					DeBug.d(LocalMusicActivity.this,
-							"..........onPostExecute, speedTime:" + speedTime);
-					if (speedTime < 3000) {
-						try {
-							Thread.sleep(3000 - speedTime);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
+							"..........search music speed time:" + speedTime);
+//					if (speedTime < 3000) {
+//						try {
+//							Thread.sleep(3000 - speedTime);
+//						} catch (InterruptedException e) {
+//							e.printStackTrace();
+//						}
+//					}
 					mSplashScreen.removeSplashScreen();
 					initWidgetData();
 					resetPlayState();
@@ -271,7 +248,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 		case LOCK_PASSWORD:
 			unLockSuccess = (data != null);
-
 			LogUtil.i(getClass(), "..............unLockSuccess="
 					+ unLockSuccess);
 			if (!unLockSuccess) {
@@ -288,16 +264,14 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 	private void loginResult(Intent data) {
 		if (data == null) {
-			DialogUtil.showToast(getApplicationContext(), "µ«¬Ω ß∞‹");
+			DialogUtil.showToast(getApplicationContext(), "sss");
 			return;
 		}
-		DialogUtil.showToast(getApplicationContext(), "µ«¬º≥…π¶");
+		DialogUtil.showToast(getApplicationContext(), "sssss");
 		String username = UserManager.getInstance().getUserBean().getUsername();
 		tv_username.setText(username);
 		String userHeaderUrl = UserManager.getInstance().getUserBean()
 				.getHeadPath();
-
-		// UserManager.getInstance().downUserHeader(userHeader,iv_header);
 		ImageLoader.getInstance().displayImage(userHeaderUrl, iv_header);
 	}
 
@@ -307,8 +281,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		tv_music_title.setText(currentMp3Info.getTitle());
 		tv_music_Artist.setText(currentMp3Info.getArtist());
 		Bitmap bmp = MediaUtil.getArtwork(getApplicationContext(),
-				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), true,
-				true);
+				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(),
+				true,iv_music_album.getWidth(),iv_music_album.getHeight());
 		iv_music_album.setImageBitmap(bmp);
 
 		DeBug.d(this,
@@ -365,7 +339,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 	private void chooseHeader() {
 		if (!UserManager.isLogin()) {
-			DialogUtil.showToast(getApplicationContext(), "ƒ˙ªπŒ¥µ«¬Ω,«Îœ»µ«¬Ω");
+			DialogUtil.showToast(getApplicationContext(), "mmmm");
 			Intent intent2 = new Intent(this, LoginActivity.class);
 			startActivityForResult(intent2, REQUESTCODE_LOGIN);
 		} else {
@@ -378,7 +352,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			transaction = getSupportFragmentManager().beginTransaction();
 			transaction.remove(musicListFragment);
 			transaction.commit();
-			tv_title.setText("±æµÿ“Ù¿÷");
+			tv_title.setText("ttt");
 			isHome = true;
 		} else {
 			slidingMenu.toggle();
@@ -391,10 +365,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	}
 
 	/**
-	 * —°‘ÒÕ∑œÒ
 	 */
 	private void chooseHeaderImgDialog() {
-		DialogUtil.showAlertDialog(this, "Õ∑œÒ—°‘Ò", new String[] { "≈ƒ’’", "±æµÿ" },
+		DialogUtil.showAlertDialog(this, "ttt", new String[] { "tt", "tttt" },
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -416,19 +389,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 				});
 	}
 
-	// private Handler handler = new Handler() {
-	// public void handleMessage(android.os.Message msg) {
-	//
-	// if (!mp3Util.isPlaying()) {
-	// DeBug.d(LocalMusicActivity.this, "............animatePlay");
-	// playPauseDrawable.animatePlay();
-	// } else {
-	// DeBug.d(LocalMusicActivity.this, "............animatePause");
-	// playPauseDrawable.animatePause();
-	// }
-	//
-	// };
-	// };
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -436,7 +396,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (!isHome) {
-				tv_title.setText("±æµÿ“Ù¿÷");
+				tv_title.setText("ttt");
 				isHome = true;
 			} else {
 				DeBug.d(TAG, "moveTaskToBack.........................");
@@ -479,7 +439,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	}
 
 	/**
-	 * ◊¢≤·π„≤•Ω” ’∆˜
 	 */
 	private void registerReceiver() {
 
@@ -488,7 +447,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	}
 
 	/**
-	 * ◊¢≤·∏Ë«˙≤•∑≈◊¥Ã¨Ω” ’∆˜
 	 */
 	private void regisgerPlayStateReceiver() {
 		State state = new MyMainState();
@@ -498,8 +456,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	}
 
 	/**
-	 * µ±«∞≤•∑≈◊¥ÃÂ¿‡
-	 * 
+	 *
 	 * 
 	 */
 	class MyMainState implements State {
@@ -565,10 +522,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	}
 
 	/**
-	 * ”¶”√≥Ã–ÚÕÀ≥ˆ
 	 */
 	public void exit() {
-		unregisterReceiver();
+
 		ApplicationUtil.setAppToBack(this, 1);
 		mp3Util.saveCurrentMusicInfo(this);
 		myNotification.cancel();
@@ -578,6 +534,12 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 		// onDestroy();
 	};
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		unregisterReceiver();
+	}
 
 	public void unregisterReceiver() {
 		unregisterReceiver(myBroadcastReceiver);

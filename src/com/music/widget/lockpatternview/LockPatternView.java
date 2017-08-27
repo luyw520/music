@@ -173,22 +173,18 @@ public class LockPatternView extends View {
 	}
 
 	/**
-	 * 显示当前的模式
 	 */
 	public enum DisplayMode {
 
 		/**
-		 * 正确模式 (i.e draw it in a friendly color)
 		 */
 		Correct,
 
 		/**
-		 * 动画模式 (for demo, and help).
 		 */
 		Animate,
 
 		/**
-		 * 错误模式 (i.e draw a foreboding color)
 		 */
 		Wrong
 	}
@@ -396,14 +392,12 @@ public class LockPatternView extends View {
 	}
 
 	/**
-	 * 清除绘制的图案
 	 */
 	public void clearPattern() {
 		resetPattern();
 	}
 
 	/**
-	 * 重置所有图案状态
 	 */
 	private void resetPattern() {
 		mPattern.clear();
@@ -413,7 +407,6 @@ public class LockPatternView extends View {
 	}
 
 	/**
-	 * 清除图案列表-图案都标记为未选中
 	 */
 	private void clearPatternDrawLookup() {
 		for (int i = 0; i < 3; i++) {
@@ -424,14 +417,12 @@ public class LockPatternView extends View {
 	}
 
 	/**
-	 * 显示一条消息，将超时时，禁用输入
 	 */
 	public void disableInput() {
 		mInputEnabled = false;
 	}
 
 	/**
-	 * 启用输入
 	 */
 	public void enableInput() {
 		mInputEnabled = true;

@@ -55,5 +55,9 @@ public class ViewHolder {
 		ImageView imageView=getView(viewId);
 		imageView.setImageBitmap(bm);
 	}
-	
+	public void setImage(int viewId,Bitmap bm){
+		ImageView imageView=getView(viewId);
+		imageView.setImageBitmap(bm);
+	}
+
 }

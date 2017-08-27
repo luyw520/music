@@ -51,22 +51,6 @@ public class LyricGesture implements OnTouchListener, OnGestureListener {
 	@Override
 	public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float arg2,
 			float arg3) {
-//		// 前3次用作starttoggle触发条件
-//		Log.i("LyricGesture", "onScroll 方法:arg2="+arg2+",arg3="+arg3);
-//		if (way < 3) {
-//			context.updatelab(-arg2, -arg3, true);
-//			way++;
-//		} else {
-//			starttoggle = context.updatelab(-arg2, -arg3, false);
-//			if (starttoggle) {
-//				updatetoggle = true;
-//				context.slidestart();
-//				starttoggle = false;
-//			}
-//			if (updatetoggle) {
-//				context.updateprogress(-arg2, -arg3);
-//			}
-//		}
 		return false;
 	}
 	

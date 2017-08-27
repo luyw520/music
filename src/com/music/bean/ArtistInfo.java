@@ -11,8 +11,7 @@ public class ArtistInfo implements Parcelable {
 	
 	public String artist_name;
 	public int number_of_tracks;
-	public String artist_path="";
-	
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -40,6 +39,13 @@ public class ArtistInfo implements Parcelable {
 		public ArtistInfo[] newArray(int size) {
 			return new ArtistInfo[size];
 		}
-	}; 
+	};
 
+	@Override
+	public String toString() {
+		return "ArtistInfo{" +
+				"artist_name='" + artist_name + '\'' +
+				", number_of_tracks=" + number_of_tracks +
+				'}';
+	}
 }

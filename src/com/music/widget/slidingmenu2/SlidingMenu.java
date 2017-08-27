@@ -34,7 +34,6 @@ import com.music.lu.R;
 import com.music.widget.slidingmenu2.CustomViewAbove.OnPageChangeListener;
 
 /**
- * ×ó»¬¶¯µÄ³éÌë²Ëµ¥
  * @author Steven
  *
  */

@@ -18,38 +18,26 @@ public class LyricView extends View {
 	@SuppressWarnings("unused")
 	private static final String TAG = "LyricView";
 	/**
-	 * 没有歌词
 	 */
 	public static final int NO_LRC = 0;
 	/**
-	 * 歌词正在加载...
 	 */
 	public static final int LRC_LOADIGN = 1;
 	/**
-	 * 歌词加载成功
 	 */
 	public static final int LRC_LOADED = 2;
 	/**
-	 * // 非高亮部分
 	 */
 	private Paint mPaint;
-	/** 半宽 */
 	private float mX;
 	/**
-	 * 高亮部分 当前歌词
 	 */
 	private Paint mPathPaint;
-	/** 控件的高 */
 	private int mY;
-	/** 当前歌词持续时间 */
 	private long currentDuringtime2;
-	/** Y轴中间 */
 	private float middleY;//
-	private final int DY = 80;// 每一行的间隔
+	private final int DY = 80;//
 
-	/** x偏移量 */
-//	private float driftx;// x偏移量
-	/** y偏移量 */
 	private float drifty;//
 	private int index = 0;
 //	private float mTouchHistoryY;
@@ -78,7 +66,6 @@ public class LyricView extends View {
 	private void init(Context context) {
 		this.mContext = context;
 		setFocusable(true);
-		// 非高亮部分
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mPaint.setTextSize(25);
@@ -86,7 +73,6 @@ public class LyricView extends View {
 		mPaint.setTypeface(Typeface.SERIF);
 		mPaint.setTextAlign(Paint.Align.CENTER);
 		
-		// 高亮部分 当前歌词
 		mPathPaint = new Paint();
 		mPathPaint.setAntiAlias(true);
 		mPathPaint.setTextSize(40);
@@ -121,7 +107,6 @@ public class LyricView extends View {
 	}
 
 	/**
-	 * 将原来的背景清除
 	 */
 	public void clear() {
 		index = 0;
@@ -138,11 +123,11 @@ public class LyricView extends View {
 //		isClick = false;
 		if (lyricSentences == null || lyricSentences.size() == 0 || loadLrc == 0) {
 //			isClick = true;
-			canvas.drawText("暂无歌词", mX, middleY, mPathPaint);
+			canvas.drawText("sss", mX, middleY, mPathPaint);
 			return;
 		}
 		if (loadLrc == 1) {
-			canvas.drawText("歌词正在加载中...", mX, middleY, mPathPaint);
+			canvas.drawText("ddd...", mX, middleY, mPathPaint);
 			return;
 		}
 
@@ -152,9 +137,7 @@ public class LyricView extends View {
 		canvas.drawText(lyricSentences.get(index).getContentText(), mX, middleY + drift_r, mPathPaint);
 
 		float tempY = middleY + drift_r;
-		// 画出本句之前的句子
 		for (int i = index - 1; i >= 0; i--) {
-			// 向上推移
 			tempY = tempY - DY;
 			if (tempY < 0) {
 				break;
@@ -162,9 +145,7 @@ public class LyricView extends View {
 			canvas.drawText(lyricSentences.get(i).getContentText(), mX, tempY, mPaint);
 		}
 		tempY = middleY + drift_r;
-		// 画出本句之后的句子
 		for (int i = index + 1; i < lyricSentences.size(); i++) {
-			// 向下推移
 			tempY = tempY + DY;
 			if (tempY > mY) {
 				break;
@@ -187,14 +168,13 @@ public class LyricView extends View {
 	 */
 	protected void onSizeChanged(int w, int h, int ow, int oh) {
 		super.onSizeChanged(w, h, ow, oh);
-		mX = w * 0.5f;// 屏幕中心坐标(转换为float?)
+		mX = w * 0.5f;//
 		mY = h;
 		middleY = h * 0.5f;
 	}
 
 	/**
 	 * @param CurrentPosition
-	 *            当前歌词的时间轴
 	 */
 	public void updateindex(int CurrentPosition) {
 
@@ -204,7 +184,6 @@ public class LyricView extends View {
 		}
 		// if (index < maps.size() - 1) {
 		if (index < lyricSentences.size() - 1) {
-			// 歌词数组的序号
 
 			if (CurrentPosition >= (lyricSentences.get(index + 1).getStartTime())) {
 				currentDuringtime2 = (lyricSentences.get(index + 1).getStartTime()) - (lyricSentences.get(index).getStartTime());

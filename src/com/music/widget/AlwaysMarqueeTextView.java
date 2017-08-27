@@ -5,14 +5,14 @@ package com.music.widget;
  */
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.widget.TextView;
 /**
- * 具有跑马灯效果的TextView
  * @author Administrator
  *
  */
-public class AlwaysMarqueeTextView extends TextView {
+public class AlwaysMarqueeTextView extends AppCompatTextView {
 
 	public AlwaysMarqueeTextView(Context context) {
 		super(context);

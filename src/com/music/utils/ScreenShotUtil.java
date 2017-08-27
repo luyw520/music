@@ -13,15 +13,13 @@ import com.umeng.socialize.sensor.controller.impl.UMShakeServiceFactory;
 import com.umeng.soexample.commons.Constants;
 
 /**
- * 摇一摇截图
- * 
+ *
  * @author Administrator
  * 
  */
 public class ScreenShotUtil {
 	protected static final String TAG = "ScreenShotUtil";
 	/**
-	 * 摇一摇控制器
 	 */
 	private  Activity mActivity;
 	
@@ -80,7 +78,7 @@ public class ScreenShotUtil {
 			sctPath=FileUtils.imgPathPath()+File.separator+sctPath;
 			ImageUtil.saveImage(arg0, sctPath, null);
 			
-			DialogUtil.showToast(mActivity, "截图已完成!图像保存在"+sctPath);
+			DialogUtil.showToast(mActivity, " aaa"+sctPath);
 			
 		}
 		

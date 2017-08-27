@@ -58,7 +58,6 @@ public class LoginActivity extends Activity {
 	@ViewInject(value = R.id.btn_tencent)
 	private ImageView btn_tencent;
 
-	// 整个平台的Controller, 负责管理整个SDK的配置、操作等处理
 	private UMSocialService mController = UMServiceFactory
 			.getUMSocialService(Constants.DESCRIPTOR);
 
@@ -71,7 +70,7 @@ public class LoginActivity extends Activity {
 		userManager = UserManager.getInstance();
 		userBean = userManager.getUserBean(this);
 
-		setTitle("登陆");
+		setTitle("锟斤拷陆");
 
 		initWidget();
 
@@ -82,12 +81,10 @@ public class LoginActivity extends Activity {
 	private void addQZoneQQPlatform() {
 		String appId = "1104335219";
 		String appKey = "J68iUn08AUZwHWrJ";
-		// 添加QQ支持, 并且设置QQ分享内容的target url
 		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(this, appId, appKey);
 		qqSsoHandler.setTargetUrl("http://www.umeng.com");
 		qqSsoHandler.addToSocialSDK();
 
-		// 添加QZone平台
 		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(this, appId,
 				appKey);
 		qZoneSsoHandler.addToSocialSDK();
@@ -95,31 +92,6 @@ public class LoginActivity extends Activity {
 
 	private void initWidget() {
 
-		// if(cb_username.isChecked()){
-		// if(userBean!=null){
-		// et_username.setText(userBean.getUsername());
-		// }else{
-		// et_username.setHint("请输入用户名");
-		// }
-		// }else{
-		// et_username.setHint("请输入用户名");
-		// }
-		// if(cb_userpassword.isChecked()){
-		// if(userBean!=null){
-		// et_username.setText(userBean.getPasswrod());
-		// }else{
-		// et_userpassword.setHint("请输入密码");
-		// }
-		// }else{
-		// et_userpassword.setHint("请输入密码");
-		// }
-		// if(userBean!=null){
-		// et_username.setText(userBean.getUsername());
-		// et_userpassword.setText(userBean.getPasswrod());
-		// }else{
-		// et_username.setHint("请输入用户名");
-		// et_userpassword.setHint("请输入密码");
-		// }
 
 		et_username.setOnEditorActionListener(new OnEditorActionListener() {
 
@@ -142,7 +114,7 @@ public class LoginActivity extends Activity {
 			login(username, userpasswrod);
 			break;
 		case R.id.tv_newuser:
-			DialogUtil.showToast(this, "新用户注册");
+			DialogUtil.showToast(this, "...");
 			break;
 		case R.id.btn_back:
 			finish();
@@ -163,14 +135,13 @@ public class LoginActivity extends Activity {
 	}
 
 	/**
-	 * 授权。如果授权成功，则获取用户信息</br>
 	 */
 	private void login(final SHARE_MEDIA platform) {
 		mController.doOauthVerify(this, platform, new UMAuthListener() {
 
 			@Override
 			public void onStart(SHARE_MEDIA platform) {
-				DialogUtil.showToast(getApplicationContext(), "正在登陆...");
+				DialogUtil.showToast(getApplicationContext(), "mm..");
 			}
 
 			@Override
@@ -183,7 +154,7 @@ public class LoginActivity extends Activity {
 				if (!TextUtils.isEmpty(uid)) {
 					getUserInfo(platform);
 				} else {
-					Toast.makeText(LoginActivity.this, "授权失败...",
+					Toast.makeText(LoginActivity.this, ",,,...",
 							Toast.LENGTH_SHORT).show();
 				}
 			}
@@ -195,14 +166,13 @@ public class LoginActivity extends Activity {
 	}
 
 	/**
-	 * 获取授权平台的用户信息</br>
 	 */
 	private void getUserInfo(SHARE_MEDIA platform) {
 		mController.getPlatformInfo(this, platform, new UMDataListener() {
 
 			@Override
 			public void onStart() {
-				DialogUtil.showToast(getApplicationContext(), "登陆成功,正在获取信息...");
+				DialogUtil.showToast(getApplicationContext(), "..");
 			}
 
 			@Override
@@ -247,7 +217,7 @@ public class LoginActivity extends Activity {
 				setResult(LocalMusicActivity.REQUESTCODE_LOGIN, intent);
 				finish();
 			} else {
-				DialogUtil.showToast(this, "用户名或密码错误");
+				DialogUtil.showToast(this, "");
 			}
 
 		}
@@ -255,33 +225,28 @@ public class LoginActivity extends Activity {
 	}
 
 	/**
-	 * 检测是否为空
-	 * 
+	 *
 	 * @param name
 	 * @param password
-	 * @return true 为空,false 不为空
 	 */
 	private boolean isEmpty(String name, String password) {
 		if ("".equals(name)) {
-			DialogUtil.showToast(this, "请输入用户名!");
+			DialogUtil.showToast(this, "fff!");
 			return true;
 		}
 		if ("".equals(password)) {
-			DialogUtil.showToast(this, "请输入登陆密码!");
+			DialogUtil.showToast(this, "fff!");
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * 检测是有效
-	 * 
+	 *
 	 * @param name
 	 * @param password
-	 * @return true 有效,false 不有效
 	 */
 	private boolean isValid(String name, String password) {
-		// if ("张三".equals(name) && "123".equals(password)) {
 		// return true;
 		// }
 		return true;

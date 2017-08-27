@@ -20,17 +20,14 @@ public class LrcUtil {
 	private Mp3Util_New mp3Util;
 //	private Handler handler;
 	/**
-	 * 手动查找
 	 */
 	private boolean isSearch;
 	
 	/**
-	 * 当前播放歌曲的歌词对象
 	 */
 	private LrcInfo currentLrcInfo;
 	
-	/** 匹配到的歌词 */
-	private List<LrcInfo> lrcInfos = null; 
+	private List<LrcInfo> lrcInfos = null;
 	
 	public static LrcUtil getInstance(Context context){
 		
@@ -50,7 +47,6 @@ public class LrcUtil {
 		mp3Util=Mp3Util_New.getDefault();
 	}
 	/**
-	 * 匹配所有歌词
 	 * @author Administrator
 	 *
 	 */
@@ -58,7 +54,6 @@ public class LrcUtil {
 	public void findAndMatchLrc(String songName){
 			isSearch=false;
 			if(lrcInfos.size()==0){
-				//查找所有.lrc文件并和所有歌曲进行匹配
 				new MyAsyncTask(songName).execute();
 			}else{
 				for(LrcInfo lrcInfo:lrcInfos ){
@@ -74,14 +69,12 @@ public class LrcUtil {
 			
 	}
 	/**
-	 * 匹配所有歌词
 	 * @author Administrator
 	 *
 	 */
 	@SuppressWarnings("unchecked")
 	public void findAndMatchLrcByHand(String songName){
 		isSearch=true;
-			//查找所有.lrc文件并和所有歌曲进行匹配
 		new MyAsyncTask(songName).execute();
 	}
 	
@@ -126,7 +119,7 @@ public class LrcUtil {
 		
 	}
 	public void showDialog() {
-		DialogUtil.showWaitDialog(context, "歌词查找", "歌词正在加载中...");
+		DialogUtil.showWaitDialog(context, "wait", "wait..");
 		
 	}
 	public LrcInfo getCurrentLrcInfo() {

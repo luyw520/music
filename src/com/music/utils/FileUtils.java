@@ -20,21 +20,17 @@ public class FileUtils {
 	
 	private static final String TAG="FileUtils";
 	/**
-	 * 应用程序存储路径
 	 */
 	
 	private static String dataPath=SDCardRoot+"lu"+File.separator+"music";
 	/**
-	 * 下载路径
 	 */
 	private static String downPath=dataPath+File.separator+"download";
 	/**
-	 * 图片路径
 	 */
 	private static String imgPath=dataPath+File.separator+"img";
 	
 	/**
-	 * 图片路径
 	 */
 	private static String lrcPath=dataPath+File.separator+"lrc";
 	
@@ -47,7 +43,6 @@ public class FileUtils {
 		return objPath;
 	}
 	/**
-	 * 下载地址
 	 * @return
 	 */
 	public static String downPath(){
@@ -56,7 +51,6 @@ public class FileUtils {
 		return downPath;
 	}
 	/**
-	 * 程序异常地址
 	 * @return
 	 */
 	public static String crashPath(){
@@ -65,7 +59,6 @@ public class FileUtils {
 		return crashPath;
 	}
 	/**
-	 * 下载地址
 	 * @return
 	 */
 	public static String lrcPath(){
@@ -90,7 +83,6 @@ public class FileUtils {
 		return null;
 	}
 	/**
-	 *  图片地址
 	 * @return
 	 */
 	public static String imgPathPath(){
@@ -100,8 +92,7 @@ public class FileUtils {
 	}
 	
 	/**
-	 * 判断SD是否可以
-	 * 
+	 *
 	 * @return
 	 */
 	@SuppressLint("NewApi") 
@@ -114,10 +105,8 @@ public class FileUtils {
 	}
 
 	/**
-	 * 创建目录
-	 * 
+	 *
 	 * @param path
-	 *            目录路径
 	 */
 	public static void createDirFile(String path) {
 		
@@ -144,11 +133,8 @@ public class FileUtils {
 	
 	
 	/**
-	 * 创建文件
-	 * 
+	 *
 	 * @param path
-	 *            文件路径
-	 * @return 创建的文件
 	 */
 	public static File createNewFile(String path) {
 		File file = new File(path);
@@ -163,10 +149,8 @@ public class FileUtils {
 	}
 
 	/**
-	 * 删除文件夹
-	 * 
+	 *
 	 * @param folderPath
-	 *            文件夹的路径
 	 */
 	public static void delFolder(String folderPath) {
 		delAllFile(folderPath);
@@ -177,10 +161,8 @@ public class FileUtils {
 	}
 
 	/**
-	 * 删除文件
-	 * 
+	 *
 	 * @param path
-	 *            文件的路径
 	 */
 	public static void delAllFile(String path) {
 		File file = new File(path);
@@ -209,10 +191,8 @@ public class FileUtils {
 	}
 
 	/**
-	 * 获取文件的Uri
-	 * 
+	 *
 	 * @param path
-	 *            文件的路径
 	 * @return
 	 */
 	public static Uri getUriFromFile(String path) {
@@ -221,14 +201,13 @@ public class FileUtils {
 	}
 
 	/**
-	 * 换算文件大小
-	 * 
+	 *
 	 * @param size
 	 * @return
 	 */
 	public static String formatFileSize(long size) {
 		DecimalFormat df = new DecimalFormat("#.00");
-		String fileSizeString = "未知大小";
+		String fileSizeString = " ";
 		if (size < 1024) {
 			fileSizeString = df.format((double) size) + "B";
 		} else if (size < 1048576) {

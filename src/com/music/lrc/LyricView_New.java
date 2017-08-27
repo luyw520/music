@@ -15,20 +15,14 @@ import android.view.View;
 public class LyricView_New extends View {
 //	private static final String TAG = "LyricView";
 	private Paint mPaint;
-	/** °ë¿í */
 	private float mX;
 	private Paint mPathPaint;
-	/** ¿Ø¼þµÄ¸ß */
 	private int mY;
-	/** µ±Ç°¸è´Ê³ÖÐøÊ±¼ä */
 	private int currentDuringtime2;
-	/** YÖáÖÐ¼ä */
 	private float middleY;//
-	private final int DY = 40;// Ã¿Ò»ÐÐµÄ¼ä¸ô
+	private final int DY = 40;//
 
-	/** xÆ«ÒÆÁ¿ */
-	public float driftx;// xÆ«ÒÆÁ¿
-	/** yÆ«ÒÆÁ¿ */
+	public float driftx;//
 	public float drifty;//
 	public int index = 0;
 	public float mTouchHistoryY;
@@ -48,7 +42,6 @@ public class LyricView_New extends View {
 	}
 
 	private float drift_r = 0;
-	/** »¬¶¯Ê±ÏÔÊ¾½ø¶È */
 	public boolean showprogress;//
 	public int temp = 0;
 	@SuppressWarnings("unused")
@@ -73,13 +66,11 @@ public class LyricView_New extends View {
 	private void init(Context context) {
 		this.mContext = context;
 		setFocusable(true);
-		// ·Ç¸ßÁÁ²¿·Ö
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mPaint.setTextSize(25);
 		mPaint.setColor(Color.WHITE);
 		mPaint.setTypeface(Typeface.SERIF);
-		// ¸ßÁÁ²¿·Ö µ±Ç°¸è´Ê
 		mPathPaint = new Paint();
 		mPathPaint.setAntiAlias(true);
 		mPathPaint.setTextSize(40);
@@ -95,7 +86,6 @@ public class LyricView_New extends View {
 	}
 
 	/**
-	 * ½«Ô­À´µÄ±³¾°Çå³ý
 	 */
 	public void clear() {
 		index = 0;
@@ -105,9 +95,6 @@ public class LyricView_New extends View {
 	protected void onDraw(Canvas canvas) {
 
 		super.onDraw(canvas);
-		// Log.i("LyricView", "onDraw()·½·¨µ÷ÓÃ");
-		// »¬¶¯Ïà¹Ø
-		// ÏÔÊ¾½ø¶ÈÏà¹Ø
 		int j = (int) (-drifty / 40);
 		if (temp < j) {
 			temp++;
@@ -129,13 +116,12 @@ public class LyricView_New extends View {
 		isClick = false;
 		if (maps == null || maps.size() == 0) {
 			isClick = true;
-			canvas.drawText("ÔÝÎÞ¸è´Ê", mX, middleY, p2);
+			canvas.drawText("ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½", mX, middleY, p2);
 			return;
 		}
 //		Log.i(TAG, "middleY=" + middleY + ",drift_r=" + drift_r);
 //		Log.i(TAG, "x=" + mX + ",y=" + (middleY + drift_r) + ",lrc="
 //				+ maps.get(index).get("lrc"));
-		// ÏÈ»­µ±Ç°ÐÐ£¬Ö®ºóÔÙ»­ËûµÄÇ°ÃæºÍºóÃæ£¬ÕâÑù¾Í±£³ÖÁËµ±Ç°ÐÐÔÚÖÐ¼äµÄÎ»ÖÃ
 		// canvas.drawText(text[index], mX, middleY + drift_r, p2);
 		canvas.drawText(maps.get(index).get("lrc"), mX, middleY + drift_r, p2);
 		// canvas.drawText(maps.get(index).get("lrc"), mX, middleY , p2);
@@ -153,9 +139,7 @@ public class LyricView_New extends View {
 		// canvas.drawLine(0, middleY + 1, mX * 2, middleY + 1, p2);
 		// }
 		float tempY = middleY + drift_r;
-		// »­³ö±¾¾äÖ®Ç°µÄ¾ä×Ó
 		for (int i = index - 1; i >= 0; i--) {
-			// ÏòÉÏÍÆÒÆ
 			tempY = tempY - DY;
 			if (tempY < 0) {
 				break;
@@ -164,9 +148,7 @@ public class LyricView_New extends View {
 			// canvas.drawText(text[i], mX, tempY, p);
 		}
 		tempY = middleY + drift_r;
-		// »­³ö±¾¾äÖ®ºóµÄ¾ä×Ó
 		for (int i = index + 1; i < maps.size(); i++) {
-			// ÏòÏÂÍÆÒÆ
 			tempY = tempY + DY;
 			if (tempY > mY) {
 				break;
@@ -189,23 +171,18 @@ public class LyricView_New extends View {
 	 */
 	protected void onSizeChanged(int w, int h, int ow, int oh) {
 		super.onSizeChanged(w, h, ow, oh);
-		mX = w * 0.5f;// ÆÁÄ»ÖÐÐÄ×ø±ê(×ª»»Îªfloat?)
+		mX = w * 0.5f;//
 		mY = h;
 		middleY = h * 0.5f;
-//		Log.i("LyricView", "onSizeChanged·½·¨µ÷ÓÃ");
 	}
 
 	/**
 	 * @author younger
 	 * @param CurrentPosition
-	 *            µ±Ç°¸è´ÊµÄÊ±¼äÖá
-	 * @return drift ¿ÉÒÔ·µ»ØÊý¾Ý£¨ÒÑ¾­·ÏÆú£©
 	 */
 	public float updateindex(int CurrentPosition) {
-		// Log.i("LyricView", "updateindex()·½·¨µ÷ÓÃ");
 		if (maps != null) {
 			if (index < maps.size() - 1) {
-				// ¸è´ÊÊý×éµÄÐòºÅ
 
 //				if (index == 0) {
 //					
@@ -265,8 +242,6 @@ public class LyricView_New extends View {
 	/**
 	 * @author younger
 	 * @param CurrentPosition
-	 *            µ±Ç°¸è´ÊµÄÊ±¼äÖá
-	 * @return drift ¿ÉÒÔ·µ»ØÊý¾Ý£¨ÒÑ¾­·ÏÆú£©
 	 */
 	public float updateIndex(int currentPosition) {
 	
@@ -274,7 +249,6 @@ public class LyricView_New extends View {
 	}
 
 	public boolean repair() {
-		// Log.i("LyricView", "repair()·½·¨µ÷ÓÃ");
 		if (index <= 0) {
 			index = 0;
 			return false;

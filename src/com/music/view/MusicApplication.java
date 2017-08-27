@@ -27,6 +27,7 @@ public class MusicApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		musicApplication=this;
 		screenManager=ScreenManager.getScreenManager();
 		DeBug.d(TAG, "MusicApplication ............onCreate:");
 		long start=System.currentTimeMillis();

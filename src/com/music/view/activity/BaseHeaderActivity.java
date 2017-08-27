@@ -5,7 +5,6 @@ import android.view.View;
 import com.music.lu.R;
 
 /**
- * 包含头部导航栏的基类
  * @author Administrator
  *
  */

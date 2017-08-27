@@ -22,7 +22,7 @@ public class SliderRelativeLayout extends RelativeLayout {
 	private final static String TAG = "SliderRelativeLayout";
 	private Context context;
 	private Bitmap dragBitmap = null; 
-	private int locationX = 0; //ßÅ
+	private int locationX = 0; //
 	private ImageView heartView = null; //
 	private ImageView leftRingView = null;
 	private ImageView rightRingView = null;

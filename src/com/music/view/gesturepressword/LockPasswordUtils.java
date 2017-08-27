@@ -45,7 +45,6 @@ public class LockPasswordUtils {
 	}
 
 	/**
-	 * Ëø¶¨ÃÜÂë
 	 * @param context
 	 */
 	public LockPasswordUtils(Context context) {

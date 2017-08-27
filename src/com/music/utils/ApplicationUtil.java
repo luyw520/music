@@ -35,7 +35,6 @@ public class ApplicationUtil {
 		return isLock;
 	}
 	/**
-	 * 是否开启设备锁 1 开启 0，未开启
 	 * @param contex
 	 * @param isLock
 	 */

@@ -48,7 +48,6 @@ import android.widget.RelativeLayout;
 
 /****
  * 
- * 具有水波纹效果
  */
 @SuppressLint({ "NewApi"}) 
 public class RippleView extends RelativeLayout {
@@ -253,24 +252,7 @@ public class RippleView extends RelativeLayout {
 
     @SuppressLint("ClickableViewAccessibility")
 	public boolean onTouchEvent(MotionEvent event) {
-//        switch (event.getAction()) {
-//		case MotionEvent.ACTION_DOWN:
-//			animateRipple(event);
-//			isUp=false;
-//			isAnimationEnd=false;
-//			break;
-//		case MotionEvent.ACTION_UP:
-//			isUp=true;
-//			//手指释放时候动画已经结束了
-//			if(isAnimationEnd){
-////				return performClick();
-//				return super.onTouchEvent(event);
-//			}else{
-//				upEvent=event;
-//				return true;
-//			}
-//		}
-        
+
         return super.onTouchEvent(event);
     }
     private void sendClickEvent(final Boolean isLongClick) {

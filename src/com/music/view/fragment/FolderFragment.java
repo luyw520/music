@@ -23,7 +23,7 @@ import com.music.view.adapter.LuAdapter;
 import com.music.widget.indexablelistview.IndexableListView;
 
 /**
- *
+ *Êñá‰ª∂Â§π
  */
 public class FolderFragment extends Fragment {
 
@@ -32,7 +32,7 @@ public class FolderFragment extends Fragment {
 
 	private ArtistAdapter listAdapter;
 	@ViewInject(value = R.id.listview)
-	private IndexableListView mMusiclist; // “Ù¿÷¡–±Ì
+	private IndexableListView mMusiclist;
 
 	private  List<FolderInfo> folderInfos;
 	private MusicListItemClickListener musicListItemClickListener;
@@ -57,7 +57,6 @@ public class FolderFragment extends Fragment {
 	}
 
 	/**
-	 * ≥ı ºªØview…œ√Êµƒøÿº˛
 	 */
 	private void initViewWidget(View view) {
 

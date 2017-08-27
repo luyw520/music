@@ -20,8 +20,6 @@ public class LrcInfo  implements Serializable{
 	public List<Map<String, String>> getList() {
 		return list;
 	}
-	/**歌曲名称*/
 	private String songName;
-	/**解析后的歌词信息*/
 	private List<Map<String, String>> list;
 }

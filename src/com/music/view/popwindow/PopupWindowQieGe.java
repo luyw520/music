@@ -19,14 +19,12 @@ import com.music.utils.ApplicationUtil;
 
 public class PopupWindowQieGe {
 	/**
-	 * 弹出窗体
 	 */
 	private PopupWindow popupWindow;
 
 	private Context mContext;
 
 	/**
-	 * 弹出窗体上的点击事件接口
 	 */
 	 private PopupWindowUIOnClickListener p;
 
@@ -56,10 +54,8 @@ public class PopupWindowQieGe {
 		this.p=p;
 	}
 	/**
-	 * 显示弹出窗体
-	 * 
+	 *
 	 * @param parent
-	 *            在该控件下显示弹出窗体
 	 */
 	@SuppressWarnings("deprecation")
 	public void showWindow(View parent) {
@@ -75,9 +71,8 @@ public class PopupWindowQieGe {
 		}
 
 		popupWindow.setFocusable(true);
-		// 设置允许在外点击消失
 		popupWindow.setOutsideTouchable(true);
-		popupWindow.setBackgroundDrawable(new BitmapDrawable()); // 点击空白的地方关闭PopupWindow
+		popupWindow.setBackgroundDrawable(new BitmapDrawable()); //
 		popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
 
 		popupWindow.setAnimationStyle(R.style.popwin_anim_qiege_style);
@@ -86,8 +81,7 @@ public class PopupWindowQieGe {
 	}
 
 	/**
-	 * 初始化弹出窗体的控件
-	 * 
+	 *
 	 * @param view
 	 */
 	private void initPopupWindowUI(View view) {

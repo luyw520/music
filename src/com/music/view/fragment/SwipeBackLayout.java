@@ -79,11 +79,9 @@ public class SwipeBackLayout extends FrameLayout {
 	}
 
 	/**
-	 * 事件拦截操作
 	 */
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
-		//处理ViewPager冲突问题
 		ViewPager mViewPager = getTouchViewPager(mViewPagers, ev);
 		Log.i(TAG, "mViewPager = " + mViewPager);
 		
@@ -98,7 +96,6 @@ public class SwipeBackLayout extends FrameLayout {
 			break;
 		case MotionEvent.ACTION_MOVE:
 			int moveX = (int) ev.getRawX();
-			// 满足此条件屏蔽SildingFinishLayout里面子类的touch事件
 			if (moveX - downX > mTouchSlop
 					&& Math.abs((int) ev.getRawY() - downY) < mTouchSlop) {
 				return true;
@@ -141,7 +138,6 @@ public class SwipeBackLayout extends FrameLayout {
 	}
 	
 	/**
-	 * 获取SwipeBackLayout里面的ViewPager的集合
 	 * @param mViewPagers
 	 * @param parent
 	 */
@@ -159,7 +155,6 @@ public class SwipeBackLayout extends FrameLayout {
 	
 	
 	/**
-	 * 返回我们touch的ViewPager
 	 * @param mViewPagers
 	 * @param ev
 	 * @return
@@ -209,18 +204,15 @@ public class SwipeBackLayout extends FrameLayout {
 
 
 	/**
-	 * 滚动出界面
 	 */
 	private void scrollRight() {
 		final int delta = (viewWidth + mContentView.getScrollX());
-		// 调用startScroll方法来设置一些滚动的参数，我们在computeScroll()方法中调用scrollTo来滚动item
 		mScroller.startScroll(mContentView.getScrollX(), 0, -delta + 1, 0,
 				Math.abs(delta));
 		postInvalidate();
 	}
 
 	/**
-	 * 滚动到起始位置
 	 */
 	private void scrollOrigin() {
 		int delta = mContentView.getScrollX();
@@ -231,7 +223,6 @@ public class SwipeBackLayout extends FrameLayout {
 
 	@Override
 	public void computeScroll() {
-		// 调用startScroll的时候scroller.computeScrollOffset()返回true，
 		if (mScroller.computeScrollOffset()) {
 			mContentView.scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
 			postInvalidate();

@@ -83,35 +83,28 @@ public class StringUtil {
 		return KOREAN_INITIAL[(c - KOREAN_UNICODE_START) / KOREAN_UNIT];
 	}
 	/**
-	 * 获取给定汉字的拼音的首字母
-	 * 
+	 *
 	 * @param c
-	 *            一个汉字
-	 * @return 如果c不是汉字，返回0；否则返回该汉字的拼音的首字母
 	 */
 	public static char getPinyinFirstLetter(char c) {
 		String[] pinyin = null;
 		HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
-		format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);// 不输出声调
+		format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);//
 		try {
-			// 获取该汉字的拼音（可能是多音字，所以用数组存放结果）
 			pinyin = PinyinHelper.toHanyuPinyinStringArray(c, format);
 		} catch (BadHanyuPinyinOutputFormatCombination e) {
 			e.printStackTrace();
 		}
 
-		// 如果c不是汉字，toHanyuPinyinStringArray会返回null
 		if (pinyin == null) {
 			return 0;
 		}
 
-		// 只取一个发音，如果是多音字，仅取第一个发音
 		return pinyin[0].charAt(0);
 	}
 	
 	/**
-	 * 将字符串中的中文转化为拼音,其他字符不变
-	 * 
+	 *
 	 * @param inputString
 	 * @return
 	 */

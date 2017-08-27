@@ -62,8 +62,7 @@ public class LyricModel {
 	}
 	
 	/**
-	 * 查找本地是否有歌词
-	 * 
+	 *
 	 * @param songer
 	 * @param songName
 	 * @return

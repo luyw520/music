@@ -64,22 +64,22 @@ public class ImageFactoryFliter extends ImageFactory {
 
 	private void initFilterList() {
 		mFilterItems = new ArrayList<ImageFactoryFliter.FilterItem>();
-		FilterItem filterItem_1 = new FilterItem(FilterType.DEFAULT, "Ä¬ÈÏ");
-		FilterItem filterItem_2 = new FilterItem(FilterType.LOMO, "LOMO");
-		FilterItem filterItem_3 = new FilterItem(FilterType.CHUN_ZHEN, "´¿Õæ");
-		FilterItem filterItem_4 = new FilterItem(FilterType.ZHONG_CAI, "ÖØ²Ê");
-		FilterItem filterItem_5 = new FilterItem(FilterType.wei_ye_lai, "Î¬Ò²ÄÉ");
-		FilterItem filterItem_6 = new FilterItem(FilterType.DAN_YAN, "µ­ÑÅ");
-		FilterItem filterItem_7 = new FilterItem(FilterType.CU, "¿á");
-		FilterItem filterItem_8 = new FilterItem(FilterType.CHUN_HOU, "Å¨ºñ");
-		mFilterItems.add(filterItem_1);
-		mFilterItems.add(filterItem_2);
-		mFilterItems.add(filterItem_3);
-		mFilterItems.add(filterItem_4);
-		mFilterItems.add(filterItem_5);
-		mFilterItems.add(filterItem_6);
-		mFilterItems.add(filterItem_7);
-		mFilterItems.add(filterItem_8);
+//		FilterItem filterItem_1 = new FilterItem(FilterType.DEFAULT, "???");
+//		FilterItem filterItem_2 = new FilterItem(FilterType.LOMO, "LOMO");
+//		FilterItem filterItem_3 = new FilterItem(FilterType.CHUN_ZHEN, "????");
+//		FilterItem filterItem_4 = new FilterItem(FilterType.ZHONG_CAI, "???");
+//		FilterItem filterItem_5 = new FilterItem(FilterType.wei_ye_lai, "????");
+//		FilterItem filterItem_6 = new FilterItem(FilterType.DAN_YAN, "????");
+//		FilterItem filterItem_7 = new FilterItem(FilterType.CU, "??");
+//		FilterItem filterItem_8 = new FilterItem(FilterType.CHUN_HOU, "???");
+//		mFilterItems.add(filterItem_1);
+//		mFilterItems.add(filterItem_2);
+//		mFilterItems.add(filterItem_3);
+//		mFilterItems.add(filterItem_4);
+//		mFilterItems.add(filterItem_5);
+//		mFilterItems.add(filterItem_6);
+//		mFilterItems.add(filterItem_7);
+//		mFilterItems.add(filterItem_8);
 	}
 
 	@SuppressWarnings("unused")
@@ -150,7 +150,7 @@ public class ImageFactoryFliter extends ImageFactory {
 	}
 
 	public enum FilterType {
-//		Ä¬ÈÏ, LOMO, ´¿Õæ, ÖØ²Ê, Î¬Ò²ÄÉ, µ­ÑÅ, ¿á, Å¨ºñ;
+//		???, LOMO, ????, ???, ????, ????, ??, ???;
 		DEFAULT,LOMO,CHUN_ZHEN,ZHONG_CAI,wei_ye_lai,DAN_YAN,CU,CHUN_HOU;
 	}
 }

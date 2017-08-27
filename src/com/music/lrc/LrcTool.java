@@ -34,7 +34,6 @@ import com.music.bean.Mp3Info;
 	@SuppressLint("SdCardPath")
 	private final String DIR="/sdcard/lu/";
 	private final String FILE_NAME="lyw";
-	/**存储匹配到的歌词的集�?*/
 	private File file;
 	
 	public List<File> getFileList() {
@@ -63,7 +62,6 @@ import com.music.bean.Mp3Info;
 	/**
 	 * 根据mp3Infos集合里面的歌曲匹配所有的.lrc文件,并将集合写入文件
 	 * @param mp3Infos
-	 * @return 匹配到的�?有{@link LrcInfo} 集合
 	 */
 	public List<LrcInfo> matchAllMp3(List<Mp3Info> mp3Infos){
 		
@@ -155,7 +153,7 @@ import com.music.bean.Mp3Info;
 			};
 		}
 	}
-	/**从文件中读取匹配到的�?有歌�?,
+	/**
 	 * 没有返回null
 	 * */
 	@SuppressWarnings("unchecked")
@@ -201,7 +199,6 @@ import com.music.bean.Mp3Info;
 				
 				
 				if(line!=null){
-					//�?'[',':','.'去掉.如果全是数字，则表示是歌词部�?
 					String string=strings[0].replace("[", "").replace(":", "").replace(".", "").replaceAll("0", "");
 					try{
 						

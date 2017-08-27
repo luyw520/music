@@ -59,11 +59,6 @@ public class PlayPauseDrawable extends Drawable {
         mAnimationDuration = animationDuration;
         initPaints();
         
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
-//            //View从API Level 11才加入setLayerType方法
-//            //设置myView以软件渲染模式绘图
-//            myView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-//        }
     }
 
     private void initPaints() {

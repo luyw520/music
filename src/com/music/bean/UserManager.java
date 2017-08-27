@@ -33,8 +33,6 @@ public class UserManager {
 		
 	}
 	/**
-	 * ÅĞ¶ÏÓÃ»§ÊÇ·ñµÇÂ½¹ı
-	 * @return true ÒÑµÇÂ½
 	 */
 	public static boolean isLogin(){
 		return userBean!=null;
@@ -46,7 +44,6 @@ public class UserManager {
 		return userManager;
 	}
 	/**
-	 * ´Ó userInfo ÎÄ¼şÖĞ»ñÈ¡ÓÃ»§ÃûºÍÃÜÂë
 	 * @param context
 	 * @return
 	 */
@@ -65,7 +62,6 @@ public class UserManager {
 		return null;
 	}
 	/**
-	 * ´Ó userInfo ÎÄ¼şÖĞ»ñÈ¡ÓÃ»§ÃûºÍÃÜÂë
 	 * @param context
 	 * @return
 	 */
@@ -76,7 +72,6 @@ public class UserManager {
 		editor.commit();
 	}
 	/**
-	 * ´Ó userInfo ÎÄ¼şÖĞ»ñÈ¡ÓÃ»§ÃûºÍÃÜÂë
 	 * @param context
 	 * @return
 	 */
@@ -88,7 +83,6 @@ public class UserManager {
 		editor.commit();
 	}
 	/**
-	 * ´Ó userInfo ÎÄ¼şÖĞ»ñÈ¡ÓÃ»§ÃûºÍÃÜÂë
 	 * @param context
 	 * @return
 	 */
@@ -99,7 +93,6 @@ public class UserManager {
 		editor.commit();
 	}
 	/**
-	 * ÏÂÔØÓÃ»§Í·Ïñ
 	 * @param url
 	 */
 	public void downUserHeader(final String url,final ImageView iv_header){
@@ -136,7 +129,7 @@ public class UserManager {
 					return;
 				}
 				String sdStatus = Environment.getExternalStorageState();
-				if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // ¼ì²âsdÊÇ·ñ¿ÉÓÃ
+				if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // ï¿½ï¿½ï¿½sdï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 					Log.i("TestFile",
 							"SD card is not avaiable/writeable right now.");
 					return;
@@ -158,7 +151,6 @@ public class UserManager {
 					}
 				}
 			}
-			//ÅÄÕÕ
 		} else if (requestCode == PhotoUtils.INTENT_REQUEST_CODE_CAMERA) {
 
 			if (resultCode ==Activity.RESULT_OK) {

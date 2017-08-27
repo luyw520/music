@@ -27,7 +27,6 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 	}
 	public void addAction(IntentFilter filter){
 		
-		// Ö¸¶¨BroadcastReceiver¼àÌýµÄAction
 		filter.addAction(ConstantUtil.MUSIC_PAUSE);
 		filter.addAction(ConstantUtil.MUSIC_PLAYER);
 		filter.addAction(ConstantUtil.MUSIC_PRE);

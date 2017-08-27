@@ -18,24 +18,21 @@ import com.music.utils.DeBug;
 import com.music.utils.Mp3Util_New;
 
 /**
- * 播放音乐服务
- * 
+ *
  * @author luyuanwei
  * 
  */
 @SuppressLint("HandlerLeak") 
 public class MyPlayerNewService extends Service {
 	
-	private MediaPlayer mediaPlayer; // 媒体播放器对象
+	private MediaPlayer mediaPlayer; //
 	/**
-	 * 文件播放路径
 	 */
-	private String playPath; // 音乐文件路径
+	private String playPath; //
 	/**
-	 * 当前播放进度
 	 */
-	private int currentTime; // 当前播放进度
-	private int duration; // 播放长度
+	private int currentTime; //
+	private int duration; //
 
 	private static String TAG="MyPlayerService";
 	
@@ -49,7 +46,6 @@ public class MyPlayerNewService extends Service {
 				if(msg.what==CURRENT_TIME){
 					sendCurrentTimeBroadCast();
 					/**
-					 * 每隔豪秒钟把当前播放的音乐播放时间和当前播放
 					 */
 					handler.sendEmptyMessageDelayed(CURRENT_TIME, DELAY_TIME);
 				}
@@ -73,7 +69,6 @@ public class MyPlayerNewService extends Service {
 		mediaPlayer = new MediaPlayer();
 		mp3Util=Mp3Util_New.getDefault();
 		/**
-		 * 设置音乐播放完成时的监听器
 		 */
 		mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
 
@@ -90,7 +85,6 @@ public class MyPlayerNewService extends Service {
 //		if(!mp3Util.isPlaying()){
 			mediaPlayer.start();
 			mp3Util.setPlaying(true);
-			//发送播放广播
 			sendBroadcast(new Intent(ConstantUtil.MUSIC_PLAYER));
 //			handler.sendEmptyMessage(1);
 			handler.sendEmptyMessage(CURRENT_TIME);
@@ -182,9 +176,7 @@ public class MyPlayerNewService extends Service {
 	}
 
 	/**
-	 * 从当前时间currentTime处开始播放
-	 * 
-	 * @param currentTime
+	 *
 	 */
 	private void musicPlay(int time) {
 		Log.d(TAG, "time:"+time);
@@ -206,7 +198,7 @@ public class MyPlayerNewService extends Service {
 	};
 	private void sendDurationBroadCast(){
 		Intent intent = new Intent();
-		intent.setAction(ConstantUtil.MUSIC_DURATION);// 新音乐长度更新动作
+		intent.setAction(ConstantUtil.MUSIC_DURATION);//
 		duration = mediaPlayer.getDuration();
 		mp3Util.setDuration(duration);
 		mp3Util.getCurrentMp3Info().setDuration(duration);

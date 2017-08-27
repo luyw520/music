@@ -15,14 +15,12 @@ import com.music.utils.DialogUtil;
 
 public class PopupWindowUtil {
 	/**
-	 * 弹出窗体
 	 */
 	private PopupWindow popupWindow;
 	
 	private Context mContext;
 	
 	/**
-	 * 弹出窗体上的点击事件接口
 	 */
 	private PopupWindowUIOnClickListener popupWindowUIOnClickListener;
 	private PopupWindowUI popupWindowUI;
@@ -32,10 +30,8 @@ public class PopupWindowUtil {
 	}
 	
 	/**
-	 * 显示弹出窗体
-	 * 
+	 *
 	 * @param parent
-	 *            在该控件下显示弹出窗体
 	 */
 	@SuppressWarnings("deprecation")
 	public void showWindow(View parent) {
@@ -50,9 +46,8 @@ public class PopupWindowUtil {
 			
 		}
 		popupWindow.setFocusable(true);
-		// 设置允许在外点击消失
 		popupWindow.setOutsideTouchable(true);
-		popupWindow.setBackgroundDrawable(new BitmapDrawable()); // 点击空白的地方关闭PopupWindow
+		popupWindow.setBackgroundDrawable(new BitmapDrawable()); //
 		popupWindow.showAsDropDown(parent);
 		popupWindow.setAnimationStyle(R.style.popwin_anim_style);
 		popupWindow.update();
@@ -60,8 +55,7 @@ public class PopupWindowUtil {
 	}
 	
 	/**
-	 * 初始化弹出窗体的控件
-	 * 
+	 *
 	 * @param view
 	 */
 	private void initPopupWindowUI(View view) {
@@ -119,19 +113,19 @@ public class PopupWindowUtil {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.ll_menu_singer:
-				toast("按歌手查看");
+				toast("ll_menu_singer");
 				break;
 			case R.id.ll_menu_folder:
-				toast("按文件夹查看");
+				toast("ll_menu_folder");
 				break;
 			case R.id.ll_menu_scan:
-				toast("扫描本地歌曲");
+				toast("ll_menu_scan");
 				break;
 			case R.id.ll_menu_match:
-				toast("一键匹配词图");
+				toast("ll_menu_match");
 				break;
 			case R.id.ll_menu_on_time:
-				toast("按添加时间排序");
+				toast("ll_menu_on_time");
 				popupWindowUI.iv_on_time.setVisibility(View.VISIBLE);
 				popupWindowUI.iv_on_music.setVisibility(View.INVISIBLE);
 
@@ -141,7 +135,7 @@ public class PopupWindowUtil {
 				}
 				break;
 			case R.id.ll_menu_on_music:
-				toast("按歌曲名称排序");
+				toast("ll_menu_on_music");
 				popupWindowUI.iv_on_music.setVisibility(View.VISIBLE);
 				popupWindowUI.iv_on_time.setVisibility(View.INVISIBLE);
 				
@@ -168,7 +162,7 @@ public class PopupWindowUtil {
 	}
 	public interface PopupWindowUIOnClickListener{
 		
-		public void sortByTime();
-		public void sortByName();
+		 void sortByTime();
+		 void sortByName();
 	};
 }

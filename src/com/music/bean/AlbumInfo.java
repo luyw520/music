@@ -29,6 +29,19 @@ public class AlbumInfo implements Parcelable , Comparable{
 	}
 
 	@Override
+	public String toString() {
+		return "AlbumInfo{" +
+				"album_name='" + album_name + '\'' +
+				", album_id=" + album_id +
+				", number_of_songs=" + number_of_songs +
+				", album_art='" + album_art + '\'' +
+				", bitmap=" + bitmap +
+				", album_path='" + album_path + '\'' +
+				", pinyin='" + pinyin + '\'' +
+				'}';
+	}
+
+	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		Bundle bundle = new Bundle();
 		bundle.putString(KEY_ALBUM_NAME, album_name);
@@ -40,7 +53,6 @@ public class AlbumInfo implements Parcelable , Comparable{
 	
 	public static final Parcelable.Creator<AlbumInfo> CREATOR = new Parcelable.Creator<AlbumInfo>() {
 
-		//璇绘暟鎹仮澶嶆暟鎹?
 		@Override
 		public AlbumInfo createFromParcel(Parcel source) {
 			AlbumInfo info = new AlbumInfo();
@@ -80,11 +92,9 @@ public class AlbumInfo implements Parcelable , Comparable{
 			}
 				
 		}
-		//mp3Info.titlepinyin歌曲长度大于titlepinyin
 		if(i==album_name_first.length()){
 			return -1;
 		}
-		//titlepinyin歌曲长度大于mp3Info.titlepinyin
 		if(flag){
 			return 1;
 		}

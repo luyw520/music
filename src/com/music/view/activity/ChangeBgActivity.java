@@ -20,12 +20,12 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.lu.demo.adapter.LuAdapter;
-import com.lu.demo.adapter.ViewHolder;
 import com.music.bean.BgBean;
 import com.music.lu.R;
 import com.music.utils.ConstantUtil;
 import com.music.utils.SharedPreHelper;
+import com.music.view.adapter.LuAdapter;
+import com.music.view.adapter.ViewHolder;
 
 @ContentView(value = R.layout.activity_changebg)
 public class ChangeBgActivity extends BaseActivity {
@@ -58,7 +58,7 @@ public class ChangeBgActivity extends BaseActivity {
 	private void initWidget() {
 		iv_more.setVisibility(View.GONE);
 		iv_search.setVisibility(View.GONE);
-		tv_title.setText("…Ë÷√±≥æ∞");
+		tv_title.setText("title");
 
 		adapter = new LuAdapter<BgBean>(this, bgBeans,
 				R.layout.item_changebg) {
@@ -73,6 +73,11 @@ public class ChangeBgActivity extends BaseActivity {
 				} else {
 					arg0.getView(R.id.img_checked).setVisibility(View.VISIBLE);
 				}
+
+			}
+
+			@Override
+			public void convert(ViewHolder helper, int position) {
 
 			}
 		};

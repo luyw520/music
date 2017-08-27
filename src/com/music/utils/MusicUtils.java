@@ -28,8 +28,7 @@ import com.music.db.MusicInfoDao;
 import com.music.service.IConstants;
 
 /**
- * ²éÑ¯¸÷Ö÷Ò³ĞÅÏ¢£¬»ñÈ¡·âÃæÍ¼Æ¬µÈ
- * 
+ *
  * @author longdw(longdawei1988@gmail.com)
  * 
  */
@@ -59,34 +58,15 @@ public class MusicUtils implements IConstants {
 	private static String[] proj_folder = new String[] { FileColumns.DATA };
 
 	public static final int FILTER_SIZE = 1 * 1024 * 1024;// 1MB
-	public static final int FILTER_DURATION = 1 * 60 * 1000;// 1·ÖÖÓ
-	// private static final BitmapFactory.Options sBitmapOptionsCache = new
-	// BitmapFactory.Options();
-	// private static final BitmapFactory.Options sBitmapOptions = new
-	// BitmapFactory.Options();
-	// private static final HashMap<Long, Bitmap> sArtCache = new HashMap<Long,
-	// Bitmap>();
-	// @SuppressWarnings("unused")
-	// private static final Uri sArtworkUri = Uri
-	// .parse("content://media/external/audio/albumart");
+	public static final int FILTER_DURATION = 1 * 60 * 1000;// 1 MIN
 
 	static {
-		// sBitmapOptionsCache.inPreferredConfig = Bitmap.Config.RGB_565;
-		// sBitmapOptionsCache.inDither = false;
-		//
-		// sBitmapOptions.inPreferredConfig = Bitmap.Config.RGB_565;
-		// sBitmapOptions.inDither = false;
 	}
 
-	// ¸èÇúĞÅÏ¢Êı¾İ¿â
 	private MusicInfoDao mMusicInfoDao;
-	// ×¨¼­ĞÅÏ¢Êı¾İ¿â
 	private AlbumInfoDao mAlbumInfoDao;
-	// ¸èÊÖĞÅÏ¢Êı¾İ¿â
 	private ArtistInfoDao mArtistInfoDao;
-	// ÎÄ¼ş¼ĞĞÅÏ¢Êı¾İ¿â
 	private FolderInfoDao mFolderInfoDao;
-	// ÎÒµÄÊÕ²ØĞÅÏ¢Êı¾İ¿â
 	private FavoriteInfoDao mFavoriteDao;
 
 	private List<AlbumInfo> albumInfos = new ArrayList<AlbumInfo>();
@@ -121,8 +101,7 @@ public class MusicUtils implements IConstants {
 	}
 
 	/**
-	 * »ñÈ¡°üº¬ÒôÆµÎÄ¼şµÄÎÄ¼ş¼ĞĞÅÏ¢
-	 * 
+	 *æŸ¥è¯¢æ‰€æœ‰éŸ³ä¹æ–‡ä»¶
 	 * @param context
 	 * @return
 	 */
@@ -140,7 +119,6 @@ public class MusicUtils implements IConstants {
 				+ " = " + FileColumns.MEDIA_TYPE_AUDIO + " and " + "("
 				+ FileColumns.DATA + " like'%.mp3' or " + Media.DATA
 				+ " like'%.wma')");
-		// ²éÑ¯Óï¾ä£º¼ìË÷³ö.mp3Îªºó×ºÃû£¬Ê±³¤´óÓÚ1·ÖÖÓ£¬ÎÄ¼ş´óĞ¡´óÓÚ1MBµÄÃ½ÌåÎÄ¼ş
 		// if(sp.getFilterSize()) {
 		mSelection.append(" and " + Media.SIZE + " > " + FILTER_SIZE);
 		// }
@@ -155,8 +133,7 @@ public class MusicUtils implements IConstants {
 	}
 
 	/**
-	 * »ñÈ¡¸èÊÖĞÅÏ¢
-	 * 
+	 *æŸ¥è¯¢æ‰€æœ‰è‰ºæœ¯å®¶
 	 * @param context
 	 * @return
 	 */
@@ -177,8 +154,7 @@ public class MusicUtils implements IConstants {
 	}
 
 	/**
-	 * »ñÈ¡×¨¼­ĞÅÏ¢
-	 * 
+	 *æŸ¥è¯¢æ‰€æœ‰ä¸“è¾‘
 	 * @param context
 	 * @return
 	 */
@@ -210,7 +186,6 @@ public class MusicUtils implements IConstants {
 		// if (mAlbumInfoDao.hasData()) {
 		// return mAlbumInfoDao.getAlbumInfo();
 		// } else {
-		// Media.ALBUM_KEY °´×¨¼­Ãû³ÆÅÅĞò
 		albumInfos = getAlbumList(cr.query(uri, proj_album, where.toString(),
 				null, Media.ALBUM_KEY));
 		// mAlbumInfoDao.saveAlbumInfo(list);
@@ -220,10 +195,9 @@ public class MusicUtils implements IConstants {
 	}
 
 	/**
-	 * 
+	 * æŸ¥è¯¢æ‰€æœ‰éŸ³ä¹
 	 * @param context
 	 * @param from
-	 *            ²»Í¬µÄ½çÃæ½øÀ´Òª×ö²»Í¬µÄ²éÑ¯
 	 * @return
 	 */
 	public List<MusicInfo> queryMusic(Context context, int from) {
@@ -242,9 +216,6 @@ public class MusicUtils implements IConstants {
 	public List<MusicInfo> queryMusic(Context context, String selections,
 			String selection, int from) {
 
-		// if (musicInfos.size() > 0) {
-		// return musicInfos;
-		// }
 		if (mMusicInfoDao == null) {
 			mMusicInfoDao = new MusicInfoDao(context);
 		}
@@ -305,6 +276,11 @@ public class MusicUtils implements IConstants {
 		DeBug.d(MusicUtils.class, msg);
 	}
 
+	/**
+	 * ä»æ¸¸æ ‡ä¸­è·å–æ‰€æœ‰éŸ³ä¹
+	 * @param cursor
+	 * @return
+	 */
 	public static ArrayList<MusicInfo> getMusicList(Cursor cursor) {
 		if (cursor == null) {
 			return null;
@@ -335,11 +311,16 @@ public class MusicUtils implements IConstants {
 			music.musicNameKey = StringUtil.getPingYin(music.title);
 			music.artistKey = StringUtil.getPingYin(music.artist);
 			musicList.add(music);
+			DeBug.d(MusicUtils.class,music.toString());
 		}
 		cursor.close();
 		return musicList;
 	}
-
+	/**
+	 * ä»æ¸¸æ ‡ä¸­è·å–æ‰€æœ‰éŸ³ä¹ä¸“è¾‘
+	 * @param cursor
+	 * @return
+	 */
 	public List<AlbumInfo> getAlbumList(Cursor cursor) {
 		List<AlbumInfo> list = new ArrayList<AlbumInfo>();
 		d("album,size:" + cursor.getCount());
@@ -353,24 +334,30 @@ public class MusicUtils implements IConstants {
 					.getColumnIndex(Albums.NUMBER_OF_SONGS));
 			info.album_path = cursor.getString(cursor
 					.getColumnIndex(Albums.ALBUM_ART));
+			DeBug.d("getAlbumList:",info.toString());
 			list.add(info);
 		}
 		cursor.close();
 		return list;
 	}
-
+	/**
+	 * ä»æ¸¸æ ‡ä¸­è·å–æ‰€æœ‰éŸ³ä¹æ­Œæ‰‹
+	 * @param cursor
+	 * @return
+	 */
 	public List<ArtistInfo> getArtistList(Cursor cursor) {
 		d("getArtistList:...........................size:"+cursor.getCount());
-		List<ArtistInfo> list = new ArrayList<ArtistInfo>();
+		List<ArtistInfo> list = new ArrayList<>();
 		while (cursor.moveToNext()) {
 			ArtistInfo info = new ArtistInfo();
 			info.artist_name = cursor.getString(cursor
 					.getColumnIndex(MediaStore.Audio.Artists.ARTIST));
+			if (info.artist_name.equalsIgnoreCase("<unknown>")){
+				continue;
+			}
 			info.number_of_tracks = cursor.getInt(cursor
 					.getColumnIndex(MediaStore.Audio.Artists.NUMBER_OF_TRACKS));
-			// info.number_of_tracks = cursor.getInt(cursor
-			// .getColumnIndex(MediaStore.Audio.Artists.));
-
+			DeBug.d(MusicUtils.class,info.toString());
 			list.add(info);
 		}
 		cursor.close();
@@ -394,49 +381,6 @@ public class MusicUtils implements IConstants {
 		return list;
 	}
 
-	public static String makeTimeString(long milliSecs) {
-		StringBuffer sb = new StringBuffer();
-		long m = milliSecs / (60 * 1000);
-		sb.append(m < 10 ? "0" + m : m);
-		sb.append(":");
-		long s = (milliSecs % (60 * 1000)) / 1000;
-		sb.append(s < 10 ? "0" + s : s);
-		return sb.toString();
-	}
 
-	/**
-	 * ¸ù¾İ¸èÇúµÄID£¬Ñ°ÕÒ³ö¸èÇúÔÚµ±Ç°²¥·ÅÁĞ±íÖĞµÄÎ»ÖÃ
-	 * 
-	 * @param list
-	 * @param id
-	 * @return
-	 */
-	public static int seekPosInListById(List<MusicInfo> list, int id) {
-		if (id == -1) {
-			return -1;
-		}
-		int result = -1;
-		if (list != null) {
 
-			for (int i = 0; i < list.size(); i++) {
-				if (id == list.get(i).songId) {
-					result = i;
-					break;
-				}
-			}
-		}
-		return result;
-	}
-
-	// public static void clearCache() {
-	// sArtCache.clear();
-	// }
-
-	public List<AlbumInfo> getAlbumInfos() {
-		return albumInfos;
-	}
-
-	public void setAlbumInfos(List<AlbumInfo> albumInfos) {
-		this.albumInfos = albumInfos;
-	}
 }

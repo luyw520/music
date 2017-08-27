@@ -24,7 +24,7 @@ import com.music.view.adapter.LuAdapter;
 import com.music.widget.indexablelistview.IndexableListView;
 
 /**
- *
+ *æ­Œæ‰‹æˆ–è€…ä¸“è¾‘æˆ–è€…æ–‡ä»¶å¤¹æ‰€æœ‰æ­Œæ›²åˆ—è¡¨
  */
 public class MusicListFragment extends BaseFragment implements IConstants{
 
@@ -33,7 +33,7 @@ public class MusicListFragment extends BaseFragment implements IConstants{
 
 	private ArtistAdapter listAdapter;
 	@ViewInject(value = R.id.listview)
-	private IndexableListView mMusiclist; // ÒôÀÖÁÐ±í
+	private IndexableListView mMusiclist; //
 
 	private  List<MusicInfo> musicInfos;
 	private MusicListItemClickListener musicListItemClickListener;
@@ -62,7 +62,6 @@ public class MusicListFragment extends BaseFragment implements IConstants{
 	}
 
 	/**
-	 * ³õÊ¼»¯viewÉÏÃæµÄ¿Ø¼þ
 	 */
 	private void initViewWidget(View view) {
 
@@ -72,28 +71,9 @@ public class MusicListFragment extends BaseFragment implements IConstants{
 		mMusiclist.setOnItemClickListener(musicListItemClickListener);
 		
 		
-//		folderInfos = com.music.lu.utils.MusicUtils.queryFolder(getActivity());
 		listAdapter = new ArtistAdapter(getActivity(),musicInfos,R.layout.item_listview__layout);
 		mMusiclist.setShow(false);
-		
-//		LinearLayout listViewFoodView = new LinearLayout(
-//				getActivity());
-//		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-//				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-////		params.topMargin = 15;
-//		
-////		params.bottomMargin = 250;
-////		params.leftMargin = 100;
-//		TextView textView = new TextView(getActivity());
-//		textView.setGravity(Gravity.CENTER);
-//		textView.setPadding(0, 15, 0, 15);
-//		textView.setText("¹²" + musicInfos.size() + "Ê×¸èÇú");
-
-		mMusiclist.addFooterView(getFoodView("¹²" + musicInfos.size() + "Ê×¸èÇú"));
-
-//		mMusiclist.addFooterView(listViewFoodView);
-		
-		
+		mMusiclist.addFooterView(getFoodView(getString(R.string.music_size,musicInfos.size())));
 		mMusiclist.setAdapter(listAdapter);
 		
 		

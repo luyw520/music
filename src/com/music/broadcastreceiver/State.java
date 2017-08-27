@@ -3,7 +3,6 @@ package com.music.broadcastreceiver;
 import android.content.Intent;
 
 /**
- * 收到后台服务发来的信息后更新状态
  * @author Administrator
  *
  */

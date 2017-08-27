@@ -1,14 +1,12 @@
 /*
  * Filename	CharacterParser.java
- * Company	上海乐问-浦东分公司。
  * @author	LuRuihui
  * @version	0.1
  */
 package com.music.widget.sortlistview;
 
 /**
- * Java汉字转换为拼音
- * 
+ *
  */
 public class CharacterParser {
 	private static int[] pyvalue = new int[] {-20319, -20317, -20304, -20295, -20292, -20283, -20265, -20257, -20242, -20230, -20051, -20036, -20032,
@@ -73,7 +71,6 @@ public class CharacterParser {
 		this.resource = resource;
 	}
 
-	/** * 汉字转成ASCII码 * * @param chs * @return */
 	private int getChsAscii(String chs) {
 		int asc = 0;
 		try {
@@ -95,7 +92,6 @@ public class CharacterParser {
 		return asc;
 	}
 
-	/** * 单字解析 * * @param str * @return */
 	public String convert(String str) {
 		String result = null;
 		int ascii = getChsAscii(str);
@@ -112,7 +108,6 @@ public class CharacterParser {
 		return result;
 	}
 
-	/** * 词组解析 * * @param chs * @return */
 	public String getSelling(String chs) {
 		String key, value;
 		buffer = new StringBuilder();

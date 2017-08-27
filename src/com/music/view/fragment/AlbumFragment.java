@@ -36,7 +36,7 @@ import com.music.view.activity.LocalMusicActivity;
 import com.music.widget.indexablelistview.IndexableListView;
 
 /**
- *
+ *æ‰€æœ‰ä¸“è¾‘
  */
 public class AlbumFragment extends BaseFragment {
 
@@ -57,7 +57,7 @@ public class AlbumFragment extends BaseFragment {
 
 	private AlbumAdapter listAdapter;
 	@ViewInject(value = R.id.listview)
-	private IndexableListView mMusiclist; // ÒôÀÖÁĞ±í
+	private IndexableListView mMusiclist; //
 
 	// private Mp3Util_New mp3Util;
 	private List<AlbumInfo> albumInfos;
@@ -87,7 +87,6 @@ public class AlbumFragment extends BaseFragment {
 	}
 
 	/**
-	 * ³õÊ¼»¯viewÉÏÃæµÄ¿Ø¼ş
 	 */
 	private void initViewWidget(View view) {
 
@@ -107,19 +106,8 @@ public class AlbumFragment extends BaseFragment {
 		System.out.println("album widget:sort " + (sort - query) / 1000.0);
 		listAdapter = new AlbumAdapter(getActivity(), albumInfos);
 
-//		LinearLayout listViewFoodView = new LinearLayout(getActivity());
-//		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-//				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-////		params.topMargin = 15;
-////		params.bottomMargin = 200;
-////		params.leftMargin = 100;
-//		TextView textView = new TextView(getActivity());
-//		textView.setGravity(Gravity.CENTER);
-//		textView.setText("¹²" + albumInfos.size() + "Ê××¨¼­");
-//
-//		listViewFoodView.addView(textView, params);
 
-		mMusiclist.addFooterView(getFoodView("¹²" + albumInfos.size() + "Ê××¨¼­"));
+		mMusiclist.addFooterView(getFoodView(getString(R.string.album_size,albumInfos.size())));
 
 		mMusiclist.setAdapter(listAdapter);
 		System.out.println("album widget: init"
@@ -191,14 +179,14 @@ public class AlbumFragment extends BaseFragment {
 						.findViewById(R.id.catalog);
 				viewHolder.tv_artist = (TextView) convertView
 						.findViewById(R.id.tv_artist);
-				convertView.setTag(viewHolder); // ±íÊ¾¸øViewÌí¼ÓÒ»¸ö¸ñÍâµÄÊı¾İ£¬
+				convertView.setTag(viewHolder); //
 
 			} else {
 				viewHolder = (ViewHolder) convertView.getTag();
 			}
 
 			viewHolder.tv_album_name.setText(album.album_name);
-			viewHolder.tv_number_of_songs.setText(album.number_of_songs + "Ê×¸è");
+			viewHolder.tv_number_of_songs.setText(album.number_of_songs + "é¦–æ­Œæ›²");
 			viewHolder.tv_artist.setText(album.album_art);
 
 			viewHolder.catalog.setVisibility(View.VISIBLE);
@@ -228,15 +216,13 @@ public class AlbumFragment extends BaseFragment {
 		}
 
 		/**
-		 * ¶¨ÒåÒ»¸öÄÚ²¿Àà ÉùÃ÷ÏàÓ¦µÄ¿Ø¼şÒıÓÃ
-		 * 
+		 *
 		 * @author wwj
 		 * 
 		 */
 		public class ViewHolder {
-			// ËùÓĞ¿Ø¼ş¶ÔÏóÒıÓÃ
-			public ImageView albumImage; // ×¨¼­Í¼Æ¬
-			public TextView tv_album_name; // ÒôÀÖ±êÌâ
+			public ImageView albumImage; //
+			public TextView tv_album_name; //
 			public TextView tv_number_of_songs;
 			public TextView tv_artist;
 			public TextView catalog;

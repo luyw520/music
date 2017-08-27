@@ -28,7 +28,16 @@ public class FolderInfo implements Parcelable {
 		bundle.putString(KEY_FOLDER_PATH, folder_path);
 		dest.writeBundle(bundle);
 	}
-	
+
+	@Override
+	public String toString() {
+		return "FolderInfo{" +
+				"folder_name='" + folder_name + '\'' +
+				", folder_path='" + folder_path + '\'' +
+				", music_number='" + music_number + '\'' +
+				'}';
+	}
+
 	public static Parcelable.Creator<FolderInfo> CREATOR = new Parcelable.Creator<FolderInfo>() {
 
 		@Override

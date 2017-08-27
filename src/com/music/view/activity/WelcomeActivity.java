@@ -20,7 +20,7 @@ import com.music.lu.R;
 import com.music.utils.ApplicationUtil;
 import com.music.view.animator.ActivityAnimator;
 
-public class WelcomeActivity extends Activity{
+public class WelcomeActivity extends BaseActivity{
 	
 	protected static final String TAG = "WelcomeActivity";
 	int[] welcome={R.drawable.welcome_1,R.drawable.welcome_2,R.drawable.welcome_3};
@@ -33,7 +33,7 @@ public class WelcomeActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+//		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_welcomecactivity);
 		if(!ApplicationUtil.isFirstRun(this)){
 			startMainActivity();
@@ -112,18 +112,7 @@ public class WelcomeActivity extends Activity{
 		});
 	}
 	private void startMainActivity(){
-//		Intent intent=new Intent(WelcomeActivity.this,UnlockGesturePasswordActivity.class);
-		Intent intent=new Intent(WelcomeActivity.this,LocalMusicActivity.class);
-//		Intent intent=new Intent(WelcomeActivity.this,MainContentActivity.class);
-//		Intent intent=new Intent(WelcomeActivity.this,MainActivity.class);
-		startActivity(intent);
-		ActivityAnimator activityAnimator=new ActivityAnimator();
-		
-		try {
-			activityAnimator.getClass().getMethod(activityAnimator.randomAnimator(), Activity.class).invoke(activityAnimator, WelcomeActivity.this);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		startActivity(LocalMusicActivity.class);
 		finish();
 	}
 	private void setChecked(int index){

@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -19,7 +20,7 @@ import com.music.utils.DeBug;
  * 
  * @author Alan
  */
-public class RoundImageView extends ImageView {
+public class RoundImageView extends AppCompatImageView{
 	private int mBorderThickness = 0;
 	private Context mContext;
 	private int defaultColor = 0xFFFFFFFF;
@@ -52,7 +53,7 @@ public class RoundImageView extends ImageView {
 	}
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		DeBug.d(this, "onMeasure............");
+//		DeBug.d(this, "onMeasure............");
 		// TODO Auto-generated method stub
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 		defaultWidth=getMeasuredWidth();
@@ -95,17 +96,7 @@ public class RoundImageView extends ImageView {
 	int radius = 0;
 	@Override
 	protected void onDraw(Canvas canvas) {
-//		DeBug.d(this, "onDraw.....................");
-//		Drawable drawable = getDrawable();
-//		if (drawable == null) {
-//			return;
-//		}
-//		if (drawable.getClass() == NinePatchDrawable.class)
-//			return;
-//		Bitmap b = ((BitmapDrawable) drawable).getBitmap();
-//		Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-		
-		if (mBorderInsideColor != defaultColor && mBorderOutsideColor != defaultColor) {// 
+		if (mBorderInsideColor != defaultColor && mBorderOutsideColor != defaultColor) {//
 			radius = (defaultWidth < defaultHeight ? defaultWidth : defaultHeight) / 2 - 2 * mBorderThickness;
 			drawCircleBorder(canvas, radius + mBorderThickness / 2, mBorderInsideColor);
 			drawCircleBorder(canvas, radius + mBorderThickness + mBorderThickness / 2, mBorderOutsideColor);
@@ -173,9 +164,6 @@ public class RoundImageView extends ImageView {
 		canvas.drawCircle(scaledSrcBmp.getWidth() / 2, scaledSrcBmp.getHeight() / 2, scaledSrcBmp.getWidth() / 2, roundBitmapPaint);
 		roundBitmapPaint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
 		canvas.drawBitmap(scaledSrcBmp, rect, rect, roundBitmapPaint);
-		bmp = null;
-		squareBitmap = null;
-		scaledSrcBmp = null;
 		return output;
 	}
 

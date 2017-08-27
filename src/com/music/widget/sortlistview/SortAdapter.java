@@ -23,7 +23,6 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer{
 	}
 	
 	/**
-	 * µ±ListViewÊı¾İ·¢Éú±ä»¯Ê±,µ÷ÓÃ´Ë·½·¨À´¸üĞÂListView
 	 * @param list
 	 */
 	public void updateListView(List<SortModel> list){
@@ -57,10 +56,10 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer{
 			viewHolder = (ViewHolder) view.getTag();
 		}
 		
-		//¸ù¾İposition»ñÈ¡·ÖÀàµÄÊ××ÖÄ¸µÄChar asciiÖµ
+		//ï¿½ï¿½ï¿½ï¿½positionï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Char asciiÖµ
 		int section = getSectionForPosition(position);
 		
-		//Èç¹ûµ±Ç°Î»ÖÃµÈÓÚ¸Ã·ÖÀàÊ××ÖÄ¸µÄCharµÄÎ»ÖÃ £¬ÔòÈÏÎªÊÇµÚÒ»´Î³öÏÖ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ç°Î»ï¿½Ãµï¿½ï¿½Ú¸Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Charï¿½ï¿½Î»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Çµï¿½Ò»ï¿½Î³ï¿½ï¿½ï¿½
 		if(position == getPositionForSection(section)){
 			viewHolder.tvLetter.setVisibility(View.VISIBLE);
 			viewHolder.tvLetter.setText(mContent.getSortLetters());
@@ -83,14 +82,14 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer{
 
 
 	/**
-	 * ¸ù¾İListViewµÄµ±Ç°Î»ÖÃ»ñÈ¡·ÖÀàµÄÊ××ÖÄ¸µÄChar asciiÖµ
+	 * ï¿½ï¿½ï¿½ï¿½ListViewï¿½Äµï¿½Ç°Î»ï¿½Ã»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Char asciiÖµ
 	 */
 	public int getSectionForPosition(int position) {
 		return list.get(position).getSortLetters().charAt(0);
 	}
 
 	/**
-	 * ¸ù¾İ·ÖÀàµÄÊ××ÖÄ¸µÄChar asciiÖµ»ñÈ¡ÆäµÚÒ»´Î³öÏÖ¸ÃÊ××ÖÄ¸µÄÎ»ÖÃ
+	 * ï¿½ï¿½ï¿½İ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Char asciiÖµï¿½ï¿½È¡ï¿½ï¿½ï¿½Ò»ï¿½Î³ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Î»ï¿½ï¿½
 	 */
 	@SuppressLint("DefaultLocale")
 	public int getPositionForSection(int section) {
@@ -106,7 +105,7 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer{
 	}
 	
 	/**
-	 * ÌáÈ¡Ó¢ÎÄµÄÊ××ÖÄ¸£¬·ÇÓ¢ÎÄ×ÖÄ¸ÓÃ#´úÌæ¡£
+	 * ï¿½ï¿½È¡Ó¢ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½Ó¢ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½#ï¿½ï¿½ï¿½æ¡£
 	 * 
 	 * @param str
 	 * @return
@@ -114,7 +113,7 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer{
 	@SuppressLint("DefaultLocale")
 	private String getAlpha(String str) {
 		String  sortStr = str.trim().substring(0, 1).toUpperCase();
-		// ÕıÔò±í´ïÊ½£¬ÅĞ¶ÏÊ××ÖÄ¸ÊÇ·ñÊÇÓ¢ÎÄ×ÖÄ¸
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½Ç·ï¿½ï¿½ï¿½Ó¢ï¿½ï¿½ï¿½ï¿½Ä¸
 		if (sortStr.matches("[A-Z]")) {
 			return sortStr;
 		} else {

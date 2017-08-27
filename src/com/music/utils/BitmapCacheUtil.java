@@ -92,8 +92,7 @@ public class BitmapCacheUtil {
 	}
 
 	/**
-	 * 将字符串进行MD5编码
-	 * 
+	 *
 	 * @param key
 	 * @return
 	 */
@@ -193,8 +192,7 @@ public class BitmapCacheUtil {
 	}
 
 	/**
-	 * 先从内存缓存中读取，若没有则从硬盘缓存上读取，若没有，从本地硬盘加载,若没有，则从网上下载 有一次加载成则添加到内存缓存
-	 * 
+	 *
 	 * @param url
 	 * @return
 	 */
@@ -203,11 +201,8 @@ public class BitmapCacheUtil {
 		if (url == null) {
 			return null;
 		}
-		// 内存缓存的图片地址
 		Bitmap bitmap = getBitmapFromMemoryCache(url);
-		// 内存缓存没有的话
 		if (bitmap == null) {
-			// 硬盘缓存中读取硬盘缓存
 			bitmap = BitmapFactory.decodeStream(getImgInputStream(url));
 			
 			
@@ -217,7 +212,6 @@ public class BitmapCacheUtil {
 				bitmap=BitmapFactory.decodeFile(url);
 				
 				if(bitmap==null){
-					// 下载
 					downAndCache(url);
 					
 					bitmap = BitmapFactory.decodeStream(getImgInputStream(url));
@@ -229,7 +223,6 @@ public class BitmapCacheUtil {
 				
 			}
 		}
-		// 添加到内存缓存
 		if (bitmap != null) {
 			addBitmapToMemoryCache(url, bitmap);
 //			
@@ -274,8 +267,7 @@ public class BitmapCacheUtil {
 	}
 
 	/**
-	 * 获取缓存大小,byte 单位
-	 * 
+	 *
 	 * @return
 	 */
 	public long getCacheSize() {
@@ -283,15 +275,14 @@ public class BitmapCacheUtil {
 	}
 
 	/**
-	 * 换算文件大小
-	 * 
+	 *
 	 * @param size
 	 * @return
 	 */
 	public String formatFileSize() {
 		DecimalFormat df = new DecimalFormat("#.00");
 		long size = getCacheSize();
-		String fileSizeString = "未知大小";
+		String fileSizeString = "sss";
 		if (size < 1024) {
 			fileSizeString = df.format((double) size) + "B";
 		} else if (size < 1048576) {

@@ -58,22 +58,37 @@ public class  MusicBaseInfo {
 	public static final String KEY_MUSIC_NAME_KEY = "musicnamekey";
 	public static final String KEY_ARTIST_KEY = "artistkey";
 	public static final String KEY_FAVORITE = "favorite";
-	/** 数据库中的_id */
 	public int _id = -1;	//
-	public long songId;	//歌曲ID
-	public long albumId;//专辑ID
-	public long duration;	//时长
-	public String title="";	//音乐标题
-	public String artist="";	//歌手
-	public String folder="";	//文件夹
-	public String playPath="";//播放路径
+	public long songId;	//
+	public long albumId;//
+	public long duration;
+	public String title="";
+	public String artist="";
+	public String folder="";
+	public String playPath="";
 	public String musicName="";
 	public String musicNameKey="";
 	public String data="";
 	public String artistKey="";
-	/** 0表示没有收藏 1表示收藏 */
-	public int favorite; //
-	
-	
 
+	public int favorite; //
+
+	@Override
+	public String toString() {
+		return "MusicBaseInfo{" +
+				"_id=" + _id +
+				", songId=" + songId +
+				", albumId=" + albumId +
+				", duration=" + duration +
+				", title='" + title + '\'' +
+				", artist='" + artist + '\'' +
+				", folder='" + folder + '\'' +
+				", playPath='" + playPath + '\'' +
+				", musicName='" + musicName + '\'' +
+				", musicNameKey='" + musicNameKey + '\'' +
+				", data='" + data + '\'' +
+				", artistKey='" + artistKey + '\'' +
+				", favorite=" + favorite +
+				'}';
+	}
 }

@@ -22,39 +22,28 @@ import com.music.widget.lockpatternview.LockPatternView.Cell;
 import com.music.widget.lockpatternview.LockPatternView.DisplayMode;
 
 /**
- * 创建手势密码类
- * 
- * @author jgduan 手势密码创建
- * 
+ *
+ *
  */
 public class CreateGesturePasswordActivity extends Activity implements
 		OnClickListener {
 	private static final int ID_EMPTY_MESSAGE = -1;
 	private static final String KEY_UI_STAGE = "uiStage";
 	private static final String KEY_PATTERN_CHOICE = "chosenPattern";
-	/** 中间圆点解锁图案 **/
 	private LockPatternView mLockPatternView;
-	/** 底部右侧按钮 **/
 	private Button mFooterRightButton;
-	/** 底部左侧按钮 **/
 	private Button mFooterLeftButton;
-	/** 顶部文本 **/
 	protected TextView mHeaderText;
-	/** 用来演示如何绘制解锁图案 **/
 	private final List<LockPatternView.Cell> mAnimatePattern = new ArrayList<LockPatternView.Cell>();
-	/** 顶部视图,标记已设置的密码图形 **/
 	private View mPreviewViews[][] = new View[3][3];
 	protected List<LockPatternView.Cell> mChosenPattern = null;
 	private Toast mToast;
 	private Stage mUiStage = Stage.Introduction;
 
 	/**
-	 * 底部左侧按钮
 	 */
 	enum LeftButtonMode {
 
-		// 在不同状态下为按钮设置不同的文字
-		// <Cancel-取消;CancelDisabled-禁用取消;Retry-重试;RetryDisabled-禁用重试;Gone-过去的>
 		Cancel(android.R.string.cancel, true), CancelDisabled(
 				android.R.string.cancel, false), Retry(
 				R.string.lockpattern_retry_button_text, true), RetryDisabled(
@@ -63,9 +52,7 @@ public class CreateGesturePasswordActivity extends Activity implements
 
 		/**
 		 * @param text
-		 *            指定显示文本的样式
 		 * @param enabled
-		 *            是否被启用
 		 */
 		LeftButtonMode(int text, boolean enabled) {
 			this.text = text;
@@ -77,13 +64,10 @@ public class CreateGesturePasswordActivity extends Activity implements
 	}
 
 	/**
-	 * 底部右侧按钮
 	 */
 	enum RightButtonMode {
 
-		// 在不同状态下为按钮设置不同的文字
-		// <Continue-继续;ContinueDisabled-禁用继续;Confirm-确认;ConfirmDisabled-禁用确认;Ok-搞定>
-		Continue(R.string.lockpattern_continue_button_text, true), 
+		Continue(R.string.lockpattern_continue_button_text, true),
 		ContinueDisabled(
 				R.string.lockpattern_continue_button_text, false), 
 		Confirm(
@@ -95,9 +79,7 @@ public class CreateGesturePasswordActivity extends Activity implements
 
 		/**
 		 * @param text
-		 *            指定显示文本的样式
 		 * @param enabled
-		 *            是否被启用
 		 */
 		RightButtonMode(int text, boolean enabled) {
 			this.text = text;
@@ -109,13 +91,9 @@ public class CreateGesturePasswordActivity extends Activity implements
 	}
 
 	/**
-	 * 用户根据需要选择对应状态 受保护的枚举类(作用范围-当前包类,不含子类)
 	 */
 	protected enum Stage {
 
-		// 根据状态不同启用按钮
-		// <Introduction-初步绘制;HelpScreen-帮助屏幕;ChoiceTooShort-选择太短;FirstChoiceValid-首次选择有效;
-		// NeedToConfirm-再次确认;ChoiceConfirmed-选择确认>
 		Introduction(R.string.lockpattern_recording_intro_header,
 				LeftButtonMode.Cancel, RightButtonMode.ContinueDisabled,
 				ID_EMPTY_MESSAGE, true),
@@ -145,15 +123,10 @@ public class CreateGesturePasswordActivity extends Activity implements
 
 		/**
 		 * @param headerMessage
-		 *            显示在顶部
 		 * @param leftMode
-		 *            左侧按钮样式
 		 * @param rightMode
-		 *            右侧按钮样式
 		 * @param footerMessage
-		 *            显示在底部
 		 * @param patternEnabled
-		 *            是否被启用
 		 */
 		Stage(int headerMessage, LeftButtonMode leftMode,
 				RightButtonMode rightMode, int footerMessage,
@@ -173,8 +146,7 @@ public class CreateGesturePasswordActivity extends Activity implements
 	}
 
 	/**
-	 * 弹出提示信息
-	 * 
+	 *
 	 * @param message
 	 */
 	private void showToast(CharSequence message) {
@@ -192,31 +164,26 @@ public class CreateGesturePasswordActivity extends Activity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gesturepassword_create);
-		// 初始化演示动画--绘制解锁图案
 		mAnimatePattern.add(LockPatternView.Cell.of(0, 0));
 		mAnimatePattern.add(LockPatternView.Cell.of(0, 1));
 		mAnimatePattern.add(LockPatternView.Cell.of(1, 1));
 		mAnimatePattern.add(LockPatternView.Cell.of(2, 1));
 		mAnimatePattern.add(LockPatternView.Cell.of(2, 2));
 
-		// 初始化中间解锁区域
 		mLockPatternView = (LockPatternView) this
 				.findViewById(R.id.gesturepwd_create_lockview);
 		mHeaderText = (TextView) findViewById(R.id.gesturepwd_create_text);
 		mLockPatternView.setOnPatternListener(mChooseNewLockPatternListener);
 		mLockPatternView.setTactileFeedbackEnabled(true);
 
-		// 初始化底部按钮
 		mFooterRightButton = (Button) this.findViewById(R.id.right_btn);
 		mFooterLeftButton = (Button) this.findViewById(R.id.reset_btn);
 		mFooterRightButton.setOnClickListener(this);
 		mFooterLeftButton.setOnClickListener(this);
 
-		// 初始化顶部图案
 		initPreviewViews();
 
-		// 判断保存实例的状态是否为空
-		if (savedInstanceState == null) {// 如果为空
+		if (savedInstanceState == null) {//
 			
 			
 			if(getIntent().getIntExtra("flag", 1)==1){
@@ -224,17 +191,14 @@ public class CreateGesturePasswordActivity extends Activity implements
 				updateStage(Stage.Introduction);
 			}else{
 				
-				// 启用帮助模式
 				updateStage(Stage.Introduction);
 				updateStage(Stage.HelpScreen);
 			}
 			
-		} else {// 如果存在实例
-			// 读取保存的状态
+		} else {//
 			final String patternString = savedInstanceState
 					.getString(KEY_PATTERN_CHOICE);
-			if (patternString != null) {// 如果读取结果不为空
-				// 直接进入对应状态-解密
+			if (patternString != null) {
 				mChosenPattern = LockPatternUtils
 						.stringToPattern(patternString);
 			}
@@ -244,7 +208,6 @@ public class CreateGesturePasswordActivity extends Activity implements
 	}
 
 	/**
-	 * 初始化顶部视图图案
 	 */
 	private void initPreviewViews() {
 		mPreviewViews = new View[3][3];
@@ -260,7 +223,6 @@ public class CreateGesturePasswordActivity extends Activity implements
 	}
 
 	/**
-	 * 修改顶部视图图案
 	 */
 	private void updatePreviewViews() {
 		if (mChosenPattern == null)
@@ -279,8 +241,7 @@ public class CreateGesturePasswordActivity extends Activity implements
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putInt(KEY_UI_STAGE, mUiStage.ordinal());
-		if (mChosenPattern != null) {// 如果mChosenPattern不为空
-			// 标记当前状态
+		if (mChosenPattern != null) {//
 			outState.putString(KEY_PATTERN_CHOICE,
 					LockPatternUtils.patternToString(mChosenPattern));
 		}
@@ -289,20 +250,19 @@ public class CreateGesturePasswordActivity extends Activity implements
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-			if (mUiStage == Stage.HelpScreen) {// 如果在帮助阶段
-				updateStage(Stage.Introduction);// 进入到引导阶段
+			if (mUiStage == Stage.HelpScreen) {//
+				updateStage(Stage.Introduction);//
 				return true;
 			}
 		}
 		if (keyCode == KeyEvent.KEYCODE_MENU && mUiStage == Stage.Introduction) {
-			updateStage(Stage.HelpScreen);// 进入到帮助阶段
+			updateStage(Stage.HelpScreen);//
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * 通知清除中间区域图案
 	 */
 	private Runnable mClearPatternRunnable = new Runnable() {
 		public void run() {
@@ -311,33 +271,27 @@ public class CreateGesturePasswordActivity extends Activity implements
 	};
 
 	/**
-	 * 监听中部区域所处模式,做出相关动作
 	 */
 	protected LockPatternView.OnPatternListener mChooseNewLockPatternListener = new LockPatternView.OnPatternListener() {
 
 		/**
-		 * 开始模式
 		 */
 		public void onPatternStart() {
-			// 删除回调
 			mLockPatternView.removeCallbacks(mClearPatternRunnable);
-			patternInProgress();// 开始设置密码阶段提示用户
+			patternInProgress();//
 		}
 
 		/**
-		 * 清除模式
 		 */
 		public void onPatternCleared() {
 			mLockPatternView.removeCallbacks(mClearPatternRunnable);
 		}
 
 		/**
-		 * 检测模式
 		 */
 		public void onPatternDetected(List<LockPatternView.Cell> pattern) {
 			if (pattern == null)
 				return;
-			// 根据不同杰作做出反应
 			if (mUiStage == Stage.NeedToConfirm
 					|| mUiStage == Stage.ConfirmWrong) {
 				if (mChosenPattern == null)
@@ -368,7 +322,6 @@ public class CreateGesturePasswordActivity extends Activity implements
 		}
 
 		/**
-		 * 设置密码阶段提示用户<同时禁用底部按钮>
 		 */
 		private void patternInProgress() {
 			mHeaderText.setText(R.string.lockpattern_recording_inprogress);
@@ -379,8 +332,7 @@ public class CreateGesturePasswordActivity extends Activity implements
 	};
 
 	/**
-	 * 更新阶段
-	 * 
+	 *
 	 * @param stage
 	 */
 	private void updateStage(Stage stage) {
@@ -413,34 +365,33 @@ public class CreateGesturePasswordActivity extends Activity implements
 		mLockPatternView.setDisplayMode(DisplayMode.Correct);
 
 		switch (mUiStage) {
-		case Introduction:// 引用阶段
+		case Introduction://
 			mLockPatternView.clearPattern();
 			break;
-		case HelpScreen:// 帮助阶段
+		case HelpScreen://
 			mLockPatternView.setPattern(DisplayMode.Animate, mAnimatePattern);
 			break;
-		case ChoiceTooShort:// 选择长度过短阶段
+		case ChoiceTooShort://
 			mLockPatternView.setDisplayMode(DisplayMode.Wrong);
 			postClearPatternRunnable();
 			break;
-		case FirstChoiceValid:// 第一次设置阶段
+		case FirstChoiceValid://
 			break;
-		case NeedToConfirm:// 第二次设置阶段
+		case NeedToConfirm://
 			mLockPatternView.clearPattern();
 			updatePreviewViews();
 			break;
-		case ConfirmWrong:// 第二次出错阶段
+		case ConfirmWrong://
 			mLockPatternView.setDisplayMode(DisplayMode.Wrong);
 			postClearPatternRunnable();
 			break;
-		case ChoiceConfirmed:// 确认阶段
+		case ChoiceConfirmed://
 			break;
 		}
 
 	}
 
 	/**
-	 * 清除错误的花样,除非已经开始绘制新的图样
 	 */
 	private void postClearPatternRunnable() {
 		mLockPatternView.removeCallbacks(mClearPatternRunnable);
@@ -495,11 +446,10 @@ public class CreateGesturePasswordActivity extends Activity implements
 	}
 
 	/**
-	 * 密码设置完成
 	 */
 	private void saveChosenPatternAndFinish() {
 		MusicApplication.getInstance().getLockPatternUtils().saveLockPattern(mChosenPattern);
-		showToast("密码设置成功");
+		showToast("sss");
 		ApplicationUtil.setAppToBack(this, 0);
 		ApplicationUtil.setAppLock(this, 1);
 		// startActivity(new Intent(this, UnlockGesturePasswordActivity.class));

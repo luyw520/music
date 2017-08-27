@@ -96,8 +96,8 @@ public class MyNotification {
 
 		notification.flags = Notification.FLAG_ONGOING_EVENT;
 		// notification.contentIntent = contentIntent;
-		notification.setLatestEventInfo(context, "移动营销", "",
-				contentIntent);
+//		notification.setLatestEventInfo(context, " ", "",
+//				contentIntent);
 		notification.contentView = remoteViews;
 		notificationManager.notify(0, notification);
 
@@ -106,8 +106,7 @@ public class MyNotification {
 		notificationManager.cancel(0);
 	}
 	/**
-	 * 设置播放状态图标
-	 * @param isPlay 
+	 * @param isPlay
 	 */
 	public void setPlayImageState(boolean isPlay){
 		
@@ -139,7 +138,6 @@ public class MyNotification {
 		notificationManager.cancel(0);
 	} 
 	/**
-	 * 接收消息栏发来的消息
 	 */
 	private BroadcastReceiver notificationReceiver = new BroadcastReceiver() {
 

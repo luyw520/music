@@ -18,8 +18,7 @@ import com.music.view.ImageFactoryCrop;
 
 
 /**
- * ≤√ºÙ¥¶¿Ì
- * 
+ *
  */
 public class CropImage {
 	public boolean mWaitingToPick; // Whether we are wait the user to pick a
@@ -40,7 +39,7 @@ public class CropImage {
 	}
 
 	/**
-	 * Õº∆¨≤√ºÙ
+	 * Õº∆¨ÔøΩ√ºÔøΩ
 	 */
 	public void crop(Bitmap bm) {
 		mBitmap = bm;
@@ -52,7 +51,7 @@ public class CropImage {
 			return;
 		}
 		final float degrees = d;
-		showProgressDialog("«Î…‘µ»...", new Runnable() {
+		showProgressDialog("wait...", new Runnable() {
 			public void run() {
 				final CountDownLatch latch = new CountDownLatch(1);
 				mHandler.post(new Runnable() {
@@ -89,7 +88,7 @@ public class CropImage {
 		if (((Activity) mContext).isFinishing()) {
 			return;
 		}
-		showProgressDialog("«Î…‘µ»...", new Runnable() {
+		showProgressDialog("startFaceDetection...", new Runnable() {
 			public void run() {
 				final CountDownLatch latch = new CountDownLatch(1);
 				final Bitmap b = mBitmap;
@@ -117,8 +116,7 @@ public class CropImage {
 	}
 
 	/**
-	 * ≤√ºÙ≤¢±£¥Ê
-	 * 
+	 *
 	 * @return
 	 */
 	public Bitmap cropAndSave() {
@@ -128,8 +126,7 @@ public class CropImage {
 	}
 
 	/**
-	 * ≤√ºÙ≤¢±£¥Ê
-	 * 
+	 *
 	 * @return
 	 */
 	public Bitmap cropAndSave(Bitmap bm) {
@@ -139,7 +136,6 @@ public class CropImage {
 	}
 
 	/**
-	 * »°œ˚≤√ºÙ
 	 */
 	public void cropCancel() {
 		mImageView.mHighlightViews.clear();
