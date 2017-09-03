@@ -2,20 +2,77 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+
     -->
     <style name="AppBaseTheme" parent="android:Theme">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
+
+
         -->
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="AppTheme" parent="android:Theme.Holo">
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_apptheme</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Apptheme</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Apptheme</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Apptheme</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Apptheme</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Apptheme</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_apptheme</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_apptheme</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Apptheme</item>
+        <item name="android:windowContentOverlay">@drawable/ab_solid_shadow_holo</item>
     </style>
+    <style name="PopupMenu.Apptheme" parent="@android:style/Widget.Holo.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_apptheme</item>
+    </style>
+    <style name="DropDownListView.Apptheme" parent="@android:style/Widget.Holo.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_apptheme</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Apptheme" parent="@android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_apptheme</item>
+    </style>
+
+    <style name="DropDownNav.Apptheme" parent="@android:style/Widget.Holo.Spinner">
+        <item name="android:background">@drawable/spinner_background_ab_apptheme</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_apptheme</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_apptheme</item>
+    </style>
+    <style name="ActionBar.Solid.Apptheme" parent="@android:style/Widget.Holo.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_background_textured_apptheme</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_apptheme</item>
+        <item name="android:backgroundSplit">@drawable/ab_background_textured_apptheme</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Apptheme</item>
+    </style>
+    <style name="ProgressBar.Apptheme" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_apptheme</item>
+    </style>
+    <style name="ActionButton.CloseMode.Apptheme" parent="@android:style/Widget.Holo.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_apptheme</item>
+    </style>
+
+    <!-- Application Theme (Light) -->
+    <!--<style name="AppThemeLight" parent="@android:style/Theme.Holo.Light.DarkActionBar">-->
+        <!--<item name="android:actionBarItemBackground">@drawable/selectable_background_appthemelight</item>-->
+        <!--<item name="android:dropDownListViewStyle">@style/DropDownListView.Appthemelight</item>-->
+        <!--<item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Appthemelight</item>-->
+        <!--<item name="android:actionDropDownStyle">@style/DropDownNav.Appthemelight</item>-->
+        <!--<item name="android:actionBarStyle">@style/ActionBar.Solid.Appthemelight</item>-->
+        <!--<item name="android:actionModeBackground">@drawable/cab_background_top_appthemelight</item>-->
+        <!--<item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_appthemelight</item>-->
+        <!--<item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Appthemelight</item>-->
+        <!--<item name="android:windowContentOverlay">@drawable/ab_solid_shadow_holo</item>-->
+        <!--&lt;!&ndash; Light.DarkActionBar specific &ndash;&gt;-->
+        <!--<item name="android:actionBarWidgetTheme">@style/Theme.Appthemelight.Widget</item>-->
+
+    <!--</style>-->
 
     <style name="CustomWindowTitleBackground">
         <item name="android:background">#B2DFEE</item>
@@ -40,7 +97,8 @@
         <item name="android:shadowColor">#BB000000</item>
         <item name="android:shadowRadius">0</item>
         <item name="android:windowBackground">@color/white</item>
-         <item name="android:keepScreenOn">true</item>
+         <item name="android:keepScreenOn">true</item>
+
         -->
     </style>
 

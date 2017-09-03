@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -40,12 +41,14 @@ import com.music.utils.MediaUtil;
 import com.music.utils.Mp3Util_New;
 import com.music.utils.MusicUtils;
 import com.music.utils.PhotoUtils;
+import com.music.view.MusicApplication;
 import com.music.view.MyNotification;
 import com.music.view.PlayPauseDrawable;
 import com.music.view.SplashScreen;
 import com.music.view.fragment.LocalMusicFragment;
 import com.music.view.fragment.MusicListFragment;
 import com.music.view.gesturepressword.UnlockGesturePasswordActivity;
+import com.music.view.service.MyPlayerNewService;
 import com.music.view.widget.CircularImage;
 import com.music.view.widget.MusicTimeProgressView;
 import com.music.widget.slidingmenu2.SlidingMenu;
@@ -223,13 +226,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 					int speedTime = (int) ((end - start));
 					DeBug.d(LocalMusicActivity.this,
 							"..........search music speed time:" + speedTime);
-//					if (speedTime < 3000) {
-//						try {
-//							Thread.sleep(3000 - speedTime);
-//						} catch (InterruptedException e) {
-//							e.printStackTrace();
-//						}
-//					}
 					mSplashScreen.removeSplashScreen();
 					initWidgetData();
 					resetPlayState();
@@ -453,8 +449,29 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		IntentFilter filter = new IntentFilter();
 		myBroadcastReceiver = new MyBroadcastReceiver(state, filter);
 		registerReceiver(myBroadcastReceiver, filter);
-	}
 
+		myPlayerNewService= MusicApplication.getInstance().getMyPlayerNewService();
+	}
+	private Handler mHandler=new Handler();
+	private MyPlayerNewService myPlayerNewService;
+	private Runnable progressRunnable=new Runnable() {
+		@Override
+		public void run() {
+			if (myPlayerNewService==null){
+				myPlayerNewService= MusicApplication.getInstance().getMyPlayerNewService();
+			}
+			if (myPlayerNewService==null){
+				return;
+			}
+			if (myPlayerNewService.getMediaPlayer().isPlaying()){
+				int currentTime=myPlayerNewService.getMediaPlayer().getCurrentPosition();
+				mp3Util.setCurrentTime(currentTime);
+				tv_music_CurrentTime.setText(MediaUtil.formatTime(currentTime));
+				musicTimeProgressView.setCurrentProgress(currentTime);
+			}
+			mHandler.postDelayed(progressRunnable,100);
+		}
+	};
 	/**
 	 *
 	 * 
@@ -482,6 +499,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			btn_musicPlaying
 					.setImageResource(R.drawable.img_button_notification_play_play);
 			myNotification.setPlayImageState(false);
+			mHandler.removeCallbacks(progressRunnable);
 		}
 
 		@Override
@@ -490,7 +508,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			btn_musicPlaying
 					.setImageResource(R.drawable.img_button_notification_play_pause);
 			myNotification.setPlayImageState(true);
-
+			mHandler.postDelayed(progressRunnable,100);
 		}
 
 	}

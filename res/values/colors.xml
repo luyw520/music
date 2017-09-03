@@ -170,4 +170,7 @@
     <color name="grey_dark">#ff454545</color>
     <color name="holo_blue_dark">#ff0099cc</color>
     <color name="holo_orange_dark">#ffff8800</color>
+
+
+    <!-- 半透明 -->
 </resources>

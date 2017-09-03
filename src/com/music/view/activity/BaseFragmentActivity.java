@@ -18,6 +18,7 @@ import com.music.utils.ApplicationUtil;
 import com.music.utils.DeBug;
 import com.music.utils.ScreenShotUtil;
 import com.music.utils.SystemBarTintManager;
+import com.music.view.MusicApplication;
 import com.umeng.analytics.MobclickAgent;
 
 public class BaseFragmentActivity extends FragmentActivity {
@@ -40,7 +41,18 @@ public class BaseFragmentActivity extends FragmentActivity {
 		
 		tintManager.setTintColor(getResources().getColor(R.color.transparent));
 	}
+	/**
+	 * Sets the entire activity-wide theme.
+	 */
+	private void setTheme() {
+		//Set the UI theme.
+		if (MusicApplication.getInstance().getCurrentTheme()==MusicApplication.DARK_THEME) {
+			setTheme(R.style.AppTheme);
+		} else {
+//			setTheme(R.style.AppThemeLight);
+		}
 
+	}
 	protected void startActivity(Class<?> class1) {
 		startActivity(new Intent(this, class1));
 	}

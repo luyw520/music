@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.music.bean.AlbumInfo;
+import com.music.helpers.UIElementsHelper;
+import com.music.imageTransformer.PicassoCircularTransformer;
 import com.music.lu.R;
 import com.music.service.IConstants;
 import com.music.service.IMediaService;
@@ -34,6 +36,7 @@ import com.music.utils.PhotoUtils;
 import com.music.utils.StringUtil;
 import com.music.view.activity.LocalMusicActivity;
 import com.music.widget.indexablelistview.IndexableListView;
+import com.squareup.picasso.Picasso;
 
 /**
  *所有专辑
@@ -210,8 +213,15 @@ public class AlbumFragment extends BaseFragment {
 					viewHolder.catalog.setVisibility(View.VISIBLE);
 				}
 			}
+			viewHolder.albumImage.setTag(album.album_path);
 			// mMusiclist.setShow(true);
 			loadImage(viewHolder.albumImage, album.album_path, position);
+//			LogUtil.d(this,album.album_path);
+//			Picasso.with(convertView.getContext())
+//					.load(album.album_path)
+//					.transform(new PicassoCircularTransformer())
+//					.resizeDimen(R.dimen.list_view_left_icon_size,R.dimen.list_view_left_icon_size)
+//					.into(viewHolder.albumImage);
 			return convertView;
 		}
 

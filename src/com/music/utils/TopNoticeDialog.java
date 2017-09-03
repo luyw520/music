@@ -6,6 +6,8 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.music.lu.R;
 
@@ -27,6 +30,8 @@ public class TopNoticeDialog {
     private final static int COUNTDOWN_TIME=2000;
     private static WindowManager wm;
     private final static WindowManager.LayoutParams mParams = new WindowManager.LayoutParams();
+    private static Toast mToast;
+    private final static Handler mHandler=new Handler(Looper.getMainLooper());
     public TopNoticeDialog() {
 
     }
@@ -78,11 +83,29 @@ public class TopNoticeDialog {
         setType(type, ((LinearLayout) view.findViewById(R.id.ll)));
         startCountDown();
     }
-    public static void showToast(Context context,CharSequence text){
-          createDialog(context, text, TipType.SUCCESS_TIP);
+    public static void showToast(final Context context,final CharSequence text){
+//          createDialog(context, text, TipType.SUCCESS_TIP);
+        if (Thread.currentThread()==Looper.getMainLooper().getThread()){
+            realShowToast(context,text);
+        }else{
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    realShowToast(context,text);
+                }
+            });
+        }
+    }
+    private  static void realShowToast(Context context,CharSequence text){
+        if (mToast==null){
+            mToast=Toast.makeText(context,text,Toast.LENGTH_SHORT);
+        }
+        mToast.setText(text);
+        mToast.show();
     }
     public static void showToast(Context context,int res){
-    	createDialog(context, context.getText(res), TipType.SUCCESS_TIP);
+//    	createDialog(context, context.getText(res), TipType.SUCCESS_TIP);
+        showToast(context,context.getResources().getString(res));
     }
     /**
      * @param context

@@ -46,4 +46,6 @@
     
     <dimen name="editview_height">50dp</dimen>
     <dimen name="btn_bg_padding">10dp</dimen>
+
+    <dimen name="list_view_left_icon_size">78dp</dimen>
 </resources>

@@ -36,7 +36,6 @@
                 android:id="@+id/musicTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:ellipsize="marquee"
                 android:focusable="true"
                 android:singleLine="true"
@@ -48,7 +47,6 @@
                 android:id="@+id/musicArtist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:ellipsize="marquee"
                 android:focusable="true"
                 android:singleLine="true"
@@ -62,7 +60,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
             android:background="@drawable/ic_changebg" />
 
@@ -70,7 +69,6 @@
             android:id="@+id/img_favourite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/ib_changebg"
             android:background="@drawable/icon_favourite_normal"
@@ -80,11 +78,9 @@
             android:id="@+id/img_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/ib_changebg"
             android:background="@drawable/share" />
-
 
 
         <ImageButton
@@ -126,16 +122,15 @@
         android:id="@+id/rl_disc"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingTop="10dp"
         android:layout_weight="1"
         android:orientation="vertical" >
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="46dp">
+            android:layout_centerInParent="true"
+
+            >
 
             <ImageView
                 android:layout_width="300dp"
@@ -158,6 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:visibility="gone"
             android:background="@drawable/play_needle" />
 
         <View

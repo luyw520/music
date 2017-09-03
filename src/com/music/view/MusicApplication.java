@@ -4,6 +4,7 @@ import java.io.File;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.music.model.LogMonitor;
 import com.music.model.ScreenManager;
@@ -12,6 +13,7 @@ import com.music.utils.DeBug;
 import com.music.utils.FileUtils;
 import com.music.utils.Mp3Util_New;
 import com.music.utils.MusicUtils;
+import com.music.view.service.MyPlayerNewService;
 import com.music.widget.lockpatternview.LockPatternUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -23,8 +25,22 @@ public class MusicApplication extends Application {
 	private static final String TAG = "MusicApplication";
 	private static MusicApplication musicApplication;
 	private LockPatternUtils mLockPatternUtils;
+	public static final int DARK_THEME = 0;
+	public static final int LIGHT_THEME = 1;
+	private static SharedPreferences mSharedPreferences;
 	@SuppressWarnings("unused")
 	private ScreenManager screenManager;
+
+	public static SharedPreferences getSharedPreferences() {
+		return mSharedPreferences;
+	}
+	public int getCurrentTheme(){
+		return DARK_THEME;
+	}
+//	public static void setmSharedPreferences(SharedPreferences mSharedPreferences) {
+//		MusicApplication.mSharedPreferences = mSharedPreferences;
+//	}
+	private MyPlayerNewService myPlayerNewService;
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -52,6 +68,7 @@ public class MusicApplication extends Application {
 //        FontsOverride.setDefaultFont(this, "SERIF", "fonts/a.ttf");
 //        FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/a.ttf");
 
+		mSharedPreferences=(getSharedPreferences("lu_music",Context.MODE_PRIVATE));
 		LogMonitor.getInstance().startMonitor();
 	}
 	
@@ -78,5 +95,12 @@ public class MusicApplication extends Application {
 	public void setmLockPatternUtils(LockPatternUtils mLockPatternUtils) {
 		this.mLockPatternUtils = mLockPatternUtils;
 	}
-	
+
+	public MyPlayerNewService getMyPlayerNewService() {
+		return myPlayerNewService;
+	}
+
+	public void setMyPlayerNewService(MyPlayerNewService myPlayerNewService) {
+		this.myPlayerNewService = myPlayerNewService;
+	}
 }

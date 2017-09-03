@@ -1,0 +1,10 @@
+ext{
+
+    android=[
+            compileSdkVersion:25,
+            buildToolsVersion :"25.0.0"
+    ]
+    dependencies=[
+            supportV4:'com.android.support:support-v4:22.0.0'
+    ]
+}

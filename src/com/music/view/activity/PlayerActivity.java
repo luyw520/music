@@ -9,9 +9,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -42,7 +44,9 @@ import com.music.utils.DialogUtil;
 import com.music.utils.ImageUtil;
 import com.music.utils.MediaUtil;
 import com.music.utils.Mp3Util_New;
+import com.music.view.MusicApplication;
 import com.music.view.animator.ActivityAnimator;
+import com.music.view.service.MyPlayerNewService;
 import com.music.view.widget.RoundImageView;
 import com.music.widget.slidingmenu.ScreenUtils;
 
@@ -188,12 +192,17 @@ public class PlayerActivity extends BaseActivity {
 		}
 	
 	}
+
+	/**
+	 * 专辑图片的旋转动画
+	 */
 	private void initAnimatorPlay(){
 		if (animatorPlay == null) {
 			animatorPlay = ObjectAnimator.ofFloat(iv_music_album, "rotation",
 					0, 360);
 			animatorPlay.setDuration(20 * 1000);
 			animatorPlay.setRepeatCount(-1);
+			animatorPlay.setInterpolator(new LinearInterpolator());
 			if (mp3Util.isPlaying()) {
 				animatorPlay.start();
 			}
@@ -272,6 +281,10 @@ public class PlayerActivity extends BaseActivity {
 
 	}
 
+	/**
+	 * 是否显示歌词 界面
+	 * @param isShowLrc true 显示歌词界面,false显示默认界面
+	 */
 	private void isShowLrc(boolean isShowLrc) {
 		mp3Util.setShowLrc(isShowLrc);
 		if (isShowLrc) {
@@ -333,6 +346,7 @@ public class PlayerActivity extends BaseActivity {
 	}
 
 	/**
+	 * 歌词
 	 */
 	private void loadLrc(boolean isInit) {
 		if (mp3Util.isShowLrc()) {
@@ -418,8 +432,28 @@ public class PlayerActivity extends BaseActivity {
 		IntentFilter filter = new IntentFilter();
 		playerBroadcastReceiver = new MyBroadcastReceiver(state, filter);
 		registerReceiver(playerBroadcastReceiver, filter);
-	}
 
+		myPlayerNewService=MusicApplication.getInstance().getMyPlayerNewService();
+	}
+	private Handler mHandler=new Handler();
+	private MyPlayerNewService myPlayerNewService;
+	private Runnable progressRunnable=new Runnable() {
+		@Override
+		public void run() {
+			if (myPlayerNewService.getMediaPlayer().isPlaying()){
+				int currentTime=myPlayerNewService.getMediaPlayer().getCurrentPosition();
+				mp3Util.setCurrentTime(currentTime);
+				tv_current_progress.setText(MediaUtil.formatTime(currentTime));
+				music_progressBar.setProgress(currentTime);
+
+				lyricView.updateindex(currentTime);
+				if (mp3Util.isShowLrc()) {
+					lyricView.postInvalidate();
+				}
+			}
+			mHandler.postDelayed(progressRunnable,100);
+		}
+	};
 	/**
 	 *
 	 * @author Administrator
@@ -435,6 +469,7 @@ public class PlayerActivity extends BaseActivity {
 				animatorPlay.start();
 			}
 			iv_needle.startAnimation(animatorNeedlePause);
+			mHandler.postDelayed(progressRunnable,100);
 		}
 
 		@Override
@@ -468,6 +503,7 @@ public class PlayerActivity extends BaseActivity {
 			playBtn.setBackgroundResource(R.drawable.btn_play);
 			animatorPlay.pause();
 			iv_needle.startAnimation(animatorNeedlePlay);
+			mHandler.removeCallbacks(progressRunnable);
 		}
 
 	}
