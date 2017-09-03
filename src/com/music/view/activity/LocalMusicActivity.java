@@ -432,6 +432,10 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 				}
 			}
 		}
+
+		if (myPlayerNewService!=null&&myPlayerNewService.getMediaPlayer().isPlaying()){
+			mHandler.postDelayed(progressRunnable,100);
+		}
 	}
 
 	/**

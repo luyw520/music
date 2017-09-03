@@ -435,6 +435,21 @@ public class PlayerActivity extends BaseActivity {
 
 		myPlayerNewService=MusicApplication.getInstance().getMyPlayerNewService();
 	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (myPlayerNewService!=null&&myPlayerNewService.getMediaPlayer().isPlaying()){
+			mHandler.postDelayed(progressRunnable,100);
+		}
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		mHandler.removeCallbacks(progressRunnable);
+	}
+
 	private Handler mHandler=new Handler();
 	private MyPlayerNewService myPlayerNewService;
 	private Runnable progressRunnable=new Runnable() {
@@ -519,6 +534,7 @@ public class PlayerActivity extends BaseActivity {
 	protected void onDestroy() {
 		unregisterReceiver();
 		super.onDestroy();
+		mHandler.removeCallbacks(progressRunnable);
 	}
 
 	@Override
