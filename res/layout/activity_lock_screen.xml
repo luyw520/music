@@ -5,7 +5,7 @@
     android:background="@drawable/bg"
     tools:context=".LockScreenActivity" >
 
-    <com.music.view.widget.SliderRelativeLayout
+    <com.music.ui.view.widget.SliderRelativeLayout
         android:id="@+id/sliderLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
                 android:layout_alignParentTop="true"
                 android:src="@drawable/love" />
         </RelativeLayout>
-    </com.music.view.widget.SliderRelativeLayout>
+    </com.music.ui.view.widget.SliderRelativeLayout>
 
     <TextView
         android:id="@+id/tv_time"

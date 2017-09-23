@@ -222,9 +222,9 @@ com.music.bean.ArtistInfo: android.os.Parcelable$Creator CREATOR
 com.music.bean.FolderInfo
 com.music.bean.MusicInfo
 com.music.bean.MusicInfo: android.os.Parcelable$Creator CREATOR
-com.music.broadcastreceiver.CustomPushReceiver
-com.music.broadcastreceiver.ListenNetStateReceiver
-com.music.broadcastreceiver.MyBroadcastReceiver
+com.music.ui.broadcastreceiver.CustomPushReceiver
+com.music.ui.broadcastreceiver.ListenNetStateReceiver
+com.music.ui.broadcastreceiver.MyBroadcastReceiver
 com.music.db.AlbumInfoDao
 com.music.db.AlbumInfoDao: AlbumInfoDao(android.content.Context)
 com.music.db.ArtistInfoDao
@@ -2070,310 +2070,310 @@ com.music.utils.Mp3Util_New: void playMusic(int)
 com.music.utils.Mp3Util_New: void playMusic(com.music.bean.Mp3Info)
 com.music.utils.TopNoticeDialog$TipType: com.music.utils.TopNoticeDialog$TipType[] values()
 com.music.utils.TopNoticeDialog$TipType: com.music.utils.TopNoticeDialog$TipType valueOf(java.lang.String)
-com.music.view.ImageFactoryFliter$FilterType: com.music.view.ImageFactoryFliter$FilterType[] values()
-com.music.view.ImageFactoryFliter$FilterType: com.music.view.ImageFactoryFliter$FilterType valueOf(java.lang.String)
-com.music.view.MusicApplication
-com.music.view.MusicApplication: MusicApplication()
-com.music.view.MyNotification
-com.music.view.MyNotification: MyNotification(android.content.Context)
-com.music.view.activity.BaseActivity
-com.music.view.activity.BaseActivity: BaseActivity()
-com.music.view.activity.BaseFragmentActivity
-com.music.view.activity.BaseFragmentActivity: BaseFragmentActivity()
-com.music.view.activity.BaseHeaderActivity
-com.music.view.activity.BaseHeaderActivity: BaseHeaderActivity()
-com.music.view.activity.BaseHeaderActivity: void OnClick(android.view.View)
-com.music.view.activity.ChangeBgActivity
-com.music.view.activity.ChangeBgActivity: ChangeBgActivity()
-com.music.view.activity.ChangeBgActivity: void onClick(android.view.View)
-com.music.view.activity.ImageFactoryActivity
-com.music.view.activity.ImageFactoryActivity: ImageFactoryActivity()
-com.music.view.activity.ImageFactoryActivity: void onClick(android.view.View)
-com.music.view.activity.LocalMusicActivity
-com.music.view.activity.LocalMusicActivity: LocalMusicActivity()
-com.music.view.activity.LocalMusicActivity: void onclick(android.view.View)
-com.music.view.activity.LockScreenActivity
-com.music.view.activity.LockScreenActivity: LockScreenActivity()
-com.music.view.activity.LockScreenActivity: void nextMusic()
-com.music.view.activity.LockScreenActivity: void player(android.view.View)
-com.music.view.activity.LockScreenActivity: void next(android.view.View)
-com.music.view.activity.LockScreenActivity: void playMusic()
-com.music.view.activity.LoginActivity
-com.music.view.activity.LoginActivity: LoginActivity()
-com.music.view.activity.LoginActivity: void onClick(android.view.View)
-com.music.view.activity.LoginActivity$2: void onCancel(com.umeng.socialize.bean.SHARE_MEDIA)
-com.music.view.activity.MipcaCaptureActivity
-com.music.view.activity.MipcaCaptureActivity: MipcaCaptureActivity()
-com.music.view.activity.PlayerActivity
-com.music.view.activity.PlayerActivity: PlayerActivity()
-com.music.view.activity.PlayerActivity: void onClick(android.view.View)
-com.music.view.activity.ScanActivity
-com.music.view.activity.ScanActivity: ScanActivity()
-com.music.view.activity.ScanActivity: void viewClick(android.view.View)
-com.music.view.activity.SearchMusicActivity
-com.music.view.activity.SearchMusicActivity: SearchMusicActivity()
-com.music.view.activity.SearchMusicActivity: void viewClick(android.view.View)
-com.music.view.activity.SettingActivity
-com.music.view.activity.SettingActivity: SettingActivity()
-com.music.view.activity.SettingActivity: void onCancel(android.view.View)
-com.music.view.activity.SettingActivity: void onClick(android.view.View)
-com.music.view.activity.SwipeBackActivity
-com.music.view.activity.WelcomeActivity
-com.music.view.activity.WelcomeActivity: WelcomeActivity()
-com.music.view.adapter.MyPagerAdapter
-com.music.view.adapter.ViewPagerAdapter
-com.music.view.fragment.AlbumFragment
-com.music.view.fragment.AlbumFragment$fragment: com.music.view.fragment.AlbumFragment$fragment[] values()
-com.music.view.fragment.AlbumFragment$fragment: com.music.view.fragment.AlbumFragment$fragment valueOf(java.lang.String)
-com.music.view.fragment.ArtistFragment
-com.music.view.fragment.BaseFragment
-com.music.view.fragment.FolderFragment
-com.music.view.fragment.LocalMusicFragment
-com.music.view.fragment.MainFragment
-com.music.view.fragment.MenuFragment
-com.music.view.fragment.MusicListFragment
-com.music.view.fragment.SongFragment
-com.music.view.fragment.SwipeBackLayout
-com.music.view.fragment.SwipeBackLayout: SwipeBackLayout(android.content.Context,android.util.AttributeSet)
-com.music.view.fragment.SwipeBackLayout: SwipeBackLayout(android.content.Context,android.util.AttributeSet,int)
-com.music.view.fragment.SwipeBackLayout: void setContentView(android.view.View)
-com.music.view.gesturepressword.CreateGesturePasswordActivity
-com.music.view.gesturepressword.CreateGesturePasswordActivity: CreateGesturePasswordActivity()
-com.music.view.gesturepressword.CreateGesturePasswordActivity: void onClick(android.view.View)
-com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode: com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode[] values()
-com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode: com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode valueOf(java.lang.String)
-com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode: com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode[] values()
-com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode: com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode valueOf(java.lang.String)
-com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage: com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage[] values()
-com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage: com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage valueOf(java.lang.String)
-com.music.view.gesturepressword.GresturePasswordSetActivity
-com.music.view.gesturepressword.GresturePasswordSetActivity: GresturePasswordSetActivity()
-com.music.view.gesturepressword.GresturePasswordSetActivity: void myOnclik(android.view.View)
-com.music.view.gesturepressword.GuideGesturePasswordActivity
-com.music.view.gesturepressword.GuideGesturePasswordActivity: GuideGesturePasswordActivity()
-com.music.view.gesturepressword.LockPasswordUtils
-com.music.view.gesturepressword.LockPasswordUtils: LockPasswordUtils(android.content.Context)
-com.music.view.gesturepressword.UnlockGesturePasswordActivity
-com.music.view.gesturepressword.UnlockGesturePasswordActivity: UnlockGesturePasswordActivity()
-com.music.view.gesturepressword.UnlockGesturePasswordActivity: void viewClick(android.view.View)
-com.music.view.popwindow.PopupWindowQieGe
-com.music.view.popwindow.PopupWindowQieGe: PopupWindowQieGe(android.content.Context)
-com.music.view.popwindow.PopupWindowUtil
-com.music.view.popwindow.PopupWindowUtil: PopupWindowUtil(android.content.Context)
-com.music.view.receiver.LockScreenReceiver
-com.music.view.service.LockScreenService
-com.music.view.service.LockScreenService: LockScreenService()
-com.music.view.service.MyPlayerNewService
-com.music.view.service.MyPlayerNewService: MyPlayerNewService()
-com.music.view.widget.CircularImage
-com.music.view.widget.CircularImage: CircularImage(android.content.Context)
-com.music.view.widget.CircularImage: CircularImage(android.content.Context,android.util.AttributeSet)
-com.music.view.widget.CircularImage: CircularImage(android.content.Context,android.util.AttributeSet,int)
-com.music.view.widget.MaskedImage
-com.music.view.widget.MaskedImage: MaskedImage(android.content.Context)
-com.music.view.widget.MaskedImage: MaskedImage(android.content.Context,android.util.AttributeSet)
-com.music.view.widget.MaskedImage: MaskedImage(android.content.Context,android.util.AttributeSet,int)
-com.music.view.widget.RoundImageView
-com.music.view.widget.RoundImageView: RoundImageView(android.content.Context)
-com.music.view.widget.RoundImageView: RoundImageView(android.content.Context,android.util.AttributeSet)
-com.music.view.widget.RoundImageView: RoundImageView(android.content.Context,android.util.AttributeSet,int)
-com.music.view.widget.RoundImageView: void setCustomAttributes(android.util.AttributeSet)
-com.music.view.widget.SliderRelativeLayout
-com.music.view.widget.SliderRelativeLayout: SliderRelativeLayout(android.content.Context)
-com.music.view.widget.SliderRelativeLayout: SliderRelativeLayout(android.content.Context,android.util.AttributeSet)
-com.music.view.widget.SliderRelativeLayout: SliderRelativeLayout(android.content.Context,android.util.AttributeSet,int)
-com.music.view.widget.SliderRelativeLayout: int getScreenWidth()
-com.music.view.widget.SliderRelativeLayout: void setMainHandler(android.os.Handler)
-com.music.widget.AlwaysMarqueeTextView
-com.music.widget.AlwaysMarqueeTextView: AlwaysMarqueeTextView(android.content.Context)
-com.music.widget.AlwaysMarqueeTextView: AlwaysMarqueeTextView(android.content.Context,android.util.AttributeSet)
-com.music.widget.AlwaysMarqueeTextView: AlwaysMarqueeTextView(android.content.Context,android.util.AttributeSet,int)
-com.music.widget.CustomScrollView
-com.music.widget.CustomScrollView: CustomScrollView(android.content.Context,android.util.AttributeSet)
-com.music.widget.RippleView
-com.music.widget.RippleView: RippleView(android.content.Context)
-com.music.widget.RippleView: RippleView(android.content.Context,android.util.AttributeSet)
-com.music.widget.RippleView: RippleView(android.content.Context,android.util.AttributeSet,int)
-com.music.widget.RippleView: void setRippleColor(int)
-com.music.widget.RippleView: int getRippleColor()
-com.music.widget.dialog.LoadingView
-com.music.widget.dialog.LoadingView: LoadingView(android.content.Context)
-com.music.widget.dialog.LoadingView: LoadingView(android.content.Context,android.util.AttributeSet)
-com.music.widget.dialog.LoadingView: LoadingView(android.content.Context,android.util.AttributeSet,int)
-com.music.widget.dialog.LoadingView: void setLoadingText(java.lang.CharSequence)
-com.music.widget.dialog.ShapeLoadingView
-com.music.widget.dialog.ShapeLoadingView: ShapeLoadingView(android.content.Context)
-com.music.widget.dialog.ShapeLoadingView: ShapeLoadingView(android.content.Context,android.util.AttributeSet)
-com.music.widget.dialog.ShapeLoadingView: ShapeLoadingView(android.content.Context,android.util.AttributeSet,int)
-com.music.widget.dialog.ShapeLoadingView: com.music.widget.dialog.ShapeLoadingView$Shape getShape()
-com.music.widget.dialog.ShapeLoadingView$Shape: com.music.widget.dialog.ShapeLoadingView$Shape[] values()
-com.music.widget.dialog.ShapeLoadingView$Shape: com.music.widget.dialog.ShapeLoadingView$Shape valueOf(java.lang.String)
-com.music.widget.indexablelistview.IndexableListView
-com.music.widget.indexablelistview.IndexableListView: void setShow(boolean)
-com.music.widget.indexablelistview.IndexableListView: IndexableListView(android.content.Context)
-com.music.widget.indexablelistview.IndexableListView: IndexableListView(android.content.Context,android.util.AttributeSet)
-com.music.widget.indexablelistview.IndexableListView: IndexableListView(android.content.Context,android.util.AttributeSet,int)
-com.music.widget.indexablelistview.IndexableListView: void setFastScrollEnabled(boolean)
-com.music.widget.indexablelistview.IndexableListView: void setAdapter(android.widget.ListAdapter)
-com.music.widget.lockpatternview.App
-com.music.widget.lockpatternview.LockPatternUtils
-com.music.widget.lockpatternview.LockPatternUtils: LockPatternUtils(android.content.Context)
-com.music.widget.lockpatternview.LockPatternView
-com.music.widget.lockpatternview.LockPatternView: LockPatternView(android.content.Context)
-com.music.widget.lockpatternview.LockPatternView: LockPatternView(android.content.Context,android.util.AttributeSet)
-com.music.widget.lockpatternview.LockPatternView: void setInStealthMode(boolean)
-com.music.widget.lockpatternview.LockPatternView: void setTactileFeedbackEnabled(boolean)
-com.music.widget.lockpatternview.LockPatternView: void setOnPatternListener(com.music.widget.lockpatternview.LockPatternView$OnPatternListener)
-com.music.widget.lockpatternview.LockPatternView: void setDisplayMode(com.music.widget.lockpatternview.LockPatternView$DisplayMode)
-com.music.widget.lockpatternview.LockPatternView: int getSuggestedMinimumWidth()
-com.music.widget.lockpatternview.LockPatternView: int getSuggestedMinimumHeight()
-com.music.widget.lockpatternview.LockPatternView$DisplayMode: com.music.widget.lockpatternview.LockPatternView$DisplayMode[] values()
-com.music.widget.lockpatternview.LockPatternView$DisplayMode: com.music.widget.lockpatternview.LockPatternView$DisplayMode valueOf(java.lang.String)
-com.music.widget.lockpatternview.LockPatternView$SavedState
-com.music.widget.lockpatternview.LockPatternView$SavedState: android.os.Parcelable$Creator CREATOR
-com.music.widget.photoview.CropImageView
-com.music.widget.photoview.CropImageView: CropImageView(android.content.Context,android.util.AttributeSet)
-com.music.widget.photoview.CropImageView: void setCropImage(com.music.widget.photoview.CropImage)
-com.music.widget.photoview.HighlightView$ModifyMode: com.music.widget.photoview.HighlightView$ModifyMode[] values()
-com.music.widget.photoview.HighlightView$ModifyMode: com.music.widget.photoview.HighlightView$ModifyMode valueOf(java.lang.String)
-com.music.widget.photoview.ImageViewTouchBase
-com.music.widget.photoview.ImageViewTouchBase: void setRecycler(com.music.widget.photoview.ImageViewTouchBase$Recycler)
-com.music.widget.photoview.ImageViewTouchBase: void setImageBitmap(android.graphics.Bitmap)
-com.music.widget.photoview.ImageViewTouchBase: ImageViewTouchBase(android.content.Context)
-com.music.widget.photoview.ImageViewTouchBase: ImageViewTouchBase(android.content.Context,android.util.AttributeSet)
-com.music.widget.photoview.ImageViewTouchBase: float getScale()
-com.music.widget.photoview.ImageViewTouchBase: android.graphics.Matrix getImageViewMatrix()
-com.music.widget.photoview.RotateImageView
-com.music.widget.photoview.RotateImageView: RotateImageView(android.content.Context)
-com.music.widget.photoview.RotateImageView: RotateImageView(android.content.Context,android.util.AttributeSet)
-com.music.widget.photoview.RotateImageView: RotateImageView(android.content.Context,android.util.AttributeSet,int)
-com.music.widget.photoview.RotateImageView: void setImageBitmap(android.graphics.Bitmap)
-com.music.widget.photoview.RotateImageView: void setImageResource(int)
-com.music.widget.photoview.RotateImageView: android.graphics.Bitmap getImageViewBitmap()
-com.music.widget.photoview.RotateImageView$RotateType: com.music.widget.photoview.RotateImageView$RotateType[] values()
-com.music.widget.photoview.RotateImageView$RotateType: com.music.widget.photoview.RotateImageView$RotateType valueOf(java.lang.String)
-com.music.widget.slidingdrawer.MySlidingDrawer
-com.music.widget.slidingdrawer.MySlidingDrawer: int[] getTouchableIds()
-com.music.widget.slidingdrawer.MySlidingDrawer: void setTouchableIds(int[])
-com.music.widget.slidingdrawer.MySlidingDrawer: int getHandleId()
-com.music.widget.slidingdrawer.MySlidingDrawer: void setHandleId(int)
-com.music.widget.slidingdrawer.MySlidingDrawer: void setOnSliderHandleViewClickListener(com.music.widget.slidingdrawer.MySlidingDrawer$IOnSlidingHandleViewClickListener)
-com.music.widget.slidingdrawer.MySlidingDrawer: MySlidingDrawer(android.content.Context,android.util.AttributeSet)
-com.music.widget.slidingdrawer.MySlidingDrawer: MySlidingDrawer(android.content.Context,android.util.AttributeSet,int)
-com.music.widget.slidingmenu.SlidingMenu
-com.music.widget.slidingmenu.SlidingMenu: SlidingMenu(android.content.Context,android.util.AttributeSet)
-com.music.widget.slidingmenu.SlidingMenu: SlidingMenu(android.content.Context,android.util.AttributeSet,int)
-com.music.widget.slidingmenu.SlidingMenu: SlidingMenu(android.content.Context)
-com.music.widget.slidingmenu2.CustomViewAbove
-com.music.widget.slidingmenu2.CustomViewAbove: CustomViewAbove(android.content.Context)
-com.music.widget.slidingmenu2.CustomViewAbove: CustomViewAbove(android.content.Context,android.util.AttributeSet)
-com.music.widget.slidingmenu2.CustomViewAbove: void setCurrentItem(int)
-com.music.widget.slidingmenu2.CustomViewAbove: int getCurrentItem()
-com.music.widget.slidingmenu2.CustomViewAbove: void setOnPageChangeListener(com.music.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener)
-com.music.widget.slidingmenu2.CustomViewAbove: void setOnOpenedListener(com.music.widget.slidingmenu2.SlidingMenu$OnOpenedListener)
-com.music.widget.slidingmenu2.CustomViewAbove: void setOnClosedListener(com.music.widget.slidingmenu2.SlidingMenu$OnClosedListener)
-com.music.widget.slidingmenu2.CustomViewAbove: int getLeftBound()
-com.music.widget.slidingmenu2.CustomViewAbove: int getRightBound()
-com.music.widget.slidingmenu2.CustomViewAbove: int getContentLeft()
-com.music.widget.slidingmenu2.CustomViewAbove: int getBehindWidth()
-com.music.widget.slidingmenu2.CustomViewAbove: void setSlidingEnabled(boolean)
-com.music.widget.slidingmenu2.CustomViewAbove: void setContent(android.view.View)
-com.music.widget.slidingmenu2.CustomViewAbove: android.view.View getContent()
-com.music.widget.slidingmenu2.CustomViewAbove: void setCustomViewBehind(com.music.widget.slidingmenu2.CustomViewBehind)
-com.music.widget.slidingmenu2.CustomViewAbove: void setAboveOffset(int)
-com.music.widget.slidingmenu2.CustomViewAbove: void setTouchMode(int)
-com.music.widget.slidingmenu2.CustomViewAbove: int getTouchMode()
-com.music.widget.slidingmenu2.CustomViewAbove: float getPercentOpen()
-com.music.widget.slidingmenu2.CustomViewAbove: void setScrollingCacheEnabled(boolean)
-com.music.widget.slidingmenu2.CustomViewBehind
-com.music.widget.slidingmenu2.CustomViewBehind: CustomViewBehind(android.content.Context)
-com.music.widget.slidingmenu2.CustomViewBehind: CustomViewBehind(android.content.Context,android.util.AttributeSet)
-com.music.widget.slidingmenu2.CustomViewBehind: void setCustomViewAbove(com.music.widget.slidingmenu2.CustomViewAbove)
-com.music.widget.slidingmenu2.CustomViewBehind: void setCanvasTransformer(com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer)
-com.music.widget.slidingmenu2.CustomViewBehind: void setWidthOffset(int)
-com.music.widget.slidingmenu2.CustomViewBehind: void setMarginThreshold(int)
-com.music.widget.slidingmenu2.CustomViewBehind: int getMarginThreshold()
-com.music.widget.slidingmenu2.CustomViewBehind: int getBehindWidth()
-com.music.widget.slidingmenu2.CustomViewBehind: void setContent(android.view.View)
-com.music.widget.slidingmenu2.CustomViewBehind: android.view.View getContent()
-com.music.widget.slidingmenu2.CustomViewBehind: void setSecondaryContent(android.view.View)
-com.music.widget.slidingmenu2.CustomViewBehind: android.view.View getSecondaryContent()
-com.music.widget.slidingmenu2.CustomViewBehind: void setChildrenEnabled(boolean)
-com.music.widget.slidingmenu2.CustomViewBehind: void setMode(int)
-com.music.widget.slidingmenu2.CustomViewBehind: int getMode()
-com.music.widget.slidingmenu2.CustomViewBehind: void setScrollScale(float)
-com.music.widget.slidingmenu2.CustomViewBehind: float getScrollScale()
-com.music.widget.slidingmenu2.CustomViewBehind: void setShadowDrawable(android.graphics.drawable.Drawable)
-com.music.widget.slidingmenu2.CustomViewBehind: void setSecondaryShadowDrawable(android.graphics.drawable.Drawable)
-com.music.widget.slidingmenu2.CustomViewBehind: void setShadowWidth(int)
-com.music.widget.slidingmenu2.CustomViewBehind: void setFadeEnabled(boolean)
-com.music.widget.slidingmenu2.CustomViewBehind: void setFadeDegree(float)
-com.music.widget.slidingmenu2.CustomViewBehind: void setTouchMode(int)
-com.music.widget.slidingmenu2.CustomViewBehind: void setSelectorEnabled(boolean)
-com.music.widget.slidingmenu2.CustomViewBehind: void setSelectedView(android.view.View)
-com.music.widget.slidingmenu2.CustomViewBehind: int getSelectorTop()
-com.music.widget.slidingmenu2.CustomViewBehind: void setSelectorBitmap(android.graphics.Bitmap)
-com.music.widget.slidingmenu2.SlidingMenu
-com.music.widget.slidingmenu2.SlidingMenu: SlidingMenu(android.content.Context)
-com.music.widget.slidingmenu2.SlidingMenu: SlidingMenu(android.content.Context,android.util.AttributeSet)
-com.music.widget.slidingmenu2.SlidingMenu: SlidingMenu(android.content.Context,android.util.AttributeSet,int)
-com.music.widget.slidingmenu2.SlidingMenu: void setContent(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setContent(android.view.View)
-com.music.widget.slidingmenu2.SlidingMenu: android.view.View getContent()
-com.music.widget.slidingmenu2.SlidingMenu: void setMenu(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setMenu(android.view.View)
-com.music.widget.slidingmenu2.SlidingMenu: android.view.View getMenu()
-com.music.widget.slidingmenu2.SlidingMenu: void setSecondaryMenu(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setSecondaryMenu(android.view.View)
-com.music.widget.slidingmenu2.SlidingMenu: android.view.View getSecondaryMenu()
-com.music.widget.slidingmenu2.SlidingMenu: void setSlidingEnabled(boolean)
-com.music.widget.slidingmenu2.SlidingMenu: void setMode(int)
-com.music.widget.slidingmenu2.SlidingMenu: int getMode()
-com.music.widget.slidingmenu2.SlidingMenu: void setStatic(boolean)
-com.music.widget.slidingmenu2.SlidingMenu: int getBehindOffset()
-com.music.widget.slidingmenu2.SlidingMenu: void setBehindOffset(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setBehindOffsetRes(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setAboveOffset(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setAboveOffsetRes(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setBehindWidth(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setBehindWidthRes(int)
-com.music.widget.slidingmenu2.SlidingMenu: float getBehindScrollScale()
-com.music.widget.slidingmenu2.SlidingMenu: int getTouchmodeMarginThreshold()
-com.music.widget.slidingmenu2.SlidingMenu: void setTouchmodeMarginThreshold(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setBehindScrollScale(float)
-com.music.widget.slidingmenu2.SlidingMenu: void setBehindCanvasTransformer(com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer)
-com.music.widget.slidingmenu2.SlidingMenu: int getTouchModeAbove()
-com.music.widget.slidingmenu2.SlidingMenu: void setTouchModeAbove(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setTouchModeBehind(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setShadowDrawable(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setShadowDrawable(android.graphics.drawable.Drawable)
-com.music.widget.slidingmenu2.SlidingMenu: void setSecondaryShadowDrawable(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setSecondaryShadowDrawable(android.graphics.drawable.Drawable)
-com.music.widget.slidingmenu2.SlidingMenu: void setShadowWidthRes(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setShadowWidth(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setFadeEnabled(boolean)
-com.music.widget.slidingmenu2.SlidingMenu: void setFadeDegree(float)
-com.music.widget.slidingmenu2.SlidingMenu: void setSelectorEnabled(boolean)
-com.music.widget.slidingmenu2.SlidingMenu: void setSelectedView(android.view.View)
-com.music.widget.slidingmenu2.SlidingMenu: void setSelectorDrawable(int)
-com.music.widget.slidingmenu2.SlidingMenu: void setSelectorBitmap(android.graphics.Bitmap)
-com.music.widget.slidingmenu2.SlidingMenu: void setOnOpenListener(com.music.widget.slidingmenu2.SlidingMenu$OnOpenListener)
-com.music.widget.slidingmenu2.SlidingMenu: void setOnCloseListener(com.music.widget.slidingmenu2.SlidingMenu$OnCloseListener)
-com.music.widget.slidingmenu2.SlidingMenu: void setOnOpenedListener(com.music.widget.slidingmenu2.SlidingMenu$OnOpenedListener)
-com.music.widget.slidingmenu2.SlidingMenu: void setOnClosedListener(com.music.widget.slidingmenu2.SlidingMenu$OnClosedListener)
-com.music.widget.slidingmenu2.SlidingMenu$SavedState
-com.music.widget.slidingmenu2.SlidingMenu$SavedState: android.os.Parcelable$Creator CREATOR
-com.music.widget.sortlistview.ClearEditText
-com.music.widget.sortlistview.ClearEditText: ClearEditText(android.content.Context)
-com.music.widget.sortlistview.ClearEditText: ClearEditText(android.content.Context,android.util.AttributeSet)
-com.music.widget.sortlistview.ClearEditText: ClearEditText(android.content.Context,android.util.AttributeSet,int)
-com.music.widget.sortlistview.ClearEditText: void setClearIconVisible(boolean)
-com.music.widget.sortlistview.SideBar
-com.music.widget.sortlistview.SideBar: void setTextView(android.widget.TextView)
-com.music.widget.sortlistview.SideBar: SideBar(android.content.Context,android.util.AttributeSet,int)
-com.music.widget.sortlistview.SideBar: SideBar(android.content.Context,android.util.AttributeSet)
-com.music.widget.sortlistview.SideBar: SideBar(android.content.Context)
-com.music.widget.sortlistview.SideBar: void setOnTouchingLetterChangedListener(com.music.widget.sortlistview.SideBar$OnTouchingLetterChangedListener)
+com.music.ui.view.ImageFactoryFliter$FilterType: com.music.ui.view.ImageFactoryFliter$FilterType[] values()
+com.music.ui.view.ImageFactoryFliter$FilterType: com.music.ui.view.ImageFactoryFliter$FilterType valueOf(java.lang.String)
+com.music.ui.view.MusicApplication
+com.music.ui.view.MusicApplication: MusicApplication()
+com.music.ui.view.MyNotification
+com.music.ui.view.MyNotification: MyNotification(android.content.Context)
+com.music.ui.view.activity.BaseActivity
+com.music.ui.view.activity.BaseActivity: BaseActivity()
+com.music.ui.view.activity.BaseFragmentActivity
+com.music.ui.view.activity.BaseFragmentActivity: BaseFragmentActivity()
+com.music.ui.view.activity.BaseHeaderActivity
+com.music.ui.view.activity.BaseHeaderActivity: BaseHeaderActivity()
+com.music.ui.view.activity.BaseHeaderActivity: void OnClick(android.view.View)
+com.music.ui.view.activity.ChangeBgActivity
+com.music.ui.view.activity.ChangeBgActivity: ChangeBgActivity()
+com.music.ui.view.activity.ChangeBgActivity: void onClick(android.view.View)
+com.music.ui.view.activity.ImageFactoryActivity
+com.music.ui.view.activity.ImageFactoryActivity: ImageFactoryActivity()
+com.music.ui.view.activity.ImageFactoryActivity: void onClick(android.view.View)
+com.music.ui.view.activity.LocalMusicActivity
+com.music.ui.view.activity.LocalMusicActivity: LocalMusicActivity()
+com.music.ui.view.activity.LocalMusicActivity: void onclick(android.view.View)
+com.music.ui.view.activity.LockScreenActivity
+com.music.ui.view.activity.LockScreenActivity: LockScreenActivity()
+com.music.ui.view.activity.LockScreenActivity: void nextMusic()
+com.music.ui.view.activity.LockScreenActivity: void player(android.view.View)
+com.music.ui.view.activity.LockScreenActivity: void next(android.view.View)
+com.music.ui.view.activity.LockScreenActivity: void playMusic()
+com.music.ui.view.activity.LoginActivity
+com.music.ui.view.activity.LoginActivity: LoginActivity()
+com.music.ui.view.activity.LoginActivity: void onClick(android.view.View)
+com.music.ui.view.activity.LoginActivity$2: void onCancel(com.umeng.socialize.bean.SHARE_MEDIA)
+com.music.ui.view.activity.MipcaCaptureActivity
+com.music.ui.view.activity.MipcaCaptureActivity: MipcaCaptureActivity()
+com.music.ui.view.activity.PlayerActivity
+com.music.ui.view.activity.PlayerActivity: PlayerActivity()
+com.music.ui.view.activity.PlayerActivity: void onClick(android.view.View)
+com.music.ui.view.activity.ScanActivity
+com.music.ui.view.activity.ScanActivity: ScanActivity()
+com.music.ui.view.activity.ScanActivity: void viewClick(android.view.View)
+com.music.ui.view.activity.SearchMusicActivity
+com.music.ui.view.activity.SearchMusicActivity: SearchMusicActivity()
+com.music.ui.view.activity.SearchMusicActivity: void viewClick(android.view.View)
+com.music.ui.view.activity.SettingActivity
+com.music.ui.view.activity.SettingActivity: SettingActivity()
+com.music.ui.view.activity.SettingActivity: void onCancel(android.view.View)
+com.music.ui.view.activity.SettingActivity: void onClick(android.view.View)
+com.music.ui.view.activity.SwipeBackActivity
+com.music.ui.view.activity.WelcomeActivity
+com.music.ui.view.activity.WelcomeActivity: WelcomeActivity()
+com.music.ui.view.adapter.MyPagerAdapter
+com.music.ui.view.adapter.ViewPagerAdapter
+com.music.ui.view.fragment.AlbumFragment
+com.music.ui.view.fragment.AlbumFragment$fragment: com.music.ui.view.fragment.AlbumFragment$fragment[] values()
+com.music.ui.view.fragment.AlbumFragment$fragment: com.music.ui.view.fragment.AlbumFragment$fragment valueOf(java.lang.String)
+com.music.ui.view.fragment.ArtistFragment
+com.music.ui.view.fragment.BaseFragment
+com.music.ui.view.fragment.FolderFragment
+com.music.ui.view.fragment.LocalMusicFragment
+com.music.ui.view.fragment.MainFragment
+com.music.ui.view.fragment.MenuFragment
+com.music.ui.view.fragment.MusicListFragment
+com.music.ui.view.fragment.SongFragment
+com.music.ui.view.fragment.SwipeBackLayout
+com.music.ui.view.fragment.SwipeBackLayout: SwipeBackLayout(android.content.Context,android.util.AttributeSet)
+com.music.ui.view.fragment.SwipeBackLayout: SwipeBackLayout(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.view.fragment.SwipeBackLayout: void setContentView(android.view.View)
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity: CreateGesturePasswordActivity()
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity: void onClick(android.view.View)
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode: com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode[] values()
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode: com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode valueOf(java.lang.String)
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode: com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode[] values()
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode: com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode valueOf(java.lang.String)
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage: com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage[] values()
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage: com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage valueOf(java.lang.String)
+com.music.ui.view.gesturepressword.GresturePasswordSetActivity
+com.music.ui.view.gesturepressword.GresturePasswordSetActivity: GresturePasswordSetActivity()
+com.music.ui.view.gesturepressword.GresturePasswordSetActivity: void myOnclik(android.view.View)
+com.music.ui.view.gesturepressword.GuideGesturePasswordActivity
+com.music.ui.view.gesturepressword.GuideGesturePasswordActivity: GuideGesturePasswordActivity()
+com.music.ui.view.gesturepressword.LockPasswordUtils
+com.music.ui.view.gesturepressword.LockPasswordUtils: LockPasswordUtils(android.content.Context)
+com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity
+com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity: UnlockGesturePasswordActivity()
+com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity: void viewClick(android.view.View)
+com.music.ui.view.popwindow.PopupWindowQieGe
+com.music.ui.view.popwindow.PopupWindowQieGe: PopupWindowQieGe(android.content.Context)
+com.music.ui.view.popwindow.PopupWindowUtil
+com.music.ui.view.popwindow.PopupWindowUtil: PopupWindowUtil(android.content.Context)
+com.music.ui.view.receiver.LockScreenReceiver
+com.music.ui.view.service.LockScreenService
+com.music.ui.view.service.LockScreenService: LockScreenService()
+com.music.ui.view.service.MyPlayerNewService
+com.music.ui.view.service.MyPlayerNewService: MyPlayerNewService()
+com.music.ui.view.widget.CircularImage
+com.music.ui.view.widget.CircularImage: CircularImage(android.content.Context)
+com.music.ui.view.widget.CircularImage: CircularImage(android.content.Context,android.util.AttributeSet)
+com.music.ui.view.widget.CircularImage: CircularImage(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.view.widget.MaskedImage
+com.music.ui.view.widget.MaskedImage: MaskedImage(android.content.Context)
+com.music.ui.view.widget.MaskedImage: MaskedImage(android.content.Context,android.util.AttributeSet)
+com.music.ui.view.widget.MaskedImage: MaskedImage(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.view.widget.RoundImageView
+com.music.ui.view.widget.RoundImageView: RoundImageView(android.content.Context)
+com.music.ui.view.widget.RoundImageView: RoundImageView(android.content.Context,android.util.AttributeSet)
+com.music.ui.view.widget.RoundImageView: RoundImageView(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.view.widget.RoundImageView: void setCustomAttributes(android.util.AttributeSet)
+com.music.ui.view.widget.SliderRelativeLayout
+com.music.ui.view.widget.SliderRelativeLayout: SliderRelativeLayout(android.content.Context)
+com.music.ui.view.widget.SliderRelativeLayout: SliderRelativeLayout(android.content.Context,android.util.AttributeSet)
+com.music.ui.view.widget.SliderRelativeLayout: SliderRelativeLayout(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.view.widget.SliderRelativeLayout: int getScreenWidth()
+com.music.ui.view.widget.SliderRelativeLayout: void setMainHandler(android.os.Handler)
+com.music.ui.widget.AlwaysMarqueeTextView
+com.music.ui.widget.AlwaysMarqueeTextView: AlwaysMarqueeTextView(android.content.Context)
+com.music.ui.widget.AlwaysMarqueeTextView: AlwaysMarqueeTextView(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.AlwaysMarqueeTextView: AlwaysMarqueeTextView(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.widget.CustomScrollView
+com.music.ui.widget.CustomScrollView: CustomScrollView(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.RippleView
+com.music.ui.widget.RippleView: RippleView(android.content.Context)
+com.music.ui.widget.RippleView: RippleView(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.RippleView: RippleView(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.widget.RippleView: void setRippleColor(int)
+com.music.ui.widget.RippleView: int getRippleColor()
+com.music.ui.widget.dialog.LoadingView
+com.music.ui.widget.dialog.LoadingView: LoadingView(android.content.Context)
+com.music.ui.widget.dialog.LoadingView: LoadingView(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.dialog.LoadingView: LoadingView(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.widget.dialog.LoadingView: void setLoadingText(java.lang.CharSequence)
+com.music.ui.widget.dialog.ShapeLoadingView
+com.music.ui.widget.dialog.ShapeLoadingView: ShapeLoadingView(android.content.Context)
+com.music.ui.widget.dialog.ShapeLoadingView: ShapeLoadingView(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.dialog.ShapeLoadingView: ShapeLoadingView(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.widget.dialog.ShapeLoadingView: com.music.ui.widget.dialog.ShapeLoadingView$Shape getShape()
+com.music.ui.widget.dialog.ShapeLoadingView$Shape: com.music.ui.widget.dialog.ShapeLoadingView$Shape[] values()
+com.music.ui.widget.dialog.ShapeLoadingView$Shape: com.music.ui.widget.dialog.ShapeLoadingView$Shape valueOf(java.lang.String)
+com.music.ui.widget.indexablelistview.IndexableListView
+com.music.ui.widget.indexablelistview.IndexableListView: void setShow(boolean)
+com.music.ui.widget.indexablelistview.IndexableListView: IndexableListView(android.content.Context)
+com.music.ui.widget.indexablelistview.IndexableListView: IndexableListView(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.indexablelistview.IndexableListView: IndexableListView(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.widget.indexablelistview.IndexableListView: void setFastScrollEnabled(boolean)
+com.music.ui.widget.indexablelistview.IndexableListView: void setAdapter(android.widget.ListAdapter)
+com.music.ui.widget.lockpatternview.App
+com.music.ui.widget.lockpatternview.LockPatternUtils
+com.music.ui.widget.lockpatternview.LockPatternUtils: LockPatternUtils(android.content.Context)
+com.music.ui.widget.lockpatternview.LockPatternView
+com.music.ui.widget.lockpatternview.LockPatternView: LockPatternView(android.content.Context)
+com.music.ui.widget.lockpatternview.LockPatternView: LockPatternView(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.lockpatternview.LockPatternView: void setInStealthMode(boolean)
+com.music.ui.widget.lockpatternview.LockPatternView: void setTactileFeedbackEnabled(boolean)
+com.music.ui.widget.lockpatternview.LockPatternView: void setOnPatternListener(com.music.ui.widget.lockpatternview.LockPatternView$OnPatternListener)
+com.music.ui.widget.lockpatternview.LockPatternView: void setDisplayMode(com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode)
+com.music.ui.widget.lockpatternview.LockPatternView: int getSuggestedMinimumWidth()
+com.music.ui.widget.lockpatternview.LockPatternView: int getSuggestedMinimumHeight()
+com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode: com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode[] values()
+com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode: com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode valueOf(java.lang.String)
+com.music.ui.widget.lockpatternview.LockPatternView$SavedState
+com.music.ui.widget.lockpatternview.LockPatternView$SavedState: android.os.Parcelable$Creator CREATOR
+com.music.ui.widget.photoview.CropImageView
+com.music.ui.widget.photoview.CropImageView: CropImageView(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.photoview.CropImageView: void setCropImage(com.music.ui.widget.photoview.CropImage)
+com.music.ui.widget.photoview.HighlightView$ModifyMode: com.music.ui.widget.photoview.HighlightView$ModifyMode[] values()
+com.music.ui.widget.photoview.HighlightView$ModifyMode: com.music.ui.widget.photoview.HighlightView$ModifyMode valueOf(java.lang.String)
+com.music.ui.widget.photoview.ImageViewTouchBase
+com.music.ui.widget.photoview.ImageViewTouchBase: void setRecycler(com.music.ui.widget.photoview.ImageViewTouchBase$Recycler)
+com.music.ui.widget.photoview.ImageViewTouchBase: void setImageBitmap(android.graphics.Bitmap)
+com.music.ui.widget.photoview.ImageViewTouchBase: ImageViewTouchBase(android.content.Context)
+com.music.ui.widget.photoview.ImageViewTouchBase: ImageViewTouchBase(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.photoview.ImageViewTouchBase: float getScale()
+com.music.ui.widget.photoview.ImageViewTouchBase: android.graphics.Matrix getImageViewMatrix()
+com.music.ui.widget.photoview.RotateImageView
+com.music.ui.widget.photoview.RotateImageView: RotateImageView(android.content.Context)
+com.music.ui.widget.photoview.RotateImageView: RotateImageView(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.photoview.RotateImageView: RotateImageView(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.widget.photoview.RotateImageView: void setImageBitmap(android.graphics.Bitmap)
+com.music.ui.widget.photoview.RotateImageView: void setImageResource(int)
+com.music.ui.widget.photoview.RotateImageView: android.graphics.Bitmap getImageViewBitmap()
+com.music.ui.widget.photoview.RotateImageView$RotateType: com.music.ui.widget.photoview.RotateImageView$RotateType[] values()
+com.music.ui.widget.photoview.RotateImageView$RotateType: com.music.ui.widget.photoview.RotateImageView$RotateType valueOf(java.lang.String)
+com.music.ui.widget.slidingdrawer.MySlidingDrawer
+com.music.ui.widget.slidingdrawer.MySlidingDrawer: int[] getTouchableIds()
+com.music.ui.widget.slidingdrawer.MySlidingDrawer: void setTouchableIds(int[])
+com.music.ui.widget.slidingdrawer.MySlidingDrawer: int getHandleId()
+com.music.ui.widget.slidingdrawer.MySlidingDrawer: void setHandleId(int)
+com.music.ui.widget.slidingdrawer.MySlidingDrawer: void setOnSliderHandleViewClickListener(com.music.ui.widget.slidingdrawer.MySlidingDrawer$IOnSlidingHandleViewClickListener)
+com.music.ui.widget.slidingdrawer.MySlidingDrawer: MySlidingDrawer(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.slidingdrawer.MySlidingDrawer: MySlidingDrawer(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.widget.slidingmenu.SlidingMenu
+com.music.ui.widget.slidingmenu.SlidingMenu: SlidingMenu(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.slidingmenu.SlidingMenu: SlidingMenu(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.widget.slidingmenu.SlidingMenu: SlidingMenu(android.content.Context)
+com.music.ui.widget.slidingmenu2.CustomViewAbove
+com.music.ui.widget.slidingmenu2.CustomViewAbove: CustomViewAbove(android.content.Context)
+com.music.ui.widget.slidingmenu2.CustomViewAbove: CustomViewAbove(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.slidingmenu2.CustomViewAbove: void setCurrentItem(int)
+com.music.ui.widget.slidingmenu2.CustomViewAbove: int getCurrentItem()
+com.music.ui.widget.slidingmenu2.CustomViewAbove: void setOnPageChangeListener(com.music.ui.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener)
+com.music.ui.widget.slidingmenu2.CustomViewAbove: void setOnOpenedListener(com.music.ui.widget.slidingmenu2.SlidingMenu$OnOpenedListener)
+com.music.ui.widget.slidingmenu2.CustomViewAbove: void setOnClosedListener(com.music.ui.widget.slidingmenu2.SlidingMenu$OnClosedListener)
+com.music.ui.widget.slidingmenu2.CustomViewAbove: int getLeftBound()
+com.music.ui.widget.slidingmenu2.CustomViewAbove: int getRightBound()
+com.music.ui.widget.slidingmenu2.CustomViewAbove: int getContentLeft()
+com.music.ui.widget.slidingmenu2.CustomViewAbove: int getBehindWidth()
+com.music.ui.widget.slidingmenu2.CustomViewAbove: void setSlidingEnabled(boolean)
+com.music.ui.widget.slidingmenu2.CustomViewAbove: void setContent(android.view.View)
+com.music.ui.widget.slidingmenu2.CustomViewAbove: android.view.View getContent()
+com.music.ui.widget.slidingmenu2.CustomViewAbove: void setCustomViewBehind(com.music.ui.widget.slidingmenu2.CustomViewBehind)
+com.music.ui.widget.slidingmenu2.CustomViewAbove: void setAboveOffset(int)
+com.music.ui.widget.slidingmenu2.CustomViewAbove: void setTouchMode(int)
+com.music.ui.widget.slidingmenu2.CustomViewAbove: int getTouchMode()
+com.music.ui.widget.slidingmenu2.CustomViewAbove: float getPercentOpen()
+com.music.ui.widget.slidingmenu2.CustomViewAbove: void setScrollingCacheEnabled(boolean)
+com.music.ui.widget.slidingmenu2.CustomViewBehind
+com.music.ui.widget.slidingmenu2.CustomViewBehind: CustomViewBehind(android.content.Context)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: CustomViewBehind(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setCustomViewAbove(com.music.ui.widget.slidingmenu2.CustomViewAbove)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setCanvasTransformer(com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setWidthOffset(int)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setMarginThreshold(int)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: int getMarginThreshold()
+com.music.ui.widget.slidingmenu2.CustomViewBehind: int getBehindWidth()
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setContent(android.view.View)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: android.view.View getContent()
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setSecondaryContent(android.view.View)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: android.view.View getSecondaryContent()
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setChildrenEnabled(boolean)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setMode(int)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: int getMode()
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setScrollScale(float)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: float getScrollScale()
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setShadowDrawable(android.graphics.drawable.Drawable)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setSecondaryShadowDrawable(android.graphics.drawable.Drawable)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setShadowWidth(int)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setFadeEnabled(boolean)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setFadeDegree(float)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setTouchMode(int)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setSelectorEnabled(boolean)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setSelectedView(android.view.View)
+com.music.ui.widget.slidingmenu2.CustomViewBehind: int getSelectorTop()
+com.music.ui.widget.slidingmenu2.CustomViewBehind: void setSelectorBitmap(android.graphics.Bitmap)
+com.music.ui.widget.slidingmenu2.SlidingMenu
+com.music.ui.widget.slidingmenu2.SlidingMenu: SlidingMenu(android.content.Context)
+com.music.ui.widget.slidingmenu2.SlidingMenu: SlidingMenu(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.slidingmenu2.SlidingMenu: SlidingMenu(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setContent(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setContent(android.view.View)
+com.music.ui.widget.slidingmenu2.SlidingMenu: android.view.View getContent()
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setMenu(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setMenu(android.view.View)
+com.music.ui.widget.slidingmenu2.SlidingMenu: android.view.View getMenu()
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setSecondaryMenu(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setSecondaryMenu(android.view.View)
+com.music.ui.widget.slidingmenu2.SlidingMenu: android.view.View getSecondaryMenu()
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setSlidingEnabled(boolean)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setMode(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: int getMode()
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setStatic(boolean)
+com.music.ui.widget.slidingmenu2.SlidingMenu: int getBehindOffset()
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setBehindOffset(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setBehindOffsetRes(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setAboveOffset(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setAboveOffsetRes(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setBehindWidth(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setBehindWidthRes(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: float getBehindScrollScale()
+com.music.ui.widget.slidingmenu2.SlidingMenu: int getTouchmodeMarginThreshold()
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setTouchmodeMarginThreshold(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setBehindScrollScale(float)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setBehindCanvasTransformer(com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer)
+com.music.ui.widget.slidingmenu2.SlidingMenu: int getTouchModeAbove()
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setTouchModeAbove(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setTouchModeBehind(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setShadowDrawable(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setShadowDrawable(android.graphics.drawable.Drawable)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setSecondaryShadowDrawable(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setSecondaryShadowDrawable(android.graphics.drawable.Drawable)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setShadowWidthRes(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setShadowWidth(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setFadeEnabled(boolean)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setFadeDegree(float)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setSelectorEnabled(boolean)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setSelectedView(android.view.View)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setSelectorDrawable(int)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setSelectorBitmap(android.graphics.Bitmap)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setOnOpenListener(com.music.ui.widget.slidingmenu2.SlidingMenu$OnOpenListener)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setOnCloseListener(com.music.ui.widget.slidingmenu2.SlidingMenu$OnCloseListener)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setOnOpenedListener(com.music.ui.widget.slidingmenu2.SlidingMenu$OnOpenedListener)
+com.music.ui.widget.slidingmenu2.SlidingMenu: void setOnClosedListener(com.music.ui.widget.slidingmenu2.SlidingMenu$OnClosedListener)
+com.music.ui.widget.slidingmenu2.SlidingMenu$SavedState
+com.music.ui.widget.slidingmenu2.SlidingMenu$SavedState: android.os.Parcelable$Creator CREATOR
+com.music.ui.widget.sortlistview.ClearEditText
+com.music.ui.widget.sortlistview.ClearEditText: ClearEditText(android.content.Context)
+com.music.ui.widget.sortlistview.ClearEditText: ClearEditText(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.sortlistview.ClearEditText: ClearEditText(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.widget.sortlistview.ClearEditText: void setClearIconVisible(boolean)
+com.music.ui.widget.sortlistview.SideBar
+com.music.ui.widget.sortlistview.SideBar: void setTextView(android.widget.TextView)
+com.music.ui.widget.sortlistview.SideBar: SideBar(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.widget.sortlistview.SideBar: SideBar(android.content.Context,android.util.AttributeSet)
+com.music.ui.widget.sortlistview.SideBar: SideBar(android.content.Context)
+com.music.ui.widget.sortlistview.SideBar: void setOnTouchingLetterChangedListener(com.music.ui.widget.sortlistview.SideBar$OnTouchingLetterChangedListener)
 com.music.zxing.decoding.CaptureActivityHandler$State: com.music.zxing.decoding.CaptureActivityHandler$State[] values()
 com.music.zxing.decoding.CaptureActivityHandler$State: com.music.zxing.decoding.CaptureActivityHandler$State valueOf(java.lang.String)
 com.music.zxing.decoding.FinishListener: void onCancel(android.content.DialogInterface)

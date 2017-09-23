@@ -18,8 +18,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 
-import com.music.view.ImageFactoryFliter.FilterType;
-import com.music.view.activity.ImageFactoryActivity;
+import com.music.ui.view.ImageFactoryFliter.FilterType;
+import com.music.ui.view.activity.ImageFactoryActivity;
 
 
 /**

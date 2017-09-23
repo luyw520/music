@@ -53,13 +53,13 @@ public class ScreenShotUtil {
 	}
 	public void registerShakeToScrShot(Activity activity) {
 		
-		if(mActivity!=activity){
-			mActivity=activity;
-			DeBug.d(this, "mActivity:"+mActivity);
-			UMShakeServiceFactory
-			.getShakeService(Constants.DESCRIPTOR).registerShakeToScrShot(mActivity, new UMAppAdapter(
-					mActivity), mScreenshotListener);
-		}
+//		if(mActivity!=activity){
+//			mActivity=activity;
+//			DeBug.d(this, "mActivity:"+mActivity);
+//			UMShakeServiceFactory
+//			.getShakeService(Constants.DESCRIPTOR).registerShakeToScrShot(mActivity, new UMAppAdapter(
+//					mActivity), mScreenshotListener);
+//		}
 		
 	}
 	public void unregisterShakeListener() {

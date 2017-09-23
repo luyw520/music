@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <com.music.widget.photoview.RotateImageView
+    <com.music.ui.widget.photoview.RotateImageView
         android:id="@+id/imagefactory_fliter_riv_image"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

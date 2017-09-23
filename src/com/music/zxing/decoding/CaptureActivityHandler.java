@@ -30,7 +30,7 @@ import android.util.Log;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.music.lu.R;
-import com.music.view.activity.MipcaCaptureActivity;
+import com.music.ui.view.activity.MipcaCaptureActivity;
 import com.music.zxing.camera.CameraManager;
 import com.music.zxing.view.ViewfinderResultPointCallback;
 

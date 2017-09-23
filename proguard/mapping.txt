@@ -10379,7 +10379,7 @@ com.music.bean.UserManager$1 -> com.music.bean.l:
     java.lang.String val$url -> c
     112:116:void onPostExecute(java.lang.Object) -> a
     121:122:java.lang.Object doInBackground(java.lang.String[]) -> a
-com.music.broadcastreceiver.CustomPushReceiver -> com.music.broadcastreceiver.CustomPushReceiver:
+com.music.ui.broadcastreceiver.CustomPushReceiver -> com.music.ui.broadcastreceiver.CustomPushReceiver:
     java.lang.String TAG -> a
     23:23:void onDeleteTagResult(android.content.Context,int,java.lang.String) -> onDeleteTagResult
     28:65:void onNotifactionClickedResult(android.content.Context,com.tencent.android.tpush.XGPushClickedResult) -> onNotifactionClickedResult
@@ -10388,20 +10388,20 @@ com.music.broadcastreceiver.CustomPushReceiver -> com.music.broadcastreceiver.Cu
     95:108:void onSetTagResult(android.content.Context,int,java.lang.String) -> onSetTagResult
     112:135:void onTextMessage(android.content.Context,com.tencent.android.tpush.XGPushTextMessage) -> onTextMessage
     141:141:void onUnregisterResult(android.content.Context,int) -> onUnregisterResult
-com.music.broadcastreceiver.ListenNetStateReceiver -> com.music.broadcastreceiver.ListenNetStateReceiver:
-    com.music.broadcastreceiver.NetState netState -> a
+com.music.ui.broadcastreceiver.ListenNetStateReceiver -> com.music.ui.broadcastreceiver.ListenNetStateReceiver:
+    com.music.ui.broadcastreceiver.NetState netState -> a
     24:35:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.music.broadcastreceiver.MyBroadcastReceiver -> com.music.broadcastreceiver.MyBroadcastReceiver:
+com.music.ui.broadcastreceiver.MyBroadcastReceiver -> com.music.ui.broadcastreceiver.MyBroadcastReceiver:
     java.lang.String TAG -> b
     java.util.List states -> c
-    com.music.broadcastreceiver.State state -> a
-    26:27:void addState(com.music.broadcastreceiver.State) -> a
+    com.music.ui.broadcastreceiver.State state -> a
+    26:27:void addState(com.music.ui.broadcastreceiver.State) -> a
     31:39:void addAction(android.content.IntentFilter) -> a
     43:58:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.music.broadcastreceiver.NetState -> com.music.broadcastreceiver.a:
+com.music.ui.broadcastreceiver.NetState -> com.music.ui.broadcastreceiver.a:
     void connected(int) -> a
     void disconnected() -> a
-com.music.broadcastreceiver.State -> com.music.broadcastreceiver.b:
+com.music.ui.broadcastreceiver.State -> com.music.ui.broadcastreceiver.b:
     void playMusicState() -> a
     void currentState(android.content.Intent) -> a
     void duration(android.content.Intent) -> b
@@ -13139,7 +13139,7 @@ com.music.utils.PhotoUtils -> com.music.d.ab:
     207:214:android.os.Bundle getBitmapWidthAndHeight(android.graphics.Bitmap) -> a
     225:235:boolean bitmapIsLarge(android.graphics.Bitmap) -> b
     248:273:java.lang.String savePhotoToSDCard(android.graphics.Bitmap) -> c
-    286:291:android.graphics.Bitmap getFilter(com.music.view.ImageFactoryFliter$FilterType,android.graphics.Bitmap) -> a
+    286:291:android.graphics.Bitmap getFilter(com.music.ui.view.ImageFactoryFliter$FilterType,android.graphics.Bitmap) -> a
     301:370:android.graphics.Bitmap lomoFilter(android.graphics.Bitmap) -> d
 com.music.utils.ScreenShotUtil -> com.music.d.ac:
     java.lang.String TAG -> a
@@ -13224,14 +13224,14 @@ com.music.utils.TopNoticeDialog$TipType -> com.music.d.ah$b:
     com.music.utils.TopNoticeDialog$TipType[] ENUM$VALUES -> c
     1:1:com.music.utils.TopNoticeDialog$TipType[] values() -> values
     1:1:com.music.utils.TopNoticeDialog$TipType valueOf(java.lang.String) -> valueOf
-com.music.view.ImageFactoryCrop -> com.music.view.a:
+com.music.ui.view.ImageFactoryCrop -> com.music.ui.view.a:
     int SHOW_PROGRESS -> a
     int REMOVE_PROGRESS -> b
-    com.music.widget.photoview.CropImageView mCivDisplay -> f
+    com.music.ui.widget.photoview.CropImageView mCivDisplay -> f
     android.widget.ProgressBar mPbBar -> g
     java.lang.String mPath -> h
     android.graphics.Bitmap mBitmap -> i
-    com.music.widget.photoview.CropImage mCropImage -> j
+    com.music.ui.widget.photoview.CropImage mCropImage -> j
     android.os.Handler handler -> c
     33:35:void initViews() -> a
     40:40:void initEvents() -> b
@@ -13239,12 +13239,12 @@ com.music.view.ImageFactoryCrop -> com.music.view.a:
     51:56:void resetImageView(android.graphics.Bitmap) -> a
     77:80:void Rotate() -> c
     83:83:android.graphics.Bitmap cropAndSave() -> d
-    21:21:android.widget.ProgressBar access$0(com.music.view.ImageFactoryCrop) -> a
-com.music.view.ImageFactoryCrop$1 -> com.music.view.b:
-    com.music.view.ImageFactoryCrop this$0 -> a
+    21:21:android.widget.ProgressBar access$0(com.music.ui.view.ImageFactoryCrop) -> a
+com.music.ui.view.ImageFactoryCrop$1 -> com.music.ui.view.b:
+    com.music.ui.view.ImageFactoryCrop this$0 -> a
     62:72:void handleMessage(android.os.Message) -> handleMessage
-com.music.view.ImageFactoryFliter -> com.music.view.c:
-    com.music.widget.photoview.RotateImageView mRivImage -> a
+com.music.ui.view.ImageFactoryFliter -> com.music.ui.view.c:
+    com.music.ui.widget.photoview.RotateImageView mRivImage -> a
     java.lang.String mPath -> b
     android.graphics.Bitmap mBitmap -> c
     java.util.List mFilterItems -> f
@@ -13260,45 +13260,45 @@ com.music.view.ImageFactoryFliter -> com.music.view.c:
     87:121:void initFilterBlocks() -> f
     124:132:void refreshBlockBg() -> g
     135:138:void changeImage() -> h
-    27:27:void access$0(com.music.view.ImageFactoryFliter,int) -> a
-    123:123:void access$1(com.music.view.ImageFactoryFliter) -> a
-    134:134:void access$2(com.music.view.ImageFactoryFliter) -> b
-com.music.view.ImageFactoryFliter$1 -> com.music.view.d:
-    com.music.view.ImageFactoryFliter this$0 -> a
+    27:27:void access$0(com.music.ui.view.ImageFactoryFliter,int) -> a
+    123:123:void access$1(com.music.ui.view.ImageFactoryFliter) -> a
+    134:134:void access$2(com.music.ui.view.ImageFactoryFliter) -> b
+com.music.ui.view.ImageFactoryFliter$1 -> com.music.ui.view.d:
+    com.music.ui.view.ImageFactoryFliter this$0 -> a
     103:106:void onClick(android.view.View) -> onClick
-com.music.view.ImageFactoryFliter$FilterItem -> com.music.view.c$a:
-    com.music.view.ImageFactoryFliter$FilterType mFilterType -> a
+com.music.ui.view.ImageFactoryFliter$FilterItem -> com.music.ui.view.c$a:
+    com.music.ui.view.ImageFactoryFliter$FilterType mFilterType -> a
     java.lang.String mFilterName -> b
-    com.music.view.ImageFactoryFliter this$0 -> c
-com.music.view.ImageFactoryFliter$FilterType -> com.music.view.c$b:
-    com.music.view.ImageFactoryFliter$FilterType Ä¬ÈÏ -> a
-    com.music.view.ImageFactoryFliter$FilterType LOMO -> b
-    com.music.view.ImageFactoryFliter$FilterType ´¿Õæ -> c
-    com.music.view.ImageFactoryFliter$FilterType ÖØ²Ê -> d
-    com.music.view.ImageFactoryFliter$FilterType Î¬Ò²ÄÉ -> e
-    com.music.view.ImageFactoryFliter$FilterType µ­ÑÅ -> f
-    com.music.view.ImageFactoryFliter$FilterType ¿á -> g
-    com.music.view.ImageFactoryFliter$FilterType Å¨ºñ -> h
-    com.music.view.ImageFactoryFliter$FilterType[] ENUM$VALUES -> i
-    1:1:com.music.view.ImageFactoryFliter$FilterType[] values() -> values
-    1:1:com.music.view.ImageFactoryFliter$FilterType valueOf(java.lang.String) -> valueOf
-com.music.view.MainUIManager -> com.music.view.e:
+    com.music.ui.view.ImageFactoryFliter this$0 -> c
+com.music.ui.view.ImageFactoryFliter$FilterType -> com.music.ui.view.c$b:
+    com.music.ui.view.ImageFactoryFliter$FilterType Ä¬ï¿½ï¿½ -> a
+    com.music.ui.view.ImageFactoryFliter$FilterType LOMO -> b
+    com.music.ui.view.ImageFactoryFliter$FilterType ï¿½ï¿½ï¿½ï¿½ -> c
+    com.music.ui.view.ImageFactoryFliter$FilterType ï¿½Ø²ï¿½ -> d
+    com.music.ui.view.ImageFactoryFliter$FilterType Î¬Ò²ï¿½ï¿½ -> e
+    com.music.ui.view.ImageFactoryFliter$FilterType ï¿½ï¿½ï¿½ï¿½ -> f
+    com.music.ui.view.ImageFactoryFliter$FilterType ï¿½ï¿½ -> g
+    com.music.ui.view.ImageFactoryFliter$FilterType Å¨ï¿½ï¿½ -> h
+    com.music.ui.view.ImageFactoryFliter$FilterType[] ENUM$VALUES -> i
+    1:1:com.music.ui.view.ImageFactoryFliter$FilterType[] values() -> values
+    1:1:com.music.ui.view.ImageFactoryFliter$FilterType valueOf(java.lang.String) -> valueOf
+com.music.ui.view.MainUIManager -> com.music.ui.view.e:
     void setBgByPath(java.lang.String) -> a
     android.view.View getView() -> a
     android.view.View getView(int) -> a
     android.view.View getView(int,java.lang.Object) -> a
-com.music.view.MusicApplication -> com.music.view.MusicApplication:
+com.music.ui.view.MusicApplication -> com.music.ui.view.MusicApplication:
     java.lang.String TAG -> a
-    com.music.view.MusicApplication musicApplication -> b
-    com.music.widget.lockpatternview.LockPatternUtils mLockPatternUtils -> c
+    com.music.ui.view.MusicApplication musicApplication -> b
+    com.music.ui.widget.lockpatternview.LockPatternUtils mLockPatternUtils -> c
     com.music.model.ScreenManager screenManager -> d
     29:52:void onCreate() -> onCreate
     55:64:void initImageLoader(android.content.Context) -> a
-    66:66:com.music.view.MusicApplication getInstance() -> a
-    69:70:void setMusicApplication(com.music.view.MusicApplication) -> a
-    72:72:com.music.widget.lockpatternview.LockPatternUtils getLockPatternUtils() -> b
-    75:76:void setmLockPatternUtils(com.music.widget.lockpatternview.LockPatternUtils) -> a
-com.music.view.MyNotification -> com.music.view.MyNotification:
+    66:66:com.music.ui.view.MusicApplication getInstance() -> a
+    69:70:void setMusicApplication(com.music.ui.view.MusicApplication) -> a
+    72:72:com.music.ui.widget.lockpatternview.LockPatternUtils getLockPatternUtils() -> b
+    75:76:void setmLockPatternUtils(com.music.ui.widget.lockpatternview.LockPatternUtils) -> a
+com.music.ui.view.MyNotification -> com.music.ui.view.MyNotification:
     android.content.Context context -> a
     android.app.NotificationManager notificationManager -> b
     android.widget.RemoteViews remoteViews -> c
@@ -13315,11 +13315,11 @@ com.music.view.MyNotification -> com.music.view.MyNotification:
     114:122:void setPlayImageState(boolean) -> a
     128:137:void reset() -> d
     139:140:void cancel() -> e
-    29:29:com.music.utils.Mp3Util_New access$0(com.music.view.MyNotification) -> a
-com.music.view.MyNotification$1 -> com.music.view.f:
-    com.music.view.MyNotification this$0 -> a
+    29:29:com.music.utils.Mp3Util_New access$0(com.music.ui.view.MyNotification) -> a
+com.music.ui.view.MyNotification$1 -> com.music.ui.view.f:
+    com.music.ui.view.MyNotification this$0 -> a
     148:155:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.music.view.PlayPauseDrawable -> com.music.view.g:
+com.music.ui.view.PlayPauseDrawable -> com.music.ui.view.g:
     boolean mAnimationMode -> a
     long mAnimationDuration -> b
     android.view.animation.Interpolator ANIMATION_INTERPOLATOR -> c
@@ -13337,19 +13337,19 @@ com.music.view.PlayPauseDrawable -> com.music.view.g:
     android.util.Property mBackgroundColorProperty -> o
     android.util.Property mLineColorProperty -> p
     android.util.Property mRotationProperty -> q
-    com.music.view.PlayPauseDrawable$PointProperty mPropertyPointAX -> r
-    com.music.view.PlayPauseDrawable$PointProperty mPropertyPointAY -> s
-    com.music.view.PlayPauseDrawable$PointProperty mPropertyPointBX -> t
-    com.music.view.PlayPauseDrawable$PointProperty mPropertyPointBY -> u
-    com.music.view.PlayPauseDrawable$PointProperty mPropertyPointCX -> v
-    com.music.view.PlayPauseDrawable$PointProperty mPropertyPointCY -> w
-    com.music.view.PlayPauseDrawable$PointProperty mPropertyPointDX -> x
-    com.music.view.PlayPauseDrawable$PointProperty mPropertyPointDY -> y
-    com.music.view.PlayPauseDrawable$PointProperty mPropertyPointEX -> z
-    com.music.view.PlayPauseDrawable$PointProperty mPropertyPointEY -> A
-    com.music.view.PlayPauseDrawable$PointProperty mPropertyPointFX -> B
-    com.music.view.PlayPauseDrawable$PointProperty mPropertyPointFY -> C
-    com.music.view.PlayPauseDrawable$StrokeWidthProperty mStrokeWidthProperty -> D
+    com.music.ui.view.PlayPauseDrawable$PointProperty mPropertyPointAX -> r
+    com.music.ui.view.PlayPauseDrawable$PointProperty mPropertyPointAY -> s
+    com.music.ui.view.PlayPauseDrawable$PointProperty mPropertyPointBX -> t
+    com.music.ui.view.PlayPauseDrawable$PointProperty mPropertyPointBY -> u
+    com.music.ui.view.PlayPauseDrawable$PointProperty mPropertyPointCX -> v
+    com.music.ui.view.PlayPauseDrawable$PointProperty mPropertyPointCY -> w
+    com.music.ui.view.PlayPauseDrawable$PointProperty mPropertyPointDX -> x
+    com.music.ui.view.PlayPauseDrawable$PointProperty mPropertyPointDY -> y
+    com.music.ui.view.PlayPauseDrawable$PointProperty mPropertyPointEX -> z
+    com.music.ui.view.PlayPauseDrawable$PointProperty mPropertyPointEY -> A
+    com.music.ui.view.PlayPauseDrawable$PointProperty mPropertyPointFX -> B
+    com.music.ui.view.PlayPauseDrawable$PointProperty mPropertyPointFY -> C
+    com.music.ui.view.PlayPauseDrawable$StrokeWidthProperty mStrokeWidthProperty -> D
     70:80:void initPaints() -> d
     84:94:void onBoundsChange(android.graphics.Rect) -> onBoundsChange
     98:115:void setupPauseMode() -> e
@@ -13364,56 +13364,56 @@ com.music.view.PlayPauseDrawable -> com.music.view.g:
     242:242:void setAlpha(int) -> setAlpha
     245:245:void setColorFilter(android.graphics.ColorFilter) -> setColorFilter
     249:249:int getOpacity() -> getOpacity
-    37:37:android.graphics.Paint access$0(com.music.view.PlayPauseDrawable) -> a
-    36:36:android.graphics.Paint access$1(com.music.view.PlayPauseDrawable) -> b
-    45:45:float access$2(com.music.view.PlayPauseDrawable) -> c
-    45:45:void access$3(com.music.view.PlayPauseDrawable,float) -> a
-    46:46:float access$4(com.music.view.PlayPauseDrawable) -> d
-    223:223:float access$5(com.music.view.PlayPauseDrawable,int) -> a
-    39:39:float[] access$6(com.music.view.PlayPauseDrawable) -> e
-    231:231:int access$7(com.music.view.PlayPauseDrawable,int) -> b
-    227:227:float access$8(com.music.view.PlayPauseDrawable,int) -> c
-    235:235:int access$9(com.music.view.PlayPauseDrawable,int) -> d
-com.music.view.PlayPauseDrawable$1 -> com.music.view.h:
-    com.music.view.PlayPauseDrawable this$0 -> a
-    255:255:java.lang.Integer get(com.music.view.PlayPauseDrawable) -> a
-    260:261:void set(com.music.view.PlayPauseDrawable,java.lang.Integer) -> a
+    37:37:android.graphics.Paint access$0(com.music.ui.view.PlayPauseDrawable) -> a
+    36:36:android.graphics.Paint access$1(com.music.ui.view.PlayPauseDrawable) -> b
+    45:45:float access$2(com.music.ui.view.PlayPauseDrawable) -> c
+    45:45:void access$3(com.music.ui.view.PlayPauseDrawable,float) -> a
+    46:46:float access$4(com.music.ui.view.PlayPauseDrawable) -> d
+    223:223:float access$5(com.music.ui.view.PlayPauseDrawable,int) -> a
+    39:39:float[] access$6(com.music.ui.view.PlayPauseDrawable) -> e
+    231:231:int access$7(com.music.ui.view.PlayPauseDrawable,int) -> b
+    227:227:float access$8(com.music.ui.view.PlayPauseDrawable,int) -> c
+    235:235:int access$9(com.music.ui.view.PlayPauseDrawable,int) -> d
+com.music.ui.view.PlayPauseDrawable$1 -> com.music.ui.view.h:
+    com.music.ui.view.PlayPauseDrawable this$0 -> a
+    255:255:java.lang.Integer get(com.music.ui.view.PlayPauseDrawable) -> a
+    260:261:void set(com.music.ui.view.PlayPauseDrawable,java.lang.Integer) -> a
     1:1:java.lang.Object get(java.lang.Object) -> get
     1:1:void set(java.lang.Object,java.lang.Object) -> set
-com.music.view.PlayPauseDrawable$2 -> com.music.view.i:
-    com.music.view.PlayPauseDrawable this$0 -> a
-    267:267:java.lang.Integer get(com.music.view.PlayPauseDrawable) -> a
-    272:273:void set(com.music.view.PlayPauseDrawable,java.lang.Integer) -> a
+com.music.ui.view.PlayPauseDrawable$2 -> com.music.ui.view.i:
+    com.music.ui.view.PlayPauseDrawable this$0 -> a
+    267:267:java.lang.Integer get(com.music.ui.view.PlayPauseDrawable) -> a
+    272:273:void set(com.music.ui.view.PlayPauseDrawable,java.lang.Integer) -> a
     1:1:java.lang.Object get(java.lang.Object) -> get
     1:1:void set(java.lang.Object,java.lang.Object) -> set
-com.music.view.PlayPauseDrawable$3 -> com.music.view.j:
-    com.music.view.PlayPauseDrawable this$0 -> a
-    279:279:java.lang.Float get(com.music.view.PlayPauseDrawable) -> a
-    284:285:void set(com.music.view.PlayPauseDrawable,java.lang.Float) -> a
+com.music.ui.view.PlayPauseDrawable$3 -> com.music.ui.view.j:
+    com.music.ui.view.PlayPauseDrawable this$0 -> a
+    279:279:java.lang.Float get(com.music.ui.view.PlayPauseDrawable) -> a
+    284:285:void set(com.music.ui.view.PlayPauseDrawable,java.lang.Float) -> a
     1:1:java.lang.Object get(java.lang.Object) -> get
     1:1:void set(java.lang.Object,java.lang.Object) -> set
-com.music.view.PlayPauseDrawable$PointProperty -> com.music.view.g$a:
+com.music.ui.view.PlayPauseDrawable$PointProperty -> com.music.ui.view.g$a:
     int mPointIndex -> a
-    com.music.view.PlayPauseDrawable this$0 -> b
-com.music.view.PlayPauseDrawable$StrokeWidthProperty -> com.music.view.g$b:
-    com.music.view.PlayPauseDrawable this$0 -> a
-    320:320:java.lang.Float get(com.music.view.PlayPauseDrawable) -> a
-    325:327:void set(com.music.view.PlayPauseDrawable,java.lang.Float) -> a
+    com.music.ui.view.PlayPauseDrawable this$0 -> b
+com.music.ui.view.PlayPauseDrawable$StrokeWidthProperty -> com.music.ui.view.g$b:
+    com.music.ui.view.PlayPauseDrawable this$0 -> a
+    320:320:java.lang.Float get(com.music.ui.view.PlayPauseDrawable) -> a
+    325:327:void set(com.music.ui.view.PlayPauseDrawable,java.lang.Float) -> a
     1:1:java.lang.Object get(java.lang.Object) -> get
     1:1:void set(java.lang.Object,java.lang.Object) -> set
-com.music.view.PlayPauseDrawable$XPointProperty -> com.music.view.g$c:
-    com.music.view.PlayPauseDrawable this$0 -> c
-    338:338:java.lang.Float get(com.music.view.PlayPauseDrawable) -> a
-    343:345:void set(com.music.view.PlayPauseDrawable,java.lang.Float) -> a
+com.music.ui.view.PlayPauseDrawable$XPointProperty -> com.music.ui.view.g$c:
+    com.music.ui.view.PlayPauseDrawable this$0 -> c
+    338:338:java.lang.Float get(com.music.ui.view.PlayPauseDrawable) -> a
+    343:345:void set(com.music.ui.view.PlayPauseDrawable,java.lang.Float) -> a
     1:1:java.lang.Object get(java.lang.Object) -> get
     1:1:void set(java.lang.Object,java.lang.Object) -> set
-com.music.view.PlayPauseDrawable$YPointProperty -> com.music.view.g$d:
-    com.music.view.PlayPauseDrawable this$0 -> c
-    356:356:java.lang.Float get(com.music.view.PlayPauseDrawable) -> a
-    361:363:void set(com.music.view.PlayPauseDrawable,java.lang.Float) -> a
+com.music.ui.view.PlayPauseDrawable$YPointProperty -> com.music.ui.view.g$d:
+    com.music.ui.view.PlayPauseDrawable this$0 -> c
+    356:356:java.lang.Float get(com.music.ui.view.PlayPauseDrawable) -> a
+    361:363:void set(com.music.ui.view.PlayPauseDrawable,java.lang.Float) -> a
     1:1:java.lang.Object get(java.lang.Object) -> get
     1:1:void set(java.lang.Object,java.lang.Object) -> set
-com.music.view.SplashScreen -> com.music.view.k:
+com.music.ui.view.SplashScreen -> com.music.ui.view.k:
     int SLIDE_LEFT -> a
     int SLIDE_UP -> b
     int FADE_OUT -> c
@@ -13421,30 +13421,30 @@ com.music.view.SplashScreen -> com.music.view.k:
     android.app.Activity activity -> e
     39:85:void show(int,int) -> a
     88:92:void removeSplashScreen() -> a
-    26:26:android.app.Activity access$0(com.music.view.SplashScreen) -> a
-    24:24:void access$1(com.music.view.SplashScreen,android.app.Dialog) -> a
-    24:24:android.app.Dialog access$2(com.music.view.SplashScreen) -> b
-com.music.view.SplashScreen$1 -> com.music.view.l:
-    com.music.view.SplashScreen this$0 -> a
+    26:26:android.app.Activity access$0(com.music.ui.view.SplashScreen) -> a
+    24:24:void access$1(com.music.ui.view.SplashScreen,android.app.Dialog) -> a
+    24:24:android.app.Dialog access$2(com.music.ui.view.SplashScreen) -> b
+com.music.ui.view.SplashScreen$1 -> com.music.ui.view.l:
+    com.music.ui.view.SplashScreen this$0 -> a
     int val$imageResource -> b
     int val$animation -> c
     42:82:void run() -> run
-com.music.view.activity.BaseActivity -> com.music.view.activity.BaseActivity:
+com.music.ui.view.activity.BaseActivity -> com.music.ui.view.activity.BaseActivity:
     25:35:void onCreate(android.os.Bundle) -> onCreate
     38:39:void startActivity(java.lang.Class) -> a
     41:51:void changeFont(android.view.ViewGroup) -> a
     55:61:void onResume() -> onResume
     65:67:void onPause() -> onPause
-com.music.view.activity.BaseFragmentActivity -> com.music.view.activity.BaseFragmentActivity:
+com.music.ui.view.activity.BaseFragmentActivity -> com.music.ui.view.activity.BaseFragmentActivity:
     23:33:void onCreate(android.os.Bundle) -> onCreate
     36:37:void startActivity(java.lang.Class) -> a
     40:50:void changeFont(android.view.ViewGroup) -> a
     55:59:void onResume() -> onResume
     64:66:void onPause() -> onPause
-com.music.view.activity.BaseHeaderActivity -> com.music.view.activity.BaseHeaderActivity:
+com.music.ui.view.activity.BaseHeaderActivity -> com.music.ui.view.activity.BaseHeaderActivity:
     27:32:void onCreate(android.os.Bundle) -> onCreate
     39:42:void OnClick(android.view.View) -> OnClick
-com.music.view.activity.ChangeBgActivity -> com.music.view.activity.ChangeBgActivity:
+com.music.ui.view.activity.ChangeBgActivity -> com.music.ui.view.activity.ChangeBgActivity:
     android.widget.GridView gridView -> o
     com.lu.demo.adapter.LuAdapter adapter -> p
     java.util.List bgBeans -> q
@@ -13457,27 +13457,27 @@ com.music.view.activity.ChangeBgActivity -> com.music.view.activity.ChangeBgActi
     59:97:void initWidget() -> a
     101:124:void initData() -> b
     128:136:void onClick(android.view.View) -> onClick
-    37:37:java.util.List access$0(com.music.view.activity.ChangeBgActivity) -> a
-    36:36:com.lu.demo.adapter.LuAdapter access$1(com.music.view.activity.ChangeBgActivity) -> b
-com.music.view.activity.ChangeBgActivity$1 -> com.music.view.activity.a:
-    com.music.view.activity.ChangeBgActivity this$0 -> a
+    37:37:java.util.List access$0(com.music.ui.view.activity.ChangeBgActivity) -> a
+    36:36:com.lu.demo.adapter.LuAdapter access$1(com.music.ui.view.activity.ChangeBgActivity) -> b
+com.music.ui.view.activity.ChangeBgActivity$1 -> com.music.ui.view.activity.a:
+    com.music.ui.view.activity.ChangeBgActivity this$0 -> a
     69:77:void convert(com.lu.demo.adapter.ViewHolder,com.music.bean.BgBean) -> a
     1:1:void convert(com.lu.demo.adapter.ViewHolder,java.lang.Object) -> a
-com.music.view.activity.ChangeBgActivity$2 -> com.music.view.activity.b:
-    com.music.view.activity.ChangeBgActivity this$0 -> a
+com.music.ui.view.activity.ChangeBgActivity$2 -> com.music.ui.view.activity.b:
+    com.music.ui.view.activity.ChangeBgActivity this$0 -> a
     87:94:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.music.view.activity.ImageFactory -> com.music.view.activity.c:
-    com.music.view.activity.ImageFactoryActivity mActivity -> d
+com.music.ui.view.activity.ImageFactory -> com.music.ui.view.activity.c:
+    com.music.ui.view.activity.ImageFactoryActivity mActivity -> d
     android.content.Context mContext -> e
     android.view.View mContentRootView -> a
     21:21:android.view.View findViewById(int) -> a
     void initViews() -> a
     void initEvents() -> b
-com.music.view.activity.ImageFactoryActivity -> com.music.view.activity.ImageFactoryActivity:
+com.music.ui.view.activity.ImageFactoryActivity -> com.music.ui.view.activity.ImageFactoryActivity:
     android.widget.ViewFlipper mVfFlipper -> r
     android.widget.Button mBtnRight -> s
-    com.music.view.ImageFactoryCrop mImageFactoryCrop -> t
-    com.music.view.ImageFactoryFliter mImageFactoryFliter -> u
+    com.music.ui.view.ImageFactoryCrop mImageFactoryCrop -> t
+    com.music.ui.view.ImageFactoryFliter mImageFactoryFliter -> u
     java.lang.String mPath -> v
     java.lang.String mNewPath -> w
     int mIndex -> x
@@ -13496,18 +13496,18 @@ com.music.view.activity.ImageFactoryActivity -> com.music.view.activity.ImageFac
     133:150:void onBackPressed() -> onBackPressed
     153:163:void init() -> c
     166:190:void initImageFactory() -> d
-    36:36:int access$0(com.music.view.activity.ImageFactoryActivity) -> a
-    32:32:com.music.view.ImageFactoryCrop access$1(com.music.view.activity.ImageFactoryActivity) -> b
-    33:33:com.music.view.ImageFactoryFliter access$2(com.music.view.activity.ImageFactoryActivity) -> c
-com.music.view.activity.ImageFactoryActivity$OnRightImageButtonClickListener -> com.music.view.activity.ImageFactoryActivity$a:
-    com.music.view.activity.ImageFactoryActivity this$0 -> a
+    36:36:int access$0(com.music.ui.view.activity.ImageFactoryActivity) -> a
+    32:32:com.music.ui.view.ImageFactoryCrop access$1(com.music.ui.view.activity.ImageFactoryActivity) -> b
+    33:33:com.music.ui.view.ImageFactoryFliter access$2(com.music.ui.view.activity.ImageFactoryActivity) -> c
+com.music.ui.view.activity.ImageFactoryActivity$OnRightImageButtonClickListener -> com.music.ui.view.activity.ImageFactoryActivity$a:
+    com.music.ui.view.activity.ImageFactoryActivity this$0 -> a
     197:211:void onClick(android.view.View) -> onClick
-com.music.view.activity.LocalMusicActivity -> com.music.view.activity.LocalMusicActivity:
+com.music.ui.view.activity.LocalMusicActivity -> com.music.ui.view.activity.LocalMusicActivity:
     java.lang.String TAG -> I
     int REQUESTCODE_LOGIN -> L
     int LOCK_PASSWORD -> M
     android.support.v4.app.Fragment contentFragment -> J
-    com.music.view.SplashScreen mSplashScreen -> N
+    com.music.ui.view.SplashScreen mSplashScreen -> N
     boolean isHome -> O
     android.widget.TextView tv_title -> P
     android.widget.TextView tv_music_Artist -> Q
@@ -13515,24 +13515,24 @@ com.music.view.activity.LocalMusicActivity -> com.music.view.activity.LocalMusic
     android.widget.TextView tv_music_title -> S
     android.widget.TextView tv_mobile -> T
     android.widget.ImageButton btn_musicPlaying -> U
-    com.music.view.MyNotification myNotification -> V
-    com.music.view.widget.RoundImageView iv_music_album -> W
-    com.music.widget.slidingmenu.SlidingMenu slidingMenu -> X
+    com.music.ui.view.MyNotification myNotification -> V
+    com.music.ui.view.widget.RoundImageView iv_music_album -> W
+    com.music.ui.widget.slidingmenu.SlidingMenu slidingMenu -> X
     android.widget.ImageView iv_back -> Y
     android.widget.ImageView iv_search -> Z
-    com.music.view.widget.CircularImage iv_header -> aa
+    com.music.ui.view.widget.CircularImage iv_header -> aa
     android.widget.TextView tv_username -> ab
-    com.music.view.PlayPauseDrawable playPauseDrawable -> ac
+    com.music.ui.view.PlayPauseDrawable playPauseDrawable -> ac
     int playColor -> ad
     int pauseColor -> ae
     int dwableDuaration -> af
     com.music.bean.MusicBaseInfo currentMp3Info -> ag
     com.music.utils.Mp3Util_New mp3Util -> ah
-    com.music.view.fragment.MusicListFragment musicListFragment -> ai
+    com.music.ui.view.fragment.MusicListFragment musicListFragment -> ai
     android.support.v4.app.FragmentTransaction transaction -> aj
-    com.music.view.fragment.LocalMusicFragment localMusicFragment -> ak
-    com.music.broadcastreceiver.MyBroadcastReceiver myBroadcastReceiver -> al
-    com.music.widget.slidingmenu2.SlidingMenu mSlidingMenu -> am
+    com.music.ui.view.fragment.LocalMusicFragment localMusicFragment -> ak
+    com.music.ui.broadcastreceiver.MyBroadcastReceiver myBroadcastReceiver -> al
+    com.music.ui.widget.slidingmenu2.SlidingMenu mSlidingMenu -> am
     java.lang.String userHeaderImg -> K
     boolean isFirst -> an
     boolean unLockSuccess -> ao
@@ -13559,38 +13559,38 @@ com.music.view.activity.LocalMusicActivity -> com.music.view.activity.LocalMusic
     625:634:void exit() -> h
     637:639:void unregisterReceiver() -> i
     643:651:boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
-    73:73:com.music.view.SplashScreen access$0(com.music.view.activity.LocalMusicActivity) -> a
-    350:350:void access$1(com.music.view.activity.LocalMusicActivity) -> b
-    339:339:void access$2(com.music.view.activity.LocalMusicActivity) -> c
-    120:120:com.music.utils.Mp3Util_New access$3(com.music.view.activity.LocalMusicActivity) -> d
-    84:84:android.widget.TextView access$4(com.music.view.activity.LocalMusicActivity) -> e
-    95:95:com.music.view.MyNotification access$5(com.music.view.activity.LocalMusicActivity) -> f
-    93:93:android.widget.ImageButton access$6(com.music.view.activity.LocalMusicActivity) -> g
-com.music.view.activity.LocalMusicActivity$1 -> com.music.view.activity.d:
+    73:73:com.music.ui.view.SplashScreen access$0(com.music.ui.view.activity.LocalMusicActivity) -> a
+    350:350:void access$1(com.music.ui.view.activity.LocalMusicActivity) -> b
+    339:339:void access$2(com.music.ui.view.activity.LocalMusicActivity) -> c
+    120:120:com.music.utils.Mp3Util_New access$3(com.music.ui.view.activity.LocalMusicActivity) -> d
+    84:84:android.widget.TextView access$4(com.music.ui.view.activity.LocalMusicActivity) -> e
+    95:95:com.music.ui.view.MyNotification access$5(com.music.ui.view.activity.LocalMusicActivity) -> f
+    93:93:android.widget.ImageButton access$6(com.music.ui.view.activity.LocalMusicActivity) -> g
+com.music.ui.view.activity.LocalMusicActivity$1 -> com.music.ui.view.activity.d:
     long start -> a
-    com.music.view.activity.LocalMusicActivity this$0 -> b
+    com.music.ui.view.activity.LocalMusicActivity this$0 -> b
     256:261:java.lang.Object doInBackground(java.lang.String[]) -> a
     267:282:void onPostExecute(java.lang.Object) -> a
-com.music.view.activity.LocalMusicActivity$2 -> com.music.view.activity.e:
-    com.music.view.activity.LocalMusicActivity this$0 -> a
+com.music.ui.view.activity.LocalMusicActivity$2 -> com.music.ui.view.activity.e:
+    com.music.ui.view.activity.LocalMusicActivity this$0 -> a
     206:209:void onRegistered(java.lang.String) -> a
-com.music.view.activity.LocalMusicActivity$3 -> com.music.view.activity.f:
-    com.music.view.activity.LocalMusicActivity this$0 -> a
+com.music.ui.view.activity.LocalMusicActivity$3 -> com.music.ui.view.activity.f:
+    com.music.ui.view.activity.LocalMusicActivity this$0 -> a
     433:447:void onClick(android.content.DialogInterface,int) -> onClick
-com.music.view.activity.LocalMusicActivity$4 -> com.music.view.activity.g:
-    com.music.view.activity.LocalMusicActivity this$0 -> a
+com.music.ui.view.activity.LocalMusicActivity$4 -> com.music.ui.view.activity.g:
+    com.music.ui.view.activity.LocalMusicActivity this$0 -> a
     616:617:void onClick(android.content.DialogInterface,int) -> onClick
-com.music.view.activity.LocalMusicActivity$MyMainState -> com.music.view.activity.LocalMusicActivity$a:
-    com.music.view.activity.LocalMusicActivity this$0 -> a
+com.music.ui.view.activity.LocalMusicActivity$MyMainState -> com.music.ui.view.activity.LocalMusicActivity$a:
+    com.music.ui.view.activity.LocalMusicActivity this$0 -> a
     564:567:void currentState(android.content.Intent) -> a
     571:574:void duration(android.content.Intent) -> b
     579:582:void pauseMusicState() -> b
     587:591:void playMusicState() -> a
-com.music.view.activity.LocalMusicActivity$OnBackListener -> com.music.view.activity.LocalMusicActivity$b:
+com.music.ui.view.activity.LocalMusicActivity$OnBackListener -> com.music.ui.view.activity.LocalMusicActivity$b:
     void onBack() -> a
-com.music.view.activity.LockScreenActivity -> com.music.view.activity.LockScreenActivity:
+com.music.ui.view.activity.LockScreenActivity -> com.music.ui.view.activity.LockScreenActivity:
     java.lang.String TAG -> b
-    com.music.view.widget.SliderRelativeLayout sliderRelativeLayout -> c
+    com.music.ui.view.widget.SliderRelativeLayout sliderRelativeLayout -> c
     int MSG_LOCK_SUCESS -> a
     android.widget.TextView tv_time -> d
     android.widget.TextView tv_day -> e
@@ -13598,7 +13598,7 @@ com.music.view.activity.LockScreenActivity -> com.music.view.activity.LockScreen
     android.widget.TextView tv_current_time -> g
     android.widget.TextView tv_duation -> h
     android.widget.ImageButton ib_player -> i
-    com.music.broadcastreceiver.MyBroadcastReceiver myBroadcastReceiver -> j
+    com.music.ui.broadcastreceiver.MyBroadcastReceiver myBroadcastReceiver -> j
     int TIME -> k
     com.music.utils.Mp3Util_New mp3Util -> l
     android.os.Handler handler -> m
@@ -13613,23 +13613,23 @@ com.music.view.activity.LockScreenActivity -> com.music.view.activity.LockScreen
     170:171:void playMusic() -> playMusic
     178:185:boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
     192:194:void onDestroy() -> onDestroy
-    33:33:android.widget.TextView access$0(com.music.view.activity.LockScreenActivity) -> a
-    102:102:android.os.Handler access$1(com.music.view.activity.LockScreenActivity) -> b
-    33:33:android.widget.TextView access$2(com.music.view.activity.LockScreenActivity) -> c
-    38:38:com.music.utils.Mp3Util_New access$3(com.music.view.activity.LockScreenActivity) -> d
-    33:33:android.widget.TextView access$4(com.music.view.activity.LockScreenActivity) -> e
-    34:34:android.widget.ImageButton access$5(com.music.view.activity.LockScreenActivity) -> f
-    33:33:android.widget.TextView access$6(com.music.view.activity.LockScreenActivity) -> g
-com.music.view.activity.LockScreenActivity$1 -> com.music.view.activity.h:
-    com.music.view.activity.LockScreenActivity this$0 -> a
+    33:33:android.widget.TextView access$0(com.music.ui.view.activity.LockScreenActivity) -> a
+    102:102:android.os.Handler access$1(com.music.ui.view.activity.LockScreenActivity) -> b
+    33:33:android.widget.TextView access$2(com.music.ui.view.activity.LockScreenActivity) -> c
+    38:38:com.music.utils.Mp3Util_New access$3(com.music.ui.view.activity.LockScreenActivity) -> d
+    33:33:android.widget.TextView access$4(com.music.ui.view.activity.LockScreenActivity) -> e
+    34:34:android.widget.ImageButton access$5(com.music.ui.view.activity.LockScreenActivity) -> f
+    33:33:android.widget.TextView access$6(com.music.ui.view.activity.LockScreenActivity) -> g
+com.music.ui.view.activity.LockScreenActivity$1 -> com.music.ui.view.activity.h:
+    com.music.ui.view.activity.LockScreenActivity this$0 -> a
     105:118:void handleMessage(android.os.Message) -> handleMessage
-com.music.view.activity.LockScreenActivity$MyLockState -> com.music.view.activity.LockScreenActivity$a:
-    com.music.view.activity.LockScreenActivity this$0 -> a
+com.music.ui.view.activity.LockScreenActivity$MyLockState -> com.music.ui.view.activity.LockScreenActivity$a:
+    com.music.ui.view.activity.LockScreenActivity this$0 -> a
     125:132:void playMusicState() -> a
     137:138:void currentState(android.content.Intent) -> a
     143:143:void duration(android.content.Intent) -> b
     147:148:void pauseMusicState() -> b
-com.music.view.activity.LoginActivity -> com.music.view.activity.LoginActivity:
+com.music.ui.view.activity.LoginActivity -> com.music.ui.view.activity.LoginActivity:
     java.lang.String TAG -> a
     android.widget.EditText et_username -> b
     android.widget.EditText et_userpassword -> c
@@ -13650,22 +13650,22 @@ com.music.view.activity.LoginActivity -> com.music.view.activity.LoginActivity:
     242:256:void login(java.lang.String,java.lang.String) -> a
     266:274:boolean isEmpty(java.lang.String,java.lang.String) -> b
     288:288:boolean isValid(java.lang.String,java.lang.String) -> c
-    201:201:void access$0(com.music.view.activity.LoginActivity,com.umeng.socialize.bean.SHARE_MEDIA) -> a
-    228:228:void access$1(com.music.view.activity.LoginActivity,java.lang.String,java.lang.String,java.lang.String) -> a
-com.music.view.activity.LoginActivity$1 -> com.music.view.activity.i:
-    com.music.view.activity.LoginActivity this$0 -> a
+    201:201:void access$0(com.music.ui.view.activity.LoginActivity,com.umeng.socialize.bean.SHARE_MEDIA) -> a
+    228:228:void access$1(com.music.ui.view.activity.LoginActivity,java.lang.String,java.lang.String,java.lang.String) -> a
+com.music.ui.view.activity.LoginActivity$1 -> com.music.ui.view.activity.i:
+    com.music.ui.view.activity.LoginActivity this$0 -> a
     131:131:boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent) -> onEditorAction
-com.music.view.activity.LoginActivity$2 -> com.music.view.activity.j:
-    com.music.view.activity.LoginActivity this$0 -> a
+com.music.ui.view.activity.LoginActivity$2 -> com.music.ui.view.activity.j:
+    com.music.ui.view.activity.LoginActivity this$0 -> a
     174:175:void onStart(com.umeng.socialize.bean.SHARE_MEDIA) -> a
     179:179:void onError(com.umeng.socialize.exception.SocializeException,com.umeng.socialize.bean.SHARE_MEDIA) -> a
     183:190:void onComplete(android.os.Bundle,com.umeng.socialize.bean.SHARE_MEDIA) -> a
     194:194:void onCancel(com.umeng.socialize.bean.SHARE_MEDIA) -> onCancel
-com.music.view.activity.LoginActivity$3 -> com.music.view.activity.k:
-    com.music.view.activity.LoginActivity this$0 -> a
+com.music.ui.view.activity.LoginActivity$3 -> com.music.ui.view.activity.k:
+    com.music.ui.view.activity.LoginActivity this$0 -> a
     206:207:void onStart() -> a
     211:222:void onComplete(int,java.util.Map) -> a
-com.music.view.activity.MipcaCaptureActivity -> com.music.view.activity.MipcaCaptureActivity:
+com.music.ui.view.activity.MipcaCaptureActivity -> com.music.ui.view.activity.MipcaCaptureActivity:
     com.music.zxing.decoding.CaptureActivityHandler handler -> o
     com.music.zxing.view.ViewfinderView viewfinderView -> p
     boolean hasSurface -> q
@@ -13696,13 +13696,13 @@ com.music.view.activity.MipcaCaptureActivity -> com.music.view.activity.MipcaCap
     190:192:void drawViewfinder() -> c
     195:216:void initBeepSound() -> d
     221:228:void playBeepSoundAndVibrate() -> e
-com.music.view.activity.MipcaCaptureActivity$1 -> com.music.view.activity.l:
-    com.music.view.activity.MipcaCaptureActivity this$0 -> a
+com.music.ui.view.activity.MipcaCaptureActivity$1 -> com.music.ui.view.activity.l:
+    com.music.ui.view.activity.MipcaCaptureActivity this$0 -> a
     235:236:void onCompletion(android.media.MediaPlayer) -> onCompletion
-com.music.view.activity.MipcaCaptureActivity$2 -> com.music.view.activity.m:
-    com.music.view.activity.MipcaCaptureActivity this$0 -> a
+com.music.ui.view.activity.MipcaCaptureActivity$2 -> com.music.ui.view.activity.m:
+    com.music.ui.view.activity.MipcaCaptureActivity this$0 -> a
     78:79:void onClick(android.view.View) -> onClick
-com.music.view.activity.PlayerActivity -> com.music.view.activity.PlayerActivity:
+com.music.ui.view.activity.PlayerActivity -> com.music.ui.view.activity.PlayerActivity:
     java.lang.String TAG -> o
     android.widget.TextView musicTitle -> p
     android.widget.TextView musicArtist -> q
@@ -13713,14 +13713,14 @@ com.music.view.activity.PlayerActivity -> com.music.view.activity.PlayerActivity
     android.widget.SeekBar music_progressBar -> v
     android.widget.ImageButton ib_back -> w
     android.widget.ImageButton img_share -> x
-    com.music.view.widget.RoundImageView iv_music_album -> y
+    com.music.ui.view.widget.RoundImageView iv_music_album -> y
     android.widget.ImageView iv_needle -> z
     android.widget.TextView tv_current_progress -> A
     android.widget.TextView tv_finalProgress -> B
     android.widget.RelativeLayout rl_disc -> C
     android.widget.LinearLayout ll_lrc -> D
     int currentTime -> E
-    com.music.broadcastreceiver.MyBroadcastReceiver playerBroadcastReceiver -> F
+    com.music.ui.broadcastreceiver.MyBroadcastReceiver playerBroadcastReceiver -> F
     com.music.lrc.LyricView lyricView -> G
     com.music.utils.Mp3Util_New mp3Util -> H
     com.music.bean.MusicBaseInfo currentMp3Info -> I
@@ -13752,50 +13752,50 @@ com.music.view.activity.PlayerActivity -> com.music.view.activity.PlayerActivity
     550:559:void finishAnimator() -> k
     563:563:void lyricViewClick() -> a
     568:570:void onResume() -> onResume
-    114:114:com.music.utils.Mp3Util_New access$0(com.music.view.activity.PlayerActivity) -> a
-    112:112:com.music.lrc.LyricView access$1(com.music.view.activity.PlayerActivity) -> b
-    128:128:com.music.model.LyricModel access$2(com.music.view.activity.PlayerActivity) -> c
-    74:74:android.widget.ImageButton access$3(com.music.view.activity.PlayerActivity) -> d
-    122:122:android.animation.ObjectAnimator access$4(com.music.view.activity.PlayerActivity) -> e
-    92:92:android.widget.ImageView access$5(com.music.view.activity.PlayerActivity) -> f
-    124:124:android.view.animation.RotateAnimation access$6(com.music.view.activity.PlayerActivity) -> g
-    106:106:void access$7(com.music.view.activity.PlayerActivity,int) -> a
-    106:106:int access$8(com.music.view.activity.PlayerActivity) -> h
-    95:95:android.widget.TextView access$9(com.music.view.activity.PlayerActivity) -> i
-    80:80:android.widget.SeekBar access$10(com.music.view.activity.PlayerActivity) -> j
-    98:98:android.widget.TextView access$11(com.music.view.activity.PlayerActivity) -> k
-    63:63:android.widget.TextView access$12(com.music.view.activity.PlayerActivity) -> l
-    65:65:android.widget.TextView access$13(com.music.view.activity.PlayerActivity) -> m
-    357:357:void access$14(com.music.view.activity.PlayerActivity,boolean) -> a
-    123:123:android.view.animation.RotateAnimation access$15(com.music.view.activity.PlayerActivity) -> n
-    115:115:void access$16(com.music.view.activity.PlayerActivity,com.music.bean.MusicBaseInfo) -> a
-    115:115:com.music.bean.MusicBaseInfo access$17(com.music.view.activity.PlayerActivity) -> o
-    119:119:com.music.lrc.LyricDownloadManager access$18(com.music.view.activity.PlayerActivity) -> p
-    120:120:com.music.lrc.LyricLoadHelper access$19(com.music.view.activity.PlayerActivity) -> q
-com.music.view.activity.PlayerActivity$1 -> com.music.view.activity.n:
-    com.music.view.activity.PlayerActivity this$0 -> a
+    114:114:com.music.utils.Mp3Util_New access$0(com.music.ui.view.activity.PlayerActivity) -> a
+    112:112:com.music.lrc.LyricView access$1(com.music.ui.view.activity.PlayerActivity) -> b
+    128:128:com.music.model.LyricModel access$2(com.music.ui.view.activity.PlayerActivity) -> c
+    74:74:android.widget.ImageButton access$3(com.music.ui.view.activity.PlayerActivity) -> d
+    122:122:android.animation.ObjectAnimator access$4(com.music.ui.view.activity.PlayerActivity) -> e
+    92:92:android.widget.ImageView access$5(com.music.ui.view.activity.PlayerActivity) -> f
+    124:124:android.view.animation.RotateAnimation access$6(com.music.ui.view.activity.PlayerActivity) -> g
+    106:106:void access$7(com.music.ui.view.activity.PlayerActivity,int) -> a
+    106:106:int access$8(com.music.ui.view.activity.PlayerActivity) -> h
+    95:95:android.widget.TextView access$9(com.music.ui.view.activity.PlayerActivity) -> i
+    80:80:android.widget.SeekBar access$10(com.music.ui.view.activity.PlayerActivity) -> j
+    98:98:android.widget.TextView access$11(com.music.ui.view.activity.PlayerActivity) -> k
+    63:63:android.widget.TextView access$12(com.music.ui.view.activity.PlayerActivity) -> l
+    65:65:android.widget.TextView access$13(com.music.ui.view.activity.PlayerActivity) -> m
+    357:357:void access$14(com.music.ui.view.activity.PlayerActivity,boolean) -> a
+    123:123:android.view.animation.RotateAnimation access$15(com.music.ui.view.activity.PlayerActivity) -> n
+    115:115:void access$16(com.music.ui.view.activity.PlayerActivity,com.music.bean.MusicBaseInfo) -> a
+    115:115:com.music.bean.MusicBaseInfo access$17(com.music.ui.view.activity.PlayerActivity) -> o
+    119:119:com.music.lrc.LyricDownloadManager access$18(com.music.ui.view.activity.PlayerActivity) -> p
+    120:120:com.music.lrc.LyricLoadHelper access$19(com.music.ui.view.activity.PlayerActivity) -> q
+com.music.ui.view.activity.PlayerActivity$1 -> com.music.ui.view.activity.n:
+    com.music.ui.view.activity.PlayerActivity this$0 -> a
     530:535:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.music.view.activity.PlayerActivity$2 -> com.music.view.activity.o:
+com.music.ui.view.activity.PlayerActivity$2 -> com.music.ui.view.activity.o:
     java.lang.String lrcPath -> a
-    com.music.view.activity.PlayerActivity this$0 -> b
+    com.music.ui.view.activity.PlayerActivity this$0 -> b
     180:186:void onPostExecute(java.lang.Object) -> a
     190:205:java.lang.Object doInBackground(java.lang.String[]) -> a
-com.music.view.activity.PlayerActivity$MyLyricListener -> com.music.view.activity.PlayerActivity$a:
-    com.music.view.activity.PlayerActivity this$0 -> a
+com.music.ui.view.activity.PlayerActivity$MyLyricListener -> com.music.ui.view.activity.PlayerActivity$a:
+    com.music.ui.view.activity.PlayerActivity this$0 -> a
     152:156:void onLyricLoaded(java.util.List,int) -> a
     161:161:void onLyricSentenceChanged(int) -> a
-com.music.view.activity.PlayerActivity$MyState -> com.music.view.activity.PlayerActivity$b:
-    com.music.view.activity.PlayerActivity this$0 -> a
+com.music.ui.view.activity.PlayerActivity$MyState -> com.music.ui.view.activity.PlayerActivity$b:
+    com.music.ui.view.activity.PlayerActivity this$0 -> a
     467:475:void playMusicState() -> a
     479:485:void currentState(android.content.Intent) -> a
     490:499:void duration(android.content.Intent) -> b
     503:507:void pauseMusicState() -> b
-com.music.view.activity.PlayerActivity$OnSeekBarChangeListenerImpl -> com.music.view.activity.PlayerActivity$c:
-    com.music.view.activity.PlayerActivity this$0 -> a
+com.music.ui.view.activity.PlayerActivity$OnSeekBarChangeListenerImpl -> com.music.ui.view.activity.PlayerActivity$c:
+    com.music.ui.view.activity.PlayerActivity this$0 -> a
     419:426:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
     429:429:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
     432:432:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-com.music.view.activity.ScanActivity -> com.music.view.activity.ScanActivity:
+com.music.ui.view.activity.ScanActivity -> com.music.ui.view.activity.ScanActivity:
     android.widget.ImageView iv_search -> o
     android.widget.ImageView iv_more -> p
     android.widget.ImageView iv_back -> q
@@ -13807,7 +13807,7 @@ com.music.view.activity.ScanActivity -> com.music.view.activity.ScanActivity:
     66:81:void viewClick(android.view.View) -> viewClick
     83:88:void initWidget() -> a
     92:104:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
-com.music.view.activity.SearchMusicActivity -> com.music.view.activity.SearchMusicActivity:
+com.music.ui.view.activity.SearchMusicActivity -> com.music.ui.view.activity.SearchMusicActivity:
     java.lang.String TAG -> z
     android.widget.TextView tv_title -> o
     android.widget.TextView tv_no_song -> p
@@ -13817,10 +13817,10 @@ com.music.view.activity.SearchMusicActivity -> com.music.view.activity.SearchMus
     android.widget.ImageView iv_searchMusic -> t
     android.widget.AutoCompleteTextView atvSongName -> u
     android.widget.ListView listView -> v
-    com.music.widget.dialog.LoadingView loadView -> A
+    com.music.ui.widget.dialog.LoadingView loadView -> A
     com.music.bean.Mp3Info mp3 -> B
     java.util.List datas -> C
-    com.music.view.activity.SearchMusicActivity$MyAdater myAdapter -> D
+    com.music.ui.view.activity.SearchMusicActivity$MyAdater myAdapter -> D
     java.lang.String songName -> E
     java.lang.String songer -> F
     java.lang.String path -> G
@@ -13832,8 +13832,8 @@ com.music.view.activity.SearchMusicActivity -> com.music.view.activity.SearchMus
     java.util.List historySongName -> J
     java.util.List historySonger -> K
     java.util.Map history -> L
-    com.music.view.activity.SearchMusicActivity$HistoryAdater historyNamesAdapter -> M
-    com.music.view.activity.SearchMusicActivity$HistoryAdater historySongerAdapter -> N
+    com.music.ui.view.activity.SearchMusicActivity$HistoryAdater historyNamesAdapter -> M
+    com.music.ui.view.activity.SearchMusicActivity$HistoryAdater historySongerAdapter -> N
     java.lang.String HISTORY_SONGNAME -> O
     java.lang.String HISTORY_SONGER -> P
     java.lang.String HISTORY_SEARCH -> Q
@@ -13848,60 +13848,60 @@ com.music.view.activity.SearchMusicActivity -> com.music.view.activity.SearchMus
     265:274:void checkHasData() -> d
     278:313:void initWidget() -> e
     431:433:void play() -> f
-    193:193:void access$0(com.music.view.activity.SearchMusicActivity) -> a
-    264:264:void access$1(com.music.view.activity.SearchMusicActivity) -> b
-    91:91:com.music.model.XmlParseModel access$2(com.music.view.activity.SearchMusicActivity) -> c
-    81:81:com.music.bean.Mp3Info access$3(com.music.view.activity.SearchMusicActivity) -> d
-    82:82:java.util.List access$4(com.music.view.activity.SearchMusicActivity) -> e
-    92:92:java.util.List access$5(com.music.view.activity.SearchMusicActivity) -> f
-    95:95:com.music.view.activity.SearchMusicActivity$HistoryAdater access$6(com.music.view.activity.SearchMusicActivity) -> g
-    94:94:java.util.Map access$7(com.music.view.activity.SearchMusicActivity) -> h
-    93:93:java.util.List access$8(com.music.view.activity.SearchMusicActivity) -> i
-    96:96:com.music.view.activity.SearchMusicActivity$HistoryAdater access$9(com.music.view.activity.SearchMusicActivity) -> j
-    430:430:void access$10(com.music.view.activity.SearchMusicActivity) -> k
-    86:86:void access$11(com.music.view.activity.SearchMusicActivity,java.lang.String) -> a
-    86:86:java.lang.String access$12(com.music.view.activity.SearchMusicActivity) -> l
-    90:90:com.music.model.MusicHttpModel access$13(com.music.view.activity.SearchMusicActivity) -> m
-com.music.view.activity.SearchMusicActivity$ClearHistoryItemClick -> com.music.view.activity.SearchMusicActivity$a:
+    193:193:void access$0(com.music.ui.view.activity.SearchMusicActivity) -> a
+    264:264:void access$1(com.music.ui.view.activity.SearchMusicActivity) -> b
+    91:91:com.music.model.XmlParseModel access$2(com.music.ui.view.activity.SearchMusicActivity) -> c
+    81:81:com.music.bean.Mp3Info access$3(com.music.ui.view.activity.SearchMusicActivity) -> d
+    82:82:java.util.List access$4(com.music.ui.view.activity.SearchMusicActivity) -> e
+    92:92:java.util.List access$5(com.music.ui.view.activity.SearchMusicActivity) -> f
+    95:95:com.music.ui.view.activity.SearchMusicActivity$HistoryAdater access$6(com.music.ui.view.activity.SearchMusicActivity) -> g
+    94:94:java.util.Map access$7(com.music.ui.view.activity.SearchMusicActivity) -> h
+    93:93:java.util.List access$8(com.music.ui.view.activity.SearchMusicActivity) -> i
+    96:96:com.music.ui.view.activity.SearchMusicActivity$HistoryAdater access$9(com.music.ui.view.activity.SearchMusicActivity) -> j
+    430:430:void access$10(com.music.ui.view.activity.SearchMusicActivity) -> k
+    86:86:void access$11(com.music.ui.view.activity.SearchMusicActivity,java.lang.String) -> a
+    86:86:java.lang.String access$12(com.music.ui.view.activity.SearchMusicActivity) -> l
+    90:90:com.music.model.MusicHttpModel access$13(com.music.ui.view.activity.SearchMusicActivity) -> m
+com.music.ui.view.activity.SearchMusicActivity$ClearHistoryItemClick -> com.music.ui.view.activity.SearchMusicActivity$a:
     int type -> b
-    com.music.view.activity.SearchMusicActivity this$0 -> a
+    com.music.ui.view.activity.SearchMusicActivity this$0 -> a
     325:334:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
     337:345:void clearSongNameHistory(int) -> a
     348:355:void clearSongerHistory(int) -> b
-com.music.view.activity.SearchMusicActivity$DownOnClick -> com.music.view.activity.SearchMusicActivity$b:
+com.music.ui.view.activity.SearchMusicActivity$DownOnClick -> com.music.ui.view.activity.SearchMusicActivity$b:
     int position -> b
-    com.music.view.activity.SearchMusicActivity this$0 -> a
+    com.music.ui.view.activity.SearchMusicActivity this$0 -> a
     392:396:void onClick(android.view.View) -> onClick
     399:407:void down(android.widget.Button) -> a
-    379:379:com.music.view.activity.SearchMusicActivity access$0(com.music.view.activity.SearchMusicActivity$DownOnClick) -> a
-com.music.view.activity.SearchMusicActivity$DownOnClick$DownMusicCallBack -> com.music.view.activity.SearchMusicActivity$b$a:
-    com.music.view.activity.SearchMusicActivity$DownOnClick this$1 -> b
+    379:379:com.music.ui.view.activity.SearchMusicActivity access$0(com.music.ui.view.activity.SearchMusicActivity$DownOnClick) -> a
+com.music.ui.view.activity.SearchMusicActivity$DownOnClick$DownMusicCallBack -> com.music.ui.view.activity.SearchMusicActivity$b$a:
+    com.music.ui.view.activity.SearchMusicActivity$DownOnClick this$1 -> b
     412:412:void onLoading(long,long,boolean) -> a
     416:418:void onSuccess(com.lidroid.xutils.http.ResponseInfo) -> a
     422:426:void onFailure(com.lidroid.xutils.exception.HttpException,java.lang.String) -> a
-com.music.view.activity.SearchMusicActivity$HistoryAdater -> com.music.view.activity.SearchMusicActivity$c:
+com.music.ui.view.activity.SearchMusicActivity$HistoryAdater -> com.music.ui.view.activity.SearchMusicActivity$c:
     java.util.List objects -> b
-    com.music.view.activity.SearchMusicActivity this$0 -> a
+    com.music.ui.view.activity.SearchMusicActivity this$0 -> a
     154:188:android.widget.Filter getFilter() -> getFilter
-    145:145:java.util.List access$0(com.music.view.activity.SearchMusicActivity$HistoryAdater) -> a
-    144:144:com.music.view.activity.SearchMusicActivity access$1(com.music.view.activity.SearchMusicActivity$HistoryAdater) -> b
-com.music.view.activity.SearchMusicActivity$HistoryAdater$1 -> com.music.view.activity.p:
-    com.music.view.activity.SearchMusicActivity$HistoryAdater this$1 -> a
+    145:145:java.util.List access$0(com.music.ui.view.activity.SearchMusicActivity$HistoryAdater) -> a
+    144:144:com.music.ui.view.activity.SearchMusicActivity access$1(com.music.ui.view.activity.SearchMusicActivity$HistoryAdater) -> b
+com.music.ui.view.activity.SearchMusicActivity$HistoryAdater$1 -> com.music.ui.view.activity.p:
+    com.music.ui.view.activity.SearchMusicActivity$HistoryAdater this$1 -> a
     160:166:android.widget.Filter$FilterResults performFiltering(java.lang.CharSequence) -> performFiltering
     175:185:void publishResults(java.lang.CharSequence,android.widget.Filter$FilterResults) -> publishResults
-com.music.view.activity.SearchMusicActivity$MyAdater -> com.music.view.activity.SearchMusicActivity$d:
-    com.music.view.activity.SearchMusicActivity this$0 -> a
+com.music.ui.view.activity.SearchMusicActivity$MyAdater -> com.music.ui.view.activity.SearchMusicActivity$d:
+    com.music.ui.view.activity.SearchMusicActivity this$0 -> a
     366:371:void convert(com.lu.demo.adapter.ViewHolder,int) -> a
     376:376:void convert(com.lu.demo.adapter.ViewHolder,com.music.bean.Mp3Info) -> a
     1:1:void convert(com.lu.demo.adapter.ViewHolder,java.lang.Object) -> a
-com.music.view.activity.SearchMusicActivity$SearchMusicCallBack -> com.music.view.activity.SearchMusicActivity$e:
-    com.music.view.activity.SearchMusicActivity this$0 -> b
+com.music.ui.view.activity.SearchMusicActivity$SearchMusicCallBack -> com.music.ui.view.activity.SearchMusicActivity$e:
+    com.music.ui.view.activity.SearchMusicActivity this$0 -> b
     238:239:void onFailure(com.lidroid.xutils.exception.HttpException,java.lang.String) -> a
     243:253:void onSuccess(com.lidroid.xutils.http.ResponseInfo) -> a
-com.music.view.activity.SearchMusicActivity$mRun -> com.music.view.activity.SearchMusicActivity$f:
-    com.music.view.activity.SearchMusicActivity this$0 -> a
+com.music.ui.view.activity.SearchMusicActivity$mRun -> com.music.ui.view.activity.SearchMusicActivity$f:
+    com.music.ui.view.activity.SearchMusicActivity this$0 -> a
     132:133:void run() -> run
-com.music.view.activity.SettingActivity -> com.music.view.activity.SettingActivity:
+com.music.ui.view.activity.SettingActivity -> com.music.ui.view.activity.SettingActivity:
     java.lang.String TAG -> o
     android.widget.ImageView iv_search -> r
     android.widget.ImageView iv_more -> s
@@ -13914,11 +13914,11 @@ com.music.view.activity.SettingActivity -> com.music.view.activity.SettingActivi
     android.widget.CheckBox cb_dlna -> z
     android.widget.CheckBox cb_qiege -> A
     android.widget.CheckBox cb_listener_down -> B
-    com.music.view.popwindow.PopupWindowQieGe popupWindowQieGe -> C
+    com.music.ui.view.popwindow.PopupWindowQieGe popupWindowQieGe -> C
     android.view.View ll_parent -> D
     com.music.utils.SensorManagerUtil sensorManagerUtil -> E
     android.os.Handler handle -> F
-    com.music.view.popwindow.PopupWindowQieGe$PopupWindowUIOnClickListener popupWindowUIOnClickListener -> p
+    com.music.ui.view.popwindow.PopupWindowQieGe$PopupWindowUIOnClickListener popupWindowUIOnClickListener -> p
     com.music.utils.SensorManagerUtil$SensorChangedListener sensorChangedListener -> q
     68:75:void onCreate(android.os.Bundle) -> onCreate
     78:94:void initWidget() -> a
@@ -13929,23 +13929,23 @@ com.music.view.activity.SettingActivity -> com.music.view.activity.SettingActivi
     217:224:void setLock() -> b
     227:237:void qiege() -> c
     240:241:void scan() -> d
-    124:124:void access$0(com.music.view.activity.SettingActivity,int) -> a
-    49:49:android.widget.TextView access$1(com.music.view.activity.SettingActivity) -> a
-com.music.view.activity.SettingActivity$1 -> com.music.view.activity.q:
-    com.music.view.activity.SettingActivity this$0 -> a
+    124:124:void access$0(com.music.ui.view.activity.SettingActivity,int) -> a
+    49:49:android.widget.TextView access$1(com.music.ui.view.activity.SettingActivity) -> a
+com.music.ui.view.activity.SettingActivity$1 -> com.music.ui.view.activity.q:
+    com.music.ui.view.activity.SettingActivity this$0 -> a
     246:248:void onClick(int) -> a
-com.music.view.activity.SettingActivity$2 -> com.music.view.activity.r:
-    com.music.view.activity.SettingActivity this$0 -> a
+com.music.ui.view.activity.SettingActivity$2 -> com.music.ui.view.activity.r:
+    com.music.ui.view.activity.SettingActivity this$0 -> a
     255:258:void onSensorChanged() -> a
-com.music.view.activity.SettingActivity$3 -> com.music.view.activity.s:
-    com.music.view.activity.SettingActivity this$0 -> a
+com.music.ui.view.activity.SettingActivity$3 -> com.music.ui.view.activity.s:
+    com.music.ui.view.activity.SettingActivity this$0 -> a
     172:174:void run() -> run
-com.music.view.activity.SwipeBackActivity -> com.music.view.activity.SwipeBackActivity:
-    com.music.view.fragment.SwipeBackLayout layout -> o
+com.music.ui.view.activity.SwipeBackActivity -> com.music.ui.view.activity.SwipeBackActivity:
+    com.music.ui.view.fragment.SwipeBackLayout layout -> o
     22:26:void onCreate(android.os.Bundle) -> onCreate
     31:33:void startActivity(android.content.Intent) -> startActivity
     41:43:void onBackPressed() -> onBackPressed
-com.music.view.activity.WelcomeActivity -> com.music.view.activity.WelcomeActivity:
+com.music.ui.view.activity.WelcomeActivity -> com.music.ui.view.activity.WelcomeActivity:
     java.lang.String TAG -> a
     int[] welcome -> b
     android.view.View[] imageViews -> c
@@ -13960,24 +13960,24 @@ com.music.view.activity.WelcomeActivity -> com.music.view.activity.WelcomeActivi
     48:114:void initWidget() -> a
     117:129:void startMainActivity() -> b
     131:139:void setChecked(int) -> a
-    115:115:void access$0(com.music.view.activity.WelcomeActivity) -> a
-    130:130:void access$1(com.music.view.activity.WelcomeActivity,int) -> a
-    33:33:android.widget.Button access$2(com.music.view.activity.WelcomeActivity) -> b
-com.music.view.activity.WelcomeActivity$1 -> com.music.view.activity.t:
-    com.music.view.activity.WelcomeActivity this$0 -> a
+    115:115:void access$0(com.music.ui.view.activity.WelcomeActivity) -> a
+    130:130:void access$1(com.music.ui.view.activity.WelcomeActivity,int) -> a
+    33:33:android.widget.Button access$2(com.music.ui.view.activity.WelcomeActivity) -> b
+com.music.ui.view.activity.WelcomeActivity$1 -> com.music.ui.view.activity.t:
+    com.music.ui.view.activity.WelcomeActivity this$0 -> a
     53:54:void onClick(android.view.View) -> onClick
-com.music.view.activity.WelcomeActivity$2 -> com.music.view.activity.u:
-    com.music.view.activity.WelcomeActivity this$0 -> c
+com.music.ui.view.activity.WelcomeActivity$2 -> com.music.ui.view.activity.u:
+    com.music.ui.view.activity.WelcomeActivity this$0 -> c
     69:69:boolean isViewFromObject(android.view.View,java.lang.Object) -> a
     74:74:int getCount() -> b
     78:82:java.lang.Object instantiateItem(android.view.ViewGroup,int) -> a
     88:90:void destroyItem(android.view.ViewGroup,int,java.lang.Object) -> a
-com.music.view.activity.WelcomeActivity$3 -> com.music.view.activity.v:
-    com.music.view.activity.WelcomeActivity this$0 -> a
+com.music.ui.view.activity.WelcomeActivity$3 -> com.music.ui.view.activity.v:
+    com.music.ui.view.activity.WelcomeActivity this$0 -> a
     98:104:void onPageSelected(int) -> a
     108:108:void onPageScrolled(int,float,int) -> a
     112:112:void onPageScrollStateChanged(int) -> b
-com.music.view.adapter.LuAdapter -> com.music.view.adapter.a:
+com.music.ui.view.adapter.LuAdapter -> com.music.ui.view.adapter.a:
     android.content.Context context -> a
     java.util.List datas -> b
     int mItemLayoutId -> c
@@ -13985,17 +13985,17 @@ com.music.view.adapter.LuAdapter -> com.music.view.adapter.a:
     29:29:java.lang.Object getItem(int) -> getItem
     35:35:long getItemId(int) -> getItemId
     40:43:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    45:45:void convert(com.music.view.adapter.ViewHolder,java.lang.Object) -> a
-    void convert(com.music.view.adapter.ViewHolder,int) -> a
-    50:50:com.music.view.adapter.ViewHolder getViewHolder(android.view.View,android.view.ViewGroup,int) -> a
-com.music.view.adapter.MusicListAdapter -> com.music.view.adapter.b:
+    45:45:void convert(com.music.ui.view.adapter.ViewHolder,java.lang.Object) -> a
+    void convert(com.music.ui.view.adapter.ViewHolder,int) -> a
+    50:50:com.music.ui.view.adapter.ViewHolder getViewHolder(android.view.View,android.view.ViewGroup,int) -> a
+com.music.ui.view.adapter.MusicListAdapter -> com.music.ui.view.adapter.b:
     java.lang.String mSections -> a
     android.content.Context context -> b
     java.util.List mp3Infos -> c
     com.music.bean.Mp3Info mp3Info -> d
     int pos -> e
     com.music.utils.Mp3Util_New mp3Util -> f
-    com.music.widget.indexablelistview.IndexableListView listView -> g
+    com.music.ui.widget.indexablelistview.IndexableListView listView -> g
     46:46:int getCount() -> getCount
     52:52:com.music.bean.Mp3Info getItem(int) -> a
     58:58:long getItemId(int) -> getItemId
@@ -14004,13 +14004,13 @@ com.music.view.adapter.MusicListAdapter -> com.music.view.adapter.b:
     135:150:int getPositionForSection(int) -> getPositionForSection
     155:155:int getSectionForPosition(int) -> getSectionForPosition
     1:1:java.lang.Object getItem(int) -> getItem
-com.music.view.adapter.MusicListAdapter$ViewHolder -> com.music.view.adapter.b$a:
+com.music.ui.view.adapter.MusicListAdapter$ViewHolder -> com.music.ui.view.adapter.b$a:
     android.widget.ImageView albumImage -> a
     android.widget.TextView musicTitle -> b
     android.widget.TextView catalog -> c
     android.widget.TextView music_album -> d
-    com.music.view.adapter.MusicListAdapter this$0 -> e
-com.music.view.adapter.MyGridViewAdapter -> com.music.view.adapter.c:
+    com.music.ui.view.adapter.MusicListAdapter this$0 -> e
+com.music.ui.view.adapter.MyGridViewAdapter -> com.music.ui.view.adapter.c:
     android.content.Context context -> a
     android.view.LayoutInflater inInflater -> b
     int res -> c
@@ -14020,32 +14020,32 @@ com.music.view.adapter.MyGridViewAdapter -> com.music.view.adapter.c:
     38:38:java.lang.Object getItem(int) -> getItem
     44:44:long getItemId(int) -> getItemId
     51:65:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.music.view.adapter.MyGridViewAdapter$ViewHolder -> com.music.view.adapter.c$a:
+com.music.ui.view.adapter.MyGridViewAdapter$ViewHolder -> com.music.ui.view.adapter.c$a:
     android.widget.ImageView image -> a
     android.widget.TextView textView -> b
-    com.music.view.adapter.MyGridViewAdapter this$0 -> c
-com.music.view.adapter.MyPagerAdapter -> com.music.view.adapter.MyPagerAdapter:
+    com.music.ui.view.adapter.MyGridViewAdapter this$0 -> c
+com.music.ui.view.adapter.MyPagerAdapter -> com.music.ui.view.adapter.MyPagerAdapter:
     java.util.List views -> c
     com.jfeinstein.jazzyviewpager.JazzyViewPager viewPager -> d
     21:21:int getCount() -> b
     27:27:boolean isViewFromObject(android.view.View,java.lang.Object) -> a
     32:33:void destroyItem(android.view.ViewGroup,int,java.lang.Object) -> a
     37:39:java.lang.Object instantiateItem(android.view.ViewGroup,int) -> a
-com.music.view.adapter.ViewHolder -> com.music.view.adapter.d:
+com.music.ui.view.adapter.ViewHolder -> com.music.ui.view.adapter.d:
     android.util.SparseArray mViews -> a
     android.view.View mConvertView -> b
-    29:32:com.music.view.adapter.ViewHolder get(android.content.Context,android.view.View,android.view.ViewGroup,int,int) -> a
+    29:32:com.music.ui.view.adapter.ViewHolder get(android.content.Context,android.view.View,android.view.ViewGroup,int,int) -> a
     36:41:android.view.View getView(int) -> a
     44:44:android.view.View getConverView() -> a
     47:49:void setString(int,java.lang.String) -> a
     51:53:void setBackgroundResource(int,int) -> a
     55:57:void setImageBitmap(int,android.graphics.Bitmap) -> a
-com.music.view.adapter.ViewPagerAdapter -> com.music.view.adapter.ViewPagerAdapter:
+com.music.ui.view.adapter.ViewPagerAdapter -> com.music.ui.view.adapter.ViewPagerAdapter:
     java.lang.String TAG -> d
     java.util.List list -> c
     22:23:android.support.v4.app.Fragment getItem(int) -> a
     27:27:int getCount() -> b
-com.music.view.animator.ActivityAnimator -> com.music.view.a.a:
+com.music.ui.view.animator.ActivityAnimator -> com.music.ui.view.a.a:
     java.lang.String[] animators -> a
     25:26:java.lang.String randomAnimator() -> a
     29:31:void flipHorizontalAnimation(android.app.Activity) -> a
@@ -14056,32 +14056,32 @@ com.music.view.animator.ActivityAnimator -> com.music.view.a.a:
     53:55:void disappearBottomRightAnimation(android.app.Activity) -> f
     58:60:void appearBottomRightAnimation(android.app.Activity) -> g
     63:64:void unzoomAnimation(android.app.Activity) -> h
-com.music.view.fragment.AlbumFragment -> com.music.view.fragment.AlbumFragment:
+com.music.ui.view.fragment.AlbumFragment -> com.music.ui.view.fragment.AlbumFragment:
     com.music.service.IMediaService mService -> a
     java.lang.String TAG -> d
     int SONGFRAGMENT -> b
     int ALBUMFRAGMENT -> c
     android.widget.ImageView iv_back -> e
     android.widget.ImageView iv_more -> f
-    com.music.view.fragment.AlbumFragment$AlbumAdapter listAdapter -> g
-    com.music.widget.indexablelistview.IndexableListView mMusiclist -> h
+    com.music.ui.view.fragment.AlbumFragment$AlbumAdapter listAdapter -> g
+    com.music.ui.widget.indexablelistview.IndexableListView mMusiclist -> h
     java.util.List albumInfos -> i
-    com.music.view.fragment.AlbumFragment$MusicListItemClickListener musicListItemClickListener -> j
+    com.music.ui.view.fragment.AlbumFragment$MusicListItemClickListener musicListItemClickListener -> j
     java.util.List loadList -> k
     int[] isLoaded -> l
     75:81:void onCreate(android.os.Bundle) -> a
     86:90:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     98:131:void initViewWidget(android.view.View) -> c
-    67:67:java.util.List access$0(com.music.view.fragment.AlbumFragment) -> a
-    71:71:int[] access$1(com.music.view.fragment.AlbumFragment) -> b
-    64:64:com.music.widget.indexablelistview.IndexableListView access$2(com.music.view.fragment.AlbumFragment) -> c
-com.music.view.fragment.AlbumFragment$AlbumAdapter -> com.music.view.fragment.AlbumFragment$a:
+    67:67:java.util.List access$0(com.music.ui.view.fragment.AlbumFragment) -> a
+    71:71:int[] access$1(com.music.ui.view.fragment.AlbumFragment) -> b
+    64:64:com.music.ui.widget.indexablelistview.IndexableListView access$2(com.music.ui.view.fragment.AlbumFragment) -> c
+com.music.ui.view.fragment.AlbumFragment$AlbumAdapter -> com.music.ui.view.fragment.AlbumFragment$a:
     java.util.Set taskCollection -> b
     java.lang.String mSections -> c
     android.content.Context context -> d
     java.util.List albumInfos -> e
     int pos -> f
-    com.music.view.fragment.AlbumFragment this$0 -> a
+    com.music.ui.view.fragment.AlbumFragment this$0 -> a
     163:163:int getCount() -> getCount
     169:169:com.music.bean.AlbumInfo getItem(int) -> a
     175:175:long getItemId(int) -> getItemId
@@ -14091,89 +14091,89 @@ com.music.view.fragment.AlbumFragment$AlbumAdapter -> com.music.view.fragment.Al
     283:283:int getSectionForPosition(int) -> getSectionForPosition
     289:343:void loadImage(android.widget.ImageView,java.lang.String,int) -> a
     1:1:java.lang.Object getItem(int) -> getItem
-    145:145:java.util.Set access$1(com.music.view.fragment.AlbumFragment$AlbumAdapter) -> a
-    144:144:com.music.view.fragment.AlbumFragment access$2(com.music.view.fragment.AlbumFragment$AlbumAdapter) -> b
-com.music.view.fragment.AlbumFragment$AlbumAdapter$1 -> com.music.view.fragment.a:
-    com.music.view.fragment.AlbumFragment$AlbumAdapter this$1 -> a
+    145:145:java.util.Set access$1(com.music.ui.view.fragment.AlbumFragment$AlbumAdapter) -> a
+    144:144:com.music.ui.view.fragment.AlbumFragment access$2(com.music.ui.view.fragment.AlbumFragment$AlbumAdapter) -> b
+com.music.ui.view.fragment.AlbumFragment$AlbumAdapter$1 -> com.music.ui.view.fragment.a:
+    com.music.ui.view.fragment.AlbumFragment$AlbumAdapter this$1 -> a
     java.lang.String val$album_path -> b
     int val$postion -> c
     303:310:void onPostExecute(java.lang.Object) -> a
     314:330:java.lang.Object doInBackground(java.lang.String[]) -> a
-com.music.view.fragment.AlbumFragment$AlbumAdapter$ViewHolder -> com.music.view.fragment.AlbumFragment$a$a:
+com.music.ui.view.fragment.AlbumFragment$AlbumAdapter$ViewHolder -> com.music.ui.view.fragment.AlbumFragment$a$a:
     android.widget.ImageView albumImage -> a
     android.widget.TextView tv_album_name -> b
     android.widget.TextView tv_number_of_songs -> c
     android.widget.TextView tv_artist -> d
     android.widget.TextView catalog -> e
-    com.music.view.fragment.AlbumFragment$AlbumAdapter this$1 -> f
-com.music.view.fragment.AlbumFragment$MusicListItemClickListener -> com.music.view.fragment.AlbumFragment$b:
-    com.music.view.fragment.AlbumFragment this$0 -> a
+    com.music.ui.view.fragment.AlbumFragment$AlbumAdapter this$1 -> f
+com.music.ui.view.fragment.AlbumFragment$MusicListItemClickListener -> com.music.ui.view.fragment.AlbumFragment$b:
+    com.music.ui.view.fragment.AlbumFragment this$0 -> a
     139:140:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.music.view.fragment.AlbumFragment$fragment -> com.music.view.fragment.AlbumFragment$c:
-    com.music.view.fragment.AlbumFragment$fragment SONGFRAGMENT -> a
-    com.music.view.fragment.AlbumFragment$fragment ALBUMFRAGMENT -> b
-    com.music.view.fragment.AlbumFragment$fragment ART -> c
-    com.music.view.fragment.AlbumFragment$fragment[] ENUM$VALUES -> d
-    1:1:com.music.view.fragment.AlbumFragment$fragment[] values() -> values
-    1:1:com.music.view.fragment.AlbumFragment$fragment valueOf(java.lang.String) -> valueOf
-com.music.view.fragment.ArtistFragment -> com.music.view.fragment.ArtistFragment:
+com.music.ui.view.fragment.AlbumFragment$fragment -> com.music.ui.view.fragment.AlbumFragment$c:
+    com.music.ui.view.fragment.AlbumFragment$fragment SONGFRAGMENT -> a
+    com.music.ui.view.fragment.AlbumFragment$fragment ALBUMFRAGMENT -> b
+    com.music.ui.view.fragment.AlbumFragment$fragment ART -> c
+    com.music.ui.view.fragment.AlbumFragment$fragment[] ENUM$VALUES -> d
+    1:1:com.music.ui.view.fragment.AlbumFragment$fragment[] values() -> values
+    1:1:com.music.ui.view.fragment.AlbumFragment$fragment valueOf(java.lang.String) -> valueOf
+com.music.ui.view.fragment.ArtistFragment -> com.music.ui.view.fragment.ArtistFragment:
     com.music.service.IMediaService mService -> a
     java.lang.String TAG -> b
-    com.music.view.fragment.ArtistFragment$ArtistAdapter listAdapter -> c
-    com.music.widget.indexablelistview.IndexableListView mMusiclist -> d
+    com.music.ui.view.fragment.ArtistFragment$ArtistAdapter listAdapter -> c
+    com.music.ui.widget.indexablelistview.IndexableListView mMusiclist -> d
     java.util.List artistInfos -> e
-    com.music.view.fragment.ArtistFragment$MusicListItemClickListener musicListItemClickListener -> f
+    com.music.ui.view.fragment.ArtistFragment$MusicListItemClickListener musicListItemClickListener -> f
     49:53:void onCreate(android.os.Bundle) -> a
     58:63:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     69:72:void onAttach(android.app.Activity) -> a
     80:108:void initViewWidget(android.view.View) -> c
-    44:44:java.util.List access$0(com.music.view.fragment.ArtistFragment) -> a
-com.music.view.fragment.ArtistFragment$ArtistAdapter -> com.music.view.fragment.ArtistFragment$a:
+    44:44:java.util.List access$0(com.music.ui.view.fragment.ArtistFragment) -> a
+com.music.ui.view.fragment.ArtistFragment$ArtistAdapter -> com.music.ui.view.fragment.ArtistFragment$a:
     java.lang.String mSections -> b
-    com.music.view.fragment.ArtistFragment this$0 -> a
+    com.music.ui.view.fragment.ArtistFragment this$0 -> a
     131:134:java.lang.Object[] getSections() -> getSections
     140:150:int getPositionForSection(int) -> getPositionForSection
     155:155:int getSectionForPosition(int) -> getSectionForPosition
-    161:171:void convert(com.music.view.adapter.ViewHolder,int) -> a
-com.music.view.fragment.ArtistFragment$MusicListItemClickListener -> com.music.view.fragment.ArtistFragment$b:
-    com.music.view.fragment.ArtistFragment this$0 -> a
+    161:171:void convert(com.music.ui.view.adapter.ViewHolder,int) -> a
+com.music.ui.view.fragment.ArtistFragment$MusicListItemClickListener -> com.music.ui.view.fragment.ArtistFragment$b:
+    com.music.ui.view.fragment.ArtistFragment this$0 -> a
     116:117:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.music.view.fragment.BaseFragment -> com.music.view.fragment.BaseFragment:
+com.music.ui.view.fragment.BaseFragment -> com.music.ui.view.fragment.BaseFragment:
     10:13:void onCreate(android.os.Bundle) -> a
-com.music.view.fragment.BusEvent -> com.music.view.fragment.b:
+com.music.ui.view.fragment.BusEvent -> com.music.ui.view.fragment.b:
     java.lang.Object msg -> a
     9:9:java.lang.Object getMsg() -> a
     12:13:void setMsg(java.lang.Object) -> a
-com.music.view.fragment.ClickEvent -> com.music.view.fragment.c:
+com.music.ui.view.fragment.ClickEvent -> com.music.ui.view.fragment.c:
     int msg -> a
-com.music.view.fragment.FolderFragment -> com.music.view.fragment.FolderFragment:
+com.music.ui.view.fragment.FolderFragment -> com.music.ui.view.fragment.FolderFragment:
     com.music.service.IMediaService mService -> a
     java.lang.String TAG -> b
-    com.music.view.fragment.FolderFragment$ArtistAdapter listAdapter -> c
-    com.music.widget.indexablelistview.IndexableListView mMusiclist -> d
+    com.music.ui.view.fragment.FolderFragment$ArtistAdapter listAdapter -> c
+    com.music.ui.widget.indexablelistview.IndexableListView mMusiclist -> d
     java.util.List folderInfos -> e
-    com.music.view.fragment.FolderFragment$MusicListItemClickListener musicListItemClickListener -> f
+    com.music.ui.view.fragment.FolderFragment$MusicListItemClickListener musicListItemClickListener -> f
     42:46:void onCreate(android.os.Bundle) -> a
     51:56:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     64:78:void initViewWidget(android.view.View) -> c
-    37:37:java.util.List access$0(com.music.view.fragment.FolderFragment) -> a
-com.music.view.fragment.FolderFragment$ArtistAdapter -> com.music.view.fragment.FolderFragment$a:
-    com.music.view.fragment.FolderFragment this$0 -> a
-    104:109:void convert(com.music.view.adapter.ViewHolder,int) -> a
-com.music.view.fragment.FolderFragment$MusicListItemClickListener -> com.music.view.fragment.FolderFragment$b:
-    com.music.view.fragment.FolderFragment this$0 -> a
+    37:37:java.util.List access$0(com.music.ui.view.fragment.FolderFragment) -> a
+com.music.ui.view.fragment.FolderFragment$ArtistAdapter -> com.music.ui.view.fragment.FolderFragment$a:
+    com.music.ui.view.fragment.FolderFragment this$0 -> a
+    104:109:void convert(com.music.ui.view.adapter.ViewHolder,int) -> a
+com.music.ui.view.fragment.FolderFragment$MusicListItemClickListener -> com.music.ui.view.fragment.FolderFragment$b:
+    com.music.ui.view.fragment.FolderFragment this$0 -> a
     86:87:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.music.view.fragment.LocalMusicFragment -> com.music.view.fragment.LocalMusicFragment:
+com.music.ui.view.fragment.LocalMusicFragment -> com.music.ui.view.fragment.LocalMusicFragment:
     java.lang.String TAG -> ai
-    com.music.view.adapter.ViewPagerAdapter viewPagerAapter -> aj
+    com.music.ui.view.adapter.ViewPagerAdapter viewPagerAapter -> aj
     java.util.List list -> ak
     android.support.v4.view.ViewPager viewPager -> al
     android.widget.ImageView iv_tabline -> am
     int widthScreen1_4 -> an
-    com.music.view.fragment.SongFragment songFragment -> ao
-    com.music.view.fragment.ArtistFragment artistFragment -> ap
-    com.music.view.fragment.AlbumFragment albumFragment -> aq
-    com.music.view.fragment.FolderFragment folderFragment -> ar
+    com.music.ui.view.fragment.SongFragment songFragment -> ao
+    com.music.ui.view.fragment.ArtistFragment artistFragment -> ap
+    com.music.ui.view.fragment.AlbumFragment albumFragment -> aq
+    com.music.ui.view.fragment.FolderFragment folderFragment -> ar
     android.widget.RelativeLayout rl_folder -> as
     android.widget.RelativeLayout rl_album -> at
     android.widget.RelativeLayout rl_artist -> au
@@ -14184,25 +14184,25 @@ com.music.view.fragment.LocalMusicFragment -> com.music.view.fragment.LocalMusic
     121:125:void updateTopLine(int,float) -> a
     128:138:void initTabLine() -> a
     146:164:void onClick(android.view.View) -> onClick
-com.music.view.fragment.LocalMusicFragment$MyOnPageChangeListener -> com.music.view.fragment.LocalMusicFragment$a:
-    com.music.view.fragment.LocalMusicFragment this$0 -> a
+com.music.ui.view.fragment.LocalMusicFragment$MyOnPageChangeListener -> com.music.ui.view.fragment.LocalMusicFragment$a:
+    com.music.ui.view.fragment.LocalMusicFragment this$0 -> a
     107:107:void onPageSelected(int) -> a
     112:113:void onPageScrolled(int,float,int) -> a
     118:118:void onPageScrollStateChanged(int) -> b
-com.music.view.fragment.MainFragment -> com.music.view.fragment.MainFragment:
+com.music.ui.view.fragment.MainFragment -> com.music.ui.view.fragment.MainFragment:
     android.widget.GridView mGridView -> ak
-    com.music.view.fragment.MainFragment$MyGridViewAdapter mAdapter -> al
+    com.music.ui.view.fragment.MainFragment$MyGridViewAdapter mAdapter -> al
     com.music.service.IMediaService mService -> ai
     com.music.db.MusicInfoDao mMusicDao -> am
     com.music.db.FolderInfoDao mFolderDao -> an
     com.music.db.ArtistInfoDao mArtistDao -> ao
     com.music.db.AlbumInfoDao mAlbumDao -> ap
     com.music.db.FavoriteInfoDao mFavoriteDao -> aq
-    com.music.view.fragment.MainFragment$MusicPlayBroadcast mPlayBroadcast -> ar
+    com.music.ui.view.fragment.MainFragment$MusicPlayBroadcast mPlayBroadcast -> ar
     android.widget.RelativeLayout mMainLayout -> as
     android.widget.LinearLayout mBottomLayout -> at
     android.graphics.Bitmap defaultArtwork -> au
-    com.music.view.fragment.MainFragment$GridViewItemClick itemClick -> av
+    com.music.ui.view.fragment.MainFragment$GridViewItemClick itemClick -> av
     int oldY -> aj
     68:75:void onCreate(android.os.Bundle) -> a
     80:109:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
@@ -14210,13 +14210,13 @@ com.music.view.fragment.MainFragment -> com.music.view.fragment.MainFragment:
     232:235:void onAttach(android.app.Activity) -> a
     244:251:void refreshNum() -> a
     316:316:void onRefresh() -> b
-    236:236:com.music.view.fragment.MainFragment$GridViewItemClick access$0(com.music.view.fragment.MainFragment) -> a
-com.music.view.fragment.MainFragment$GridViewItemClick -> com.music.view.fragment.MainFragment$a:
+    236:236:com.music.ui.view.fragment.MainFragment$GridViewItemClick access$0(com.music.ui.view.fragment.MainFragment) -> a
+com.music.ui.view.fragment.MainFragment$GridViewItemClick -> com.music.ui.view.fragment.MainFragment$a:
     void clickIndex(int) -> a
-com.music.view.fragment.MainFragment$MusicPlayBroadcast -> com.music.view.fragment.MainFragment$b:
-    com.music.view.fragment.MainFragment this$0 -> a
+com.music.ui.view.fragment.MainFragment$MusicPlayBroadcast -> com.music.ui.view.fragment.MainFragment$b:
+    com.music.ui.view.fragment.MainFragment this$0 -> a
     258:311:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.music.view.fragment.MainFragment$MyGridViewAdapter -> com.music.view.fragment.MainFragment$c:
+com.music.ui.view.fragment.MainFragment$MyGridViewAdapter -> com.music.ui.view.fragment.MainFragment$c:
     int[] drawable -> b
     java.lang.String[] name -> c
     int musicNum -> d
@@ -14224,28 +14224,28 @@ com.music.view.fragment.MainFragment$MyGridViewAdapter -> com.music.view.fragmen
     int albumNum -> f
     int folderNum -> g
     int favoriteNum -> h
-    com.music.view.fragment.MainFragment this$0 -> a
+    com.music.ui.view.fragment.MainFragment this$0 -> a
     123:123:int getCount() -> getCount
     128:128:java.lang.Object getItem(int) -> getItem
     133:133:long getItemId(int) -> getItemId
     138:144:void setNum(int,int,int,int,int) -> a
     151:216:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    112:112:com.music.view.fragment.MainFragment access$1(com.music.view.fragment.MainFragment$MyGridViewAdapter) -> a
-com.music.view.fragment.MainFragment$MyGridViewAdapter$1 -> com.music.view.fragment.d:
-    com.music.view.fragment.MainFragment$MyGridViewAdapter this$1 -> a
+    112:112:com.music.ui.view.fragment.MainFragment access$1(com.music.ui.view.fragment.MainFragment$MyGridViewAdapter) -> a
+com.music.ui.view.fragment.MainFragment$MyGridViewAdapter$1 -> com.music.ui.view.fragment.d:
+    com.music.ui.view.fragment.MainFragment$MyGridViewAdapter this$1 -> a
     int val$position -> b
     189:210:void onClick(android.view.View) -> onClick
-com.music.view.fragment.MainFragment$MyGridViewAdapter$ViewHolder -> com.music.view.fragment.MainFragment$c$a:
+com.music.ui.view.fragment.MainFragment$MyGridViewAdapter$ViewHolder -> com.music.ui.view.fragment.MainFragment$c$a:
     android.widget.ImageView iv -> a
     android.widget.TextView nameTv -> b
     android.widget.TextView numTv -> c
-    com.music.view.fragment.MainFragment$MyGridViewAdapter this$1 -> d
-com.music.view.fragment.MainUIManager -> com.music.view.fragment.e:
+    com.music.ui.view.fragment.MainFragment$MyGridViewAdapter this$1 -> d
+com.music.ui.view.fragment.MainUIManager -> com.music.ui.view.fragment.e:
     void setBgByPath(java.lang.String) -> a
     android.view.View getView() -> a
     android.view.View getView(int) -> a
     android.view.View getView(int,java.lang.Object) -> a
-com.music.view.fragment.MenuFragment -> com.music.view.fragment.MenuFragment:
+com.music.ui.view.fragment.MenuFragment -> com.music.ui.view.fragment.MenuFragment:
     android.widget.TextView mMediaCountTv -> ai
     android.widget.TextView mScanTv -> aj
     android.widget.TextView mPlayModeTv -> ak
@@ -14265,44 +14265,44 @@ com.music.view.fragment.MenuFragment -> com.music.view.fragment.MenuFragment:
     111:117:void changeMode() -> b
     120:125:void initPlayMode() -> c
     130:131:void onOpened() -> a
-com.music.view.fragment.MusicListFragment -> com.music.view.fragment.MusicListFragment:
+com.music.ui.view.fragment.MusicListFragment -> com.music.ui.view.fragment.MusicListFragment:
     com.music.service.IMediaService mService -> ai
     java.lang.String TAG -> aj
-    com.music.view.fragment.MusicListFragment$ArtistAdapter listAdapter -> ak
-    com.music.widget.indexablelistview.IndexableListView mMusiclist -> al
+    com.music.ui.view.fragment.MusicListFragment$ArtistAdapter listAdapter -> ak
+    com.music.ui.widget.indexablelistview.IndexableListView mMusiclist -> al
     java.util.List musicInfos -> am
-    com.music.view.fragment.MusicListFragment$MusicListItemClickListener musicListItemClickListener -> an
+    com.music.ui.view.fragment.MusicListFragment$MusicListItemClickListener musicListItemClickListener -> an
     com.music.utils.Mp3Util_New mp3Util -> ao
     int mPlayListType -> ap
     53:57:void onCreate(android.os.Bundle) -> a
     62:67:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     75:106:void initViewWidget(android.view.View) -> c
     108:135:void initData(int,java.lang.Object,android.content.Context) -> a
-    48:48:com.music.utils.Mp3Util_New access$0(com.music.view.fragment.MusicListFragment) -> a
-    44:44:java.util.List access$1(com.music.view.fragment.MusicListFragment) -> b
-    50:50:int access$2(com.music.view.fragment.MusicListFragment) -> c
-com.music.view.fragment.MusicListFragment$ArtistAdapter -> com.music.view.fragment.MusicListFragment$a:
-    com.music.view.fragment.MusicListFragment this$0 -> a
-    166:172:void convert(com.music.view.adapter.ViewHolder,int) -> a
-com.music.view.fragment.MusicListFragment$MusicListItemClickListener -> com.music.view.fragment.MusicListFragment$b:
-    com.music.view.fragment.MusicListFragment this$0 -> a
+    48:48:com.music.utils.Mp3Util_New access$0(com.music.ui.view.fragment.MusicListFragment) -> a
+    44:44:java.util.List access$1(com.music.ui.view.fragment.MusicListFragment) -> b
+    50:50:int access$2(com.music.ui.view.fragment.MusicListFragment) -> c
+com.music.ui.view.fragment.MusicListFragment$ArtistAdapter -> com.music.ui.view.fragment.MusicListFragment$a:
+    com.music.ui.view.fragment.MusicListFragment this$0 -> a
+    166:172:void convert(com.music.ui.view.adapter.ViewHolder,int) -> a
+com.music.ui.view.fragment.MusicListFragment$MusicListItemClickListener -> com.music.ui.view.fragment.MusicListFragment$b:
+    com.music.ui.view.fragment.MusicListFragment this$0 -> a
     144:149:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.music.view.fragment.SongFragment -> com.music.view.fragment.SongFragment:
+com.music.ui.view.fragment.SongFragment -> com.music.ui.view.fragment.SongFragment:
     com.music.service.IMediaService mService -> ai
     java.lang.String TAG -> aj
-    com.music.view.adapter.MusicListAdapter listAdapter -> ak
-    com.music.widget.indexablelistview.IndexableListView mMusiclist -> al
+    com.music.ui.view.adapter.MusicListAdapter listAdapter -> ak
+    com.music.ui.widget.indexablelistview.IndexableListView mMusiclist -> al
     com.music.utils.Mp3Util_New mp3Util -> am
     java.util.List mp3Infos -> an
     44:49:void onCreate(android.os.Bundle) -> a
     53:55:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     68:112:void initViewWidget(android.view.View) -> c
-    39:39:com.music.utils.Mp3Util_New access$0(com.music.view.fragment.SongFragment) -> a
-    40:40:java.util.List access$1(com.music.view.fragment.SongFragment) -> b
-com.music.view.fragment.SongFragment$1 -> com.music.view.fragment.f:
-    com.music.view.fragment.SongFragment this$0 -> a
+    39:39:com.music.utils.Mp3Util_New access$0(com.music.ui.view.fragment.SongFragment) -> a
+    40:40:java.util.List access$1(com.music.ui.view.fragment.SongFragment) -> b
+com.music.ui.view.fragment.SongFragment$1 -> com.music.ui.view.fragment.f:
+    com.music.ui.view.fragment.SongFragment this$0 -> a
     107:110:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.music.view.fragment.SwipeBackLayout -> com.music.view.fragment.SwipeBackLayout:
+com.music.ui.view.fragment.SwipeBackLayout -> com.music.ui.view.fragment.SwipeBackLayout:
     java.lang.String TAG -> a
     android.view.View mContentView -> b
     int mTouchSlop -> c
@@ -14327,11 +14327,11 @@ com.music.view.fragment.SwipeBackLayout -> com.music.view.fragment.SwipeBackLayo
     215:220:void scrollRight() -> a
     226:230:void scrollOrigin() -> b
     235:243:void computeScroll() -> computeScroll
-com.music.view.gesturepressword.CreateGesturePasswordActivity -> com.music.view.gesturepressword.CreateGesturePasswordActivity:
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity -> com.music.ui.view.gesturepressword.CreateGesturePasswordActivity:
     int ID_EMPTY_MESSAGE -> d
     java.lang.String KEY_UI_STAGE -> e
     java.lang.String KEY_PATTERN_CHOICE -> f
-    com.music.widget.lockpatternview.LockPatternView mLockPatternView -> g
+    com.music.ui.widget.lockpatternview.LockPatternView mLockPatternView -> g
     android.widget.Button mFooterRightButton -> h
     android.widget.Button mFooterLeftButton -> i
     android.widget.TextView mHeaderText -> a
@@ -14339,9 +14339,9 @@ com.music.view.gesturepressword.CreateGesturePasswordActivity -> com.music.view.
     android.view.View[][] mPreviewViews -> k
     java.util.List mChosenPattern -> b
     android.widget.Toast mToast -> l
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage mUiStage -> m
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage mUiStage -> m
     java.lang.Runnable mClearPatternRunnable -> n
-    com.music.widget.lockpatternview.LockPatternView$OnPatternListener mChooseNewLockPatternListener -> c
+    com.music.ui.widget.lockpatternview.LockPatternView$OnPatternListener mChooseNewLockPatternListener -> c
     int[] $SWITCH_TABLE$com$music$view$gesturepressword$CreateGesturePasswordActivity$Stage -> o
     182:189:void showToast(java.lang.CharSequence) -> a
     193:244:void onCreate(android.os.Bundle) -> onCreate
@@ -14349,66 +14349,66 @@ com.music.view.gesturepressword.CreateGesturePasswordActivity -> com.music.view.
     266:276:void updatePreviewViews() -> c
     280:287:void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
     291:301:boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
-    387:440:void updateStage(com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage) -> a
+    387:440:void updateStage(com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage) -> a
     446:448:void postClearPatternRunnable() -> d
     452:495:void onClick(android.view.View) -> onClick
     501:507:void saveChosenPatternAndFinish() -> e
-    36:36:com.music.widget.lockpatternview.LockPatternView access$0(com.music.view.gesturepressword.CreateGesturePasswordActivity) -> a
-    307:307:java.lang.Runnable access$1(com.music.view.gesturepressword.CreateGesturePasswordActivity) -> b
-    49:49:com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage access$2(com.music.view.gesturepressword.CreateGesturePasswordActivity) -> c
-    386:386:void access$3(com.music.view.gesturepressword.CreateGesturePasswordActivity,com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage) -> a
-    40:40:android.widget.Button access$4(com.music.view.gesturepressword.CreateGesturePasswordActivity) -> d
-    38:38:android.widget.Button access$5(com.music.view.gesturepressword.CreateGesturePasswordActivity) -> e
+    36:36:com.music.ui.widget.lockpatternview.LockPatternView access$0(com.music.ui.view.gesturepressword.CreateGesturePasswordActivity) -> a
+    307:307:java.lang.Runnable access$1(com.music.ui.view.gesturepressword.CreateGesturePasswordActivity) -> b
+    49:49:com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage access$2(com.music.ui.view.gesturepressword.CreateGesturePasswordActivity) -> c
+    386:386:void access$3(com.music.ui.view.gesturepressword.CreateGesturePasswordActivity,com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage) -> a
+    40:40:android.widget.Button access$4(com.music.ui.view.gesturepressword.CreateGesturePasswordActivity) -> d
+    38:38:android.widget.Button access$5(com.music.ui.view.gesturepressword.CreateGesturePasswordActivity) -> e
     30:30:int[] $SWITCH_TABLE$com$music$view$gesturepressword$CreateGesturePasswordActivity$Stage() -> a
-com.music.view.gesturepressword.CreateGesturePasswordActivity$1 -> com.music.view.gesturepressword.a:
-    com.music.view.gesturepressword.CreateGesturePasswordActivity this$0 -> a
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$1 -> com.music.ui.view.gesturepressword.a:
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity this$0 -> a
     309:310:void run() -> run
-com.music.view.gesturepressword.CreateGesturePasswordActivity$2 -> com.music.view.gesturepressword.b:
-    com.music.view.gesturepressword.CreateGesturePasswordActivity this$0 -> a
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$2 -> com.music.ui.view.gesturepressword.b:
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity this$0 -> a
     323:325:void onPatternStart() -> a
     331:332:void onPatternCleared() -> b
     338:364:void onPatternDetected(java.util.List) -> a
     368:368:void onPatternCellAdded(java.util.List) -> b
     374:377:void patternInProgress() -> c
-com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode -> com.music.view.gesturepressword.CreateGesturePasswordActivity$a:
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode Cancel -> a
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode CancelDisabled -> b
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode Retry -> c
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode RetryDisabled -> d
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode Gone -> e
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode -> com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$a:
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode Cancel -> a
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode CancelDisabled -> b
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode Retry -> c
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode RetryDisabled -> d
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode Gone -> e
     int text -> f
     boolean enabled -> g
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode[] ENUM$VALUES -> h
-    1:1:com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode[] values() -> values
-    1:1:com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode valueOf(java.lang.String) -> valueOf
-com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode -> com.music.view.gesturepressword.CreateGesturePasswordActivity$b:
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode Continue -> a
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode ContinueDisabled -> b
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode Confirm -> c
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode ConfirmDisabled -> d
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode Ok -> e
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode[] ENUM$VALUES -> h
+    1:1:com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode[] values() -> values
+    1:1:com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode valueOf(java.lang.String) -> valueOf
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode -> com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$b:
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode Continue -> a
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode ContinueDisabled -> b
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode Confirm -> c
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode ConfirmDisabled -> d
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode Ok -> e
     int text -> f
     boolean enabled -> g
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode[] ENUM$VALUES -> h
-    1:1:com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode[] values() -> values
-    1:1:com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode valueOf(java.lang.String) -> valueOf
-com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage -> com.music.view.gesturepressword.CreateGesturePasswordActivity$c:
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage Introduction -> a
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage HelpScreen -> b
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage ChoiceTooShort -> c
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage FirstChoiceValid -> d
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage NeedToConfirm -> e
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage ConfirmWrong -> f
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage ChoiceConfirmed -> g
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode[] ENUM$VALUES -> h
+    1:1:com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode[] values() -> values
+    1:1:com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode valueOf(java.lang.String) -> valueOf
+com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage -> com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$c:
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage Introduction -> a
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage HelpScreen -> b
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage ChoiceTooShort -> c
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage FirstChoiceValid -> d
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage NeedToConfirm -> e
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage ConfirmWrong -> f
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage ChoiceConfirmed -> g
     int headerMessage -> h
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode leftMode -> i
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode rightMode -> j
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$LeftButtonMode leftMode -> i
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$RightButtonMode rightMode -> j
     int footerMessage -> k
     boolean patternEnabled -> l
-    com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage[] ENUM$VALUES -> m
-    1:1:com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage[] values() -> values
-    1:1:com.music.view.gesturepressword.CreateGesturePasswordActivity$Stage valueOf(java.lang.String) -> valueOf
-com.music.view.gesturepressword.GresturePasswordSetActivity -> com.music.view.gesturepressword.GresturePasswordSetActivity:
+    com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage[] ENUM$VALUES -> m
+    1:1:com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage[] values() -> values
+    1:1:com.music.ui.view.gesturepressword.CreateGesturePasswordActivity$Stage valueOf(java.lang.String) -> valueOf
+com.music.ui.view.gesturepressword.GresturePasswordSetActivity -> com.music.ui.view.gesturepressword.GresturePasswordSetActivity:
     android.widget.CheckBox cb_lock -> s
     android.widget.RelativeLayout rl_updatelockpassword -> t
     android.widget.ImageView iv_search -> o
@@ -14419,16 +14419,16 @@ com.music.view.gesturepressword.GresturePasswordSetActivity -> com.music.view.ge
     50:53:void onResume() -> onResume
     56:73:void initWidget() -> a
     77:93:void myOnclik(android.view.View) -> myOnclik
-    27:27:android.widget.RelativeLayout access$0(com.music.view.gesturepressword.GresturePasswordSetActivity) -> a
-com.music.view.gesturepressword.GresturePasswordSetActivity$1 -> com.music.view.gesturepressword.c:
-    com.music.view.gesturepressword.GresturePasswordSetActivity this$0 -> a
+    27:27:android.widget.RelativeLayout access$0(com.music.ui.view.gesturepressword.GresturePasswordSetActivity) -> a
+com.music.ui.view.gesturepressword.GresturePasswordSetActivity$1 -> com.music.ui.view.gesturepressword.c:
+    com.music.ui.view.gesturepressword.GresturePasswordSetActivity this$0 -> a
     67:71:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
-com.music.view.gesturepressword.GuideGesturePasswordActivity -> com.music.view.gesturepressword.GuideGesturePasswordActivity:
+com.music.ui.view.gesturepressword.GuideGesturePasswordActivity -> com.music.ui.view.gesturepressword.GuideGesturePasswordActivity:
     24:48:void onCreate(android.os.Bundle) -> onCreate
-com.music.view.gesturepressword.GuideGesturePasswordActivity$1 -> com.music.view.gesturepressword.d:
-    com.music.view.gesturepressword.GuideGesturePasswordActivity this$0 -> a
+com.music.ui.view.gesturepressword.GuideGesturePasswordActivity$1 -> com.music.ui.view.gesturepressword.d:
+    com.music.ui.view.gesturepressword.GuideGesturePasswordActivity this$0 -> a
     36:46:void onClick(android.view.View) -> onClick
-com.music.view.gesturepressword.LockPasswordUtils -> com.music.view.gesturepressword.LockPasswordUtils:
+com.music.ui.view.gesturepressword.LockPasswordUtils -> com.music.ui.view.gesturepressword.LockPasswordUtils:
     java.lang.String TAG -> a
     java.lang.String LOCK_PASSWORD_SALT_FILE -> b
     java.lang.String LOCK_PASSWORD_SALT_KEY -> c
@@ -14449,10 +14449,10 @@ com.music.view.gesturepressword.LockPasswordUtils -> com.music.view.gesturepress
     240:242:void setLong(java.lang.String,long) -> b
     28:28:java.util.concurrent.atomic.AtomicBoolean access$0() -> b
     27:27:java.io.File access$1() -> c
-com.music.view.gesturepressword.LockPasswordUtils$PasswordFileObserver -> com.music.view.gesturepressword.LockPasswordUtils$a:
+com.music.ui.view.gesturepressword.LockPasswordUtils$PasswordFileObserver -> com.music.ui.view.gesturepressword.LockPasswordUtils$a:
     39:44:void onEvent(int,java.lang.String) -> onEvent
-com.music.view.gesturepressword.UnlockGesturePasswordActivity -> com.music.view.gesturepressword.UnlockGesturePasswordActivity:
-    com.music.widget.lockpatternview.LockPatternView mLockPatternView -> q
+com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity -> com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity:
+    com.music.ui.widget.lockpatternview.LockPatternView mLockPatternView -> q
     int mFailedPatternAttemptsSinceLastTimeout -> r
     android.os.CountDownTimer mCountdownTimer -> s
     android.os.Handler mHandler -> t
@@ -14460,44 +14460,44 @@ com.music.view.gesturepressword.UnlockGesturePasswordActivity -> com.music.view.
     android.view.animation.Animation mShakeAnim -> v
     android.widget.TextView gesturepwd_unlock_forget -> w
     java.lang.Runnable mClearPatternRunnable -> x
-    com.music.widget.lockpatternview.LockPatternView$OnPatternListener mChooseNewLockPatternListener -> o
+    com.music.ui.widget.lockpatternview.LockPatternView$OnPatternListener mChooseNewLockPatternListener -> o
     java.lang.Runnable attemptLockout -> p
     50:51:void showToast(java.lang.CharSequence) -> a
     55:78:void onCreate(android.os.Bundle) -> onCreate
     82:89:void onResume() -> onResume
     93:97:void onDestroy() -> onDestroy
     100:111:void viewClick(android.view.View) -> viewClick
-    31:31:com.music.widget.lockpatternview.LockPatternView access$0(com.music.view.gesturepressword.UnlockGesturePasswordActivity) -> a
-    115:115:java.lang.Runnable access$1(com.music.view.gesturepressword.UnlockGesturePasswordActivity) -> b
-    49:49:void access$2(com.music.view.gesturepressword.UnlockGesturePasswordActivity,java.lang.CharSequence) -> a
-    33:33:int access$3(com.music.view.gesturepressword.UnlockGesturePasswordActivity) -> c
-    33:33:void access$4(com.music.view.gesturepressword.UnlockGesturePasswordActivity,int) -> a
-    39:39:android.widget.TextView access$5(com.music.view.gesturepressword.UnlockGesturePasswordActivity) -> d
-    40:40:android.view.animation.Animation access$6(com.music.view.gesturepressword.UnlockGesturePasswordActivity) -> e
-    37:37:android.os.Handler access$7(com.music.view.gesturepressword.UnlockGesturePasswordActivity) -> f
-    35:35:void access$8(com.music.view.gesturepressword.UnlockGesturePasswordActivity,android.os.CountDownTimer) -> a
-com.music.view.gesturepressword.UnlockGesturePasswordActivity$1 -> com.music.view.gesturepressword.e:
-    com.music.view.gesturepressword.UnlockGesturePasswordActivity this$0 -> a
+    31:31:com.music.ui.widget.lockpatternview.LockPatternView access$0(com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity) -> a
+    115:115:java.lang.Runnable access$1(com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity) -> b
+    49:49:void access$2(com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity,java.lang.CharSequence) -> a
+    33:33:int access$3(com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity) -> c
+    33:33:void access$4(com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity,int) -> a
+    39:39:android.widget.TextView access$5(com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity) -> d
+    40:40:android.view.animation.Animation access$6(com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity) -> e
+    37:37:android.os.Handler access$7(com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity) -> f
+    35:35:void access$8(com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity,android.os.CountDownTimer) -> a
+com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity$1 -> com.music.ui.view.gesturepressword.e:
+    com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity this$0 -> a
     117:118:void run() -> run
-com.music.view.gesturepressword.UnlockGesturePasswordActivity$2 -> com.music.view.gesturepressword.f:
-    com.music.view.gesturepressword.UnlockGesturePasswordActivity this$0 -> a
+com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity$2 -> com.music.ui.view.gesturepressword.f:
+    com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity this$0 -> a
     122:124:void onPatternStart() -> a
     126:127:void onPatternCleared() -> b
     130:191:void onPatternDetected(java.util.List) -> a
     194:194:void patternInProgress() -> c
     199:199:void onPatternCellAdded(java.util.List) -> b
-com.music.view.gesturepressword.UnlockGesturePasswordActivity$3 -> com.music.view.gesturepressword.g:
-    com.music.view.gesturepressword.UnlockGesturePasswordActivity this$0 -> a
+com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity$3 -> com.music.ui.view.gesturepressword.g:
+    com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity this$0 -> a
     207:236:void run() -> run
-    202:202:com.music.view.gesturepressword.UnlockGesturePasswordActivity access$0(com.music.view.gesturepressword.UnlockGesturePasswordActivity$3) -> a
-com.music.view.gesturepressword.UnlockGesturePasswordActivity$3$1 -> com.music.view.gesturepressword.h:
-    com.music.view.gesturepressword.UnlockGesturePasswordActivity$3 this$1 -> a
+    202:202:com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity access$0(com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity$3) -> a
+com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity$3$1 -> com.music.ui.view.gesturepressword.h:
+    com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity$3 this$1 -> a
     217:226:void onTick(long) -> onTick
     231:234:void onFinish() -> onFinish
-com.music.view.popwindow.PopupWindowQieGe -> com.music.view.popwindow.PopupWindowQieGe:
+com.music.ui.view.popwindow.PopupWindowQieGe -> com.music.ui.view.popwindow.PopupWindowQieGe:
     android.widget.PopupWindow popupWindow -> a
     android.content.Context mContext -> b
-    com.music.view.popwindow.PopupWindowQieGe$PopupWindowUIOnClickListener p -> c
+    com.music.ui.view.popwindow.PopupWindowQieGe$PopupWindowUIOnClickListener p -> c
     android.widget.RelativeLayout rl_nouse -> d
     android.widget.RelativeLayout rl_wenrou -> e
     android.widget.RelativeLayout rl_putong -> f
@@ -14514,49 +14514,49 @@ com.music.view.popwindow.PopupWindowQieGe -> com.music.view.popwindow.PopupWindo
     android.widget.ImageView oldiv -> q
     int selectColor -> r
     android.view.View$OnClickListener l -> s
-    56:57:void setPopupWindowUIOnClickListener(com.music.view.popwindow.PopupWindowQieGe$PopupWindowUIOnClickListener) -> a
+    56:57:void setPopupWindowUIOnClickListener(com.music.ui.view.popwindow.PopupWindowQieGe$PopupWindowUIOnClickListener) -> a
     66:86:void showWindow(android.view.View) -> a
     94:120:void initPopupWindowUI(android.view.View) -> b
     167:168:void dismiss() -> a
     170:191:void setOldView(int) -> a
-    48:48:android.widget.TextView access$0(com.music.view.popwindow.PopupWindowQieGe) -> a
-    49:49:android.widget.ImageView access$1(com.music.view.popwindow.PopupWindowQieGe) -> b
-    38:38:android.widget.TextView access$2(com.music.view.popwindow.PopupWindowQieGe) -> c
-    51:51:int access$3(com.music.view.popwindow.PopupWindowQieGe) -> d
-    43:43:android.widget.ImageView access$4(com.music.view.popwindow.PopupWindowQieGe) -> e
-    39:39:android.widget.TextView access$5(com.music.view.popwindow.PopupWindowQieGe) -> f
-    44:44:android.widget.ImageView access$6(com.music.view.popwindow.PopupWindowQieGe) -> g
-    40:40:android.widget.TextView access$7(com.music.view.popwindow.PopupWindowQieGe) -> h
-    45:45:android.widget.ImageView access$8(com.music.view.popwindow.PopupWindowQieGe) -> i
-    41:41:android.widget.TextView access$9(com.music.view.popwindow.PopupWindowQieGe) -> j
-    46:46:android.widget.ImageView access$10(com.music.view.popwindow.PopupWindowQieGe) -> k
-    26:26:android.content.Context access$11(com.music.view.popwindow.PopupWindowQieGe) -> l
-    169:169:void access$12(com.music.view.popwindow.PopupWindowQieGe,int) -> a
-    31:31:com.music.view.popwindow.PopupWindowQieGe$PopupWindowUIOnClickListener access$13(com.music.view.popwindow.PopupWindowQieGe) -> m
-    24:24:android.widget.PopupWindow access$14(com.music.view.popwindow.PopupWindowQieGe) -> n
-com.music.view.popwindow.PopupWindowQieGe$1 -> com.music.view.popwindow.a:
-    com.music.view.popwindow.PopupWindowQieGe this$0 -> a
+    48:48:android.widget.TextView access$0(com.music.ui.view.popwindow.PopupWindowQieGe) -> a
+    49:49:android.widget.ImageView access$1(com.music.ui.view.popwindow.PopupWindowQieGe) -> b
+    38:38:android.widget.TextView access$2(com.music.ui.view.popwindow.PopupWindowQieGe) -> c
+    51:51:int access$3(com.music.ui.view.popwindow.PopupWindowQieGe) -> d
+    43:43:android.widget.ImageView access$4(com.music.ui.view.popwindow.PopupWindowQieGe) -> e
+    39:39:android.widget.TextView access$5(com.music.ui.view.popwindow.PopupWindowQieGe) -> f
+    44:44:android.widget.ImageView access$6(com.music.ui.view.popwindow.PopupWindowQieGe) -> g
+    40:40:android.widget.TextView access$7(com.music.ui.view.popwindow.PopupWindowQieGe) -> h
+    45:45:android.widget.ImageView access$8(com.music.ui.view.popwindow.PopupWindowQieGe) -> i
+    41:41:android.widget.TextView access$9(com.music.ui.view.popwindow.PopupWindowQieGe) -> j
+    46:46:android.widget.ImageView access$10(com.music.ui.view.popwindow.PopupWindowQieGe) -> k
+    26:26:android.content.Context access$11(com.music.ui.view.popwindow.PopupWindowQieGe) -> l
+    169:169:void access$12(com.music.ui.view.popwindow.PopupWindowQieGe,int) -> a
+    31:31:com.music.ui.view.popwindow.PopupWindowQieGe$PopupWindowUIOnClickListener access$13(com.music.ui.view.popwindow.PopupWindowQieGe) -> m
+    24:24:android.widget.PopupWindow access$14(com.music.ui.view.popwindow.PopupWindowQieGe) -> n
+com.music.ui.view.popwindow.PopupWindowQieGe$1 -> com.music.ui.view.popwindow.a:
+    com.music.ui.view.popwindow.PopupWindowQieGe this$0 -> a
     126:164:void onClick(android.view.View) -> onClick
-com.music.view.popwindow.PopupWindowQieGe$PopupWindowUIOnClickListener -> com.music.view.popwindow.PopupWindowQieGe$a:
+com.music.ui.view.popwindow.PopupWindowQieGe$PopupWindowUIOnClickListener -> com.music.ui.view.popwindow.PopupWindowQieGe$a:
     void onClick(int) -> a
-com.music.view.popwindow.PopupWindowUtil -> com.music.view.popwindow.PopupWindowUtil:
+com.music.ui.view.popwindow.PopupWindowUtil -> com.music.ui.view.popwindow.PopupWindowUtil:
     android.widget.PopupWindow popupWindow -> a
     android.content.Context mContext -> b
-    com.music.view.popwindow.PopupWindowUtil$PopupWindowUIOnClickListener popupWindowUIOnClickListener -> c
-    com.music.view.popwindow.PopupWindowUtil$PopupWindowUI popupWindowUI -> d
+    com.music.ui.view.popwindow.PopupWindowUtil$PopupWindowUIOnClickListener popupWindowUIOnClickListener -> c
+    com.music.ui.view.popwindow.PopupWindowUtil$PopupWindowUI popupWindowUI -> d
     android.view.View$OnClickListener click -> e
     42:60:void showWindow(android.view.View) -> a
     70:104:void initPopupWindowUI(android.view.View) -> b
     159:160:void toast(java.lang.String) -> a
-    162:162:com.music.view.popwindow.PopupWindowUtil$PopupWindowUIOnClickListener getPopupWindowUIOnClickListener() -> a
-    167:168:void setPopupWindowUIOnClickListener(com.music.view.popwindow.PopupWindowUtil$PopupWindowUIOnClickListener) -> a
-    158:158:void access$0(com.music.view.popwindow.PopupWindowUtil,java.lang.String) -> a
-    28:28:com.music.view.popwindow.PopupWindowUtil$PopupWindowUI access$1(com.music.view.popwindow.PopupWindowUtil) -> a
-    27:27:com.music.view.popwindow.PopupWindowUtil$PopupWindowUIOnClickListener access$2(com.music.view.popwindow.PopupWindowUtil) -> b
-com.music.view.popwindow.PopupWindowUtil$1 -> com.music.view.popwindow.b:
-    com.music.view.popwindow.PopupWindowUtil this$0 -> a
+    162:162:com.music.ui.view.popwindow.PopupWindowUtil$PopupWindowUIOnClickListener getPopupWindowUIOnClickListener() -> a
+    167:168:void setPopupWindowUIOnClickListener(com.music.ui.view.popwindow.PopupWindowUtil$PopupWindowUIOnClickListener) -> a
+    158:158:void access$0(com.music.ui.view.popwindow.PopupWindowUtil,java.lang.String) -> a
+    28:28:com.music.ui.view.popwindow.PopupWindowUtil$PopupWindowUI access$1(com.music.ui.view.popwindow.PopupWindowUtil) -> a
+    27:27:com.music.ui.view.popwindow.PopupWindowUtil$PopupWindowUIOnClickListener access$2(com.music.ui.view.popwindow.PopupWindowUtil) -> b
+com.music.ui.view.popwindow.PopupWindowUtil$1 -> com.music.ui.view.popwindow.b:
+    com.music.ui.view.popwindow.PopupWindowUtil this$0 -> a
     120:156:void onClick(android.view.View) -> onClick
-com.music.view.popwindow.PopupWindowUtil$PopupWindowUI -> com.music.view.popwindow.PopupWindowUtil$a:
+com.music.ui.view.popwindow.PopupWindowUtil$PopupWindowUI -> com.music.ui.view.popwindow.PopupWindowUtil$a:
     android.widget.ImageView iv_on_music -> a
     android.widget.ImageView iv_on_time -> b
     android.widget.LinearLayout ll_menu_folder -> c
@@ -14565,15 +14565,15 @@ com.music.view.popwindow.PopupWindowUtil$PopupWindowUI -> com.music.view.popwind
     android.widget.LinearLayout ll_menu_on_time -> f
     android.widget.LinearLayout ll_menu_scan -> g
     android.widget.LinearLayout ll_menu_singer -> h
-    com.music.view.popwindow.PopupWindowUtil this$0 -> i
-com.music.view.popwindow.PopupWindowUtil$PopupWindowUIOnClickListener -> com.music.view.popwindow.PopupWindowUtil$b:
+    com.music.ui.view.popwindow.PopupWindowUtil this$0 -> i
+com.music.ui.view.popwindow.PopupWindowUtil$PopupWindowUIOnClickListener -> com.music.ui.view.popwindow.PopupWindowUtil$b:
     void sortByTime() -> a
     void sortByName() -> b
-com.music.view.receiver.LockScreenReceiver -> com.music.view.receiver.LockScreenReceiver:
+com.music.ui.view.receiver.LockScreenReceiver -> com.music.ui.view.receiver.LockScreenReceiver:
     android.app.KeyguardManager keyguardManager -> a
     android.app.KeyguardManager$KeyguardLock keyguardLock -> b
     24:37:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.music.view.service.LockScreenService -> com.music.view.service.LockScreenService:
+com.music.ui.view.service.LockScreenService -> com.music.ui.view.service.LockScreenService:
     java.lang.String TAG -> a
     android.content.Intent lockIntent -> b
     android.app.KeyguardManager keyguardManager -> c
@@ -14582,7 +14582,7 @@ com.music.view.service.LockScreenService -> com.music.view.service.LockScreenSer
     25:35:void onCreate() -> onCreate
     39:42:void onDestroy() -> onDestroy
     46:46:int onStartCommand(android.content.Intent,int,int) -> onStartCommand
-com.music.view.service.MyPlayerNewService -> com.music.view.service.MyPlayerNewService:
+com.music.ui.view.service.MyPlayerNewService -> com.music.ui.view.service.MyPlayerNewService:
     android.media.MediaPlayer mediaPlayer -> a
     java.lang.String playPath -> b
     int msg -> c
@@ -14601,25 +14601,25 @@ com.music.view.service.MyPlayerNewService -> com.music.view.service.MyPlayerNewS
     324:327:boolean onUnbind(android.content.Intent) -> onUnbind
     330:338:void release() -> d
     341:346:void onDestroy() -> onDestroy
-    29:29:android.media.MediaPlayer access$0(com.music.view.service.MyPlayerNewService) -> a
-    39:39:void access$1(com.music.view.service.MyPlayerNewService,int) -> a
-    39:39:int access$2(com.music.view.service.MyPlayerNewService) -> b
-    45:45:android.os.Handler access$3(com.music.view.service.MyPlayerNewService) -> c
-    40:40:int access$4(com.music.view.service.MyPlayerNewService) -> d
-    329:329:void access$5(com.music.view.service.MyPlayerNewService) -> e
-    33:33:void access$6(com.music.view.service.MyPlayerNewService,java.lang.String) -> a
-    254:254:void access$7(com.music.view.service.MyPlayerNewService,int) -> b
-    147:147:void access$8(com.music.view.service.MyPlayerNewService) -> f
-    44:44:com.music.utils.Mp3Util_New access$9(com.music.view.service.MyPlayerNewService) -> g
+    29:29:android.media.MediaPlayer access$0(com.music.ui.view.service.MyPlayerNewService) -> a
+    39:39:void access$1(com.music.ui.view.service.MyPlayerNewService,int) -> a
+    39:39:int access$2(com.music.ui.view.service.MyPlayerNewService) -> b
+    45:45:android.os.Handler access$3(com.music.ui.view.service.MyPlayerNewService) -> c
+    40:40:int access$4(com.music.ui.view.service.MyPlayerNewService) -> d
+    329:329:void access$5(com.music.ui.view.service.MyPlayerNewService) -> e
+    33:33:void access$6(com.music.ui.view.service.MyPlayerNewService,java.lang.String) -> a
+    254:254:void access$7(com.music.ui.view.service.MyPlayerNewService,int) -> b
+    147:147:void access$8(com.music.ui.view.service.MyPlayerNewService) -> f
+    44:44:com.music.utils.Mp3Util_New access$9(com.music.ui.view.service.MyPlayerNewService) -> g
     42:42:java.lang.String access$10() -> b
-com.music.view.service.MyPlayerNewService$1 -> com.music.view.service.a:
-    com.music.view.service.MyPlayerNewService this$0 -> a
+com.music.ui.view.service.MyPlayerNewService$1 -> com.music.ui.view.service.a:
+    com.music.ui.view.service.MyPlayerNewService this$0 -> a
     52:90:void handleMessage(android.os.Message) -> handleMessage
-com.music.view.service.MyPlayerNewService$2 -> com.music.view.service.b:
-    com.music.view.service.MyPlayerNewService this$0 -> a
+com.music.ui.view.service.MyPlayerNewService$2 -> com.music.ui.view.service.b:
+    com.music.ui.view.service.MyPlayerNewService this$0 -> a
     106:108:void onCompletion(android.media.MediaPlayer) -> onCompletion
-com.music.view.service.MyPlayerNewService$MediaServiceSub -> com.music.view.service.MyPlayerNewService$a:
-    com.music.view.service.MyPlayerNewService this$0 -> m
+com.music.ui.view.service.MyPlayerNewService$MediaServiceSub -> com.music.ui.view.service.MyPlayerNewService$a:
+    com.music.ui.view.service.MyPlayerNewService this$0 -> m
     174:174:int duration() -> c
     178:178:int position() -> d
     183:183:int getPlayState() -> e
@@ -14632,18 +14632,18 @@ com.music.view.service.MyPlayerNewService$MediaServiceSub -> com.music.view.serv
     227:228:void pause() -> a
     232:233:void seekTo(int) -> a
     237:238:void cotinuePlay() -> b
-com.music.view.service.MyPlayerNewService$MyTask -> com.music.view.service.MyPlayerNewService$b:
-    com.music.view.service.MyPlayerNewService this$0 -> a
+com.music.ui.view.service.MyPlayerNewService$MyTask -> com.music.ui.view.service.MyPlayerNewService$b:
+    com.music.ui.view.service.MyPlayerNewService this$0 -> a
     293:319:void run() -> run
-com.music.view.widget.CircularImage -> com.music.view.widget.CircularImage:
+com.music.ui.view.widget.CircularImage -> com.music.ui.view.widget.CircularImage:
     24:35:android.graphics.Bitmap createMask() -> a
-com.music.view.widget.MaskedImage -> com.music.view.widget.MaskedImage:
+com.music.ui.view.widget.MaskedImage -> com.music.ui.view.widget.MaskedImage:
     android.graphics.Xfermode MASK_XFERMODE -> a
     android.graphics.Bitmap mask -> b
     android.graphics.Paint paint -> c
     android.graphics.Bitmap createMask() -> a
     39:73:void onDraw(android.graphics.Canvas) -> onDraw
-com.music.view.widget.RoundImageView -> com.music.view.widget.RoundImageView:
+com.music.ui.view.widget.RoundImageView -> com.music.ui.view.widget.RoundImageView:
     int mBorderThickness -> a
     android.content.Context mContext -> b
     int defaultColor -> c
@@ -14655,7 +14655,7 @@ com.music.view.widget.RoundImageView -> com.music.view.widget.RoundImageView:
     59:95:void onDraw(android.graphics.Canvas) -> onDraw
     103:151:android.graphics.Bitmap getCroppedRoundBitmap(android.graphics.Bitmap,int) -> a
     158:169:void drawCircleBorder(android.graphics.Canvas,int,int) -> a
-com.music.view.widget.SliderRelativeLayout -> com.music.view.widget.SliderRelativeLayout:
+com.music.ui.view.widget.SliderRelativeLayout -> com.music.ui.view.widget.SliderRelativeLayout:
     java.lang.String TAG -> a
     android.content.Context context -> b
     android.graphics.Bitmap dragBitmap -> c
@@ -14677,18 +14677,18 @@ com.music.view.widget.SliderRelativeLayout -> com.music.view.widget.SliderRelati
     167:171:boolean isLocked() -> d
     178:181:int getScreenWidth() -> getScreenWidth
     188:189:void setMainHandler(android.os.Handler) -> setMainHandler
-    25:25:int access$0(com.music.view.widget.SliderRelativeLayout) -> a
+    25:25:int access$0(com.music.ui.view.widget.SliderRelativeLayout) -> a
     31:31:float access$1() -> a
     30:30:int access$2() -> b
-    25:25:void access$3(com.music.view.widget.SliderRelativeLayout,int) -> a
-    29:29:android.os.Handler access$4(com.music.view.widget.SliderRelativeLayout) -> b
-    112:112:java.lang.Runnable access$5(com.music.view.widget.SliderRelativeLayout) -> c
-com.music.view.widget.SliderRelativeLayout$1 -> com.music.view.widget.a:
-    com.music.view.widget.SliderRelativeLayout this$0 -> a
+    25:25:void access$3(com.music.ui.view.widget.SliderRelativeLayout,int) -> a
+    29:29:android.os.Handler access$4(com.music.ui.view.widget.SliderRelativeLayout) -> b
+    112:112:java.lang.Runnable access$5(com.music.ui.view.widget.SliderRelativeLayout) -> c
+com.music.ui.view.widget.SliderRelativeLayout$1 -> com.music.ui.view.widget.a:
+    com.music.ui.view.widget.SliderRelativeLayout this$0 -> a
     115:120:void run() -> run
-com.music.widget.AlwaysMarqueeTextView -> com.music.widget.AlwaysMarqueeTextView:
+com.music.ui.widget.AlwaysMarqueeTextView -> com.music.ui.widget.AlwaysMarqueeTextView:
     32:32:boolean isFocused() -> isFocused
-com.music.widget.CustomScrollView -> com.music.widget.CustomScrollView:
+com.music.ui.widget.CustomScrollView -> com.music.ui.widget.CustomScrollView:
     android.view.View inner -> a
     float y -> b
     android.graphics.Rect normal -> c
@@ -14704,7 +14704,7 @@ com.music.widget.CustomScrollView -> com.music.widget.CustomScrollView:
     156:167:void animation() -> a
     171:171:boolean isNeedAnimation() -> b
     182:189:void isNeedMove() -> c
-com.music.widget.RippleView -> com.music.widget.RippleView:
+com.music.ui.widget.RippleView -> com.music.ui.widget.RippleView:
     int WIDTH -> a
     int HEIGHT -> b
     int FRAME_RATE -> c
@@ -14744,17 +14744,17 @@ com.music.widget.RippleView -> com.music.widget.RippleView:
     291:303:android.graphics.Bitmap getCircleBitmap(int) -> a
     307:308:void setRippleColor(int) -> setRippleColor
     311:311:int getRippleColor() -> getRippleColor
-    276:276:void access$0(com.music.widget.RippleView,java.lang.Boolean) -> a
-com.music.widget.RippleView$1 -> com.music.widget.a:
-    com.music.widget.RippleView this$0 -> a
+    276:276:void access$0(com.music.ui.widget.RippleView,java.lang.Boolean) -> a
+com.music.ui.widget.RippleView$1 -> com.music.ui.widget.a:
+    com.music.ui.widget.RippleView this$0 -> a
     88:89:void run() -> run
-com.music.widget.RippleView$2 -> com.music.widget.b:
-    com.music.widget.RippleView this$0 -> a
+com.music.ui.widget.RippleView$2 -> com.music.ui.widget.b:
+    com.music.ui.widget.RippleView this$0 -> a
     134:137:void onLongPress(android.view.MotionEvent) -> onLongPress
     141:141:boolean onSingleTapConfirmed(android.view.MotionEvent) -> onSingleTapConfirmed
     146:146:boolean onSingleTapUp(android.view.MotionEvent) -> onSingleTapUp
-com.music.widget.dialog.LoadingView -> com.music.widget.dialog.LoadingView:
-    com.music.widget.dialog.ShapeLoadingView shapeLoadingView -> a
+com.music.ui.widget.dialog.LoadingView -> com.music.ui.widget.dialog.LoadingView:
+    com.music.ui.widget.dialog.ShapeLoadingView shapeLoadingView -> a
     android.widget.ImageView indicationIm -> b
     android.widget.TextView loadTextView -> c
     int ANIMATION_DURATION -> d
@@ -14768,25 +14768,25 @@ com.music.widget.dialog.LoadingView -> com.music.widget.dialog.LoadingView:
     116:174:void upThrow() -> a
     181:215:void freeFall() -> b
     26:26:int[] $SWITCH_TABLE$com$music$widget$dialog$ShapeLoadingView$Shape() -> c
-    28:28:com.music.widget.dialog.ShapeLoadingView access$1(com.music.widget.dialog.LoadingView) -> a
-com.music.widget.dialog.LoadingView$1 -> com.music.widget.dialog.a:
-    com.music.widget.dialog.LoadingView this$0 -> a
+    28:28:com.music.ui.widget.dialog.ShapeLoadingView access$1(com.music.ui.widget.dialog.LoadingView) -> a
+com.music.ui.widget.dialog.LoadingView$1 -> com.music.ui.widget.dialog.a:
+    com.music.ui.widget.dialog.LoadingView this$0 -> a
     100:101:void run() -> run
-com.music.widget.dialog.LoadingView$2 -> com.music.widget.dialog.b:
-    com.music.widget.dialog.LoadingView this$0 -> a
+com.music.ui.widget.dialog.LoadingView$2 -> com.music.ui.widget.dialog.b:
+    com.music.ui.widget.dialog.LoadingView this$0 -> a
     154:154:void onAnimationStart(android.animation.Animator) -> onAnimationStart
     158:160:void onAnimationEnd(android.animation.Animator) -> onAnimationEnd
     165:165:void onAnimationCancel(android.animation.Animator) -> onAnimationCancel
     170:170:void onAnimationRepeat(android.animation.Animator) -> onAnimationRepeat
-com.music.widget.dialog.LoadingView$3 -> com.music.widget.dialog.c:
-    com.music.widget.dialog.LoadingView this$0 -> a
+com.music.ui.widget.dialog.LoadingView$3 -> com.music.ui.widget.dialog.c:
+    com.music.ui.widget.dialog.LoadingView this$0 -> a
     194:194:void onAnimationStart(android.animation.Animator) -> onAnimationStart
     199:201:void onAnimationEnd(android.animation.Animator) -> onAnimationEnd
     206:206:void onAnimationCancel(android.animation.Animator) -> onAnimationCancel
     211:211:void onAnimationRepeat(android.animation.Animator) -> onAnimationRepeat
-com.music.widget.dialog.ShapeLoadingView -> com.music.widget.dialog.ShapeLoadingView:
+com.music.ui.widget.dialog.ShapeLoadingView -> com.music.ui.widget.dialog.ShapeLoadingView:
     float genhao3 -> b
-    com.music.widget.dialog.ShapeLoadingView$Shape mShape -> c
+    com.music.ui.widget.dialog.ShapeLoadingView$Shape mShape -> c
     float mMagicNumber -> d
     boolean mIsLoading -> a
     android.graphics.Paint mPaint -> e
@@ -14800,16 +14800,16 @@ com.music.widget.dialog.ShapeLoadingView -> com.music.widget.dialog.ShapeLoading
     236:236:float relativeXFromView(float) -> a
     240:240:float relativeYFromView(float) -> b
     245:249:void changeShape() -> a
-    257:257:com.music.widget.dialog.ShapeLoadingView$Shape getShape() -> getShape
+    257:257:com.music.ui.widget.dialog.ShapeLoadingView$Shape getShape() -> getShape
     17:17:int[] $SWITCH_TABLE$com$music$widget$dialog$ShapeLoadingView$Shape() -> b
-com.music.widget.dialog.ShapeLoadingView$Shape -> com.music.widget.dialog.ShapeLoadingView$a:
-    com.music.widget.dialog.ShapeLoadingView$Shape SHAPE_TRIANGLE -> a
-    com.music.widget.dialog.ShapeLoadingView$Shape SHAPE_RECT -> b
-    com.music.widget.dialog.ShapeLoadingView$Shape SHAPE_CIRCLE -> c
-    com.music.widget.dialog.ShapeLoadingView$Shape[] ENUM$VALUES -> d
-    1:1:com.music.widget.dialog.ShapeLoadingView$Shape[] values() -> values
-    1:1:com.music.widget.dialog.ShapeLoadingView$Shape valueOf(java.lang.String) -> valueOf
-com.music.widget.indexablelistview.IndexScroller -> com.music.widget.indexablelistview.a:
+com.music.ui.widget.dialog.ShapeLoadingView$Shape -> com.music.ui.widget.dialog.ShapeLoadingView$a:
+    com.music.ui.widget.dialog.ShapeLoadingView$Shape SHAPE_TRIANGLE -> a
+    com.music.ui.widget.dialog.ShapeLoadingView$Shape SHAPE_RECT -> b
+    com.music.ui.widget.dialog.ShapeLoadingView$Shape SHAPE_CIRCLE -> c
+    com.music.ui.widget.dialog.ShapeLoadingView$Shape[] ENUM$VALUES -> d
+    1:1:com.music.ui.widget.dialog.ShapeLoadingView$Shape[] values() -> values
+    1:1:com.music.ui.widget.dialog.ShapeLoadingView$Shape valueOf(java.lang.String) -> valueOf
+com.music.ui.widget.indexablelistview.IndexScroller -> com.music.ui.widget.indexablelistview.a:
     float mIndexbarWidth -> d
     float mIndexbarMargin -> e
     float mPreviewPadding -> f
@@ -14845,18 +14845,18 @@ com.music.widget.indexablelistview.IndexScroller -> com.music.widget.indexableli
     231:231:boolean contains(float,float) -> a
     235:241:int getSectionByPoint(float) -> a
     245:247:void fade(long) -> a
-    44:44:int access$0(com.music.widget.indexablelistview.IndexScroller) -> a
-    43:43:float access$1(com.music.widget.indexablelistview.IndexScroller) -> b
-    43:43:void access$2(com.music.widget.indexablelistview.IndexScroller,float) -> a
-    202:202:void access$3(com.music.widget.indexablelistview.IndexScroller,int) -> a
-    49:49:android.widget.ListView access$4(com.music.widget.indexablelistview.IndexScroller) -> c
-    244:244:void access$5(com.music.widget.indexablelistview.IndexScroller,long) -> a
-com.music.widget.indexablelistview.IndexScroller$1 -> com.music.widget.indexablelistview.b:
-    com.music.widget.indexablelistview.IndexScroller this$0 -> a
+    44:44:int access$0(com.music.ui.widget.indexablelistview.IndexScroller) -> a
+    43:43:float access$1(com.music.ui.widget.indexablelistview.IndexScroller) -> b
+    43:43:void access$2(com.music.ui.widget.indexablelistview.IndexScroller,float) -> a
+    202:202:void access$3(com.music.ui.widget.indexablelistview.IndexScroller,int) -> a
+    49:49:android.widget.ListView access$4(com.music.ui.widget.indexablelistview.IndexScroller) -> c
+    244:244:void access$5(com.music.ui.widget.indexablelistview.IndexScroller,long) -> a
+com.music.ui.widget.indexablelistview.IndexScroller$1 -> com.music.ui.widget.indexablelistview.b:
+    com.music.ui.widget.indexablelistview.IndexScroller this$0 -> a
     253:283:void handleMessage(android.os.Message) -> handleMessage
-com.music.widget.indexablelistview.IndexableListView -> com.music.widget.indexablelistview.IndexableListView:
+com.music.ui.widget.indexablelistview.IndexableListView -> com.music.ui.widget.indexablelistview.IndexableListView:
     boolean mIsFastScrollEnabled -> a
-    com.music.widget.indexablelistview.IndexScroller mScroller -> b
+    com.music.ui.widget.indexablelistview.IndexScroller mScroller -> b
     android.view.GestureDetector mGestureDetector -> c
     boolean isShow -> d
     40:40:boolean isShow() -> a
@@ -14868,13 +14868,13 @@ com.music.widget.indexablelistview.IndexableListView -> com.music.widget.indexab
     117:117:boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
     122:125:void setAdapter(android.widget.ListAdapter) -> setAdapter
     129:132:void onSizeChanged(int,int,int,int) -> onSizeChanged
-com.music.widget.lockpatternview.App -> com.music.widget.lockpatternview.App:
-    com.music.widget.lockpatternview.App mInstance -> a
-    com.music.widget.lockpatternview.LockPatternUtils mLockPatternUtils -> b
-    11:11:com.music.widget.lockpatternview.App getInstance() -> a
+com.music.ui.widget.lockpatternview.App -> com.music.ui.widget.lockpatternview.App:
+    com.music.ui.widget.lockpatternview.App mInstance -> a
+    com.music.ui.widget.lockpatternview.LockPatternUtils mLockPatternUtils -> b
+    11:11:com.music.ui.widget.lockpatternview.App getInstance() -> a
     16:20:void onCreate() -> onCreate
-    23:23:com.music.widget.lockpatternview.LockPatternUtils getLockPatternUtils() -> b
-com.music.widget.lockpatternview.LockPatternUtils -> com.music.widget.lockpatternview.LockPatternUtils:
+    23:23:com.music.ui.widget.lockpatternview.LockPatternUtils getLockPatternUtils() -> b
+com.music.ui.widget.lockpatternview.LockPatternUtils -> com.music.ui.widget.lockpatternview.LockPatternUtils:
     java.lang.String TAG -> e
     java.lang.String LOCK_PATTERN_FILE -> f
     int MIN_LOCK_PATTERN_SIZE -> a
@@ -14893,9 +14893,9 @@ com.music.widget.lockpatternview.LockPatternUtils -> com.music.widget.lockpatter
     208:222:boolean checkPattern(java.util.List) -> c
     46:46:java.util.concurrent.atomic.AtomicBoolean access$0() -> c
     45:45:java.io.File access$1() -> d
-com.music.widget.lockpatternview.LockPatternUtils$LockPatternFileObserver -> com.music.widget.lockpatternview.LockPatternUtils$a:
+com.music.ui.widget.lockpatternview.LockPatternUtils$LockPatternFileObserver -> com.music.ui.widget.lockpatternview.LockPatternUtils$a:
     57:62:void onEvent(int,java.lang.String) -> onEvent
-com.music.widget.lockpatternview.LockPatternView -> com.music.widget.lockpatternview.LockPatternView:
+com.music.ui.widget.lockpatternview.LockPatternView -> com.music.ui.widget.lockpatternview.LockPatternView:
     java.lang.String TAG -> b
     int ASPECT_SQUARE -> c
     int ASPECT_LOCK_WIDTH -> d
@@ -14906,13 +14906,13 @@ com.music.widget.lockpatternview.LockPatternView -> com.music.widget.lockpattern
     android.graphics.Paint mPathPaint -> i
     int STATUS_BAR_HEIGHT -> a
     int MILLIS_PER_CIRCLE_ANIMATING -> j
-    com.music.widget.lockpatternview.LockPatternView$OnPatternListener mOnPatternListener -> k
+    com.music.ui.widget.lockpatternview.LockPatternView$OnPatternListener mOnPatternListener -> k
     java.util.ArrayList mPattern -> l
     boolean[][] mPatternDrawLookup -> m
     float mInProgressX -> n
     float mInProgressY -> o
     long mAnimatingPeriodStart -> p
-    com.music.widget.lockpatternview.LockPatternView$DisplayMode mPatternDisplayMode -> q
+    com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode mPatternDisplayMode -> q
     boolean mInputEnabled -> r
     boolean mInStealthMode -> s
     boolean mEnableHapticFeedback -> t
@@ -14936,9 +14936,9 @@ com.music.widget.lockpatternview.LockPatternView -> com.music.widget.lockpattern
     289:289:boolean isTactileFeedbackEnabled() -> b
     300:301:void setInStealthMode(boolean) -> setInStealthMode
     311:312:void setTactileFeedbackEnabled(boolean) -> setTactileFeedbackEnabled
-    321:322:void setOnPatternListener(com.music.widget.lockpatternview.LockPatternView$OnPatternListener) -> setOnPatternListener
-    334:342:void setPattern(com.music.widget.lockpatternview.LockPatternView$DisplayMode,java.util.List) -> a
-    353:368:void setDisplayMode(com.music.widget.lockpatternview.LockPatternView$DisplayMode) -> setDisplayMode
+    321:322:void setOnPatternListener(com.music.ui.widget.lockpatternview.LockPatternView$OnPatternListener) -> setOnPatternListener
+    334:342:void setPattern(com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode,java.util.List) -> a
+    353:368:void setDisplayMode(com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode) -> setDisplayMode
     371:375:void notifyCellAdded() -> f
     378:382:void notifyPatternStarted() -> g
     385:389:void notifyPatternDetected() -> h
@@ -14953,9 +14953,9 @@ com.music.widget.lockpatternview.LockPatternView -> com.music.widget.lockpattern
     469:469:int getSuggestedMinimumWidth() -> getSuggestedMinimumWidth
     475:475:int getSuggestedMinimumHeight() -> getSuggestedMinimumHeight
     480:499:void onMeasure(int,int) -> onMeasure
-    512:550:com.music.widget.lockpatternview.LockPatternView$Cell detectAndAddHit(float,float) -> a
-    554:557:void addCellToPattern(com.music.widget.lockpatternview.LockPatternView$Cell) -> a
-    562:574:com.music.widget.lockpatternview.LockPatternView$Cell checkForNewHit(float,float) -> b
+    512:550:com.music.ui.widget.lockpatternview.LockPatternView$Cell detectAndAddHit(float,float) -> a
+    554:557:void addCellToPattern(com.music.ui.widget.lockpatternview.LockPatternView$Cell) -> a
+    562:574:com.music.ui.widget.lockpatternview.LockPatternView$Cell checkForNewHit(float,float) -> b
     586:597:int getRowHit(float) -> a
     608:619:int getColumnHit(float) -> b
     624:652:boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
@@ -14969,28 +14969,28 @@ com.music.widget.lockpatternview.LockPatternView -> com.music.widget.lockpattern
     987:1033:void drawCircle(android.graphics.Canvas,int,int,boolean) -> a
     1037:1038:android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
     1046:1054:void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
-com.music.widget.lockpatternview.LockPatternView$Cell -> com.music.widget.lockpatternview.LockPatternView$a:
+com.music.ui.widget.lockpatternview.LockPatternView$Cell -> com.music.ui.widget.lockpatternview.LockPatternView$a:
     int row -> a
     int column -> b
-    com.music.widget.lockpatternview.LockPatternView$Cell[][] sCells -> c
+    com.music.ui.widget.lockpatternview.LockPatternView$Cell[][] sCells -> c
     142:142:int getRow() -> a
     146:146:int getColumn() -> b
-    156:157:com.music.widget.lockpatternview.LockPatternView$Cell of(int,int) -> a
+    156:157:com.music.ui.widget.lockpatternview.LockPatternView$Cell of(int,int) -> a
     161:168:void checkRange(int,int) -> b
     171:171:java.lang.String toString() -> toString
-com.music.widget.lockpatternview.LockPatternView$DisplayMode -> com.music.widget.lockpatternview.LockPatternView$b:
-    com.music.widget.lockpatternview.LockPatternView$DisplayMode Correct -> a
-    com.music.widget.lockpatternview.LockPatternView$DisplayMode Animate -> b
-    com.music.widget.lockpatternview.LockPatternView$DisplayMode Wrong -> c
-    com.music.widget.lockpatternview.LockPatternView$DisplayMode[] ENUM$VALUES -> d
-    1:1:com.music.widget.lockpatternview.LockPatternView$DisplayMode[] values() -> values
-    1:1:com.music.widget.lockpatternview.LockPatternView$DisplayMode valueOf(java.lang.String) -> valueOf
-com.music.widget.lockpatternview.LockPatternView$OnPatternListener -> com.music.widget.lockpatternview.LockPatternView$c:
+com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode -> com.music.ui.widget.lockpatternview.LockPatternView$b:
+    com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode Correct -> a
+    com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode Animate -> b
+    com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode Wrong -> c
+    com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode[] ENUM$VALUES -> d
+    1:1:com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode[] values() -> values
+    1:1:com.music.ui.widget.lockpatternview.LockPatternView$DisplayMode valueOf(java.lang.String) -> valueOf
+com.music.ui.widget.lockpatternview.LockPatternView$OnPatternListener -> com.music.ui.widget.lockpatternview.LockPatternView$c:
     void onPatternStart() -> a
     void onPatternCleared() -> b
     void onPatternCellAdded(java.util.List) -> b
     void onPatternDetected(java.util.List) -> a
-com.music.widget.lockpatternview.LockPatternView$SavedState -> com.music.widget.lockpatternview.LockPatternView$SavedState:
+com.music.ui.widget.lockpatternview.LockPatternView$SavedState -> com.music.ui.widget.lockpatternview.LockPatternView$SavedState:
     java.lang.String mSerializedPattern -> a
     int mDisplayMode -> b
     boolean mInputEnabled -> c
@@ -15003,18 +15003,18 @@ com.music.widget.lockpatternview.LockPatternView$SavedState -> com.music.widget.
     1106:1106:boolean isInStealthMode() -> d
     1110:1110:boolean isTactileFeedbackEnabled() -> e
     1115:1121:void writeToParcel(android.os.Parcel,int) -> writeToParcel
-com.music.widget.lockpatternview.LockPatternView$SavedState$1 -> com.music.widget.lockpatternview.a:
-    1126:1126:com.music.widget.lockpatternview.LockPatternView$SavedState createFromParcel(android.os.Parcel) -> a
-    1130:1130:com.music.widget.lockpatternview.LockPatternView$SavedState[] newArray(int) -> a
+com.music.ui.widget.lockpatternview.LockPatternView$SavedState$1 -> com.music.ui.widget.lockpatternview.a:
+    1126:1126:com.music.ui.widget.lockpatternview.LockPatternView$SavedState createFromParcel(android.os.Parcel) -> a
+    1130:1130:com.music.ui.widget.lockpatternview.LockPatternView$SavedState[] newArray(int) -> a
     1:1:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
     1:1:java.lang.Object[] newArray(int) -> newArray
-com.music.widget.photoview.CropImage -> com.music.widget.photoview.a:
+com.music.ui.widget.photoview.CropImage -> com.music.ui.widget.photoview.a:
     boolean mWaitingToPick -> a
     boolean mSaving -> b
-    com.music.widget.photoview.HighlightView mCrop -> c
+    com.music.ui.widget.photoview.HighlightView mCrop -> c
     android.content.Context mContext -> e
     android.os.Handler mHandler -> f
-    com.music.widget.photoview.CropImageView mImageView -> g
+    com.music.ui.widget.photoview.CropImageView mImageView -> g
     android.graphics.Bitmap mBitmap -> h
     java.lang.Runnable mRunFaceDetection -> d
     46:48:void crop(android.graphics.Bitmap) -> a
@@ -15025,62 +15025,62 @@ com.music.widget.photoview.CropImage -> com.music.widget.photoview.a:
     145:147:void cropCancel() -> b
     154:188:android.graphics.Bitmap onSaveClicked(android.graphics.Bitmap) -> c
     194:195:void showProgressDialog(java.lang.String,java.lang.Runnable,android.os.Handler) -> a
-    32:32:com.music.widget.photoview.CropImageView access$0(com.music.widget.photoview.CropImage) -> a
-    33:33:android.graphics.Bitmap access$1(com.music.widget.photoview.CropImage) -> b
-    31:31:android.os.Handler access$2(com.music.widget.photoview.CropImage) -> c
-    33:33:void access$3(com.music.widget.photoview.CropImage,android.graphics.Bitmap) -> a
-com.music.widget.photoview.CropImage$1 -> com.music.widget.photoview.b:
+    32:32:com.music.ui.widget.photoview.CropImageView access$0(com.music.ui.widget.photoview.CropImage) -> a
+    33:33:android.graphics.Bitmap access$1(com.music.ui.widget.photoview.CropImage) -> b
+    31:31:android.os.Handler access$2(com.music.ui.widget.photoview.CropImage) -> c
+    33:33:void access$3(com.music.ui.widget.photoview.CropImage,android.graphics.Bitmap) -> a
+com.music.ui.widget.photoview.CropImage$1 -> com.music.ui.widget.photoview.b:
     float mScale -> a
     android.graphics.Matrix mImageMatrix -> b
     android.media.FaceDetector$Face[] mFaces -> c
     int mNumFaces -> d
-    com.music.widget.photoview.CropImage this$0 -> e
+    com.music.ui.widget.photoview.CropImage this$0 -> e
     206:246:void handleFace(android.media.FaceDetector$Face) -> a
     250:268:void makeDefault() -> a
     272:285:android.graphics.Bitmap prepareBitmap() -> b
     289:329:void run() -> run
-    249:249:void access$0(com.music.widget.photoview.CropImage$1) -> a
-    197:197:com.music.widget.photoview.CropImage access$1(com.music.widget.photoview.CropImage$1) -> b
-com.music.widget.photoview.CropImage$1$1 -> com.music.widget.photoview.c:
-    com.music.widget.photoview.CropImage$1 this$1 -> a
+    249:249:void access$0(com.music.ui.widget.photoview.CropImage$1) -> a
+    197:197:com.music.ui.widget.photoview.CropImage access$1(com.music.ui.widget.photoview.CropImage$1) -> b
+com.music.ui.widget.photoview.CropImage$1$1 -> com.music.ui.widget.photoview.c:
+    com.music.ui.widget.photoview.CropImage$1 this$1 -> a
     305:327:void run() -> run
-com.music.widget.photoview.CropImage$2 -> com.music.widget.photoview.d:
-    com.music.widget.photoview.CropImage this$0 -> a
+com.music.ui.widget.photoview.CropImage$2 -> com.music.ui.widget.photoview.d:
+    com.music.ui.widget.photoview.CropImage this$0 -> a
     float val$degrees -> b
     57:84:void run() -> run
-    55:55:com.music.widget.photoview.CropImage access$0(com.music.widget.photoview.CropImage$2) -> a
-com.music.widget.photoview.CropImage$2$1 -> com.music.widget.photoview.e:
-    com.music.widget.photoview.CropImage$2 this$1 -> a
+    55:55:com.music.ui.widget.photoview.CropImage access$0(com.music.ui.widget.photoview.CropImage$2) -> a
+com.music.ui.widget.photoview.CropImage$2$1 -> com.music.ui.widget.photoview.e:
+    com.music.ui.widget.photoview.CropImage$2 this$1 -> a
     float val$degrees -> b
     java.util.concurrent.CountDownLatch val$latch -> c
     61:76:void run() -> run
-com.music.widget.photoview.CropImage$3 -> com.music.widget.photoview.f:
-    com.music.widget.photoview.CropImage this$0 -> a
+com.music.ui.widget.photoview.CropImage$3 -> com.music.ui.widget.photoview.f:
+    com.music.ui.widget.photoview.CropImage this$0 -> a
     94:115:void run() -> run
-    92:92:com.music.widget.photoview.CropImage access$0(com.music.widget.photoview.CropImage$3) -> a
-com.music.widget.photoview.CropImage$3$1 -> com.music.widget.photoview.g:
-    com.music.widget.photoview.CropImage$3 this$1 -> a
+    92:92:com.music.ui.widget.photoview.CropImage access$0(com.music.ui.widget.photoview.CropImage$3) -> a
+com.music.ui.widget.photoview.CropImage$3$1 -> com.music.ui.widget.photoview.g:
+    com.music.ui.widget.photoview.CropImage$3 this$1 -> a
     android.graphics.Bitmap val$b -> b
     java.util.concurrent.CountDownLatch val$latch -> c
     98:107:void run() -> run
-com.music.widget.photoview.CropImage$BackgroundJob -> com.music.widget.photoview.a$a:
+com.music.ui.widget.photoview.CropImage$BackgroundJob -> com.music.ui.widget.photoview.a$a:
     java.lang.String message -> b
     java.lang.Runnable mJob -> c
     android.os.Handler mHandler -> d
-    com.music.widget.photoview.CropImage this$0 -> a
+    com.music.ui.widget.photoview.CropImage this$0 -> a
     356:395:void run() -> run
-    337:337:android.os.Handler access$0(com.music.widget.photoview.CropImage$BackgroundJob) -> a
-com.music.widget.photoview.CropImage$BackgroundJob$1 -> com.music.widget.photoview.h:
-    com.music.widget.photoview.CropImage$BackgroundJob this$1 -> a
+    337:337:android.os.Handler access$0(com.music.ui.widget.photoview.CropImage$BackgroundJob) -> a
+com.music.ui.widget.photoview.CropImage$BackgroundJob$1 -> com.music.ui.widget.photoview.h:
+    com.music.ui.widget.photoview.CropImage$BackgroundJob this$1 -> a
     java.util.concurrent.CountDownLatch val$latch -> b
     360:371:void run() -> run
-com.music.widget.photoview.CropImageView -> com.music.widget.photoview.CropImageView:
+com.music.ui.widget.photoview.CropImageView -> com.music.ui.widget.photoview.CropImageView:
     java.util.ArrayList mHighlightViews -> a
-    com.music.widget.photoview.HighlightView mMotionHighlightView -> b
+    com.music.ui.widget.photoview.HighlightView mMotionHighlightView -> b
     float mLastX -> c
     float mLastY -> d
     int mMotionEdge -> e
-    com.music.widget.photoview.CropImage mCropImage -> t
+    com.music.ui.widget.photoview.CropImage mCropImage -> t
     24:34:void onLayout(boolean,int,int,int,int) -> onLayout
     42:47:void zoomTo(float,float,float) -> a
     51:56:void zoomIn() -> a
@@ -15088,13 +15088,13 @@ com.music.widget.photoview.CropImageView -> com.music.widget.photoview.CropImage
     69:75:void postTranslate(float,float) -> a
     80:98:void recomputeFocus(android.view.MotionEvent) -> a
     102:195:boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
-    200:214:void ensureVisible(com.music.widget.photoview.HighlightView) -> b
-    220:243:void centerBasedOnHighlightView(com.music.widget.photoview.HighlightView) -> c
+    200:214:void ensureVisible(com.music.ui.widget.photoview.HighlightView) -> b
+    220:243:void centerBasedOnHighlightView(com.music.ui.widget.photoview.HighlightView) -> c
     247:251:void onDraw(android.graphics.Canvas) -> onDraw
-    254:257:void add(com.music.widget.photoview.HighlightView) -> a
-    260:261:void setCropImage(com.music.widget.photoview.CropImage) -> setCropImage
+    254:257:void add(com.music.ui.widget.photoview.HighlightView) -> a
+    260:261:void setCropImage(com.music.ui.widget.photoview.CropImage) -> setCropImage
     264:283:void resetView(android.graphics.Bitmap) -> a
-com.music.widget.photoview.HighlightView -> com.music.widget.photoview.i:
+com.music.ui.widget.photoview.HighlightView -> com.music.ui.widget.photoview.i:
     java.lang.String TAG -> n
     android.view.View mContext -> a
     int GROW_NONE -> b
@@ -15105,7 +15105,7 @@ com.music.widget.photoview.HighlightView -> com.music.widget.photoview.i:
     int MOVE -> g
     boolean mIsFocused -> h
     boolean mHidden -> i
-    com.music.widget.photoview.HighlightView$ModifyMode mMode -> o
+    com.music.ui.widget.photoview.HighlightView$ModifyMode mMode -> o
     android.graphics.Rect mDrawRect -> j
     android.graphics.RectF mImageRect -> k
     android.graphics.RectF mCropRect -> l
@@ -15123,7 +15123,7 @@ com.music.widget.photoview.HighlightView -> com.music.widget.photoview.i:
     58:59:void setFocus(boolean) -> a
     62:63:void setHidden(boolean) -> b
     66:185:void draw(android.graphics.Canvas) -> a
-    188:192:void setMode(com.music.widget.photoview.HighlightView$ModifyMode) -> a
+    188:192:void setMode(com.music.ui.widget.photoview.HighlightView$ModifyMode) -> a
     196:253:int getHit(float,float) -> a
     259:281:void handleMotion(int,float,float) -> a
     285:301:void moveBy(float,float) -> b
@@ -15132,20 +15132,20 @@ com.music.widget.photoview.HighlightView -> com.music.widget.photoview.i:
     373:376:android.graphics.Rect computeLayout() -> e
     381:382:void invalidate() -> c
     386:407:void setup(android.graphics.Matrix,android.graphics.Rect,android.graphics.RectF,boolean,boolean) -> a
-com.music.widget.photoview.HighlightView$ModifyMode -> com.music.widget.photoview.i$a:
-    com.music.widget.photoview.HighlightView$ModifyMode None -> a
-    com.music.widget.photoview.HighlightView$ModifyMode Move -> b
-    com.music.widget.photoview.HighlightView$ModifyMode Grow -> c
-    com.music.widget.photoview.HighlightView$ModifyMode[] ENUM$VALUES -> d
-    1:1:com.music.widget.photoview.HighlightView$ModifyMode[] values() -> values
-    1:1:com.music.widget.photoview.HighlightView$ModifyMode valueOf(java.lang.String) -> valueOf
-com.music.widget.photoview.ImageViewTouchBase -> com.music.widget.photoview.ImageViewTouchBase:
+com.music.ui.widget.photoview.HighlightView$ModifyMode -> com.music.ui.widget.photoview.i$a:
+    com.music.ui.widget.photoview.HighlightView$ModifyMode None -> a
+    com.music.ui.widget.photoview.HighlightView$ModifyMode Move -> b
+    com.music.ui.widget.photoview.HighlightView$ModifyMode Grow -> c
+    com.music.ui.widget.photoview.HighlightView$ModifyMode[] ENUM$VALUES -> d
+    1:1:com.music.ui.widget.photoview.HighlightView$ModifyMode[] values() -> values
+    1:1:com.music.ui.widget.photoview.HighlightView$ModifyMode valueOf(java.lang.String) -> valueOf
+com.music.ui.widget.photoview.ImageViewTouchBase -> com.music.ui.widget.photoview.ImageViewTouchBase:
     java.lang.String TAG -> a
     android.graphics.Matrix mBaseMatrix -> f
     android.graphics.Matrix mSuppMatrix -> g
     android.graphics.Matrix mDisplayMatrix -> b
     float[] mMatrixValues -> c
-    com.music.widget.photoview.RotateBitmap mBitmapDisplayed -> h
+    com.music.ui.widget.photoview.RotateBitmap mBitmapDisplayed -> h
     int mThisWidth -> i
     int mThisHeight -> j
     float mMaxZoom -> k
@@ -15153,26 +15153,26 @@ com.music.widget.photoview.ImageViewTouchBase -> com.music.widget.photoview.Imag
     int STATE_DOODLE -> m
     int STATE_NONE -> n
     int mState -> o
-    com.music.widget.photoview.ImageViewTouchBase$Recycler mRecycler -> d
+    com.music.ui.widget.photoview.ImageViewTouchBase$Recycler mRecycler -> d
     android.os.Handler mHandler -> p
     int mLastXTouchPos -> q
     int mLastYTouchPos -> r
     java.lang.Runnable mOnLayoutRunnable -> e
     float SCALE_RATE -> s
-    73:74:void setRecycler(com.music.widget.photoview.ImageViewTouchBase$Recycler) -> setRecycler
+    73:74:void setRecycler(com.music.ui.widget.photoview.ImageViewTouchBase$Recycler) -> setRecycler
     80:92:void onLayout(boolean,int,int,int,int) -> onLayout
     96:102:boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
     112:113:void setImageBitmap(android.graphics.Bitmap) -> setImageBitmap
     116:129:void setImageBitmap(android.graphics.Bitmap,int) -> a
     132:133:void clear() -> c
     140:141:void setImageBitmapResetBase(android.graphics.Bitmap,boolean) -> a
-    143:167:void setImageRotateBitmapResetBase(com.music.widget.photoview.RotateBitmap,boolean) -> a
+    143:167:void setImageRotateBitmapResetBase(com.music.ui.widget.photoview.RotateBitmap,boolean) -> a
     175:214:void center(boolean,boolean) -> a
     227:228:void init() -> e
     231:232:float getValue(android.graphics.Matrix,int) -> a
     237:237:float getScale(android.graphics.Matrix) -> a
     241:241:float getScale() -> getScale
-    246:263:void getProperBaseMatrix(com.music.widget.photoview.RotateBitmap,android.graphics.Matrix) -> a
+    246:263:void getProperBaseMatrix(com.music.ui.widget.photoview.RotateBitmap,android.graphics.Matrix) -> a
     269:271:android.graphics.Matrix getImageViewMatrix() -> getImageViewMatrix
     281:289:float maxZoom() -> d
     293:303:void zoomTo(float,float,float) -> a
@@ -15184,13 +15184,13 @@ com.music.widget.photoview.ImageViewTouchBase -> com.music.widget.photoview.Imag
     355:373:void zoomOut(float) -> c
     376:377:void postTranslate(float,float) -> a
     380:382:void panBy(float,float) -> b
-com.music.widget.photoview.ImageViewTouchBase$1 -> com.music.widget.photoview.j:
-    com.music.widget.photoview.ImageViewTouchBase this$0 -> a
-    com.music.widget.photoview.RotateBitmap val$bitmap -> b
+com.music.ui.widget.photoview.ImageViewTouchBase$1 -> com.music.ui.widget.photoview.j:
+    com.music.ui.widget.photoview.ImageViewTouchBase this$0 -> a
+    com.music.ui.widget.photoview.RotateBitmap val$bitmap -> b
     boolean val$resetSupp -> c
     148:149:void run() -> run
-com.music.widget.photoview.ImageViewTouchBase$2 -> com.music.widget.photoview.k:
-    com.music.widget.photoview.ImageViewTouchBase this$0 -> a
+com.music.ui.widget.photoview.ImageViewTouchBase$2 -> com.music.ui.widget.photoview.k:
+    com.music.ui.widget.photoview.ImageViewTouchBase this$0 -> a
     float val$durationMs -> b
     long val$startTime -> c
     float val$oldScale -> d
@@ -15198,9 +15198,9 @@ com.music.widget.photoview.ImageViewTouchBase$2 -> com.music.widget.photoview.k:
     float val$centerX -> f
     float val$centerY -> g
     312:320:void run() -> run
-com.music.widget.photoview.ImageViewTouchBase$Recycler -> com.music.widget.photoview.ImageViewTouchBase$a:
+com.music.ui.widget.photoview.ImageViewTouchBase$Recycler -> com.music.ui.widget.photoview.ImageViewTouchBase$a:
     void recycle(android.graphics.Bitmap) -> a
-com.music.widget.photoview.RotateBitmap -> com.music.widget.photoview.l:
+com.music.ui.widget.photoview.RotateBitmap -> com.music.ui.widget.photoview.l:
     java.lang.String TAG -> a
     android.graphics.Bitmap mBitmap -> b
     int mRotation -> c
@@ -15213,40 +15213,40 @@ com.music.widget.photoview.RotateBitmap -> com.music.widget.photoview.l:
     58:61:int getHeight() -> e
     66:69:int getWidth() -> f
     74:78:void recycle() -> g
-com.music.widget.photoview.RotateImageView -> com.music.widget.photoview.RotateImageView:
+com.music.ui.widget.photoview.RotateImageView -> com.music.ui.widget.photoview.RotateImageView:
     android.graphics.Bitmap mBitmap -> a
     28:30:void setImageBitmap(android.graphics.Bitmap) -> setImageBitmap
     34:36:void setImageResource(int) -> setImageResource
-    39:48:android.graphics.Bitmap rotate(com.music.widget.photoview.RotateImageView$RotateType,float) -> a
+    39:48:android.graphics.Bitmap rotate(com.music.ui.widget.photoview.RotateImageView$RotateType,float) -> a
     52:52:android.graphics.Bitmap getImageViewBitmap() -> getImageViewBitmap
-com.music.widget.photoview.RotateImageView$RotateType -> com.music.widget.photoview.RotateImageView$a:
-    com.music.widget.photoview.RotateImageView$RotateType DEFAULT -> a
-    com.music.widget.photoview.RotateImageView$RotateType LEFT -> b
-    com.music.widget.photoview.RotateImageView$RotateType RIGHT -> c
-    com.music.widget.photoview.RotateImageView$RotateType[] ENUM$VALUES -> d
-    1:1:com.music.widget.photoview.RotateImageView$RotateType[] values() -> values
-    1:1:com.music.widget.photoview.RotateImageView$RotateType valueOf(java.lang.String) -> valueOf
-com.music.widget.slidingdrawer.MySlidingDrawer -> com.music.widget.slidingdrawer.MySlidingDrawer:
+com.music.ui.widget.photoview.RotateImageView$RotateType -> com.music.ui.widget.photoview.RotateImageView$a:
+    com.music.ui.widget.photoview.RotateImageView$RotateType DEFAULT -> a
+    com.music.ui.widget.photoview.RotateImageView$RotateType LEFT -> b
+    com.music.ui.widget.photoview.RotateImageView$RotateType RIGHT -> c
+    com.music.ui.widget.photoview.RotateImageView$RotateType[] ENUM$VALUES -> d
+    1:1:com.music.ui.widget.photoview.RotateImageView$RotateType[] values() -> values
+    1:1:com.music.ui.widget.photoview.RotateImageView$RotateType valueOf(java.lang.String) -> valueOf
+com.music.ui.widget.slidingdrawer.MySlidingDrawer -> com.music.ui.widget.slidingdrawer.MySlidingDrawer:
     int mHandleId -> a
     int[] mTouchableIds -> b
-    com.music.widget.slidingdrawer.MySlidingDrawer$IOnSlidingHandleViewClickListener mTouchViewClickListener -> c
+    com.music.ui.widget.slidingdrawer.MySlidingDrawer$IOnSlidingHandleViewClickListener mTouchViewClickListener -> c
     18:18:int[] getTouchableIds() -> getTouchableIds
     22:23:void setTouchableIds(int[]) -> setTouchableIds
     26:26:int getHandleId() -> getHandleId
     30:31:void setHandleId(int) -> setHandleId
-    37:38:void setOnSliderHandleViewClickListener(com.music.widget.slidingdrawer.MySlidingDrawer$IOnSlidingHandleViewClickListener) -> setOnSliderHandleViewClickListener
+    37:38:void setOnSliderHandleViewClickListener(com.music.ui.widget.slidingdrawer.MySlidingDrawer$IOnSlidingHandleViewClickListener) -> setOnSliderHandleViewClickListener
     52:62:android.graphics.Rect getRectOnScreen(android.view.View) -> a
     68:112:boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
     117:117:boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
-com.music.widget.slidingdrawer.MySlidingDrawer$IOnSlidingHandleViewClickListener -> com.music.widget.slidingdrawer.MySlidingDrawer$a:
+com.music.ui.widget.slidingdrawer.MySlidingDrawer$IOnSlidingHandleViewClickListener -> com.music.ui.widget.slidingdrawer.MySlidingDrawer$a:
     void onViewClick(android.view.View) -> a
-com.music.widget.slidingmenu.ScreenUtils -> com.music.widget.slidingmenu.a:
+com.music.ui.widget.slidingmenu.ScreenUtils -> com.music.ui.widget.slidingmenu.a:
     33:37:int getScreenWidth(android.content.Context) -> a
     48:52:int getScreenHeight(android.content.Context) -> b
     64:76:int getStatusHeight(android.content.Context) -> c
     87:96:android.graphics.Bitmap snapShotWithStatusBar(android.app.Activity) -> a
     108:122:android.graphics.Bitmap snapShotWithoutStatusBar(android.app.Activity) -> b
-com.music.widget.slidingmenu.SlidingMenu -> com.music.widget.slidingmenu.SlidingMenu:
+com.music.ui.widget.slidingmenu.SlidingMenu -> com.music.ui.widget.slidingmenu.SlidingMenu:
     java.lang.String TAG -> a
     int mScreenWidth -> b
     int mMenuRightPadding -> c
@@ -15266,25 +15266,25 @@ com.music.widget.slidingmenu.SlidingMenu -> com.music.widget.slidingmenu.Sliding
     183:187:void closeMenu() -> c
     193:198:void toggle() -> d
     202:217:void onScrollChanged(int,int,int,int) -> onScrollChanged
-com.music.widget.slidingmenu2.CanvasTransformerBuilder -> com.music.widget.slidingmenu2.a:
-    com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer mTrans -> a
+com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder -> com.music.ui.widget.slidingmenu2.a:
+    com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer mTrans -> a
     android.view.animation.Interpolator lin -> b
     23:27:void initTransformer() -> a
-    32:32:com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer zoom(int,int,int,int,int,int) -> a
-    38:47:com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer zoom(int,int,int,int,int,int,android.view.animation.Interpolator) -> a
-    52:52:com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer rotate(int,int,int,int) -> a
-    57:66:com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer rotate(int,int,int,int,android.view.animation.Interpolator) -> a
-    71:71:com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer translate(int,int,int,int) -> b
-    76:85:com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer translate(int,int,int,int,android.view.animation.Interpolator) -> b
-    89:96:com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer concatTransformer(com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer) -> a
-    14:14:com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer access$0(com.music.widget.slidingmenu2.CanvasTransformerBuilder) -> a
-com.music.widget.slidingmenu2.CanvasTransformerBuilder$1 -> com.music.widget.slidingmenu2.b:
+    32:32:com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer zoom(int,int,int,int,int,int) -> a
+    38:47:com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer zoom(int,int,int,int,int,int,android.view.animation.Interpolator) -> a
+    52:52:com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer rotate(int,int,int,int) -> a
+    57:66:com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer rotate(int,int,int,int,android.view.animation.Interpolator) -> a
+    71:71:com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer translate(int,int,int,int) -> b
+    76:85:com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer translate(int,int,int,int,android.view.animation.Interpolator) -> b
+    89:96:com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer concatTransformer(com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer) -> a
+    14:14:com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer access$0(com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder) -> a
+com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder$1 -> com.music.ui.widget.slidingmenu2.b:
     18:18:float getInterpolation(float) -> getInterpolation
-com.music.widget.slidingmenu2.CanvasTransformerBuilder$2 -> com.music.widget.slidingmenu2.c:
-    com.music.widget.slidingmenu2.CanvasTransformerBuilder this$0 -> a
+com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder$2 -> com.music.ui.widget.slidingmenu2.c:
+    com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder this$0 -> a
     25:25:void transformCanvas(android.graphics.Canvas,float) -> a
-com.music.widget.slidingmenu2.CanvasTransformerBuilder$3 -> com.music.widget.slidingmenu2.d:
-    com.music.widget.slidingmenu2.CanvasTransformerBuilder this$0 -> a
+com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder$3 -> com.music.ui.widget.slidingmenu2.d:
+    com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder this$0 -> a
     android.view.animation.Interpolator val$interp -> b
     int val$openedX -> c
     int val$closedX -> d
@@ -15293,27 +15293,27 @@ com.music.widget.slidingmenu2.CanvasTransformerBuilder$3 -> com.music.widget.sli
     int val$px -> g
     int val$py -> h
     41:45:void transformCanvas(android.graphics.Canvas,float) -> a
-com.music.widget.slidingmenu2.CanvasTransformerBuilder$4 -> com.music.widget.slidingmenu2.e:
-    com.music.widget.slidingmenu2.CanvasTransformerBuilder this$0 -> a
+com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder$4 -> com.music.ui.widget.slidingmenu2.e:
+    com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder this$0 -> a
     android.view.animation.Interpolator val$interp -> b
     int val$openedDeg -> c
     int val$closedDeg -> d
     int val$px -> e
     int val$py -> f
     60:64:void transformCanvas(android.graphics.Canvas,float) -> a
-com.music.widget.slidingmenu2.CanvasTransformerBuilder$5 -> com.music.widget.slidingmenu2.f:
-    com.music.widget.slidingmenu2.CanvasTransformerBuilder this$0 -> a
+com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder$5 -> com.music.ui.widget.slidingmenu2.f:
+    com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder this$0 -> a
     android.view.animation.Interpolator val$interp -> b
     int val$openedX -> c
     int val$closedX -> d
     int val$openedY -> e
     int val$closedY -> f
     79:83:void transformCanvas(android.graphics.Canvas,float) -> a
-com.music.widget.slidingmenu2.CanvasTransformerBuilder$6 -> com.music.widget.slidingmenu2.g:
-    com.music.widget.slidingmenu2.CanvasTransformerBuilder this$0 -> a
-    com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer val$t -> b
+com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder$6 -> com.music.ui.widget.slidingmenu2.g:
+    com.music.ui.widget.slidingmenu2.CanvasTransformerBuilder this$0 -> a
+    com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer val$t -> b
     92:94:void transformCanvas(android.graphics.Canvas,float) -> a
-com.music.widget.slidingmenu2.CustomViewAbove -> com.music.widget.slidingmenu2.CustomViewAbove:
+com.music.ui.widget.slidingmenu2.CustomViewAbove -> com.music.ui.widget.slidingmenu2.CustomViewAbove:
     java.lang.String TAG -> e
     boolean DEBUG -> f
     boolean USE_CACHE -> g
@@ -15337,12 +15337,12 @@ com.music.widget.slidingmenu2.CustomViewAbove -> com.music.widget.slidingmenu2.C
     int mMinimumVelocity -> w
     int mMaximumVelocity -> c
     int mFlingDistance -> x
-    com.music.widget.slidingmenu2.CustomViewBehind mViewBehind -> y
+    com.music.ui.widget.slidingmenu2.CustomViewBehind mViewBehind -> y
     boolean mEnabled -> z
-    com.music.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener mOnPageChangeListener -> A
-    com.music.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener mInternalPageChangeListener -> B
-    com.music.widget.slidingmenu2.SlidingMenu$OnClosedListener mClosedListener -> C
-    com.music.widget.slidingmenu2.SlidingMenu$OnOpenedListener mOpenedListener -> D
+    com.music.ui.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener mOnPageChangeListener -> A
+    com.music.ui.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener mInternalPageChangeListener -> B
+    com.music.ui.widget.slidingmenu2.SlidingMenu$OnClosedListener mClosedListener -> C
+    com.music.ui.widget.slidingmenu2.SlidingMenu$OnOpenedListener mOpenedListener -> D
     java.util.List mIgnoredViews -> E
     int mTouchMode -> d
     boolean mQuickReturn -> F
@@ -15353,10 +15353,10 @@ com.music.widget.slidingmenu2.CustomViewAbove -> com.music.widget.slidingmenu2.C
     214:214:int getCurrentItem() -> getCurrentItem
     218:219:void setCurrentItemInternal(int,boolean,boolean) -> a
     222:244:void setCurrentItemInternal(int,boolean,boolean,int) -> a
-    253:254:void setOnPageChangeListener(com.music.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener) -> setOnPageChangeListener
-    265:266:void setOnOpenedListener(com.music.widget.slidingmenu2.SlidingMenu$OnOpenedListener) -> setOnOpenedListener
-    269:270:void setOnClosedListener(com.music.widget.slidingmenu2.SlidingMenu$OnClosedListener) -> setOnClosedListener
-    279:281:com.music.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener setInternalPageChangeListener(com.music.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener) -> a
+    253:254:void setOnPageChangeListener(com.music.ui.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener) -> setOnPageChangeListener
+    265:266:void setOnOpenedListener(com.music.ui.widget.slidingmenu2.SlidingMenu$OnOpenedListener) -> setOnOpenedListener
+    269:270:void setOnClosedListener(com.music.ui.widget.slidingmenu2.SlidingMenu$OnClosedListener) -> setOnClosedListener
+    279:281:com.music.ui.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener setInternalPageChangeListener(com.music.ui.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener) -> a
     285:288:void addIgnoredView(android.view.View) -> a
     291:292:void removeIgnoredView(android.view.View) -> b
     295:296:void clearIgnoredViews() -> b
@@ -15375,7 +15375,7 @@ com.music.widget.slidingmenu2.CustomViewAbove -> com.music.widget.slidingmenu2.C
     389:432:void smoothScrollTo(int,int,int) -> a
     435:439:void setContent(android.view.View) -> setContent
     442:442:android.view.View getContent() -> getContent
-    446:447:void setCustomViewBehind(com.music.widget.slidingmenu2.CustomViewBehind) -> setCustomViewBehind
+    446:447:void setCustomViewBehind(com.music.ui.widget.slidingmenu2.CustomViewBehind) -> setCustomViewBehind
     452:459:void onMeasure(int,int) -> onMeasure
     463:472:void onSizeChanged(int,int,int,int) -> onSizeChanged
     476:479:void onLayout(boolean,int,int,int,int) -> onLayout
@@ -15406,29 +15406,29 @@ com.music.widget.slidingmenu2.CustomViewAbove -> com.music.widget.slidingmenu2.C
     966:995:boolean arrowScroll(int) -> c
     999:1003:boolean pageLeft() -> e
     1007:1011:boolean pageRight() -> f
-    90:90:com.music.widget.slidingmenu2.CustomViewBehind access$0(com.music.widget.slidingmenu2.CustomViewAbove) -> a
-com.music.widget.slidingmenu2.CustomViewAbove$1 -> com.music.widget.slidingmenu2.h:
+    90:90:com.music.ui.widget.slidingmenu2.CustomViewBehind access$0(com.music.ui.widget.slidingmenu2.CustomViewAbove) -> a
+com.music.ui.widget.slidingmenu2.CustomViewAbove$1 -> com.music.ui.widget.slidingmenu2.h:
     48:49:float getInterpolation(float) -> getInterpolation
-com.music.widget.slidingmenu2.CustomViewAbove$2 -> com.music.widget.slidingmenu2.i:
-    com.music.widget.slidingmenu2.CustomViewAbove this$0 -> a
+com.music.ui.widget.slidingmenu2.CustomViewAbove$2 -> com.music.ui.widget.slidingmenu2.i:
+    com.music.ui.widget.slidingmenu2.CustomViewAbove this$0 -> a
     174:185:void onPageSelected(int) -> a
-com.music.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener -> com.music.widget.slidingmenu2.CustomViewAbove$a:
+com.music.ui.widget.slidingmenu2.CustomViewAbove$OnPageChangeListener -> com.music.ui.widget.slidingmenu2.CustomViewAbove$a:
     void onPageScrolled(int,float,int) -> a
     void onPageSelected(int) -> a
-com.music.widget.slidingmenu2.CustomViewAbove$SimpleOnPageChangeListener -> com.music.widget.slidingmenu2.CustomViewAbove$b:
+com.music.ui.widget.slidingmenu2.CustomViewAbove$SimpleOnPageChangeListener -> com.music.ui.widget.slidingmenu2.CustomViewAbove$b:
     141:141:void onPageScrolled(int,float,int) -> a
     145:145:void onPageSelected(int) -> a
     149:149:void onPageScrollStateChanged(int) -> b
-com.music.widget.slidingmenu2.CustomViewBehind -> com.music.widget.slidingmenu2.CustomViewBehind:
+com.music.ui.widget.slidingmenu2.CustomViewBehind -> com.music.ui.widget.slidingmenu2.CustomViewBehind:
     java.lang.String TAG -> a
     int MARGIN_THRESHOLD -> b
     int mTouchMode -> c
-    com.music.widget.slidingmenu2.CustomViewAbove mViewAbove -> d
+    com.music.ui.widget.slidingmenu2.CustomViewAbove mViewAbove -> d
     android.view.View mContent -> e
     android.view.View mSecondaryContent -> f
     int mMarginThreshold -> g
     int mWidthOffset -> h
-    com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer mTransformer -> i
+    com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer mTransformer -> i
     boolean mChildrenEnabled -> j
     int mMode -> k
     boolean mFadeEnabled -> l
@@ -15441,8 +15441,8 @@ com.music.widget.slidingmenu2.CustomViewBehind -> com.music.widget.slidingmenu2.
     boolean mSelectorEnabled -> s
     android.graphics.Bitmap mSelectorDrawable -> t
     android.view.View mSelectedView -> u
-    50:51:void setCustomViewAbove(com.music.widget.slidingmenu2.CustomViewAbove) -> setCustomViewAbove
-    54:55:void setCanvasTransformer(com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer) -> setCanvasTransformer
+    50:51:void setCustomViewAbove(com.music.ui.widget.slidingmenu2.CustomViewAbove) -> setCustomViewAbove
+    54:55:void setCanvasTransformer(com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer) -> setCanvasTransformer
     58:60:void setWidthOffset(int) -> setWidthOffset
     63:64:void setMarginThreshold(int) -> setMarginThreshold
     67:67:int getMarginThreshold() -> getMarginThreshold
@@ -15485,20 +15485,20 @@ com.music.widget.slidingmenu2.CustomViewBehind -> com.music.widget.slidingmenu2.
     422:431:void setSelectedView(android.view.View) -> setSelectedView
     434:436:int getSelectorTop() -> getSelectorTop
     440:442:void setSelectorBitmap(android.graphics.Bitmap) -> setSelectorBitmap
-com.music.widget.slidingmenu2.MenuInterface -> com.music.widget.slidingmenu2.j:
-    void scrollBehindTo(int,int,com.music.widget.slidingmenu2.CustomViewBehind,float) -> a
-    int getMenuLeft(com.music.widget.slidingmenu2.CustomViewBehind,android.view.View) -> a
-    int getAbsLeftBound(com.music.widget.slidingmenu2.CustomViewBehind,android.view.View) -> b
-    int getAbsRightBound(com.music.widget.slidingmenu2.CustomViewBehind,android.view.View) -> c
+com.music.ui.widget.slidingmenu2.MenuInterface -> com.music.ui.widget.slidingmenu2.j:
+    void scrollBehindTo(int,int,com.music.ui.widget.slidingmenu2.CustomViewBehind,float) -> a
+    int getMenuLeft(com.music.ui.widget.slidingmenu2.CustomViewBehind,android.view.View) -> a
+    int getAbsLeftBound(com.music.ui.widget.slidingmenu2.CustomViewBehind,android.view.View) -> b
+    int getAbsRightBound(com.music.ui.widget.slidingmenu2.CustomViewBehind,android.view.View) -> c
     boolean marginTouchAllowed(android.view.View,int,int) -> a
     boolean menuOpenTouchAllowed(android.view.View,int,int) -> b
     boolean menuTouchInQuickReturn(android.view.View,int,int) -> c
     boolean menuClosedSlideAllowed(int) -> a
     boolean menuOpenSlideAllowed(int) -> b
     void drawShadow(android.graphics.Canvas,android.graphics.drawable.Drawable,int) -> a
-    void drawFade(android.graphics.Canvas,int,com.music.widget.slidingmenu2.CustomViewBehind,android.view.View) -> a
+    void drawFade(android.graphics.Canvas,int,com.music.ui.widget.slidingmenu2.CustomViewBehind,android.view.View) -> a
     void drawSelector(android.view.View,android.graphics.Canvas,float) -> a
-com.music.widget.slidingmenu2.SlidingMenu -> com.music.widget.slidingmenu2.SlidingMenu:
+com.music.ui.widget.slidingmenu2.SlidingMenu -> com.music.ui.widget.slidingmenu2.SlidingMenu:
     java.lang.String TAG -> i
     int SLIDING_WINDOW -> a
     int SLIDING_CONTENT -> b
@@ -15509,10 +15509,10 @@ com.music.widget.slidingmenu2.SlidingMenu -> com.music.widget.slidingmenu2.Slidi
     int LEFT -> f
     int RIGHT -> g
     int LEFT_RIGHT -> h
-    com.music.widget.slidingmenu2.CustomViewAbove mViewAbove -> k
-    com.music.widget.slidingmenu2.CustomViewBehind mViewBehind -> l
-    com.music.widget.slidingmenu2.SlidingMenu$OnOpenListener mOpenListener -> m
-    com.music.widget.slidingmenu2.SlidingMenu$OnCloseListener mCloseListener -> n
+    com.music.ui.widget.slidingmenu2.CustomViewAbove mViewAbove -> k
+    com.music.ui.widget.slidingmenu2.CustomViewBehind mViewBehind -> l
+    com.music.ui.widget.slidingmenu2.SlidingMenu$OnOpenListener mOpenListener -> m
+    com.music.ui.widget.slidingmenu2.SlidingMenu$OnCloseListener mCloseListener -> n
     android.os.Handler mHandler -> o
     296:297:void attachToActivity(android.app.Activity,int) -> a
     307:342:void attachToActivity(android.app.Activity,int,boolean) -> a
@@ -15551,7 +15551,7 @@ com.music.widget.slidingmenu2.SlidingMenu -> com.music.widget.slidingmenu2.Slidi
     673:673:int getTouchmodeMarginThreshold() -> getTouchmodeMarginThreshold
     681:682:void setTouchmodeMarginThreshold(int) -> setTouchmodeMarginThreshold
     691:694:void setBehindScrollScale(float) -> setBehindScrollScale
-    702:703:void setBehindCanvasTransformer(com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer) -> setBehindCanvasTransformer
+    702:703:void setBehindCanvasTransformer(com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer) -> setBehindCanvasTransformer
     711:711:int getTouchModeAbove() -> getTouchModeAbove
     722:728:void setTouchModeAbove(int) -> setTouchModeAbove
     738:744:void setTouchModeBehind(int) -> setTouchModeBehind
@@ -15570,60 +15570,60 @@ com.music.widget.slidingmenu2.SlidingMenu -> com.music.widget.slidingmenu2.Slidi
     861:862:void addIgnoredView(android.view.View) -> a
     870:871:void removeIgnoredView(android.view.View) -> b
     877:878:void clearIgnoredViews() -> h
-    887:888:void setOnOpenListener(com.music.widget.slidingmenu2.SlidingMenu$OnOpenListener) -> setOnOpenListener
-    897:898:void setOnCloseListener(com.music.widget.slidingmenu2.SlidingMenu$OnCloseListener) -> setOnCloseListener
-    906:907:void setOnOpenedListener(com.music.widget.slidingmenu2.SlidingMenu$OnOpenedListener) -> setOnOpenedListener
-    915:916:void setOnClosedListener(com.music.widget.slidingmenu2.SlidingMenu$OnClosedListener) -> setOnClosedListener
+    887:888:void setOnOpenListener(com.music.ui.widget.slidingmenu2.SlidingMenu$OnOpenListener) -> setOnOpenListener
+    897:898:void setOnCloseListener(com.music.ui.widget.slidingmenu2.SlidingMenu$OnCloseListener) -> setOnCloseListener
+    906:907:void setOnOpenedListener(com.music.ui.widget.slidingmenu2.SlidingMenu$OnOpenedListener) -> setOnOpenedListener
+    915:916:void setOnClosedListener(com.music.ui.widget.slidingmenu2.SlidingMenu$OnClosedListener) -> setOnClosedListener
     962:964:android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
     972:975:void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
     983:991:boolean fitSystemWindows(android.graphics.Rect) -> fitSystemWindows
     998:1015:void manageLayers(float) -> a
-    80:80:com.music.widget.slidingmenu2.SlidingMenu$OnOpenListener access$0(com.music.widget.slidingmenu2.SlidingMenu) -> a
-    82:82:com.music.widget.slidingmenu2.SlidingMenu$OnCloseListener access$1(com.music.widget.slidingmenu2.SlidingMenu) -> b
-com.music.widget.slidingmenu2.SlidingMenu$1 -> com.music.widget.slidingmenu2.k:
+    80:80:com.music.ui.widget.slidingmenu2.SlidingMenu$OnOpenListener access$0(com.music.ui.widget.slidingmenu2.SlidingMenu) -> a
+    82:82:com.music.ui.widget.slidingmenu2.SlidingMenu$OnCloseListener access$1(com.music.ui.widget.slidingmenu2.SlidingMenu) -> b
+com.music.ui.widget.slidingmenu2.SlidingMenu$1 -> com.music.ui.widget.slidingmenu2.k:
     int POSITION_OPEN -> a
     int POSITION_CLOSE -> b
-    com.music.widget.slidingmenu2.SlidingMenu this$0 -> c
+    com.music.ui.widget.slidingmenu2.SlidingMenu this$0 -> c
     226:226:void onPageScrolled(int,float,int) -> a
     229:234:void onPageSelected(int) -> a
-com.music.widget.slidingmenu2.SlidingMenu$2 -> com.music.widget.slidingmenu2.l:
-    com.music.widget.slidingmenu2.SlidingMenu this$0 -> a
+com.music.ui.widget.slidingmenu2.SlidingMenu$2 -> com.music.ui.widget.slidingmenu2.l:
+    com.music.ui.widget.slidingmenu2.SlidingMenu this$0 -> a
     int val$layerType -> b
     1006:1012:void run() -> run
-com.music.widget.slidingmenu2.SlidingMenu$CanvasTransformer -> com.music.widget.slidingmenu2.SlidingMenu$a:
+com.music.ui.widget.slidingmenu2.SlidingMenu$CanvasTransformer -> com.music.ui.widget.slidingmenu2.SlidingMenu$a:
     void transformCanvas(android.graphics.Canvas,float) -> a
-com.music.widget.slidingmenu2.SlidingMenu$OnCloseListener -> com.music.widget.slidingmenu2.SlidingMenu$b:
+com.music.ui.widget.slidingmenu2.SlidingMenu$OnCloseListener -> com.music.ui.widget.slidingmenu2.SlidingMenu$b:
     void onClose() -> a
-com.music.widget.slidingmenu2.SlidingMenu$OnClosedListener -> com.music.widget.slidingmenu2.SlidingMenu$c:
+com.music.ui.widget.slidingmenu2.SlidingMenu$OnClosedListener -> com.music.ui.widget.slidingmenu2.SlidingMenu$c:
     void onClosed() -> a
-com.music.widget.slidingmenu2.SlidingMenu$OnOpenListener -> com.music.widget.slidingmenu2.SlidingMenu$d:
+com.music.ui.widget.slidingmenu2.SlidingMenu$OnOpenListener -> com.music.ui.widget.slidingmenu2.SlidingMenu$d:
     void onOpen() -> a
-com.music.widget.slidingmenu2.SlidingMenu$OnOpenedListener -> com.music.widget.slidingmenu2.SlidingMenu$e:
+com.music.ui.widget.slidingmenu2.SlidingMenu$OnOpenedListener -> com.music.ui.widget.slidingmenu2.SlidingMenu$e:
     void onOpened() -> a
-com.music.widget.slidingmenu2.SlidingMenu$SavedState -> com.music.widget.slidingmenu2.SlidingMenu$SavedState:
+com.music.ui.widget.slidingmenu2.SlidingMenu$SavedState -> com.music.ui.widget.slidingmenu2.SlidingMenu$SavedState:
     int mItem -> a
     android.os.Parcelable$Creator CREATOR -> CREATOR
     933:933:int getItem() -> a
     940:942:void writeToParcel(android.os.Parcel,int) -> writeToParcel
-com.music.widget.slidingmenu2.SlidingMenu$SavedState$1 -> com.music.widget.slidingmenu2.m:
-    947:947:com.music.widget.slidingmenu2.SlidingMenu$SavedState createFromParcel(android.os.Parcel) -> a
-    951:951:com.music.widget.slidingmenu2.SlidingMenu$SavedState[] newArray(int) -> a
+com.music.ui.widget.slidingmenu2.SlidingMenu$SavedState$1 -> com.music.ui.widget.slidingmenu2.m:
+    947:947:com.music.ui.widget.slidingmenu2.SlidingMenu$SavedState createFromParcel(android.os.Parcel) -> a
+    951:951:com.music.ui.widget.slidingmenu2.SlidingMenu$SavedState[] newArray(int) -> a
     1:1:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
     1:1:java.lang.Object[] newArray(int) -> newArray
-com.music.widget.sortlistview.CharacterParser -> com.music.widget.sortlistview.a:
+com.music.ui.widget.sortlistview.CharacterParser -> com.music.ui.widget.sortlistview.a:
     int[] pyvalue -> b
     java.lang.String[] pystr -> a
     java.lang.StringBuilder buffer -> c
     java.lang.String resource -> d
-    com.music.widget.sortlistview.CharacterParser characterParser -> e
-    65:65:com.music.widget.sortlistview.CharacterParser getInstance() -> a
+    com.music.ui.widget.sortlistview.CharacterParser characterParser -> e
+    65:65:com.music.ui.widget.sortlistview.CharacterParser getInstance() -> a
     69:69:java.lang.String getResource() -> b
     73:74:void setResource(java.lang.String) -> a
     78:95:int getChsAscii(java.lang.String) -> d
     100:112:java.lang.String convert(java.lang.String) -> b
     118:131:java.lang.String getSelling(java.lang.String) -> c
     135:135:java.lang.String getSpelling() -> c
-com.music.widget.sortlistview.ClearEditText -> com.music.widget.sortlistview.ClearEditText:
+com.music.ui.widget.sortlistview.ClearEditText -> com.music.ui.widget.sortlistview.ClearEditText:
     android.graphics.drawable.Drawable mClearDrawable -> a
     42:51:void init() -> b
     61:72:boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
@@ -15634,11 +15634,11 @@ com.music.widget.sortlistview.ClearEditText -> com.music.widget.sortlistview.Cle
     117:117:void afterTextChanged(android.text.Editable) -> afterTextChanged
     124:125:void setShakeAnimation() -> a
     134:137:android.view.animation.Animation shakeAnimation(int) -> a
-com.music.widget.sortlistview.PinyinComparator -> com.music.widget.sortlistview.b:
-    13:20:int compare(com.music.widget.sortlistview.SortModel,com.music.widget.sortlistview.SortModel) -> a
+com.music.ui.widget.sortlistview.PinyinComparator -> com.music.ui.widget.sortlistview.b:
+    13:20:int compare(com.music.ui.widget.sortlistview.SortModel,com.music.ui.widget.sortlistview.SortModel) -> a
     1:1:int compare(java.lang.Object,java.lang.Object) -> compare
-com.music.widget.sortlistview.SideBar -> com.music.widget.sortlistview.SideBar:
-    com.music.widget.sortlistview.SideBar$OnTouchingLetterChangedListener onTouchingLetterChangedListener -> b
+com.music.ui.widget.sortlistview.SideBar -> com.music.ui.widget.sortlistview.SideBar:
+    com.music.ui.widget.sortlistview.SideBar$OnTouchingLetterChangedListener onTouchingLetterChangedListener -> b
     java.lang.String[] b -> a
     int choose -> c
     android.graphics.Paint paint -> d
@@ -15646,10 +15646,10 @@ com.music.widget.sortlistview.SideBar -> com.music.widget.sortlistview.SideBar:
     29:30:void setTextView(android.widget.TextView) -> setTextView
     49:73:void onDraw(android.graphics.Canvas) -> onDraw
     78:113:boolean dispatchTouchEvent(android.view.MotionEvent) -> dispatchTouchEvent
-    123:124:void setOnTouchingLetterChangedListener(com.music.widget.sortlistview.SideBar$OnTouchingLetterChangedListener) -> setOnTouchingLetterChangedListener
-com.music.widget.sortlistview.SideBar$OnTouchingLetterChangedListener -> com.music.widget.sortlistview.SideBar$a:
+    123:124:void setOnTouchingLetterChangedListener(com.music.ui.widget.sortlistview.SideBar$OnTouchingLetterChangedListener) -> setOnTouchingLetterChangedListener
+com.music.ui.widget.sortlistview.SideBar$OnTouchingLetterChangedListener -> com.music.ui.widget.sortlistview.SideBar$a:
     void onTouchingLetterChanged(java.lang.String) -> a
-com.music.widget.sortlistview.SortAdapter -> com.music.widget.sortlistview.c:
+com.music.ui.widget.sortlistview.SortAdapter -> com.music.ui.widget.sortlistview.c:
     java.util.List list -> a
     android.content.Context mContext -> b
     30:32:void updateListView(java.util.List) -> a
@@ -15661,10 +15661,10 @@ com.music.widget.sortlistview.SortAdapter -> com.music.widget.sortlistview.c:
     97:105:int getPositionForSection(int) -> getPositionForSection
     116:121:java.lang.String getAlpha(java.lang.String) -> a
     127:127:java.lang.Object[] getSections() -> getSections
-com.music.widget.sortlistview.SortAdapter$ViewHolder -> com.music.widget.sortlistview.c$a:
+com.music.ui.widget.sortlistview.SortAdapter$ViewHolder -> com.music.ui.widget.sortlistview.c$a:
     android.widget.TextView tvLetter -> a
     android.widget.TextView tvTitle -> b
-com.music.widget.sortlistview.SortModel -> com.music.widget.sortlistview.d:
+com.music.ui.widget.sortlistview.SortModel -> com.music.ui.widget.sortlistview.d:
     java.lang.String name -> a
     java.lang.String sortLetters -> b
     9:9:java.lang.String getName() -> a
@@ -15765,7 +15765,7 @@ com.music.zxing.camera.PreviewCallback -> com.music.zxing.a.f:
     45:57:void onPreviewFrame(byte[],android.hardware.Camera) -> onPreviewFrame
 com.music.zxing.decoding.CaptureActivityHandler -> com.music.zxing.b.a:
     java.lang.String TAG -> a
-    com.music.view.activity.MipcaCaptureActivity activity -> b
+    com.music.ui.view.activity.MipcaCaptureActivity activity -> b
     com.music.zxing.decoding.DecodeThread decodeThread -> c
     com.music.zxing.decoding.CaptureActivityHandler$State state -> d
     68:110:void handleMessage(android.os.Message) -> handleMessage
@@ -15789,13 +15789,13 @@ com.music.zxing.decoding.DecodeFormatManager -> com.music.zxing.b.b:
     76:101:java.util.Vector parseDecodeFormats(java.lang.Iterable,java.lang.String) -> a
 com.music.zxing.decoding.DecodeHandler -> com.music.zxing.b.c:
     java.lang.String TAG -> a
-    com.music.view.activity.MipcaCaptureActivity activity -> b
+    com.music.ui.view.activity.MipcaCaptureActivity activity -> b
     com.google.zxing.MultiFormatReader multiFormatReader -> c
     52:61:void handleMessage(android.os.Message) -> handleMessage
     72:108:void decode(byte[],int,int) -> a
 com.music.zxing.decoding.DecodeThread -> com.music.zxing.b.d:
     java.lang.String BARCODE_BITMAP -> a
-    com.music.view.activity.MipcaCaptureActivity activity -> b
+    com.music.ui.view.activity.MipcaCaptureActivity activity -> b
     java.util.Hashtable hints -> c
     android.os.Handler handler -> d
     java.util.concurrent.CountDownLatch handlerInitLatch -> e

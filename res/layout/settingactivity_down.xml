@@ -7,7 +7,7 @@
     android:background="#f1f1f1"
     android:orientation="vertical" >
 
-    <com.music.widget.RippleView
+    <com.music.ui.widget.RippleView
         android:id="@+id/rl_down"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:layout_below="@+id/tv_sh"
             android:text="/storage/emulated/0/lu/download"
             android:textSize="7sp" />
-    </com.music.widget.RippleView>
+    </com.music.ui.widget.RippleView>
 
     <TextView
         android:layout_width="match_parent"
@@ -46,7 +46,7 @@
         android:layout_marginLeft="15dp"
         android:background="#e0e0e0" />
 
-    <com.music.widget.RippleView
+    <com.music.ui.widget.RippleView
          android:id="@+id/rl_clear_memory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,6 +77,6 @@
             android:layout_centerVertical="true"
             android:text="当前缓存0M"
             android:textColor="#a0a0a0" />
-    </com.music.widget.RippleView>
+    </com.music.ui.widget.RippleView>
 
 </LinearLayout>

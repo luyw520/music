@@ -13,7 +13,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/player_track_color2" >
 
-        <com.music.view.widget.RoundImageView
+        <com.music.ui.view.widget.RoundImageView
             android:id="@+id/iv_music_album"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -22,7 +22,7 @@
             imagecontrol:border_outside_color="#ffd5d1c8"
             imagecontrol:border_thickness="2dp" />
 
-        <com.music.widget.AlwaysMarqueeTextView
+        <com.music.ui.widget.AlwaysMarqueeTextView
             android:id="@+id/tv_music_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,13 +65,13 @@
             android:visibility="gone"
             />
 
-        <com.music.view.widget.MusicTimeProgressView
+        <com.music.ui.view.widget.MusicTimeProgressView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/musicTimeProgressView"
             android:layout_below="@+id/tv_mobile"/>
 
-        <com.music.widget.AlwaysMarqueeTextView
+        <com.music.ui.widget.AlwaysMarqueeTextView
             android:id="@+id/tv_music_Artist"
             android:layout_width="150dp"
             android:layout_height="wrap_content"

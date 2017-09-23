@@ -10,7 +10,7 @@
         android:id="@+id/include_heade"
         layout="@layout/head" />
 
-    <com.music.widget.CustomScrollView
+    <com.music.ui.widget.CustomScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none" >
@@ -20,7 +20,21 @@
             android:layout_height="wrap_content"
             android:background="#e0e0e0"
             android:orientation="vertical" >
+            <com.music.ui.widget.RippleView
+                android:id="@+id/rl_change_skin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/menu_setting_selector"
+                android:padding="15dp" >
 
+                <TextView
+                    android:id="@+id/tv_skin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="换肤" />
+
+            </com.music.ui.widget.RippleView>
             <include
                 android:id="@+id/trylistener"
                 layout="@layout/settingactivity_try_listener" />
@@ -49,6 +63,6 @@
                 android:id="@+id/refresh"
                 layout="@layout/settingactivity_refresh" /> -->
         </LinearLayout>
-    </com.music.widget.CustomScrollView>
+    </com.music.ui.widget.CustomScrollView>
 
 </LinearLayout>

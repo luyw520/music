@@ -57,7 +57,7 @@
             android:background="#ff999999"
             />
     </RelativeLayout>
-	<com.music.widget.indexablelistview.IndexableListView
+	<com.music.ui.widget.indexablelistview.IndexableListView
             android:id="@+id/listview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -79,7 +79,7 @@
             android:textSize="30.0dip"
             android:visibility="invisible" />
 
-        <com.music.widget.sortlistview.SideBar
+        <com.music.ui.widget.sortlistview.SideBar
             android:id="@+id/sidrbar"
             android:layout_width="30.0dip"
             android:layout_height="fill_parent"

@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <com.music.widget.dialog.LoadingView
+    <com.music.ui.widget.dialog.LoadingView
         android:id="@+id/loadView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

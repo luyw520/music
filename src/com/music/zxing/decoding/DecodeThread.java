@@ -26,7 +26,7 @@ import android.os.Looper;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.ResultPointCallback;
-import com.music.view.activity.MipcaCaptureActivity;
+import com.music.ui.view.activity.MipcaCaptureActivity;
 
 /**
  * This thread does all the heavy lifting of decoding the images.

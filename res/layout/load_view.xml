@@ -24,7 +24,7 @@
         android:textColor="#757575"
         android:textSize="16sp" />
 
-    <com.music.widget.dialog.ShapeLoadingView
+    <com.music.ui.widget.dialog.ShapeLoadingView
         android:id="@+id/shapeLoadingView"
         android:layout_width="27dp"
         android:layout_height="27dp"

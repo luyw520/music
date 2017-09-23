@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.music.widget.slidingmenu.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
+<com.music.ui.widget.slidingmenu.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:zhy="http://schemas.android.com/apk/res-auto"
     xmlns:imagecontrol="http://schemas.android.com/apk/res-auto"
@@ -41,4 +41,4 @@
         </RelativeLayout>
     </LinearLayout>
 
-</com.music.widget.slidingmenu.SlidingMenu>
+</com.music.ui.widget.slidingmenu.SlidingMenu>

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
- 	<com.music.widget.photoview.CropImageView
+ 	<com.music.ui.widget.photoview.CropImageView
         android:id="@+id/imagefactory_crop_civ_display"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" 

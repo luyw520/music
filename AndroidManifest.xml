@@ -56,7 +56,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <application
-        android:name="com.music.view.MusicApplication"
+        android:name="com.music.ui.view.MusicApplication"
         android:allowBackup="true"
         android:icon="@drawable/playing_bar_default_avatar"
         android:label="@string/app_name"
@@ -99,13 +99,13 @@
        
        
         <activity
-            android:name="com.music.view.activity.LocalMusicActivity"
+            android:name="com.music.ui.view.activity.LocalMusicActivity"
             android:hardwareAccelerated="false"
             android:label="@string/app_name"
             android:theme="@style/FullBleedTheme"
             android:launchMode="singleTask" >
         </activity>
-        <activity android:name="com.music.view.activity.WelcomeActivity" 
+        <activity android:name="com.music.ui.view.activity.WelcomeActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -113,39 +113,39 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.music.view.activity.PlayerActivity"
+            android:name="com.music.ui.view.activity.PlayerActivity"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name="com.music.view.activity.SearchMusicActivity"
+            android:name="com.music.ui.view.activity.SearchMusicActivity"
             android:windowSoftInputMode="stateUnchanged|adjustPan" >
         </activity>
-        <activity android:name="com.music.view.activity.SettingActivity" 
+        <activity android:name="com.music.ui.view.activity.SettingActivity"
             android:theme="@style/FullBleedTheme">
         </activity>
-        <activity android:name="com.music.view.activity.TestActivity" 
+        <activity android:name="com.music.ui.view.activity.TestActivity"
             android:theme="@style/FullBleedTheme">
         </activity>
-        <activity android:name="com.music.view.activity.LoginActivity" >
+        <activity android:name="com.music.ui.view.activity.LoginActivity" >
         </activity>
-        <activity android:name="com.music.view.activity.ChangeBgActivity" >
+        <activity android:name="com.music.ui.view.activity.ChangeBgActivity" >
         </activity>
-        <activity android:name="com.music.view.activity.ImageFactoryActivity" >
+        <activity android:name="com.music.ui.view.activity.ImageFactoryActivity" >
         </activity>
-        <activity android:name="com.music.view.gesturepressword.CreateGesturePasswordActivity" >
+        <activity android:name="com.music.ui.view.gesturepressword.CreateGesturePasswordActivity" >
         </activity>
-        <activity android:name="com.music.view.gesturepressword.GuideGesturePasswordActivity" >
+        <activity android:name="com.music.ui.view.gesturepressword.GuideGesturePasswordActivity" >
         </activity>
-        <activity android:name="com.music.view.gesturepressword.UnlockGesturePasswordActivity" >
+        <activity android:name="com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity" >
         </activity>
-        <activity android:name="com.music.view.gesturepressword.GresturePasswordSetActivity" >
+        <activity android:name="com.music.ui.view.gesturepressword.GresturePasswordSetActivity" >
         </activity>
         <activity
-            android:name="com.music.view.activity.LockScreenActivity"
+            android:name="com.music.ui.view.activity.LockScreenActivity"
             android:launchMode="singleTask" >
         </activity>
-        <activity android:name="com.music.view.activity.ScanActivity" />
-        <activity android:name="com.music.view.activity.MipcaCaptureActivity" />
+        <activity android:name="com.music.ui.view.activity.ScanActivity" />
+        <activity android:name="com.music.ui.view.activity.MipcaCaptureActivity" />
 
         <!-- 腾讯登陆页面 -->
         <activity
@@ -186,9 +186,9 @@
         <!-- ************************* 注册服务************************* -->
         <service android:name="com.umeng.update.net.DownloadingService" >
         </service>
-        <service android:name="com.music.view.service.LockScreenService" >
+        <service android:name="com.music.ui.view.service.LockScreenService" >
         </service>
-        <service android:name="com.music.view.service.MyPlayerNewService" >
+        <service android:name="com.music.ui.view.service.MyPlayerNewService" >
             <intent-filter
                 android:priority="1000">
                 <action android:name="com.music.service.myplayerService" >

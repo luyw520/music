@@ -15,8 +15,8 @@ import android.util.Log;
 import com.music.bean.Mp3Info;
 import com.music.bean.MusicBaseInfo;
 import com.music.service.IMediaService;
-import com.music.view.MusicApplication;
-import com.music.view.service.MyPlayerNewService;
+import com.music.ui.view.MusicApplication;
+import com.music.ui.view.service.MyPlayerNewService;
 
 public class Mp3Util_New {
 	private static final String TAG = "Mp3Util_New";

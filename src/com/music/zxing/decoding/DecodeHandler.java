@@ -30,7 +30,7 @@ import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import com.music.lu.R;
-import com.music.view.activity.MipcaCaptureActivity;
+import com.music.ui.view.activity.MipcaCaptureActivity;
 import com.music.zxing.camera.CameraManager;
 import com.music.zxing.camera.PlanarYUVLuminanceSource;
 
