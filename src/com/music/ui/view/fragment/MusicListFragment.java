@@ -16,11 +16,11 @@ import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
 import com.music.lu.R;
+import com.music.model.MusicModel;
 import com.music.service.IConstants;
 import com.music.utils.LogUtil;
 import com.music.utils.Mp3Util_New;
-import com.music.utils.MusicUtils;
-import com.music.ui.view.adapter.LuAdapter;
+import com.music.ui.adapter.LuAdapter;
 import com.music.ui.widget.indexablelistview.IndexableListView;
 
 /**
@@ -85,38 +85,34 @@ public class MusicListFragment extends BaseFragment implements IConstants{
 		switch (flag) {
 		case START_FROM_ARTIST:
 			ArtistInfo artistInfo = (ArtistInfo) object;
-			musicInfos=(MusicUtils.getDefault().queryMusic(context,
+			musicInfos=(MusicModel.getInstance().queryMusic(context,
 					select.toString(), artistInfo.artist_name,
 					START_FROM_ARTIST));
 			mPlayListType=1;
 			break;
 		case START_FROM_ALBUM:
 			AlbumInfo albumInfo = (AlbumInfo) object;
-			musicInfos=(MusicUtils.getDefault().queryMusic(context,
+			musicInfos=(MusicModel.getInstance().queryMusic(context,
 					select.toString(), albumInfo.album_id + "",
 					START_FROM_ALBUM));
 			mPlayListType=2;
 			break;
 		case START_FROM_FOLDER:
 			FolderInfo folderInfo = (FolderInfo) object;
-			musicInfos=(MusicUtils.getDefault().queryMusic(context,
+			musicInfos=(MusicModel.getInstance().queryMusic(context,
 					select.toString(), folderInfo.folder_path,
 					START_FROM_FOLDER));
 			mPlayListType=3;
 			break;
-		case START_FROM_FAVORITE:
-			musicInfos=(MusicUtils.getDefault().queryFavorite(context));
-			break;
+//		case START_FROM_FAVORITE:
+////			musicInfos=(MusicModel.getInstance().queryFavorite(context));
+//			break;
 		}
 	}
 	class MusicListItemClickListener implements OnItemClickListener {
-
-		
-
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			
 			if(position<mp3Util.getCurrentPlayListSize()){
 				mp3Util.setMusicBaseInfos(musicInfos, mPlayListType);
 				mp3Util.playMusic(position);
@@ -125,10 +121,8 @@ public class MusicListFragment extends BaseFragment implements IConstants{
 		}
 
 	}
-
 	class ArtistAdapter extends LuAdapter<MusicInfo>{
 
-		
 		public ArtistAdapter(Context context, List<MusicInfo> datas,
 				int mItemLayoutId) {
 			super(context, datas, mItemLayoutId);
@@ -137,13 +131,13 @@ public class MusicListFragment extends BaseFragment implements IConstants{
 		
 
 		@Override
-		public void convert(com.music.ui.view.adapter.ViewHolder helper, int position) {
+		public void convert(com.music.ui.adapter.ViewHolder helper, int position) {
 			// TODO Auto-generated method stub
 			MusicInfo musicInfo=getItem(position);
 			
 //			helper.setString(R.id.albumImage,folderInfo.folder_name);
-			helper.setString(R.id.music_album,musicInfo.artist);
-			helper.setString(R.id.music_title,musicInfo.title);
+			helper.setString(R.id.music_album,musicInfo.getAlbum());
+			helper.setString(R.id.music_title,musicInfo.getTitle());
 			helper.getView(R.id.catalog).setVisibility(View.GONE);
 		}
 

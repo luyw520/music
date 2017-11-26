@@ -1,4 +1,4 @@
-package com.music.ui.view.service;
+package com.music.ui.service;
 import java.io.IOException;
 
 import android.annotation.SuppressLint;
@@ -16,7 +16,7 @@ import com.music.service.IMediaService;
 import com.music.utils.ConstantUtil;
 import com.music.utils.DeBug;
 import com.music.utils.Mp3Util_New;
-import com.music.ui.view.MusicApplication;
+import com.music.MusicApplication;
 
 /**
  *

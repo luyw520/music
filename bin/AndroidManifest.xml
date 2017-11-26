@@ -57,7 +57,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
-        android:name="com.music.ui.view.MusicApplication"
+        android:name="com.music.MusicApplication"
         android:allowBackup="true"
         android:icon="@drawable/playing_bar_default_avatar"
         android:label="@string/app_name"
@@ -187,9 +187,9 @@
         <!-- ************************* 注册服务************************* -->
         <service android:name="com.umeng.update.net.DownloadingService" >
         </service>
-        <service android:name="com.music.ui.view.service.LockScreenService" >
+        <service android:name="com.music.ui.service.LockScreenService" >
         </service>
-        <service android:name="com.music.ui.view.service.MyPlayerNewService" >
+        <service android:name="com.music.ui.service.MyPlayerNewService" >
             <intent-filter
                 android:priority="1000">
                 

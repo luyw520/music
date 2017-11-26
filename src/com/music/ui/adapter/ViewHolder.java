@@ -1,4 +1,4 @@
-package com.music.ui.view.adapter;
+package com.music.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;

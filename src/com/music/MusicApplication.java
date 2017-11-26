@@ -1,4 +1,4 @@
-package com.music.ui.view;
+package com.music;
 
 import java.io.File;
 
@@ -13,7 +13,7 @@ import com.music.utils.DeBug;
 import com.music.utils.FileUtils;
 import com.music.utils.Mp3Util_New;
 import com.music.utils.MusicUtils;
-import com.music.ui.view.service.MyPlayerNewService;
+import com.music.ui.service.MyPlayerNewService;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;

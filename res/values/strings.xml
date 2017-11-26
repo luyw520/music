@@ -68,4 +68,10 @@
     <string name="music_size">总共有%d首歌曲</string>
     <string name="arities_size">总共有%d个歌手</string>
     <string name="album_size">总共有%d个专辑</string>
+
+
+    <string name="dialog_exit_title">退出</string>
+    <string name="dialog_exit_msg">是否退出程序</string>
+    <string name="dialog_exit_ok">确定</string>
+    <string name="dialog_exit_cancel">取消</string>
 </resources>

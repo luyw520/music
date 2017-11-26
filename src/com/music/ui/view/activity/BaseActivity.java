@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
+import com.music.annotation.ComputeTimeUtil;
 import com.music.utils.ConstantUtil;
 import com.music.utils.DeBug;
 import com.music.utils.SystemBarTintManager;
@@ -31,6 +32,7 @@ public class BaseActivity extends Activity implements ConstantUtil {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		ViewUtils.inject(this);
+		ComputeTimeUtil.inject(this);
 		// getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 		// getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 

@@ -20,7 +20,7 @@ import com.music.lu.R;
 import com.music.utils.ApplicationUtil;
 import com.music.utils.DeBug;
 import com.music.utils.DialogUtil;
-import com.music.ui.view.MusicApplication;
+import com.music.MusicApplication;
 import com.music.ui.view.activity.BaseActivity;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
 import com.music.ui.widget.lockpatternview.LockPatternView;

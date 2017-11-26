@@ -2,14 +2,14 @@ package com.music.ui.view.activity;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -23,10 +23,11 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.music.annotation.ComputeTime;
 import com.music.bean.AlbumInfo;
 import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
-import com.music.bean.MusicBaseInfo;
+import com.music.bean.MusicInfo;
 import com.music.bean.UserManager;
 import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
 import com.music.ui.broadcastreceiver.State;
@@ -41,14 +42,13 @@ import com.music.utils.MediaUtil;
 import com.music.utils.Mp3Util_New;
 import com.music.utils.MusicUtils;
 import com.music.utils.PhotoUtils;
-import com.music.ui.view.MusicApplication;
+import com.music.MusicApplication;
 import com.music.ui.view.MyNotification;
 import com.music.ui.view.PlayPauseDrawable;
 import com.music.ui.view.SplashScreen;
 import com.music.ui.view.fragment.LocalMusicFragment;
 import com.music.ui.view.fragment.MusicListFragment;
-import com.music.ui.view.gesturepressword.UnlockGesturePasswordActivity;
-import com.music.ui.view.service.MyPlayerNewService;
+import com.music.ui.service.MyPlayerNewService;
 import com.music.ui.view.widget.CircularImage;
 import com.music.ui.view.widget.MusicTimeProgressView;
 import com.music.ui.widget.slidingmenu2.SlidingMenu;
@@ -70,7 +70,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	public static final String TAG = null;
 	public static final int REQUESTCODE_LOGIN = 0;
 	private static final int LOCK_PASSWORD = 1;
-	public Fragment contentFragment;
 
 	private SplashScreen mSplashScreen;
 
@@ -120,7 +119,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	private int playColor = 0XFFE91E63;
 	private int pauseColor = 0XFFffffff;
 	private int dwableDuaration = 200;
-	private MusicBaseInfo currentMp3Info;
+	private MusicInfo currentMp3Info;
 	private Mp3Util_New mp3Util;
 
 	private MusicListFragment musicListFragment = null;
@@ -138,6 +137,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	private boolean unLockSuccess = true;
 
 	// private boolean
+
 	@TargetApi(19)
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -150,23 +150,18 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		mp3Util = Mp3Util_New.getDefault();
 		playPauseDrawable = new PlayPauseDrawable(30, playColor, pauseColor,
 				dwableDuaration);
-		long start1 = SystemClock.currentThreadTimeMillis();
 		initData();
-		long start2 = SystemClock.currentThreadTimeMillis();
-		DeBug.d(this, "initData:" + (start2 - start1) / 1000.0 + " s");
 		registerReceiver();
-		long start3 = SystemClock.currentThreadTimeMillis();
-		DeBug.d(this, "registerReceiver:" + (start3 - start2) / 1000.0 + " s");
 	}
 
 
 
 	/**
 	 * click ARTIST ,ALBUM,FOLDER jump to musiclistfragment
-	 * 
 	 * @param flag
 	 * @param object
 	 */
+	@ComputeTime
 	public void changeFragment(int flag, Object object) {
 		if (musicListFragment == null) {
 			musicListFragment = new MusicListFragment();
@@ -256,6 +251,10 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 	}
 
+	/**
+	 * 登录后
+	 * @param data
+	 */
 	private void loginResult(Intent data) {
 		if (data == null) {
 			DialogUtil.showToast(getApplicationContext(), "sss");
@@ -269,6 +268,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		ImageLoader.getInstance().displayImage(userHeaderUrl, iv_header);
 	}
 
+	/**
+	 * 重新设置播放状态
+	 */
 	private void resetPlayState() {
 
 		currentMp3Info = mp3Util.getCurrentMp3Info();
@@ -277,8 +279,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		Bitmap bmp = MediaUtil.getArtwork(getApplicationContext(),
 				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(),
 				true,iv_music_album.getWidth(),iv_music_album.getHeight());
+//		Bitmap bmp = MediaUtil.createAlbumArt(currentMp3Info.getPlayPath());
 		iv_music_album.setImageBitmap(bmp);
-
 		DeBug.d(this,
 				"currentMp3Info.getDuration():" + currentMp3Info.getDuration());
 		musicTimeProgressView.setMaxProgress(currentMp3Info.getDuration());
@@ -331,6 +333,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 	}
 
+	/**
+	 * 选择头像
+	 */
 	private void chooseHeader() {
 		if (!UserManager.isLogin()) {
 			DialogUtil.showToast(getApplicationContext(), "mmmm");
@@ -341,6 +346,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		}
 	}
 
+	/**
+	 * 返回
+	 */
 	private void back() {
 		if (!isHome) {
 			transaction = getSupportFragmentManager().beginTransaction();
@@ -359,6 +367,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	}
 
 	/**
+	 * 选择头像对话框
 	 */
 	private void chooseHeaderImgDialog() {
 		DialogUtil.showAlertDialog(this, "ttt", new String[] { "tt", "tttt" },
@@ -407,29 +416,20 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-		LogUtil.i(getClass(), "onResume..............unLockSuccess:"
-				+ unLockSuccess);
-		LogUtil.i(getClass(),
-				"onResume..............ApplicationUtil.getAppLockState(this):"
-						+ ApplicationUtil.getAppLockState(this));
-		LogUtil.i(getClass(),
-				"onResume..............ApplicationUtil.getAppToBack(this):"
-						+ ApplicationUtil.getAppToBack(this));
-		if (ApplicationUtil.getAppLockState(this) == 1) {
-
-			if (isFirst) {
-				Intent intent = new Intent(this,
-						UnlockGesturePasswordActivity.class);
-				startActivityForResult(intent, LOCK_PASSWORD);
-				isFirst = false;
-			} else {
-				if (ApplicationUtil.getAppToBack(this) == 1) {
-					Intent intent = new Intent(this,
-							UnlockGesturePasswordActivity.class);
-					startActivityForResult(intent, LOCK_PASSWORD);
-				}
-			}
-		}
+//		if (ApplicationUtil.getAppLockState(this) == 1) {
+//			if (isFirst) {
+//				Intent intent = new Intent(this,
+//						UnlockGesturePasswordActivity.class);
+//				startActivityForResult(intent, LOCK_PASSWORD);
+//				isFirst = false;
+//			} else {
+//				if (ApplicationUtil.getAppToBack(this) == 1) {
+//					Intent intent = new Intent(this,
+//							UnlockGesturePasswordActivity.class);
+//					startActivityForResult(intent, LOCK_PASSWORD);
+//				}
+//			}
+//		}
 
 		if (myPlayerNewService!=null&&myPlayerNewService.getMediaPlayer().isPlaying()){
 			mHandler.postDelayed(progressRunnable,100);
@@ -533,9 +533,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 	private void showExitDialog() {
 		DialogUtil.showExitAlertDialog(this,
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
+				new View.OnClickListener() {
+					public void onClick(View view) {
 						exit();
 					}
 				});

@@ -13,12 +13,13 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
+import com.music.annotation.ComputeTimeUtil;
 import com.music.lu.R;
 import com.music.utils.ApplicationUtil;
 import com.music.utils.DeBug;
 import com.music.utils.ScreenShotUtil;
 import com.music.utils.SystemBarTintManager;
-import com.music.ui.view.MusicApplication;
+import com.music.MusicApplication;
 import com.umeng.analytics.MobclickAgent;
 
 public class BaseFragmentActivity extends FragmentActivity {
@@ -35,6 +36,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 //		getWindow().addFlags(
 //				WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		ViewUtils.inject(this);
+		ComputeTimeUtil.inject(this);
 		tintManager = new SystemBarTintManager(this);
 		tintManager.setStatusBarTintEnabled(true);
 		tintManager.setNavigationBarTintEnabled(true);

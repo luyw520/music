@@ -21,7 +21,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 
 import com.music.lu.R;
-import com.music.ui.view.MusicApplication;
+import com.music.MusicApplication;
 
 /**
  * This class contains the static methods that return the appropriate UI 

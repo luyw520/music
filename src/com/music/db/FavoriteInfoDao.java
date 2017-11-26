@@ -29,17 +29,17 @@ public class FavoriteInfoDao implements IConstants {
 	public void saveMusicInfo(MusicInfo music) {
 		SQLiteDatabase db = DatabaseHelper.getInstance(mContext);
 		ContentValues cv = new ContentValues();
-		cv.put("_id", music._id);
-		cv.put("songid", music.songId);
-		cv.put("albumid", music.albumId);
-		cv.put("duration", music.duration);
-		cv.put("musicname", music.musicName);
-		cv.put("artist", music.artist);
-		cv.put("data", music.data);
-		cv.put("folder", music.folder);
-		cv.put("musicnamekey", music.musicNameKey);
-		cv.put("artistkey", music.artistKey);
-		cv.put("favorite", 1);
+//		cv.put("_id", music._id);
+//		cv.put("songid", music.songId);
+//		cv.put("albumid", music.albumId);
+//		cv.put("duration", music.duration);
+//		cv.put("musicname", music.musicName);
+//		cv.put("artist", music.artist);
+//		cv.put("data", music.data);
+//		cv.put("folder", music.folder);
+//		cv.put("musicnamekey", music.musicNameKey);
+//		cv.put("artistkey", music.artistKey);
+//		cv.put("favorite", 1);
 		db.insert(TABLE_FAVORITE, null, cv);
 	}
 	
@@ -59,20 +59,20 @@ public class FavoriteInfoDao implements IConstants {
 		List<MusicInfo> list = new ArrayList<MusicInfo>();
 		while (cursor.moveToNext()) {
 			MusicInfo music = new MusicInfo();
-			music._id = cursor.getInt(cursor.getColumnIndex("_id"));
-			music.songId = cursor.getInt(cursor.getColumnIndex("songid"));
-			music.albumId = cursor.getInt(cursor.getColumnIndex("albumid"));
-			music.duration = cursor.getInt(cursor.getColumnIndex("duration"));
-			music.musicName = cursor.getString(cursor
-					.getColumnIndex("musicname"));
-			music.artist = cursor.getString(cursor.getColumnIndex("artist"));
-			music.data = cursor.getString(cursor.getColumnIndex("data"));
-			music.folder = cursor.getString(cursor.getColumnIndex("folder"));
-			music.musicNameKey = cursor.getString(cursor
-					.getColumnIndex("musicnamekey"));
-			music.artistKey = cursor.getString(cursor
-					.getColumnIndex("artistkey"));
-			music.favorite = cursor.getInt(cursor.getColumnIndex("favorite"));
+//			music._id = cursor.getInt(cursor.getColumnIndex("_id"));
+//			music.songId = cursor.getInt(cursor.getColumnIndex("songid"));
+//			music.albumId = cursor.getInt(cursor.getColumnIndex("albumid"));
+//			music.duration = cursor.getInt(cursor.getColumnIndex("duration"));
+//			music.musicName = cursor.getString(cursor
+//					.getColumnIndex("musicname"));
+//			music.artist = cursor.getString(cursor.getColumnIndex("artist"));
+//			music.data = cursor.getString(cursor.getColumnIndex("data"));
+//			music.folder = cursor.getString(cursor.getColumnIndex("folder"));
+//			music.musicNameKey = cursor.getString(cursor
+//					.getColumnIndex("musicnamekey"));
+//			music.artistKey = cursor.getString(cursor
+//					.getColumnIndex("artistkey"));
+//			music.favorite = cursor.getInt(cursor.getColumnIndex("favorite"));
 			list.add(music);
 		}
 		cursor.close();

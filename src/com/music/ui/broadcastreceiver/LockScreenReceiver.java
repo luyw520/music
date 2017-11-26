@@ -1,4 +1,4 @@
-package com.music.ui.view.receiver;
+package com.music.ui.broadcastreceiver;
 
 import com.music.ui.view.activity.LockScreenActivity;
 

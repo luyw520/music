@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.music.lu.R;
 import com.music.utils.ApplicationUtil;
-import com.music.ui.view.MusicApplication;
+import com.music.MusicApplication;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
 import com.music.ui.widget.lockpatternview.LockPatternView;
 import com.music.ui.widget.lockpatternview.LockPatternView.Cell;

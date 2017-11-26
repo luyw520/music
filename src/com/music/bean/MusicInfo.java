@@ -4,89 +4,142 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class MusicInfo extends MusicBaseInfo implements Parcelable {
+public class MusicInfo implements Comparable{
 	
 	
 	
-	
-	
-	
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		Bundle bundle = new Bundle();
-//		bundle.putInt(KEY_ID, _id);
-//		bundle.putInt(KEY_SONG_ID, songId);
-//		bundle.putInt(KEY_ALBUM_ID, albumId);
-//		bundle.putInt(KEY_DURATION, duration);
-//		bundle.putString(KEY_MUSIC_NAME, musicName);
-		bundle.putString(KEY_ARTIST, artist);
-//		bundle.putString(KEY_DATA, data);
-		bundle.putString(KEY_FOLDER, folder);
-//		bundle.putString(KEY_MUSIC_NAME_KEY, musicNameKey);
-//		bundle.putInt(KEY_FAVORITE, favorite);
-		dest.writeBundle(bundle);
-	}
-	
-	public static final Parcelable.Creator<MusicInfo> CREATOR = new Parcelable.Creator<MusicInfo>() {
+	private int songId;
+	private int albumId;
+	private String album;
+	private int duration;
+	private String  title;
+	private String  artist;
+	private String  playPath;
+	private String folder;
 
-		@Override
-		public MusicInfo createFromParcel(Parcel source) {
-			MusicInfo music = new MusicInfo();
-			Bundle bundle = new Bundle();
-			bundle = source.readBundle();
-//			music._id = bundle.getInt(KEY_ID);
-			music.songId = bundle.getInt(KEY_SONG_ID);
-			music.albumId = bundle.getInt(KEY_ALBUM_ID);
-			music.duration = bundle.getInt(KEY_DURATION);
-//			music.musicName = bundle.getString(KEY_MUSIC_NAME);
-			music.artist = bundle.getString(KEY_ARTIST);
-//			music.data = bundle.getString(KEY_DATA);
-			music.folder = bundle.getString(KEY_FOLDER);
-//			music.musicNameKey = bundle.getString(KEY_MUSIC_NAME_KEY);
-//			music.favorite = bundle.getInt(KEY_FAVORITE);
-			return music;
-		}
+	private String titleKey;
+	private String artistKey;
 
-		@Override
-		public MusicInfo[] newArray(int size) {
-			return new MusicInfo[size];
-		}
-	};
-
-
-//	public int getFavorite() {
-//		return favorite;
-//	}
-//	public void setFavorite(int favorite) {
-//		this.favorite = favorite;
-//	}
-	public long getId() {
-		// TODO Auto-generated method stub
+	public String picUrl;
+	public String downUrl;
+	public int getSongId() {
 		return songId;
 	}
-//	public String getTitle() {
-//		// TODO Auto-generated method stub
-//		return this.musicName;
-//	}
-//	public int getAlbumId() {
-//		// TODO Auto-generated method stub
-//		return this.albumId;
-//	}
-	public String getArtist() {
-		// TODO Auto-generated method stub
-		return this.artist;
-	}
-//	public int getDuration() {
-//		// TODO Auto-generated method stub
-//		return this.duration;
-//	}
-//	public String getUrl() {
-//		// TODO Auto-generated method stub
-//		return this.data;
-//	}
 
+	public void setSongId(int songId) {
+		this.songId = songId;
+	}
+
+	public int getAlbumId() {
+		return albumId;
+	}
+
+	public void setAlbumId(int albumId) {
+		this.albumId = albumId;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getArtist() {
+		return artist;
+	}
+
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+
+	public String getPlayPath() {
+		return playPath;
+	}
+
+	public void setPlayPath(String playPath) {
+		this.playPath = playPath;
+	}
+
+	public String getFolder() {
+		return folder;
+	}
+
+	public void setFolder(String folder) {
+		this.folder = folder;
+	}
+
+	public String getTitleKey() {
+		return titleKey;
+	}
+
+	public void setTitleKey(String titleKey) {
+		this.titleKey = titleKey;
+	}
+
+	public String getArtistKey() {
+		return artistKey;
+	}
+
+	public void setArtistKey(String artistKey) {
+		this.artistKey = artistKey;
+	}
+	@Override
+	public int compareTo(Object another) {
+		MusicInfo mp3Info = (MusicInfo) another;
+		int i = 0;
+		boolean flag = false;
+		for (; i < this.titleKey.length(); i++) {
+			if (i < mp3Info.getTitleKey().length()) {
+				if (titleKey.charAt(i) != mp3Info.getTitleKey().charAt(i)) {
+					break;
+				} else {
+					continue;
+				}
+			} else {
+				flag = true;
+				break;
+
+			}
+
+		}
+		if (i == titleKey.length()) {
+			return -1;
+		}
+		if (flag) {
+			return 1;
+		}
+		return this.titleKey.charAt(i) - mp3Info.getTitleKey().charAt(i);
+	}
+	@Override
+	public String toString() {
+		return "MusicInfo{" +
+				"songId=" + songId +
+				", albumId=" + albumId +
+				", duration=" + duration +
+				", title='" + title + '\'' +
+				", artist='" + artist + '\'' +
+				", playPath='" + playPath + '\'' +
+				", folder='" + folder + '\'' +
+				", titleKey='" + titleKey + '\'' +
+				", artistKey='" + artistKey + '\'' +
+				'}';
+	}
+
+	public String getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(String album) {
+		this.album = album;
+	}
 }

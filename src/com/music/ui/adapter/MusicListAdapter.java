@@ -1,4 +1,4 @@
-package com.music.ui.view.adapter;
+package com.music.ui.adapter;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
+import com.music.bean.MusicInfo;
 import com.music.lu.R;
-import com.music.bean.Mp3Info;
 import com.music.utils.DeBug;
 import com.music.utils.Mp3Util_New;
 import com.music.ui.widget.indexablelistview.IndexableListView;
@@ -21,7 +21,7 @@ import com.music.ui.widget.indexablelistview.IndexableListView;
 public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 
 	public MusicListAdapter(Context context, int resource,
-			List<Mp3Info> objects, IndexableListView listView) {
+							List<MusicInfo> objects, IndexableListView listView) {
 		// super(context, resource, objects);
 		this.context = context;
 		this.mp3Infos = objects;
@@ -31,8 +31,8 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 
 	private String mSections = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private Context context;
-	private List<Mp3Info> mp3Infos;
-	private Mp3Info mp3Info;
+	private List<MusicInfo> mp3Infos;
+	private MusicInfo mp3Info;
 	@SuppressWarnings("unused")
 	private int pos = -1;
 	private Mp3Util_New mp3Util;
@@ -47,7 +47,7 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 	}
 
 	@Override
-	public Mp3Info getItem(int position) {
+	public MusicInfo getItem(int position) {
 		return mp3Infos==null?null:mp3Infos.get(position);
 	}
 
@@ -84,15 +84,16 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 		viewHolder.music_album.setText(mp3Info.getArtist());
 		if (!mp3Util.isSortByTime()) {
 			viewHolder.catalog.setVisibility(View.VISIBLE);
-			viewHolder.catalog.setText(mp3Info.getFisrtPinYin());
+			String firstPin=mp3Info.getTitleKey().substring(0, 1);
+			viewHolder.catalog.setText(firstPin);
 			if (position > 0) {
-				if (mp3Info.getFisrtPinYin().equals(
-						mp3Infos.get(position - 1).getFisrtPinYin())) {
+				String preFirstPin=mp3Infos.get(position - 1).getTitleKey().substring(0,1);
+				if (firstPin.equals(preFirstPin)) {
 					viewHolder.catalog.setVisibility(View.GONE);
 				} else {
 
 					viewHolder.catalog.setVisibility(View.VISIBLE);
-					viewHolder.catalog.setText(mp3Info.getFisrtPinYin());
+					viewHolder.catalog.setText(firstPin);
 				}
 			}
 //			listView.setShow(true);
@@ -132,7 +133,7 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 //		boolean isFind=false;
 		String s = mSections.substring(section, section + 1);
 		for (int i = 0; i < mp3Infos.size(); i++) {
-			String string = mp3Infos.get(i).getTitlepingyin().substring(0, 1);
+			String string = mp3Infos.get(i).getTitleKey().substring(0, 1);
 			if (string.equalsIgnoreCase(s)) {
 				result = i;
 //				isFind=true;

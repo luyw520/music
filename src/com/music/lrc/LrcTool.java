@@ -21,10 +21,10 @@ import android.util.Log;
 
 import com.music.bean.LrcInfo;
 import com.music.bean.Mp3Info;
+import com.music.bean.MusicInfo;
 
 
-
- public class LrcTool {
+public class LrcTool {
 	private static final String TAG = "LrcTool";
 
 	
@@ -63,7 +63,7 @@ import com.music.bean.Mp3Info;
 	 * 根据mp3Infos集合里面的歌曲匹配所有的.lrc文件,并将集合写入文件
 	 * @param mp3Infos
 	 */
-	public List<LrcInfo> matchAllMp3(List<Mp3Info> mp3Infos){
+	public List<LrcInfo> matchAllMp3(List<MusicInfo> mp3Infos){
 		
 		getAllLrcFile();
 		

@@ -2072,8 +2072,8 @@ com.music.utils.TopNoticeDialog$TipType: com.music.utils.TopNoticeDialog$TipType
 com.music.utils.TopNoticeDialog$TipType: com.music.utils.TopNoticeDialog$TipType valueOf(java.lang.String)
 com.music.ui.view.ImageFactoryFliter$FilterType: com.music.ui.view.ImageFactoryFliter$FilterType[] values()
 com.music.ui.view.ImageFactoryFliter$FilterType: com.music.ui.view.ImageFactoryFliter$FilterType valueOf(java.lang.String)
-com.music.ui.view.MusicApplication
-com.music.ui.view.MusicApplication: MusicApplication()
+com.music.MusicApplication
+com.music.MusicApplication: MusicApplication()
 com.music.ui.view.MyNotification
 com.music.ui.view.MyNotification: MyNotification(android.content.Context)
 com.music.ui.view.activity.BaseActivity
@@ -2120,8 +2120,8 @@ com.music.ui.view.activity.SettingActivity: void onClick(android.view.View)
 com.music.ui.view.activity.SwipeBackActivity
 com.music.ui.view.activity.WelcomeActivity
 com.music.ui.view.activity.WelcomeActivity: WelcomeActivity()
-com.music.ui.view.adapter.MyPagerAdapter
-com.music.ui.view.adapter.ViewPagerAdapter
+com.music.ui.adapter.MyPagerAdapter
+com.music.ui.adapter.ViewPagerAdapter
 com.music.ui.view.fragment.AlbumFragment
 com.music.ui.view.fragment.AlbumFragment$fragment: com.music.ui.view.fragment.AlbumFragment$fragment[] values()
 com.music.ui.view.fragment.AlbumFragment$fragment: com.music.ui.view.fragment.AlbumFragment$fragment valueOf(java.lang.String)
@@ -2160,11 +2160,11 @@ com.music.ui.view.popwindow.PopupWindowQieGe
 com.music.ui.view.popwindow.PopupWindowQieGe: PopupWindowQieGe(android.content.Context)
 com.music.ui.view.popwindow.PopupWindowUtil
 com.music.ui.view.popwindow.PopupWindowUtil: PopupWindowUtil(android.content.Context)
-com.music.ui.view.receiver.LockScreenReceiver
-com.music.ui.view.service.LockScreenService
-com.music.ui.view.service.LockScreenService: LockScreenService()
-com.music.ui.view.service.MyPlayerNewService
-com.music.ui.view.service.MyPlayerNewService: MyPlayerNewService()
+com.music.ui.broadcastreceiver.LockScreenReceiver
+com.music.ui.service.LockScreenService
+com.music.ui.service.LockScreenService: LockScreenService()
+com.music.ui.service.MyPlayerNewService
+com.music.ui.service.MyPlayerNewService: MyPlayerNewService()
 com.music.ui.view.widget.CircularImage
 com.music.ui.view.widget.CircularImage: CircularImage(android.content.Context)
 com.music.ui.view.widget.CircularImage: CircularImage(android.content.Context,android.util.AttributeSet)

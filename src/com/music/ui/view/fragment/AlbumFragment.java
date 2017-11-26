@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.music.bean.AlbumInfo;
 import com.music.lu.R;
+import com.music.model.MusicModel;
 import com.music.service.IConstants;
 import com.music.service.IMediaService;
 import com.music.utils.AsyncTaskUtil;
@@ -70,9 +71,9 @@ public class AlbumFragment extends BaseFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		musicListItemClickListener = new MusicListItemClickListener();
-		albumInfos = com.music.utils.MusicUtils.getDefault().queryAlbums(
-				getActivity());
-		isLoaded = new int[albumInfos.size()];
+//		albumInfos = com.music.utils.MusicUtils.getDefault().queryAlbums(
+//				getActivity());
+
 		LogUtil.d(TAG, "onCreate");
 	}
 
@@ -81,6 +82,9 @@ public class AlbumFragment extends BaseFragment {
 		super.onCreateView(inflater, container, savedInstanceState);
 		View view = inflater.inflate(R.layout.fragment, container,
 				false);
+		albumInfos = MusicModel.getInstance().queryAlbums(
+				getActivity());
+		isLoaded = new int[albumInfos.size()];
 		initViewWidget(view);
 		LogUtil.d(TAG, "onCreateView");
 		return view;
@@ -98,20 +102,14 @@ public class AlbumFragment extends BaseFragment {
 		long start = System.currentTimeMillis();
 
 		loadList = new ArrayList<Map<String, Boolean>>();
-		long query = System.currentTimeMillis();
-		System.out.println("album widget:query " + (query - start) / 1000.0);
 
 		// Collections.sort(albumInfos);
-		long sort = System.currentTimeMillis();
-		System.out.println("album widget:sort " + (sort - query) / 1000.0);
 		listAdapter = new AlbumAdapter(getActivity(), albumInfos);
 
 
 		mMusiclist.addFooterView(getFoodView(getString(R.string.album_size,albumInfos.size())));
 
 		mMusiclist.setAdapter(listAdapter);
-		System.out.println("album widget: init"
-				+ (System.currentTimeMillis() - sort) / 1000.0);
 	}
 
 	class MusicListItemClickListener implements OnItemClickListener {

@@ -112,7 +112,7 @@ public class LrcUtil {
 			}
 			
 			if(lrcInfos==null){
-				lrcInfos=lrcTool.matchAllMp3(mp3Util.getMp3Infos());
+				lrcInfos=lrcTool.matchAllMp3(mp3Util.getMusicBaseInfos());
 			}
 			return null;
 		}

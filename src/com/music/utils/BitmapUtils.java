@@ -276,6 +276,23 @@ public class BitmapUtils {
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeFileDescriptor(fd);
     }
+    /**
+     * 获取bitmap
+     *
+     * @param fd        输入流
+     * @param maxWidth  最大宽度
+     * @param maxHeight 最大高度
+     * @return bitmap
+     */
+    public static Bitmap getBitmapFromFile(String fd, int maxWidth, int maxHeight) {
+        if (fd == null) return null;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(fd, options);
+        options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeFile(fd);
+    }
 
     /**
      * 获取bitmap

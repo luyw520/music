@@ -20,6 +20,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
@@ -42,7 +43,7 @@ public class MediaUtil {
 	 *
 	 */
 	@SuppressLint("DefaultLocale")
-	public List<Mp3Info> getMp3Infos(Context context) {
+	public  List<Mp3Info> getMp3Infos(Context context) {
 		long time1 = System.currentTimeMillis();
 		Cursor cursor = context.getContentResolver().query(
 				MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,
@@ -53,7 +54,7 @@ public class MediaUtil {
 		LogUtil.d(this, "MediaStore.Audio.Media.DEFAULT_SORT_ORDER:"
 				+ MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
 		List<Mp3Info> mp3Infos = new ArrayList<Mp3Info>();
-		System.out.println("cursor.getCount()=" + cursor.getCount());
+		LogUtil.d(this,"cursor.getCount()=" + cursor.getCount());
 		for (int i = 0; i < cursor.getCount(); i++) {
 			cursor.moveToNext();
 			Mp3Info mp3Info = new Mp3Info();
@@ -74,13 +75,12 @@ public class MediaUtil {
 			long size = cursor.getLong(cursor
 					.getColumnIndex(MediaStore.Audio.Media.SIZE)); //
 			String url = cursor.getString(cursor
-
 			.getColumnIndex(MediaStore.Audio.Media.DATA)); //
 
 
 			int isMusic = cursor.getInt(cursor
 					.getColumnIndex(MediaStore.Audio.Media.IS_MUSIC)); //
-			if (isMusic != 0) { //
+//			if (isMusic != 0) { //
 
 				if (isMP3(url)&& isMusic(size)) {
 					mp3Info.setId(id);
@@ -97,7 +97,7 @@ public class MediaUtil {
 
 					mp3Infos.add(mp3Info);
 				}
-			}
+//			}
 		}
 		long time2 = System.currentTimeMillis();
 		Log.i(TAG, (time2 - time1) + "ms");
@@ -124,7 +124,30 @@ public class MediaUtil {
 		}
 		return c.toString();
 	}
-
+	/**
+	 * @Description 获取专辑封面
+	 * @param filePath 文件路径，like XXX/XXX/XX.mp3
+	 * @return 专辑封面bitmap
+	 */
+	public static Bitmap createAlbumArt(final String filePath) {
+		Bitmap bitmap = null;
+		//能够获取多媒体文件元数据的类
+		MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+		try {
+			retriever.setDataSource(filePath); //设置数据源
+			byte[] embedPic = retriever.getEmbeddedPicture(); //得到字节型数据
+			bitmap = BitmapFactory.decodeByteArray(embedPic, 0, embedPic.length); //转换为图片
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				retriever.release();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return bitmap;
+	}
 
 	/**
 	 *
@@ -216,9 +239,16 @@ public class MediaUtil {
 						+ songid + "/albumart");
 				DeBug.d("getArtworkFromFile","通过songid:"+songid+"获取专辑");
 			} else {
+				String mUriAlbums = "content://media/external/audio/albums";
+				String[] projection = new String[] { "album_art" };
 				DeBug.d("getArtworkFromFile","通过albumid:"+albumid+"获取专辑");
-				uri = ContentUris.withAppendedId(albumArtUri, albumid);
+//				uri = ContentUris.withAppendedId(albumArtUri, albumid);
+				uri=Uri.parse(mUriAlbums + "/" + Long.toString(albumid));
+
+				bm=BitmapUtils.getBitmapFromFile(getAlbumArt(context,albumid),width,height);
+				return bm;
 			}
+
 			ParcelFileDescriptor pfd = context.getContentResolver()
 					.openFileDescriptor(uri, "r");
 			if (pfd != null) {
@@ -227,9 +257,24 @@ public class MediaUtil {
 			bm=BitmapUtils.getBitmapFromFileDescriptor(fd,width,height);
 			DeBug.d("getArtworkFromFile","getHeight:"+bm.getHeight()+",getWidth:"+bm.getWidth()+","+BitmapUtils.getBitmapSize(bm)/1024+"KB");
 		} catch (Exception e) {
-			// e.printStackTrace();
+			 e.printStackTrace();
 		}
 		return bm;
+	}
+	private static String getAlbumArt(Context context,long album_id) {
+		String mUriAlbums = "content://media/external/audio/albums";
+		String[] projection = new String[] { "album_art" };
+		Cursor cur = context.getContentResolver().query(
+				Uri.parse(mUriAlbums + "/" + Long.toString(album_id)),
+				projection, null, null, null);
+		String album_art = null;
+		if (cur.getCount() > 0 && cur.getColumnCount() > 0) {
+			cur.moveToNext();
+			album_art = cur.getString(0);
+		}
+		cur.close();
+		cur = null;
+		return album_art;
 	}
 	/**
 	 * 获取专辑图片

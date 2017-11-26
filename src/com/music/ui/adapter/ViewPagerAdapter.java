@@ -1,4 +1,4 @@
-package com.music.ui.view.adapter;
+package com.music.ui.adapter;
 
 import java.util.ArrayList;
 import java.util.List;

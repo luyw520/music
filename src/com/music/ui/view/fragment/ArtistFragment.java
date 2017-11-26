@@ -14,13 +14,13 @@ import android.widget.SectionIndexer;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.music.bean.ArtistInfo;
 import com.music.lu.R;
+import com.music.model.MusicModel;
 import com.music.service.IConstants;
 import com.music.service.IMediaService;
 import com.music.utils.LogUtil;
-import com.music.utils.MusicUtils;
 import com.music.utils.StringUtil;
 import com.music.ui.view.activity.LocalMusicActivity;
-import com.music.ui.view.adapter.LuAdapter;
+import com.music.ui.adapter.LuAdapter;
 import com.music.ui.widget.indexablelistview.IndexableListView;
 
 /**
@@ -28,7 +28,6 @@ import com.music.ui.widget.indexablelistview.IndexableListView;
  */
 public class ArtistFragment extends BaseFragment {
 
-	protected IMediaService mService;
 	private static final String TAG = "ArtistFragment";
 
 	private ArtistAdapter listAdapter;
@@ -68,7 +67,8 @@ public class ArtistFragment extends BaseFragment {
 		mMusiclist.setOnItemClickListener(musicListItemClickListener);
 		
 		
-		artistInfos = MusicUtils.getDefault().queryArtist(getActivity());
+//		artistInfos = MusicUtils.getDefault().queryArtist(getActivity());
+		artistInfos = MusicModel.getInstance().queryArtist(getActivity());
 		listAdapter = new ArtistAdapter(getActivity(),artistInfos,R.layout.item_listview_album);
 		
 
@@ -129,7 +129,7 @@ public class ArtistFragment extends BaseFragment {
 		}
 
 		@Override
-		public void convert(com.music.ui.view.adapter.ViewHolder helper, int position) {
+		public void convert(com.music.ui.adapter.ViewHolder helper, int position) {
 			// TODO Auto-generated method stub
 			ArtistInfo artistInfo=getItem(position);
 			

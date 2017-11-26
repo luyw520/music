@@ -1,4 +1,4 @@
-package com.music.ui.view.service;
+package com.music.ui.service;
 
 import android.app.KeyguardManager;
 import android.app.Service;

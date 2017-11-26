@@ -26,7 +26,7 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.music.bean.LyricSentence;
-import com.music.bean.MusicBaseInfo;
+import com.music.bean.MusicInfo;
 import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
 import com.music.ui.broadcastreceiver.State;
 import com.music.lrc.LyricLoadHelper.LyricListener;
@@ -42,8 +42,8 @@ import com.music.utils.DeBug;
 import com.music.utils.DialogUtil;
 import com.music.utils.MediaUtil;
 import com.music.utils.Mp3Util_New;
-import com.music.ui.view.MusicApplication;
-import com.music.ui.view.service.MyPlayerNewService;
+import com.music.MusicApplication;
+import com.music.ui.service.MyPlayerNewService;
 
 /**
  *
@@ -104,7 +104,7 @@ public class PlayerActivity extends BaseActivity {
 	private LyricView lyricView;
 
 	private Mp3Util_New mp3Util;
-	private MusicBaseInfo currentMp3Info;
+	private MusicInfo currentMp3Info;
 	@ViewInject(value = R.id.ll_bg)
 	private LinearLayout ll_bg;
 

@@ -14,12 +14,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.music.bean.FolderInfo;
 import com.music.lu.R;
+import com.music.model.MusicModel;
 import com.music.service.IConstants;
 import com.music.service.IMediaService;
 import com.music.utils.LogUtil;
-import com.music.utils.MusicUtils;
 import com.music.ui.view.activity.LocalMusicActivity;
-import com.music.ui.view.adapter.LuAdapter;
+import com.music.ui.adapter.LuAdapter;
 import com.music.ui.widget.indexablelistview.IndexableListView;
 
 /**
@@ -66,7 +66,8 @@ public class FolderFragment extends Fragment {
 		mMusiclist.setOnItemClickListener(musicListItemClickListener);
 		
 		
-		folderInfos = MusicUtils.getDefault().queryFolder(getActivity());
+//		folderInfos = MusicUtils.getDefault().queryFolder(getActivity());
+		folderInfos = MusicModel.getInstance().queryFolder(getActivity());
 		listAdapter = new ArtistAdapter(getActivity(),folderInfos,R.layout.item_listview_folder);
 		
 		
@@ -98,7 +99,7 @@ public class FolderFragment extends Fragment {
 		
 
 		@Override
-		public void convert(com.music.ui.view.adapter.ViewHolder helper, int position) {
+		public void convert(com.music.ui.adapter.ViewHolder helper, int position) {
 			// TODO Auto-generated method stub
 			FolderInfo folderInfo=getItem(position);
 			

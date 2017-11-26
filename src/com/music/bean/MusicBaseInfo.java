@@ -62,7 +62,7 @@ public class  MusicBaseInfo {
 	public long songId;	//
 	public long albumId;//
 	public long duration;
-	public String title="";
+	public String title="未知";
 	public String artist="";
 	public String folder="";
 	public String playPath="";

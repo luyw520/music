@@ -10,12 +10,13 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.music.bean.Mp3Info;
+import com.music.bean.MusicInfo;
 import com.music.lu.R;
+import com.music.model.MusicModel;
 import com.music.service.IConstants;
 import com.music.utils.DeBug;
 import com.music.utils.Mp3Util_New;
-import com.music.ui.view.adapter.MusicListAdapter;
+import com.music.ui.adapter.MusicListAdapter;
 import com.music.ui.widget.indexablelistview.IndexableListView;
 
 /**
@@ -32,7 +33,7 @@ public class SongFragment extends BaseFragment implements IConstants{
 	@ViewInject(value = R.id.listview)
 	private IndexableListView mMusiclist; //
 	private Mp3Util_New mp3Util;
-	private List<Mp3Info> mp3Infos;
+	private List<MusicInfo> mp3Infos;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,7 +65,8 @@ public class SongFragment extends BaseFragment implements IConstants{
 		mMusiclist.setFastScrollEnabled(false);
 		
 		
-		mp3Infos=mp3Util.getMp3Infos();
+//		mp3Infos= new MediaUtil().getMp3Infos(getContext());
+		mp3Infos= MusicModel.getInstance().getAllMusicInfos(getContext());
 
 		
 		listAdapter = new MusicListAdapter(getActivity(),

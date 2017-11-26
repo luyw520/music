@@ -1,7 +1,6 @@
 package com.music.utils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import android.content.ComponentName;
@@ -12,21 +11,19 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.music.bean.Mp3Info;
-import com.music.bean.MusicBaseInfo;
+import com.music.bean.MusicInfo;
+import com.music.model.MusicModel;
 import com.music.service.IMediaService;
-import com.music.ui.view.MusicApplication;
-import com.music.ui.view.service.MyPlayerNewService;
+import com.music.MusicApplication;
+import com.music.ui.service.MyPlayerNewService;
 
 public class Mp3Util_New {
 	private static final String TAG = "Mp3Util_New";
 	public static final String playService = "com.music.service.myplayerService";
 	private static Mp3Util_New mp3Util = null;
-
 	public static Mp3Util_New getDefault() {
 		return mp3Util;
 	}
-
 	public static Mp3Util_New getInstance() {
 		return mp3Util;
 	}
@@ -35,16 +32,13 @@ public class Mp3Util_New {
 		mp3Util = new Mp3Util_New(context);
 
 	}
-
-	private MediaUtil mediaUtil;;
 	private boolean isSortByTime = false;
 	/**
 	 */
-	private List<Mp3Info> mp3Infos = null;
 
 	/**
 	 */
-	private List<? extends MusicBaseInfo> musicBaseInfos = new ArrayList<MusicBaseInfo>();
+	private List<MusicInfo> musicBaseInfos = new ArrayList<>();
 	private IMediaService mService;
 
 	private ServiceConnection conn;
@@ -56,7 +50,7 @@ public class Mp3Util_New {
 	/**
 	 */
 	// private Mp3Info currentMp3Info;
-	private MusicBaseInfo currentMp3Info;
+	private MusicInfo currentMp3Info=new MusicInfo();
 
 	/**
 	 */
@@ -97,17 +91,8 @@ public class Mp3Util_New {
 	public final static int PLAY_BY_FOLDER = 3;
 	private int mPlayListType;
 	@SuppressWarnings("unused")
-	private MusicUtils musicUtils;
+//	private MusicUtils musicUtils;
 
-	@SuppressWarnings("unchecked")
-	public void addMp3(Mp3Info mp3Info) {
-
-		if (!mp3Infos.contains(mp3Info)) {
-			mp3Infos.add(mp3Info);
-			Collections.sort(mp3Infos);
-		}
-
-	}
 
 	/**
 	 *
@@ -154,10 +139,10 @@ public class Mp3Util_New {
 	}
 
 	public int getCurrentPlayListSize() {
-		return this.mp3Infos.size();
+		return this.musicBaseInfos.size();
 	}
 
-	public MusicBaseInfo getCurrentMp3Info() {
+	public MusicInfo getCurrentMp3Info() {
 		return currentMp3Info;
 	}
 
@@ -169,22 +154,18 @@ public class Mp3Util_New {
 		return index;
 	}
 
-	public int getListPosition() {
-		return listPosition;
-	}
 
-	public List<Mp3Info> getMp3Infos() {
-		return mp3Infos;
-	}
+//	public List<Mp3Info> getMp3Infos() {
+//		return musicBaseInfos;
+//	}
 
 	public int getPlayType() {
 		return playType;
 	}
 
 	private void init() {
-		mediaUtil = new MediaUtil();
+//		mediaUtil = new MediaUtil();
 
-		musicUtils = MusicUtils.getDefault();
 		initCurrentMusicInfo(context);
 		isPlaying = false;
 		isSortByTime = false;
@@ -193,21 +174,23 @@ public class Mp3Util_New {
 
 		mPlayListType = 0;
 		bindService();
-
 		new Thread(new Runnable() {
-
 			@Override
 			public void run() {
+				musicBaseInfos = MusicModel.getInstance().sortMp3InfosByTitle(context);
 
-				mp3Infos = mediaUtil.sortMp3InfosByTitle(context);
-
-				musicBaseInfos = mp3Infos;
+				musicBaseInfos = musicBaseInfos;
+				DeBug.d(Mp3Util_New.this, "..........:"
+						+ musicBaseInfos.size()+",listPosition:"+listPosition);
 				if (!musicBaseInfos.isEmpty()) {
+					if (listPosition>=musicBaseInfos.size()){
+						listPosition=0;
+					}
 					currentMp3Info = musicBaseInfos.get(listPosition);
 					DeBug.d(Mp3Util_New.this, "..........listPosition:"
 							+ listPosition);
 				}else{
-					currentMp3Info=new MusicBaseInfo();
+					currentMp3Info=new MusicInfo();
 				}
 			}
 		}).start();
@@ -219,7 +202,6 @@ public class Mp3Util_New {
 
 		listPosition = SharedPreHelper.getIntValue(context, "listPosition", 0);
 		playType = SharedPreHelper.getIntValue(context, "playType", 9);
-		Log.i("Mp3Util", "��ȡֵ:listPosition=" + listPosition);
 		// playType=9;
 
 	}
@@ -308,12 +290,11 @@ public class Mp3Util_New {
 	 *
 	 * 
 	 */
-	public void playMusic(Mp3Info mp3Info) {
+	public void playMusic(MusicInfo mp3Info) {
 		currentMp3Info = mp3Info;
-		if (!mp3Infos.contains(currentMp3Info)) {
+		if (!musicBaseInfos.contains(currentMp3Info)) {
 			// musicBaseInfos.add(currentMp3Info);
-			mp3Infos.add(mp3Info);
-			musicBaseInfos = mp3Infos;
+			musicBaseInfos.add(mp3Info);
 		}
 		sendService(AppConstant.PlayerMsg.PLAY_MSG, 0);
 	}
@@ -324,14 +305,14 @@ public class Mp3Util_New {
 		switch (playType) {
 		case AppConstant.PlayerMsg.PLAYING_REPEAT:
 		case AppConstant.PlayerMsg.PLAYING_QUEUE:
-			listPosition = (listPosition > 0 ? listPosition - 1 : mp3Infos
+			listPosition = (listPosition > 0 ? listPosition - 1 : musicBaseInfos
 					.size() - 1);
 			break;
 		case AppConstant.PlayerMsg.PLAYING_SHUFFLE:
 			listPosition = randomNum();
 			break;
 		}
-		currentMp3Info = mp3Infos.get(listPosition);
+		currentMp3Info = musicBaseInfos.get(listPosition);
 		sendService(AppConstant.PlayerMsg.PLAY_MSG, 0);
 	}
 
@@ -340,7 +321,7 @@ public class Mp3Util_New {
 	 * @return
 	 */
 	private int randomNum() {
-		return (int) (mp3Infos.size() * Math.random());
+		return (int) (musicBaseInfos.size() * Math.random());
 	}
 
 	/**
@@ -361,7 +342,7 @@ public class Mp3Util_New {
 		try {
 			switch (msg) {
 			case AppConstant.PlayerMsg.PLAY_MSG:
-				mService.play(currentMp3Info.playPath);
+				mService.play(currentMp3Info.getPlayPath());
 				break;
 			case AppConstant.PlayerMsg.PLAYING_MSG:
 				mService.cotinuePlay();
@@ -370,7 +351,7 @@ public class Mp3Util_New {
 				mService.pause();
 				break;
 			case AppConstant.PlayerMsg.PROGRESS_CHANGE:
-				mService.seekTo(progress, currentMp3Info.playPath);
+				mService.seekTo(progress, currentMp3Info.getPlayPath());
 				break;
 			default:
 				break;
@@ -381,7 +362,7 @@ public class Mp3Util_New {
 
 	}
 
-	public void setCurrentMp3Info(Mp3Info currentMp3Info) {
+	public void setCurrentMp3Info(MusicInfo currentMp3Info) {
 		this.currentMp3Info = currentMp3Info;
 	}
 
@@ -413,19 +394,19 @@ public class Mp3Util_New {
 		this.isSortByTime = isSortByTime;
 	}
 
-	public void sortMp3InfosByTime() {
-		mp3Infos.clear();
-		mp3Infos.addAll(mediaUtil.getMp3Infos(context));
-		listPosition = mp3Infos.indexOf(currentMp3Info);
-		setSortByTime(true);
-	}
+//	public void sortMp3InfosByTime() {
+//		mp3Infos.clear();
+//		mp3Infos.addAll(mediaUtil.getMp3Infos(context));
+//		listPosition = mp3Infos.indexOf(currentMp3Info);
+//		setSortByTime(true);
+//	}
 
-	public void sortMp3InfosByTitle() {
-		mp3Infos.clear();
-		mp3Infos.addAll(mediaUtil.sortMp3InfosByTitle(context));
-		setSortByTime(false);
-		listPosition = mp3Infos.indexOf(currentMp3Info);
-	}
+//	public void sortMp3InfosByTitle() {
+//		mp3Infos.clear();
+//		mp3Infos.addAll(mediaUtil.sortMp3InfosByTitle(context));
+//		setSortByTime(false);
+//		listPosition = mp3Infos.indexOf(currentMp3Info);
+//	}
 
 	public void unBindService() {
 		if (conn != null && isBindService) {
@@ -434,25 +415,22 @@ public class Mp3Util_New {
 		}
 	}
 
-	public List<? extends MusicBaseInfo> getMusicBaseInfos() {
+	public List<MusicInfo> getMusicBaseInfos() {
 		return musicBaseInfos;
 	}
 
-	/**
-	 *
-	 * @param musicBaseInfos
-	 */
-	private void setMusicBaseInfos(List<? extends MusicBaseInfo> musicBaseInfos) {
-
+//	/**
+//	 *
+//	 * @param musicBaseInfos
+//	 */
+	private void setMusicBaseInfos(List<MusicInfo> musicBaseInfos) {
 		this.musicBaseInfos = musicBaseInfos;
-
 	}
 
 	/**
 	 *
-	 * @param musicBaseInfos
 	 */
-	public void setMusicBaseInfos(List<? extends MusicBaseInfo> musicBaseInfos,
+	public void setMusicBaseInfos(List<MusicInfo> musicBaseInfos,
 			int playListType) {
 		// mPlayListType;
 		if (mPlayListType != playListType) {

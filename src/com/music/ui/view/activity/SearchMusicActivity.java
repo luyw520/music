@@ -31,6 +31,7 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.music.bean.Mp3Info;
+import com.music.bean.MusicInfo;
 import com.music.lu.R;
 import com.music.model.DataStorageModel;
 import com.music.model.HttpCallback;
@@ -40,8 +41,8 @@ import com.music.utils.DialogUtil;
 import com.music.utils.FileUtils;
 import com.music.utils.Mp3Util_New;
 import com.music.utils.StringUtil;
-import com.music.ui.view.adapter.LuAdapter;
-import com.music.ui.view.adapter.ViewHolder;
+import com.music.ui.adapter.LuAdapter;
+import com.music.ui.adapter.ViewHolder;
 import com.music.ui.widget.dialog.LoadingView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -78,7 +79,7 @@ public class SearchMusicActivity extends BaseActivity {
 	@ViewInject(value = R.id.loadView)
 	private LoadingView loadView;
 
-	private List<Mp3Info> datas = new ArrayList<Mp3Info>();
+	private List<MusicInfo> datas = new ArrayList<>();
 
 	private MyAdater myAdapter;
 	private String songName, songer;
@@ -214,12 +215,12 @@ public class SearchMusicActivity extends BaseActivity {
 		DataStorageModel.getDefault().saveObjectToFile(history, HISTORY_SEARCH);
 	}
 
-	private class SearchMusicCallBack implements HttpCallback<List<Mp3Info>> {
+	private class SearchMusicCallBack implements HttpCallback<List<MusicInfo>> {
 		public void onFailure(Exception arg0) {
 			checkHasData();
 		}
-		public void onSuccess(List<Mp3Info> result) {
-			List<Mp3Info> temMp3Infos=(List<Mp3Info>) result;
+		public void onSuccess(List<MusicInfo> result) {
+			List<MusicInfo> temMp3Infos=(List<MusicInfo>) result;
 			datas.addAll(temMp3Infos);
 			checkHasData();
 
@@ -328,8 +329,8 @@ public class SearchMusicActivity extends BaseActivity {
 		}
 	}
 
-	class MyAdater extends LuAdapter<Mp3Info> {
-		public MyAdater(Context context, List<Mp3Info> datas, int mItemLayoutId) {
+	class MyAdater extends LuAdapter<MusicInfo> {
+		public MyAdater(Context context, List<MusicInfo> datas, int mItemLayoutId) {
 			super(context, datas, mItemLayoutId);
 		}
 
@@ -337,14 +338,13 @@ public class SearchMusicActivity extends BaseActivity {
 		public void convert(ViewHolder viewHolder,
 				int position) {
 			viewHolder.setString(R.id.tv_songName,
-					(datas.get(position).getDisplayName()));
+					(datas.get(position).getTitle()));
 			viewHolder.getView(R.id.btn_down).setOnClickListener(
 					new DownOnClick(position));
 
 			ImageLoader.getInstance().displayImage(datas.get(position).picUrl,(ImageView) viewHolder.getView(R.id.img));
 		}
 
-		@Override
 		public void convert(ViewHolder arg0, Mp3Info arg1) {
 
 		}
@@ -370,13 +370,13 @@ public class SearchMusicActivity extends BaseActivity {
 		}
 
 		private void down(final Button button) {
-			path = FileUtils.findLocalMp3(datas.get(position).getDisplayName());
+			path = FileUtils.findLocalMp3(datas.get(position).getTitle());
 			if (path != null) {
 				return;
 			}
 			path = FileUtils.downPath() + File.separator
-					+ datas.get(position).getDisplayName();
-			musicHttpModel.downMusic(datas.get(position).getDownUrl(), path,
+					+ datas.get(position).getTitle();
+			musicHttpModel.downMusic(datas.get(position).downUrl, path,
 					new DownMusicCallBack());
 		}
 
@@ -401,7 +401,7 @@ public class SearchMusicActivity extends BaseActivity {
 		}
 	}
 
-	private void play(Mp3Info mp3Info) {
+	private void play(MusicInfo mp3Info) {
 		Mp3Util_New.getDefault().playMusic(mp3Info);
 		startActivity(new Intent(this, PlayerActivity.class));
 	}

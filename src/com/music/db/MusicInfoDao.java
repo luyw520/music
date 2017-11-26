@@ -26,16 +26,16 @@ public class MusicInfoDao implements IConstants {
 		db.delete(TABLE_MUSIC, null, null);
 		for (MusicInfo music : list) {
 			ContentValues cv = new ContentValues();
-			cv.put("songid", music.songId);
-			cv.put("albumid", music.albumId);
-			cv.put("duration", music.duration);
-			cv.put("musicname", music.musicName);
-			cv.put("artist", music.artist);
-			cv.put("data",music.data);
-			cv.put("folder", music.folder);
-			cv.put("musicnamekey", music.musicNameKey);
-			cv.put("artistkey", music.artistKey);
-			cv.put("favorite", music.favorite);
+//			cv.put("songid", music.songId);
+//			cv.put("albumid", music.albumId);
+//			cv.put("duration", music.duration);
+//			cv.put("musicname", music.musicName);
+//			cv.put("artist", music.artist);
+//			cv.put("data",music.data);
+//			cv.put("folder", music.folder);
+//			cv.put("musicnamekey", music.musicNameKey);
+//			cv.put("artistkey", music.artistKey);
+//			cv.put("favorite", music.favorite);
 			db.insert(TABLE_MUSIC, null, cv);
 		}
 	}
@@ -51,20 +51,20 @@ public class MusicInfoDao implements IConstants {
 		List<MusicInfo> list = new ArrayList<MusicInfo>();
 		while(cursor.moveToNext()) {
 			MusicInfo music = new MusicInfo();
-			music._id = cursor.getInt(cursor.getColumnIndex("_id"));
-//			music.songId = cursor.getInt(cursor.getColumnIndex("songid"));
-			music.albumId = cursor.getInt(cursor.getColumnIndex("albumid"));
-			music.duration = cursor.getInt(cursor.getColumnIndex("duration"));
-			music.musicName = cursor.getString(cursor.getColumnIndex("musicname"));
-			music.artist = cursor.getString(cursor.getColumnIndex("artist"));
-			music.data = cursor.getString(cursor.getColumnIndex("data"));
-			music.folder = cursor.getString(cursor.getColumnIndex("folder"));
-			music.musicNameKey = cursor.getString(cursor.getColumnIndex("musicnamekey"));
-			music.artistKey = cursor.getString(cursor.getColumnIndex("artistkey"));
-			music.favorite = cursor.getInt(cursor.getColumnIndex("favorite"));
-			
-			music.title=music.musicName;
-			music.playPath=music.data;
+//			music._id = cursor.getInt(cursor.getColumnIndex("_id"));
+////			music.songId = cursor.getInt(cursor.getColumnIndex("songid"));
+//			music.albumId = cursor.getInt(cursor.getColumnIndex("albumid"));
+//			music.duration = cursor.getInt(cursor.getColumnIndex("duration"));
+//			music.musicName = cursor.getString(cursor.getColumnIndex("musicname"));
+//			music.artist = cursor.getString(cursor.getColumnIndex("artist"));
+//			music.data = cursor.getString(cursor.getColumnIndex("data"));
+//			music.folder = cursor.getString(cursor.getColumnIndex("folder"));
+//			music.musicNameKey = cursor.getString(cursor.getColumnIndex("musicnamekey"));
+//			music.artistKey = cursor.getString(cursor.getColumnIndex("artistkey"));
+//			music.favorite = cursor.getInt(cursor.getColumnIndex("favorite"));
+//
+//			music.title=music.musicName;
+//			music.playPath=music.data;
 			list.add(music);
 		}
 		cursor.close();

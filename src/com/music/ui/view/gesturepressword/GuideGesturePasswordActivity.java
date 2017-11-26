@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.music.lu.R;
-import com.music.ui.view.MusicApplication;
+import com.music.MusicApplication;
 
 /**
  *

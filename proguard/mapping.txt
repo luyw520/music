@@ -13287,15 +13287,15 @@ com.music.ui.view.MainUIManager -> com.music.ui.view.e:
     android.view.View getView() -> a
     android.view.View getView(int) -> a
     android.view.View getView(int,java.lang.Object) -> a
-com.music.ui.view.MusicApplication -> com.music.ui.view.MusicApplication:
+com.music.MusicApplication -> com.music.MusicApplication:
     java.lang.String TAG -> a
-    com.music.ui.view.MusicApplication musicApplication -> b
+    com.music.MusicApplication musicApplication -> b
     com.music.ui.widget.lockpatternview.LockPatternUtils mLockPatternUtils -> c
     com.music.model.ScreenManager screenManager -> d
     29:52:void onCreate() -> onCreate
     55:64:void initImageLoader(android.content.Context) -> a
-    66:66:com.music.ui.view.MusicApplication getInstance() -> a
-    69:70:void setMusicApplication(com.music.ui.view.MusicApplication) -> a
+    66:66:com.music.MusicApplication getInstance() -> a
+    69:70:void setMusicApplication(com.music.MusicApplication) -> a
     72:72:com.music.ui.widget.lockpatternview.LockPatternUtils getLockPatternUtils() -> b
     75:76:void setmLockPatternUtils(com.music.ui.widget.lockpatternview.LockPatternUtils) -> a
 com.music.ui.view.MyNotification -> com.music.ui.view.MyNotification:
@@ -13977,7 +13977,7 @@ com.music.ui.view.activity.WelcomeActivity$3 -> com.music.ui.view.activity.v:
     98:104:void onPageSelected(int) -> a
     108:108:void onPageScrolled(int,float,int) -> a
     112:112:void onPageScrollStateChanged(int) -> b
-com.music.ui.view.adapter.LuAdapter -> com.music.ui.view.adapter.a:
+com.music.ui.adapter.LuAdapter -> com.music.ui.adapter.a:
     android.content.Context context -> a
     java.util.List datas -> b
     int mItemLayoutId -> c
@@ -13985,10 +13985,10 @@ com.music.ui.view.adapter.LuAdapter -> com.music.ui.view.adapter.a:
     29:29:java.lang.Object getItem(int) -> getItem
     35:35:long getItemId(int) -> getItemId
     40:43:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    45:45:void convert(com.music.ui.view.adapter.ViewHolder,java.lang.Object) -> a
-    void convert(com.music.ui.view.adapter.ViewHolder,int) -> a
-    50:50:com.music.ui.view.adapter.ViewHolder getViewHolder(android.view.View,android.view.ViewGroup,int) -> a
-com.music.ui.view.adapter.MusicListAdapter -> com.music.ui.view.adapter.b:
+    45:45:void convert(com.music.ui.adapter.ViewHolder,java.lang.Object) -> a
+    void convert(com.music.ui.adapter.ViewHolder,int) -> a
+    50:50:com.music.ui.adapter.ViewHolder getViewHolder(android.view.View,android.view.ViewGroup,int) -> a
+com.music.ui.adapter.MusicListAdapter -> com.music.ui.adapter.b:
     java.lang.String mSections -> a
     android.content.Context context -> b
     java.util.List mp3Infos -> c
@@ -14004,13 +14004,13 @@ com.music.ui.view.adapter.MusicListAdapter -> com.music.ui.view.adapter.b:
     135:150:int getPositionForSection(int) -> getPositionForSection
     155:155:int getSectionForPosition(int) -> getSectionForPosition
     1:1:java.lang.Object getItem(int) -> getItem
-com.music.ui.view.adapter.MusicListAdapter$ViewHolder -> com.music.ui.view.adapter.b$a:
+com.music.ui.adapter.MusicListAdapter$ViewHolder -> com.music.ui.adapter.b$a:
     android.widget.ImageView albumImage -> a
     android.widget.TextView musicTitle -> b
     android.widget.TextView catalog -> c
     android.widget.TextView music_album -> d
-    com.music.ui.view.adapter.MusicListAdapter this$0 -> e
-com.music.ui.view.adapter.MyGridViewAdapter -> com.music.ui.view.adapter.c:
+    com.music.ui.adapter.MusicListAdapter this$0 -> e
+com.music.ui.adapter.MyGridViewAdapter -> com.music.ui.adapter.c:
     android.content.Context context -> a
     android.view.LayoutInflater inInflater -> b
     int res -> c
@@ -14020,27 +14020,27 @@ com.music.ui.view.adapter.MyGridViewAdapter -> com.music.ui.view.adapter.c:
     38:38:java.lang.Object getItem(int) -> getItem
     44:44:long getItemId(int) -> getItemId
     51:65:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.music.ui.view.adapter.MyGridViewAdapter$ViewHolder -> com.music.ui.view.adapter.c$a:
+com.music.ui.adapter.MyGridViewAdapter$ViewHolder -> com.music.ui.adapter.c$a:
     android.widget.ImageView image -> a
     android.widget.TextView textView -> b
-    com.music.ui.view.adapter.MyGridViewAdapter this$0 -> c
-com.music.ui.view.adapter.MyPagerAdapter -> com.music.ui.view.adapter.MyPagerAdapter:
+    com.music.ui.adapter.MyGridViewAdapter this$0 -> c
+com.music.ui.adapter.MyPagerAdapter -> com.music.ui.adapter.MyPagerAdapter:
     java.util.List views -> c
     com.jfeinstein.jazzyviewpager.JazzyViewPager viewPager -> d
     21:21:int getCount() -> b
     27:27:boolean isViewFromObject(android.view.View,java.lang.Object) -> a
     32:33:void destroyItem(android.view.ViewGroup,int,java.lang.Object) -> a
     37:39:java.lang.Object instantiateItem(android.view.ViewGroup,int) -> a
-com.music.ui.view.adapter.ViewHolder -> com.music.ui.view.adapter.d:
+com.music.ui.adapter.ViewHolder -> com.music.ui.adapter.d:
     android.util.SparseArray mViews -> a
     android.view.View mConvertView -> b
-    29:32:com.music.ui.view.adapter.ViewHolder get(android.content.Context,android.view.View,android.view.ViewGroup,int,int) -> a
+    29:32:com.music.ui.adapter.ViewHolder get(android.content.Context,android.view.View,android.view.ViewGroup,int,int) -> a
     36:41:android.view.View getView(int) -> a
     44:44:android.view.View getConverView() -> a
     47:49:void setString(int,java.lang.String) -> a
     51:53:void setBackgroundResource(int,int) -> a
     55:57:void setImageBitmap(int,android.graphics.Bitmap) -> a
-com.music.ui.view.adapter.ViewPagerAdapter -> com.music.ui.view.adapter.ViewPagerAdapter:
+com.music.ui.adapter.ViewPagerAdapter -> com.music.ui.adapter.ViewPagerAdapter:
     java.lang.String TAG -> d
     java.util.List list -> c
     22:23:android.support.v4.app.Fragment getItem(int) -> a
@@ -14134,7 +14134,7 @@ com.music.ui.view.fragment.ArtistFragment$ArtistAdapter -> com.music.ui.view.fra
     131:134:java.lang.Object[] getSections() -> getSections
     140:150:int getPositionForSection(int) -> getPositionForSection
     155:155:int getSectionForPosition(int) -> getSectionForPosition
-    161:171:void convert(com.music.ui.view.adapter.ViewHolder,int) -> a
+    161:171:void convert(com.music.ui.adapter.ViewHolder,int) -> a
 com.music.ui.view.fragment.ArtistFragment$MusicListItemClickListener -> com.music.ui.view.fragment.ArtistFragment$b:
     com.music.ui.view.fragment.ArtistFragment this$0 -> a
     116:117:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
@@ -14159,13 +14159,13 @@ com.music.ui.view.fragment.FolderFragment -> com.music.ui.view.fragment.FolderFr
     37:37:java.util.List access$0(com.music.ui.view.fragment.FolderFragment) -> a
 com.music.ui.view.fragment.FolderFragment$ArtistAdapter -> com.music.ui.view.fragment.FolderFragment$a:
     com.music.ui.view.fragment.FolderFragment this$0 -> a
-    104:109:void convert(com.music.ui.view.adapter.ViewHolder,int) -> a
+    104:109:void convert(com.music.ui.adapter.ViewHolder,int) -> a
 com.music.ui.view.fragment.FolderFragment$MusicListItemClickListener -> com.music.ui.view.fragment.FolderFragment$b:
     com.music.ui.view.fragment.FolderFragment this$0 -> a
     86:87:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.music.ui.view.fragment.LocalMusicFragment -> com.music.ui.view.fragment.LocalMusicFragment:
     java.lang.String TAG -> ai
-    com.music.ui.view.adapter.ViewPagerAdapter viewPagerAapter -> aj
+    com.music.ui.adapter.ViewPagerAdapter viewPagerAapter -> aj
     java.util.List list -> ak
     android.support.v4.view.ViewPager viewPager -> al
     android.widget.ImageView iv_tabline -> am
@@ -14283,14 +14283,14 @@ com.music.ui.view.fragment.MusicListFragment -> com.music.ui.view.fragment.Music
     50:50:int access$2(com.music.ui.view.fragment.MusicListFragment) -> c
 com.music.ui.view.fragment.MusicListFragment$ArtistAdapter -> com.music.ui.view.fragment.MusicListFragment$a:
     com.music.ui.view.fragment.MusicListFragment this$0 -> a
-    166:172:void convert(com.music.ui.view.adapter.ViewHolder,int) -> a
+    166:172:void convert(com.music.ui.adapter.ViewHolder,int) -> a
 com.music.ui.view.fragment.MusicListFragment$MusicListItemClickListener -> com.music.ui.view.fragment.MusicListFragment$b:
     com.music.ui.view.fragment.MusicListFragment this$0 -> a
     144:149:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.music.ui.view.fragment.SongFragment -> com.music.ui.view.fragment.SongFragment:
     com.music.service.IMediaService mService -> ai
     java.lang.String TAG -> aj
-    com.music.ui.view.adapter.MusicListAdapter listAdapter -> ak
+    com.music.ui.adapter.MusicListAdapter listAdapter -> ak
     com.music.ui.widget.indexablelistview.IndexableListView mMusiclist -> al
     com.music.utils.Mp3Util_New mp3Util -> am
     java.util.List mp3Infos -> an
@@ -14569,11 +14569,11 @@ com.music.ui.view.popwindow.PopupWindowUtil$PopupWindowUI -> com.music.ui.view.p
 com.music.ui.view.popwindow.PopupWindowUtil$PopupWindowUIOnClickListener -> com.music.ui.view.popwindow.PopupWindowUtil$b:
     void sortByTime() -> a
     void sortByName() -> b
-com.music.ui.view.receiver.LockScreenReceiver -> com.music.ui.view.receiver.LockScreenReceiver:
+com.music.ui.broadcastreceiver.LockScreenReceiver -> com.music.ui.broadcastreceiver.LockScreenReceiver:
     android.app.KeyguardManager keyguardManager -> a
     android.app.KeyguardManager$KeyguardLock keyguardLock -> b
     24:37:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.music.ui.view.service.LockScreenService -> com.music.ui.view.service.LockScreenService:
+com.music.ui.service.LockScreenService -> com.music.ui.service.LockScreenService:
     java.lang.String TAG -> a
     android.content.Intent lockIntent -> b
     android.app.KeyguardManager keyguardManager -> c
@@ -14582,7 +14582,7 @@ com.music.ui.view.service.LockScreenService -> com.music.ui.view.service.LockScr
     25:35:void onCreate() -> onCreate
     39:42:void onDestroy() -> onDestroy
     46:46:int onStartCommand(android.content.Intent,int,int) -> onStartCommand
-com.music.ui.view.service.MyPlayerNewService -> com.music.ui.view.service.MyPlayerNewService:
+com.music.ui.service.MyPlayerNewService -> com.music.ui.service.MyPlayerNewService:
     android.media.MediaPlayer mediaPlayer -> a
     java.lang.String playPath -> b
     int msg -> c
@@ -14601,25 +14601,25 @@ com.music.ui.view.service.MyPlayerNewService -> com.music.ui.view.service.MyPlay
     324:327:boolean onUnbind(android.content.Intent) -> onUnbind
     330:338:void release() -> d
     341:346:void onDestroy() -> onDestroy
-    29:29:android.media.MediaPlayer access$0(com.music.ui.view.service.MyPlayerNewService) -> a
-    39:39:void access$1(com.music.ui.view.service.MyPlayerNewService,int) -> a
-    39:39:int access$2(com.music.ui.view.service.MyPlayerNewService) -> b
-    45:45:android.os.Handler access$3(com.music.ui.view.service.MyPlayerNewService) -> c
-    40:40:int access$4(com.music.ui.view.service.MyPlayerNewService) -> d
-    329:329:void access$5(com.music.ui.view.service.MyPlayerNewService) -> e
-    33:33:void access$6(com.music.ui.view.service.MyPlayerNewService,java.lang.String) -> a
-    254:254:void access$7(com.music.ui.view.service.MyPlayerNewService,int) -> b
-    147:147:void access$8(com.music.ui.view.service.MyPlayerNewService) -> f
-    44:44:com.music.utils.Mp3Util_New access$9(com.music.ui.view.service.MyPlayerNewService) -> g
+    29:29:android.media.MediaPlayer access$0(com.music.ui.service.MyPlayerNewService) -> a
+    39:39:void access$1(com.music.ui.service.MyPlayerNewService,int) -> a
+    39:39:int access$2(com.music.ui.service.MyPlayerNewService) -> b
+    45:45:android.os.Handler access$3(com.music.ui.service.MyPlayerNewService) -> c
+    40:40:int access$4(com.music.ui.service.MyPlayerNewService) -> d
+    329:329:void access$5(com.music.ui.service.MyPlayerNewService) -> e
+    33:33:void access$6(com.music.ui.service.MyPlayerNewService,java.lang.String) -> a
+    254:254:void access$7(com.music.ui.service.MyPlayerNewService,int) -> b
+    147:147:void access$8(com.music.ui.service.MyPlayerNewService) -> f
+    44:44:com.music.utils.Mp3Util_New access$9(com.music.ui.service.MyPlayerNewService) -> g
     42:42:java.lang.String access$10() -> b
-com.music.ui.view.service.MyPlayerNewService$1 -> com.music.ui.view.service.a:
-    com.music.ui.view.service.MyPlayerNewService this$0 -> a
+com.music.ui.service.MyPlayerNewService$1 -> com.music.ui.service.a:
+    com.music.ui.service.MyPlayerNewService this$0 -> a
     52:90:void handleMessage(android.os.Message) -> handleMessage
-com.music.ui.view.service.MyPlayerNewService$2 -> com.music.ui.view.service.b:
-    com.music.ui.view.service.MyPlayerNewService this$0 -> a
+com.music.ui.service.MyPlayerNewService$2 -> com.music.ui.service.b:
+    com.music.ui.service.MyPlayerNewService this$0 -> a
     106:108:void onCompletion(android.media.MediaPlayer) -> onCompletion
-com.music.ui.view.service.MyPlayerNewService$MediaServiceSub -> com.music.ui.view.service.MyPlayerNewService$a:
-    com.music.ui.view.service.MyPlayerNewService this$0 -> m
+com.music.ui.service.MyPlayerNewService$MediaServiceSub -> com.music.ui.service.MyPlayerNewService$a:
+    com.music.ui.service.MyPlayerNewService this$0 -> m
     174:174:int duration() -> c
     178:178:int position() -> d
     183:183:int getPlayState() -> e
@@ -14632,8 +14632,8 @@ com.music.ui.view.service.MyPlayerNewService$MediaServiceSub -> com.music.ui.vie
     227:228:void pause() -> a
     232:233:void seekTo(int) -> a
     237:238:void cotinuePlay() -> b
-com.music.ui.view.service.MyPlayerNewService$MyTask -> com.music.ui.view.service.MyPlayerNewService$b:
-    com.music.ui.view.service.MyPlayerNewService this$0 -> a
+com.music.ui.service.MyPlayerNewService$MyTask -> com.music.ui.service.MyPlayerNewService$b:
+    com.music.ui.service.MyPlayerNewService this$0 -> a
     293:319:void run() -> run
 com.music.ui.view.widget.CircularImage -> com.music.ui.view.widget.CircularImage:
     24:35:android.graphics.Bitmap createMask() -> a

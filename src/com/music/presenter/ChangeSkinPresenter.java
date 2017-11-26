@@ -7,8 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
 import com.music.lu.R;
-import com.music.ui.view.MusicApplication;
-import com.music.ui.view.MyNotification;
+import com.music.MusicApplication;
 import com.music.utils.DeBug;
 import com.music.utils.ObjecteUtil;
 import com.music.utils.file.FileUtils;

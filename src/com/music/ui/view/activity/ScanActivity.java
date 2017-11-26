@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.music.annotation.ComputeTime;
 import com.music.lu.R;
 @ContentView(value=R.layout.activity_scan)
 public class ScanActivity extends BaseHeaderActivity {
@@ -34,7 +35,7 @@ public class ScanActivity extends BaseHeaderActivity {
 	 */
 	private ImageView mImageView;
 	
-
+	@ComputeTime
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

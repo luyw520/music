@@ -1,2 +1,2 @@
-include 'music', ':picasso'
+include ':picasso'
 

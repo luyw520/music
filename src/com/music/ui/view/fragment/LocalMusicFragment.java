@@ -20,7 +20,7 @@ import android.widget.RelativeLayout;
 import com.music.lu.R;
 import com.music.service.IConstants;
 import com.music.utils.DeBug;
-import com.music.ui.view.adapter.ViewPagerAdapter;
+import com.music.ui.adapter.ViewPagerAdapter;
 
 /**
  */
@@ -133,12 +133,9 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-//		LocalMusicActivity.isFirst=false;
 		switch (v.getId()) {
 		case R.id.rl_song:
 			viewPager.setCurrentItem(0);
-//			LocalMusicActivity.isFirst=true;
 			break;
 		case R.id.rl_artist:
 			viewPager.setCurrentItem(1);

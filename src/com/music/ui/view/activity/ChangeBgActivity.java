@@ -24,8 +24,8 @@ import com.music.bean.BgBean;
 import com.music.lu.R;
 import com.music.utils.ConstantUtil;
 import com.music.utils.SharedPreHelper;
-import com.music.ui.view.adapter.LuAdapter;
-import com.music.ui.view.adapter.ViewHolder;
+import com.music.ui.adapter.LuAdapter;
+import com.music.ui.adapter.ViewHolder;
 
 @ContentView(value = R.layout.activity_changebg)
 public class ChangeBgActivity extends BaseActivity {

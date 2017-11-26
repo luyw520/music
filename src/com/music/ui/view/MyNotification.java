@@ -16,27 +16,18 @@ import com.music.utils.MediaUtil;
 import com.music.utils.Mp3Util_New;
 import com.music.ui.view.activity.LocalMusicActivity;
 
+/**
+ * 通知栏
+ */
 public class MyNotification {
 	private  Context context;
 	private NotificationManager notificationManager;
 	private RemoteViews remoteViews;
 	private Notification notification;
-	private String songTitle;
-//	private PlayPauseDrawable playPauseDrawable;
-//	private int playColor=0XFFE91E63;
-//	private int pauseColor=0XFFffffff;
-//	private int dwableDuaration=300;
 	private Mp3Util_New mp3Util_New;
-	public String getSongTitle() {
-		return songTitle;
-	}
-	public void setSongTitle(String songTitle) {
-		this.songTitle = songTitle;
-	}
+	private final static int id=0;
 	public MyNotification(Context context){
 		this.context=context;
-//		playPauseDrawable=new PlayPauseDrawable(30, playColor, pauseColor, dwableDuaration);
-		
 		mp3Util_New=Mp3Util_New.getDefault();
 		initNotification();
 		registerReceiver();
@@ -54,24 +45,22 @@ public class MyNotification {
 	public void unregisterReceiver(){
 		context.unregisterReceiver(notificationReceiver);
 	};
-	@SuppressWarnings("deprecation")
-	private void initNotification() {
-		notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-		notification = new Notification(R.drawable.playing_bar_default_avatar,
-				mp3Util_New.getCurrentMp3Info().getTitle(),
-				System.currentTimeMillis());
-
-		remoteViews = new RemoteViews(context.getPackageName(),
+	/**
+	 * 初始化自定义通知栏控件
+	 * @return
+	 */
+	private RemoteViews initRemoteViews(){
+		RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
 				R.layout.notification_layout);
-		
+
 		remoteViews.setTextViewText(R.id.tv_title_notification, mp3Util_New.getCurrentMp3Info().getTitle());
 		Bitmap bitmap = MediaUtil.getArtwork(context,
 				mp3Util_New.getCurrentMp3Info().getSongId(), mp3Util_New
 						.getCurrentMp3Info().getAlbumId(), true, true);
 		remoteViews.setImageViewBitmap(R.id.iv_notification, bitmap);
-		
-		
+
+
 		Intent intent = new Intent(AppConstant.NOTIFICATION_PLAY_PAUSE);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
 				intent, 0);
@@ -83,10 +72,19 @@ public class MyNotification {
 				intent2, 1);
 		remoteViews.setOnClickPendingIntent(R.id.iv_next_notification,
 				pendingIntent2);
+		return remoteViews;
+	}
+	@SuppressWarnings("deprecation")
+	private void initNotification() {
+		notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
+//		Notification.Builder builder=new Notification.Builder(context);
+		notification = new Notification(R.drawable.playing_bar_default_avatar,
+				mp3Util_New.getCurrentMp3Info().getTitle(),
+				System.currentTimeMillis());
+		remoteViews=initRemoteViews();
 		Intent intent3 = new Intent(Intent.ACTION_MAIN);
 		intent3.setClass(context, LocalMusicActivity.class);
-//		intent3.setClass(context, MainActivity.class);
 		intent3.addCategory(Intent.CATEGORY_LAUNCHER);
 		intent3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 				| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
@@ -99,11 +97,13 @@ public class MyNotification {
 //		notification.setLatestEventInfo(context, " ", "",
 //				contentIntent);
 		notification.contentView = remoteViews;
-		notificationManager.notify(0, notification);
+
+//		builder.setWhen(System.currentTimeMillis()).setContentIntent(contentIntent).setCustomContentView(remoteViews).build();
+		notificationManager.notify(id, notification);
 
 	}
 	public void close(){
-		notificationManager.cancel(0);
+		notificationManager.cancel(id);
 	}
 	/**
 	 * @param isPlay
@@ -117,7 +117,7 @@ public class MyNotification {
 			remoteViews.setImageViewResource(R.id.iv_play_notification,
 					R.drawable.img_button_notification_play_play);
 		}
-		notificationManager.notify(0, notification);
+		notificationManager.notify(id, notification);
 	}
 	/**
 	 */
@@ -131,11 +131,11 @@ public class MyNotification {
 				R.drawable.img_button_notification_play_pause);
 		remoteViews.setImageViewBitmap(R.id.iv_notification, bitmap);
 		remoteViews.setTextViewText(R.id.tv_title_notification, mp3Util_New.getCurrentMp3Info().getTitle());
-		notificationManager.notify(0, notification);
+		notificationManager.notify(id, notification);
 		
 	}
 	public void cancel(){
-		notificationManager.cancel(0);
+		notificationManager.cancel(id);
 	} 
 	/**
 	 */

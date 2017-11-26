@@ -34,13 +34,7 @@ import com.music.service.IConstants;
  */
 public class MusicUtils implements IConstants {
 
-	public List<MusicInfo> getMusicInfos() {
-		return musicInfos;
-	}
 
-	public void setMusicInfos(List<MusicInfo> musicInfos) {
-		this.musicInfos = musicInfos;
-	}
 
 	private static String[] proj_music = new String[] {
 			MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TITLE,
@@ -86,7 +80,7 @@ public class MusicUtils implements IConstants {
 
 	public void initData() {
 
-		queryAlbums(mContext);
+//		queryAlbums(mContext);
 	}
 
 	public static MusicUtils getDefault() {
@@ -100,12 +94,12 @@ public class MusicUtils implements IConstants {
 		return mFavoriteDao.getMusicInfo();
 	}
 
-	/**
-	 *查询所有音乐文件
-	 * @param context
-	 * @return
-	 */
-	@SuppressLint("NewApi")
+//	/**
+//	 *查询所有音乐文件
+//	 * @param context
+//	 * @return
+//	 */
+//	@SuppressLint("NewApi")
 	public List<FolderInfo> queryFolder(Context context) {
 		if (mFolderInfoDao == null) {
 			mFolderInfoDao = new FolderInfoDao(context);
@@ -131,12 +125,12 @@ public class MusicUtils implements IConstants {
 		// mFolderInfoDao.saveFolderInfo(list);
 		return list;
 	}
-
-	/**
-	 *查询所有艺术家
-	 * @param context
-	 * @return
-	 */
+//
+//	/**
+//	 *查询所有艺术家
+//	 * @param context
+//	 * @return
+//	 */
 	public List<ArtistInfo> queryArtist(Context context) {
 		if (mArtistInfoDao == null) {
 			mArtistInfoDao = new ArtistInfoDao(context);
@@ -150,15 +144,16 @@ public class MusicUtils implements IConstants {
 		List<ArtistInfo> list = getArtistList(cr.query(uri, proj_artist, null,
 				null, MediaStore.Audio.Artists.NUMBER_OF_TRACKS + " desc"));
 //		mArtistInfoDao.saveArtistInfo(list);
+		d(list.toString());
 		return list;
 	}
 
-	/**
-	 *查询所有专辑
-	 * @param context
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
+//	/**
+//	 *查询所有专辑
+//	 * @param context
+//	 * @return
+//	 */
+//	@SuppressWarnings("unchecked")
 	public List<AlbumInfo> queryAlbums(Context context) {
 		if (mAlbumInfoDao == null) {
 			mAlbumInfoDao = new AlbumInfoDao(context);
@@ -190,6 +185,7 @@ public class MusicUtils implements IConstants {
 				null, Media.ALBUM_KEY));
 		// mAlbumInfoDao.saveAlbumInfo(list);
 		Collections.sort(albumInfos);
+		d(albumInfos.toString());
 		return albumInfos;
 		// }
 	}
@@ -205,7 +201,7 @@ public class MusicUtils implements IConstants {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param context
 	 * @param selections
 	 * @param selection
@@ -242,7 +238,7 @@ public class MusicUtils implements IConstants {
 			d("query music spend time:" + (System.currentTimeMillis() - a)
 					/ 1000.0 + " s");
 			d("uri:" + uri.toString());
-			mMusicInfoDao.saveMusicInfo(musicInfos);
+//			mMusicInfoDao.saveMusicInfo(musicInfos);
 			// }
 			break;
 		case START_FROM_ARTIST:
@@ -272,15 +268,15 @@ public class MusicUtils implements IConstants {
 		return musicInfos;
 	}
 
-	private static void d(String msg) {
+	private  static void d(String msg) {
 		DeBug.d(MusicUtils.class, msg);
 	}
 
-	/**
-	 * 从游标中获取所有音乐
-	 * @param cursor
-	 * @return
-	 */
+//	/**
+//	 * 从游标中获取所有音乐
+//	 * @param cursor
+//	 * @return
+//	 */
 	public static ArrayList<MusicInfo> getMusicList(Cursor cursor) {
 		if (cursor == null) {
 			return null;
@@ -290,37 +286,36 @@ public class MusicUtils implements IConstants {
 				"getMusicList,local music,size:" + cursor.getCount());
 		while (cursor.moveToNext()) {
 			MusicInfo music = new MusicInfo();
-			music.songId = cursor.getInt(cursor
-					.getColumnIndex(MediaStore.Audio.Media._ID));
-			music.albumId = cursor.getInt(cursor
-					.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID));
-			music.duration = cursor.getInt(cursor
-					.getColumnIndex(MediaStore.Audio.Media.DURATION));
-			music.title = cursor.getString(cursor
-					.getColumnIndex(MediaStore.Audio.Media.TITLE));
-			music.artist = cursor.getString(cursor
-					.getColumnIndex(MediaStore.Audio.Media.ARTIST));
-			music.musicName = music.title;
+			music.setSongId(cursor.getInt(cursor
+					.getColumnIndex(MediaStore.Audio.Media._ID)));
+			music.setAlbumId(cursor.getInt(cursor
+					.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID)));
+			music.setDuration(cursor.getInt(cursor
+					.getColumnIndex(MediaStore.Audio.Media.DURATION)));
+			music.setTitle(cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Media.TITLE)));
+			music.setArtist(cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Media.ARTIST)));
 			String filePath = cursor.getString(cursor
 					.getColumnIndex(MediaStore.Audio.Media.DATA));
-			music.playPath = filePath;
-			music.data = filePath;
+
 			String folderPath = filePath.substring(0,
 					filePath.lastIndexOf(File.separator));
-			music.folder = folderPath;
-			music.musicNameKey = StringUtil.getPingYin(music.title);
-			music.artistKey = StringUtil.getPingYin(music.artist);
+			music.setFolder(folderPath);
+
+			music.setTitleKey(StringUtil.getPingYin(music.getTitle()));
+			music.setArtistKey(StringUtil.getPingYin(music.getArtist()));
 			musicList.add(music);
 			DeBug.d(MusicUtils.class,music.toString());
 		}
 		cursor.close();
 		return musicList;
 	}
-	/**
-	 * 从游标中获取所有音乐专辑
-	 * @param cursor
-	 * @return
-	 */
+//	/**
+//	 * 从游标中获取所有音乐专辑
+//	 * @param cursor
+//	 * @return
+//	 */
 	public List<AlbumInfo> getAlbumList(Cursor cursor) {
 		List<AlbumInfo> list = new ArrayList<AlbumInfo>();
 		d("album,size:" + cursor.getCount());
@@ -340,11 +335,11 @@ public class MusicUtils implements IConstants {
 		cursor.close();
 		return list;
 	}
-	/**
-	 * 从游标中获取所有音乐歌手
-	 * @param cursor
-	 * @return
-	 */
+//	/**
+//	 * 从游标中获取所有音乐歌手
+//	 * @param cursor
+//	 * @return
+//	 */
 	public List<ArtistInfo> getArtistList(Cursor cursor) {
 		d("getArtistList:...........................size:"+cursor.getCount());
 		List<ArtistInfo> list = new ArrayList<>();
@@ -364,6 +359,11 @@ public class MusicUtils implements IConstants {
 		return list;
 	}
 
+//	/**
+//	 * 从游标中获取所有文件夹
+//	 * @param cursor
+//	 * @return
+//	 */
 	public static List<FolderInfo> getFolderList(Cursor cursor) {
 		d("getFolderList,,,,,,,,,,,,,,,,size:" + cursor.getCount());
 		List<FolderInfo> list = new ArrayList<FolderInfo>();
