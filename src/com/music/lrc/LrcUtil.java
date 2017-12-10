@@ -10,14 +10,14 @@ import android.os.Handler;
 import com.music.bean.LrcInfo;
 import com.music.utils.AppConstant;
 import com.music.utils.DialogUtil;
-import com.music.utils.Mp3Util_New;
+import com.music.helpers.PlayerHelpler;
 
 
 public class LrcUtil {
 	private static LrcUtil lrcUtil=null;
 	private LrcTool lrcTool;
 	private Context context;
-	private Mp3Util_New mp3Util;
+	private PlayerHelpler mp3Util;
 //	private Handler handler;
 	/**
 	 */
@@ -44,7 +44,7 @@ public class LrcUtil {
 	private void init(){
 		lrcTool=new LrcTool();
 		lrcInfos=new ArrayList<LrcInfo>();
-		mp3Util=Mp3Util_New.getDefault();
+		mp3Util= PlayerHelpler.getDefault();
 	}
 	/**
 	 * @author Administrator

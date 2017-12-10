@@ -1,13 +1,12 @@
 package com.music.ui.view.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
@@ -29,17 +28,21 @@ import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
 import com.music.bean.UserManager;
+import com.music.model.MusicModel;
+import com.music.permissiongen.kr.co.namee.permissiongen.PermissionFail;
+import com.music.permissiongen.kr.co.namee.permissiongen.PermissionGen;
+import com.music.permissiongen.kr.co.namee.permissiongen.PermissionSuccess;
 import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
 import com.music.ui.broadcastreceiver.State;
 import com.music.lu.R;
-import com.music.service.IConstants;
+import com.music.ui.service.IConstants;
 import com.music.utils.ApplicationUtil;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.DeBug;
 import com.music.utils.DialogUtil;
 import com.music.utils.LogUtil;
 import com.music.utils.MediaUtil;
-import com.music.utils.Mp3Util_New;
+import com.music.helpers.PlayerHelpler;
 import com.music.utils.MusicUtils;
 import com.music.utils.PhotoUtils;
 import com.music.MusicApplication;
@@ -120,7 +123,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	private int pauseColor = 0XFFffffff;
 	private int dwableDuaration = 200;
 	private MusicInfo currentMp3Info;
-	private Mp3Util_New mp3Util;
+	private PlayerHelpler mp3Util;
 
 	private MusicListFragment musicListFragment = null;
 	private FragmentTransaction transaction;
@@ -147,7 +150,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		mSplashScreen.show(R.drawable.image_splash_background_new,
 				SplashScreen.SLIDE_UP);
 
-		mp3Util = Mp3Util_New.getDefault();
+		mp3Util = PlayerHelpler.getDefault();
 		playPauseDrawable = new PlayPauseDrawable(30, playColor, pauseColor,
 				dwableDuaration);
 		initData();
@@ -189,27 +192,37 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			title = folderInfo.folder_name;
 			break;
 		case START_FROM_FAVORITE:
-			title = " fa";
+//			title = " fa";
 			break;
 		}
 		tv_title.setText(title);
 	}
 
 	private void initData() {
+		PermissionGen.needPermission(this,100,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE});
+
+	}
+	@PermissionSuccess(requestCode = 100)
+	public void doSomething(){
+		DeBug.d(getClass().getSimpleName(),"doSomething.........");
 		loadDataAsyncTaskUtil.execute("");
 	}
-
+	@PermissionFail(requestCode = 100)
+	public void doFailSomething(){
+		DialogUtil.showToast(this,"需要权限");
+	}
 	private AsyncTaskUtil loadDataAsyncTaskUtil = new AsyncTaskUtil(
 			new AsyncTaskUtil.IAsyncTaskCallBack() {
 				final long start = System.currentTimeMillis();
 
 				@Override
 				public Object doInBackground(String... arg0) {
-					MusicUtils.getDefault().queryMusic(getApplication(),
-							START_FROM_LOCAL);
-					MusicUtils.getDefault().queryAlbums(getApplication());
-					MusicUtils.getDefault().queryArtist(getApplication());
-					MusicUtils.getDefault().queryFolder(getApplication());
+//					MusicUtils.getDefault().queryMusic(getApplication(),
+//							START_FROM_LOCAL);
+					MusicModel.getInstance().sortMp3InfosByTitle(getApplicationContext());
+//					MusicUtils.getDefault().queryAlbums(getApplication());
+//					MusicUtils.getDefault().queryArtist(getApplication());
+//					MusicUtils.getDefault().queryFolder(getApplication());
 					return null;
 				}
 
@@ -307,10 +320,10 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			back();
 			break;
 		case R.id.btn_playing2:
-			Mp3Util_New.getDefault().playMusic();
+			PlayerHelpler.getDefault().playMusic();
 			break;
 		case R.id.btn_next2:
-			Mp3Util_New.getDefault().nextMusic(false);
+			PlayerHelpler.getDefault().nextMusic(false);
 			break;
 		case R.id.rl_setting:
 			startActivity(new Intent(this, SettingActivity.class));
@@ -399,7 +412,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (!isHome) {
-				tv_title.setText("ttt");
+				tv_title.setText(R.string.local_music);
 				isHome = true;
 			} else {
 				DeBug.d(TAG, "moveTaskToBack.........................");

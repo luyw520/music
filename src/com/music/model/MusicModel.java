@@ -7,17 +7,11 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.music.bean.AlbumInfo;
 import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
-import com.music.bean.Mp3Info;
 import com.music.bean.MusicInfo;
-import com.music.db.AlbumInfoDao;
-import com.music.db.ArtistInfoDao;
-import com.music.db.FolderInfoDao;
-import com.music.db.MusicInfoDao;
 import com.music.utils.DeBug;
 import com.music.utils.LogUtil;
 import com.music.utils.MusicUtils;
@@ -29,15 +23,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static com.music.service.IConstants.START_FROM_ALBUM;
-import static com.music.service.IConstants.START_FROM_ARTIST;
-import static com.music.service.IConstants.START_FROM_FOLDER;
-import static com.music.service.IConstants.START_FROM_LOCAL;
-import static com.music.utils.StringUtil.toHanyuPinYin;
+import static com.music.ui.service.IConstants.START_FROM_ALBUM;
+import static com.music.ui.service.IConstants.START_FROM_ARTIST;
+import static com.music.ui.service.IConstants.START_FROM_FOLDER;
+import static com.music.ui.service.IConstants.START_FROM_LOCAL;
 
 
 /**
  * Created by lyw on 2017/10/3.
+ * 查询音乐信息
  */
 
 public class MusicModel {
@@ -61,6 +55,7 @@ public class MusicModel {
     private List<FolderInfo> folderInfoList=new ArrayList<>();
     private static MusicModel musicModel=new MusicModel();
     private ArrayList<MusicInfo> musicList = new ArrayList<MusicInfo>();
+    List<ArtistInfo> artistInfoList=new ArrayList<>();
 //    private MusicInfoDao mMusicInfoDao;
 //    private AlbumInfoDao mAlbumInfoDao;
 //    private ArtistInfoDao mArtistInfoDao;
@@ -185,8 +180,12 @@ public class MusicModel {
         return music;
     }
     public List<MusicInfo> sortMp3InfosByTitle(Context context){
+        if (!musicList.isEmpty()){
+            return musicList;
+        }
         List<MusicInfo> list = getAllMusicInfos(context);
         Collections.sort(list);
+        musicList.addAll(list);
         return list;
     }
     public  List<MusicInfo> getAllMusicInfos(Context context) {
@@ -314,6 +313,9 @@ public class MusicModel {
 //         if (mArtistInfoDao.hasData()) {
 //         return mArtistInfoDao.getArtistInfo();
 //         }
+        if (!artistInfoList.isEmpty()){
+            return artistInfoList;
+        }
         Uri uri = MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
         ContentResolver cr = context.getContentResolver();
         Cursor cursor=cr.query(uri, null, null,
@@ -321,7 +323,8 @@ public class MusicModel {
        DeBug.d(this, Arrays.toString(cursor.getColumnNames()));
        DeBug.d(this, cursor.getCount()+"..............");
         List<ArtistInfo> list = getArtistList(cursor);
-//		mArtistInfoDao.saveArtistInfo(list);
+//
+        artistInfoList.addAll(list);
         return list;
     }
 
@@ -347,7 +350,7 @@ public class MusicModel {
         cursor.close();
         return list;
     }
-
+    List<AlbumInfo> albumInfoList=new ArrayList<>();
     /**
      //	 *查询所有专辑
      //	 * @param context
@@ -358,7 +361,9 @@ public class MusicModel {
 //		if (mAlbumInfoDao == null) {
 //			mAlbumInfoDao = new AlbumInfoDao(context);
 //		}
-
+        if (!albumInfoList.isEmpty()){
+            return albumInfoList;
+        }
 //		if (albumInfos.size() > 0) {
 //			return albumInfos;
 //		}
@@ -388,6 +393,7 @@ public class MusicModel {
         List<AlbumInfo> albumInfos = getAlbumList(cursor);
 		// mAlbumInfoDao.saveAlbumInfo(list);
 		Collections.sort(albumInfos);
+        albumInfoList.addAll(albumInfos);
 		return albumInfos;
 //		 }
 	}

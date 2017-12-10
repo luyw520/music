@@ -1,4 +1,4 @@
-package com.music.utils;
+package com.music.utils.screen;
 
 import java.io.File;
 
@@ -6,11 +6,15 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import com.music.utils.DateUtil;
+import com.music.utils.DialogUtil;
+import com.music.utils.FileUtils;
+import com.music.utils.image.ImageUtil;
 import com.umeng.scrshot.UMScrShotController.OnScreenshotListener;
 import com.umeng.scrshot.adapter.UMAppAdapter;
-import com.umeng.socialize.sensor.controller.UMShakeService;
 import com.umeng.socialize.sensor.controller.impl.UMShakeServiceFactory;
-import com.umeng.soexample.commons.Constants;
+
+import static com.music.utils.ConstUtils.DESCRIPTOR;
 
 /**
  *
@@ -48,7 +52,7 @@ public class ScreenShotUtil {
 
 	public void registerShakeToScrShot() {
 		UMShakeServiceFactory
-		.getShakeService(Constants.DESCRIPTOR).registerShakeToScrShot(mActivity, new UMAppAdapter(
+		.getShakeService(DESCRIPTOR).registerShakeToScrShot(mActivity, new UMAppAdapter(
 				mActivity), mScreenshotListener);
 	}
 	public void registerShakeToScrShot(Activity activity) {
@@ -64,7 +68,7 @@ public class ScreenShotUtil {
 	}
 	public void unregisterShakeListener() {
 		UMShakeServiceFactory
-		.getShakeService(Constants.DESCRIPTOR).unregisterShakeListener(mActivity);
+		.getShakeService(DESCRIPTOR).unregisterShakeListener(mActivity);
 	};
 
 	private OnScreenshotListener mScreenshotListener = new OnScreenshotListener() {
@@ -74,8 +78,8 @@ public class ScreenShotUtil {
 			Log.i(TAG, arg0.toString());
 			
 			
-			String sctPath=DateUtil.getDate3()+".png";
-			sctPath=FileUtils.imgPathPath()+File.separator+sctPath;
+			String sctPath= DateUtil.getDate3()+".png";
+			sctPath= FileUtils.imgPathPath()+File.separator+sctPath;
 			ImageUtil.saveImage(arg0, sctPath, null);
 			
 			DialogUtil.showToast(mActivity, " aaa"+sctPath);

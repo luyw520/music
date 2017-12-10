@@ -39,7 +39,7 @@ import com.music.model.MusicHttpModel;
 import com.music.utils.DeBug;
 import com.music.utils.DialogUtil;
 import com.music.utils.FileUtils;
-import com.music.utils.Mp3Util_New;
+import com.music.helpers.PlayerHelpler;
 import com.music.utils.StringUtil;
 import com.music.ui.adapter.LuAdapter;
 import com.music.ui.adapter.ViewHolder;
@@ -402,7 +402,7 @@ public class SearchMusicActivity extends BaseActivity {
 	}
 
 	private void play(MusicInfo mp3Info) {
-		Mp3Util_New.getDefault().playMusic(mp3Info);
+		PlayerHelpler.getDefault().playMusic(mp3Info);
 		startActivity(new Intent(this, PlayerActivity.class));
 	}
 }

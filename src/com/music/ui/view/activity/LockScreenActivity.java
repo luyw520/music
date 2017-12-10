@@ -20,7 +20,7 @@ import com.music.ui.broadcastreceiver.State;
 import com.music.lu.R;
 import com.music.utils.DateUtil;
 import com.music.utils.MediaUtil;
-import com.music.utils.Mp3Util_New;
+import com.music.helpers.PlayerHelpler;
 import com.music.ui.view.widget.SliderRelativeLayout;
 
 @SuppressLint("HandlerLeak") 
@@ -35,7 +35,7 @@ public class LockScreenActivity extends Activity {
 	private MyBroadcastReceiver myBroadcastReceiver;
 	private final static int TIME=0;
 	
-	private Mp3Util_New mp3Util;
+	private PlayerHelpler mp3Util;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,7 +46,7 @@ public class LockScreenActivity extends Activity {
 
 		setContentView(R.layout.activity_lock_screen);
 		
-		mp3Util=Mp3Util_New.getDefault();
+		mp3Util= PlayerHelpler.getDefault();
 		initWedgit();
 
 		registerReceiver();

@@ -18,11 +18,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.music.lu.R;
-import com.music.service.IConstants;
+import com.music.ui.service.IConstants;
 import com.music.utils.DeBug;
 import com.music.ui.adapter.ViewPagerAdapter;
+import com.music.utils.screen.ScreenUtils;
 
 /**
+ * 首页
  */
 public class LocalMusicFragment extends Fragment implements IConstants ,OnClickListener{
 
@@ -91,6 +93,11 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 		viewPager.setAdapter(viewPagerAapter);
 		// viewPager.fakeDragBy(10);
 		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
+
+		RelativeLayout.LayoutParams lp = (android.widget.RelativeLayout.LayoutParams) iv_tabline
+				.getLayoutParams();
+		lp.width= ScreenUtils.getScreenWidth(getActivity())/4;
+		iv_tabline.setLayoutParams(lp);
 	}
 	private class MyOnPageChangeListener implements OnPageChangeListener{
 		@Override

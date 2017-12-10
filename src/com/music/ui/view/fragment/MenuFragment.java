@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.music.lu.R;
-import com.music.service.IConstants;
+import com.music.ui.service.IConstants;
 import com.music.ui.view.activity.SettingActivity;
 import com.music.ui.widget.slidingmenu2.SlidingMenu.OnOpenedListener;
 

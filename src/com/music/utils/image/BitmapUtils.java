@@ -1,4 +1,4 @@
-package com.music.utils;
+package com.music.utils.image;
 
 import android.annotation.TargetApi;
 import android.content.Context;

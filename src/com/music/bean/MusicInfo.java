@@ -4,29 +4,75 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.Generated;
+
+@Entity(nameInDb = "l_music")
 public class MusicInfo implements Comparable{
 	
-	
-	
-	private int songId;
+	@Id
+	@Property(nameInDb = "songId")
+	private long songId;
+	@Property(nameInDb = "albumId")
 	private int albumId;
+	@Property(nameInDb = "album")
 	private String album;
+	@Property(nameInDb = "duration")
 	private int duration;
+	@Property(nameInDb = "title")
 	private String  title;
+	@Property(nameInDb = "artist")
 	private String  artist;
+	@Property(nameInDb = "playPath")
 	private String  playPath;
+	@Property(nameInDb = "folder")
 	private String folder;
-
+	@Property(nameInDb = "titleKey")
 	private String titleKey;
+	@Property(nameInDb = "artistKey")
 	private String artistKey;
-
+	@Property(nameInDb = "picUrl")
 	public String picUrl;
+	@Property(nameInDb = "downUrl")
 	public String downUrl;
-	public int getSongId() {
+
+	@Property(nameInDb = "tag")
+	public int tag;
+
+
+
+	@Generated(hash = 1106448750)
+	public MusicInfo(long songId, int albumId, String album, int duration,
+			String title, String artist, String playPath, String folder, String titleKey,
+			String artistKey, String picUrl, String downUrl, int tag) {
+		this.songId = songId;
+		this.albumId = albumId;
+		this.album = album;
+		this.duration = duration;
+		this.title = title;
+		this.artist = artist;
+		this.playPath = playPath;
+		this.folder = folder;
+		this.titleKey = titleKey;
+		this.artistKey = artistKey;
+		this.picUrl = picUrl;
+		this.downUrl = downUrl;
+		this.tag = tag;
+	}
+
+	@Generated(hash = 1735505054)
+	public MusicInfo() {
+	}
+
+
+	
+	public long getSongId() {
 		return songId;
 	}
 
-	public void setSongId(int songId) {
+	public void setSongId(long songId) {
 		this.songId = songId;
 	}
 
@@ -141,5 +187,29 @@ public class MusicInfo implements Comparable{
 
 	public void setAlbum(String album) {
 		this.album = album;
+	}
+
+	public String getDownUrl() {
+		return this.downUrl;
+	}
+
+	public void setDownUrl(String downUrl) {
+		this.downUrl = downUrl;
+	}
+
+	public String getPicUrl() {
+		return this.picUrl;
+	}
+
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
+	}
+
+	public int getTag() {
+		return this.tag;
+	}
+
+	public void setTag(int tag) {
+		this.tag = tag;
 	}
 }

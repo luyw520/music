@@ -13,9 +13,9 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.music.bean.MusicInfo;
 import com.music.lu.R;
 import com.music.model.MusicModel;
-import com.music.service.IConstants;
+import com.music.ui.service.IConstants;
 import com.music.utils.DeBug;
-import com.music.utils.Mp3Util_New;
+import com.music.helpers.PlayerHelpler;
 import com.music.ui.adapter.MusicListAdapter;
 import com.music.ui.widget.indexablelistview.IndexableListView;
 
@@ -32,12 +32,12 @@ public class SongFragment extends BaseFragment implements IConstants{
 	private MusicListAdapter listAdapter;
 	@ViewInject(value = R.id.listview)
 	private IndexableListView mMusiclist; //
-	private Mp3Util_New mp3Util;
+	private PlayerHelpler mp3Util;
 	private List<MusicInfo> mp3Infos;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mp3Util=Mp3Util_New.getDefault();
+		mp3Util= PlayerHelpler.getDefault();
 		DeBug.d(this, "onCreate................");
 		
 	}
@@ -66,7 +66,7 @@ public class SongFragment extends BaseFragment implements IConstants{
 		
 		
 //		mp3Infos= new MediaUtil().getMp3Infos(getContext());
-		mp3Infos= MusicModel.getInstance().getAllMusicInfos(getContext());
+		mp3Infos= MusicModel.getInstance().sortMp3InfosByTitle(getContext());
 
 		
 		listAdapter = new MusicListAdapter(getActivity(),
@@ -81,7 +81,7 @@ public class SongFragment extends BaseFragment implements IConstants{
 					int position, long id) {
 				// TODO Auto-generated method stub
 //				position<mp3Util.getCurrentPlayListSize()
-				mp3Util.setMusicBaseInfos(mp3Infos, Mp3Util_New.PLAY_BY_SONG);
+				mp3Util.setMusicBaseInfos(mp3Infos, PlayerHelpler.PLAY_BY_SONG);
 				
 				mp3Util.playMusic(position);
 			}

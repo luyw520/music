@@ -13,7 +13,7 @@ import android.widget.RemoteViews;
 import com.music.lu.R;
 import com.music.utils.AppConstant;
 import com.music.utils.MediaUtil;
-import com.music.utils.Mp3Util_New;
+import com.music.helpers.PlayerHelpler;
 import com.music.ui.view.activity.LocalMusicActivity;
 
 /**
@@ -24,11 +24,11 @@ public class MyNotification {
 	private NotificationManager notificationManager;
 	private RemoteViews remoteViews;
 	private Notification notification;
-	private Mp3Util_New mp3Util_New;
+	private PlayerHelpler playerHelpler;
 	private final static int id=0;
 	public MyNotification(Context context){
 		this.context=context;
-		mp3Util_New=Mp3Util_New.getDefault();
+		playerHelpler = PlayerHelpler.getDefault();
 		initNotification();
 		registerReceiver();
 		
@@ -54,9 +54,9 @@ public class MyNotification {
 		RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
 				R.layout.notification_layout);
 
-		remoteViews.setTextViewText(R.id.tv_title_notification, mp3Util_New.getCurrentMp3Info().getTitle());
+		remoteViews.setTextViewText(R.id.tv_title_notification, playerHelpler.getCurrentMp3Info().getTitle());
 		Bitmap bitmap = MediaUtil.getArtwork(context,
-				mp3Util_New.getCurrentMp3Info().getSongId(), mp3Util_New
+				playerHelpler.getCurrentMp3Info().getSongId(), playerHelpler
 						.getCurrentMp3Info().getAlbumId(), true, true);
 		remoteViews.setImageViewBitmap(R.id.iv_notification, bitmap);
 
@@ -80,7 +80,7 @@ public class MyNotification {
 
 //		Notification.Builder builder=new Notification.Builder(context);
 		notification = new Notification(R.drawable.playing_bar_default_avatar,
-				mp3Util_New.getCurrentMp3Info().getTitle(),
+				playerHelpler.getCurrentMp3Info().getTitle(),
 				System.currentTimeMillis());
 		remoteViews=initRemoteViews();
 		Intent intent3 = new Intent(Intent.ACTION_MAIN);
@@ -125,12 +125,12 @@ public class MyNotification {
 		
 		
 		Bitmap bitmap = MediaUtil.getArtwork(context,
-				mp3Util_New.getCurrentMp3Info().getSongId(),  mp3Util_New
+				playerHelpler.getCurrentMp3Info().getSongId(),  playerHelpler
 						.getCurrentMp3Info().getAlbumId(), true, true);
 		remoteViews.setImageViewResource(R.id.iv_play_notification,
 				R.drawable.img_button_notification_play_pause);
 		remoteViews.setImageViewBitmap(R.id.iv_notification, bitmap);
-		remoteViews.setTextViewText(R.id.tv_title_notification, mp3Util_New.getCurrentMp3Info().getTitle());
+		remoteViews.setTextViewText(R.id.tv_title_notification, playerHelpler.getCurrentMp3Info().getTitle());
 		notificationManager.notify(id, notification);
 		
 	}
@@ -145,9 +145,9 @@ public class MyNotification {
 		public void onReceive(Context context, Intent intent) {
 			String acitonString = intent.getAction();
 			if (AppConstant.NOTIFICATION_PLAY_PAUSE.equals(acitonString)) {
-				mp3Util_New.playMusic();
+				playerHelpler.playMusic();
 			} else if (AppConstant.NOTIFICATION_NEXT.equals(acitonString)) {
-				mp3Util_New.nextMusic(false);
+				playerHelpler.nextMusic(false);
 			}
 
 		}

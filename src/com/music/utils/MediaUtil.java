@@ -1,11 +1,6 @@
 package com.music.utils;
 
-import java.io.File;
 import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,23 +8,19 @@ import java.util.Locale;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import android.annotation.SuppressLint;
-import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory.Options;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.music.bean.ArtistInfo;
 import com.music.bean.Mp3Info;
 import com.music.lu.R;
-import com.music.utils.file.IOUtil;
+import com.music.utils.image.BitmapUtils;
 
 @SuppressLint("DefaultLocale")
 public class MediaUtil {
@@ -245,7 +236,7 @@ public class MediaUtil {
 //				uri = ContentUris.withAppendedId(albumArtUri, albumid);
 				uri=Uri.parse(mUriAlbums + "/" + Long.toString(albumid));
 
-				bm=BitmapUtils.getBitmapFromFile(getAlbumArt(context,albumid),width,height);
+				bm= BitmapUtils.getBitmapFromFile(getAlbumArt(context,albumid),width,height);
 				return bm;
 			}
 

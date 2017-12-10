@@ -2,7 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/com/music/bean/AlbumInfo.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/com/music/service/IConstants.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/music/ui/service/IConstants.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/music/ui/view/ImageFactoryFliter.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/music/ui/view/SplashScreen.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/music/ui/view/activity/BaseActivity.java" charset="GBK" />

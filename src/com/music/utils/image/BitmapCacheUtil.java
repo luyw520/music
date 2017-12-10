@@ -1,4 +1,4 @@
-package com.music.utils;
+package com.music.utils.image;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +15,11 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.LruCache;
+
+import com.music.utils.DiskLruCache;
+import com.music.utils.DownloadUtil;
+import com.music.utils.FileUtils;
+import com.music.utils.LogUtil;
 
 @SuppressLint("NewApi")
 public class BitmapCacheUtil {

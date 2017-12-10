@@ -13,7 +13,7 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.music.lu.R;
-import com.music.utils.MeasureUtil;
+import com.music.utils.screen.MeasureUtil;
 import com.music.utils.PhotoUtils;
 import com.music.ui.view.ImageFactoryCrop;
 import com.music.ui.view.ImageFactoryFliter;

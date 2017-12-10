@@ -37,11 +37,11 @@ import com.music.model.ShareModel;
 import com.music.utils.AppConstant;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
-import com.music.utils.BitmapUtils;
+import com.music.utils.image.BitmapUtils;
 import com.music.utils.DeBug;
 import com.music.utils.DialogUtil;
 import com.music.utils.MediaUtil;
-import com.music.utils.Mp3Util_New;
+import com.music.helpers.PlayerHelpler;
 import com.music.MusicApplication;
 import com.music.ui.service.MyPlayerNewService;
 
@@ -103,7 +103,7 @@ public class PlayerActivity extends BaseActivity {
 	@ViewInject(value = R.id.lyricView)
 	private LyricView lyricView;
 
-	private Mp3Util_New mp3Util;
+	private PlayerHelpler mp3Util;
 	private MusicInfo currentMp3Info;
 	@ViewInject(value = R.id.ll_bg)
 	private LinearLayout ll_bg;
@@ -121,7 +121,7 @@ public class PlayerActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mp3Util = Mp3Util_New.getDefault();
+		mp3Util = PlayerHelpler.getDefault();
 
 		lyricModel = new LyricModel(this);
 		lyricModel.setLyricListener(new MyLyricListener());

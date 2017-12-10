@@ -16,11 +16,11 @@ import com.music.lu.R;
 import com.music.presenter.ChangeSkinContract;
 import com.music.presenter.ChangeSkinPresenter;
 import com.music.utils.ApplicationUtil;
-import com.music.utils.BitmapCacheUtil;
+import com.music.utils.image.BitmapCacheUtil;
 import com.music.utils.DialogUtil;
 import com.music.utils.LogUtil;
-import com.music.utils.Mp3Util_New;
-import com.music.utils.ScreenShotUtil;
+import com.music.helpers.PlayerHelpler;
+import com.music.utils.screen.ScreenShotUtil;
 import com.music.utils.SensorManagerUtil;
 import com.music.utils.SensorManagerUtil.SensorChangedListener;
 import com.music.utils.SharedPreHelper;
@@ -95,7 +95,7 @@ public class SettingActivity extends BaseActivity implements ChangeSkinContract.
 	private void initWidget() {
 		iv_more.setVisibility(View.GONE);
 		iv_search.setVisibility(View.GONE);
-		tv_title.setText("scan");
+		tv_title.setText(R.string.title_setting);
 		
 		tv_cache.setText(BitmapCacheUtil.getDefalut().formatFileSize());
 		
@@ -133,7 +133,7 @@ public class SettingActivity extends BaseActivity implements ChangeSkinContract.
 			break;
 		}
 
-		setQieGeState(ApplicationUtil.getQieGeIndex(this));
+//		setQieGeState(ApplicationUtil.getQieGeIndex(this));
 	}
 	
 	private void setQieGeState(int index) {
@@ -272,7 +272,7 @@ public class SettingActivity extends BaseActivity implements ChangeSkinContract.
 		@Override
 		public void onSensorChanged() {
 			
-			Mp3Util_New mp3Util=Mp3Util_New.getDefault();
+			PlayerHelpler mp3Util= PlayerHelpler.getDefault();
 			mp3Util.nextMusic(false);
 			LogUtil.i(SettingActivity.this.getClass(), "onSensorChanged");
 		}

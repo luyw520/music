@@ -17,9 +17,9 @@ import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
 import com.music.lu.R;
 import com.music.model.MusicModel;
-import com.music.service.IConstants;
+import com.music.ui.service.IConstants;
 import com.music.utils.LogUtil;
-import com.music.utils.Mp3Util_New;
+import com.music.helpers.PlayerHelpler;
 import com.music.ui.adapter.LuAdapter;
 import com.music.ui.widget.indexablelistview.IndexableListView;
 
@@ -39,14 +39,14 @@ public class MusicListFragment extends BaseFragment implements IConstants{
 	private MusicListItemClickListener musicListItemClickListener;
 
 	
-	private Mp3Util_New mp3Util;
+	private PlayerHelpler mp3Util;
 	
 	private int mPlayListType=0;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		musicListItemClickListener = new MusicListItemClickListener();
-		mp3Util=Mp3Util_New.getDefault();
+		mp3Util= PlayerHelpler.getDefault();
 		LogUtil.i(TAG, "onCreate");
 	}
 

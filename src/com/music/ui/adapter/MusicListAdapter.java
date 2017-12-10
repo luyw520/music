@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.music.bean.MusicInfo;
 import com.music.lu.R;
 import com.music.utils.DeBug;
-import com.music.utils.Mp3Util_New;
+import com.music.helpers.PlayerHelpler;
 import com.music.ui.widget.indexablelistview.IndexableListView;
 
 public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
@@ -25,7 +25,7 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 		// super(context, resource, objects);
 		this.context = context;
 		this.mp3Infos = objects;
-		this.mp3Util = Mp3Util_New.getDefault();
+		this.mp3Util = PlayerHelpler.getDefault();
 		this.listView = listView;
 	}
 
@@ -35,7 +35,7 @@ public class MusicListAdapter extends BaseAdapter implements SectionIndexer {
 	private MusicInfo mp3Info;
 	@SuppressWarnings("unused")
 	private int pos = -1;
-	private Mp3Util_New mp3Util;
+	private PlayerHelpler mp3Util;
 //	private Mp3Util mp3Util;
 	@SuppressWarnings("unused")
 	private IndexableListView listView;

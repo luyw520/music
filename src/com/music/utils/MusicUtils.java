@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -22,10 +21,11 @@ import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
 import com.music.db.AlbumInfoDao;
 import com.music.db.ArtistInfoDao;
+import com.music.db.DBHelper;
 import com.music.db.FavoriteInfoDao;
 import com.music.db.FolderInfoDao;
 import com.music.db.MusicInfoDao;
-import com.music.service.IConstants;
+import com.music.ui.service.IConstants;
 
 /**
  *
@@ -306,6 +306,8 @@ public class MusicUtils implements IConstants {
 			music.setTitleKey(StringUtil.getPingYin(music.getTitle()));
 			music.setArtistKey(StringUtil.getPingYin(music.getArtist()));
 			musicList.add(music);
+
+			DBHelper.getInstance().insertOrReplace(music);
 			DeBug.d(MusicUtils.class,music.toString());
 		}
 		cursor.close();

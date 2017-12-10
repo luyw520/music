@@ -1,4 +1,4 @@
-package com.music.utils;
+package com.music.utils.image;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

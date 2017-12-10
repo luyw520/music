@@ -1,4 +1,4 @@
-package com.music.service;
+package com.music.ui.service;
 import java.util.List;
 import com.music.bean.MusicInfo;
 interface IMediaService {

@@ -36,7 +36,7 @@ public interface ConstUtils {
         MB,
         GB
     }
-
+    public static final String DESCRIPTOR = "com.umeng.share";
     /******************** 时间相关常量 ********************/
     /**
      * 毫秒与毫秒的倍数

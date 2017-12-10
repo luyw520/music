@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +25,11 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.music.bean.AlbumInfo;
 import com.music.lu.R;
 import com.music.model.MusicModel;
-import com.music.service.IConstants;
-import com.music.service.IMediaService;
+import com.music.ui.service.IConstants;
+import com.music.ui.service.IMediaService;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
-import com.music.utils.BitmapCacheUtil;
+import com.music.utils.image.BitmapCacheUtil;
 import com.music.utils.DeBug;
 import com.music.utils.LogUtil;
 import com.music.utils.PhotoUtils;
@@ -60,34 +61,42 @@ public class AlbumFragment extends BaseFragment {
 	@ViewInject(value = R.id.listview)
 	private IndexableListView mMusiclist; //
 
-	// private Mp3Util_New mp3Util;
-	private List<AlbumInfo> albumInfos;
+	private List<AlbumInfo> albumInfos=new ArrayList<>();
 	private MusicListItemClickListener musicListItemClickListener;
 	@SuppressWarnings("unused")
 	private List<Map<String, Boolean>> loadList;
-	private int[] isLoaded;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		musicListItemClickListener = new MusicListItemClickListener();
-//		albumInfos = com.music.utils.MusicUtils.getDefault().queryAlbums(
-//				getActivity());
-
-		LogUtil.d(TAG, "onCreate");
+		initData();
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+							 Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		View view = inflater.inflate(R.layout.fragment, container,
 				false);
-		albumInfos = MusicModel.getInstance().queryAlbums(
-				getActivity());
-		isLoaded = new int[albumInfos.size()];
 		initViewWidget(view);
-		LogUtil.d(TAG, "onCreateView");
+		initData();
 		return view;
+	}
+
+	private void initData() {
+		new AsyncTaskUtil(new IAsyncTaskCallBack() {
+			@Override
+			public Object doInBackground(String... arg0) {
+
+				albumInfos.addAll(MusicModel.getInstance().queryAlbums(getActivity()));
+				DeBug.d("aaa","加载完成 albumInfos.size():"+albumInfos.size());
+				return null;
+			}
+
+			@Override
+			public void onPostExecute(Object result) {
+				listAdapter.notifyDataSetChanged();
+			}
+		}).execute("");
 	}
 
 	/**
@@ -209,14 +218,6 @@ public class AlbumFragment extends BaseFragment {
 				}
 			}
 			viewHolder.albumImage.setTag(album.album_path);
-			// mMusiclist.setShow(true);
-			loadImage(viewHolder.albumImage, album.album_path, position);
-//			LogUtil.d(this,album.album_path);
-//			Picasso.with(convertView.getContext())
-//					.load(album.album_path)
-//					.transform(new PicassoCircularTransformer())
-//					.resizeDimen(R.dimen.list_view_left_icon_size,R.dimen.list_view_left_icon_size)
-//					.into(viewHolder.albumImage);
 			return convertView;
 		}
 
@@ -278,9 +279,9 @@ public class AlbumFragment extends BaseFragment {
 
 			if (bitmap == null) {
 
-				if (isLoaded[postion] == 2) {
-					return;
-				}
+//				if (isLoaded[postion] == 2) {
+//					return;
+//				}
 
 				AsyncTaskUtil arg0 = new AsyncTaskUtil(
 						new IAsyncTaskCallBack() {
@@ -306,12 +307,12 @@ public class AlbumFragment extends BaseFragment {
 									BitmapCacheUtil.getDefalut()
 											.addBitmapToMemoryCache(arg0[0], b);
 									
-									isLoaded[postion] = 1;
+//									isLoaded[postion] = 1;
 									DeBug.d(TAG, "b.getWidth():"+b.getWidth());
 									DeBug.d(TAG, "b.getHeight():"+b.getHeight());
 									
 								} else {
-									isLoaded[postion] = 2;
+//									isLoaded[postion] = 2;
 								}
 
 								return b;

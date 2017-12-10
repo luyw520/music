@@ -6,12 +6,12 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.music.db.DBHelper;
 import com.music.model.LogMonitor;
 import com.music.model.ScreenManager;
-import com.music.utils.BitmapCacheUtil;
-import com.music.utils.DeBug;
+import com.music.utils.image.BitmapCacheUtil;
 import com.music.utils.FileUtils;
-import com.music.utils.Mp3Util_New;
+import com.music.helpers.PlayerHelpler;
 import com.music.utils.MusicUtils;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
@@ -46,27 +46,13 @@ public class MusicApplication extends Application {
 		super.onCreate();
 		musicApplication=this;
 		screenManager=ScreenManager.getScreenManager();
-		DeBug.d(TAG, "MusicApplication ............onCreate:");
-		long start=System.currentTimeMillis();
-		Mp3Util_New.init(this);
-		long mp3=System.currentTimeMillis();
-		DeBug.d(TAG, "Mp3Util_New.init(this):"+(mp3-start)/1000.0);
+		PlayerHelpler.init(this);
 		BitmapCacheUtil.init(this);
-		long bit=System.currentTimeMillis();
-		DeBug.d(TAG, "BitmapCacheUtil.init(this):"+(bit-mp3)/1000.0);
 		MusicUtils.init(this);
-		DeBug.d(TAG, "MusicUtils.init(this):"+(System.currentTimeMillis()-bit)/1000.0);
-		
 		setmLockPatternUtils(new LockPatternUtils(this));
-		setMusicApplication(this);
-		
+
 		initImageLoader(getApplicationContext());
-		
-		
-//		FontsOverride.setDefaultFont(this, "DEFAULT", "fonts/a.ttf");
-//        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/a.ttf");
-//        FontsOverride.setDefaultFont(this, "SERIF", "fonts/a.ttf");
-//        FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/a.ttf");
+		DBHelper.getInstance().init();
 
 		mSharedPreferences=(getSharedPreferences("lu_music",Context.MODE_PRIVATE));
 		LogMonitor.getInstance().startMonitor();

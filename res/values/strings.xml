@@ -74,4 +74,8 @@
     <string name="dialog_exit_msg">是否退出程序</string>
     <string name="dialog_exit_ok">确定</string>
     <string name="dialog_exit_cancel">取消</string>
+
+    <string name="title_setting">设置</string>
+    <string name="title_login">登录</string>
+    <string name="title_folder">文件夹</string>
 </resources>

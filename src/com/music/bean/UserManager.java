@@ -1,7 +1,7 @@
 package com.music.bean;
 
 import com.music.utils.AsyncTaskUtil;
-import com.music.utils.BitmapCacheUtil;
+import com.music.utils.image.BitmapCacheUtil;
 import com.music.utils.PhotoUtils;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
 

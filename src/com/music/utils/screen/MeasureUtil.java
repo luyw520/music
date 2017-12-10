@@ -1,4 +1,4 @@
-package com.music.utils;
+package com.music.utils.screen;
 
 
 import android.app.Activity;

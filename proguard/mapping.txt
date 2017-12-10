@@ -10482,7 +10482,7 @@ com.music.lrc.LrcUtil -> com.music.lrc.b:
     com.music.lrc.LrcUtil lrcUtil -> a
     com.music.lrc.LrcTool lrcTool -> b
     android.content.Context context -> c
-    com.music.utils.Mp3Util_New mp3Util -> d
+    com.music.helpers.PlayerHelpler mp3Util -> d
     boolean isSearch -> e
     com.music.bean.LrcInfo currentLrcInfo -> f
     java.util.List lrcInfos -> g
@@ -10496,7 +10496,7 @@ com.music.lrc.LrcUtil -> com.music.lrc.b:
     18:18:com.music.lrc.LrcTool access$1(com.music.lrc.LrcUtil) -> b
     33:33:void access$2(com.music.lrc.LrcUtil,java.util.List) -> a
     33:33:java.util.List access$3(com.music.lrc.LrcUtil) -> c
-    20:20:com.music.utils.Mp3Util_New access$4(com.music.lrc.LrcUtil) -> d
+    20:20:com.music.helpers.PlayerHelpler access$4(com.music.lrc.LrcUtil) -> d
 com.music.lrc.LrcUtil$MyAsyncTask -> com.music.lrc.b$a:
     java.lang.String songName -> b
     com.music.lrc.LrcUtil this$0 -> a
@@ -12626,17 +12626,17 @@ com.music.utils.AsyncTaskUtil$MyTask -> com.music.d.c$b:
     27:27:java.lang.Object doInBackground(java.lang.String[]) -> a
     31:32:void onPostExecute(java.lang.Object) -> onPostExecute
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.music.utils.BitmapCacheUtil -> com.music.d.d:
+com.music.utils.image.BitmapCacheUtil -> com.music.d.d:
     java.lang.String TAG -> a
     com.music.utils.DiskLruCache mDiskLruCache -> b
     android.util.LruCache mMemoryCache -> c
     android.content.Context context -> d
-    com.music.utils.BitmapCacheUtil bitmapCacheUtil -> e
+    com.music.utils.image.BitmapCacheUtil bitmapCacheUtil -> e
     35:45:void openLruCache() -> f
     54:57:void addBitmapToMemoryCache(java.lang.String,android.graphics.Bitmap) -> a
     60:63:android.graphics.Bitmap getBitmapFromMemoryCache(java.lang.String) -> a
     67:70:void init(android.content.Context) -> a
-    73:73:com.music.utils.BitmapCacheUtil getDefalut() -> a
+    73:73:com.music.utils.image.BitmapCacheUtil getDefalut() -> a
     78:92:void openDiskLruCache() -> g
     104:112:java.lang.String hashKeyForDisk(java.lang.String) -> c
     118:126:java.lang.String bytesToHexString(byte[]) -> a
@@ -12649,8 +12649,8 @@ com.music.utils.BitmapCacheUtil -> com.music.d.d:
     269:274:void clearCache() -> c
     282:282:long getCacheSize() -> d
     292:304:java.lang.String formatFileSize() -> e
-com.music.utils.BitmapCacheUtil$1 -> com.music.d.e:
-    com.music.utils.BitmapCacheUtil this$0 -> a
+com.music.utils.image.BitmapCacheUtil$1 -> com.music.d.e:
+    com.music.utils.image.BitmapCacheUtil this$0 -> a
     41:41:int sizeOf(java.lang.String,android.graphics.Bitmap) -> a
     1:1:int sizeOf(java.lang.Object,java.lang.Object) -> sizeOf
 com.music.utils.ConnectionUtil -> com.music.d.f:
@@ -12860,7 +12860,7 @@ com.music.utils.FileUtils -> com.music.d.q:
 com.music.utils.FontsOverride -> com.music.d.r:
     12:15:void setDefaultFont(android.content.Context,java.lang.String,java.lang.String) -> a
     20:30:void replaceFont(java.lang.String,android.graphics.Typeface) -> a
-com.music.utils.ImageUtil -> com.music.d.s:
+com.music.utils.image.ImageUtil -> com.music.d.s:
     int TOP -> a
     int BOTTOM -> b
     int LEFT -> c
@@ -12925,7 +12925,7 @@ com.music.utils.LogUtil -> com.music.d.t:
     139:141:void i(java.lang.Class,java.lang.String) -> c
     145:147:void v(java.lang.Class,java.lang.String) -> d
     151:153:void w(java.lang.Class,java.lang.String) -> e
-com.music.utils.MeasureUtil -> com.music.d.u:
+com.music.utils.screen.MeasureUtil -> com.music.d.u:
     15:18:int[] getScreenSize(android.app.Activity) -> a
 com.music.utils.MediaUtil -> com.music.d.v:
     android.net.Uri albumArtUri -> a
@@ -12997,10 +12997,10 @@ com.music.utils.Mp3Util -> com.music.d.w:
     319:320:void setIndex(int) -> e
     322:322:boolean isShowLrc() -> q
     325:326:void setShowLrc(boolean) -> c
-com.music.utils.Mp3Util_New -> com.music.d.x:
+com.music.helpers.PlayerHelpler -> com.music.d.x:
     java.lang.String TAG -> f
     java.lang.String playService -> a
-    com.music.utils.Mp3Util_New mp3Util -> g
+    com.music.helpers.PlayerHelpler mp3Util -> g
     com.music.utils.MediaUtil mediaUtil -> h
     boolean isSortByTime -> i
     java.util.List mp3Infos -> j
@@ -13023,8 +13023,8 @@ com.music.utils.Mp3Util_New -> com.music.d.x:
     int PLAY_BY_FOLDER -> e
     int mPlayListType -> x
     com.music.utils.MusicUtils musicUtils -> y
-    25:25:com.music.utils.Mp3Util_New getDefault() -> a
-    29:29:com.music.utils.Mp3Util_New getInstance() -> b
+    25:25:com.music.helpers.PlayerHelpler getDefault() -> a
+    29:29:com.music.helpers.PlayerHelpler getInstance() -> b
     33:35:void init(android.content.Context) -> a
     112:117:void addMp3(com.music.bean.Mp3Info) -> a
     125:127:void audioTrackChange(int) -> a
@@ -13069,22 +13069,22 @@ com.music.utils.Mp3Util_New -> com.music.d.x:
     484:490:void setMusicBaseInfos(java.util.List,int) -> a
     493:493:int getDuration() -> v
     497:498:void setDuration(int) -> f
-    48:48:void access$0(com.music.utils.Mp3Util_New,com.music.service.IMediaService) -> a
-    89:89:void access$1(com.music.utils.Mp3Util_New,boolean) -> a
-    37:37:com.music.utils.MediaUtil access$2(com.music.utils.Mp3Util_New) -> a
-    54:54:android.content.Context access$3(com.music.utils.Mp3Util_New) -> b
-    42:42:void access$4(com.music.utils.Mp3Util_New,java.util.List) -> a
-    42:42:java.util.List access$5(com.music.utils.Mp3Util_New) -> c
-    47:47:void access$6(com.music.utils.Mp3Util_New,java.util.List) -> b
-    47:47:java.util.List access$7(com.music.utils.Mp3Util_New) -> d
-    83:83:int access$8(com.music.utils.Mp3Util_New) -> e
-    60:60:void access$9(com.music.utils.Mp3Util_New,com.music.bean.MusicBaseInfo) -> a
-com.music.utils.Mp3Util_New$1 -> com.music.d.y:
-    com.music.utils.Mp3Util_New this$0 -> a
+    48:48:void access$0(com.music.helpers.PlayerHelpler,com.music.service.IMediaService) -> a
+    89:89:void access$1(com.music.helpers.PlayerHelpler,boolean) -> a
+    37:37:com.music.utils.MediaUtil access$2(com.music.helpers.PlayerHelpler) -> a
+    54:54:android.content.Context access$3(com.music.helpers.PlayerHelpler) -> b
+    42:42:void access$4(com.music.helpers.PlayerHelpler,java.util.List) -> a
+    42:42:java.util.List access$5(com.music.helpers.PlayerHelpler) -> c
+    47:47:void access$6(com.music.helpers.PlayerHelpler,java.util.List) -> b
+    47:47:java.util.List access$7(com.music.helpers.PlayerHelpler) -> d
+    83:83:int access$8(com.music.helpers.PlayerHelpler) -> e
+    60:60:void access$9(com.music.helpers.PlayerHelpler,com.music.bean.MusicBaseInfo) -> a
+com.music.helpers.PlayerHelpler$1 -> com.music.d.y:
+    com.music.helpers.PlayerHelpler this$0 -> a
     137:140:void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
     144:145:void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
-com.music.utils.Mp3Util_New$2 -> com.music.d.z:
-    com.music.utils.Mp3Util_New this$0 -> a
+com.music.helpers.PlayerHelpler$2 -> com.music.d.z:
+    com.music.helpers.PlayerHelpler this$0 -> a
     211:217:void run() -> run
 com.music.utils.MusicUtils -> com.music.d.aa:
     java.lang.String[] proj_music -> K
@@ -13141,18 +13141,18 @@ com.music.utils.PhotoUtils -> com.music.d.ab:
     248:273:java.lang.String savePhotoToSDCard(android.graphics.Bitmap) -> c
     286:291:android.graphics.Bitmap getFilter(com.music.ui.view.ImageFactoryFliter$FilterType,android.graphics.Bitmap) -> a
     301:370:android.graphics.Bitmap lomoFilter(android.graphics.Bitmap) -> d
-com.music.utils.ScreenShotUtil -> com.music.d.ac:
+com.music.utils.screen.ScreenShotUtil -> com.music.d.ac:
     java.lang.String TAG -> a
     android.app.Activity mActivity -> b
-    com.music.utils.ScreenShotUtil screenShotUtil -> c
+    com.music.utils.screen.ScreenShotUtil screenShotUtil -> c
     com.umeng.socialize.sensor.controller.UMShakeService mShakeController -> d
     com.umeng.scrshot.UMScrShotController$OnScreenshotListener mScreenshotListener -> e
-    39:47:com.music.utils.ScreenShotUtil getInstance(android.app.Activity) -> a
+    39:47:com.music.utils.screen.ScreenShotUtil getInstance(android.app.Activity) -> a
     54:56:void registerShakeToScrShot() -> a
     59:60:void unregisterShakeListener() -> b
     26:26:android.app.Activity access$0() -> c
-com.music.utils.ScreenShotUtil$1 -> com.music.d.ad:
-    com.music.utils.ScreenShotUtil this$0 -> a
+com.music.utils.screen.ScreenShotUtil$1 -> com.music.d.ad:
+    com.music.utils.screen.ScreenShotUtil this$0 -> a
     66:75:void onComplete(android.graphics.Bitmap) -> a
 com.music.utils.SensorManagerUtil -> com.music.d.ae:
     android.content.Context context -> a
@@ -13304,7 +13304,7 @@ com.music.ui.view.MyNotification -> com.music.ui.view.MyNotification:
     android.widget.RemoteViews remoteViews -> c
     android.app.Notification notification -> d
     java.lang.String songTitle -> e
-    com.music.utils.Mp3Util_New mp3Util_New -> f
+    com.music.helpers.PlayerHelpler mp3Util_New -> f
     android.content.BroadcastReceiver notificationReceiver -> g
     31:31:java.lang.String getSongTitle() -> a
     34:35:void setSongTitle(java.lang.String) -> a
@@ -13315,7 +13315,7 @@ com.music.ui.view.MyNotification -> com.music.ui.view.MyNotification:
     114:122:void setPlayImageState(boolean) -> a
     128:137:void reset() -> d
     139:140:void cancel() -> e
-    29:29:com.music.utils.Mp3Util_New access$0(com.music.ui.view.MyNotification) -> a
+    29:29:com.music.helpers.PlayerHelpler access$0(com.music.ui.view.MyNotification) -> a
 com.music.ui.view.MyNotification$1 -> com.music.ui.view.f:
     com.music.ui.view.MyNotification this$0 -> a
     148:155:void onReceive(android.content.Context,android.content.Intent) -> onReceive
@@ -13527,7 +13527,7 @@ com.music.ui.view.activity.LocalMusicActivity -> com.music.ui.view.activity.Loca
     int pauseColor -> ae
     int dwableDuaration -> af
     com.music.bean.MusicBaseInfo currentMp3Info -> ag
-    com.music.utils.Mp3Util_New mp3Util -> ah
+    com.music.helpers.PlayerHelpler mp3Util -> ah
     com.music.ui.view.fragment.MusicListFragment musicListFragment -> ai
     android.support.v4.app.FragmentTransaction transaction -> aj
     com.music.ui.view.fragment.LocalMusicFragment localMusicFragment -> ak
@@ -13562,7 +13562,7 @@ com.music.ui.view.activity.LocalMusicActivity -> com.music.ui.view.activity.Loca
     73:73:com.music.ui.view.SplashScreen access$0(com.music.ui.view.activity.LocalMusicActivity) -> a
     350:350:void access$1(com.music.ui.view.activity.LocalMusicActivity) -> b
     339:339:void access$2(com.music.ui.view.activity.LocalMusicActivity) -> c
-    120:120:com.music.utils.Mp3Util_New access$3(com.music.ui.view.activity.LocalMusicActivity) -> d
+    120:120:com.music.helpers.PlayerHelpler access$3(com.music.ui.view.activity.LocalMusicActivity) -> d
     84:84:android.widget.TextView access$4(com.music.ui.view.activity.LocalMusicActivity) -> e
     95:95:com.music.ui.view.MyNotification access$5(com.music.ui.view.activity.LocalMusicActivity) -> f
     93:93:android.widget.ImageButton access$6(com.music.ui.view.activity.LocalMusicActivity) -> g
@@ -13600,7 +13600,7 @@ com.music.ui.view.activity.LockScreenActivity -> com.music.ui.view.activity.Lock
     android.widget.ImageButton ib_player -> i
     com.music.ui.broadcastreceiver.MyBroadcastReceiver myBroadcastReceiver -> j
     int TIME -> k
-    com.music.utils.Mp3Util_New mp3Util -> l
+    com.music.helpers.PlayerHelpler mp3Util -> l
     android.os.Handler handler -> m
     41:54:void onCreate(android.os.Bundle) -> onCreate
     60:65:void registerReceiver() -> a
@@ -13616,7 +13616,7 @@ com.music.ui.view.activity.LockScreenActivity -> com.music.ui.view.activity.Lock
     33:33:android.widget.TextView access$0(com.music.ui.view.activity.LockScreenActivity) -> a
     102:102:android.os.Handler access$1(com.music.ui.view.activity.LockScreenActivity) -> b
     33:33:android.widget.TextView access$2(com.music.ui.view.activity.LockScreenActivity) -> c
-    38:38:com.music.utils.Mp3Util_New access$3(com.music.ui.view.activity.LockScreenActivity) -> d
+    38:38:com.music.helpers.PlayerHelpler access$3(com.music.ui.view.activity.LockScreenActivity) -> d
     33:33:android.widget.TextView access$4(com.music.ui.view.activity.LockScreenActivity) -> e
     34:34:android.widget.ImageButton access$5(com.music.ui.view.activity.LockScreenActivity) -> f
     33:33:android.widget.TextView access$6(com.music.ui.view.activity.LockScreenActivity) -> g
@@ -13722,7 +13722,7 @@ com.music.ui.view.activity.PlayerActivity -> com.music.ui.view.activity.PlayerAc
     int currentTime -> E
     com.music.ui.broadcastreceiver.MyBroadcastReceiver playerBroadcastReceiver -> F
     com.music.lrc.LyricView lyricView -> G
-    com.music.utils.Mp3Util_New mp3Util -> H
+    com.music.helpers.PlayerHelpler mp3Util -> H
     com.music.bean.MusicBaseInfo currentMp3Info -> I
     android.widget.LinearLayout ll_bg -> J
     com.music.lrc.LyricDownloadManager manager -> K
@@ -13752,7 +13752,7 @@ com.music.ui.view.activity.PlayerActivity -> com.music.ui.view.activity.PlayerAc
     550:559:void finishAnimator() -> k
     563:563:void lyricViewClick() -> a
     568:570:void onResume() -> onResume
-    114:114:com.music.utils.Mp3Util_New access$0(com.music.ui.view.activity.PlayerActivity) -> a
+    114:114:com.music.helpers.PlayerHelpler access$0(com.music.ui.view.activity.PlayerActivity) -> a
     112:112:com.music.lrc.LyricView access$1(com.music.ui.view.activity.PlayerActivity) -> b
     128:128:com.music.model.LyricModel access$2(com.music.ui.view.activity.PlayerActivity) -> c
     74:74:android.widget.ImageButton access$3(com.music.ui.view.activity.PlayerActivity) -> d
@@ -13994,7 +13994,7 @@ com.music.ui.adapter.MusicListAdapter -> com.music.ui.adapter.b:
     java.util.List mp3Infos -> c
     com.music.bean.Mp3Info mp3Info -> d
     int pos -> e
-    com.music.utils.Mp3Util_New mp3Util -> f
+    com.music.helpers.PlayerHelpler mp3Util -> f
     com.music.ui.widget.indexablelistview.IndexableListView listView -> g
     46:46:int getCount() -> getCount
     52:52:com.music.bean.Mp3Info getItem(int) -> a
@@ -14272,13 +14272,13 @@ com.music.ui.view.fragment.MusicListFragment -> com.music.ui.view.fragment.Music
     com.music.ui.widget.indexablelistview.IndexableListView mMusiclist -> al
     java.util.List musicInfos -> am
     com.music.ui.view.fragment.MusicListFragment$MusicListItemClickListener musicListItemClickListener -> an
-    com.music.utils.Mp3Util_New mp3Util -> ao
+    com.music.helpers.PlayerHelpler mp3Util -> ao
     int mPlayListType -> ap
     53:57:void onCreate(android.os.Bundle) -> a
     62:67:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     75:106:void initViewWidget(android.view.View) -> c
     108:135:void initData(int,java.lang.Object,android.content.Context) -> a
-    48:48:com.music.utils.Mp3Util_New access$0(com.music.ui.view.fragment.MusicListFragment) -> a
+    48:48:com.music.helpers.PlayerHelpler access$0(com.music.ui.view.fragment.MusicListFragment) -> a
     44:44:java.util.List access$1(com.music.ui.view.fragment.MusicListFragment) -> b
     50:50:int access$2(com.music.ui.view.fragment.MusicListFragment) -> c
 com.music.ui.view.fragment.MusicListFragment$ArtistAdapter -> com.music.ui.view.fragment.MusicListFragment$a:
@@ -14292,12 +14292,12 @@ com.music.ui.view.fragment.SongFragment -> com.music.ui.view.fragment.SongFragme
     java.lang.String TAG -> aj
     com.music.ui.adapter.MusicListAdapter listAdapter -> ak
     com.music.ui.widget.indexablelistview.IndexableListView mMusiclist -> al
-    com.music.utils.Mp3Util_New mp3Util -> am
+    com.music.helpers.PlayerHelpler mp3Util -> am
     java.util.List mp3Infos -> an
     44:49:void onCreate(android.os.Bundle) -> a
     53:55:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     68:112:void initViewWidget(android.view.View) -> c
-    39:39:com.music.utils.Mp3Util_New access$0(com.music.ui.view.fragment.SongFragment) -> a
+    39:39:com.music.helpers.PlayerHelpler access$0(com.music.ui.view.fragment.SongFragment) -> a
     40:40:java.util.List access$1(com.music.ui.view.fragment.SongFragment) -> b
 com.music.ui.view.fragment.SongFragment$1 -> com.music.ui.view.fragment.f:
     com.music.ui.view.fragment.SongFragment this$0 -> a
@@ -14589,7 +14589,7 @@ com.music.ui.service.MyPlayerNewService -> com.music.ui.service.MyPlayerNewServi
     int currentTime -> d
     int duration -> e
     java.lang.String TAG -> f
-    com.music.utils.Mp3Util_New mp3Util -> g
+    com.music.helpers.PlayerHelpler mp3Util -> g
     android.os.Handler handler -> h
     android.os.IBinder mIBinder -> i
     95:110:void onCreate() -> onCreate
@@ -14610,7 +14610,7 @@ com.music.ui.service.MyPlayerNewService -> com.music.ui.service.MyPlayerNewServi
     33:33:void access$6(com.music.ui.service.MyPlayerNewService,java.lang.String) -> a
     254:254:void access$7(com.music.ui.service.MyPlayerNewService,int) -> b
     147:147:void access$8(com.music.ui.service.MyPlayerNewService) -> f
-    44:44:com.music.utils.Mp3Util_New access$9(com.music.ui.service.MyPlayerNewService) -> g
+    44:44:com.music.helpers.PlayerHelpler access$9(com.music.ui.service.MyPlayerNewService) -> g
     42:42:java.lang.String access$10() -> b
 com.music.ui.service.MyPlayerNewService$1 -> com.music.ui.service.a:
     com.music.ui.service.MyPlayerNewService this$0 -> a

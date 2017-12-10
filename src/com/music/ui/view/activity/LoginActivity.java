@@ -30,7 +30,8 @@ import com.umeng.socialize.controller.listener.SocializeListeners.UMDataListener
 import com.umeng.socialize.exception.SocializeException;
 import com.umeng.socialize.sso.QZoneSsoHandler;
 import com.umeng.socialize.sso.UMQQSsoHandler;
-import com.umeng.soexample.commons.Constants;
+
+import static com.music.utils.ConstUtils.DESCRIPTOR;
 //import com.umeng.socialize.sensor.controller.UMShakeService;
 //import com.umeng.socialize.sensor.controller.impl.UMShakeServiceFactory;
 
@@ -59,7 +60,7 @@ public class LoginActivity extends Activity {
 	private ImageView btn_tencent;
 
 	private UMSocialService mController = UMServiceFactory
-			.getUMSocialService(Constants.DESCRIPTOR);
+			.getUMSocialService(DESCRIPTOR);
 
 	@SuppressWarnings("static-access")
 	@Override
@@ -70,7 +71,7 @@ public class LoginActivity extends Activity {
 		userManager = UserManager.getInstance();
 		userBean = userManager.getUserBean(this);
 
-		setTitle("��½");
+		setTitle(R.string.title_login);
 
 		initWidget();
 

@@ -1,4 +1,4 @@
-package com.music.service;
+package com.music.ui.service;
 
 /**
  *
@@ -49,5 +49,7 @@ public interface IConstants {
 	public static final int ARTIST_TO_MYMUSIC = 8;
 	
 	public static final int MENU_BACKGROUND = 9;
+
+	String DB_NAME="music.db";
 	
 }

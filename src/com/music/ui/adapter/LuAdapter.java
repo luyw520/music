@@ -39,7 +39,7 @@ public abstract class LuAdapter<T> extends BaseAdapter{
 		final ViewHolder viewHolder=getViewHolder(convertView, parent, position);
 		convert(viewHolder,getItem(position));
 		convert(viewHolder,position);
-		return viewHolder.getConverView();
+		return viewHolder.getConvertView();
 	}
 	public  void convert(ViewHolder helper, T item){};
 	public abstract void convert(ViewHolder helper, int position);

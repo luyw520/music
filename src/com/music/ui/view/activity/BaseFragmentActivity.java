@@ -17,7 +17,7 @@ import com.music.annotation.ComputeTimeUtil;
 import com.music.lu.R;
 import com.music.utils.ApplicationUtil;
 import com.music.utils.DeBug;
-import com.music.utils.ScreenShotUtil;
+import com.music.utils.screen.ScreenShotUtil;
 import com.music.utils.SystemBarTintManager;
 import com.music.MusicApplication;
 import com.umeng.analytics.MobclickAgent;

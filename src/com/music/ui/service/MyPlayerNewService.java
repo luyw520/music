@@ -12,10 +12,9 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.music.service.IMediaService;
 import com.music.utils.ConstantUtil;
 import com.music.utils.DeBug;
-import com.music.utils.Mp3Util_New;
+import com.music.helpers.PlayerHelpler;
 import com.music.MusicApplication;
 
 /**
@@ -37,7 +36,7 @@ public class MyPlayerNewService extends Service {
 
 	private static String TAG="MyPlayerService";
 	
-	private Mp3Util_New mp3Util;
+	private PlayerHelpler mp3Util;
 	private static final int CURRENT_TIME=2;
 	private static final int DELAY_TIME=100;
 	private Handler handler = new Handler() {
@@ -68,7 +67,7 @@ public class MyPlayerNewService extends Service {
 		super.onCreate();
 		DeBug.d(this, "MyPlayerService..................onCreate");
 		setMediaPlayer(new MediaPlayer());
-		mp3Util=Mp3Util_New.getDefault();
+		mp3Util= PlayerHelpler.getDefault();
 		/**
 		 */
 		getMediaPlayer().setOnCompletionListener(new OnCompletionListener() {

@@ -12,7 +12,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.music.bean.MusicInfo;
-import com.music.service.IConstants;
+import com.music.ui.service.IConstants;
 
 public class FavoriteInfoDao implements IConstants {
 
