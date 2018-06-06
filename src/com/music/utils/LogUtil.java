@@ -1,4 +1,7 @@
 package com.music.utils;
+import android.annotation.SuppressLint;
+import android.util.Log;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,19 +10,16 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import android.annotation.SuppressLint;
-import android.util.Log;
-
 @SuppressLint("SimpleDateFormat") public class LogUtil {
 	private static final boolean DEBUG = true;
 	public static Boolean MYLOG_SWITCH = true;
 	public static Boolean MYLOG_WRITE_TO_FILE = false;
 	private static char MYLOG_TYPE = 'v';
-	@SuppressLint("SdCardPath") 
+	@SuppressLint("SdCardPath")
 	private static String MYLOG_PATH_SDCARD_DIR = "/sdcard/";
 	private static int SDCARD_LOG_FILE_SAVE_DAYS = 0;
 	private static String MYLOGFILEName = "musiclog.txt";
-	@SuppressLint("SimpleDateFormat") 
+	@SuppressLint("SimpleDateFormat")
 	private static SimpleDateFormat myLogSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private static SimpleDateFormat logfile = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -52,28 +52,31 @@ import android.util.Log;
 	}
 
 	public static void d(String tag, String text) {
-		log(tag, text, 'd');
+//		log(tag, text, 'd');
+		DebugLog.d2("tag:"+tag+","+text);
 	}
 
 	public static void i(String tag, String text) {
-		log(tag, text, 'i');
+//		log(tag, text, 'i');
+		DebugLog.d2("tag:"+tag+","+text);
 	}
 
 	public static void v(String tag, String text) {
-		log(tag, text, 'v');
+//		log(tag, text, 'v');
+		DebugLog.d2("tag:"+tag+","+text);
 	}
 	private static void log(String tag, String msg, char level) {
 		if (MYLOG_SWITCH) {
 			if ('e' == level && ('e' == MYLOG_TYPE || 'v' == MYLOG_TYPE)) {
-				Log.e(tag, msg);
+				d(tag, msg);
 			} else if ('w' == level && ('w' == MYLOG_TYPE || 'v' == MYLOG_TYPE)) {
-				Log.w(tag, msg);
+				d(tag, msg);
 			} else if ('d' == level && ('d' == MYLOG_TYPE || 'v' == MYLOG_TYPE)) {
-				Log.d(tag, msg);
+				d(tag, msg);
 			} else if ('i' == level && ('d' == MYLOG_TYPE || 'v' == MYLOG_TYPE)) {
-				Log.i(tag, msg);
+				d(tag, msg);
 			} else {
-				Log.v(tag, msg);
+				d(tag, msg);
 			}
 			if (MYLOG_WRITE_TO_FILE) {
 				writeLogtoFile(String.valueOf(level), tag, msg);
@@ -117,38 +120,38 @@ import android.util.Log;
 	}
 	 public static void d(Class<?> class1, String msg) {
 	        if (DEBUG) {
-	            Log.d(class1.getSimpleName(), msg);
+	            d(class1.getSimpleName(), msg);
 	        }
 
 	    }
 	    public static void d(Object o, String msg) {
 	        if (DEBUG) {
-	            Log.d(o.getClass().getSimpleName(), msg);
+	            DebugLog.d2(o.getClass().getSimpleName(),msg);
 	        }
 
 	    }
 
 	    public static void e(Class<?> class1, String msg) {
 	        if (DEBUG) {
-	            Log.e(class1.getSimpleName(), msg);
+				DebugLog.d2(class1.getSimpleName(), msg);
 	        }
 	    }
 
 	    public static void i(Class<?> class1, String msg) {
 	        if (DEBUG) {
-	            Log.i(class1.getSimpleName(), msg);
+				DebugLog.d2(class1.getSimpleName(), msg);
 	        }
 	    }
 
 	    public static void v(Class<?> class1, String msg) {
 	        if (DEBUG) {
-	            Log.v(class1.getSimpleName(), msg);
+				DebugLog.d2(class1.getSimpleName(), msg);
 	        }
 	    }
 
 	    public static void w(Class<?> class1, String msg) {
 	        if (DEBUG) {
-	            Log.w(class1.getSimpleName(), msg);
+	            d(class1.getSimpleName(), msg);
 	        }
 	    }
 }

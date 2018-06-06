@@ -1,12 +1,11 @@
 package com.music.ui.view.activity;
 
-import java.util.List;
-
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -25,29 +24,32 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.music.MusicApplication;
 import com.music.bean.LyricSentence;
 import com.music.bean.MusicInfo;
-import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
-import com.music.ui.broadcastreceiver.State;
+import com.music.helpers.PlayerHelpler;
 import com.music.lrc.LyricLoadHelper.LyricListener;
 import com.music.lrc.LyricView;
 import com.music.lu.R;
 import com.music.model.LyricModel;
 import com.music.model.ShareModel;
+import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
+import com.music.ui.broadcastreceiver.State;
+import com.music.ui.service.MyPlayerNewService;
 import com.music.utils.AppConstant;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
-import com.music.utils.image.BitmapUtils;
 import com.music.utils.DeBug;
+import com.music.utils.DebugLog;
 import com.music.utils.DialogUtil;
 import com.music.utils.MediaUtil;
-import com.music.helpers.PlayerHelpler;
-import com.music.MusicApplication;
-import com.music.ui.service.MyPlayerNewService;
+import com.music.utils.image.BitmapUtils;
+
+import java.util.List;
 
 /**
  *
- * 
+ *
  */
 @SuppressLint("NewApi")
 @ContentView(value = R.layout.activity_play_layout)
@@ -185,7 +187,7 @@ public class PlayerActivity extends BaseActivity {
 
 			return null;
 		}
-	
+
 	}
 
 	/**
@@ -224,7 +226,7 @@ public class PlayerActivity extends BaseActivity {
 				iv_needle.startAnimation(animatorNeedlePlay);
 			}
 		}
-		
+
 	}
 	private void setViewOnclickListener() {
 		music_progressBar
@@ -367,10 +369,10 @@ public class PlayerActivity extends BaseActivity {
 		tv_finalProgress.setText(MediaUtil.formatTime(mp3Util
 				.getCurrentMp3Info().getDuration()));
 		if (mp3Util.isPlaying()) {
-			playBtn.setBackgroundResource(R.drawable.btn_pause);
+			playBtn.setImageResource(R.drawable.btn_pause);
 			animatorPlay.start();
 		} else {
-			playBtn.setBackgroundResource(R.drawable.btn_play);
+			playBtn.setImageResource(R.drawable.btn_play);
 			iv_music_album.clearAnimation();
 		}
 
@@ -379,7 +381,12 @@ public class PlayerActivity extends BaseActivity {
 				true);
 //		Bitmap bmpBg = MediaUtil.getMusicBitmap(getApplicationContext(),
 //				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), ScreenUtils.getScreenWidth(getApplicationContext()),ScreenUtils.getScreenHeight(getApplicationContext()));
-
+		if (bmp==null){
+			DebugLog.d("获取专辑图片失败");
+			bmp= BitmapFactory.decodeResource(getResources(),R.drawable.girl);
+		}else{
+			DebugLog.d("获取专辑图片成功");
+		}
 		iv_music_album.setImageBitmap(BitmapUtils.toRound(bmp,true));
 //		ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(
 //				bmpBg, this)));
@@ -388,7 +395,7 @@ public class PlayerActivity extends BaseActivity {
 
 	/**
 	 *
-	 * 
+	 *
 	 */
 	private class OnSeekBarChangeListenerImpl implements
 			OnSeekBarChangeListener {
@@ -467,12 +474,12 @@ public class PlayerActivity extends BaseActivity {
 	/**
 	 *
 	 * @author Administrator
-	 * 
+	 *
 	 */
 	class MyState implements State {
 		@Override
 		public void playMusicState() {
-			playBtn.setBackgroundResource(R.drawable.btn_pause);
+			playBtn.setImageResource(R.drawable.btn_pause);
 			if (animatorPlay.isPaused()) {
 				animatorPlay.resume();
 			} else {
@@ -510,7 +517,7 @@ public class PlayerActivity extends BaseActivity {
 
 		@Override
 		public void pauseMusicState() {
-			playBtn.setBackgroundResource(R.drawable.btn_play);
+			playBtn.setImageResource(R.drawable.btn_play);
 			animatorPlay.pause();
 			iv_needle.startAnimation(animatorNeedlePlay);
 			mHandler.removeCallbacks(progressRunnable);

@@ -389,7 +389,7 @@ public class MusicModel {
         Cursor cursor=cr.query(uri, null, null,
                 null, null);
         DeBug.d(this, Arrays.toString(cursor.getColumnNames()));
-        DeBug.d(this, cursor.getCount()+"..............");
+        DeBug.d(this, "专辑:"+cursor.getCount()+"..............");
         List<AlbumInfo> albumInfos = getAlbumList(cursor);
 		// mAlbumInfoDao.saveAlbumInfo(list);
 		Collections.sort(albumInfos);

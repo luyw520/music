@@ -1,12 +1,5 @@
 package com.music.utils;
 
-import java.io.FileDescriptor;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-
-import net.sourceforge.pinyin4j.PinyinHelper;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
@@ -21,6 +14,14 @@ import android.util.Log;
 import com.music.bean.Mp3Info;
 import com.music.lu.R;
 import com.music.utils.image.BitmapUtils;
+
+import net.sourceforge.pinyin4j.PinyinHelper;
+
+import java.io.FileDescriptor;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 
 @SuppressLint("DefaultLocale")
 public class MediaUtil {
@@ -150,12 +151,12 @@ public class MediaUtil {
 
 		List<Mp3Info> list = getMp3Infos(context);
 		Collections.sort(list);
-		
+
 		return list;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param url
 	 */
 	private static boolean isMP3(String url) {
@@ -265,6 +266,7 @@ public class MediaUtil {
 		}
 		cur.close();
 		cur = null;
+		DebugLog.d("获取专辑图片地址:"+album_art);
 		return album_art;
 	}
 	/**
