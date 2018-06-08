@@ -8,11 +8,14 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
+import com.mpatric.mp3agic.ID3v2;
+import com.mpatric.mp3agic.Mp3File;
 import com.music.bean.AlbumInfo;
 import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
 import com.music.utils.DeBug;
+import com.music.utils.DebugLog;
 import com.music.utils.LogUtil;
 import com.music.utils.MusicUtils;
 import com.music.utils.StringUtil;
@@ -21,7 +24,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.music.ui.service.IConstants.START_FROM_ALBUM;
 import static com.music.ui.service.IConstants.START_FROM_ARTIST;
@@ -258,10 +263,11 @@ public class MusicModel {
     }
     /**
      * 从游标中获取所有音乐专辑
+     * 有可能获取失败
      * @param cursor
-     * @return
+     * @return 专辑集合
      */
-    public List<AlbumInfo> getAlbumList(Cursor cursor) {
+    public List<AlbumInfo> getAlbumListFromCursor(Cursor cursor) {
         List<AlbumInfo> list = new ArrayList<AlbumInfo>();
         while (cursor.moveToNext()) {
             AlbumInfo info = new AlbumInfo();
@@ -307,12 +313,6 @@ public class MusicModel {
      * @return
      */
     public List<ArtistInfo> queryArtist(Context context) {
-//        if (mArtistInfoDao==null){
-//            mArtistInfoDao=new ArtistInfoDao(context);
-//        }
-//         if (mArtistInfoDao.hasData()) {
-//         return mArtistInfoDao.getArtistInfo();
-//         }
         if (!artistInfoList.isEmpty()){
             return artistInfoList;
         }
@@ -322,8 +322,7 @@ public class MusicModel {
                 null, MediaStore.Audio.Artists.NUMBER_OF_TRACKS + " desc");
        DeBug.d(this, Arrays.toString(cursor.getColumnNames()));
        DeBug.d(this, cursor.getCount()+"..............");
-        List<ArtistInfo> list = getArtistList(cursor);
-//
+       List<ArtistInfo> list = getArtistList(cursor);
         artistInfoList.addAll(list);
         return list;
     }
@@ -358,43 +357,57 @@ public class MusicModel {
      //	 */
 //	@SuppressWarnings("unchecked")
 	public List<AlbumInfo> queryAlbums(Context context) {
-//		if (mAlbumInfoDao == null) {
-//			mAlbumInfoDao = new AlbumInfoDao(context);
-//		}
+
         if (!albumInfoList.isEmpty()){
             return albumInfoList;
         }
-//		if (albumInfos.size() > 0) {
-//			return albumInfos;
-//		}
-//		 SPStorage sp = new SPStorage(context);
-
 		Uri uri = MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI;
 		ContentResolver cr = context.getContentResolver();
-//		StringBuilder where = new StringBuilder(MediaStore.Audio.Albums._ID
-//				+ " in (select distinct " + MediaStore.Audio.Media.ALBUM_ID
-//				+ " from audio_meta where (1=1 ");
-//
-//		// if(sp.getFilterSize()) {
-//		where.append(" and " + MediaStore.Audio.Media.SIZE + " > " + FILTER_SIZE);
-//		// }
-//		// if(sp.getFilterTime()) {
-//		where.append(" and " + MediaStore.Audio.Media.DURATION + " > " + FILTER_DURATION);
-//		// }
-//		where.append("))");
-
-//		 if (mAlbumInfoDao.hasData()) {
-//		 return mAlbumInfoDao.getAlbumInfo();
-//		 } else {
         Cursor cursor=cr.query(uri, null, null,
                 null, null);
-        DeBug.d(this, Arrays.toString(cursor.getColumnNames()));
-        DeBug.d(this, "专辑:"+cursor.getCount()+"..............");
-        List<AlbumInfo> albumInfos = getAlbumList(cursor);
-		// mAlbumInfoDao.saveAlbumInfo(list);
+        List<AlbumInfo> albumInfos = new ArrayList<>();
+//        DebugLog.d("isClosed:"+cursor.isClosed());
+//        if(!cursor.isClosed()&&cursor.getCount()==0){
+            cursor.close();
+            albumInfos.addAll(getAlbumListFromMp3File());
+//        }else{
+//            albumInfos.addAll(getAlbumListFromCursor(cursor));
+//        }
 		Collections.sort(albumInfos);
         albumInfoList.addAll(albumInfos);
 		return albumInfos;
 //		 }
 	}
+
+    /**
+     * 利用mp3agic 库解析专辑
+     */
+	private List<AlbumInfo> getAlbumListFromMp3File( ){
+        List<AlbumInfo> list = new ArrayList<AlbumInfo>();
+        DebugLog.d(" 利用mp3agic 库解析专辑");
+        Map<String,Integer> map=new HashMap<>();
+            for (MusicInfo mp3Info:musicList){
+                Mp3File mp3file= null;
+                try {
+                    mp3file = new Mp3File(mp3Info.getPlayPath());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (mp3file!=null&&mp3file.hasId3v2Tag()) {
+                    ID3v2 id3v2Tag = mp3file.getId3v2Tag();
+                   String album=  id3v2Tag.getAlbum();
+                   AlbumInfo albumInfo=new AlbumInfo();
+                   albumInfo.album_name=album;
+                   albumInfo.album_art= id3v2Tag.getAlbumArtist();
+                   if (list.contains(albumInfo)){
+                       albumInfo.number_of_songs++;
+                   }else{
+                       albumInfo.number_of_songs=1;
+                       list.add(albumInfo);
+                   }
+                }
+            }
+            return list;
+
+    }
 }

@@ -10,12 +10,12 @@ import com.music.utils.StringUtil;
 
 @SuppressWarnings("rawtypes")
 public class AlbumInfo implements Parcelable , Comparable{
-	
+
 	public static final String KEY_ALBUM_NAME = "album_name";
 	public static final String KEY_ALBUM_ID = "album_id";
 	public static final String KEY_NUMBER_OF_SONGS = "number_of_songs";
 	public static final String KEY_ALBUM_ART = "album_art";
-	
+
 	public String album_name;
 	public int album_id = -1;
 	public int number_of_songs = 0;
@@ -26,6 +26,11 @@ public class AlbumInfo implements Parcelable , Comparable{
 	@Override
 	public int describeContents() {
 		return 0;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return album_name.equals(((AlbumInfo)obj).album_name);
 	}
 
 	@Override
@@ -50,7 +55,7 @@ public class AlbumInfo implements Parcelable , Comparable{
 		bundle.putInt(KEY_ALBUM_ID, album_id);
 		dest.writeBundle(bundle);
 	}
-	
+
 	public static final Parcelable.Creator<AlbumInfo> CREATOR = new Parcelable.Creator<AlbumInfo>() {
 
 		@Override
@@ -76,7 +81,7 @@ public class AlbumInfo implements Parcelable , Comparable{
 		boolean flag=false;
 		AlbumInfo albumInfo=(AlbumInfo) arg0;
 		String album_name_first=StringUtil.getPingYin(album_name);
-		
+
 		String album_name2_first=StringUtil.getPingYin(albumInfo.album_name);
 		for(;i<album_name_first.length();i++){
 			if(i<album_name2_first.length()){
@@ -84,13 +89,13 @@ public class AlbumInfo implements Parcelable , Comparable{
 					break;
 				}else{
 					continue;
-				}	
+				}
 			}else{
 				flag=true;
 				break;
-				
+
 			}
-				
+
 		}
 		if(i==album_name_first.length()){
 			return -1;

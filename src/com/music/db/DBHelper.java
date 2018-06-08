@@ -1,8 +1,9 @@
 package com.music.db;
 
 import com.music.MusicApplication;
-import com.music.bean.*;
-import com.music.bean.MusicInfoDao;
+import com.music.bean.DaoMaster;
+import com.music.bean.DaoSession;
+import com.music.bean.MusicInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,17 +30,17 @@ public class DBHelper {
         daoSession=daoMaster.newSession();
     }
     public void insertOrReplace(MusicInfo musicInfo){
-        MusicInfoDao dao=daoSession.getMusicInfoDao();
-        dao.insertOrReplace(musicInfo);
+//        MusicInfoDao dao=daoSession.getMusicInfoDao();
+//        dao.insertOrReplace(musicInfo);
     }
     public List<MusicInfo> queryAllMusic(){
         if (musicInfoList!=null&&!musicInfoList.isEmpty()){
             return musicInfoList;
         }
-        musicInfoList.clear();
-        MusicInfoDao dao=daoSession.getMusicInfoDao();
-        List<MusicInfo> list=dao.queryBuilder().orderAsc(MusicInfoDao.Properties.TitleKey).list();
-        musicInfoList.addAll(list);
-        return list;
+//        musicInfoList.clear();
+//        MusicInfoDao dao=daoSession.getMusicInfoDao();
+//        List<MusicInfo> list=dao.queryBuilder().orderAsc(MusicInfoDao.Properties.TitleKey).list();
+//        musicInfoList.addAll(list);
+        return null;
     }
 }

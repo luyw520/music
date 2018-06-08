@@ -1,6 +1,6 @@
 apply plugin: 'android'
 apply from:"config.gradle"
-apply plugin: 'org.greenrobot.greendao'
+//apply plugin: 'org.greenrobot.greendao'
 buildscript {
     repositories {
         jcenter()
@@ -21,17 +21,20 @@ allprojects {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion '26.0.0'
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        jackOptions {
+            enabled true
+        }
     }
-    greendao{
-        schemaVersion 1
-        // targetGenDir'src/com/music/bean'
-    }
+//    greendao{
+//        schemaVersion 1
+////         targetGenDir'src/com/music/bean'
+//    }
     buildTypes {
         release {
             minifyEnabled false
@@ -53,6 +56,10 @@ android {
     }
 
        useLibrary 'org.apache.http.legacy'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
