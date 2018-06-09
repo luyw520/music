@@ -8,14 +8,11 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
-import com.mpatric.mp3agic.ID3v2;
-import com.mpatric.mp3agic.Mp3File;
 import com.music.bean.AlbumInfo;
 import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
 import com.music.utils.DeBug;
-import com.music.utils.DebugLog;
 import com.music.utils.LogUtil;
 import com.music.utils.MusicUtils;
 import com.music.utils.StringUtil;
@@ -24,9 +21,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static com.music.ui.service.IConstants.START_FROM_ALBUM;
 import static com.music.ui.service.IConstants.START_FROM_ARTIST;
@@ -59,7 +54,7 @@ public class MusicModel {
     public static final int FILTER_DURATION = 1 * 60 * 1000;// 1 MIN
     private List<FolderInfo> folderInfoList=new ArrayList<>();
     private static MusicModel musicModel=new MusicModel();
-    private ArrayList<MusicInfo> musicList = new ArrayList<MusicInfo>();
+    private ArrayList<MusicInfo> musicList = new ArrayList<>();
     List<ArtistInfo> artistInfoList=new ArrayList<>();
 //    private MusicInfoDao mMusicInfoDao;
 //    private AlbumInfoDao mAlbumInfoDao;
@@ -94,49 +89,20 @@ public class MusicModel {
         List<MusicInfo> musicInfos=new ArrayList<>();
         switch (from) {
             case START_FROM_LOCAL:
-                // if local database has data
-                // if (mMusicInfoDao.hasData()) {
-                // musicInfos = mMusicInfoDao.getMusicInfo();
-                // } else {
-                // query android media database
                 long a = System.currentTimeMillis();
                 Cursor cursor = cr.query(uri, proj_music, select.toString(), null,
                         MediaStore.Audio.Media.ARTIST_KEY);
                 musicInfos = getMusicList(cursor);
-                d("query music spend time:" + (System.currentTimeMillis() - a)
-                        / 1000.0 + " s");
-                d("uri:" + uri.toString());
-//                mMusicInfoDao.saveMusicInfo(musicInfos);
-                // }
                 break;
             case START_FROM_ARTIST:
-//                if (mMusicInfoDao.hasData()) {
-//                    musicInfos = mMusicInfoDao.getMusicInfoByType(selection,
-//                            START_FROM_ARTIST);
-//                } else {
-//                    // return getMusicList(cr.query(uri, proj_music,
-//                    // select.toString(), null,
-//                    // MediaStore.Audio.Media.ARTIST_KEY));
-//                }
                 break;
             case START_FROM_ALBUM:
-//                if (mMusicInfoDao.hasData()) {
-//                    musicInfos = mMusicInfoDao.getMusicInfoByType(selection,
-//                            START_FROM_ALBUM);
-//                }
                 break;
             case START_FROM_FOLDER:
-//                if (mMusicInfoDao.hasData()) {
-//                    musicInfos = mMusicInfoDao.getMusicInfoByType(selection,
-//                            START_FROM_FOLDER);
-//                }
                 break;
 
         }
         return musicInfos;
-    }
-    private  void d(String msg) {
-        DeBug.d(this, msg);
     }
     /**
      * 从游标中获取所有音乐
@@ -161,6 +127,12 @@ public class MusicModel {
         cursor.close();
         return musicList;
     }
+
+    /**
+     * cursor中获取MusicInfo信息
+     * @param cursor
+     * @return
+     */
     private MusicInfo resovleMusicInfoFromCursor(Cursor cursor){
         MusicInfo music = new MusicInfo();
         music.setSongId(cursor.getInt(cursor
@@ -184,6 +156,12 @@ public class MusicModel {
         DeBug.d(this,music.toString());
         return music;
     }
+
+    /**
+     * 查询MP3文件并且排序
+     * @param context
+     * @return
+     */
     public List<MusicInfo> sortMp3InfosByTitle(Context context){
         if (!musicList.isEmpty()){
             return musicList;
@@ -193,7 +171,13 @@ public class MusicModel {
         musicList.addAll(list);
         return list;
     }
-    public  List<MusicInfo> getAllMusicInfos(Context context) {
+
+    /**
+     * 通过 EXTERNAL_CONTENT_URI查找所有音乐文件
+     * @param context
+     * @return
+     */
+    private  List<MusicInfo> getAllMusicInfos(Context context) {
         long time1 = System.currentTimeMillis();
         Cursor cursor = context.getContentResolver().query(
                 MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,
@@ -214,7 +198,7 @@ public class MusicModel {
         return musicList;
     }
     /**
-     *
+     *判断是否.mp3文件
      * @param url
      */
     private static boolean isMP3(String url) {
@@ -225,7 +209,7 @@ public class MusicModel {
         String file_class = url.substring(url.lastIndexOf(".") + 1);
         return file_class.equals("mp3");
     }
-    /**
+    /** 大小是否超过1M
      * @return
      */
     public static boolean  isMusic(long size){
@@ -369,7 +353,7 @@ public class MusicModel {
 //        DebugLog.d("isClosed:"+cursor.isClosed());
 //        if(!cursor.isClosed()&&cursor.getCount()==0){
             cursor.close();
-            albumInfos.addAll(getAlbumListFromMp3File());
+//            albumInfos.addAll(getAlbumListFromMp3File());
 //        }else{
 //            albumInfos.addAll(getAlbumListFromCursor(cursor));
 //        }
@@ -380,34 +364,45 @@ public class MusicModel {
 	}
 
     /**
+     * 所有本地音乐文件
+     */
+    public ArrayList<MusicInfo> getMusicList() {
+        return musicList;
+    }
+
+    public void setMusicList(ArrayList<MusicInfo> musicList) {
+        this.musicList = musicList;
+    }
+
+    /**
      * 利用mp3agic 库解析专辑
      */
-	private List<AlbumInfo> getAlbumListFromMp3File( ){
-        List<AlbumInfo> list = new ArrayList<AlbumInfo>();
-        DebugLog.d(" 利用mp3agic 库解析专辑");
-        Map<String,Integer> map=new HashMap<>();
-            for (MusicInfo mp3Info:musicList){
-                Mp3File mp3file= null;
-                try {
-                    mp3file = new Mp3File(mp3Info.getPlayPath());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                if (mp3file!=null&&mp3file.hasId3v2Tag()) {
-                    ID3v2 id3v2Tag = mp3file.getId3v2Tag();
-                   String album=  id3v2Tag.getAlbum();
-                   AlbumInfo albumInfo=new AlbumInfo();
-                   albumInfo.album_name=album;
-                   albumInfo.album_art= id3v2Tag.getAlbumArtist();
-                   if (list.contains(albumInfo)){
-                       albumInfo.number_of_songs++;
-                   }else{
-                       albumInfo.number_of_songs=1;
-                       list.add(albumInfo);
-                   }
-                }
-            }
-            return list;
-
-    }
+//	private List<AlbumInfo> getAlbumListFromMp3File( ){
+//        List<AlbumInfo> list = new ArrayList<AlbumInfo>();
+//        DebugLog.d(" 利用mp3agic 库解析专辑");
+//        Map<String,Integer> map=new HashMap<>();
+//            for (MusicInfo mp3Info:musicList){
+//                Mp3File mp3file= null;
+//                try {
+//                    mp3file = new Mp3File(mp3Info.getPlayPath());
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                if (mp3file!=null&&mp3file.hasId3v2Tag()) {
+//                    ID3v2 id3v2Tag = mp3file.getId3v2Tag();
+//                   String album=  id3v2Tag.getAlbum();
+//                   AlbumInfo albumInfo=new AlbumInfo();
+//                   albumInfo.album_name=album;
+//                   albumInfo.album_art= id3v2Tag.getAlbumArtist();
+//                   if (list.contains(albumInfo)){
+//                       albumInfo.number_of_songs++;
+//                   }else{
+//                       albumInfo.number_of_songs=1;
+//                       list.add(albumInfo);
+//                   }
+//                }
+//            }
+//            return list;
+//
+//    }
 }

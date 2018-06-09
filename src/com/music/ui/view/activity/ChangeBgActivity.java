@@ -1,10 +1,5 @@
 package com.music.ui.view.activity;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -22,11 +17,21 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.music.bean.BgBean;
 import com.music.lu.R;
-import com.music.utils.ConstantUtil;
-import com.music.utils.SharedPreHelper;
 import com.music.ui.adapter.LuAdapter;
 import com.music.ui.adapter.ViewHolder;
+import com.music.utils.ConstantUtil;
+import com.music.utils.SPUtils;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.music.utils.ConstUtils.BG_INDEX_KEY;
+
+/**
+ * 切换背景界面
+ */
 @ContentView(value = R.layout.activity_changebg)
 public class ChangeBgActivity extends BaseActivity {
 
@@ -58,7 +63,7 @@ public class ChangeBgActivity extends BaseActivity {
 	private void initWidget() {
 		iv_more.setVisibility(View.GONE);
 		iv_search.setVisibility(View.GONE);
-		tv_title.setText("title");
+		tv_title.setText(R.string.title_change_bg);
 
 		adapter = new LuAdapter<BgBean>(this, bgBeans,
 				R.layout.item_changebg) {
@@ -92,7 +97,7 @@ public class ChangeBgActivity extends BaseActivity {
 				for (int i = 0; i < bgBeans.size(); i++) {
 					bgBeans.get(i).setChecked(i==position?true:false);
 				}
-				SharedPreHelper.setStringValue(getApplicationContext(), "bgindex", String.valueOf(position));
+				SPUtils.put(BG_INDEX_KEY, (position));
 				BgBean.setCurrentBitmap(bgBeans.get(position).getBitmap());
 				sendBroadcast(new Intent(ConstantUtil.CHANGED_BG));
 				adapter.notifyDataSetChanged();
@@ -103,11 +108,7 @@ public class ChangeBgActivity extends BaseActivity {
 
 	private void initData() {
 
-		String checkString = SharedPreHelper.getStringValue(this, "bgindex","");
-		if (!checkString.equals("")) {
-			checkedId = Integer.parseInt(checkString);
-		}
-
+		checkedId = (int) SPUtils.get( BG_INDEX_KEY,0);
 		bgBeans = new ArrayList<BgBean>();
 		AssetManager assetManager = getAssets();
 
@@ -119,12 +120,12 @@ public class ChangeBgActivity extends BaseActivity {
 				inputStream = assetManager.open("bgs/" + paths[i]);
 				Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
 				bgBeans.add(new BgBean(bitmap, checkedId==i?true:false));
-				
+
 			}
 			inputStream.close();
 		} catch (IOException e) {
-			e.printStackTrace();  
-		} 
+			e.printStackTrace();
+		}
 
 	}
 

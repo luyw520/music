@@ -1,25 +1,26 @@
 package com.music;
 
-import java.io.File;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.music.db.DBHelper;
+import com.music.helpers.PlayerHelpler;
 import com.music.model.LogMonitor;
 import com.music.model.ScreenManager;
-import com.music.utils.image.BitmapCacheUtil;
-import com.music.utils.FileUtils;
-import com.music.helpers.PlayerHelpler;
-import com.music.utils.MusicUtils;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
+import com.music.utils.FileUtils;
+import com.music.utils.MusicUtils;
+import com.music.utils.SPUtils;
+import com.music.utils.image.BitmapCacheUtil;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+
+import java.io.File;
 
 public class MusicApplication extends Application {
 	private static final String TAG = "MusicApplication";
@@ -56,8 +57,9 @@ public class MusicApplication extends Application {
 
 		mSharedPreferences=(getSharedPreferences("lu_music",Context.MODE_PRIVATE));
 		LogMonitor.getInstance().startMonitor();
+		SPUtils.init(this);
 	}
-	
+
 	private void initImageLoader(Context applicationContext) {
 		ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(applicationContext);
 		config.threadPriority(Thread.NORM_PRIORITY - 2);

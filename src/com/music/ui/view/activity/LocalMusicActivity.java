@@ -22,39 +22,38 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.music.MusicApplication;
 import com.music.annotation.ComputeTime;
 import com.music.bean.AlbumInfo;
 import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
 import com.music.bean.UserManager;
+import com.music.helpers.PlayerHelpler;
+import com.music.lu.R;
 import com.music.model.MusicModel;
 import com.music.permissiongen.kr.co.namee.permissiongen.PermissionFail;
 import com.music.permissiongen.kr.co.namee.permissiongen.PermissionGen;
 import com.music.permissiongen.kr.co.namee.permissiongen.PermissionSuccess;
 import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
 import com.music.ui.broadcastreceiver.State;
-import com.music.lu.R;
 import com.music.ui.service.IConstants;
+import com.music.ui.service.MyPlayerNewService;
+import com.music.ui.view.MyNotification;
+import com.music.ui.view.PlayPauseDrawable;
+import com.music.ui.view.SplashScreen;
+import com.music.ui.view.fragment.LocalMusicFragment;
+import com.music.ui.view.fragment.MusicListFragment;
+import com.music.ui.view.widget.CircularImage;
+import com.music.ui.view.widget.MusicTimeProgressView;
+import com.music.ui.widget.slidingmenu2.SlidingMenu;
 import com.music.utils.ApplicationUtil;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.DeBug;
 import com.music.utils.DialogUtil;
 import com.music.utils.LogUtil;
 import com.music.utils.MediaUtil;
-import com.music.helpers.PlayerHelpler;
-import com.music.utils.MusicUtils;
 import com.music.utils.PhotoUtils;
-import com.music.MusicApplication;
-import com.music.ui.view.MyNotification;
-import com.music.ui.view.PlayPauseDrawable;
-import com.music.ui.view.SplashScreen;
-import com.music.ui.view.fragment.LocalMusicFragment;
-import com.music.ui.view.fragment.MusicListFragment;
-import com.music.ui.service.MyPlayerNewService;
-import com.music.ui.view.widget.CircularImage;
-import com.music.ui.view.widget.MusicTimeProgressView;
-import com.music.ui.widget.slidingmenu2.SlidingMenu;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
@@ -122,6 +121,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	private int playColor = 0XFFE91E63;
 	private int pauseColor = 0XFFffffff;
 	private int dwableDuaration = 200;
+	/**
+	 * 当前播放的音乐
+	 */
 	private MusicInfo currentMp3Info;
 	private PlayerHelpler mp3Util;
 
@@ -217,12 +219,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 				@Override
 				public Object doInBackground(String... arg0) {
-//					MusicUtils.getDefault().queryMusic(getApplication(),
-//							START_FROM_LOCAL);
 					MusicModel.getInstance().sortMp3InfosByTitle(getApplicationContext());
-//					MusicUtils.getDefault().queryAlbums(getApplication());
-//					MusicUtils.getDefault().queryArtist(getApplication());
-//					MusicUtils.getDefault().queryFolder(getApplication());
+					PlayerHelpler.getDefault().init();
 					return null;
 				}
 
@@ -270,10 +268,10 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	 */
 	private void loginResult(Intent data) {
 		if (data == null) {
-			DialogUtil.showToast(getApplicationContext(), "sss");
+			DialogUtil.showToast(getApplicationContext(), R.string.title_login_faild);
 			return;
 		}
-		DialogUtil.showToast(getApplicationContext(), "sssss");
+		DialogUtil.showToast(getApplicationContext(), R.string.title_login_success);
 		String username = UserManager.getInstance().getUserBean().getUsername();
 		tv_username.setText(username);
 		String userHeaderUrl = UserManager.getInstance().getUserBean()
@@ -297,6 +295,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		DeBug.d(this,
 				"currentMp3Info.getDuration():" + currentMp3Info.getDuration());
 		musicTimeProgressView.setMaxProgress(currentMp3Info.getDuration());
+		myNotification.reset();
 	}
 
 	private void initWidgetData() {
@@ -429,20 +428,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-//		if (ApplicationUtil.getAppLockState(this) == 1) {
-//			if (isFirst) {
-//				Intent intent = new Intent(this,
-//						UnlockGesturePasswordActivity.class);
-//				startActivityForResult(intent, LOCK_PASSWORD);
-//				isFirst = false;
-//			} else {
-//				if (ApplicationUtil.getAppToBack(this) == 1) {
-//					Intent intent = new Intent(this,
-//							UnlockGesturePasswordActivity.class);
-//					startActivityForResult(intent, LOCK_PASSWORD);
-//				}
-//			}
-//		}
 
 		if (myPlayerNewService!=null&&myPlayerNewService.getMediaPlayer().isPlaying()){
 			mHandler.postDelayed(progressRunnable,100);
@@ -489,7 +474,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	};
 	/**
 	 *
-	 * 
+	 *
 	 */
 	class MyMainState implements State {
 
@@ -505,7 +490,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		public void duration(Intent intent) {
 			Log.i(TAG, "duration()");
 			resetPlayState();
-			myNotification.reset();
+
 		}
 
 		@Override

@@ -106,7 +106,7 @@ public class PermissionGen {
     if(executeMethod != null){
       try {
         if(!executeMethod.isAccessible()) executeMethod.setAccessible(true);
-        executeMethod.invoke(activity, null);
+        executeMethod.invoke(activity, new Object[]{});
       } catch (IllegalAccessException e) {
         e.printStackTrace();
       } catch (InvocationTargetException e) {

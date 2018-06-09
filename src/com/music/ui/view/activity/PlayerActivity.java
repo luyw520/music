@@ -4,8 +4,10 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -43,9 +45,14 @@ import com.music.utils.DeBug;
 import com.music.utils.DebugLog;
 import com.music.utils.DialogUtil;
 import com.music.utils.MediaUtil;
+import com.music.utils.SPUtils;
 import com.music.utils.image.BitmapUtils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+
+import static com.music.utils.ConstUtils.BG_INDEX_KEY;
 
 /**
  *
@@ -298,23 +305,24 @@ public class PlayerActivity extends BaseActivity {
 	 *
 	 */
 	private void setPlayType() {
-		int drawableId = 0;
-		String typeString = " ";
+		int drawableId;
+		int typeString ;
 		switch (mp3Util.getPlayType()) {
 		case AppConstant.PlayerMsg.PLAYING_QUEUE:
 			drawableId = R.drawable.play_icn_loop;
-			typeString = "loop";
+			typeString = R.string.play_type_loop;
 			break;
 		case AppConstant.PlayerMsg.PLAYING_REPEAT:
 			drawableId = R.drawable.play_icn_one;
-			typeString = "one";
+			typeString =R.string.play_type_repeat;
 			break;
 		case AppConstant.PlayerMsg.PLAYING_SHUFFLE:
 			drawableId = R.drawable.play_icn_shuffle;
-			typeString = "suffle";
+			typeString = R.string.play_type_suffle;
 			break;
 		default:
 			drawableId = R.drawable.playing_queue;
+			typeString = R.string.play_type_loop;
 			break;
 		}
 		repeatBtn.setBackgroundResource(drawableId);
@@ -444,8 +452,30 @@ public class PlayerActivity extends BaseActivity {
 		if (myPlayerNewService!=null&&myPlayerNewService.getMediaPlayer().isPlaying()){
 			mHandler.postDelayed(progressRunnable,100);
 		}
-	}
 
+		setBg();
+	}
+	int checkedId;
+	private void setBg(){
+
+		int checkedIdTemp = (int) SPUtils.get( BG_INDEX_KEY,0);
+		if (checkedIdTemp!=checkedId){
+			checkedId=checkedIdTemp;
+			AssetManager assetManager = getAssets();
+			InputStream inputStream=null;
+			try {
+				String[] paths = assetManager.list("bgs");
+				inputStream = assetManager.open("bgs/" + paths[checkedId]);
+//				Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+				Drawable drawable=Drawable.createFromResourceStream(getResources(), null, inputStream, "src", null);
+				ll_bg.setBackground(drawable);
+				inputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
 	@Override
 	protected void onStop() {
 		super.onStop();

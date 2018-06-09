@@ -31,7 +31,7 @@ public class MyNotification {
 		playerHelpler = PlayerHelpler.getDefault();
 		initNotification();
 		registerReceiver();
-		
+
 	}
 	private void registerReceiver() {
 		IntentFilter filter2 = new IntentFilter();
@@ -40,7 +40,7 @@ public class MyNotification {
 		context.registerReceiver(notificationReceiver, filter2);
 	}
 	/**
-	 * 
+	 *
 	 */
 	public void unregisterReceiver(){
 		context.unregisterReceiver(notificationReceiver);
@@ -97,10 +97,10 @@ public class MyNotification {
 //		notification.setLatestEventInfo(context, " ", "",
 //				contentIntent);
 		notification.contentView = remoteViews;
-
-//		builder.setWhen(System.currentTimeMillis()).setContentIntent(contentIntent).setCustomContentView(remoteViews).build();
 		notificationManager.notify(id, notification);
-
+	}
+	public void notifyNotification(){
+		notificationManager.notify(id, notification);
 	}
 	public void close(){
 		notificationManager.cancel(id);
@@ -109,7 +109,7 @@ public class MyNotification {
 	 * @param isPlay
 	 */
 	public void setPlayImageState(boolean isPlay){
-		
+
 		if(isPlay){
 			remoteViews.setImageViewResource(R.id.iv_play_notification,
 					R.drawable.img_button_notification_play_pause);
@@ -122,8 +122,8 @@ public class MyNotification {
 	/**
 	 */
 	public void reset(){
-		
-		
+
+
 		Bitmap bitmap = MediaUtil.getArtwork(context,
 				playerHelpler.getCurrentMp3Info().getSongId(),  playerHelpler
 						.getCurrentMp3Info().getAlbumId(), true, true);
@@ -132,11 +132,11 @@ public class MyNotification {
 		remoteViews.setImageViewBitmap(R.id.iv_notification, bitmap);
 		remoteViews.setTextViewText(R.id.tv_title_notification, playerHelpler.getCurrentMp3Info().getTitle());
 		notificationManager.notify(id, notification);
-		
+
 	}
 	public void cancel(){
 		notificationManager.cancel(id);
-	} 
+	}
 	/**
 	 */
 	private BroadcastReceiver notificationReceiver = new BroadcastReceiver() {

@@ -1,26 +1,35 @@
 package com.music.helpers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.text.TextUtils;
 import android.util.Log;
 
-import com.music.bean.MusicInfo;
 import com.music.MusicApplication;
+import com.music.bean.MusicInfo;
+import com.music.model.MusicModel;
 import com.music.ui.service.IMediaService;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.utils.AppConstant;
 import com.music.utils.DeBug;
-import com.music.utils.SharedPreHelper;
+import com.music.utils.DebugLog;
+import com.music.utils.SPUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.music.utils.AppConstant.PlayerMsg.PLAYING_QUEUE;
+import static com.music.utils.ConstUtils.LIST_POSITION_KEY;
+import static com.music.utils.ConstUtils.PLAY_TYPE_KEY;
 
 /**
  * 音乐播放辅助类
+ * 绑定了播放服务
+ * 和播放服务进行通信
  */
 public class PlayerHelpler {
 	private static final String TAG = "PlayerHelpler";
@@ -58,23 +67,29 @@ public class PlayerHelpler {
 	private MusicInfo currentMp3Info=new MusicInfo();
 
 	/**
+	 * 当前歌曲时长
 	 */
 	private int duration;
 
 	/**
+	 * 当前播放进度
 	 */
 	private int currentTime;
 
 	/**
+	 *
 	 */
 	private boolean isPlaying;
 	/**
+	 * 播放类型
 	 */
 	private int playType;
 	/**
+	 * 当前播放索引值
 	 */
 	private int listPosition;
 	/**
+	 * 是否显示歌词
 	 */
 	private boolean isShowLrc;
 
@@ -82,13 +97,13 @@ public class PlayerHelpler {
 
 	private PlayerHelpler(Context context) {
 		this.context = context;
-		init();
+//		init();
 	}
 
 	/**
 	 *
 	 * @author Steven
-	 * 
+	 *
 	 */
 	public final static int PLAY_BY_SONG = 0;
 	public final static int PLAY_BY_ARTIST = 1;
@@ -133,7 +148,7 @@ public class PlayerHelpler {
 	 */
 	public void changePlayType() {
 		if ((playType + 1) > AppConstant.PlayerMsg.PLAYING_REPEAT) {
-			playType = AppConstant.PlayerMsg.PLAYING_QUEUE;
+			playType = PLAYING_QUEUE;
 		} else {
 			playType++;
 		}
@@ -148,6 +163,14 @@ public class PlayerHelpler {
 	}
 
 	public MusicInfo getCurrentMp3Info() {
+
+		if (TextUtils.isEmpty(currentMp3Info.getTitle())){
+			DebugLog.d("musicBaseInfos.isEmpty()："+musicBaseInfos.isEmpty());
+			if (!musicBaseInfos.isEmpty()){
+				currentMp3Info=musicBaseInfos.get(0);
+			}
+		}
+		DebugLog.d(currentMp3Info);
 		return currentMp3Info;
 	}
 
@@ -159,54 +182,39 @@ public class PlayerHelpler {
 		return index;
 	}
 
-
-//	public List<Mp3Info> getMp3Infos() {
-//		return musicBaseInfos;
-//	}
-
 	public int getPlayType() {
 		return playType;
 	}
 
-	private void init() {
+	public void init() {
 //		mediaUtil = new MediaUtil();
 
 		initCurrentMusicInfo(context);
+		setMusicBaseInfos(MusicModel.getInstance().getMusicList());
 		isPlaying = false;
 		isSortByTime = false;
 		isShowLrc = false;
 		currentTime = 0;
 
 		mPlayListType = 0;
+		if (listPosition<musicBaseInfos.size()){
+			currentMp3Info = musicBaseInfos.get(listPosition);
+		}else{
+			if (!musicBaseInfos.isEmpty()){
+				currentMp3Info = musicBaseInfos.get(0);
+			}
+
+		}
+
 		bindService();
-//		new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				musicBaseInfos = MusicModel.getInstance().sortMp3InfosByTitle(context);
-//
-//				musicBaseInfos = musicBaseInfos;
-//				DeBug.d(PlayerHelpler.this, "..........:"
-//						+ musicBaseInfos.size()+",listPosition:"+listPosition);
-//				if (!musicBaseInfos.isEmpty()) {
-//					if (listPosition>=musicBaseInfos.size()){
-//						listPosition=0;
-//					}
-//					currentMp3Info = musicBaseInfos.get(listPosition);
-//					DeBug.d(PlayerHelpler.this, "..........listPosition:"
-//							+ listPosition);
-//				}else{
-//					currentMp3Info=new MusicInfo();
-//				}
-//			}
-//		}).start();
 	};
 
 	/**
 	 */
 	public void initCurrentMusicInfo(Context context) {
 
-		listPosition = SharedPreHelper.getIntValue(context, "listPosition", 0);
-		playType = SharedPreHelper.getIntValue(context, "playType", 9);
+		listPosition = (int) SPUtils.get(LIST_POSITION_KEY, 0);
+		playType = (int) SPUtils.get(context, PLAY_TYPE_KEY, PLAYING_QUEUE);
 		// playType=9;
 
 	}
@@ -223,14 +231,10 @@ public class PlayerHelpler {
 		return isSortByTime;
 	}
 
-	public void completeNextMusic() {
-		Log.i(TAG, "completeNextMusic()");
-	}
 
 	/**
 	 */
 	public void nextMusic(boolean isComplete) {
-		Log.i(TAG, "nextMusic()");
 		switch (playType) {
 		case AppConstant.PlayerMsg.PLAYING_SHUFFLE:
 			listPosition = randomNum();
@@ -239,19 +243,19 @@ public class PlayerHelpler {
 			if (isComplete) {
 				break;
 			}
-		case AppConstant.PlayerMsg.PLAYING_QUEUE:
+		case PLAYING_QUEUE:
 			listPosition = (listPosition + 1 >= musicBaseInfos.size() ? 0
 					: listPosition + 1);
 			break;
 
 		}
-		Log.d(TAG, "listpostion:" + listPosition);
+		SPUtils.put(LIST_POSITION_KEY,listPosition);
 		playMusic(listPosition);
 	}
 
 	/**
 	 *
-	 * 
+	 *
 	 */
 	public void playMusic() {
 		int MSG = 0;
@@ -268,8 +272,8 @@ public class PlayerHelpler {
 
 			isPlaying = true;
 		}
-		Log.d(TAG, "listpostion:" + listPosition);
-		Log.d(TAG, "currentTime:" + currentTime);
+//		Log.d(TAG, "listpostion:" + listPosition);
+//		Log.d(TAG, "currentTime:" + currentTime);
 		sendService(MSG, 0);
 	}
 
@@ -293,7 +297,7 @@ public class PlayerHelpler {
 
 	/**
 	 *
-	 * 
+	 *
 	 */
 	public void playMusic(MusicInfo mp3Info) {
 		currentMp3Info = mp3Info;
@@ -309,7 +313,7 @@ public class PlayerHelpler {
 	public void previous_music() {
 		switch (playType) {
 		case AppConstant.PlayerMsg.PLAYING_REPEAT:
-		case AppConstant.PlayerMsg.PLAYING_QUEUE:
+		case PLAYING_QUEUE:
 			listPosition = (listPosition > 0 ? listPosition - 1 : musicBaseInfos
 					.size() - 1);
 			break;
@@ -339,8 +343,8 @@ public class PlayerHelpler {
 	/**
 	 */
 	public void saveCurrentMusicInfo(Context context) {
-		SharedPreHelper.setIntValue(context, "listPosition", listPosition);
-		SharedPreHelper.setIntValue(context, "playType", playType);
+		SPUtils.put( LIST_POSITION_KEY, listPosition);
+		SPUtils.put(PLAY_TYPE_KEY, playType);
 	}
 
 	private void sendService(int msg, int progress) {
@@ -399,19 +403,6 @@ public class PlayerHelpler {
 		this.isSortByTime = isSortByTime;
 	}
 
-//	public void sortMp3InfosByTime() {
-//		mp3Infos.clear();
-//		mp3Infos.addAll(mediaUtil.getMp3Infos(context));
-//		listPosition = mp3Infos.indexOf(currentMp3Info);
-//		setSortByTime(true);
-//	}
-
-//	public void sortMp3InfosByTitle() {
-//		mp3Infos.clear();
-//		mp3Infos.addAll(mediaUtil.sortMp3InfosByTitle(context));
-//		setSortByTime(false);
-//		listPosition = mp3Infos.indexOf(currentMp3Info);
-//	}
 
 	public void unBindService() {
 		if (conn != null && isBindService) {
@@ -421,15 +412,16 @@ public class PlayerHelpler {
 	}
 
 	public List<MusicInfo> getMusicBaseInfos() {
-		return musicBaseInfos;
+		return MusicModel.getInstance().getMusicList();
 	}
 
 //	/**
 //	 *
 //	 * @param musicBaseInfos
 //	 */
-	private void setMusicBaseInfos(List<MusicInfo> musicBaseInfos) {
-		this.musicBaseInfos = musicBaseInfos;
+	public void setMusicBaseInfos(List<MusicInfo> musicBaseInfos) {
+		this.musicBaseInfos.clear();
+		this.musicBaseInfos.addAll(musicBaseInfos);
 	}
 
 	/**

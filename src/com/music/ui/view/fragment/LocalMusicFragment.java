@@ -1,8 +1,5 @@
 package com.music.ui.view.fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -18,10 +15,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.music.lu.R;
+import com.music.ui.adapter.ViewPagerAdapter;
 import com.music.ui.service.IConstants;
 import com.music.utils.DeBug;
-import com.music.ui.adapter.ViewPagerAdapter;
 import com.music.utils.screen.ScreenUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 首页
@@ -44,20 +44,25 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 	private ArtistFragment artistFragment;
 	private AlbumFragment albumFragment;
 	private FolderFragment folderFragment;
-	
+
 	private RelativeLayout rl_folder,rl_album,rl_artist,rl_song;
+
+	/**
+	 * 线占屏幕的几分之几
+	 */
+	private final static int SPLIT_SIZE=2;
 //	public static boolean isFirst=true;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		songFragment = new SongFragment();
-		artistFragment = new ArtistFragment();
-		albumFragment = new AlbumFragment();
+//		artistFragment = new ArtistFragment();
+//		albumFragment = new AlbumFragment();
 		folderFragment = new FolderFragment();
 
 		list.add(songFragment);
-		list.add(artistFragment);
-		list.add(albumFragment);
+//		list.add(artistFragment);
+//		list.add(albumFragment);
 		list.add(folderFragment);
 
 		DeBug.d(TAG, "onCreate");
@@ -67,7 +72,7 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_localmusic, container,
 				false);
-		
+
 		initWidget(view);
 		initTabLine();
 		DeBug.d(TAG, "onCreateView");
@@ -86,8 +91,8 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 		rl_album.setOnClickListener(this);
 		rl_artist.setOnClickListener(this);
 		rl_song.setOnClickListener(this);
-		
-		
+
+
 		viewPagerAapter = new ViewPagerAdapter(getChildFragmentManager(), list);
 
 		viewPager.setAdapter(viewPagerAapter);
@@ -96,13 +101,13 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 
 		RelativeLayout.LayoutParams lp = (android.widget.RelativeLayout.LayoutParams) iv_tabline
 				.getLayoutParams();
-		lp.width= ScreenUtils.getScreenWidth(getActivity())/4;
+		lp.width= ScreenUtils.getScreenWidth(getActivity())/SPLIT_SIZE;
 		iv_tabline.setLayoutParams(lp);
 	}
 	private class MyOnPageChangeListener implements OnPageChangeListener{
 		@Override
 		public void onPageSelected(int position) {
-			
+
 		}
 
 		@Override
@@ -129,7 +134,7 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 		DisplayMetrics displayMetrics = new DisplayMetrics();
 		display.getMetrics(displayMetrics);
 
-		widthScreen1_4 = displayMetrics.widthPixels / 4;
+		widthScreen1_4 = displayMetrics.widthPixels /SPLIT_SIZE;
 
 		LayoutParams lp = iv_tabline.getLayoutParams();
 		lp.width = widthScreen1_4;
