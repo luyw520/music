@@ -1,4 +1,4 @@
-package com.music.utils.image;
+package com.lu.library.util.image;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +51,7 @@ public class BitmapCacheUtil {
 
 	/**
 	 * add bitmap to memeorycache
-	 * 
+	 *
 	 * @param key
 	 * @param bitmap
 	 */
@@ -146,7 +146,7 @@ public class BitmapCacheUtil {
 
 	/**
 	 * donw and diskcache
-	 * 
+	 *
 	 * @param url
 	 */
 	private void downAndCache(final String url) {
@@ -175,7 +175,7 @@ public class BitmapCacheUtil {
 	 * @param url
 	 */
 	private void diskCache(final String url) {
-		
+
 		try {
 			String key = hashKeyForDisk(url);
 			LogUtil.d(TAG, "downAndCache url:" + url);
@@ -193,7 +193,7 @@ public class BitmapCacheUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
@@ -209,28 +209,28 @@ public class BitmapCacheUtil {
 		Bitmap bitmap = getBitmapFromMemoryCache(url);
 		if (bitmap == null) {
 			bitmap = BitmapFactory.decodeStream(getImgInputStream(url));
-			
-			
-			
+
+
+
 			if (bitmap == null) {
-				
+
 				bitmap=BitmapFactory.decodeFile(url);
-				
+
 				if(bitmap==null){
 					downAndCache(url);
-					
+
 					bitmap = BitmapFactory.decodeStream(getImgInputStream(url));
 				}else{
-					
+
 					diskCache(url);
 				}
-				
-				
+
+
 			}
 		}
 		if (bitmap != null) {
 			addBitmapToMemoryCache(url, bitmap);
-//			
+//
 		}
 		return bitmap;
 	}

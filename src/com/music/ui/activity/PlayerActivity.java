@@ -46,7 +46,7 @@ import com.music.utils.DebugLog;
 import com.music.utils.DialogUtil;
 import com.music.utils.MediaUtil;
 import com.music.utils.SPUtils;
-import com.music.utils.image.BitmapUtils;
+import com.lu.library.util.image.BitmapUtils;
 
 import java.io.IOException;
 import java.io.InputStream;

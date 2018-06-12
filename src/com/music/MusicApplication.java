@@ -13,7 +13,7 @@ import com.music.ui.widget.lockpatternview.LockPatternUtils;
 import com.music.utils.FileUtils;
 import com.music.utils.MusicUtils;
 import com.music.utils.SPUtils;
-import com.music.utils.image.BitmapCacheUtil;
+import com.lu.library.util.image.BitmapCacheUtil;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;

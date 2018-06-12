@@ -1,10 +1,10 @@
-package com.music.utils.file;
+package com.lu.library.util.file;
 
 
-import com.music.utils.ConstantUtil;
-import com.music.utils.string.ConvertUtils;
-import com.music.utils.string.EncryptUtils;
-import com.music.utils.string.StringUtils;
+import com.lu.library.util.ConstantUtil;
+import com.lu.library.util.string.ConvertUtils;
+import com.lu.library.util.string.EncryptUtils;
+import com.lu.library.util.string.StringUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

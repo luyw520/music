@@ -1,7 +1,7 @@
 package com.music.bean;
 
 import com.music.utils.AsyncTaskUtil;
-import com.music.utils.image.BitmapCacheUtil;
+import com.lu.library.util.image.BitmapCacheUtil;
 import com.music.utils.PhotoUtils;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
 
@@ -30,7 +30,7 @@ public class UserManager {
 		userBean = userBean2;
 	}
 	private UserManager(){
-		
+
 	}
 	/**
 	 */
@@ -50,15 +50,15 @@ public class UserManager {
 	public static UserBean getUserBean(Context context){
 		SharedPreferences sharedPreferences=context.getSharedPreferences(USERINFO, Context.MODE_PRIVATE);
 		String username=sharedPreferences.getString("username", "");
-		
+
 		if(!"".equals(username)){
 			String password=sharedPreferences.getString("password", "");
 			userBean=new UserBean(username, password);
 			return userBean;
 		}
-		
-		
-		
+
+
+
 		return null;
 	}
 	/**
@@ -96,10 +96,10 @@ public class UserManager {
 	 * @param url
 	 */
 	public void downUserHeader(final String url,final ImageView iv_header){
-		
+
 
 		AsyncTaskUtil asyncTaskUtil=new AsyncTaskUtil(new IAsyncTaskCallBack() {
-			
+
 			@Override
 			public void onPostExecute(Object result) {
 				Bitmap bitmap=(Bitmap) result;
@@ -107,7 +107,7 @@ public class UserManager {
 					iv_header.setImageBitmap(bitmap);
 				}
 			}
-			
+
 			@Override
 			public Object doInBackground(String... arg0) {
 				// TODO Auto-generated method stub

@@ -1,4 +1,4 @@
-package com.music.utils.image;
+package com.lu.library.util.image;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -90,7 +90,7 @@ public class ImageUtil {
 
 	/**
 	 * Bitmapתbyte[]
-	 * 
+	 *
 	 * @param bitmap
 	 * @return
 	 */
@@ -102,7 +102,7 @@ public class ImageUtil {
 
 	/**
 	 * byte[]תBitmap
-	 * 
+	 *
 	 * @param data
 	 * @return
 	 */
@@ -523,11 +523,11 @@ public class ImageUtil {
 	public static int clamp(int x, int a, int b) {
 		return (x < a) ? a : (x > b) ? b : x;
 	}
-	
-	
-	public  static Bitmap blurBitmap( int res,Context context){  
+
+
+	public  static Bitmap blurBitmap( int res,Context context){
 		Bitmap bitmap=BitmapFactory.decodeResource(context.getResources(), res);
-		
+
 		return blurBitmap(bitmap, context);
 	}
 	/**
@@ -535,41 +535,41 @@ public class ImageUtil {
 	 * @param context
 	 * @return
 	 */
-    @SuppressLint("NewApi") 
-    public  static Bitmap blurBitmap(Bitmap bitmap,Context context){  
-        
-        //Let's create an empty bitmap with the same size of the bitmap we want to blur  
-        Bitmap outBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);  
-          
-        //Instantiate a new Renderscript  
-        RenderScript rs = RenderScript.create(context);  
-          
-        //Create an Intrinsic Blur Script using the Renderscript  
-        ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));  
-          
-        //Create the Allocations (in/out) with the Renderscript and the in/out bitmaps  
-        Allocation allIn = Allocation.createFromBitmap(rs, bitmap);  
-        Allocation allOut = Allocation.createFromBitmap(rs, outBitmap);  
-          
-        //Set the radius of the blur  
-        blurScript.setRadius(15.f);  
-          
-        //Perform the Renderscript  
-        blurScript.setInput(allIn);  
-        blurScript.forEach(allOut);  
-          
-        //Copy the final bitmap created by the out Allocation to the outBitmap  
-        allOut.copyTo(outBitmap);  
-          
-        //recycle the original bitmap  
-//        bitmap.recycle();  
-          
-        //After finishing everything, we destroy the Renderscript.  
-        rs.destroy();  
-          
-        return outBitmap;  
-          
-          
-    }  
-    
+    @SuppressLint("NewApi")
+    public  static Bitmap blurBitmap(Bitmap bitmap,Context context){
+
+        //Let's create an empty bitmap with the same size of the bitmap we want to blur
+        Bitmap outBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
+
+        //Instantiate a new Renderscript
+        RenderScript rs = RenderScript.create(context);
+
+        //Create an Intrinsic Blur Script using the Renderscript
+        ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+
+        //Create the Allocations (in/out) with the Renderscript and the in/out bitmaps
+        Allocation allIn = Allocation.createFromBitmap(rs, bitmap);
+        Allocation allOut = Allocation.createFromBitmap(rs, outBitmap);
+
+        //Set the radius of the blur
+        blurScript.setRadius(15.f);
+
+        //Perform the Renderscript
+        blurScript.setInput(allIn);
+        blurScript.forEach(allOut);
+
+        //Copy the final bitmap created by the out Allocation to the outBitmap
+        allOut.copyTo(outBitmap);
+
+        //recycle the original bitmap
+//        bitmap.recycle();
+
+        //After finishing everything, we destroy the Renderscript.
+        rs.destroy();
+
+        return outBitmap;
+
+
+    }
+
 }

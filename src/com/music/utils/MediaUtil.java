@@ -13,7 +13,7 @@ import android.util.Log;
 
 import com.music.bean.Mp3Info;
 import com.music.lu.R;
-import com.music.utils.image.BitmapUtils;
+import com.lu.library.util.image.BitmapUtils;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 

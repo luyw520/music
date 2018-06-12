@@ -1,7 +1,6 @@
 package com.music.ui.activity;
 
 
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,6 +14,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.music.annotation.ComputeTime;
 import com.music.lu.R;
+
 @ContentView(value=R.layout.activity_scan)
 public class ScanActivity extends BaseHeaderActivity {
 	@ViewInject(value = R.id.iv_search)
@@ -76,6 +76,7 @@ public class ScanActivity extends BaseHeaderActivity {
 		}
 
 	}
+
 	private void initWidget() {
 		iv_more.setVisibility(View.INVISIBLE);
 //		iv_search.setVisibility(View.GONE);

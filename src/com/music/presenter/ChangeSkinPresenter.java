@@ -10,7 +10,7 @@ import com.music.lu.R;
 import com.music.MusicApplication;
 import com.music.utils.DeBug;
 import com.music.utils.ObjecteUtil;
-import com.music.utils.file.FileUtils;
+import com.lu.library.util.file.FileUtils;
 
 import java.io.File;
 import java.io.IOException;

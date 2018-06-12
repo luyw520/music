@@ -1,4 +1,4 @@
-package com.music.utils.image;
+package com.lu.library.util.image;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -27,10 +27,10 @@ import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.view.View;
-import com.music.utils.file.FileUtils;
+import com.lu.library.util.file.FileUtils;
 
-import com.music.utils.string.ConvertUtils;
-import com.music.utils.string.StringUtils;
+import com.lu.library.util.string.ConvertUtils;
+import com.lu.library.util.string.StringUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

@@ -1,7 +1,7 @@
-package com.music.utils.string;
+package com.lu.library.util.string;
 
 
-import com.music.utils.file.FileUtils;
+import com.lu.library.util.file.FileUtils;
 
 import java.io.File;
 import java.io.FileInputStream;

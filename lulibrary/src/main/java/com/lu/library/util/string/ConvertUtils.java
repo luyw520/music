@@ -1,4 +1,4 @@
-package com.music.utils.string;
+package com.lu.library.util.string;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -12,7 +12,7 @@ import android.view.View;
 
 
 import com.music.utils.ConstUtils;
-import com.music.utils.file.FileUtils;
+import com.lu.library.util.file.FileUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

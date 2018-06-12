@@ -1,4 +1,4 @@
-package com.music.utils.string;
+package com.lu.library.util.string;
 
 
 import java.io.UnsupportedEncodingException;

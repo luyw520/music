@@ -1,8 +1,10 @@
 package com.music.ui.activity;
 
 import android.annotation.TargetApi;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
@@ -32,7 +34,7 @@ import com.music.utils.LogUtil;
 import com.music.utils.SensorManagerUtil;
 import com.music.utils.SensorManagerUtil.SensorChangedListener;
 import com.music.utils.SharedPreHelper;
-import com.music.utils.image.BitmapCacheUtil;
+import com.lu.library.util.image.BitmapCacheUtil;
 import com.music.utils.screen.ScreenShotUtil;
 
 @ContentView(value = R.layout.activity_setting)
@@ -99,9 +101,17 @@ public class SettingActivity extends BaseActivity implements ChangeSkinContract.
 
 		if (!isNotificationEnabled()){
 			startNotification();
+		}else{
+			toggleNotificationListenerService();
 		}
 	};
+	private void toggleNotificationListenerService() {
+		PackageManager pm = getPackageManager();
+		pm.setComponentEnabledSetting(new ComponentName(this, MyNotificationListenerService.class), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 
+		pm.setComponentEnabledSetting(new ComponentName(this, MyNotificationListenerService.class), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+
+	}
 	public void startNotification() {
 		startActivityForResult(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"), 1);
 	}

@@ -29,7 +29,7 @@ import com.music.ui.service.IConstants;
 import com.music.ui.service.IMediaService;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
-import com.music.utils.image.BitmapCacheUtil;
+import com.lu.library.util.image.BitmapCacheUtil;
 import com.music.utils.DeBug;
 import com.music.utils.PhotoUtils;
 import com.music.utils.StringUtil;

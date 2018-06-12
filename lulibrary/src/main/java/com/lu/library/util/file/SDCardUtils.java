@@ -1,4 +1,4 @@
-package com.music.utils.file;
+package com.lu.library.util.file;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -6,7 +6,7 @@ import android.os.Environment;
 import android.os.StatFs;
 
 
-import com.music.utils.string.ConvertUtils;
+import com.lu.library.util.string.ConvertUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
