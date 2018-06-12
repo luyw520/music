@@ -3,32 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string name="app_name">MUSIC</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
 
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">简、美音乐播放器</string>
-    <string name="siger">我是歌手</string>
-    <string name="artist">小巫</string>
-    <string name="time">4:50</string>
-    <string name="shuffle_none">随机播放已关闭</string>
-	<string name="shuffle">随机播放已打开</string>
-	<string name="repeat_none">重复播放已关闭</string>
-	<string name="repeat_current">重复播放当前歌曲</string>
-	<string name="repeat_all">重复播放所有歌曲</string>
-	<string name="operation">将此歌曲处理为</string>
-	<string name="playing">正在播放。。。</string>
-
-	<string name="down_success">下载成功</string>
+    <string name="down_success">下载成功</string>
 	<string name="down_faild">下载失败</string>
 	<string name="clear_search_history">清除历史</string>
 	<string name="searching_music">正在搜索音乐&#8230;</string>
 	<string name="search_music">搜索音乐</string>
 	<string name="is_not_empty_tips">输入的数据不能为空</string>
 	<!--	BROWSING CATEGORIES-->
-	<string name="browse_cat_album">Albums</string>
-	<string name="browse_cat_artists">Artists</string>
-	<string name="browse_cat_songs">Songs</string>
 
 
     <string name="lockscreen_access_pattern_start">"开始绘制图案"</string>
@@ -53,8 +35,7 @@
      <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
 
 
-     <string name="input_singer">请输入要搜索的歌手名字</string>
-     <string name="input_song">请输入要搜索的歌曲名字</string>
+    <string name="input_song">请输入要搜索的歌曲名字</string>
      <string name="search">搜索</string>
 
      <string name="local_music">本地音乐</string>
@@ -72,14 +53,11 @@
 
     <string name="dialog_exit_title">退出</string>
     <string name="dialog_exit_msg">是否退出程序</string>
-    <string name="dialog_exit_ok">确定</string>
-    <string name="dialog_exit_cancel">取消</string>
 
     <string name="title_setting">设置</string>
     <string name="title_login">登录</string>
     <string name="title_login_success">登录成功</string>
     <string name="title_login_faild">登录失败</string>
-    <string name="title_folder">文件夹</string>
     <string name="play_type_loop">顺序播放</string>
     <string name="play_type_suffle">随机播放</string>
     <string name="play_type_repeat">单选循环</string>

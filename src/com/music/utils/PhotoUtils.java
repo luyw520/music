@@ -19,16 +19,16 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 
 import com.music.ui.view.ImageFactoryFliter.FilterType;
-import com.music.ui.view.activity.ImageFactoryActivity;
+import com.music.ui.activity.ImageFactoryActivity;
 
 
 /**
  */
 public class PhotoUtils {
-	
+
 	private static final String IMAGE_PATH = FileUtils.imgPathPath() + File.separator;
-	
-	
+
+
 	public static final int INTENT_REQUEST_CODE_ALBUM = 0;
 	public static final int INTENT_REQUEST_CODE_CAMERA = 1;
 	public static final int INTENT_REQUEST_CODE_CROP = 2;
@@ -201,7 +201,7 @@ public class PhotoUtils {
 		return false;
 	}
 
-	
+
 
 	/**
 	 *
@@ -330,13 +330,13 @@ public class PhotoUtils {
 		return acrossFlushBitmap;
 	}
 
-	
-
-	
-	
 
 
-	
 
-	
+
+
+
+
+
+
 }

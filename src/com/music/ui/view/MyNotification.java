@@ -14,7 +14,7 @@ import com.music.lu.R;
 import com.music.utils.AppConstant;
 import com.music.utils.MediaUtil;
 import com.music.helpers.PlayerHelpler;
-import com.music.ui.view.activity.LocalMusicActivity;
+import com.music.ui.activity.LocalMusicActivity;
 
 /**
  * 通知栏

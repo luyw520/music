@@ -21,7 +21,7 @@ import com.music.utils.ApplicationUtil;
 import com.music.utils.DeBug;
 import com.music.utils.DialogUtil;
 import com.music.MusicApplication;
-import com.music.ui.view.activity.BaseActivity;
+import com.music.ui.activity.BaseActivity;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
 import com.music.ui.widget.lockpatternview.LockPatternView;
 import com.music.ui.widget.lockpatternview.LockPatternView.Cell;
@@ -52,8 +52,8 @@ public class UnlockGesturePasswordActivity extends BaseActivity {
 		DeBug.d(this, "onCreate........");
 //		setContentView(R.layout.activity_gesturepassword_unlock);
 
-		
-		
+
+
 //		if (ApplicationUtil.getAppLockState(this) != 1) {
 //			startActivity(LocalMusicActivity.class);
 //			finish();
@@ -65,9 +65,9 @@ public class UnlockGesturePasswordActivity extends BaseActivity {
 		mLockPatternView.setTactileFeedbackEnabled(true);
 		mHeadTextView = (TextView) findViewById(R.id.gesturepwd_unlock_text);
 		mShakeAnim = AnimationUtils.loadAnimation(this, R.anim.shake_x);
-		
+
 		DeBug.d(this, ".......onCreate:"+(SystemClock.currentThreadTimeMillis()-start)/1000.0+" s");
-		
+
 	}
 
 
@@ -82,7 +82,7 @@ public class UnlockGesturePasswordActivity extends BaseActivity {
 		DeBug.d(this, "...........viewClick");
 		switch (view.getId()) {
 		case R.id.gesturepwd_unlock_forget:
-			
+
 			startActivity(new Intent(this,CreateGesturePasswordActivity.class));
 //			finish();
 			break;

@@ -6,15 +6,6 @@
 
 
     -->
-    <style name="AppBaseTheme" parent="android:Theme">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-
-
-        -->
-    </style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo">
@@ -74,42 +65,6 @@
 
     <!--</style>-->
 
-    <style name="CustomWindowTitleBackground">
-        <item name="android:background">#B2DFEE</item>
-    </style>
-
-    <style name="TTNotificationText">
-        <item name="android:textSize">16.0sp</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-    </style>
-
-    <style name="CustomTheme" parent="android:Theme.Holo">
-        <item name="android:windowNoTitle">true</item>
-        <!--
-       Window attributes 
-	
-        
-       <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
-       
-      
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowTitleSize">43dp</item>
-        <item name="android:shadowColor">#BB000000</item>
-        <item name="android:shadowRadius">0</item>
-        <item name="android:windowBackground">@color/white</item>
-         <item name="android:keepScreenOn">true</item>
-
-        -->
-    </style>
-
-    <style name="mystyle" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:backgroundDimEnabled">true</item>
-    </style>
-
     <style name="dialog_anim_slide_left" mce_bogus="1" parent="android:Animation">
         <item name="android:windowExitAnimation">@anim/dialog_exit_slide_left</item>
     </style>
@@ -120,28 +75,6 @@
 
     <style name="dialog_anim_fade_out" mce_bogus="1" parent="android:Animation">
         <item name="android:windowExitAnimation">@anim/dialog_exit_fade_out</item>
-    </style>
-
-    <style name="t9_key">
-        <item name="android:layout_width">0.0dip</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1.0</item>
-        <item name="android:paddingBottom">3dp</item>
-        <item name="android:paddingTop">3dp</item>
-    </style>
-
-    <style name="TTNotificationTitle">
-        <item name="android:textSize">18.0sp</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-    </style>
-
-    <style name="lrc_dialog" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:backgroundDimEnabled">true</item>
     </style>
 
     <style name="SlidingMenu.TextView.ItemTitle" parent="@android:style/Widget.TextView">
@@ -192,23 +125,14 @@
         <item name="android:background">@drawable/common_btn_red</item>
     </style>
 
-    <style name="Theme.Timetodo" parent="@android:style/Theme.Holo.Light">
-        <item name="android:windowTranslucentStatus">    	    true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
-    </style>
-
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/sliding_bg</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    
+
      <style name="FullBleedTheme" parent="android:Theme.Light.NoTitleBar">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
-    
-    <style name="ActionBarTheme" parent="android:Theme.Light">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 

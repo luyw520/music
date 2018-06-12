@@ -10,7 +10,6 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="true"
@@ -26,7 +25,6 @@
             android:background="@drawable/selector_press"
             android:src="@drawable/ic_common_title_bar_back" />
         <LinearLayout
-            android:id="@+id/ll_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/ib_back"
@@ -84,7 +82,6 @@
 
 
         <ImageButton
-            android:id="@+id/ibtn_searchLrc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -107,7 +104,6 @@
             android:layout_height="match_parent" />
 
         <TextView
-            android:id="@+id/tv_lrc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -173,7 +169,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/footer_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -216,7 +211,6 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/relativeLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/seekbarLayout"
@@ -241,7 +235,6 @@
                 android:background="@drawable/play_icn_loop" />
 
             <ImageButton
-                android:id="@+id/ibtn_player_voice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

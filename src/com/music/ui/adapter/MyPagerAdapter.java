@@ -2,7 +2,7 @@ package com.music.ui.adapter;
 
 import java.util.List;
 
-import com.jfeinstein.jazzyviewpager.JazzyViewPager;
+import com.lu.library.jazzyviewpager.JazzyViewPager;
 
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
@@ -38,7 +38,7 @@ public class MyPagerAdapter extends PagerAdapter{
 		viewPager.setObjectForPosition(views.get(position), position);
 		return views.get(position);
 	}
-	
+
 
 
 }

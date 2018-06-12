@@ -20,13 +20,13 @@ allprojects {
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.0'
+    compileSdkVersion Integer.valueOf(project.compileSdkVersion)
+    buildToolsVersion project.buildToolsVersion
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Integer.valueOf(project.minSdkVersion)
+        targetSdkVersion Integer.valueOf(project.targetSdkVersion)
+        versionCode Integer.valueOf(project.versionCode)
+        versionName project.versionName
 //        jackOptions {
 //            enabled true
 //        }
@@ -65,12 +65,13 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:design:25.1.1'
-    compile 'com.android.support:recyclerview-v7:25.2.0'
+    compile "com.android.support:appcompat-v7:$SUPPORTVERSION"
+    compile "com.android.support:design:$SUPPORTVERSION"
+    compile "com.android.support:recyclerview-v7:$SUPPORTVERSION"
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
     compile 'org.greenrobot:greendao:3.1.0'
     //compile project(':hellocharts-library')
     compile project(':picasso')
+    compile project(':lulibrary')
 }

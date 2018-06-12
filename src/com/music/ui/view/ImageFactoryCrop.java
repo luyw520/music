@@ -3,8 +3,8 @@ package com.music.ui.view;
 
 import com.music.lu.R;
 import com.music.utils.PhotoUtils;
-import com.music.ui.view.activity.ImageFactory;
-import com.music.ui.view.activity.ImageFactoryActivity;
+import com.music.ui.activity.ImageFactory;
+import com.music.ui.activity.ImageFactoryActivity;
 import com.music.ui.widget.photoview.CropImage;
 import com.music.ui.widget.photoview.CropImageView;
 

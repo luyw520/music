@@ -59,14 +59,12 @@
                 android:text="第三方登陆" />
 
             <RelativeLayout
-                android:id="@+id/logout_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_sanfang"
                 android:gravity="center_horizontal" >
 
                 <LinearLayout
-                    android:id="@+id/logout_op_layout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -97,7 +95,7 @@
                         android:clickable="true"
                         android:src="@drawable/btn_tencent" />
 
-                   
+
                 </LinearLayout>
             </RelativeLayout>
         </RelativeLayout>

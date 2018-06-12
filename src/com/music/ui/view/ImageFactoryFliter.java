@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.music.lu.R;
 import com.music.utils.PhotoUtils;
-import com.music.ui.view.activity.ImageFactory;
-import com.music.ui.view.activity.ImageFactoryActivity;
+import com.music.ui.activity.ImageFactory;
+import com.music.ui.activity.ImageFactoryActivity;
 import com.music.ui.widget.photoview.RotateImageView;
 import com.music.ui.widget.photoview.RotateImageView.RotateType;
 
@@ -109,11 +109,11 @@ public class ImageFactoryFliter extends ImageFactory {
 					.findViewById(R.id.filter_item_image);
 			TextView text = (TextView) mFliterBlocks[i]
 					.findViewById(R.id.filter_item_text);
-			
+
 			Bitmap bitmap=PhotoUtils.getFilter(
 					mFilterItems.get(i).mFilterType, mBitmap);
 			//image.setImageBitmap(bitmap);
-			
+
 			String t=mFilterItems.get(i).mFilterName;
 			text.setText(t);
 

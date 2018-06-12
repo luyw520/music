@@ -1,7 +1,5 @@
 package com.music.ui.adapter;
 
-import com.music.lu.R;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,7 +15,7 @@ public class MyGridViewAdapter extends BaseAdapter{
 	int res;
 	private int[] imgs;
 	public String[] textString;
-	
+
 	public MyGridViewAdapter(Context context,int[] imgs,String[] textString,int res){
 		this.context=context;
 		inInflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -25,7 +23,7 @@ public class MyGridViewAdapter extends BaseAdapter{
 		this.textString=textString;
 		this.res=res;
 	}
-	
+
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
@@ -52,8 +50,8 @@ public class MyGridViewAdapter extends BaseAdapter{
 		if(convertView==null){
 			convertView=inInflater.inflate(res, null);
 			viewHolder=new ViewHolder();
-			viewHolder.image=(ImageView)convertView.findViewById(R.id.img_griditem);
-			viewHolder.textView=(TextView) convertView.findViewById(R.id.tv__griditem);
+//			viewHolder.image=(ImageView)convertView.findViewById(R.id.img_griditem);
+//			viewHolder.textView=(TextView) convertView.findViewById(R.id.tv__griditem);
 			convertView.setTag(viewHolder);
 		}
 		viewHolder=(ViewHolder) convertView.getTag();
@@ -61,7 +59,7 @@ public class MyGridViewAdapter extends BaseAdapter{
 		viewHolder.image.setBackground(null);
 		viewHolder.image.setImageResource(imgs[position]);
 		viewHolder.textView.setText(textString[position]);
-		
+
 		return convertView;
 	}
 	class ViewHolder {

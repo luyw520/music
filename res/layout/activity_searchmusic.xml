@@ -28,9 +28,8 @@
                 android:hint="@string/input_key"
                 android:singleLine="true" />
 
-            
+
             <AutoCompleteTextView
-                android:id="@+id/atvSongName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/editview_height"
                 android:layout_below="@+id/atvSonger"
@@ -54,7 +53,7 @@
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            
+
             android:visibility="gone" />
 
         <com.music.ui.widget.dialog.LoadingView

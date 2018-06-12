@@ -132,7 +132,6 @@
         android:background="#e0e0e0" />
 
     <Button
-        android:id="@+id/btn_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"

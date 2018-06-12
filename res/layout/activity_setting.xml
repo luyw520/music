@@ -35,22 +35,36 @@
                     android:text="换肤" />
 
             </com.music.ui.widget.RippleView>
-            <include
-                android:id="@+id/trylistener"
-                layout="@layout/settingactivity_try_listener" />
+            <include layout="@layout/settingactivity_try_listener" />
 
-            <include
-                android:id="@+id/yaoyiyao"
-                layout="@layout/settingactivity_yaoyiyao" />
+            <include layout="@layout/settingactivity_yaoyiyao" />
 
-            <include
-                android:id="@+id/donw"
-                layout="@layout/settingactivity_down" />
+            <include layout="@layout/settingactivity_down" />
 
-            <include
-                android:id="@+id/refresh"
-                layout="@layout/settingactivity_refresh" />
+            <include layout="@layout/settingactivity_refresh" />
 
+            <com.music.ui.widget.RippleView
+                android:id="@+id/rl_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/menu_setting_selector"
+                android:padding="15dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="当前版本:1.0"
+                    android:textColor="#a0a0a0" />
+
+                <TextView
+                    android:id="@+id/tv_sh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="检查更新" />
+            </com.music.ui.widget.RippleView>
           <!--   <include
                 android:id="@+id/refresh"
                 layout="@layout/settingactivity_refresh" />

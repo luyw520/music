@@ -173,24 +173,24 @@ com.google.ads.LatencyTracker: LatencyTracker(android.content.Context)
 com.google.android.apps.analytics.AnalyticsReceiver
 com.google.android.apps.analytics.PersistentEventStore$DataBaseHelper
 com.google.android.apps.analytics.PersistentEventStore$DataBaseHelper: PersistentEventStore$DataBaseHelper(android.content.Context)
-com.jfeinstein.jazzyviewpager.JazzyViewPager
-com.jfeinstein.jazzyviewpager.JazzyViewPager: JazzyViewPager(android.content.Context)
-com.jfeinstein.jazzyviewpager.JazzyViewPager: JazzyViewPager(android.content.Context,android.util.AttributeSet)
-com.jfeinstein.jazzyviewpager.JazzyViewPager: void setTransitionEffect(com.jfeinstein.jazzyviewpager.JazzyViewPager$TransitionEffect)
-com.jfeinstein.jazzyviewpager.JazzyViewPager: void setPagingEnabled(boolean)
-com.jfeinstein.jazzyviewpager.JazzyViewPager: void setFadeEnabled(boolean)
-com.jfeinstein.jazzyviewpager.JazzyViewPager: boolean getFadeEnabled()
-com.jfeinstein.jazzyviewpager.JazzyViewPager: void setOutlineEnabled(boolean)
-com.jfeinstein.jazzyviewpager.JazzyViewPager: void setOutlineColor(int)
-com.jfeinstein.jazzyviewpager.JazzyViewPager$State: com.jfeinstein.jazzyviewpager.JazzyViewPager$State[] values()
-com.jfeinstein.jazzyviewpager.JazzyViewPager$State: com.jfeinstein.jazzyviewpager.JazzyViewPager$State valueOf(java.lang.String)
-com.jfeinstein.jazzyviewpager.JazzyViewPager$TransitionEffect: com.jfeinstein.jazzyviewpager.JazzyViewPager$TransitionEffect[] values()
-com.jfeinstein.jazzyviewpager.JazzyViewPager$TransitionEffect: com.jfeinstein.jazzyviewpager.JazzyViewPager$TransitionEffect valueOf(java.lang.String)
-com.jfeinstein.jazzyviewpager.OutlineContainer
-com.jfeinstein.jazzyviewpager.OutlineContainer: OutlineContainer(android.content.Context)
-com.jfeinstein.jazzyviewpager.OutlineContainer: OutlineContainer(android.content.Context,android.util.AttributeSet)
-com.jfeinstein.jazzyviewpager.OutlineContainer: OutlineContainer(android.content.Context,android.util.AttributeSet,int)
-com.jfeinstein.jazzyviewpager.OutlineContainer: void setOutlineAlpha(float)
+com.lu.library.jazzyviewpager.JazzyViewPager
+com.lu.library.jazzyviewpager.JazzyViewPager: JazzyViewPager(android.content.Context)
+com.lu.library.jazzyviewpager.JazzyViewPager: JazzyViewPager(android.content.Context,android.util.AttributeSet)
+com.lu.library.jazzyviewpager.JazzyViewPager: void setTransitionEffect(com.lu.library.jazzyviewpager.JazzyViewPager$TransitionEffect)
+com.lu.library.jazzyviewpager.JazzyViewPager: void setPagingEnabled(boolean)
+com.lu.library.jazzyviewpager.JazzyViewPager: void setFadeEnabled(boolean)
+com.lu.library.jazzyviewpager.JazzyViewPager: boolean getFadeEnabled()
+com.lu.library.jazzyviewpager.JazzyViewPager: void setOutlineEnabled(boolean)
+com.lu.library.jazzyviewpager.JazzyViewPager: void setOutlineColor(int)
+com.lu.library.jazzyviewpager.JazzyViewPager$State: com.lu.library.jazzyviewpager.JazzyViewPager$State[] values()
+com.lu.library.jazzyviewpager.JazzyViewPager$State: com.lu.library.jazzyviewpager.JazzyViewPager$State valueOf(java.lang.String)
+com.lu.library.jazzyviewpager.JazzyViewPager$TransitionEffect: com.lu.library.jazzyviewpager.JazzyViewPager$TransitionEffect[] values()
+com.lu.library.jazzyviewpager.JazzyViewPager$TransitionEffect: com.lu.library.jazzyviewpager.JazzyViewPager$TransitionEffect valueOf(java.lang.String)
+com.lu.library.jazzyviewpager.OutlineContainer
+com.lu.library.jazzyviewpager.OutlineContainer: OutlineContainer(android.content.Context)
+com.lu.library.jazzyviewpager.OutlineContainer: OutlineContainer(android.content.Context,android.util.AttributeSet)
+com.lu.library.jazzyviewpager.OutlineContainer: OutlineContainer(android.content.Context,android.util.AttributeSet,int)
+com.lu.library.jazzyviewpager.OutlineContainer: void setOutlineAlpha(float)
 com.lidroid.xutils.BitmapUtils
 com.lidroid.xutils.BitmapUtils: BitmapUtils(android.content.Context)
 com.lidroid.xutils.DbUtils$DaoConfig
@@ -2076,67 +2076,67 @@ com.music.MusicApplication
 com.music.MusicApplication: MusicApplication()
 com.music.ui.view.MyNotification
 com.music.ui.view.MyNotification: MyNotification(android.content.Context)
-com.music.ui.view.activity.BaseActivity
-com.music.ui.view.activity.BaseActivity: BaseActivity()
-com.music.ui.view.activity.BaseFragmentActivity
-com.music.ui.view.activity.BaseFragmentActivity: BaseFragmentActivity()
-com.music.ui.view.activity.BaseHeaderActivity
-com.music.ui.view.activity.BaseHeaderActivity: BaseHeaderActivity()
-com.music.ui.view.activity.BaseHeaderActivity: void OnClick(android.view.View)
-com.music.ui.view.activity.ChangeBgActivity
-com.music.ui.view.activity.ChangeBgActivity: ChangeBgActivity()
-com.music.ui.view.activity.ChangeBgActivity: void onClick(android.view.View)
-com.music.ui.view.activity.ImageFactoryActivity
-com.music.ui.view.activity.ImageFactoryActivity: ImageFactoryActivity()
-com.music.ui.view.activity.ImageFactoryActivity: void onClick(android.view.View)
-com.music.ui.view.activity.LocalMusicActivity
-com.music.ui.view.activity.LocalMusicActivity: LocalMusicActivity()
-com.music.ui.view.activity.LocalMusicActivity: void onclick(android.view.View)
-com.music.ui.view.activity.LockScreenActivity
-com.music.ui.view.activity.LockScreenActivity: LockScreenActivity()
-com.music.ui.view.activity.LockScreenActivity: void nextMusic()
-com.music.ui.view.activity.LockScreenActivity: void player(android.view.View)
-com.music.ui.view.activity.LockScreenActivity: void next(android.view.View)
-com.music.ui.view.activity.LockScreenActivity: void playMusic()
-com.music.ui.view.activity.LoginActivity
-com.music.ui.view.activity.LoginActivity: LoginActivity()
-com.music.ui.view.activity.LoginActivity: void onClick(android.view.View)
-com.music.ui.view.activity.LoginActivity$2: void onCancel(com.umeng.socialize.bean.SHARE_MEDIA)
-com.music.ui.view.activity.MipcaCaptureActivity
-com.music.ui.view.activity.MipcaCaptureActivity: MipcaCaptureActivity()
-com.music.ui.view.activity.PlayerActivity
-com.music.ui.view.activity.PlayerActivity: PlayerActivity()
-com.music.ui.view.activity.PlayerActivity: void onClick(android.view.View)
-com.music.ui.view.activity.ScanActivity
-com.music.ui.view.activity.ScanActivity: ScanActivity()
-com.music.ui.view.activity.ScanActivity: void viewClick(android.view.View)
-com.music.ui.view.activity.SearchMusicActivity
-com.music.ui.view.activity.SearchMusicActivity: SearchMusicActivity()
-com.music.ui.view.activity.SearchMusicActivity: void viewClick(android.view.View)
-com.music.ui.view.activity.SettingActivity
-com.music.ui.view.activity.SettingActivity: SettingActivity()
-com.music.ui.view.activity.SettingActivity: void onCancel(android.view.View)
-com.music.ui.view.activity.SettingActivity: void onClick(android.view.View)
-com.music.ui.view.activity.SwipeBackActivity
-com.music.ui.view.activity.WelcomeActivity
-com.music.ui.view.activity.WelcomeActivity: WelcomeActivity()
+com.music.ui.activity.BaseActivity
+com.music.ui.activity.BaseActivity: BaseActivity()
+com.music.ui.activity.BaseFragmentActivity
+com.music.ui.activity.BaseFragmentActivity: BaseFragmentActivity()
+com.music.ui.activity.BaseHeaderActivity
+com.music.ui.activity.BaseHeaderActivity: BaseHeaderActivity()
+com.music.ui.activity.BaseHeaderActivity: void OnClick(android.view.View)
+com.music.ui.activity.ChangeBgActivity
+com.music.ui.activity.ChangeBgActivity: ChangeBgActivity()
+com.music.ui.activity.ChangeBgActivity: void onClick(android.view.View)
+com.music.ui.activity.ImageFactoryActivity
+com.music.ui.activity.ImageFactoryActivity: ImageFactoryActivity()
+com.music.ui.activity.ImageFactoryActivity: void onClick(android.view.View)
+com.music.ui.activity.LocalMusicActivity
+com.music.ui.activity.LocalMusicActivity: LocalMusicActivity()
+com.music.ui.activity.LocalMusicActivity: void onclick(android.view.View)
+com.music.ui.activity.LockScreenActivity
+com.music.ui.activity.LockScreenActivity: LockScreenActivity()
+com.music.ui.activity.LockScreenActivity: void nextMusic()
+com.music.ui.activity.LockScreenActivity: void player(android.view.View)
+com.music.ui.activity.LockScreenActivity: void next(android.view.View)
+com.music.ui.activity.LockScreenActivity: void playMusic()
+com.music.ui.activity.LoginActivity
+com.music.ui.activity.LoginActivity: LoginActivity()
+com.music.ui.activity.LoginActivity: void onClick(android.view.View)
+com.music.ui.activity.LoginActivity$2: void onCancel(com.umeng.socialize.bean.SHARE_MEDIA)
+com.music.ui.activity.MipcaCaptureActivity
+com.music.ui.activity.MipcaCaptureActivity: MipcaCaptureActivity()
+com.music.ui.activity.PlayerActivity
+com.music.ui.activity.PlayerActivity: PlayerActivity()
+com.music.ui.activity.PlayerActivity: void onClick(android.view.View)
+com.music.ui.activity.ScanActivity
+com.music.ui.activity.ScanActivity: ScanActivity()
+com.music.ui.activity.ScanActivity: void viewClick(android.view.View)
+com.music.ui.activity.SearchMusicActivity
+com.music.ui.activity.SearchMusicActivity: SearchMusicActivity()
+com.music.ui.activity.SearchMusicActivity: void viewClick(android.view.View)
+com.music.ui.activity.SettingActivity
+com.music.ui.activity.SettingActivity: SettingActivity()
+com.music.ui.activity.SettingActivity: void onCancel(android.view.View)
+com.music.ui.activity.SettingActivity: void onClick(android.view.View)
+com.music.ui.activity.SwipeBackActivity
+com.music.ui.activity.WelcomeActivity
+com.music.ui.activity.WelcomeActivity: WelcomeActivity()
 com.music.ui.adapter.MyPagerAdapter
 com.music.ui.adapter.ViewPagerAdapter
-com.music.ui.view.fragment.AlbumFragment
-com.music.ui.view.fragment.AlbumFragment$fragment: com.music.ui.view.fragment.AlbumFragment$fragment[] values()
-com.music.ui.view.fragment.AlbumFragment$fragment: com.music.ui.view.fragment.AlbumFragment$fragment valueOf(java.lang.String)
-com.music.ui.view.fragment.ArtistFragment
-com.music.ui.view.fragment.BaseFragment
-com.music.ui.view.fragment.FolderFragment
-com.music.ui.view.fragment.LocalMusicFragment
-com.music.ui.view.fragment.MainFragment
-com.music.ui.view.fragment.MenuFragment
-com.music.ui.view.fragment.MusicListFragment
-com.music.ui.view.fragment.SongFragment
-com.music.ui.view.fragment.SwipeBackLayout
-com.music.ui.view.fragment.SwipeBackLayout: SwipeBackLayout(android.content.Context,android.util.AttributeSet)
-com.music.ui.view.fragment.SwipeBackLayout: SwipeBackLayout(android.content.Context,android.util.AttributeSet,int)
-com.music.ui.view.fragment.SwipeBackLayout: void setContentView(android.view.View)
+com.music.ui.fragment.AlbumFragment
+com.music.ui.fragment.AlbumFragment$fragment: com.music.ui.fragment.AlbumFragment$fragment[] values()
+com.music.ui.fragment.AlbumFragment$fragment: com.music.ui.fragment.AlbumFragment$fragment valueOf(java.lang.String)
+com.music.ui.fragment.ArtistFragment
+com.music.ui.fragment.BaseFragment
+com.music.ui.fragment.FolderFragment
+com.music.ui.fragment.LocalMusicFragment
+com.music.ui.fragment.MainFragment
+com.music.ui.fragment.MenuFragment
+com.music.ui.fragment.MusicListFragment
+com.music.ui.fragment.SongFragment
+com.music.ui.fragment.SwipeBackLayout
+com.music.ui.fragment.SwipeBackLayout: SwipeBackLayout(android.content.Context,android.util.AttributeSet)
+com.music.ui.fragment.SwipeBackLayout: SwipeBackLayout(android.content.Context,android.util.AttributeSet,int)
+com.music.ui.fragment.SwipeBackLayout: void setContentView(android.view.View)
 com.music.ui.view.gesturepressword.CreateGesturePasswordActivity
 com.music.ui.view.gesturepressword.CreateGesturePasswordActivity: CreateGesturePasswordActivity()
 com.music.ui.view.gesturepressword.CreateGesturePasswordActivity: void onClick(android.view.View)

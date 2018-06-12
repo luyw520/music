@@ -15,7 +15,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.music.lu.R;
 import com.music.utils.ApplicationUtil;
-import com.music.ui.view.activity.BaseHeaderActivity;
+import com.music.ui.activity.BaseHeaderActivity;
 
 @ContentView(value = R.layout.activity_gesturepassword_set)
 public class GresturePasswordSetActivity extends BaseHeaderActivity {
@@ -25,10 +25,10 @@ public class GresturePasswordSetActivity extends BaseHeaderActivity {
 
 	@ViewInject(value = R.id.rl_updatelockpassword)
 	private RelativeLayout rl_updatelockpassword;
-	
+
 	@ViewInject(value = R.id.iv_search)
 	protected ImageView iv_search;
-	
+
 	@ViewInject(value = R.id.iv_more)
 	protected ImageView iv_more;
 	@ViewInject(value = R.id.iv_back)
@@ -48,7 +48,7 @@ public class GresturePasswordSetActivity extends BaseHeaderActivity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		
+
 		initWidget();
 	}
 	protected void initWidget() {
@@ -57,17 +57,17 @@ public class GresturePasswordSetActivity extends BaseHeaderActivity {
 		iv_more.setVisibility(View.GONE);
 		tv_title.setText("aaaa");
 		cb_lock.setChecked(ApplicationUtil.getAppLockState(this)==1?true:false);
-		
+
 		rl_updatelockpassword.setVisibility(cb_lock.isChecked()?View.VISIBLE:View.INVISIBLE);
-		
+
 		cb_lock.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
+
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				rl_updatelockpassword.setVisibility(isChecked?View.VISIBLE:View.INVISIBLE);
 				ApplicationUtil.setAppLock(GresturePasswordSetActivity.this, isChecked?1:2);
 				ApplicationUtil.setAppToBack(GresturePasswordSetActivity.this, 0);
-				
+
 			}
 		});
 	}
