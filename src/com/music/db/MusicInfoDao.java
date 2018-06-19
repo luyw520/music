@@ -1,7 +1,5 @@
 package com.music.db;
 
-import java.util.ArrayList;
-import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -10,8 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 import com.music.bean.MusicInfo;
 import com.music.ui.service.IConstants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MusicInfoDao implements IConstants {
-	
+
 	private static final String TABLE_MUSIC = "music_info";
 	private Context mContext;
 	@SuppressWarnings("unused")
@@ -19,9 +20,9 @@ public class MusicInfoDao implements IConstants {
 	public MusicInfoDao(Context context) {
 		this.mContext = context;
 	}
-	
+
 	public void saveMusicInfo(List<MusicInfo> list) {
-		
+
 		SQLiteDatabase db = DatabaseHelper.getInstance(mContext);
 		db.delete(TABLE_MUSIC, null, null);
 		for (MusicInfo music : list) {
@@ -39,14 +40,14 @@ public class MusicInfoDao implements IConstants {
 			db.insert(TABLE_MUSIC, null, cv);
 		}
 	}
-	
+
 	public List<MusicInfo> getMusicInfo() {
-		SQLiteDatabase db = DatabaseHelper.getInstance(mContext);
-		String sql = "select * from " + TABLE_MUSIC;
-		
+			SQLiteDatabase db = DatabaseHelper.getInstance(mContext);
+			String sql = "select * from " + TABLE_MUSIC;
+
 		return parseCursor(db.rawQuery(sql, null));
 	}
-	
+
 	public List<MusicInfo> parseCursor(Cursor cursor) {
 		List<MusicInfo> list = new ArrayList<MusicInfo>();
 		while(cursor.moveToNext()) {
@@ -83,13 +84,13 @@ public class MusicInfoDao implements IConstants {
 		}
 		return parseCursor(db.rawQuery(sql, new String[]{ selection }));
 	}
-	
+
 	public void setFavoriteStateById(int id, int favorite) {
 		SQLiteDatabase db = DatabaseHelper.getInstance(mContext);
 		String sql = "update " + TABLE_MUSIC + " set favorite = " + favorite + " where _id = " + id;
 		db.execSQL(sql);
 	}
-	
+
 	/**
 	 * @return
 	 */
@@ -108,7 +109,7 @@ public class MusicInfoDao implements IConstants {
 		cursor.close();
 		return has;
 	}
-	
+
 	public int getDataCount() {
 		SQLiteDatabase db = DatabaseHelper.getInstance(mContext);
 		String sql = "select count(*) from " + TABLE_MUSIC;

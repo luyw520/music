@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.lu.library.util.image.BitmapUtils;
 import com.music.MusicApplication;
 import com.music.bean.LyricSentence;
 import com.music.bean.MusicInfo;
@@ -46,7 +48,6 @@ import com.music.utils.DebugLog;
 import com.music.utils.DialogUtil;
 import com.music.utils.MediaUtil;
 import com.music.utils.SPUtils;
-import com.lu.library.util.image.BitmapUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -395,10 +396,11 @@ public class PlayerActivity extends BaseActivity {
 		}else{
 			DebugLog.d("获取专辑图片成功");
 		}
-		iv_music_album.setImageBitmap(BitmapUtils.toRound(bmp,true));
+		iv_music_album.setImageBitmap(BitmapUtils.toRound(bmp,false));
 //		ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(
 //				bmpBg, this)));
-
+		// 这里指定了被共享的视图元素
+		ViewCompat.setTransitionName(iv_music_album, "share");
 	}
 
 	/**

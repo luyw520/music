@@ -301,12 +301,13 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		Bitmap bmp = MediaUtil.getArtwork(getApplicationContext(),
 				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(),
 				true,iv_music_album.getWidth(),iv_music_album.getHeight());
-//		Bitmap bmp = MediaUtil.createAlbumArt(currentMp3Info.getPlayPath());
 		iv_music_album.setImageBitmap(bmp);
 		DeBug.d(this,
 				"currentMp3Info.getDuration():" + currentMp3Info.getDuration());
 		musicTimeProgressView.setMaxProgress(currentMp3Info.getDuration());
 		myNotification.reset();
+
+
 	}
 
 	private void initWidgetData() {
@@ -339,7 +340,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			startActivity(new Intent(this, SettingActivity.class));
 			break;
 		case R.id.music_about_layout:
-			startActivity(PlayerActivity.class,iv_music_album,"");
+			startActivity(PlayerActivity.class);
 			break;
 		case R.id.rl_exit:
 			showExitDialog();
@@ -443,6 +444,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		if (myPlayerNewService!=null&&myPlayerNewService.getMediaPlayer().isPlaying()){
 			mHandler.postDelayed(progressRunnable,100);
 		}
+
+//		}
+
 	}
 
 	/**

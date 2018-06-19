@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.facebook.stetho.Stetho;
 import com.music.db.DBHelper;
 import com.music.helpers.PlayerHelpler;
 import com.music.model.LogMonitor;
@@ -58,6 +59,7 @@ public class MusicApplication extends Application {
 		mSharedPreferences=(getSharedPreferences("lu_music",Context.MODE_PRIVATE));
 		LogMonitor.getInstance().startMonitor();
 		SPUtils.init(this);
+		Stetho.initializeWithDefaults(this);
 	}
 
 	private void initImageLoader(Context applicationContext) {

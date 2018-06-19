@@ -114,7 +114,7 @@
         </activity>
         <activity
             android:name="com.music.ui.activity.PlayerActivity"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTop" >
         </activity>
         <activity
             android:name="com.music.ui.activity.SearchMusicActivity"

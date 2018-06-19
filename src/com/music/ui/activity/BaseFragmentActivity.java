@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -23,7 +23,7 @@ import com.music.utils.SystemBarTintManager;
 import com.music.utils.screen.ScreenShotUtil;
 import com.umeng.analytics.MobclickAgent;
 
-public class BaseFragmentActivity extends FragmentActivity {
+public class BaseFragmentActivity extends AppCompatActivity {
 	protected SystemBarTintManager tintManager;
 	@SuppressLint("ResourceAsColor")
 	@TargetApi(Build.VERSION_CODES.KITKAT)
