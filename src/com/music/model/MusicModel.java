@@ -12,10 +12,10 @@ import com.music.bean.AlbumInfo;
 import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
+import com.music.db.DBHelper;
 import com.music.utils.DeBug;
 import com.music.utils.DebugLog;
 import com.music.utils.LogUtil;
-import com.music.utils.MusicUtils;
 import com.music.utils.StringUtil;
 
 import java.io.File;
@@ -114,8 +114,6 @@ public class MusicModel {
         if (cursor == null) {
             return null;
         }
-        DeBug.d(MusicUtils.class,
-                "getMusicList,local music,size:" + cursor.getCount());
         while (cursor.moveToNext()) {
             String url = cursor.getString(cursor
                     .getColumnIndex(MediaStore.Audio.Media.DATA));
@@ -173,29 +171,29 @@ public class MusicModel {
         return list;
     }
 
+
     /**
      * 通过 EXTERNAL_CONTENT_URI查找所有音乐文件
      * @param context
      * @return
      */
     private  List<MusicInfo> getAllMusicInfos(Context context) {
-        long time1 = System.currentTimeMillis();
         Cursor cursor = context.getContentResolver().query(
                 MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,
                 MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
 
-//        List<MusicInfo> musicInfos = new ArrayList<MusicInfo>();
-        LogUtil.d(this,"cursor.getCount()=" + cursor.getCount());
+        LogUtil.d(this,"从手机多媒体库中查询 cursor.getCount()=" + cursor.getCount());
         while (cursor.moveToNext()) {
             String url = cursor.getString(cursor
                     .getColumnIndex(MediaStore.Audio.Media.DATA));
             long size = cursor.getLong(cursor
                     .getColumnIndex(MediaStore.Audio.Media.SIZE)); //
             if (isMP3(url)&&isMusic(size)){
-                musicList.add(resovleMusicInfoFromCursor(cursor));
+                MusicInfo musicInfo=resovleMusicInfoFromCursor(cursor);
+                musicList.add(musicInfo);
+                DBHelper.getInstance().insertOrReplace(musicInfo);
             }
         }
-        long time2 = System.currentTimeMillis();
         return musicList;
     }
     /**
@@ -329,7 +327,6 @@ public class MusicModel {
             }
             info.number_of_tracks = cursor.getInt(cursor
                     .getColumnIndex(MediaStore.Audio.Artists.NUMBER_OF_TRACKS));
-            DeBug.d(MusicUtils.class,info.toString());
             list.add(info);
         }
         cursor.close();

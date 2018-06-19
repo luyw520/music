@@ -15,6 +15,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lu.library.overscroll.VerticalOverScrollBounceEffectDecorator;
 import com.lu.library.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
 import com.music.bean.MusicInfo;
+import com.music.db.DBHelper;
 import com.music.helpers.PlayerHelpler;
 import com.music.lu.R;
 import com.music.model.MusicModel;
@@ -111,7 +112,7 @@ public class SongFragment extends BaseFragment implements IConstants{
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 		adapter=new CommonRecyclerViewAdapter<MusicInfo>(getContext(),R.layout.item_listview__layout,mp3Infos) {
 			@Override
-			protected void convert(CommonRecyclerViewHolder holder, MusicInfo mp3Info, int position) {
+			protected void convert(CommonRecyclerViewHolder holder, final MusicInfo mp3Info, int position) {
 				holder.setText(R.id.music_title,mp3Info.getTitle()); //
 				holder.setText(R.id.music_album,mp3Info.getArtist());
 				holder.setText(R.id.catalog,mp3Info.getTitleKey().substring(0, 1));
@@ -129,6 +130,18 @@ public class SongFragment extends BaseFragment implements IConstants{
 						holder.itemView.setTag(NONE_STICKY_VIEW);
 					}
 				}
+				if (mp3Info.getTag()==0){
+					holder.setImageResource(R.id.albumImage,R.drawable.note_btn_love_white);
+				}else{
+					holder.setImageResource(R.id.albumImage,R.drawable.note_btn_loved);
+				}
+				holder.getView(R.id.albumImage).setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						DBHelper.getInstance().setMusicLove(mp3Info);
+						adapter.notifyDataSetChanged();
+					}
+				});
 			}
 
 		};

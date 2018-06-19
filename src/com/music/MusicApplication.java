@@ -5,14 +5,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.facebook.stetho.Stetho;
+import com.lu.library.monitor.BlockDetectByPrinter;
 import com.music.db.DBHelper;
 import com.music.helpers.PlayerHelpler;
-import com.music.model.LogMonitor;
 import com.music.model.ScreenManager;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
 import com.music.utils.FileUtils;
-import com.music.utils.MusicUtils;
 import com.music.utils.SPUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -23,7 +22,6 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import java.io.File;
 
 public class MusicApplication extends Application {
-	private static final String TAG = "MusicApplication";
 	private static MusicApplication musicApplication;
 	private LockPatternUtils mLockPatternUtils;
 	public static final int DARK_THEME = 0;
@@ -38,8 +36,6 @@ public class MusicApplication extends Application {
 	public int getCurrentTheme(){
 		return DARK_THEME;
 	}
-//	public static void setmSharedPreferences(SharedPreferences mSharedPreferences) {
-//		MusicApplication.mSharedPreferences = mSharedPreferences;
 //	}
 	public long lastPlayTime=0;
 	private MyPlayerNewService myPlayerNewService;
@@ -49,15 +45,11 @@ public class MusicApplication extends Application {
 		musicApplication=this;
 		screenManager=ScreenManager.getScreenManager();
 		PlayerHelpler.init(this);
-//		BitmapCacheUtil.init(this);
-		MusicUtils.init(this);
 		setmLockPatternUtils(new LockPatternUtils(this));
-
 		initImageLoader(getApplicationContext());
 		DBHelper.getInstance().init();
-
 		mSharedPreferences=(getSharedPreferences("lu_music",Context.MODE_PRIVATE));
-		LogMonitor.getInstance().startMonitor();
+		BlockDetectByPrinter.start();
 		SPUtils.init(this);
 		Stetho.initializeWithDefaults(this);
 	}
@@ -75,9 +67,6 @@ public class MusicApplication extends Application {
 	}
 	public static MusicApplication getInstance() {
 		return musicApplication;
-	}
-	public static void setMusicApplication(MusicApplication musicApplication) {
-		MusicApplication.musicApplication = musicApplication;
 	}
 	public LockPatternUtils getLockPatternUtils() {
 		return mLockPatternUtils;

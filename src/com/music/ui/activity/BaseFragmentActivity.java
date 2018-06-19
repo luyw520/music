@@ -16,12 +16,18 @@ import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
 import com.music.MusicApplication;
 import com.music.annotation.ComputeTimeUtil;
+import com.music.bean.MessageEvent;
 import com.music.lu.R;
 import com.music.utils.ApplicationUtil;
 import com.music.utils.DeBug;
 import com.music.utils.SystemBarTintManager;
 import com.music.utils.screen.ScreenShotUtil;
 import com.umeng.analytics.MobclickAgent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 
 public class BaseFragmentActivity extends AppCompatActivity {
 	protected SystemBarTintManager tintManager;
@@ -30,12 +36,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow()
 				.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //
-//		getWindow().addFlags(
-//				WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		ViewUtils.inject(this);
 		ComputeTimeUtil.inject(this);
 		tintManager = new SystemBarTintManager(this);
@@ -43,7 +46,16 @@ public class BaseFragmentActivity extends AppCompatActivity {
 		tintManager.setNavigationBarTintEnabled(true);
 
 		tintManager.setTintColor(getResources().getColor(R.color.transparent));
+
 	}
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void messageEventBus(MessageEvent event){
+		handleMessage(event);
+	}
+
+	protected void handleMessage(MessageEvent event) {
+	}
+
 	/**
 	 * Sets the entire activity-wide theme.
 	 */
@@ -92,6 +104,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 		if(ApplicationUtil.getYaoYiYao(this)){
 			ScreenShotUtil.getInstance().registerShakeToScrShot(this);
 		}
+		EventBus.getDefault().register(this);
 	}
 
 	@Override
@@ -99,5 +112,6 @@ public class BaseFragmentActivity extends AppCompatActivity {
 		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);
+		EventBus.getDefault().unregister(this);
 	}
 }

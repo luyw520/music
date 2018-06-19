@@ -4,6 +4,8 @@ import com.music.MusicApplication;
 import com.music.bean.DaoMaster;
 import com.music.bean.DaoSession;
 import com.music.bean.MusicInfo;
+import com.music.model.MusicModel;
+import com.music.utils.DebugLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,6 @@ import static com.music.ui.service.IConstants.DB_NAME;
  */
 
 public class DBHelper {
-//    com.music.bean.MusicInfoDao musicInfoDao;
 
     DaoMaster daoMaster;
     DaoSession daoSession;
@@ -30,17 +31,32 @@ public class DBHelper {
         daoSession=daoMaster.newSession();
     }
     public void insertOrReplace(MusicInfo musicInfo){
-//        MusicInfoDao dao=daoSession.getMusicInfoDao();
-//        dao.insertOrReplace(musicInfo);
+        com.music.bean.MusicInfoDao dao=daoSession.getMusicInfoDao();
+        dao.insertOrReplace(musicInfo);
     }
-    public List<MusicInfo> queryAllMusic(){
+    public List<MusicInfo> sortMp3InfosByTitle(){
         if (musicInfoList!=null&&!musicInfoList.isEmpty()){
             return musicInfoList;
         }
-//        musicInfoList.clear();
-//        MusicInfoDao dao=daoSession.getMusicInfoDao();
-//        List<MusicInfo> list=dao.queryBuilder().orderAsc(MusicInfoDao.Properties.TitleKey).list();
-//        musicInfoList.addAll(list);
+        musicInfoList.clear();
+        com.music.bean.MusicInfoDao dao=daoSession.getMusicInfoDao();
+        List<MusicInfo> list=dao.queryBuilder().orderAsc(com.music.bean.MusicInfoDao.Properties.TitleKey).list();
+        if (list.isEmpty()){
+            DebugLog.d("本地数据没有，去手机多媒体数据库查询");
+            list.addAll(MusicModel.getInstance().sortMp3InfosByTitle(MusicApplication.getInstance()));
+        }else{
+            DebugLog.d("从本地数据库获取 ");
+            MusicModel.getInstance().getMusicList().addAll(list);
+        }
+        musicInfoList.addAll(list);
         return null;
+    }
+    public void setMusicLove(MusicInfo musicInfo){
+       if (musicInfo.getTag()==0){
+           musicInfo.setTag(1);
+       }else{
+           musicInfo.setTag(0);
+       }
+        insertOrReplace(musicInfo);
     }
 }

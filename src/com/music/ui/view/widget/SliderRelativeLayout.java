@@ -1,8 +1,5 @@
 package com.music.ui.view.widget;
 
-import com.music.lu.R;
-import com.music.ui.activity.LockScreenActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,6 +14,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import com.music.lu.R;
+import com.music.ui.activity.LockScreenActivity;
 
 public class SliderRelativeLayout extends RelativeLayout {
 	private final static String TAG = "SliderRelativeLayout";
@@ -53,7 +53,7 @@ public class SliderRelativeLayout extends RelativeLayout {
 	 */
 	private void intiDragBitmap() {
 		if(dragBitmap == null){
-			dragBitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.love);
+			dragBitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.img_favourite_love);
 		}
 	}
 

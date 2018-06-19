@@ -6,22 +6,27 @@
    <include layout="@layout/song_sticky_header_view"/>
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:background="@drawable/selector_press" >
 
         <ImageView
             android:id="@+id/albumImage"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/img_favourite_normal" />
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/note_btn_love_white" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/albumImage"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical">
         <TextView
             android:id="@+id/music_title"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/albumImage"
             android:ellipsize="end"
             android:maxEms="10"
             android:singleLine="true"
@@ -29,11 +34,9 @@
             android:textColor="#000000"
             android:textSize="18sp" />
         <TextView
-            android:layout_below="@+id/music_title"
             android:id="@+id/music_album"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/albumImage"
             android:ellipsize="end"
             android:maxEms="10"
             android:singleLine="true"
@@ -41,6 +44,7 @@
             android:layout_marginTop="3dp"
             android:textColor="#818181"
             android:textSize="14sp" />
+        </LinearLayout>
     </RelativeLayout>
 	<View
 	    android:layout_width="fill_parent"

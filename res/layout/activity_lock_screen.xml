@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:src="@drawable/love" />
+                android:src="@drawable/img_favourite_love" />
         </RelativeLayout>
     </com.music.ui.view.widget.SliderRelativeLayout>
 

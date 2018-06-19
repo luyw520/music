@@ -15,7 +15,6 @@ import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -33,11 +32,12 @@ import com.music.annotation.ComputeTime;
 import com.music.bean.AlbumInfo;
 import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
+import com.music.bean.MessageEvent;
 import com.music.bean.MusicInfo;
 import com.music.bean.UserManager;
+import com.music.db.DBHelper;
 import com.music.helpers.PlayerHelpler;
 import com.music.lu.R;
-import com.music.model.MusicModel;
 import com.music.ui.broadcastreceiver.MediaButtonReceiver;
 import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
 import com.music.ui.broadcastreceiver.State;
@@ -53,12 +53,18 @@ import com.music.ui.view.widget.MusicTimeProgressView;
 import com.music.ui.widget.slidingmenu2.SlidingMenu;
 import com.music.utils.ApplicationUtil;
 import com.music.utils.AsyncTaskUtil;
+import com.music.utils.ConstantUtil;
 import com.music.utils.DeBug;
+import com.music.utils.DebugLog;
 import com.music.utils.DialogUtil;
 import com.music.utils.LogUtil;
 import com.music.utils.MediaUtil;
 import com.music.utils.PhotoUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import static com.music.utils.ConstantUtil.MUSIC_CURRENT;
+import static com.music.utils.ConstantUtil.MUSIC_DURATION;
+import static com.music.utils.ConstantUtil.MUSIC_PAUSE;
 
 /**
  *主界面
@@ -229,7 +235,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 				@Override
 				public Object doInBackground(String... arg0) {
-					MusicModel.getInstance().sortMp3InfosByTitle(getApplicationContext());
+					DBHelper.getInstance().sortMp3InfosByTitle();
 					PlayerHelpler.getDefault().init();
 					return null;
 				}
@@ -362,7 +368,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	 */
 	private void chooseHeader() {
 		if (!UserManager.isLogin()) {
-			DialogUtil.showToast(getApplicationContext(), "mmmm");
+			DialogUtil.showToast(getApplicationContext(), R.string.no_login_tips);
 			Intent intent2 = new Intent(this, LoginActivity.class);
 			startActivityForResult(intent2, REQUESTCODE_LOGIN);
 		} else {
@@ -394,7 +400,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	 * 选择头像对话框
 	 */
 	private void chooseHeaderImgDialog() {
-		DialogUtil.showAlertDialog(this, "ttt", new String[] { "tt", "tttt" },
+		DialogUtil.showAlertDialog(this, getString(R.string.select_dialog_title), new String[] { getString(R.string.select_dialog_capture), getString(R.string.select_dialog_pick) },
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -419,8 +425,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (!isHome) {
 				tv_title.setText(R.string.local_music);
@@ -440,19 +444,16 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-
 		if (myPlayerNewService!=null&&myPlayerNewService.getMediaPlayer().isPlaying()){
 			mHandler.postDelayed(progressRunnable,100);
 		}
 
-//		}
 
 	}
 
 	/**
 	 */
 	private void registerReceiver() {
-
 		regisgerPlayStateReceiver();
 
 	}
@@ -487,6 +488,33 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			mHandler.postDelayed(progressRunnable,100);
 		}
 	};
+
+	public void handleMessage(MessageEvent event){
+		DebugLog.d("接收事件:"+event.toString());
+		switch (event.type){
+			case ConstantUtil.MUSIC_PLAYER:
+				btn_musicPlaying
+						.setImageResource(R.drawable.img_button_notification_play_pause);
+				myNotification.setPlayImageState(true);
+				mHandler.postDelayed(progressRunnable,100);
+				break;
+			case MUSIC_CURRENT:
+				int currentTime = (int) event.getData();
+				mp3Util.setCurrentTime(currentTime);
+				tv_music_CurrentTime.setText(MediaUtil.formatTime(currentTime));
+				musicTimeProgressView.setCurrentProgress(currentTime);
+				break;
+			case MUSIC_DURATION:
+				resetPlayState();
+				break;
+			case MUSIC_PAUSE:
+				btn_musicPlaying
+						.setImageResource(R.drawable.img_button_notification_play_play);
+				myNotification.setPlayImageState(false);
+				mHandler.removeCallbacks(progressRunnable);
+				break;
+		}
+	}
 	/**
 	 *
 	 *
@@ -526,22 +554,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			mHandler.postDelayed(progressRunnable,100);
 		}
 
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-//		switch (item.getItemId()) {
-//		case R.id.action_settings:
-//			startActivity(new Intent(this, SettingActivity.class));
-//			break;
-//		case R.id.action_exit:
-//			showExitDialog();
-//			break;
-//
-//		default:
-//			break;
-//		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	private void showExitDialog() {
