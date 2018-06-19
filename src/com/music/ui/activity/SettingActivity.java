@@ -34,7 +34,6 @@ import com.music.utils.LogUtil;
 import com.music.utils.SensorManagerUtil;
 import com.music.utils.SensorManagerUtil.SensorChangedListener;
 import com.music.utils.SharedPreHelper;
-import com.lu.library.util.image.BitmapCacheUtil;
 import com.music.utils.screen.ScreenShotUtil;
 
 @ContentView(value = R.layout.activity_setting)
@@ -104,6 +103,7 @@ public class SettingActivity extends BaseActivity implements ChangeSkinContract.
 		}else{
 			toggleNotificationListenerService();
 		}
+
 	};
 	private void toggleNotificationListenerService() {
 		PackageManager pm = getPackageManager();
@@ -120,7 +120,7 @@ public class SettingActivity extends BaseActivity implements ChangeSkinContract.
 		iv_search.setVisibility(View.GONE);
 		tv_title.setText(R.string.title_setting);
 
-		tv_cache.setText(BitmapCacheUtil.getDefalut().formatFileSize());
+//		tv_cache.setText(BitmapCacheUtil.getDefalut().formatFileSize());
 
 		cbScreenShot.setChecked(ApplicationUtil.getYaoYiYao(this));
 

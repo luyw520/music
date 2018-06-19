@@ -3,10 +3,13 @@ package com.music.ui.activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
@@ -35,6 +38,7 @@ import com.music.bean.UserManager;
 import com.music.helpers.PlayerHelpler;
 import com.music.lu.R;
 import com.music.model.MusicModel;
+import com.music.ui.broadcastreceiver.MediaButtonReceiver;
 import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
 import com.music.ui.broadcastreceiver.State;
 import com.music.ui.fragment.LocalMusicFragment;
@@ -157,6 +161,12 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 				dwableDuaration);
 		initData();
 		registerReceiver();
+
+		mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		// AudioManager注册一个MediaButton对象
+		mComponentName = new ComponentName(getPackageName(), MediaButtonReceiver.class.getName());
+		mAudioManager.registerMediaButtonEventReceiver(mComponentName);
+//		registerReceiver(headSetReceiver, new IntentFilter(Intent.ACTION_HEADSET_PLUG));
 	}
 
 
@@ -261,7 +271,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		}
 
 	}
-
+	private AudioManager mAudioManager;
+	private ComponentName mComponentName;
 	/**
 	 * 登录后
 	 * @param data

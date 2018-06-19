@@ -13,7 +13,6 @@ import com.music.ui.widget.lockpatternview.LockPatternUtils;
 import com.music.utils.FileUtils;
 import com.music.utils.MusicUtils;
 import com.music.utils.SPUtils;
-import com.lu.library.util.image.BitmapCacheUtil;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -41,6 +40,7 @@ public class MusicApplication extends Application {
 //	public static void setmSharedPreferences(SharedPreferences mSharedPreferences) {
 //		MusicApplication.mSharedPreferences = mSharedPreferences;
 //	}
+	public long lastPlayTime=0;
 	private MyPlayerNewService myPlayerNewService;
 	@Override
 	public void onCreate() {
@@ -48,7 +48,7 @@ public class MusicApplication extends Application {
 		musicApplication=this;
 		screenManager=ScreenManager.getScreenManager();
 		PlayerHelpler.init(this);
-		BitmapCacheUtil.init(this);
+//		BitmapCacheUtil.init(this);
 		MusicUtils.init(this);
 		setmLockPatternUtils(new LockPatternUtils(this));
 

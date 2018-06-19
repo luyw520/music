@@ -1,10 +1,5 @@
 package com.music.bean;
 
-import com.music.utils.AsyncTaskUtil;
-import com.lu.library.util.image.BitmapCacheUtil;
-import com.music.utils.PhotoUtils;
-import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +13,10 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
+
+import com.music.utils.AsyncTaskUtil;
+import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
+import com.music.utils.PhotoUtils;
 
 public class UserManager {
 	private static UserManager userManager=null;
@@ -111,8 +110,8 @@ public class UserManager {
 			@Override
 			public Object doInBackground(String... arg0) {
 				// TODO Auto-generated method stub
-				Bitmap bitmap=BitmapCacheUtil.getDefalut().getCacheBitmap(url);
-				return bitmap;
+//				Bitmap bitmap=BitmapCacheUtil.getDefalut().getCacheBitmap(url);
+				return null;
 			}
 		});
 		asyncTaskUtil.execute(url);

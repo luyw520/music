@@ -3,8 +3,10 @@ package com.music.ui.service;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.text.TextUtils;
@@ -22,6 +24,12 @@ import com.music.utils.DebugLog;
 
 @SuppressLint("OverrideAbstract")
 public class MyNotificationListenerService extends NotificationListenerService {
+    @Override
+    public IBinder onBind(Intent intent) {
+        DebugLog.d("服务已经绑定.....");
+        return super.onBind(intent);
+    }
+
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
         super.onNotificationPosted(sbn);

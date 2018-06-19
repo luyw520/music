@@ -1,7 +1,6 @@
 package com.lu.library.util.file;
 
 
-import com.music.utils.LogUtil;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -54,7 +53,7 @@ public class IOUtil {
 
     private String encodeStream(InputStream in, String iencode) throws IOException {
         InputStreamReader reader;
-        LogUtil.d(IOUtil.class, ".....iencode:" + iencode);
+//        LogUtil.d(IOUtil.class, ".....iencode:" + iencode);
         reader = new InputStreamReader(in, iencode);
         BufferedReader tBufferedReader = new BufferedReader(reader);
         StringBuffer tStringBuffer = new StringBuffer();

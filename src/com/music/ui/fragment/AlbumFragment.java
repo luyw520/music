@@ -1,11 +1,5 @@
 package com.music.ui.fragment;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -25,16 +19,21 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.music.bean.AlbumInfo;
 import com.music.lu.R;
 import com.music.model.MusicModel;
+import com.music.ui.activity.LocalMusicActivity;
 import com.music.ui.service.IConstants;
 import com.music.ui.service.IMediaService;
+import com.music.ui.widget.indexablelistview.IndexableListView;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
-import com.lu.library.util.image.BitmapCacheUtil;
 import com.music.utils.DeBug;
 import com.music.utils.PhotoUtils;
 import com.music.utils.StringUtil;
-import com.music.ui.activity.LocalMusicActivity;
-import com.music.ui.widget.indexablelistview.IndexableListView;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *所有专辑
@@ -273,8 +272,9 @@ public class AlbumFragment extends BaseFragment {
 		public void loadImage(ImageView albumImage, final String album_path,
 				final int postion) {
 
-			Bitmap bitmap = BitmapCacheUtil.getDefalut()
-					.getBitmapFromMemoryCache(album_path);
+//			Bitmap bitmap = BitmapCacheUtil.getDefalut()
+//					.getBitmapFromMemoryCache(album_path);
+			Bitmap bitmap =null;
 
 			if (bitmap == null) {
 
@@ -303,8 +303,8 @@ public class AlbumFragment extends BaseFragment {
 								b = PhotoUtils.createBitmap(arg0[0], 50,50);
 
 								if (b != null) {
-									BitmapCacheUtil.getDefalut()
-											.addBitmapToMemoryCache(arg0[0], b);
+//									BitmapCacheUtil.getDefalut()
+//											.addBitmapToMemoryCache(arg0[0], b);
 
 //									isLoaded[postion] = 1;
 									DeBug.d(TAG, "b.getWidth():"+b.getWidth());
