@@ -47,6 +47,7 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 
 	private RelativeLayout rl_folder,rl_album,rl_artist,rl_song;
 
+
 	/**
 	 * 线占屏幕的几分之几
 	 */

@@ -3,16 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
-    <TextView
-        android:id="@+id/catalog"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#E0E0E0"
-        android:paddingBottom="5dip"
-        android:paddingLeft="20dip"
-        android:paddingTop="5dip"
-        android:text="A"
-        android:textColor="#454545" />
+   <include layout="@layout/song_sticky_header_view"/>
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -51,7 +42,7 @@
             android:textColor="#818181"
             android:textSize="14sp" />
     </RelativeLayout>
-	<View   
+	<View
 	    android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#E0E0E0"/>

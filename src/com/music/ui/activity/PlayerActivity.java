@@ -391,7 +391,7 @@ public class PlayerActivity extends BaseActivity {
 //				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), ScreenUtils.getScreenWidth(getApplicationContext()),ScreenUtils.getScreenHeight(getApplicationContext()));
 		if (bmp==null){
 			DebugLog.d("获取专辑图片失败");
-			bmp= BitmapFactory.decodeResource(getResources(),R.drawable.girl);
+			bmp= BitmapFactory.decodeResource(getResources(),R.drawable.lmusic);
 		}else{
 			DebugLog.d("获取专辑图片成功");
 		}

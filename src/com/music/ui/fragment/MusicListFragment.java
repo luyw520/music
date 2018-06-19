@@ -53,7 +53,7 @@ public class MusicListFragment extends BaseFragment implements IConstants{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		View view = inflater.inflate(R.layout.fragment, container,
+		View view = inflater.inflate(R.layout.fragment_song, container,
 				false);
 		initViewWidget(view);
 

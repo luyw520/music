@@ -2,6 +2,7 @@ package com.music.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -13,13 +14,13 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
+import com.music.MusicApplication;
 import com.music.annotation.ComputeTimeUtil;
 import com.music.lu.R;
 import com.music.utils.ApplicationUtil;
 import com.music.utils.DeBug;
-import com.music.utils.screen.ScreenShotUtil;
 import com.music.utils.SystemBarTintManager;
-import com.music.MusicApplication;
+import com.music.utils.screen.ScreenShotUtil;
 import com.umeng.analytics.MobclickAgent;
 
 public class BaseFragmentActivity extends FragmentActivity {
@@ -57,6 +58,15 @@ public class BaseFragmentActivity extends FragmentActivity {
 	}
 	protected void startActivity(Class<?> class1) {
 		startActivity(new Intent(this, class1));
+	}
+	protected void startActivity(Class<?> clazz,View sharedElement,String sharedElementName) {
+		if (Build.VERSION.SDK_INT>21){
+			ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, sharedElement, sharedElementName);
+			startActivity(new Intent(this, clazz),options.toBundle());
+		}else{
+			startActivity(clazz);
+		}
+
 	}
 
 	protected void changeFont(ViewGroup root) {

@@ -339,7 +339,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			startActivity(new Intent(this, SettingActivity.class));
 			break;
 		case R.id.music_about_layout:
-			startActivity(PlayerActivity.class);
+			startActivity(PlayerActivity.class,iv_music_album,"");
 			break;
 		case R.id.rl_exit:
 			showExitDialog();

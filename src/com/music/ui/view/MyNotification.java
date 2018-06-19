@@ -16,6 +16,8 @@ import com.music.utils.MediaUtil;
 import com.music.helpers.PlayerHelpler;
 import com.music.ui.activity.LocalMusicActivity;
 
+import static android.content.Intent.FILL_IN_ACTION;
+
 /**
  * 通知栏
  */
@@ -54,11 +56,6 @@ public class MyNotification {
 		RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
 				R.layout.notification_layout);
 
-		remoteViews.setTextViewText(R.id.tv_title_notification, playerHelpler.getCurrentMp3Info().getTitle());
-		Bitmap bitmap = MediaUtil.getArtwork(context,
-				playerHelpler.getCurrentMp3Info().getSongId(), playerHelpler
-						.getCurrentMp3Info().getAlbumId(), true, true);
-		remoteViews.setImageViewBitmap(R.id.iv_notification, bitmap);
 
 
 		Intent intent = new Intent(AppConstant.NOTIFICATION_PLAY_PAUSE);
@@ -69,7 +66,7 @@ public class MyNotification {
 
 		Intent intent2 = new Intent(AppConstant.NOTIFICATION_NEXT);
 		PendingIntent pendingIntent2 = PendingIntent.getBroadcast(context, 1,
-				intent2, 1);
+				intent2, FILL_IN_ACTION);
 		remoteViews.setOnClickPendingIntent(R.id.iv_next_notification,
 				pendingIntent2);
 		return remoteViews;
@@ -83,6 +80,7 @@ public class MyNotification {
 				playerHelpler.getCurrentMp3Info().getTitle(),
 				System.currentTimeMillis());
 		remoteViews=initRemoteViews();
+		bindViewData();
 		Intent intent3 = new Intent(Intent.ACTION_MAIN);
 		intent3.setClass(context, LocalMusicActivity.class);
 		intent3.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -94,8 +92,6 @@ public class MyNotification {
 
 		notification.flags = Notification.FLAG_ONGOING_EVENT;
 		notification.contentIntent = contentIntent;
-//		notification.setLatestEventInfo(context, " ", "",
-//				contentIntent);
 		notification.contentView = remoteViews;
 		notificationManager.notify(id, notification);
 	}
@@ -119,11 +115,7 @@ public class MyNotification {
 		}
 		notificationManager.notify(id, notification);
 	}
-	/**
-	 */
-	public void reset(){
-
-
+	void bindViewData(){
 		Bitmap bitmap = MediaUtil.getArtwork(context,
 				playerHelpler.getCurrentMp3Info().getSongId(),  playerHelpler
 						.getCurrentMp3Info().getAlbumId(), true, true);
@@ -131,6 +123,12 @@ public class MyNotification {
 				R.drawable.img_button_notification_play_pause);
 		remoteViews.setImageViewBitmap(R.id.iv_notification, bitmap);
 		remoteViews.setTextViewText(R.id.tv_title_notification, playerHelpler.getCurrentMp3Info().getTitle());
+		remoteViews.setTextViewText(R.id.tv_name,playerHelpler.getCurrentMp3Info().getArtist());
+	}
+	/**
+	 */
+	public void reset(){
+		bindViewData();
 		notificationManager.notify(id, notification);
 
 	}

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@color/header_bg"
     android:orientation="vertical" >
 
     <ImageView
@@ -10,20 +11,40 @@
         android:layout_height="50dp"
         android:layout_margin="5dp"
         android:background="@drawable/playing_bar_default_avatar" />
-
-    <TextView
-        android:id="@+id/tv_title_notification"
-        android:layout_width="100dp"
+    <LinearLayout
+        android:layout_toRightOf="@+id/iv_notification"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_title_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/iv_notification"
         android:ellipsize="end"
+        android:maxEms="20"
         android:focusable="true"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"
+        android:textColor="@color/player_track_color"
         android:text="刘若英-我们没有在一起" />
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:ellipsize="end"
+        android:focusable="true"
+        android:textSize="12sp"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/player_track_color"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="刘若英" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/iv_next_notification"

@@ -1,10 +1,10 @@
 package com.music.ui.fragment;
 
-import java.util.List;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +12,23 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lu.library.overscroll.VerticalOverScrollBounceEffectDecorator;
+import com.lu.library.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
 import com.music.bean.FolderInfo;
 import com.music.lu.R;
 import com.music.model.MusicModel;
-import com.music.ui.service.IConstants;
-import com.music.ui.service.IMediaService;
-import com.music.utils.LogUtil;
 import com.music.ui.activity.LocalMusicActivity;
 import com.music.ui.adapter.LuAdapter;
+import com.music.ui.recyclerview.CommonRecyclerViewAdapter;
+import com.music.ui.recyclerview.MultiItemTypeAdapterForRV;
+import com.music.ui.recyclerview.base.CommonRecyclerViewHolder;
+import com.music.ui.service.IConstants;
+import com.music.ui.service.IMediaService;
 import com.music.ui.widget.indexablelistview.IndexableListView;
+import com.music.utils.DebugLog;
+import com.music.utils.LogUtil;
+
+import java.util.List;
 
 /**
  *文件夹
@@ -37,6 +45,11 @@ public class FolderFragment extends Fragment {
 	private  List<FolderInfo> folderInfos;
 	private MusicListItemClickListener musicListItemClickListener;
 
+
+	RecyclerView recyclerView;
+
+	CommonRecyclerViewAdapter<FolderInfo> adapter;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,7 +61,7 @@ public class FolderFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View view = inflater.inflate(R.layout.fragment, container,
+		View view = inflater.inflate(R.layout.fragment_song, container,
 				false);
 		initViewWidget(view);
 
@@ -60,21 +73,50 @@ public class FolderFragment extends Fragment {
 	 */
 	private void initViewWidget(View view) {
 
-		mMusiclist = (IndexableListView) view.findViewById(R.id.listview);
-
-		mMusiclist.setFastScrollEnabled(true);
-		mMusiclist.setOnItemClickListener(musicListItemClickListener);
+//		mMusiclist = (IndexableListView) view.findViewById(R.id.listview);
+//
+//		mMusiclist.setFastScrollEnabled(true);
+//		mMusiclist.setOnItemClickListener(musicListItemClickListener);
 
 
 //		folderInfos = MusicUtils.getDefault().queryFolder(getActivity());
 		folderInfos = MusicModel.getInstance().queryFolder(getActivity());
-		listAdapter = new ArtistAdapter(getActivity(),folderInfos,R.layout.item_listview_folder);
+//		listAdapter = new ArtistAdapter(getActivity(),folderInfos,R.layout.item_listview_folder);
+//
+//
+//
+//		mMusiclist.setShow(false);
+//		mMusiclist.setAdapter(listAdapter);
+		view.findViewById(R.id.catalog).setVisibility(View.GONE);
+		initRecycleView(view);
 
+	}
 
+	private void initRecycleView(View root) {
 
-		mMusiclist.setShow(false);
-		mMusiclist.setAdapter(listAdapter);
+		recyclerView=root.findViewById(R.id.recyclerView);
+		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+		DebugLog.d("size:"+folderInfos.size());
+		adapter=new CommonRecyclerViewAdapter<FolderInfo>(getContext(),R.layout.item_listview_folder,folderInfos) {
+			@Override
+			protected void convert(CommonRecyclerViewHolder holder, FolderInfo folderInfo, int position){
+				DebugLog.d("position:"+position+","+folderInfo.toString());
+				holder.setText(R.id.tv_folder_name,folderInfo.folder_name);
+				holder.setText(R.id.tv_folder_path,folderInfo.folder_path);
+			}};
+		adapter.setOnItemClickListener(new MultiItemTypeAdapterForRV.OnItemClickListener() {
+			@Override
+			public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+				((LocalMusicActivity)getActivity()).changeFragment(IConstants.START_FROM_FOLDER,folderInfos.get(position));
+			}
 
+			@Override
+			public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+				return false;
+			}
+		});
+		recyclerView.setAdapter(adapter);
+		new VerticalOverScrollBounceEffectDecorator(new RecyclerViewOverScrollDecorAdapter(recyclerView));
 	}
 
 	class MusicListItemClickListener implements OnItemClickListener {

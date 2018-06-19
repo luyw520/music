@@ -13,6 +13,7 @@ import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
 import com.music.utils.DeBug;
+import com.music.utils.DebugLog;
 import com.music.utils.LogUtil;
 import com.music.utils.MusicUtils;
 import com.music.utils.StringUtil;
@@ -286,6 +287,7 @@ public class MusicModel {
             info.folder_name = info.folder_path.substring(info.folder_path
                     .lastIndexOf(File.separator) + 1);
             list.add(info);
+            DebugLog.d(info.toString());
         }
         cursor.close();
         return list;
