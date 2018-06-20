@@ -10,7 +10,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp" >
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
 
         <ImageView
             android:id="@+id/iv_back"
@@ -35,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/iv_more"
+            android:layout_centerVertical="true"
             android:background="@drawable/selector_press"
             android:src="@drawable/ic_common_title_bar_search" />
 
@@ -43,6 +46,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:background="@drawable/selector_press"
             android:src="@drawable/ic_common_title_bar_menu" />
     </RelativeLayout>

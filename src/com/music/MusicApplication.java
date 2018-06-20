@@ -3,6 +3,7 @@ package com.music;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.StrictMode;
 
 import com.facebook.stetho.Stetho;
 import com.lu.library.monitor.BlockDetectByPrinter;
@@ -18,6 +19,7 @@ import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.umeng.socialize.UMShareAPI;
 
 import java.io.File;
 
@@ -52,6 +54,17 @@ public class MusicApplication extends Application {
 		BlockDetectByPrinter.start();
 		SPUtils.init(this);
 		Stetho.initializeWithDefaults(this);
+
+//		UMAnalyticsConfig.
+		UMShareAPI.init(this,"5b2a150ef43e4809b500000f");
+		init7_0();
+	}
+	private void init7_0() {
+
+		// android 7.0系统解决拍照的问题
+		StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+		StrictMode.setVmPolicy(builder.build());
+		builder.detectFileUriExposure();
 	}
 
 	private void initImageLoader(Context applicationContext) {

@@ -14,9 +14,13 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.music.lu.R;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
 import com.music.utils.PhotoUtils;
+import com.music.utils.SPUtils;
+
+import static com.music.utils.PhotoUtils.HEADER_PATH;
 
 public class UserManager {
 	private static UserManager userManager=null;
@@ -31,11 +35,6 @@ public class UserManager {
 	private UserManager(){
 
 	}
-	/**
-	 */
-	public static boolean isLogin(){
-		return userBean!=null;
-	}
 	public  static UserManager getInstance(){
 		if(userManager==null){
 			userManager=new UserManager();
@@ -46,29 +45,18 @@ public class UserManager {
 	 * @param context
 	 * @return
 	 */
-	public static UserBean getUserBean(Context context){
-		SharedPreferences sharedPreferences=context.getSharedPreferences(USERINFO, Context.MODE_PRIVATE);
-		String username=sharedPreferences.getString("username", "");
+	public static UserBean getUserBean(Context context) {
+		SharedPreferences sharedPreferences = context.getSharedPreferences(USERINFO, Context.MODE_PRIVATE);
+		String username = sharedPreferences.getString("username", "");
 
-		if(!"".equals(username)){
-			String password=sharedPreferences.getString("password", "");
-			userBean=new UserBean(username, password);
+		if (!"".equals(username)) {
+			String password = sharedPreferences.getString("password", "");
+			userBean = new UserBean(username, password);
 			return userBean;
 		}
 
 
-
 		return null;
-	}
-	/**
-	 * @param context
-	 * @return
-	 */
-	public void saveUserName(Context context,String name){
-		SharedPreferences sharedPreferences=context.getSharedPreferences(USERINFO, Context.MODE_PRIVATE);
-		Editor editor=sharedPreferences.edit();
-		editor.putString("username", name);
-		editor.commit();
 	}
 	/**
 	 * @param context
@@ -79,16 +67,6 @@ public class UserManager {
 		Editor editor=sharedPreferences.edit();
 		editor.putString("username", userBean.getUsername());
 		editor.putString("password", userBean.getPasswrod());
-		editor.commit();
-	}
-	/**
-	 * @param context
-	 * @return
-	 */
-	public void saveUserPassword(Context context,String password){
-		SharedPreferences sharedPreferences=context.getSharedPreferences(USERINFO, Context.MODE_PRIVATE);
-		Editor editor=sharedPreferences.edit();
-		editor.putString("password", password);
 		editor.commit();
 	}
 	/**
@@ -116,7 +94,16 @@ public class UserManager {
 		});
 		asyncTaskUtil.execute(url);
 	}
-
+	public Bitmap getHeader(Context context){
+		Bitmap bitmap=null;
+		String headerPath= (String) SPUtils.get(HEADER_PATH,"");
+		try {
+			bitmap=BitmapFactory.decodeFile(headerPath);
+		}catch (Exception e){
+			bitmap=BitmapFactory.decodeResource(context.getResources(),R.drawable.lmusic_small);
+		}
+		return bitmap;
+	}
 	@SuppressWarnings("deprecation")
 	public void chooseHeaderImg(int requestCode, int resultCode, Intent data,Activity context,ImageView iv_header, String userHeaderImg) {
 		if (requestCode == PhotoUtils.INTENT_REQUEST_CODE_ALBUM) {
@@ -128,7 +115,7 @@ public class UserManager {
 					return;
 				}
 				String sdStatus = Environment.getExternalStorageState();
-				if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // ���sd�Ƿ����
+				if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) {
 					Log.i("TestFile",
 							"SD card is not avaiable/writeable right now.");
 					return;
@@ -143,6 +130,7 @@ public class UserManager {
 				if (cursor.getCount() > 0 && cursor.moveToFirst()) {
 					String path = cursor.getString(column_index);
 					Bitmap bitmap = BitmapFactory.decodeFile(path);
+					SPUtils.put(HEADER_PATH,path);
 					if (PhotoUtils.bitmapIsLarge(bitmap)) {
 						PhotoUtils.cropPhoto(context, context, path);
 					} else {
@@ -156,6 +144,7 @@ public class UserManager {
 
 				String path = userHeaderImg;
 				Bitmap bitmap = BitmapFactory.decodeFile(path);
+				SPUtils.put(HEADER_PATH,path);
 				if (PhotoUtils.bitmapIsLarge(bitmap)) {
 					PhotoUtils.cropPhoto(context, context, path);
 				} else {
@@ -169,6 +158,7 @@ public class UserManager {
 				String path = data.getStringExtra("path");
 				if (path != null) {
 					Bitmap bitmap = BitmapFactory.decodeFile(path);
+					SPUtils.put(HEADER_PATH,path);
 					if (bitmap != null) {
 						iv_header.setImageBitmap(bitmap);
 					}

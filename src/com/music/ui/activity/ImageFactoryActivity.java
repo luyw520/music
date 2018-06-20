@@ -63,7 +63,7 @@ public class ImageFactoryActivity extends BaseActivity {
 	private void initWidget() {
 //		iv_more.setVisibility(View.GONE);
 		iv_search.setVisibility(View.GONE);
-		tv_title.setText("ttt");
+		tv_title.setText(R.string.crop);
 		iv_more.setOnClickListener(new OnRightImageButtonClickListener());
 	}
 	protected void initViews() {
@@ -168,8 +168,8 @@ public class ImageFactoryActivity extends BaseActivity {
 						mVfFlipper.getChildAt(0));
 //			}
 			mImageFactoryCrop.init(mPath, MeasureUtil.getScreenSize(this)[0], MeasureUtil.getScreenSize(this)[1]);
-			mBtnRight.setText("te");
-			tv_title.setText("tt");
+			mBtnRight.setText(R.string.next_step);
+//			tv_title.setText(R.string.crop);
 			break;
 
 		case 1:
@@ -178,11 +178,8 @@ public class ImageFactoryActivity extends BaseActivity {
 						mVfFlipper.getChildAt(1));
 //			}
 			mImageFactoryFliter.init(mNewPath);
-//			mHeaderLayout.setTitleRightImageButton("ͼƬ�˾�", null,
-//					R.drawable.ic_topbar_rotation,
-//					new OnRightImageButtonClickListener());
-			tv_title.setText("tt");
-			mBtnRight.setText("tttt");
+//			tv_title.setText(R.string.crop);
+			mBtnRight.setText(R.string.finished);
 			break;
 		}
 	}

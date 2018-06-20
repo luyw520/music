@@ -1,12 +1,6 @@
 package com.music.utils;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.UUID;
-
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -15,11 +9,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 
-import com.music.ui.view.ImageFactoryFliter.FilterType;
 import com.music.ui.activity.ImageFactoryActivity;
+import com.music.ui.view.ImageFactoryFliter.FilterType;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.UUID;
 
 
 /**
@@ -33,6 +35,7 @@ public class PhotoUtils {
 	public static final int INTENT_REQUEST_CODE_CAMERA = 1;
 	public static final int INTENT_REQUEST_CODE_CROP = 2;
 	public static final int INTENT_REQUEST_CODE_FLITER = 3;
+	public static final String HEADER_PATH="";
 
 	/**
 	 *
@@ -51,12 +54,28 @@ public class PhotoUtils {
 	 */
 	public static String takePicture(Activity activity) {
 		FileUtils.createDirFile(IMAGE_PATH);
-		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		String path = IMAGE_PATH + UUID.randomUUID().toString() + "jpg";
+//		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		String path = IMAGE_PATH + UUID.randomUUID().toString() + ".jpg";
+
 		File file = FileUtils.createNewFile(path);
-		if (file != null) {
-			intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+//		if (file != null) {
+//			intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+//		}
+//		activity.startActivityForResult(intent, INTENT_REQUEST_CODE_CAMERA);
+
+
+
+//		File outPutFile;
+		Uri cacheImageUri;
+		Intent intent = new Intent();
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+			cacheImageUri = FileProvider.getUriForFile(activity, activity.getApplicationContext().getPackageName() + ".provider", file);
+			intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); //添加这一句表示对目标应用临时授权该Uri所代表的文件
+		} else {
+			cacheImageUri = Uri.fromFile(file);
 		}
+		intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);//设置Action为拍照
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, cacheImageUri);//将拍取的照片保存到指定URI
 		activity.startActivityForResult(intent, INTENT_REQUEST_CODE_CAMERA);
 		return path;
 	}

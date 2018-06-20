@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- 第一个path是我用来解决7.0权限的,path需要临时授权访问的路径（.代表所有路径） -->
+    <external-path path="." name="camera_photos" />
+    <!-- 这个下载路径也不可以修改，必须为GDTDOWNLOAD -->
+    <external-path name="gdt_sdk_download_path" path="GDTDOWNLOAD" />
+</paths>

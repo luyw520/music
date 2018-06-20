@@ -47,7 +47,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_bottombar"
             android:gravity="center"
-            android:text="取消"
+            android:text="@string/cancel"
             android:textColor="@color/profile_bottom_text_color"
             android:textSize="@dimen/login_font_size" />
 
@@ -57,7 +57,7 @@
             android:layout_height="42dip"
             android:layout_weight="1"
             android:background="@drawable/btn_bottombar"
-            android:text="下一步"
+            android:text="@string/next_step"
             android:textColor="@color/profile_bottom_text_color"
             android:textSize="@dimen/login_font_size" />
     </LinearLayout>

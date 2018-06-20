@@ -122,10 +122,10 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 	private AsyncTaskUtil asyncTaskUtil;
 	private LyricModel lyricModel;
 
-	@Override
-	protected ChangeSkinPresenter createPresenter() {
-		return new ChangeSkinPresenter();
-	}
+//	@Override
+//	protected ChangeSkinPresenter createPresenter() {
+//		return new ChangeSkinPresenter();
+//	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

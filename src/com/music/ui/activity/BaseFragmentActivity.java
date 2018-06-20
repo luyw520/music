@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
+import com.lu.library.permissiongen.PermissionGen;
 import com.music.MusicApplication;
 import com.music.annotation.ComputeTimeUtil;
 import com.music.bean.MessageEvent;
@@ -59,7 +60,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
 		super.onDestroy();
 		EventBus.getDefault().unregister(this);
 	}
-
+	public void needPermission(int requestCode,String[] permissions){
+		PermissionGen.needPermission(this,requestCode,permissions);
+	}
 	protected void handleMessage(MessageEvent event) {
 	}
 

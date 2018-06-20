@@ -23,7 +23,6 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lu.library.permissiongen.PermissionFail;
-import com.lu.library.permissiongen.PermissionGen;
 import com.lu.library.permissiongen.PermissionSuccess;
 import com.music.MusicApplication;
 import com.music.annotation.ComputeTime;
@@ -63,6 +62,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import static com.music.utils.ConstantUtil.MUSIC_CURRENT;
 import static com.music.utils.ConstantUtil.MUSIC_DURATION;
 import static com.music.utils.ConstantUtil.MUSIC_PAUSE;
+import static com.music.utils.PhotoUtils.INTENT_REQUEST_CODE_CAMERA;
+import static com.music.utils.PhotoUtils.INTENT_REQUEST_CODE_CROP;
 
 /**
  *主界面
@@ -211,7 +212,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	}
 
 	private void initData() {
-		PermissionGen.needPermission(this,100,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE});
+		needPermission(100,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE});
+
+		iv_header.setImageBitmap(UserManager.getInstance().getHeader(this));
 
 	}
 	@PermissionSuccess(requestCode = 100)
@@ -219,8 +222,19 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		DeBug.d(getClass().getSimpleName(),"doSomething.........");
 		loadDataAsyncTaskUtil.execute("");
 	}
+	@PermissionSuccess(requestCode = 200)
+	public void camera(){
+		DebugLog.d("拍照");
+		userHeaderImg = PhotoUtils
+				.takePicture(LocalMusicActivity.this);
+
+	}
 	@PermissionFail(requestCode = 100)
 	public void doFailSomething(){
+		DialogUtil.showToast(this,"需要权限");
+	}
+	@PermissionFail(requestCode = 200)
+	public void doFailCamera(){
 		DialogUtil.showToast(this,"需要权限");
 	}
 	private AsyncTaskUtil loadDataAsyncTaskUtil = new AsyncTaskUtil(
@@ -253,20 +267,22 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 				+ resultCode);
 		switch (requestCode) {
 		case REQUESTCODE_LOGIN:
-			loginResult(data);
-			break;
+//			loginResult(data);
+//			break;
 
-		case LOCK_PASSWORD:
-			unLockSuccess = (data != null);
-			LogUtil.i(getClass(), "..............unLockSuccess="
-					+ unLockSuccess);
-			if (!unLockSuccess) {
-				exit();
-			}
-			break;
-		default:
+		case INTENT_REQUEST_CODE_CAMERA:
+			case INTENT_REQUEST_CODE_CROP:
+//			unLockSuccess = (data != null);
+//			LogUtil.i(getClass(), "..............unLockSuccess="
+//					+ unLockSuccess);
+//			if (!unLockSuccess) {
+//				exit();
+//			}
 			UserManager.getInstance().chooseHeaderImg(requestCode, resultCode,
 					data, this, iv_header, userHeaderImg);
+			break;
+		default:
+
 			break;
 		}
 
@@ -362,13 +378,13 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	 * 选择头像
 	 */
 	private void chooseHeader() {
-		if (!UserManager.isLogin()) {
-			DialogUtil.showToast(getApplicationContext(), R.string.no_login_tips);
-			Intent intent2 = new Intent(this, LoginActivity.class);
-			startActivityForResult(intent2, REQUESTCODE_LOGIN);
-		} else {
+//		if (!UserManager.isLogin()) {
+//			DialogUtil.showToast(getApplicationContext(), R.string.no_login_tips);
+//			Intent intent2 = new Intent(this, LoginActivity.class);
+//			startActivityForResult(intent2, REQUESTCODE_LOGIN);
+//		} else {
 			chooseHeaderImgDialog();
-		}
+//		}
 	}
 
 	/**
@@ -401,8 +417,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 					public void onClick(DialogInterface dialog, int which) {
 						switch (which) {
 						case 0:
-							userHeaderImg = PhotoUtils
-									.takePicture(LocalMusicActivity.this);
+							needPermission(200,new String[]{Manifest.permission.CAMERA});
 							break;
 						case 1:
 							PhotoUtils.selectPhoto(LocalMusicActivity.this);

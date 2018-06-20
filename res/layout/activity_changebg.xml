@@ -3,15 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-	<include 
+	<include
 	    android:id="@+id/include_heade"
 	    layout="@layout/head"
 	    />
     <GridView
         android:id="@+id/gridview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:horizontalSpacing="2dp"
+        android:layout_height="match_parent"
         android:numColumns="3"/>
 
 </LinearLayout>

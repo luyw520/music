@@ -1,7 +1,5 @@
 package com.music.ui.activity;
 
-import java.util.Map;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,16 +20,11 @@ import com.music.bean.UserBean;
 import com.music.bean.UserManager;
 import com.music.lu.R;
 import com.music.utils.DialogUtil;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.umeng.socialize.controller.UMServiceFactory;
-import com.umeng.socialize.controller.UMSocialService;
-import com.umeng.socialize.controller.listener.SocializeListeners.UMAuthListener;
-import com.umeng.socialize.controller.listener.SocializeListeners.UMDataListener;
-import com.umeng.socialize.exception.SocializeException;
-import com.umeng.socialize.sso.QZoneSsoHandler;
-import com.umeng.socialize.sso.UMQQSsoHandler;
 
-import static com.music.utils.ConstUtils.DESCRIPTOR;
+import java.util.Map;
 //import com.umeng.socialize.sensor.controller.UMShakeService;
 //import com.umeng.socialize.sensor.controller.impl.UMShakeServiceFactory;
 
@@ -59,8 +52,8 @@ public class LoginActivity extends Activity {
 	@ViewInject(value = R.id.btn_tencent)
 	private ImageView btn_tencent;
 
-	private UMSocialService mController = UMServiceFactory
-			.getUMSocialService(DESCRIPTOR);
+//	private UMSocialService mController = UMServiceFactory
+//			.getUMSocialService(DESCRIPTOR);
 
 	@SuppressWarnings("static-access")
 	@Override
@@ -80,15 +73,37 @@ public class LoginActivity extends Activity {
 	}
 
 	private void addQZoneQQPlatform() {
-		String appId = "1104335219";
-		String appKey = "J68iUn08AUZwHWrJ";
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(this, appId, appKey);
-		qqSsoHandler.setTargetUrl("http://www.umeng.com");
-		qqSsoHandler.addToSocialSDK();
+//		String appId = "1104335219";
+//		String appKey = "J68iUn08AUZwHWrJ";
+//		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(this, appId, appKey);
+//		qqSsoHandler.setTargetUrl("http://www.umeng.com");
+//		qqSsoHandler.addToSocialSDK();
+//
+//		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(this, appId,
+//				appKey);
+//		qZoneSsoHandler.addToSocialSDK();
+		UMShareAPI umShareAPI=UMShareAPI.get(this);
+		umShareAPI.getPlatformInfo(this, SHARE_MEDIA.SINA, new UMAuthListener() {
+			@Override
+			public void onStart(SHARE_MEDIA share_media) {
 
-		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(this, appId,
-				appKey);
-		qZoneSsoHandler.addToSocialSDK();
+			}
+
+			@Override
+			public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+
+			}
+
+			@Override
+			public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+
+			}
+
+			@Override
+			public void onCancel(SHARE_MEDIA share_media, int i) {
+
+			}
+		});
 	}
 
 	private void initWidget() {
@@ -103,6 +118,7 @@ public class LoginActivity extends Activity {
 				return false;
 			}
 		});
+		umShareAPI=UMShareAPI.get(this);
 	}
 
 	@OnClick({ R.id.btn_login, R.id.tv_newuser, R.id.btn_back,
@@ -134,11 +150,13 @@ public class LoginActivity extends Activity {
 			break;
 		}
 	}
-
+	UMShareAPI umShareAPI
+			;
 	/**
 	 */
 	private void login(final SHARE_MEDIA platform) {
-		mController.doOauthVerify(this, platform, new UMAuthListener() {
+
+		umShareAPI.doOauthVerify(this, platform, new UMAuthListener() {
 
 			@Override
 			public void onStart(SHARE_MEDIA platform) {
@@ -146,12 +164,8 @@ public class LoginActivity extends Activity {
 			}
 
 			@Override
-			public void onError(SocializeException e, SHARE_MEDIA platform) {
-			}
-
-			@Override
-			public void onComplete(Bundle value, SHARE_MEDIA platform) {
-				String uid = value.getString("uid");
+			public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+				String uid = map.get("uid");
 				if (!TextUtils.isEmpty(uid)) {
 					getUserInfo(platform);
 				} else {
@@ -161,34 +175,51 @@ public class LoginActivity extends Activity {
 			}
 
 			@Override
-			public void onCancel(SHARE_MEDIA platform) {
+			public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+
 			}
+
+			@Override
+			public void onCancel(SHARE_MEDIA share_media, int i) {
+
+			}
+
 		});
 	}
 
 	/**
 	 */
 	private void getUserInfo(SHARE_MEDIA platform) {
-		mController.getPlatformInfo(this, platform, new UMDataListener() {
+		umShareAPI.getPlatformInfo(this, platform, new UMAuthListener() {
 
 			@Override
-			public void onStart() {
-				DialogUtil.showToast(getApplicationContext(), "..");
+			public void onStart(SHARE_MEDIA share_media) {
+
 			}
 
 			@Override
-			public void onComplete(int status, Map<String, Object> info) {
-				if (info != null) {
+			public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+				if (map != null) {
 					// Log.i(TAG, info.toString());
 
 					Intent intent = new Intent();
-					String username = info.get("screen_name").toString();
-					String headPath = info.get("profile_image_url").toString();
+					String username = map.get("screen_name").toString();
+					String headPath = map.get("profile_image_url").toString();
 					saveUser(username, "", headPath);
 					intent.putExtra("local", false);
 					setResult(LocalMusicActivity.REQUESTCODE_LOGIN, intent);
 					finish();
 				}
+			}
+
+			@Override
+			public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+
+			}
+
+			@Override
+			public void onCancel(SHARE_MEDIA share_media, int i) {
+
 			}
 		});
 	}

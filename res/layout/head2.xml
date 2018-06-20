@@ -2,9 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" 
+    android:orientation="vertical"
+	android:fitsSystemWindows="true"
+	android:clipToPadding="false"
     android:background="#66aaff">
-    
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="10dp"
+		>
 	<ImageView
 	    android:id="@+id/iv_back"
 	    android:layout_width="wrap_content"
@@ -18,9 +24,9 @@
 	    android:layout_height="wrap_content"
 	    android:layout_centerHorizontal="true"
 	    android:layout_centerVertical="true"
-	    android:text="本地音乐" 
+	    android:text="本地音乐"
 	    android:textColor="#ffffff"
-	    android:textSize="20sp" 
+	    android:textSize="20sp"
 	    />
 
 	<ImageView
@@ -39,5 +45,6 @@
 	    android:layout_alignBottom="@+id/iv_back"
 	    android:layout_alignParentRight="true"
 	    android:background="@drawable/selector_rotation" />
+	</RelativeLayout>
 
 </RelativeLayout>
