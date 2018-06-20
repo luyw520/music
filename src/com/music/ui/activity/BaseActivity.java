@@ -20,7 +20,7 @@ import com.music.utils.DeBug;
 import com.music.utils.SystemBarTintManager;
 import com.music.ui.view.animator.ActivityAnimator;
 
-public class BaseActivity extends Activity implements ConstantUtil {
+public class BaseActivity extends BaseFragmentActivity implements ConstantUtil {
 
 	protected SystemBarTintManager mTintManager;
 
@@ -91,20 +91,4 @@ public class BaseActivity extends Activity implements ConstantUtil {
 		}
 	}
 
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-//		MobclickAgent.onResume(this);
-//		if (ApplicationUtil.getYaoYiYao(this)) {
-//			ScreenShotUtil.getInstance().registerShakeToScrShot(this);
-//		}
-	}
-
-	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-//		MobclickAgent.onPause(this);
-	}
 }

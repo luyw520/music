@@ -304,9 +304,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		currentMp3Info = mp3Util.getCurrentMp3Info();
 		tv_music_title.setText(currentMp3Info.getTitle());
 		tv_music_Artist.setText(currentMp3Info.getArtist());
-		Bitmap bmp = MediaUtil.getArtwork(getApplicationContext(),
-				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(),
-				true,iv_music_album.getWidth(),iv_music_album.getHeight());
+		Bitmap bmp = MediaUtil.getMusicImage(getApplicationContext(),
+				currentMp3Info,
+				iv_music_album.getWidth(),iv_music_album.getHeight());
 		iv_music_album.setImageBitmap(bmp);
 		DeBug.d(this,
 				"currentMp3Info.getDuration():" + currentMp3Info.getDuration());
@@ -346,6 +346,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			startActivity(new Intent(this, SettingActivity.class));
 			break;
 		case R.id.music_about_layout:
+//			startActivity(PlayerActivity.class,iv_music_album,"share");
 			startActivity(PlayerActivity.class);
 			break;
 		case R.id.rl_exit:

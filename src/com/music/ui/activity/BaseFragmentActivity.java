@@ -46,11 +46,18 @@ public class BaseFragmentActivity extends AppCompatActivity {
 		tintManager.setNavigationBarTintEnabled(true);
 
 		tintManager.setTintColor(getResources().getColor(R.color.transparent));
+		EventBus.getDefault().register(this);
 
 	}
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void messageEventBus(MessageEvent event){
 		handleMessage(event);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		EventBus.getDefault().unregister(this);
 	}
 
 	protected void handleMessage(MessageEvent event) {
@@ -104,7 +111,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 		if(ApplicationUtil.getYaoYiYao(this)){
 			ScreenShotUtil.getInstance().registerShakeToScrShot(this);
 		}
-		EventBus.getDefault().register(this);
+
 	}
 
 	@Override
@@ -112,6 +119,6 @@ public class BaseFragmentActivity extends AppCompatActivity {
 		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);
-		EventBus.getDefault().unregister(this);
+
 	}
 }

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -44,7 +43,6 @@ import com.music.utils.AppConstant;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
 import com.music.utils.DeBug;
-import com.music.utils.DebugLog;
 import com.music.utils.DialogUtil;
 import com.music.utils.MediaUtil;
 import com.music.utils.SPUtils;
@@ -385,17 +383,7 @@ public class PlayerActivity extends BaseActivity {
 			iv_music_album.clearAnimation();
 		}
 
-		Bitmap bmp = MediaUtil.getArtwork(getApplicationContext(),
-				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), true,
-				true);
-//		Bitmap bmpBg = MediaUtil.getMusicBitmap(getApplicationContext(),
-//				currentMp3Info.getSongId(), currentMp3Info.getAlbumId(), ScreenUtils.getScreenWidth(getApplicationContext()),ScreenUtils.getScreenHeight(getApplicationContext()));
-		if (bmp==null){
-			DebugLog.d("获取专辑图片失败");
-			bmp= BitmapFactory.decodeResource(getResources(),R.drawable.lmusic);
-		}else{
-			DebugLog.d("获取专辑图片成功");
-		}
+		Bitmap bmp = MediaUtil.getMusicImage(getApplicationContext(), currentMp3Info);
 		iv_music_album.setImageBitmap(BitmapUtils.toRound(bmp,false));
 //		ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(
 //				bmpBg, this)));

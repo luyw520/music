@@ -116,9 +116,8 @@ public class MyNotification {
 		notificationManager.notify(id, notification);
 	}
 	void bindViewData(){
-		Bitmap bitmap = MediaUtil.getArtwork(context,
-				playerHelpler.getCurrentMp3Info().getSongId(),  playerHelpler
-						.getCurrentMp3Info().getAlbumId(), true, true);
+		Bitmap bitmap = MediaUtil.getMusicImage(context,
+				playerHelpler.getCurrentMp3Info());
 		remoteViews.setImageViewResource(R.id.iv_play_notification,
 				R.drawable.img_button_notification_play_pause);
 		remoteViews.setImageViewBitmap(R.id.iv_notification, bitmap);

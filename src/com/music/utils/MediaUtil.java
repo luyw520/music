@@ -11,15 +11,15 @@ import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.music.bean.Mp3Info;
-import com.music.lu.R;
 import com.lu.library.util.image.BitmapUtils;
+import com.music.bean.Mp3Info;
+import com.music.bean.MusicInfo;
+import com.music.lu.R;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 
 import java.io.FileDescriptor;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -116,12 +116,24 @@ public class MediaUtil {
 		}
 		return c.toString();
 	}
+	public static Bitmap getMusicImage(Context context,MusicInfo musicInfo,int width,int height){
+
+		return getMusicImage(context,musicInfo.getPlayPath(),musicInfo.getSongId(),musicInfo.getAlbumId(),width,height);
+	}
+	public static Bitmap getMusicImage(Context context,MusicInfo musicInfo){
+
+		return getMusicImage(context,musicInfo.getPlayPath(),musicInfo.getSongId(),musicInfo.getAlbumId(),IMG_WIDTH,IMG_HEIGHT);
+	}
 	/**
 	 * @Description 获取专辑封面
 	 * @param filePath 文件路径，like XXX/XXX/XX.mp3
+	 *
+	 *
+	 *
 	 * @return 专辑封面bitmap
 	 */
-	public static Bitmap createAlbumArt(final String filePath) {
+	public static Bitmap getMusicImage(Context context,final String filePath, long song_id,
+									   long album_id, int width,int height) {
 		Bitmap bitmap = null;
 		//能够获取多媒体文件元数据的类
 		MediaMetadataRetriever retriever = new MediaMetadataRetriever();
@@ -138,22 +150,16 @@ public class MediaUtil {
 				e2.printStackTrace();
 			}
 		}
+		if (bitmap!=null){
+			DebugLog.d("通过歌曲文件解析图片,大小"+BitmapUtils.getBitmapSize(bitmap));
+			bitmap=BitmapUtils.compressByScale(bitmap,width,height);
+			DebugLog.d("解压后大小"+BitmapUtils.getBitmapSize(bitmap));
+		}else{
+			bitmap=getArtwork(context,song_id,album_id,width,height);
+		}
 		return bitmap;
 	}
 
-	/**
-	 *
-	 * @param context
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Mp3Info> sortMp3InfosByTitle(Context context) {
-
-		List<Mp3Info> list = getMp3Infos(context);
-		Collections.sort(list);
-
-		return list;
-	}
 
 	/**
 	 *
@@ -193,33 +199,34 @@ public class MediaUtil {
 	}
 
 	/**
-	 *
+	 *获取默认的图片
 	 * @param context
 	 * @return
 	 */
 	@SuppressLint("ResourceType")
-	public static Bitmap getDefaultArtwork(Context context, boolean small) {
-		DeBug.d(MediaUtil.class,".............small:"+small);
-		if (small) { //
-			return BitmapFactory.decodeResource(context.getResources(),R.drawable.lmusic);
-		}
-		return BitmapFactory.decodeResource(context.getResources(), R.drawable.ymusic);
+	private static Bitmap getDefaultArtwork(Context context, boolean small) {
+
+		Bitmap bitmap;
+		bitmap=BitmapFactory.decodeResource(context.getResources(),small?R.drawable.lmusic_small:R.drawable.lmusic);
+		DebugLog.d("获取默认的专辑图片.....small:"+small+",大小:"+BitmapUtils.getBitmapSize(bitmap));
+		return bitmap;
 	}
 
+
 	/**
-	 *通过songid或者albuimid获取歌手图片
+	 * 根据歌曲ID，专辑ID，获取专辑图片
 	 * @param context
 	 * @param songid
 	 * @param albumid
-	 * @return
+	 * @param width
+	 * @param height
+	 * @return 获取到了返回bitmap,获取不到返回默认的图片
+	 * @see #getDefaultArtwork(Context, boolean)
 	 */
-	private static Bitmap getArtworkFromFile(Context context, long songid,
-			long albumid,int width,int height) {
-		return getArtworkFromFileOriginal(context,songid,albumid,width,height);
-	}
 	private static Bitmap getArtworkFromFileOriginal(Context context, long songid,
 													  long albumid,int width,int height) {
 		Bitmap bm = null;
+		DebugLog.d("songid:"+songid+",albumid:"+albumid+",width:"+width+",height:"+height);
 		if (albumid < 0 && songid < 0) {
 			return getDefaultArtwork(context,true);
 		}
@@ -229,31 +236,41 @@ public class MediaUtil {
 			if (albumid < 0) {
 				uri = Uri.parse("content://media/external/audio/media/"
 						+ songid + "/albumart");
-				DeBug.d("getArtworkFromFile","通过songid:"+songid+"获取专辑");
+//				DeBug.d("getArtworkFromFile","通过songid:"+songid+"获取专辑");
 			} else {
 				String mUriAlbums = "content://media/external/audio/albums";
-				String[] projection = new String[] { "album_art" };
-				DeBug.d("getArtworkFromFile","通过albumid:"+albumid+"获取专辑");
-//				uri = ContentUris.withAppendedId(albumArtUri, albumid);
 				uri=Uri.parse(mUriAlbums + "/" + Long.toString(albumid));
-
-				bm= BitmapUtils.getBitmapFromFile(getAlbumArt(context,albumid),width,height);
-				return bm;
+				bm= BitmapUtils.getBitmapFromFile(getAlbumImagePath(context,albumid),width,height);
+				if (bm!=null){
+					DebugLog.d("通过专辑Id获取到专辑图片...大小"+BitmapUtils.getBitmapSize(bm));
+					return bm;
+				}
 			}
-
 			ParcelFileDescriptor pfd = context.getContentResolver()
 					.openFileDescriptor(uri, "r");
 			if (pfd != null) {
 				fd = pfd.getFileDescriptor();
 			}
 			bm=BitmapUtils.getBitmapFromFileDescriptor(fd,width,height);
-			DeBug.d("getArtworkFromFile","getHeight:"+bm.getHeight()+",getWidth:"+bm.getWidth()+","+BitmapUtils.getBitmapSize(bm)/1024+"KB");
+			if (bm!=null){
+				DebugLog.d("通过URI获取专辑:"+uri+",大小"+BitmapUtils.getBitmapSize(bm));
+			}
+
 		} catch (Exception e) {
 			 e.printStackTrace();
+			 bm=getDefaultArtwork(context,true);
 		}
 		return bm;
 	}
-	private static String getAlbumArt(Context context,long album_id) {
+
+	/**
+	 * 通过专辑ID获取专辑图片地址
+	 * 某些手机获取为null
+	 * @param context
+	 * @param album_id
+	 * @return
+	 */
+	private static String getAlbumImagePath(Context context,long album_id) {
 		String mUriAlbums = "content://media/external/audio/albums";
 		String[] projection = new String[] { "album_art" };
 		Cursor cur = context.getContentResolver().query(
@@ -265,28 +282,12 @@ public class MediaUtil {
 			album_art = cur.getString(0);
 		}
 		cur.close();
+
 		cur = null;
-		DebugLog.d("获取专辑图片地址:"+album_art);
+		DebugLog.d("获取到专辑图片地址:"+album_art);
 		return album_art;
 	}
-	/**
-	 * 获取专辑图片
-	 * @param context
-	 * @param song_id
-	 * @param album_id
-	 * @return
-	 */
-	public static Bitmap getArtwork(Context context, long song_id,
-									long album_id, boolean small,int width,int height) {
-		DeBug.d("getArtwork","song_id:"+song_id+",album_id:"+album_id+",width:"+width+",height:"+height);
-		Bitmap bm= getArtworkFromFile(context, song_id, album_id,width,height);
-		if(bm==null){
-			bm=getDefaultArtwork(context,small);
-		}
 
-
-		return bm;
-	}
 	private static Bitmap getArtworkFromFileOriginal(Context context, long songid,
 													 long albumid) {
 		return getArtworkFromFileOriginal(context,songid,albumid,IMG_WIDTH,IMG_HEIGHT);
@@ -303,21 +304,16 @@ public class MediaUtil {
 			long album_id, boolean allowdefalut, boolean small) {
 		return getArtworkFromFileOriginal(context,song_id,album_id);
 	}
-	public static Bitmap getMusicBitmap(Context context, long song_id,
-										long album_id,int width,int height){
-		return getArtworkFromFileOriginal(context,song_id,album_id,width,height);
-	}
 	/**
-	 *
+	 * 获取专辑图片
 	 * @param context
 	 * @param song_id
 	 * @param album_id
-	 * @param allowdefalut
 	 * @return
 	 */
-	public static Bitmap getArtworkOriginal(Context context, long song_id,
-			long album_id, boolean allowdefalut, boolean small) {
-		return getArtworkFromFileOriginal(context,song_id,album_id);
+	public static Bitmap getArtwork(Context context, long song_id,
+			long album_id, int width,int height) {
+		return getArtworkFromFileOriginal(context,song_id,album_id,width,height);
 	}
 
 
