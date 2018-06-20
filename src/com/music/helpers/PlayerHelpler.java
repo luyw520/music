@@ -193,7 +193,7 @@ public class PlayerHelpler {
 		setMusicBaseInfos(MusicModel.getInstance().getMusicList());
 		isPlaying = false;
 		isSortByTime = false;
-		isShowLrc = false;
+		isShowLrc = true;
 		currentTime = 0;
 
 		mPlayListType = 0;

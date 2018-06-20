@@ -1,5 +1,11 @@
 package com.music.lrc;
 
+import android.content.Context;
+import android.text.TextUtils;
+
+import com.music.utils.DeBug;
+import com.music.utils.FileUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,16 +20,10 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-import android.content.Context;
-import android.text.TextUtils;
-
-import com.music.utils.DeBug;
-import com.music.utils.FileUtils;
-
 /**
  *
  * @author longdw(longdawei1988@gmail.com)
- * 
+ *
  */
 public class LyricDownloadManager {
 	private static final String TAG = LyricDownloadManager.class
@@ -63,7 +63,7 @@ public class LyricDownloadManager {
 
 		try {
 			mUrl = new URL(strUrl);
-			DeBug.d(TAG, "uuu" + mUrl);
+			DeBug.d(TAG, mUrl);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -124,7 +124,6 @@ public class LyricDownloadManager {
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			DeBug.d(TAG, "hhhh");
 		}
 
 		try {
@@ -149,7 +148,7 @@ public class LyricDownloadManager {
 					+ musicName + ".lrc";
 			// String savePath = folderPath + File.separator + musicName +
 			// ".lrc";
-			DeBug.d(TAG, "hhh:" + savePath);
+			DeBug.d(TAG, savePath);
 
 			saveLyric(content.toString(), savePath);
 

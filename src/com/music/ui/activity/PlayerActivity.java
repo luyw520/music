@@ -3,14 +3,10 @@ package com.music.ui.activity;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.view.ViewCompat;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -29,6 +25,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lu.library.util.image.BitmapUtils;
 import com.music.MusicApplication;
 import com.music.bean.LyricSentence;
+import com.music.bean.MessageEvent;
 import com.music.bean.MusicInfo;
 import com.music.helpers.PlayerHelpler;
 import com.music.lrc.LyricLoadHelper.LyricListener;
@@ -36,22 +33,21 @@ import com.music.lrc.LyricView;
 import com.music.lu.R;
 import com.music.model.LyricModel;
 import com.music.model.ShareModel;
+import com.music.presenter.ChangeSkinPresenter;
+import com.music.presenter.IBaseView;
+import com.music.presenter.IPlayState;
 import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
-import com.music.ui.broadcastreceiver.State;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.utils.AppConstant;
 import com.music.utils.AsyncTaskUtil;
 import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
+import com.music.utils.ConstantUtil;
 import com.music.utils.DeBug;
+import com.music.utils.DebugLog;
 import com.music.utils.DialogUtil;
 import com.music.utils.MediaUtil;
-import com.music.utils.SPUtils;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
-
-import static com.music.utils.ConstUtils.BG_INDEX_KEY;
 
 /**
  *
@@ -59,7 +55,7 @@ import static com.music.utils.ConstUtils.BG_INDEX_KEY;
  */
 @SuppressLint("NewApi")
 @ContentView(value = R.layout.activity_play_layout)
-public class PlayerActivity extends BaseActivity {
+public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> implements IBaseView<Drawable>{
 	private final static String TAG = "PlayerActivity";
 
 	@ViewInject(value = R.id.musicTitle)
@@ -127,6 +123,11 @@ public class PlayerActivity extends BaseActivity {
 	private LyricModel lyricModel;
 
 	@Override
+	protected ChangeSkinPresenter createPresenter() {
+		return new ChangeSkinPresenter();
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mp3Util = PlayerHelpler.getDefault();
@@ -140,6 +141,35 @@ public class PlayerActivity extends BaseActivity {
 		setPlayType();
 		registerReceiver();
 		findMp3Lrc(true);
+	}
+
+	@Override
+	protected void handleMessage(MessageEvent event) {
+		DebugLog.d("接收事件:"+event.toString());
+		switch (event.type){
+			case ConstantUtil.MUSIC_PLAYER:
+				state.playMusicState();
+				break;
+			case MUSIC_CURRENT:
+				state.currentState((int)event.getData());
+				break;
+			case MUSIC_DURATION:
+				state.duration((int)event.getData());
+				break;
+			case MUSIC_PAUSE:
+				state.pauseMusicState();
+				break;
+		}
+	}
+
+	@Override
+	public void onSuccess(Drawable data) {
+		ll_bg.setBackground(data);
+	}
+
+	@Override
+	public void onFaild(Exception e) {
+
 	}
 
 	private class MyLyricListener implements LyricListener {
@@ -388,7 +418,7 @@ public class PlayerActivity extends BaseActivity {
 //		ll_bg.setBackground(ImageUtil.bitmapToDrawable(ImageUtil.blurBitmap(
 //				bmpBg, this)));
 		// 这里指定了被共享的视图元素
-		ViewCompat.setTransitionName(iv_music_album, "share");
+//		ViewCompat.setTransitionName(iv_music_album, "share");
 	}
 
 	/**
@@ -426,12 +456,13 @@ public class PlayerActivity extends BaseActivity {
 		mp3Util.audioTrackChange(progress);
 	}
 
+	IPlayState state = new MyState();
 	private void registerReceiver() {
-		State state = new MyState();
 
-		IntentFilter filter = new IntentFilter();
-		playerBroadcastReceiver = new MyBroadcastReceiver(state, filter);
-		registerReceiver(playerBroadcastReceiver, filter);
+
+//		IntentFilter filter = new IntentFilter();
+//		playerBroadcastReceiver = new MyBroadcastReceiver(state, filter);
+//		registerReceiver(playerBroadcastReceiver, filter);
 
 		myPlayerNewService=MusicApplication.getInstance().getMyPlayerNewService();
 	}
@@ -445,26 +476,8 @@ public class PlayerActivity extends BaseActivity {
 
 		setBg();
 	}
-	int checkedId;
 	private void setBg(){
-
-		int checkedIdTemp = (int) SPUtils.get( BG_INDEX_KEY,0);
-		if (checkedIdTemp!=checkedId){
-			checkedId=checkedIdTemp;
-			AssetManager assetManager = getAssets();
-			InputStream inputStream=null;
-			try {
-				String[] paths = assetManager.list("bgs");
-				inputStream = assetManager.open("bgs/" + paths[checkedId]);
-//				Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-				Drawable drawable=Drawable.createFromResourceStream(getResources(), null, inputStream, "src", null);
-				ll_bg.setBackground(drawable);
-				inputStream.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
+		mPersenter.changeBg(this);
 	}
 	@Override
 	protected void onStop() {
@@ -496,8 +509,7 @@ public class PlayerActivity extends BaseActivity {
 	 * @author Administrator
 	 *
 	 */
-	class MyState implements State {
-		@Override
+	class MyState implements IPlayState {
 		public void playMusicState() {
 			playBtn.setImageResource(R.drawable.btn_pause);
 			if (animatorPlay.isPaused()) {
@@ -510,8 +522,8 @@ public class PlayerActivity extends BaseActivity {
 		}
 
 		@Override
-		public void currentState(Intent intent) {
-			int currentTime = intent.getIntExtra("currentTime", -1);
+		public void currentState(int currentTime) {
+//			int currentTime = intent.getIntExtra("currentTime", -1);
 			mp3Util.setCurrentTime(currentTime);
 			tv_current_progress.setText(MediaUtil.formatTime(currentTime));
 			music_progressBar.setProgress(currentTime);
@@ -523,9 +535,9 @@ public class PlayerActivity extends BaseActivity {
 		}
 
 		@Override
-		public void duration(Intent intent) {
-			int duration = intent.getIntExtra("duration", -1);
-			Log.i(TAG, "duration:" + duration);
+		public void duration(int duration) {
+//			int duration = intent.getIntExtra("duration", -1);
+//			Log.i(TAG, "duration:" + duration);
 			music_progressBar.setMax(duration);
 			tv_finalProgress.setText(MediaUtil.formatTime(duration));
 			musicTitle.setText(mp3Util.getCurrentMp3Info().getTitle());

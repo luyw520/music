@@ -1,13 +1,11 @@
 package com.music.ui.activity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -38,9 +36,9 @@ import com.music.bean.UserManager;
 import com.music.db.DBHelper;
 import com.music.helpers.PlayerHelpler;
 import com.music.lu.R;
+import com.music.presenter.IPlayState;
 import com.music.ui.broadcastreceiver.MediaButtonReceiver;
 import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
-import com.music.ui.broadcastreceiver.State;
 import com.music.ui.fragment.LocalMusicFragment;
 import com.music.ui.fragment.MusicListFragment;
 import com.music.ui.service.IConstants;
@@ -70,14 +68,10 @@ import static com.music.utils.ConstantUtil.MUSIC_PAUSE;
  *主界面
  *
  */
-@SuppressLint("HandlerLeak")
 @ContentView(value = R.layout.activity_localmusic)
 public class LocalMusicActivity extends BaseFragmentActivity implements
 		IConstants {
 
-	public interface OnBackListener {
-		void onBack();
-	}
 
 	public static final String TAG = null;
 	public static final int REQUESTCODE_LOGIN = 0;
@@ -458,14 +452,14 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		regisgerPlayStateReceiver();
 
 	}
-
+	IPlayState state = new MyMainState();
 	/**
 	 */
 	private void regisgerPlayStateReceiver() {
-		State state = new MyMainState();
-		IntentFilter filter = new IntentFilter();
-		myBroadcastReceiver = new MyBroadcastReceiver(state, filter);
-		registerReceiver(myBroadcastReceiver, filter);
+
+//		IntentFilter filter = new IntentFilter();
+//		myBroadcastReceiver = new MyBroadcastReceiver(state, filter);
+//		registerReceiver(myBroadcastReceiver, filter);
 
 		myPlayerNewService= MusicApplication.getInstance().getMyPlayerNewService();
 	}
@@ -494,25 +488,16 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		DebugLog.d("接收事件:"+event.toString());
 		switch (event.type){
 			case ConstantUtil.MUSIC_PLAYER:
-				btn_musicPlaying
-						.setImageResource(R.drawable.img_button_notification_play_pause);
-				myNotification.setPlayImageState(true);
-				mHandler.postDelayed(progressRunnable,100);
+				state.playMusicState();
 				break;
 			case MUSIC_CURRENT:
-				int currentTime = (int) event.getData();
-				mp3Util.setCurrentTime(currentTime);
-				tv_music_CurrentTime.setText(MediaUtil.formatTime(currentTime));
-				musicTimeProgressView.setCurrentProgress(currentTime);
+				state.currentState((int)event.data);
 				break;
 			case MUSIC_DURATION:
-				resetPlayState();
+				state.duration((Integer) event.data);
 				break;
 			case MUSIC_PAUSE:
-				btn_musicPlaying
-						.setImageResource(R.drawable.img_button_notification_play_play);
-				myNotification.setPlayImageState(false);
-				mHandler.removeCallbacks(progressRunnable);
+				state.playMusicState();
 				break;
 		}
 	}
@@ -520,18 +505,17 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	 *
 	 *
 	 */
-	class MyMainState implements State {
+	class MyMainState implements IPlayState {
 
 		@Override
-		public void currentState(Intent intent) {
-			int currentTime = intent.getIntExtra("currentTime", -1);
+		public void currentState(int currentTime) {
 			mp3Util.setCurrentTime(currentTime);
 			tv_music_CurrentTime.setText(MediaUtil.formatTime(currentTime));
 			musicTimeProgressView.setCurrentProgress(currentTime);
 		}
 
 		@Override
-		public void duration(Intent intent) {
+		public void duration(int duration) {
 			Log.i(TAG, "duration()");
 			resetPlayState();
 
@@ -539,7 +523,6 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 		@Override
 		public void pauseMusicState() {
-			// playPauseDrawable.animatePlay();
 			btn_musicPlaying
 					.setImageResource(R.drawable.img_button_notification_play_play);
 			myNotification.setPlayImageState(false);
@@ -587,7 +570,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	}
 
 	public void unregisterReceiver() {
-		unregisterReceiver(myBroadcastReceiver);
+//		unregisterReceiver(myBroadcastReceiver);
 		myNotification.unregisterReceiver();
 	}
 

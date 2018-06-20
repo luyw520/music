@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.music.presenter.BasePresenter;
+import com.music.presenter.IBaseView;
 
 
 /**
@@ -26,7 +27,7 @@ public abstract class BaseMVPActivity<P extends BasePresenter> extends BaseActiv
         mPersenter=createPresenter();
         if (mPersenter!=null){
             try {
-                mPersenter.attachView(this);
+                mPersenter.attachView((IBaseView) this);
             }catch (Exception e){
                 e.printStackTrace();
             }

@@ -1,9 +1,5 @@
 package com.music.lrc;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,7 +9,15 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.music.bean.LyricSentence;
+import com.music.lu.R;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 显示歌词的View
+ */
 public class LyricView extends View {
 	@SuppressWarnings("unused")
 	private static final String TAG = "LyricView";
@@ -72,7 +76,7 @@ public class LyricView extends View {
 		mPaint.setColor(Color.LTGRAY);
 		mPaint.setTypeface(Typeface.SERIF);
 		mPaint.setTextAlign(Paint.Align.CENTER);
-		
+
 		mPathPaint = new Paint();
 		mPathPaint.setAntiAlias(true);
 		mPathPaint.setTextSize(40);
@@ -123,11 +127,11 @@ public class LyricView extends View {
 //		isClick = false;
 		if (lyricSentences == null || lyricSentences.size() == 0 || loadLrc == 0) {
 //			isClick = true;
-			canvas.drawText("sss", mX, middleY, mPathPaint);
+			canvas.drawText(getContext().getText(R.string.no_lrc).toString(), mX, middleY, mPathPaint);
 			return;
 		}
 		if (loadLrc == 1) {
-			canvas.drawText("ddd...", mX, middleY, mPathPaint);
+			canvas.drawText(getContext().getText(R.string.no_lrc).toString(), mX, middleY, mPathPaint);
 			return;
 		}
 
@@ -160,11 +164,11 @@ public class LyricView extends View {
 	 *            Current width of this view.
 	 * @param h
 	 *            Current height of this view.
-	 * @param oldw
+	 * @param ow
 	 *            Old width of this view.
-	 * @param oldh
+	 * @param oh
 	 *            Old height of this view.
-	 * 
+	 *
 	 */
 	protected void onSizeChanged(int w, int h, int ow, int oh) {
 		super.onSizeChanged(w, h, ow, oh);
@@ -203,7 +207,7 @@ public class LyricView extends View {
 			}
 
 		}
-		
+
 		if (drifty > -40.0){
 			if (currentDuringtime2 > 100) {
 				drifty = (float) (drifty - 40.0 / (currentDuringtime2 / 100));
@@ -211,7 +215,7 @@ public class LyricView extends View {
 				drifty = 0;
 			}
 		}
-			
+
 //		Log.i(TAG, "CurrentPosition:" + CurrentPosition + ",index:" + index+",drifty:"+drifty);
 //		invalidate();
 	}

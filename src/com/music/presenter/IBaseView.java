@@ -6,5 +6,6 @@ package com.music.presenter;
  */
 
 public interface IBaseView<T> {
-    void setPresenter(T presenter);
+    void onSuccess(T data);
+    void onFaild(Exception e);
 }

@@ -21,7 +21,6 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.music.helpers.PlayerHelpler;
 import com.music.lu.R;
 import com.music.presenter.ChangeSkinContract;
-import com.music.presenter.ChangeSkinPresenter;
 import com.music.ui.service.MyNotificationListenerService;
 import com.music.ui.view.gesturepressword.GresturePasswordSetActivity;
 import com.music.ui.view.gesturepressword.GuideGesturePasswordActivity;
@@ -37,7 +36,7 @@ import com.music.utils.SharedPreHelper;
 import com.music.utils.screen.ScreenShotUtil;
 
 @ContentView(value = R.layout.activity_setting)
-public class SettingActivity extends BaseActivity implements ChangeSkinContract.View{
+public class SettingActivity extends BaseActivity{
 
 	protected static final String TAG = "SettingActivity";
 	@ViewInject(value = R.id.iv_search)
@@ -257,7 +256,7 @@ public class SettingActivity extends BaseActivity implements ChangeSkinContract.
 			scan();
 			break;
 		case R.id.rl_change_skin:
-			changeSkin();
+//			changeSkin();
 			break;
 		default:
 			break;
@@ -266,7 +265,6 @@ public class SettingActivity extends BaseActivity implements ChangeSkinContract.
 	}
 
 	private void changeSkin() {
-		setPresenter(new ChangeSkinPresenter(this));
 		mChangeSkinPresenter.changeSkin();
 	}
 
@@ -315,18 +313,15 @@ public class SettingActivity extends BaseActivity implements ChangeSkinContract.
 		}
 	};
 
-	@Override
 	public void setPresenter(ChangeSkinContract.Presenter presenter) {
 		mChangeSkinPresenter=presenter;
 	}
 
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-	@Override
 	public void shoChangSkin(Drawable drawable) {
 		tv_skin.setBackground(drawable);
 	}
 
-	@Override
 	public boolean isActive() {
 		return false;
 	}

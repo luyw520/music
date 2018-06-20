@@ -2,7 +2,7 @@ package com.music.presenter;
 
 import java.lang.ref.WeakReference;
 
-public abstract class BasePresenter<V> {
+public abstract class BasePresenter<V extends IBaseView> {
 //    public M mModel;
     private V mView;
     public WeakReference<V> mViewRef;

@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="true"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:fitsSystemWindows="true" >
 
         <ImageButton
@@ -38,8 +40,8 @@
                 android:focusable="true"
                 android:singleLine="true"
                 android:textColor="@color/white"
-                android:text="aaaa"
-                android:textSize="18sp" />
+                android:text="贝多芬的悲伤"
+                android:textSize="15sp" />
 
             <com.music.ui.widget.AlwaysMarqueeTextView
                 android:id="@+id/musicArtist"
@@ -48,9 +50,9 @@
                 android:ellipsize="marquee"
                 android:focusable="true"
                 android:singleLine="true"
-                android:text="bbbb"
+                android:text="萧风"
                 android:textColor="@color/player_track_color2"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <ImageButton
@@ -93,7 +95,6 @@
         android:id="@+id/ll_lrc"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingTop="10dp"
         android:layout_weight="1"
         android:orientation="vertical"
         android:visibility="gone" >

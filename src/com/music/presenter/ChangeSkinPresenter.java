@@ -6,11 +6,11 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
-import com.music.lu.R;
-import com.music.MusicApplication;
-import com.music.utils.DeBug;
-import com.music.utils.ObjecteUtil;
 import com.lu.library.util.file.FileUtils;
+import com.music.MusicApplication;
+import com.music.lu.R;
+import com.music.utils.DeBug;
+import com.music.utils.SPUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,26 +20,44 @@ import java.lang.reflect.Method;
 
 import dalvik.system.DexClassLoader;
 
+import static com.music.utils.ConstUtils.BG_INDEX_KEY;
+
 /**
  * Created by lyw on 2017/9/23.
+ * 切换播放界面背景
  */
 
-public class ChangeSkinPresenter implements ChangeSkinContract.Presenter{
+public class ChangeSkinPresenter extends BasePresenter<IBaseView<Drawable>> {
     private ChangeSkinContract.View mChangeSkinView;
     private String apkDir= Environment.getExternalStorageDirectory().getAbsolutePath();
     private String apkName="wyy.apk";
     private String plugPackageName="com.example.lyw.wyy";
-    public ChangeSkinPresenter(ChangeSkinContract.View view){
 
-        mChangeSkinView= ObjecteUtil.checkNotNull(view);
-        mChangeSkinView.setPresenter(this);
-    }
-    @Override
     public void start() {
 
     }
-
-    @Override
+    private int checkedId;
+    public void changeBg(Context context){
+        int checkedIdTemp = (int) SPUtils.get( BG_INDEX_KEY,0);
+        if (checkedIdTemp!=checkedId){
+            checkedId=checkedIdTemp;
+            AssetManager assetManager =context.getAssets();
+            InputStream inputStream=null;
+            try {
+                String[] paths = assetManager.list("bgs");
+                inputStream = assetManager.open("bgs/" + paths[checkedId]);
+//				Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                Drawable drawable=Drawable.createFromResourceStream(context.getResources(), null, inputStream, "src", null);
+//                mChangeSkinView.shoChangSkin(drawable);
+                if (mViewRef!=null&&mViewRef.get()!=null){
+                    mViewRef.get().onSuccess(drawable);
+                }
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public void changeSkin() {
         try {
             File apkFile=new File(filePath);
