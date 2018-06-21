@@ -26,4 +26,10 @@ public class EventBusHelper {
         DebugLog.d("发送事件....."+messageEvent.toString());
         EventBus.getDefault().post(messageEvent);
     }
+    public static void register(Object subscriber){
+        EventBus.getDefault().register(subscriber);
+    }
+    public static void unregister(Object subscriber){
+        EventBus.getDefault().unregister(subscriber);
+    }
 }

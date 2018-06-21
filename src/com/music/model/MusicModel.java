@@ -67,6 +67,23 @@ public class MusicModel {
     public static MusicModel getInstance(){
         return musicModel;
     }
+
+    /**
+     *
+     *            local,artist,album,folder
+     * @return
+     */
+    public List<MusicInfo> queryMusicByFolder(String folderPath) {
+        DebugLog.d("folderPath:"+folderPath);
+        List<MusicInfo> musicInfos=new ArrayList<>();
+        for (MusicInfo musicInfo:musicList){
+            if (musicInfo.getFolder().equals(folderPath)){
+                musicInfos.add(musicInfo);
+            }
+
+        }
+        return musicInfos;
+    }
     /**
      *
      * @param context

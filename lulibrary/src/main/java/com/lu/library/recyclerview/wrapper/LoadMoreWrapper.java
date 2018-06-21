@@ -1,4 +1,4 @@
-package com.music.ui.recyclerview.wrapper;
+package com.lu.library.recyclerview.wrapper;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -6,8 +6,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.music.ui.recyclerview.WrapperUtils;
-import com.music.ui.recyclerview.base.CommonRecyclerViewHolder;
+import com.lu.library.recyclerview.WrapperUtils;
+import com.lu.library.recyclerview.base.CommonRecyclerViewHolder;
 
 
 public class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

@@ -1,14 +1,15 @@
-package com.music.ui.recyclerview;
+package com.lu.library.recyclerview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.music.ui.recyclerview.base.CommonRecyclerViewHolder;
-import com.music.ui.recyclerview.base.ItemViewDelegateForRV;
-import com.music.ui.recyclerview.base.ItemViewDelegateManagerForRV;
+import com.lu.library.recyclerview.base.CommonRecyclerViewHolder;
+import com.lu.library.recyclerview.base.ItemViewDelegateForRV;
+import com.lu.library.recyclerview.base.ItemViewDelegateManagerForRV;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,13 +23,34 @@ public class MultiItemTypeAdapterForRV<T> extends RecyclerView.Adapter<CommonRec
     protected ItemViewDelegateManagerForRV mItemViewDelegateManager;
     protected OnItemClickListener mOnItemClickListener;
 
+    protected ArrayList<View> mHeaderViews = new ArrayList<>() ;
 
+    protected ArrayList<View> mFootViews = new ArrayList<>() ;
     public MultiItemTypeAdapterForRV(Context context, List<T> datas) {
         mContext = context;
         mDatas = datas;
         mItemViewDelegateManager = new ItemViewDelegateManagerForRV();
     }
-
+    public void addHeaderView(View view){
+        mHeaderViews.clear();
+        mHeaderViews.add(view);
+//        if (mAdapter != null){
+//            if (!(mAdapter instanceof RecyclerWrapAdapter)){
+//                mAdapter = new RecyclerWrapAdapter(mHeaderViews,mFootViews,mAdapter) ;
+////                mAdapter.notifyDataSetChanged();
+//            }
+//        }
+    }
+    public void addFootView(View view){
+        mFootViews.clear();
+        mFootViews.add(view);
+//        if (mAdapter != null){
+//            if (!(mAdapter instanceof RecyclerWrapAdapter)){
+//                mAdapter = new RecyclerWrapAdapter(mHeaderViews,mFootViews,mAdapter) ;
+////                mAdapter.notifyDataSetChanged();
+//            }
+//        }
+    }
     @Override
     public int getItemViewType(int position) {
         if (!useItemViewDelegateManager()) return super.getItemViewType(position);

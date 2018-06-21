@@ -33,6 +33,7 @@ public class MyNotification {
 		playerHelpler = PlayerHelpler.getDefault();
 		initNotification();
 		registerReceiver();
+		setPlayImageState(false);
 
 	}
 	private void registerReceiver() {

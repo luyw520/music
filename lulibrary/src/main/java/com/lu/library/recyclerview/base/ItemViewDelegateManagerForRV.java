@@ -1,4 +1,4 @@
-package com.music.ui.recyclerview.base;
+package com.lu.library.recyclerview.base;
 
 import android.support.v4.util.SparseArrayCompat;
 

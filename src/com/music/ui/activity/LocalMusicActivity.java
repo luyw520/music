@@ -26,8 +26,6 @@ import com.lu.library.permissiongen.PermissionFail;
 import com.lu.library.permissiongen.PermissionSuccess;
 import com.music.MusicApplication;
 import com.music.annotation.ComputeTime;
-import com.music.bean.AlbumInfo;
-import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
 import com.music.bean.MessageEvent;
 import com.music.bean.MusicInfo;
@@ -39,7 +37,7 @@ import com.music.presenter.IPlayState;
 import com.music.ui.broadcastreceiver.MediaButtonReceiver;
 import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
 import com.music.ui.fragment.LocalMusicFragment;
-import com.music.ui.fragment.MusicListFragment;
+import com.music.ui.fragment.SongFragment;
 import com.music.ui.service.IConstants;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.ui.view.MyNotification;
@@ -132,7 +130,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	private MusicInfo currentMp3Info;
 	private PlayerHelpler mp3Util;
 
-	private MusicListFragment musicListFragment = null;
+//	private MusicListFragment musicListFragment = null;
+	private SongFragment musicListFragment = null;
 	private FragmentTransaction transaction;
 	private LocalMusicFragment localMusicFragment;
 	private MyBroadcastReceiver myBroadcastReceiver;
@@ -179,11 +178,11 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	 */
 	@ComputeTime
 	public void changeFragment(int flag, Object object) {
-		if (musicListFragment == null) {
-			musicListFragment = new MusicListFragment();
-		}
+//		if (musicListFragment == null) {
+			musicListFragment =  SongFragment.newInstance(SongFragment.TYPE_SONG_FOLDER,object);
+//		}
 
-		musicListFragment.initData(flag, object, this);
+//		musicListFragment.initData(object);
 		transaction = getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.id_frame, musicListFragment);
 		transaction.addToBackStack(null);
@@ -192,14 +191,14 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		isHome = false;
 		String title = "";
 		switch (flag) {
-		case START_FROM_ARTIST:
-			ArtistInfo artistInfo = (ArtistInfo) object;
-			title = artistInfo.artist_name;
-			break;
-		case START_FROM_ALBUM:
-			AlbumInfo albumInfo = (AlbumInfo) object;
-			title = albumInfo.album_name;
-			break;
+//		case START_FROM_ARTIST:
+//			ArtistInfo artistInfo = (ArtistInfo) object;
+//			title = artistInfo.artist_name;
+//			break;
+//		case START_FROM_ALBUM:
+//			AlbumInfo albumInfo = (AlbumInfo) object;
+//			title = albumInfo.album_name;
+//			break;
 		case START_FROM_FOLDER:
 			FolderInfo folderInfo = (FolderInfo) object;
 			title = folderInfo.folder_name;
@@ -395,8 +394,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			transaction = getSupportFragmentManager().beginTransaction();
 			transaction.remove(musicListFragment);
 			transaction.commit();
-			tv_title.setText("ttt");
+			tv_title.setText(R.string.local_music);
 			isHome = true;
+			musicListFragment=null;
 		} else {
 			slidingMenu.toggle();
 			if (slidingMenu.isOpen()) {
@@ -512,7 +512,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 				state.duration((Integer) event.data);
 				break;
 			case MUSIC_PAUSE:
-				state.playMusicState();
+				state.pauseMusicState();
 				break;
 		}
 	}

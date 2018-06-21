@@ -1,4 +1,4 @@
-package com.music.ui.recyclerview.help;
+package com.lu.library.recyclerview.help;
 
 /**
   *@date on 2017/12/6

@@ -1,10 +1,10 @@
-package com.music.ui.recyclerview;
+package com.lu.library.recyclerview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 
-import com.music.ui.recyclerview.base.CommonRecyclerViewHolder;
-import com.music.ui.recyclerview.base.ItemViewDelegateForRV;
+import com.lu.library.recyclerview.base.CommonRecyclerViewHolder;
+import com.lu.library.recyclerview.base.ItemViewDelegateForRV;
 
 import java.util.List;
 

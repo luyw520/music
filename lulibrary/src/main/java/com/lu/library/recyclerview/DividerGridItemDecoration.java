@@ -1,4 +1,4 @@
-package com.music.ui.recyclerview;
+package com.lu.library.recyclerview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

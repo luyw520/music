@@ -1,4 +1,4 @@
-package com.music.ui.recyclerview.help;
+package com.lu.library.recyclerview.help;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;

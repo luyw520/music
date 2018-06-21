@@ -20,5 +20,4 @@
 
     <dimen name="editview_height">50dp</dimen>
     <dimen name="btn_bg_padding">10dp</dimen>
-    <dimen name="x1">1dp</dimen>
 </resources>

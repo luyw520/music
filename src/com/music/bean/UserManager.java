@@ -100,6 +100,10 @@ public class UserManager {
 		try {
 			bitmap=BitmapFactory.decodeFile(headerPath);
 		}catch (Exception e){
+			e.printStackTrace();
+
+		}
+		if (bitmap==null){
 			bitmap=BitmapFactory.decodeResource(context.getResources(),R.drawable.lmusic_small);
 		}
 		return bitmap;

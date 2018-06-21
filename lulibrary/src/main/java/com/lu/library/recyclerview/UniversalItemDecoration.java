@@ -1,4 +1,4 @@
-package com.music.ui.recyclerview;
+package com.lu.library.recyclerview;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,7 +8,7 @@ import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.music.lu.R;
+import com.lu.library.R;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class FolderInfo implements Parcelable {
-	
+import java.io.Serializable;
+
+public class FolderInfo implements Parcelable,Serializable {
+
 	public static String KEY_FOLDER_NAME = "folder_name";
 	public static String KEY_FOLDER_PATH = "folder_path";
-	
+
 	public String folder_name;
 	public String folder_path;
 	public String music_number;

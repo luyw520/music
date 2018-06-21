@@ -1,6 +1,7 @@
 package com.music.ui.fragment;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -14,18 +15,21 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lu.library.overscroll.VerticalOverScrollBounceEffectDecorator;
 import com.lu.library.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
+import com.lu.library.recyclerview.CommonRecyclerViewAdapter;
+import com.lu.library.recyclerview.MultiItemTypeAdapterForRV;
+import com.lu.library.recyclerview.base.CommonRecyclerViewHolder;
+import com.lu.library.recyclerview.wrapper.HeaderAndFooterWrapper;
+import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
 import com.music.db.DBHelper;
 import com.music.helpers.PlayerHelpler;
 import com.music.lu.R;
 import com.music.model.MusicModel;
 import com.music.ui.adapter.MusicListAdapter;
-import com.music.ui.recyclerview.CommonRecyclerViewAdapter;
-import com.music.ui.recyclerview.MultiItemTypeAdapterForRV;
-import com.music.ui.recyclerview.base.CommonRecyclerViewHolder;
 import com.music.ui.service.IConstants;
 import com.music.ui.widget.indexablelistview.IndexableListView;
 import com.music.utils.DeBug;
+import com.music.utils.DebugLog;
 
 import java.util.List;
 
@@ -54,24 +58,49 @@ public class SongFragment extends BaseFragment implements IConstants{
 	public static final int HAS_STICKY_VIEW = 2;
 	public static final int NONE_STICKY_VIEW = 3;
 
+	public static final int TYPE_SONG_ALL=0;
+	public static final int TYPE_SONG_FOLDER=1;
+	public static final String TYPE_SONG_KEY="TYPE_SONG_KEY";
+	public static final String TYPE_SONG_DATA="TYPE_SONG_DATA";
+	private int type;
+	FolderInfo folderInfo;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mp3Util= PlayerHelpler.getDefault();
 		DeBug.d(this, "onCreate................");
-
+		Bundle bundle=getArguments();
+		if (bundle!=null){
+			type=bundle.getInt(TYPE_SONG_KEY);
+			Object data=bundle.getParcelable(TYPE_SONG_DATA);
+			if (data!=null){
+				folderInfo=(FolderInfo) data;
+			}
+		}
 	}
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		DeBug.d(this, "onCreateView................");
 		super.onCreateView(inflater, container, savedInstanceState);
 		View view = inflater.inflate(R.layout.fragment_song, container, false);
+
+
 		initViewWidget(view);
 		return view;
 	}
 
-
-
+	public static SongFragment newInstance(int type) {
+		return newInstance(type,null);
+	}
+	public static SongFragment newInstance(int type,Object data) {
+		Bundle args = new Bundle();
+		args.putInt(TYPE_SONG_KEY,type);
+		args.putParcelable(TYPE_SONG_DATA,(Parcelable) data);
+		SongFragment fragment = new SongFragment();
+		fragment.setArguments(args);
+		return fragment;
+	}
 
 
 	/**
@@ -83,10 +112,17 @@ public class SongFragment extends BaseFragment implements IConstants{
 
 		stickyHeaderView=view.findViewById(R.id.catalog);
 		mMusiclist.setFastScrollEnabled(false);
+		DebugLog.d("type:"+type);
 
+		switch (type){
+			case TYPE_SONG_ALL:
+				mp3Infos= MusicModel.getInstance().sortMp3InfosByTitle(getContext());
+				break;
+			case TYPE_SONG_FOLDER:
+				mp3Infos=MusicModel.getInstance().queryMusicByFolder(folderInfo.folder_path);
+				break;
+		}
 
-//		mp3Infos= new MediaUtil().getMp3Infos(getContext());
-		mp3Infos= MusicModel.getInstance().sortMp3InfosByTitle(getContext());
 
 
 		listAdapter = new MusicListAdapter(getActivity(),
@@ -145,7 +181,9 @@ public class SongFragment extends BaseFragment implements IConstants{
 			}
 
 		};
-		recyclerView.setAdapter(adapter);
+		HeaderAndFooterWrapper<MusicInfo> wrapper=new HeaderAndFooterWrapper<>(adapter);
+		wrapper.addFootView(getFoodView(getString(R.string.music_size,mp3Util.getAllMp3Size())));
+		recyclerView.setAdapter(wrapper);
 
 		recyclerView.addOnScrollListener(onScrollListener);
 		adapter.setOnItemClickListener(new MultiItemTypeAdapterForRV.OnItemClickListener() {
@@ -208,4 +246,10 @@ public class SongFragment extends BaseFragment implements IConstants{
 	};
 
 
+//	public void initData(Object object) {
+//		FolderInfo folderInfo = (FolderInfo) object;
+//		musicInfos=(MusicModel.getInstance().queryMusic(getActivity(),
+//				select.toString(), folderInfo.folder_path,
+//				START_FROM_FOLDER));
+//	}
 }
