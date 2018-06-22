@@ -13,25 +13,25 @@ import com.music.lrc.LyricDownloadManager;
 import com.music.lrc.LyricLoadHelper;
 import com.music.lrc.LyricLoadHelper.LyricListener;
 import com.music.utils.DeBug;
-import com.music.utils.FileUtils;
+import com.music.helpers.FileHelper;
 
 public class LyricModel {
 	private Map<String, List<LyricSentence>> lycsList=new HashMap<String,List<LyricSentence>>();
-	
+
 	private LyricDownloadManager manager;
 	private LyricLoadHelper loadHelper;
-	
+
 	public LyricModel(Context context){
-		
+
 		manager = new LyricDownloadManager(context);
 		loadHelper = new LyricLoadHelper();
-		
+
 	}
 	public void setLyricListener(LyricListener l){
 		loadHelper.setLyricListener(l);
 	}
 	/**
-	 * search lrc from web 
+	 * search lrc from web
 	 * @param songName
 	 * @param songer
 	 * @return
@@ -60,7 +60,7 @@ public class LyricModel {
 		DeBug.d(this, "...................getLyricSentences lrc,title:"+title);
 		return lycsList.get(title);
 	}
-	
+
 	/**
 	 *
 	 * @param songer
@@ -68,7 +68,7 @@ public class LyricModel {
 	 * @return
 	 */
 	public String findLocalLrc(String songer, String songName) {
-		File file = new File(FileUtils.lrcPath());
+		File file = new File(FileHelper.lrcPath());
 		for (File f : file.listFiles()) {
 			if (f.getName().equals(songer + "-" + songName + ".lrc")) {
 				DeBug.d(this, "sdcard has lrc");

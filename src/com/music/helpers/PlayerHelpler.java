@@ -446,4 +446,12 @@ public class PlayerHelpler {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+
+	public void playOrNextMusic() {
+		if (isPlaying){
+			nextMusic(true);
+		}else{
+			playMusic();
+		}
+	}
 }

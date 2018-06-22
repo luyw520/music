@@ -13,6 +13,7 @@ import android.util.Log;
 
 import com.lu.library.util.DebugLog;
 import com.lu.library.util.image.BitmapUtils;
+import com.music.annotation.ComputeTime;
 import com.music.bean.Mp3Info;
 import com.music.bean.MusicInfo;
 import com.music.lu.R;
@@ -32,6 +33,7 @@ public class MediaUtil {
 	private static String TAG = "MediaUtil";
 	private static final int IMG_HEIGHT=200;
 	private static final int IMG_WIDTH=200;
+
 	/**
 	 *
 	 */
@@ -133,7 +135,8 @@ public class MediaUtil {
 	 *
 	 * @return 专辑封面bitmap
 	 */
-	public static Bitmap getMusicImage(Context context,final String filePath, long song_id,
+	@ComputeTime
+	private static Bitmap getMusicImage(Context context,final String filePath, long song_id,
 									   long album_id, int width,int height) {
 		Bitmap bitmap = null;
 		//能够获取多媒体文件元数据的类

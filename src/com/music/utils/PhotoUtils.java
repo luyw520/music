@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 
+import com.music.helpers.FileHelper;
 import com.music.ui.activity.ImageFactoryActivity;
 import com.music.ui.view.ImageFactoryFliter;
 
@@ -24,7 +25,7 @@ import java.util.UUID;
 
 public  class PhotoUtils {
 
-        private static final String IMAGE_PATH = FileUtils.imgPathPath() + File.separator;
+        private static final String IMAGE_PATH = FileHelper.imgPathPath() + File.separator;
 
 
         public static final int INTENT_REQUEST_CODE_ALBUM = 0;
@@ -49,11 +50,11 @@ public  class PhotoUtils {
          * @param activity
          */
         public static String takePicture(Activity activity) {
-            FileUtils.createDirFile(IMAGE_PATH);
+            FileHelper.createDirFile(IMAGE_PATH);
     //		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             String path = IMAGE_PATH + UUID.randomUUID().toString() + ".jpg";
 
-            File file = FileUtils.createNewFile(path);
+            File file = FileHelper.createNewFile(path);
     //		if (file != null) {
     //			intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
     //		}
@@ -114,7 +115,7 @@ public  class PhotoUtils {
         public static void deleteImageFile() {
             File dir = new File(IMAGE_PATH);
             if (dir.exists()) {
-                FileUtils.delFolder(IMAGE_PATH);
+                FileHelper.delFolder(IMAGE_PATH);
             }
         }
 
@@ -224,15 +225,15 @@ public  class PhotoUtils {
          * @return
          */
         public static String savePhotoToSDCard(Bitmap bitmap) {
-            if (!FileUtils.isSdcardExist()) {
+            if (!FileHelper.isSdcardExist()) {
                 return null;
             }
             FileOutputStream fileOutputStream = null;
-            FileUtils.createDirFile(IMAGE_PATH);
+            FileHelper.createDirFile(IMAGE_PATH);
 
             String fileName = UUID.randomUUID().toString() + ".jpg";
             String newFilePath = IMAGE_PATH + fileName;
-            File file = FileUtils.createNewFile(newFilePath);
+            File file = FileHelper.createNewFile(newFilePath);
             if (file == null) {
                 return null;
             }

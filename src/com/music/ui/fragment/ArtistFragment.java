@@ -10,12 +10,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.SectionIndexer;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lu.library.adapter.ViewHolder;
 import com.music.bean.ArtistInfo;
 import com.music.helpers.StringHelper;
 import com.music.lu.R;
 import com.music.model.MusicModel;
 import com.music.ui.activity.LocalMusicActivity;
-import com.music.ui.adapter.LuAdapter;
+import com.lu.library.adapter.LuAdapter;
 import com.music.ui.service.IConstants;
 import com.music.ui.widget.indexablelistview.IndexableListView;
 import com.music.utils.LogUtil;
@@ -128,7 +129,7 @@ public class ArtistFragment extends BaseFragment {
 		}
 
 		@Override
-		public void convert(com.music.ui.adapter.ViewHolder helper, int position) {
+		public void convert(ViewHolder helper, int position) {
 			// TODO Auto-generated method stub
 			ArtistInfo artistInfo=getItem(position);
 

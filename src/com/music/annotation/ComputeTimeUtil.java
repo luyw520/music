@@ -2,8 +2,6 @@ package com.music.annotation;
 
 import com.music.utils.DeBug;
 
-import org.android.agoo.proxy.ProxyFactroy;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;

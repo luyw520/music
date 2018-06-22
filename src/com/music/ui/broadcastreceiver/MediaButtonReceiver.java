@@ -52,7 +52,7 @@ public class MediaButtonReceiver extends BroadcastReceiver {
                     if (delayTime>500){
                         DebugLog.d("nextMusic");
                         MusicApplication.getInstance().lastPlayTime=currentTime;
-                        PlayerHelpler.getDefault().nextMusic(true);
+                        PlayerHelpler.getDefault().playOrNextMusic();
                     }
 
                     break;

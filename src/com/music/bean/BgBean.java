@@ -3,7 +3,7 @@ package com.music.bean;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.music.utils.SharedPreHelper;
+import com.music.helpers.SharedPreHelper;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -14,13 +14,13 @@ public class BgBean {
 	private Bitmap bitmap;
 	private boolean isChecked;
 	private static Bitmap currentBitmap;
-	
+
 	public BgBean(Bitmap bitmap,boolean isChecked){
-		
+
 		this.bitmap=bitmap;
 		this.isChecked=isChecked;
 	}
-	
+
 	public Bitmap getBitmap() {
 		return bitmap;
 	}
@@ -37,7 +37,7 @@ public class BgBean {
 		return currentBitmap;
 	}
 	public static Bitmap getUsedBitmap(Context context) {
-		
+
 		int checkedId = 0;
 		String checkString = SharedPreHelper.getStringValue(context, "bgindex","");
 		if (!checkString.equals("")) {
@@ -55,15 +55,15 @@ public class BgBean {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return bitmap;
 	}
 	public static void setCurrentBitmap(Bitmap currentBitmap) {
 		BgBean.currentBitmap = currentBitmap;
 	}
-	
 
-	
-	
+
+
+
 }

@@ -2,6 +2,8 @@ package com.music.ui.adapter;
 
 import android.support.v4.util.SparseArrayCompat;
 
+import com.lu.library.adapter.ViewHolder;
+
 
 /**
  * Created by zhy on 16/6/22.

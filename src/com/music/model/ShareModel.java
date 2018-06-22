@@ -2,7 +2,8 @@ package com.music.model;
 
 import android.app.Activity;
 
-import com.umeng.socialize.sso.QZoneSsoHandler;
+import com.lu.library.widget.TopNoticeDialog;
+import com.music.lu.R;
 
 public class ShareModel {
 	private static final String QZONE_APP_ID="1104335219";
@@ -14,8 +15,9 @@ public class ShareModel {
 	 * umeng share api
 	 */
 	public void umengShareMusic(Activity activity) {
-		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(activity,
-				QZONE_APP_ID, QZONE_APP_KEY);
+		TopNoticeDialog.showToast(activity, R.string.no_share);
+//		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(activity,
+//				QZONE_APP_ID, QZONE_APP_KEY);
 
 //		qZoneSsoHandler.addToSocialSDK();
 //		UMQQSsoHandler qHandler = new UMQQSsoHandler(activity, QZONE_APP_ID,

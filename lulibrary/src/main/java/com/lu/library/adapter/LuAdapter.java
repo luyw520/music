@@ -1,12 +1,11 @@
-package com.music.ui.adapter;
-
-import java.util.List;
-
+package com.lu.library.adapter;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import java.util.List;
 
 public abstract class LuAdapter<T> extends BaseAdapter{
 	private Context context;
@@ -19,18 +18,15 @@ public abstract class LuAdapter<T> extends BaseAdapter{
 	}
 	@Override
 	public int getCount() {
-		
-		return datas.size();
+		return datas==null?0:datas.size();
 	}
 
 	@Override
 	public T getItem(int position) {
-		return datas.get(position);
+		return datas==null?null:datas.get(position);
 	}
-
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -43,7 +39,7 @@ public abstract class LuAdapter<T> extends BaseAdapter{
 	}
 	public  void convert(ViewHolder helper, T item){};
 	public abstract void convert(ViewHolder helper, int position);
-		
+
 //	};
 	protected ViewHolder getViewHolder(View convertView, ViewGroup parent, int position){
 		return ViewHolder.get(context, convertView, parent,mItemLayoutId, position);

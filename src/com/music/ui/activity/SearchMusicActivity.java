@@ -32,12 +32,12 @@ import com.music.lu.R;
 import com.music.model.DataStorageModel;
 import com.music.model.HttpCallback;
 import com.music.model.MusicHttpModel;
-import com.music.ui.adapter.LuAdapter;
-import com.music.ui.adapter.ViewHolder;
+import com.lu.library.adapter.LuAdapter;
+import com.lu.library.adapter.ViewHolder;
 import com.music.ui.widget.dialog.LoadingView;
 import com.music.utils.DeBug;
 import com.music.utils.DialogUtil;
-import com.music.utils.FileUtils;
+import com.music.helpers.FileHelper;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
@@ -370,11 +370,11 @@ public class SearchMusicActivity extends BaseActivity {
 		}
 
 		private void down(final Button button) {
-			path = FileUtils.findLocalMp3(datas.get(position).getTitle());
+			path = FileHelper.findLocalMp3(datas.get(position).getTitle());
 			if (path != null) {
 				return;
 			}
-			path = FileUtils.downPath() + File.separator
+			path = FileHelper.downPath() + File.separator
 					+ datas.get(position).getTitle();
 			musicHttpModel.downMusic(datas.get(position).downUrl, path,
 					new DownMusicCallBack());

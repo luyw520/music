@@ -19,8 +19,8 @@ import com.lu.library.util.SPUtils;
 import com.music.Constant;
 import com.music.bean.BgBean;
 import com.music.lu.R;
-import com.music.ui.adapter.LuAdapter;
-import com.music.ui.adapter.ViewHolder;
+import com.lu.library.adapter.LuAdapter;
+import com.lu.library.adapter.ViewHolder;
 
 import java.io.IOException;
 import java.io.InputStream;

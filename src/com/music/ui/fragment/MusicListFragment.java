@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lu.library.adapter.ViewHolder;
 import com.music.bean.AlbumInfo;
 import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
@@ -20,7 +21,7 @@ import com.music.model.MusicModel;
 import com.music.ui.service.IConstants;
 import com.music.utils.LogUtil;
 import com.music.helpers.PlayerHelpler;
-import com.music.ui.adapter.LuAdapter;
+import com.lu.library.adapter.LuAdapter;
 import com.music.ui.widget.indexablelistview.IndexableListView;
 
 /**
@@ -131,7 +132,7 @@ public class MusicListFragment extends BaseFragment implements IConstants{
 
 
 		@Override
-		public void convert(com.music.ui.adapter.ViewHolder helper, int position) {
+		public void convert(ViewHolder helper, int position) {
 			// TODO Auto-generated method stub
 			MusicInfo musicInfo=getItem(position);
 

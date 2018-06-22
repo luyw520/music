@@ -15,13 +15,13 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.lu.library.util.DateUtil;
+import com.music.helpers.PlayerHelpler;
+import com.music.lu.R;
 import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
 import com.music.ui.broadcastreceiver.State;
-import com.music.lu.R;
-import com.music.utils.DateUtil;
-import com.music.utils.MediaUtil;
-import com.music.helpers.PlayerHelpler;
 import com.music.ui.view.widget.SliderRelativeLayout;
+import com.music.utils.MediaUtil;
 
 @SuppressLint("HandlerLeak")
 public class LockScreenActivity extends Activity {
@@ -86,8 +86,8 @@ public class LockScreenActivity extends Activity {
 			ib_player.setBackgroundResource(R.drawable.lock_player);
 		}
 
-		tv_time.setText(DateUtil.getTime());
-		tv_day.setText(DateUtil.getDay());
+		tv_time.setText(DateUtil.getCurrentHMS());
+		tv_day.setText(DateUtil.getCurrentYMD());
 		tv_songname.setText(mp3Util.getCurrentMp3Info().getTitle());
 		tv_duation.setText(MediaUtil.formatTime(mp3Util.getCurrentMp3Info().getDuration())
 				+ "");
@@ -107,7 +107,7 @@ public class LockScreenActivity extends Activity {
 				break;
 			case TIME:
 				Log.i(TAG, "TIME");
-				tv_time.setText(DateUtil.getTime());
+				tv_time.setText(DateUtil.getCurrentYMD());
 				handler.sendEmptyMessageDelayed(TIME, 1000*60);
 				break;
 			default:

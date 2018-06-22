@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import com.lu.library.util.DateUtil;
 import com.lu.library.util.image.ImageUtil;
-import com.music.utils.DateUtil;
 import com.music.utils.DialogUtil;
-import com.music.utils.FileUtils;
+import com.music.helpers.FileHelper;
 import com.umeng.scrshot.UMScrShotController.OnScreenshotListener;
 
 import java.io.File;
@@ -75,8 +75,8 @@ public class ScreenShotUtil {
 			Log.i(TAG, arg0.toString());
 
 
-			String sctPath= DateUtil.getDate3()+".png";
-			sctPath= FileUtils.imgPathPath()+File.separator+sctPath;
+			String sctPath= DateUtil.getCurrentDate()+".png";
+			sctPath= FileHelper.imgPathPath()+File.separator+sctPath;
 			ImageUtil.saveImage(arg0, sctPath, null);
 
 			DialogUtil.showToast(mActivity, " aaa"+sctPath);

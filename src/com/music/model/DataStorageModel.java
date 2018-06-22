@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import com.music.utils.FileUtils;
+import com.music.helpers.FileHelper;
 
 public class DataStorageModel {
 	private DataStorageModel(){
@@ -19,7 +19,7 @@ public class DataStorageModel {
 		public static DataStorageModel d=new DataStorageModel();
 	}
 	public void saveObjectToFile(Object object, String fileName) {
-		File f = new File(FileUtils.objPath(), fileName);
+		File f = new File(FileHelper.objPath(), fileName);
 		ObjectOutputStream o = null;
 		try {
 			o = new ObjectOutputStream(new FileOutputStream(f));
@@ -41,7 +41,7 @@ public class DataStorageModel {
 	}
 	public Object getObjectFromFile(String fileName) {
 		Object object=null;
-		File f = new File(FileUtils.objPath(), fileName);
+		File f = new File(FileHelper.objPath(), fileName);
 		ObjectInputStream i = null;
 		try {
 			i = new ObjectInputStream(new FileInputStream(f));

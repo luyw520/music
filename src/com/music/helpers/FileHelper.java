@@ -1,8 +1,4 @@
-package com.music.utils;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.DecimalFormat;
+package com.music.helpers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,18 +6,24 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
+import com.lu.library.util.file.FileUtils;
+import com.music.utils.DeBug;
+
+import java.io.File;
+import java.text.DecimalFormat;
+
 /**
  *
  */
-public class FileUtils {
+public class FileHelper {
 	private static String SDCardRoot=Environment.getExternalStorageDirectory()
 	.getAbsolutePath() + File.separator;
-	
-	
-	private static final String TAG="FileUtils";
+
+
+	private static final String TAG="FileHelper";
 	/**
 	 */
-	
+
 	private static String dataPath=SDCardRoot+"lu"+File.separator+"music";
 	/**
 	 */
@@ -29,14 +31,14 @@ public class FileUtils {
 	/**
 	 */
 	private static String imgPath=dataPath+File.separator+"img";
-	
+
 	/**
 	 */
 	private static String lrcPath=dataPath+File.separator+"lrc";
-	
+
 	private static String objPath=dataPath+File.separator+"obj";
 	private static String crashPath=dataPath+File.separator+"crash";
-	
+
 	public static String objPath(){
 		createDirFile(dataPath);
 		createDirFile(objPath);
@@ -66,14 +68,14 @@ public class FileUtils {
 		createDirFile(lrcPath);
 		return lrcPath;
 	}
-	
+
 	/**
-	 * find local mp3 
+	 * find local mp3
 	 * @param mp3Path
 	 * @return mp3 absolutePath or null
 	 */
 	public static String findLocalMp3(String mp3Path) {
-		File file = new File(FileUtils.downPath());
+		File file = new File(FileHelper.downPath());
 		for (File f : file.listFiles()) {
 			if (f.getParent().equals(mp3Path)) {
 				Log.i(TAG, "local mp3 is exist...");
@@ -90,12 +92,12 @@ public class FileUtils {
 		createDirFile(imgPath);
 		return imgPath;
 	}
-	
+
 	/**
 	 *
 	 * @return
 	 */
-	@SuppressLint("NewApi") 
+	@SuppressLint("NewApi")
 	public static boolean isSdcardExist() {
 		if (Environment.getExternalStorageState().equals(
 				Environment.MEDIA_MOUNTED)||Environment.isExternalStorageRemovable()) {
@@ -109,17 +111,11 @@ public class FileUtils {
 	 * @param path
 	 */
 	public static void createDirFile(String path) {
-		
-		
-		
-		File dir = new File(path);
-		if (!dir.exists()) {
-			dir.mkdirs();
-		}
+		FileUtils.createOrExistsDir(path);
 	}
-	@SuppressLint("NewApi") 
+	@SuppressLint("NewApi")
 	public static File getDiskCacheDir(Context context,String uniqueName){
-	
+
 		String cachePath;
 		if(isSdcardExist()){
 			cachePath=context.getExternalCacheDir().getPath();
@@ -127,24 +123,18 @@ public class FileUtils {
 			cachePath=context.getCacheDir().getPath();
 		}
 		DeBug.d(TAG, "cachePath:"+cachePath);
-		
+
 		return new File(cachePath+File.separator+uniqueName);
 	}
-	
-	
+
+
 	/**
 	 *
 	 * @param path
 	 */
 	public static File createNewFile(String path) {
 		File file = new File(path);
-		if (!file.exists()) {
-			try {
-				file.createNewFile();
-			} catch (IOException e) {
-				return null;
-			}
-		}
+		FileUtils.createOrExistsFile(path);
 		return file;
 	}
 
@@ -153,42 +143,9 @@ public class FileUtils {
 	 * @param folderPath
 	 */
 	public static void delFolder(String folderPath) {
-		delAllFile(folderPath);
-		String filePath = folderPath;
-		filePath = filePath.toString();
-		java.io.File myFilePath = new java.io.File(filePath);
-		myFilePath.delete();
+		FileUtils.deleteDir(folderPath);
 	}
 
-	/**
-	 *
-	 * @param path
-	 */
-	public static void delAllFile(String path) {
-		File file = new File(path);
-		if (!file.exists()) {
-			return;
-		}
-		if (!file.isDirectory()) {
-			return;
-		}
-		String[] tempList = file.list();
-		File temp = null;
-		for (int i = 0; i < tempList.length; i++) {
-			if (path.endsWith(File.separator)) {
-				temp = new File(path + tempList[i]);
-			} else {
-				temp = new File(path + File.separator + tempList[i]);
-			}
-			if (temp.isFile()) {
-				temp.delete();
-			}
-			if (temp.isDirectory()) {
-				delAllFile(path + "/" + tempList[i]);
-				delFolder(path + "/" + tempList[i]);
-			}
-		}
-	}
 
 	/**
 	 *
@@ -219,5 +176,5 @@ public class FileUtils {
 		}
 		return fileSizeString;
 	}
-	
+
 }

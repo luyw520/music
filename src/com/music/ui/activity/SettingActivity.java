@@ -32,7 +32,7 @@ import com.music.utils.DialogUtil;
 import com.music.utils.LogUtil;
 import com.music.utils.SensorManagerUtil;
 import com.music.utils.SensorManagerUtil.SensorChangedListener;
-import com.music.utils.SharedPreHelper;
+import com.music.helpers.SharedPreHelper;
 import com.music.utils.screen.ScreenShotUtil;
 
 import static com.music.utils.AppConstant.AUTOMATIC_DOWN_LRC;

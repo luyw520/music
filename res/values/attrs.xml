@@ -82,4 +82,9 @@
         <attr name="rv_zoomScale" format="float" />
 
     </declare-styleable>
+
+    <declare-styleable name="LoadingView">
+
+        <attr name="loadingText" format="string"/>
+    </declare-styleable>
 </resources>

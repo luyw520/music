@@ -1,11 +1,12 @@
 package com.music.db;
 
+import com.lu.library.util.DebugLog;
 import com.music.MusicApplication;
+import com.music.annotation.ComputeTime;
 import com.music.bean.DaoMaster;
 import com.music.bean.DaoSession;
 import com.music.bean.MusicInfo;
 import com.music.model.MusicModel;
-import com.lu.library.util.DebugLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class DBHelper {
         com.music.bean.MusicInfoDao dao=daoSession.getMusicInfoDao();
         dao.insertOrReplace(musicInfo);
     }
+    @ComputeTime
     public List<MusicInfo> sortMp3InfosByTitle(){
         if (musicInfoList!=null&&!musicInfoList.isEmpty()){
             return musicInfoList;

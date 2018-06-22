@@ -1,7 +1,7 @@
 package com.music.ui.adapter;
 
 
-import android.view.View;
+import com.lu.library.adapter.ViewHolder;
 
 /**
  * Created by zhy on 16/6/22.

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.music.utils.DeBug;
-import com.music.utils.FileUtils;
+import com.music.helpers.FileHelper;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -138,7 +138,7 @@ public class LyricDownloadManager {
 			// PreferenceManager.getDefaultSharedPreferences(
 			// mContext).getString(SettingFragment.KEY_LYRIC_SAVE_PATH,
 			// Constant.LYRIC_SAVE_FOLDER_PATH);
-			String folderPath = FileUtils.lrcPath();
+			String folderPath = FileHelper.lrcPath();
 
 			File savefolder = new File(folderPath);
 			if (!savefolder.exists()) {

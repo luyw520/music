@@ -13,7 +13,7 @@ import com.music.helpers.PlayerHelpler;
 import com.music.model.ScreenManager;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
-import com.music.utils.FileUtils;
+import com.music.helpers.FileHelper;
 import com.lu.library.util.SPUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -76,7 +76,7 @@ public class MusicApplication extends Application {
 		config.diskCacheSize(50 * 1024 * 1024); // 50 MiB
 		config.tasksProcessingOrder(QueueProcessingType.LIFO);
 		config.writeDebugLogs(); // Remove for release app
-		config.diskCache(new UnlimitedDiskCache(new File(FileUtils.imgPathPath())));
+		config.diskCache(new UnlimitedDiskCache(new File(FileHelper.imgPathPath())));
 		ImageLoader.getInstance().init(config.build());
 	}
 	public static MusicApplication getInstance() {
