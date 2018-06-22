@@ -3,8 +3,8 @@ package com.music.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.music.presenter.BasePresenter;
-import com.music.presenter.IBaseView;
+import com.lu.library.base.BasePresenter;
+import com.lu.library.base.IBaseView;
 import com.lu.library.util.DebugLog;
 
 import java.lang.reflect.ParameterizedType;
@@ -23,9 +23,6 @@ public abstract class BaseMVPActivity<P extends BasePresenter> extends BaseActiv
      * 子activity需复写这个方法。。。。
      * @return
      */
-    protected  P createPresenter(){
-        return null;
-    };
     protected  P autoCreatePresenter(){
         try {
             return (P)getArgumentClass().newInstance();
@@ -80,7 +77,7 @@ public abstract class BaseMVPActivity<P extends BasePresenter> extends BaseActiv
     protected void onDestroy() {
         super.onDestroy();
         if (mPersenter!=null){
-            mPersenter.onDettach();
+            mPersenter.detachView();
         }
     }
 }

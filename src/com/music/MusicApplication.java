@@ -8,18 +8,20 @@ import android.os.StrictMode;
 import com.facebook.stetho.Stetho;
 import com.lu.library.monitor.BlockDetectByPrinter;
 import com.lu.library.util.CrashHandler;
+import com.lu.library.util.SPUtils;
 import com.music.db.DBHelper;
+import com.music.helpers.FileHelper;
 import com.music.helpers.PlayerHelpler;
 import com.music.model.ScreenManager;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
-import com.music.helpers.FileHelper;
-import com.lu.library.util.SPUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.UMShareAPI;
 
 import java.io.File;
@@ -59,6 +61,10 @@ public class MusicApplication extends Application {
 //		UMAnalyticsConfig.
 		UMShareAPI.init(this,"5b2a150ef43e4809b500000f");
 		init7_0();
+
+		MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
+		UMConfigure.setLogEnabled(true);
+		UMConfigure.init(this,"5b2a150ef43e4809b500000f","",UMConfigure.DEVICE_TYPE_PHONE,"");
 	}
 	private void init7_0() {
 

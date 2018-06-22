@@ -37,9 +37,31 @@ android {
 //        schemaVersion 1
 ////         targetGenDir'src/com/music/bean'
 //    }
+    signingConfigs {
+        release {
+            keyAlias 'veryfitplus'
+            keyPassword '123456'
+            storeFile file('veryfitplus.keystore')
+            storePassword '123456'
+
+        }
+        config {
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            storeFile file('debug.keystore')
+            keyPassword "android"
+
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -79,6 +101,7 @@ dependencies {
     compile "com.android.support:design:$SUPPORTVERSION"
     compile 'com.alexvasilkov:gesture-views:2.5.2'
     compile 'org.greenrobot:eventbus:3.0.0'
+
 //    compile "com.android.support:recyclerview-v7:$SUPPORTVERSION"
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
@@ -88,6 +111,9 @@ dependencies {
     //compile project(':hellocharts-library')
 //    compile project(':picasso')
     compile project(':lulibrary')
-    compile "io.reactivex.rxjava2:rxjava:2.1.14"
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.2'
+
+
+
+    compile 'com.umeng.sdk:common:1.5.0'
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }

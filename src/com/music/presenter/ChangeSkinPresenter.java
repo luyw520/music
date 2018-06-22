@@ -6,11 +6,13 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
+import com.lu.library.base.BasePresenter;
+import com.lu.library.base.IBaseView;
+import com.lu.library.util.SPUtils;
 import com.lu.library.util.file.FileUtils;
 import com.music.MusicApplication;
 import com.music.lu.R;
 import com.music.utils.DeBug;
-import com.lu.library.util.SPUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +30,7 @@ import static com.music.utils.AppConstant.BG_INDEX_KEY;
  * 切换播放界面背景
  */
 
-public class ChangeSkinPresenter extends BasePresenter<IBaseView<Drawable>> {
+public class ChangeSkinPresenter extends BasePresenter<IBaseView<Drawable>,Object> {
     private ChangeSkinContract.View mChangeSkinView;
     private String apkDir= Environment.getExternalStorageDirectory().getAbsolutePath();
     private String apkName="wyy.apk";
@@ -37,7 +39,7 @@ public class ChangeSkinPresenter extends BasePresenter<IBaseView<Drawable>> {
     public void start() {
 
     }
-    private int checkedId;
+    private int checkedId=-1;
     public void changeBg(Context context){
         int checkedIdTemp = (int) SPUtils.get( BG_INDEX_KEY,0);
         if (checkedIdTemp!=checkedId){
@@ -50,8 +52,8 @@ public class ChangeSkinPresenter extends BasePresenter<IBaseView<Drawable>> {
 //				Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 Drawable drawable=Drawable.createFromResourceStream(context.getResources(), null, inputStream, "src", null);
 //                mChangeSkinView.shoChangSkin(drawable);
-                if (mViewRef!=null&&mViewRef.get()!=null){
-                    mViewRef.get().onSuccess(drawable);
+                if (mWeak!=null&&mWeak.get()!=null){
+                    mWeak.get().success(drawable);
                 }
                 inputStream.close();
             } catch (IOException e) {
@@ -127,5 +129,10 @@ public class ChangeSkinPresenter extends BasePresenter<IBaseView<Drawable>> {
         }
 
         return null;
+    }
+
+    @Override
+    protected void realExeAsyn(Object[] paramses) {
+
     }
 }

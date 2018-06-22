@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
 import com.lu.library.util.ConstantUtil;
 import com.lu.library.util.NotificationsUtils;
-import com.music.annotation.ComputeTimeUtil;
 import com.music.ui.view.animator.ActivityAnimator;
 import com.music.utils.DeBug;
 
@@ -32,21 +31,9 @@ public class BaseActivity extends BaseFragmentActivity implements ConstantUtil {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		ViewUtils.inject(this);
-		ComputeTimeUtil.inject(this);
-		// getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		// getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-
-		// int color = Color.argb(153, 123, 123,123);
-		// mTintManager.setTintColor(color);
-		// StatusBarCompat.compat(this);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 			setTranslucentStatus(true);
 		}
-
-//		mTintManager = new SystemBarTintManager(this);
-//		mTintManager.setStatusBarTintEnabled(true);
-//		mTintManager.setNavigationBarTintEnabled(true);
-//		mTintManager.setTintColor(getResources().getColor(R.color.header_bg));
 	}
 
 	@TargetApi(19)

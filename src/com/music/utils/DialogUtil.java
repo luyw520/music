@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.lu.library.widget.CommomDialog;
 import com.lu.library.widget.TopNoticeDialog;
+import com.music.MusicApplication;
 import com.music.lu.R;
 
 public class DialogUtil {
@@ -18,17 +19,17 @@ public class DialogUtil {
 	/**
 	 */
 	public static void showToast(Context context,String msg){
-		TopNoticeDialog.showToast(context, msg);
+		TopNoticeDialog.showToast(MusicApplication.getInstance(), msg);
 	}
 	/**
 	 */
 	public static void showToast(Context context,int res){
-		TopNoticeDialog.showToast(context, res);
+		TopNoticeDialog.showToast(MusicApplication.getInstance(), res);
 	}
 	/**
 	 */
 	public static void showToast(Context context,CharSequence msg){
-		TopNoticeDialog.showToast(context, msg);
+		TopNoticeDialog.showToast(MusicApplication.getInstance(), msg);
 	}
 	/**
 	 */

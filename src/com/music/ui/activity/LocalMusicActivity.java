@@ -25,9 +25,9 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.lu.library.base.BaseObserver;
 import com.lu.library.permissiongen.PermissionFail;
 import com.lu.library.permissiongen.PermissionSuccess;
-import com.lu.library.util.AsyncTaskUtil;
 import com.lu.library.util.DebugLog;
 import com.lu.library.util.PhotoUtils;
 import com.music.Constant;
@@ -59,6 +59,8 @@ import com.music.utils.DialogUtil;
 import com.music.utils.LogUtil;
 import com.music.utils.MediaUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.util.List;
 
 import static com.music.Constant.MUSIC_CURRENT;
 import static com.music.Constant.MUSIC_DURATION;
@@ -245,7 +247,15 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	@PermissionSuccess(requestCode = 100)
 	public void doSomething(){
 		DeBug.d(getClass().getSimpleName(),"doSomething.........");
-		loadDataAsyncTaskUtil.execute("");
+//		loadDataAsyncTaskUtil.execute("");
+
+		DBHelper.getInstance().sortMp3InfosByTitleByRx(new BaseObserver<List<MusicInfo>>(){
+			@Override
+			public void onComplete() {
+				bindData();
+			}
+		});
+
 	}
 	@PermissionSuccess(requestCode = 200)
 	public void camera(){
@@ -262,29 +272,32 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	public void doFailCamera(){
 		DialogUtil.showToast(this,"需要权限");
 	}
-	private AsyncTaskUtil loadDataAsyncTaskUtil = new AsyncTaskUtil(
-			new AsyncTaskUtil.IAsyncTaskCallBack() {
-				final long start = System.currentTimeMillis();
-
-				@Override
-				public Object doInBackground(String... arg0) {
-					DBHelper.getInstance().sortMp3InfosByTitle();
-					PlayerHelpler.getDefault().init();
-					return null;
-				}
-
-				@Override
-				public void onPostExecute(Object result) {
-					long end = System.currentTimeMillis();
-					int speedTime = (int) ((end - start));
-					DeBug.d(LocalMusicActivity.this,
-							"..........search music speed time:" + speedTime);
-					mSplashScreen.removeSplashScreen();
-					initWidgetData();
-					resetPlayState();
-				}
-			});
-
+//	private AsyncTaskUtil loadDataAsyncTaskUtil = new AsyncTaskUtil(
+//			new AsyncTaskUtil.IAsyncTaskCallBack() {
+//				final long start = System.currentTimeMillis();
+//
+//				@Override
+//				public Object doInBackground(String... arg0) {
+//					DBHelper.getInstance().sortMp3InfosByTitle();
+//
+//					return null;
+//				}
+//
+//				@Override
+//				public void onPostExecute(Object result) {
+//					long end = System.currentTimeMillis();
+//					int speedTime = (int) ((end - start));
+//					DeBug.d(LocalMusicActivity.this,
+//							"..........search music speed time:" + speedTime);
+//
+//				}
+//			});
+	void bindData(){
+		mSplashScreen.removeSplashScreen();
+		PlayerHelpler.getDefault().init();
+		initWidgetData();
+		resetPlayState();
+	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
