@@ -18,7 +18,7 @@ import com.music.lu.R;
 import com.music.ui.adapter.ViewPagerAdapter;
 import com.music.ui.service.IConstants;
 import com.music.utils.DeBug;
-import com.music.utils.screen.ScreenUtils;
+import com.lu.library.util.ScreenUtils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -48,8 +48,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1.0"
             android:gravity="center"
-            android:text="@string/cancel"
-
+            android:text="@string/dialog_cancel"
             android:textColor="#333"
             android:textSize="12sp"
            />
@@ -68,7 +67,7 @@
             android:layout_weight="1.0"
             android:textSize="12sp"
             android:textColor="#333"
-            android:text="确定"
+            android:text="@string/dialog_ok"
             />
 
     </LinearLayout>

@@ -15,19 +15,20 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.lu.library.util.SPUtils;
+import com.music.Constant;
 import com.music.bean.BgBean;
 import com.music.lu.R;
 import com.music.ui.adapter.LuAdapter;
 import com.music.ui.adapter.ViewHolder;
-import com.music.utils.ConstantUtil;
-import com.music.utils.SPUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.music.utils.ConstUtils.BG_INDEX_KEY;
+import static com.music.utils.AppConstant.BG_INDEX_KEY;
+
 
 /**
  * 切换背景界面
@@ -99,7 +100,7 @@ public class ChangeBgActivity extends BaseActivity {
 				}
 				SPUtils.put(BG_INDEX_KEY, (position));
 				BgBean.setCurrentBitmap(bgBeans.get(position).getBitmap());
-				sendBroadcast(new Intent(ConstantUtil.CHANGED_BG));
+				sendBroadcast(new Intent(Constant.CHANGED_BG));
 				adapter.notifyDataSetChanged();
 			}
 		});

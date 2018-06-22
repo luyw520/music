@@ -5,7 +5,7 @@ import com.music.bean.DaoMaster;
 import com.music.bean.DaoSession;
 import com.music.bean.MusicInfo;
 import com.music.model.MusicModel;
-import com.music.utils.DebugLog;
+import com.lu.library.util.DebugLog;
 
 import java.util.ArrayList;
 import java.util.List;

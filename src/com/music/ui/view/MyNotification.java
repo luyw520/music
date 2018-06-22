@@ -10,11 +10,11 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.widget.RemoteViews;
 
+import com.music.helpers.PlayerHelpler;
 import com.music.lu.R;
+import com.music.ui.activity.LocalMusicActivity;
 import com.music.utils.AppConstant;
 import com.music.utils.MediaUtil;
-import com.music.helpers.PlayerHelpler;
-import com.music.ui.activity.LocalMusicActivity;
 
 import static android.content.Intent.FILL_IN_ACTION;
 

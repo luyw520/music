@@ -118,16 +118,16 @@ public interface ConstUtils {
      */
     public static final String REGEX_IP = "((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)";
 
-    /**
-     * 背景选择索引值
-     */
-    String BG_INDEX_KEY="BG_INDEX_KEY";
-    /**
-     * 上次播放的位置的索引值
-     */
-    String LIST_POSITION_KEY="LIST_POSITION_KEY";
-    /**
-     * 播放类型
-     */
-    String PLAY_TYPE_KEY="PLAY_TYPE_KEY";
+//    /**
+//     * 背景选择索引值
+//     */
+//    String BG_INDEX_KEY="BG_INDEX_KEY";
+//    /**
+//     * 上次播放的位置的索引值
+//     */
+//    String LIST_POSITION_KEY="LIST_POSITION_KEY";
+//    /**
+//     * 播放类型
+//     */
+//    String PLAY_TYPE_KEY="PLAY_TYPE_KEY";
 }

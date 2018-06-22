@@ -1,16 +1,16 @@
 package com.music.lrc;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
 
 import com.music.bean.LrcInfo;
+import com.music.helpers.PlayerHelpler;
 import com.music.utils.AppConstant;
 import com.music.utils.DialogUtil;
-import com.music.helpers.PlayerHelpler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class LrcUtil {
@@ -22,15 +22,15 @@ public class LrcUtil {
 	/**
 	 */
 	private boolean isSearch;
-	
+
 	/**
 	 */
 	private LrcInfo currentLrcInfo;
-	
+
 	private List<LrcInfo> lrcInfos = null;
-	
+
 	public static LrcUtil getInstance(Context context){
-		
+
 		if(lrcUtil==null){
 			lrcUtil=new LrcUtil(context);
 		}
@@ -40,7 +40,7 @@ public class LrcUtil {
 		this.context=context;
 		 init();
 	}
-	
+
 	private void init(){
 		lrcTool=new LrcTool();
 		lrcInfos=new ArrayList<LrcInfo>();
@@ -65,8 +65,8 @@ public class LrcUtil {
 					}
 				}
 			}
-		
-			
+
+
 	}
 	/**
 	 * @author Administrator
@@ -77,15 +77,15 @@ public class LrcUtil {
 		isSearch=true;
 		new MyAsyncTask(songName).execute();
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	class MyAsyncTask extends AsyncTask{
-		
+
 		@SuppressWarnings({ "unused" })
 		private String songName;
 		public MyAsyncTask(String songName) {
 			this.songName=songName;
-			
+
 		}
 
 		@Override
@@ -95,7 +95,7 @@ public class LrcUtil {
 
 		@Override
 		protected void onPostExecute(Object result) {
-			
+
 //			if(lrcInfos.size()>0){
 				new Handler().sendEmptyMessage(AppConstant.MATCH_LRC_COMPLETED);
 //			}
@@ -104,23 +104,23 @@ public class LrcUtil {
 
 		@Override
 		protected Object doInBackground(Object... params) {
-			
+
 			if(!isSearch){
 				lrcInfos=lrcTool.readLrcFile();
 			}else{
 				lrcInfos=null;
 			}
-			
+
 			if(lrcInfos==null){
 				lrcInfos=lrcTool.matchAllMp3(mp3Util.getMusicBaseInfos());
 			}
 			return null;
 		}
-		
+
 	}
 	public void showDialog() {
 		DialogUtil.showWaitDialog(context, "wait", "wait..");
-		
+
 	}
 	public LrcInfo getCurrentLrcInfo() {
 		return currentLrcInfo;

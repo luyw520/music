@@ -10,7 +10,7 @@ import com.lu.library.util.file.FileUtils;
 import com.music.MusicApplication;
 import com.music.lu.R;
 import com.music.utils.DeBug;
-import com.music.utils.SPUtils;
+import com.lu.library.util.SPUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +20,8 @@ import java.lang.reflect.Method;
 
 import dalvik.system.DexClassLoader;
 
-import static com.music.utils.ConstUtils.BG_INDEX_KEY;
+import static com.music.utils.AppConstant.BG_INDEX_KEY;
+
 
 /**
  * Created by lyw on 2017/9/23.

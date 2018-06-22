@@ -10,13 +10,13 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
 
+import com.lu.library.util.DebugLog;
+import com.music.Constant;
 import com.music.MusicApplication;
 import com.music.bean.MessageEvent;
 import com.music.helpers.EventBusHelper;
 import com.music.helpers.PlayerHelpler;
-import com.music.utils.ConstantUtil;
 import com.music.utils.DeBug;
-import com.music.utils.DebugLog;
 
 import java.io.IOException;
 
@@ -61,11 +61,11 @@ public class MyPlayerNewService extends Service {
 	private void sendCurrentTimeBroadCast(){
 		currentTime = getMediaPlayer().getCurrentPosition();
 //		Intent intent = new Intent();
-//		intent.setAction(ConstantUtil.MUSIC_CURRENT);
+//		intent.setAction(Constant.MUSIC_CURRENT);
 //		intent.putExtra("currentTime", currentTime);
 //		sendBroadcast(intent);
-		DebugLog.d("发送事件："+ConstantUtil.MUSIC_CURRENT);
-		EventBusHelper.post(new MessageEvent(ConstantUtil.MUSIC_CURRENT,currentTime));
+		DebugLog.d("发送事件："+ Constant.MUSIC_CURRENT);
+		EventBusHelper.post(new MessageEvent(Constant.MUSIC_CURRENT,currentTime));
 	}
 	@Override
 	public void onCreate() {
@@ -91,11 +91,11 @@ public class MyPlayerNewService extends Service {
 //		if(!mp3Util.isPlaying()){
 			getMediaPlayer().start();
 			mp3Util.setPlaying(true);
-//			sendBroadcast(new Intent(ConstantUtil.MUSIC_PLAYER));
+//			sendBroadcast(new Intent(Constant.MUSIC_PLAYER));
 //			handler.sendEmptyMessage(1);
 //			handler.sendEmptyMessage(CURRENT_TIME);
 //		}
-		EventBusHelper.post((ConstantUtil.MUSIC_PLAYER));
+		EventBusHelper.post((Constant.MUSIC_PLAYER));
 	}
 
 	private IBinder mIBinder=new MediaServiceSub();
@@ -186,8 +186,8 @@ public class MyPlayerNewService extends Service {
 			getMediaPlayer().pause();
 			mp3Util.setPlaying(false);
 
-			EventBusHelper.post(ConstantUtil.MUSIC_PAUSE);
-//			sendBroadcast(new Intent(ConstantUtil.MUSIC_PAUSE));
+			EventBusHelper.post(Constant.MUSIC_PAUSE);
+//			sendBroadcast(new Intent(Constant.MUSIC_PAUSE));
 		}
 
 	}
@@ -203,13 +203,13 @@ public class MyPlayerNewService extends Service {
 			if (time > 0) {
 				getMediaPlayer().seekTo(time);
 //				handler.sendEmptyMessage(CURRENT_TIME);
-//				sendBroadcast(new Intent(ConstantUtil.MUSIC_PLAYER));
-				EventBusHelper.post((ConstantUtil.MUSIC_PLAYER));
+//				sendBroadcast(new Intent(Constant.MUSIC_PLAYER));
+				EventBusHelper.post((Constant.MUSIC_PLAYER));
 				return;
 			}
 			sendDurationBroadCast();
-//			sendBroadcast(new Intent(ConstantUtil.MUSIC_PLAYER));
-			EventBusHelper.post(new MessageEvent(ConstantUtil.MUSIC_PLAYER));
+//			sendBroadcast(new Intent(Constant.MUSIC_PLAYER));
+			EventBusHelper.post(new MessageEvent(Constant.MUSIC_PLAYER));
 //			handler.sendEmptyMessage(CURRENT_TIME);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -219,7 +219,7 @@ public class MyPlayerNewService extends Service {
 		duration = getMediaPlayer().getDuration();
 		mp3Util.setDuration(duration);
 		mp3Util.getCurrentMp3Info().setDuration(duration);
-		EventBusHelper.post(ConstantUtil.MUSIC_DURATION,duration);
+		EventBusHelper.post(Constant.MUSIC_DURATION,duration);
 	}
 	private void resetMediaPlay() throws IOException{
 		getMediaPlayer().reset();

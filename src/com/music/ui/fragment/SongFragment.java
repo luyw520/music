@@ -29,7 +29,7 @@ import com.music.ui.adapter.MusicListAdapter;
 import com.music.ui.service.IConstants;
 import com.music.ui.widget.indexablelistview.IndexableListView;
 import com.music.utils.DeBug;
-import com.music.utils.DebugLog;
+import com.lu.library.util.DebugLog;
 
 import java.util.List;
 
@@ -128,7 +128,7 @@ public class SongFragment extends BaseFragment implements IConstants{
 		listAdapter = new MusicListAdapter(getActivity(),
 				R.layout.item_listview__layout, mp3Infos,
 				mMusiclist);
-		mMusiclist.addFooterView(getFoodView(getString(R.string.music_size,mp3Util.getAllMp3Size())));
+		mMusiclist.addFooterView(getFoodView(getString(R.string.music_size,mp3Infos.size())));
 		mMusiclist.setAdapter(listAdapter);
 		mMusiclist.setOnItemClickListener(new OnItemClickListener() {
 

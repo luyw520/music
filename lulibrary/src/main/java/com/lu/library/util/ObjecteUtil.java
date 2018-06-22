@@ -1,4 +1,4 @@
-package com.music.utils;
+package com.lu.library.util;
 
 /**
  * Created by lyw on 2017/9/23.

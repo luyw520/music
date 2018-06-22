@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.lu.library.util.DebugLog;
 import com.music.helpers.PlayerHelpler;
 import com.music.lu.R;
 import com.music.presenter.ChangeSkinContract;
@@ -27,13 +28,16 @@ import com.music.ui.view.gesturepressword.GuideGesturePasswordActivity;
 import com.music.ui.view.popwindow.PopupWindowQieGe;
 import com.music.ui.view.popwindow.PopupWindowQieGe.PopupWindowUIOnClickListener;
 import com.music.utils.ApplicationUtil;
-import com.music.utils.DebugLog;
 import com.music.utils.DialogUtil;
 import com.music.utils.LogUtil;
 import com.music.utils.SensorManagerUtil;
 import com.music.utils.SensorManagerUtil.SensorChangedListener;
 import com.music.utils.SharedPreHelper;
 import com.music.utils.screen.ScreenShotUtil;
+
+import static com.music.utils.AppConstant.AUTOMATIC_DOWN_LRC;
+import static com.music.utils.AppConstant.LISTENER_DOWN;
+import static com.music.utils.AppConstant.SCREEN_SHOT;
 
 @ContentView(value = R.layout.activity_setting)
 public class SettingActivity extends BaseActivity{

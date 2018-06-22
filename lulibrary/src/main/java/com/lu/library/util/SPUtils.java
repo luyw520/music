@@ -1,4 +1,4 @@
-package com.music.utils;
+package com.lu.library.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -186,5 +186,16 @@ public class SPUtils {
             editor.commit();
         }
     }
+
+
+
+    /**
+     */
+
+
+
+
+
+
 
 }

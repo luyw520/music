@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/photo"
+        android:icon="@drawable/topmenu_icn_set"
+        android:title="@string/title_setting"/>
+    <item
+        android:id="@+id/wallet"
+        android:icon="@drawable/topmenu_icn_exit"
+        android:title="@string/dialog_exit_title"/>
+
+</menu>

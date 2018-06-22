@@ -22,7 +22,10 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.lu.library.util.AsyncTaskUtil;
+import com.lu.library.util.DebugLog;
 import com.lu.library.util.image.BitmapUtils;
+import com.music.Constant;
 import com.music.MusicApplication;
 import com.music.bean.LyricSentence;
 import com.music.bean.MessageEvent;
@@ -39,15 +42,15 @@ import com.music.presenter.IPlayState;
 import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.utils.AppConstant;
-import com.music.utils.AsyncTaskUtil;
-import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
-import com.music.utils.ConstantUtil;
 import com.music.utils.DeBug;
-import com.music.utils.DebugLog;
 import com.music.utils.DialogUtil;
 import com.music.utils.MediaUtil;
 
 import java.util.List;
+
+import static com.music.Constant.MUSIC_CURRENT;
+import static com.music.Constant.MUSIC_DURATION;
+import static com.music.Constant.MUSIC_PAUSE;
 
 /**
  *
@@ -147,7 +150,7 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 	protected void handleMessage(MessageEvent event) {
 		DebugLog.d("接收事件:"+event.toString());
 		switch (event.type){
-			case ConstantUtil.MUSIC_PLAYER:
+			case Constant.MUSIC_PLAYER:
 				state.playMusicState();
 				break;
 			case MUSIC_CURRENT:
@@ -198,7 +201,7 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 		asyncTaskUtil.setIAsyncTaskCallBack(new FindLrcCallBack());
 		asyncTaskUtil.execute("");
 	}
-	private class FindLrcCallBack implements IAsyncTaskCallBack{
+	private class FindLrcCallBack implements AsyncTaskUtil.IAsyncTaskCallBack {
 		String lrcPath = null;
 		@Override
 		public void onPostExecute(Object result) {

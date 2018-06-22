@@ -8,15 +8,15 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
+import com.lu.library.util.DebugLog;
 import com.music.bean.AlbumInfo;
 import com.music.bean.ArtistInfo;
 import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
 import com.music.db.DBHelper;
+import com.music.helpers.StringHelper;
 import com.music.utils.DeBug;
-import com.music.utils.DebugLog;
 import com.music.utils.LogUtil;
-import com.music.utils.StringUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -167,8 +167,8 @@ public class MusicModel {
                 filePath.lastIndexOf(File.separator));
         music.setFolder(folderPath);
         music.setPlayPath(filePath);
-        music.setTitleKey(StringUtil.getPingYin(music.getTitle()));
-        music.setArtistKey(StringUtil.getPingYin(music.getArtist()));
+        music.setTitleKey(StringHelper.getPingYin(music.getTitle()));
+        music.setArtistKey(StringHelper.getPingYin(music.getArtist()));
         DeBug.d(this,music.toString());
         return music;
     }
@@ -273,7 +273,7 @@ public class MusicModel {
             AlbumInfo info = new AlbumInfo();
             info.album_name = cursor.getString(cursor
                     .getColumnIndex(MediaStore.Audio.Albums.ALBUM));
-            info.pinyin = StringUtil.getPingYin(info.album_name);
+            info.pinyin = StringHelper.getPingYin(info.album_name);
             info.album_id = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Albums._ID));
             info.number_of_songs = cursor.getInt(cursor
                     .getColumnIndex(MediaStore.Audio.Albums.NUMBER_OF_SONGS));

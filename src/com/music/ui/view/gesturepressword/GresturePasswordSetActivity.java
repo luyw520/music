@@ -14,8 +14,8 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.music.lu.R;
-import com.music.utils.ApplicationUtil;
 import com.music.ui.activity.BaseHeaderActivity;
+import com.music.utils.ApplicationUtil;
 
 @ContentView(value = R.layout.activity_gesturepassword_set)
 public class GresturePasswordSetActivity extends BaseHeaderActivity {

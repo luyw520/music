@@ -1,11 +1,5 @@
 package com.music.ui.activity;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,19 +26,25 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.music.bean.Mp3Info;
 import com.music.bean.MusicInfo;
+import com.music.helpers.PlayerHelpler;
+import com.music.helpers.StringHelper;
 import com.music.lu.R;
 import com.music.model.DataStorageModel;
 import com.music.model.HttpCallback;
 import com.music.model.MusicHttpModel;
-import com.music.utils.DeBug;
-import com.music.utils.DialogUtil;
-import com.music.utils.FileUtils;
-import com.music.helpers.PlayerHelpler;
-import com.music.utils.StringUtil;
 import com.music.ui.adapter.LuAdapter;
 import com.music.ui.adapter.ViewHolder;
 import com.music.ui.widget.dialog.LoadingView;
+import com.music.utils.DeBug;
+import com.music.utils.DialogUtil;
+import com.music.utils.FileUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -114,7 +114,7 @@ public class SearchMusicActivity extends BaseActivity {
 		switch (v.getId()) {
 		case R.id.iv_searchMusic:
 			key = atvSonger.getText().toString();
-			if(!StringUtil.isDataVaild(new String[]{key})){
+			if(!StringHelper.isDataVaild(this,new String[]{key})){
 				DialogUtil.showToast(this, R.string.empty_key_tips);
 				return;
 			};

@@ -9,6 +9,8 @@ import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.lu.library.util.DebugLog;
+import com.lu.library.util.SPUtils;
 import com.music.MusicApplication;
 import com.music.bean.MusicInfo;
 import com.music.model.MusicModel;
@@ -16,15 +18,14 @@ import com.music.ui.service.IMediaService;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.utils.AppConstant;
 import com.music.utils.DeBug;
-import com.music.utils.DebugLog;
-import com.music.utils.SPUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.music.utils.AppConstant.LIST_POSITION_KEY;
+import static com.music.utils.AppConstant.PLAY_TYPE_KEY;
 import static com.music.utils.AppConstant.PlayerMsg.PLAYING_QUEUE;
-import static com.music.utils.ConstUtils.LIST_POSITION_KEY;
-import static com.music.utils.ConstUtils.PLAY_TYPE_KEY;
+
 
 /**
  * 音乐播放辅助类

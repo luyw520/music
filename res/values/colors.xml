@@ -6,17 +6,12 @@
     <color name="player_track_color2">#f0f0f0</color>
     <color name="gray">#ff7f7f7f</color>
     <color name="dialog_text_hint">#ffb0b0b0</color>
-    <color name="white">#ffffffff</color>
-    <color name="black">#ff000000</color>
-    <color name="transparent">#00000000</color>
     <color name="round_corner_filter_green">#ff66ccff</color>
     <color name="round_corner_filter_border">#ff000000</color>
     <color name="profile_avater_cover_selected">#7f000000</color>
     <color name="profile_avater_cover_normal">#00000000</color>
     <color name="color_hei_8">#00000000</color>
-
     <drawable name="trans">@color/color_hei_8</drawable>
-
     <color name="gesture_background">#ff303237</color>
     <color name="qiege_font_color">#64c430</color>
 

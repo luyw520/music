@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.music.presenter.BasePresenter;
 import com.music.presenter.IBaseView;
-import com.music.utils.DebugLog;
+import com.lu.library.util.DebugLog;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

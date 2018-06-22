@@ -16,18 +16,17 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lu.library.util.AsyncTaskUtil;
 import com.music.bean.AlbumInfo;
+import com.music.helpers.StringHelper;
 import com.music.lu.R;
 import com.music.model.MusicModel;
 import com.music.ui.activity.LocalMusicActivity;
 import com.music.ui.service.IConstants;
 import com.music.ui.service.IMediaService;
 import com.music.ui.widget.indexablelistview.IndexableListView;
-import com.music.utils.AsyncTaskUtil;
-import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
 import com.music.utils.DeBug;
 import com.music.utils.PhotoUtils;
-import com.music.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -81,7 +80,7 @@ public class AlbumFragment extends BaseFragment {
 	}
 
 	private void initData() {
-		new AsyncTaskUtil(new IAsyncTaskCallBack() {
+		new AsyncTaskUtil(new AsyncTaskUtil.IAsyncTaskCallBack() {
 			@Override
 			public Object doInBackground(String... arg0) {
 
@@ -247,7 +246,7 @@ public class AlbumFragment extends BaseFragment {
 			// boolean isFind=false;
 			String s = mSections.substring(section, section + 1);
 			for (int i = 0; i < albumInfos.size(); i++) {
-				String string = StringUtil.getPingYin(
+				String string = StringHelper.getPingYin(
 						albumInfos.get(i).album_name).substring(0, 1);
 				// String string = albumInfos.get(i).getTitlepingyin()
 				// .substring(0, 1);
@@ -283,7 +282,7 @@ public class AlbumFragment extends BaseFragment {
 //				}
 
 				AsyncTaskUtil arg0 = new AsyncTaskUtil(
-						new IAsyncTaskCallBack() {
+						new AsyncTaskUtil.IAsyncTaskCallBack() {
 
 							@Override
 							public void onPostExecute(Object result) {

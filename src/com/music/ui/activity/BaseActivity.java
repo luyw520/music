@@ -14,15 +14,15 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
+import com.lu.library.util.ConstantUtil;
+import com.lu.library.util.NotificationsUtils;
 import com.music.annotation.ComputeTimeUtil;
-import com.music.utils.ConstantUtil;
-import com.music.utils.DeBug;
-import com.music.utils.SystemBarTintManager;
 import com.music.ui.view.animator.ActivityAnimator;
+import com.music.utils.DeBug;
 
 public class BaseActivity extends BaseFragmentActivity implements ConstantUtil {
 
-	protected SystemBarTintManager mTintManager;
+	protected NotificationsUtils.SystemBarTintManager mTintManager;
 
 	@SuppressLint("ResourceAsColor")
 	@TargetApi(19)

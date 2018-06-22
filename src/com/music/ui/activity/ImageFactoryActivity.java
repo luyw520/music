@@ -12,11 +12,12 @@ import android.widget.ViewFlipper;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.lu.library.util.ScreenUtils;
 import com.music.lu.R;
-import com.music.utils.screen.MeasureUtil;
-import com.music.utils.PhotoUtils;
 import com.music.ui.view.ImageFactoryCrop;
 import com.music.ui.view.ImageFactoryFliter;
+import com.music.utils.PhotoUtils;
+
 /**
  * @author Administrator
  *
@@ -167,7 +168,7 @@ public class ImageFactoryActivity extends BaseActivity {
 				mImageFactoryCrop = new ImageFactoryCrop(this,
 						mVfFlipper.getChildAt(0));
 //			}
-			mImageFactoryCrop.init(mPath, MeasureUtil.getScreenSize(this)[0], MeasureUtil.getScreenSize(this)[1]);
+			mImageFactoryCrop.init(mPath, ScreenUtils.getScreenWidth(this), ScreenUtils.getScreenHeight(this));
 			mBtnRight.setText(R.string.next_step);
 //			tv_title.setText(R.string.crop);
 			break;

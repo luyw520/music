@@ -11,6 +11,7 @@ import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import com.lu.library.util.DebugLog;
 import com.lu.library.util.image.BitmapUtils;
 import com.music.bean.Mp3Info;
 import com.music.bean.MusicInfo;

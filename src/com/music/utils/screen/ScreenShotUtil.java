@@ -9,12 +9,9 @@ import com.music.utils.DateUtil;
 import com.music.utils.DialogUtil;
 import com.music.utils.FileUtils;
 import com.umeng.scrshot.UMScrShotController.OnScreenshotListener;
-import com.umeng.scrshot.adapter.UMAppAdapter;
-import com.umeng.socialize.sensor.controller.impl.UMShakeServiceFactory;
 
 import java.io.File;
 
-import static com.music.utils.ConstUtils.DESCRIPTOR;
 
 /**
  *
@@ -51,9 +48,9 @@ public class ScreenShotUtil {
 //			.getShakeService(Constants.DESCRIPTOR);
 
 	public void registerShakeToScrShot() {
-		UMShakeServiceFactory
-		.getShakeService(DESCRIPTOR).registerShakeToScrShot(mActivity, new UMAppAdapter(
-				mActivity), mScreenshotListener);
+//		UMShakeServiceFactory
+//		.getShakeService(DESCRIPTOR).registerShakeToScrShot(mActivity, new UMAppAdapter(
+//				mActivity), mScreenshotListener);
 	}
 	public void registerShakeToScrShot(Activity activity) {
 
@@ -67,8 +64,8 @@ public class ScreenShotUtil {
 
 	}
 	public void unregisterShakeListener() {
-		UMShakeServiceFactory
-		.getShakeService(DESCRIPTOR).unregisterShakeListener(mActivity);
+//		UMShakeServiceFactory
+//		.getShakeService(DESCRIPTOR).unregisterShakeListener(mActivity);
 	};
 
 	private OnScreenshotListener mScreenshotListener = new OnScreenshotListener() {

@@ -11,7 +11,7 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.text.TextUtils;
 
-import com.music.utils.DebugLog;
+import com.lu.library.util.DebugLog;
 
 /**
  * Created by lyw.

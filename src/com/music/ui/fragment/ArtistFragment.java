@@ -1,7 +1,5 @@
 package com.music.ui.fragment;
 
-import java.util.List;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,14 +11,16 @@ import android.widget.SectionIndexer;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.music.bean.ArtistInfo;
+import com.music.helpers.StringHelper;
 import com.music.lu.R;
 import com.music.model.MusicModel;
-import com.music.ui.service.IConstants;
-import com.music.utils.LogUtil;
-import com.music.utils.StringUtil;
 import com.music.ui.activity.LocalMusicActivity;
 import com.music.ui.adapter.LuAdapter;
+import com.music.ui.service.IConstants;
 import com.music.ui.widget.indexablelistview.IndexableListView;
+import com.music.utils.LogUtil;
+
+import java.util.List;
 
 /**
  *所有歌手
@@ -112,7 +112,7 @@ public class ArtistFragment extends BaseFragment {
 			int result = -1;
 			String s = mSections.substring(section, section + 1);
 			for (int i = 0; i < artistInfos.size(); i++) {
-				String string = StringUtil.getPingYin(artistInfos.get(i).artist_name).substring(0, 1);
+				String string = StringHelper.getPingYin(artistInfos.get(i).artist_name).substring(0, 1);
 
 				if (string.equalsIgnoreCase(s)) {
 					result = i;

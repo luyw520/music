@@ -7,7 +7,7 @@ import android.view.KeyEvent;
 
 import com.music.MusicApplication;
 import com.music.helpers.PlayerHelpler;
-import com.music.utils.DebugLog;
+import com.lu.library.util.DebugLog;
 
 /**
  * Created by lyw.

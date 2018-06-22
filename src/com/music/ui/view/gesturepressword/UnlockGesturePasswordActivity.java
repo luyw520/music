@@ -1,7 +1,5 @@
 package com.music.ui.view.gesturepressword;
 
-import java.util.List;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,15 +14,17 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.music.lu.R;
-import com.music.utils.ApplicationUtil;
-import com.music.utils.DeBug;
-import com.music.utils.DialogUtil;
 import com.music.MusicApplication;
+import com.music.lu.R;
 import com.music.ui.activity.BaseActivity;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
 import com.music.ui.widget.lockpatternview.LockPatternView;
 import com.music.ui.widget.lockpatternview.LockPatternView.Cell;
+import com.music.utils.ApplicationUtil;
+import com.music.utils.DeBug;
+import com.music.utils.DialogUtil;
+
+import java.util.List;
 @ContentView(R.layout.activity_gesturepassword_unlock)
 public class UnlockGesturePasswordActivity extends BaseActivity {
 	private LockPatternView mLockPatternView;

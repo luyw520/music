@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#0000" >
+    android:layout_height="200dp"
+    android:background="@color/header_bg" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
+            android:layout_height="wrap_content"
              android:background="@drawable/selector_music_btn">
 
             <com.music.ui.view.widget.CircularImage
@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
+            android:visibility="gone"
             android:padding="5dp"
             android:background="@drawable/selector_press" >
 
@@ -70,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
              android:padding="5dp"
+            android:visibility="gone"
             android:background="@drawable/selector_press" >
 
             <ImageView

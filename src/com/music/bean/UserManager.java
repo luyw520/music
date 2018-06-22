@@ -14,13 +14,13 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.lu.library.util.AsyncTaskUtil;
+import com.lu.library.util.SPUtils;
 import com.music.lu.R;
-import com.music.utils.AsyncTaskUtil;
-import com.music.utils.AsyncTaskUtil.IAsyncTaskCallBack;
 import com.music.utils.PhotoUtils;
-import com.music.utils.SPUtils;
 
 import static com.music.utils.PhotoUtils.HEADER_PATH;
+
 
 public class UserManager {
 	private static UserManager userManager=null;
@@ -75,7 +75,7 @@ public class UserManager {
 	public void downUserHeader(final String url,final ImageView iv_header){
 
 
-		AsyncTaskUtil asyncTaskUtil=new AsyncTaskUtil(new IAsyncTaskCallBack() {
+		AsyncTaskUtil asyncTaskUtil=new AsyncTaskUtil(new AsyncTaskUtil.IAsyncTaskCallBack() {
 
 			@Override
 			public void onPostExecute(Object result) {

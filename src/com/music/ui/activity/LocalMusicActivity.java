@@ -10,9 +10,12 @@ import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -24,6 +27,10 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lu.library.permissiongen.PermissionFail;
 import com.lu.library.permissiongen.PermissionSuccess;
+import com.lu.library.util.AsyncTaskUtil;
+import com.lu.library.util.DebugLog;
+import com.lu.library.util.PhotoUtils;
+import com.music.Constant;
 import com.music.MusicApplication;
 import com.music.annotation.ComputeTime;
 import com.music.bean.FolderInfo;
@@ -47,19 +54,15 @@ import com.music.ui.view.widget.CircularImage;
 import com.music.ui.view.widget.MusicTimeProgressView;
 import com.music.ui.widget.slidingmenu2.SlidingMenu;
 import com.music.utils.ApplicationUtil;
-import com.music.utils.AsyncTaskUtil;
-import com.music.utils.ConstantUtil;
 import com.music.utils.DeBug;
-import com.music.utils.DebugLog;
 import com.music.utils.DialogUtil;
 import com.music.utils.LogUtil;
 import com.music.utils.MediaUtil;
-import com.music.utils.PhotoUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import static com.music.utils.ConstantUtil.MUSIC_CURRENT;
-import static com.music.utils.ConstantUtil.MUSIC_DURATION;
-import static com.music.utils.ConstantUtil.MUSIC_PAUSE;
+import static com.music.Constant.MUSIC_CURRENT;
+import static com.music.Constant.MUSIC_DURATION;
+import static com.music.Constant.MUSIC_PAUSE;
 import static com.music.utils.PhotoUtils.INTENT_REQUEST_CODE_CAMERA;
 import static com.music.utils.PhotoUtils.INTENT_REQUEST_CODE_CROP;
 
@@ -69,7 +72,7 @@ import static com.music.utils.PhotoUtils.INTENT_REQUEST_CODE_CROP;
  */
 @ContentView(value = R.layout.activity_localmusic)
 public class LocalMusicActivity extends BaseFragmentActivity implements
-		IConstants {
+		IConstants,View.OnClickListener {
 
 
 	public static final String TAG = null;
@@ -103,8 +106,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	@ViewInject(value = R.id.iv_music_album)
 	private ImageView iv_music_album;
 
-	@ViewInject(value = R.id.slidingMenu)
-	private com.music.ui.widget.slidingmenu.SlidingMenu slidingMenu;
+//	@ViewInject(value = R.id.slidingMenu)
+//	private com.music.ui.widget.slidingmenu.SlidingMenu slidingMenu;
 
 	@ViewInject(value = R.id.iv_back)
 	private ImageView iv_back;
@@ -118,6 +121,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	private CircularImage iv_header;
 	@ViewInject(value = R.id.tv_username)
 	private TextView tv_username;
+	@ViewInject(value = R.id.navigationView)
+	private NavigationView navigationView;
 
 	@SuppressWarnings("unused")
 	private PlayPauseDrawable playPauseDrawable;
@@ -159,6 +164,10 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		mp3Util = PlayerHelpler.getDefault();
 		playPauseDrawable = new PlayPauseDrawable(30, playColor, pauseColor,
 				dwableDuaration);
+		View navigaHeadder=navigationView.inflateHeaderView(R.layout.layout_menu);
+		iv_header=navigaHeadder.findViewById(R.id.iv_header);
+		tv_username=navigaHeadder.findViewById(R.id.tv_username);
+		iv_header.setOnClickListener(this);
 		initData();
 		registerReceiver();
 
@@ -167,6 +176,23 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		mComponentName = new ComponentName(getPackageName(), MediaButtonReceiver.class.getName());
 		mAudioManager.registerMediaButtonEventReceiver(mComponentName);
 //		registerReceiver(headSetReceiver, new IntentFilter(Intent.ACTION_HEADSET_PLUG));
+
+
+
+		navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+			@Override
+			public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+				switch (item.getItemId()){
+					case R.id.photo:
+						startActivity(SettingActivity.class);
+						break;
+					case R.id.wallet:
+						showExitDialog();
+						break;
+				}
+				return false;
+			}
+		});
 	}
 
 
@@ -225,7 +251,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	public void camera(){
 		DebugLog.d("拍照");
 		userHeaderImg = PhotoUtils
-				.takePicture(LocalMusicActivity.this);
+				.takePicture(LocalMusicActivity.this, com.music.utils.PhotoUtils.HEADER_PATH,null);
 
 	}
 	@PermissionFail(requestCode = 100)
@@ -339,7 +365,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	@OnClick({ R.id.iv_back, R.id.btn_next2, R.id.btn_playing2,
 			R.id.music_about_layout, R.id.rl_setting, R.id.rl_exit,
 			R.id.iv_header, R.id.iv_search })
-	public void onclick(View view) {
+	public void onClick(View view) {
 
 		switch (view.getId()) {
 		case R.id.iv_back:
@@ -398,12 +424,12 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			isHome = true;
 			musicListFragment=null;
 		} else {
-			slidingMenu.toggle();
-			if (slidingMenu.isOpen()) {
-				iv_back.setImageResource(R.drawable.ic_common_title_bar_forward);
-			} else {
-				iv_back.setImageResource(R.drawable.ic_common_title_bar_back);
-			}
+//			slidingMenu.toggle();
+//			if (slidingMenu.isOpen()) {
+//				iv_back.setImageResource(R.drawable.ic_common_title_bar_forward);
+//			} else {
+//				iv_back.setImageResource(R.drawable.ic_common_title_bar_back);
+//			}
 		}
 	}
 
@@ -502,7 +528,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	public void handleMessage(MessageEvent event){
 		DebugLog.d("接收事件:"+event.toString());
 		switch (event.type){
-			case ConstantUtil.MUSIC_PLAYER:
+			case Constant.MUSIC_PLAYER:
 				state.playMusicState();
 				break;
 			case MUSIC_CURRENT:
@@ -592,12 +618,12 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		if (event.getAction() == MotionEvent.ACTION_UP) {
-			DeBug.d(TAG, "slidingMenu.isOpen()=" + slidingMenu.isOpen());
-			if (slidingMenu.isOpen()) {
-				iv_back.setImageResource(R.drawable.ic_common_title_bar_forward);
-			} else {
-				iv_back.setImageResource(R.drawable.ic_common_title_bar_back);
-			}
+//			DeBug.d(TAG, "slidingMenu.isOpen()=" + slidingMenu.isOpen());
+//			if (slidingMenu.isOpen()) {
+//				iv_back.setImageResource(R.drawable.ic_common_title_bar_forward);
+//			} else {
+//				iv_back.setImageResource(R.drawable.ic_common_title_bar_back);
+//			}
 		}
 		return super.onTouchEvent(event);
 	}

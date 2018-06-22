@@ -1,18 +1,18 @@
 package com.music.ui.view;
 
 
-import com.music.lu.R;
-import com.music.utils.PhotoUtils;
-import com.music.ui.activity.ImageFactory;
-import com.music.ui.activity.ImageFactoryActivity;
-import com.music.ui.widget.photoview.CropImage;
-import com.music.ui.widget.photoview.CropImageView;
-
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.ProgressBar;
+
+import com.music.lu.R;
+import com.music.ui.activity.ImageFactory;
+import com.music.ui.activity.ImageFactoryActivity;
+import com.music.ui.widget.photoview.CropImage;
+import com.music.ui.widget.photoview.CropImageView;
+import com.music.utils.PhotoUtils;
 
 public class ImageFactoryCrop extends ImageFactory {
 	public static final int SHOW_PROGRESS = 0;

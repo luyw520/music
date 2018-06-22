@@ -7,13 +7,14 @@ import android.os.StrictMode;
 
 import com.facebook.stetho.Stetho;
 import com.lu.library.monitor.BlockDetectByPrinter;
+import com.lu.library.util.CrashHandler;
 import com.music.db.DBHelper;
 import com.music.helpers.PlayerHelpler;
 import com.music.model.ScreenManager;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
 import com.music.utils.FileUtils;
-import com.music.utils.SPUtils;
+import com.lu.library.util.SPUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -54,7 +55,7 @@ public class MusicApplication extends Application {
 		BlockDetectByPrinter.start();
 		SPUtils.init(this);
 		Stetho.initializeWithDefaults(this);
-
+		CrashHandler.getInstance().init(this,"lu");
 //		UMAnalyticsConfig.
 		UMShareAPI.init(this,"5b2a150ef43e4809b500000f");
 		init7_0();

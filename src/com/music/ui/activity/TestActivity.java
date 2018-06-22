@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.lu.library.util.NotificationsUtils;
 import com.music.lu.R;
-import com.music.utils.SystemBarTintManager;
 
 public class TestActivity extends Activity {
 	@Override
@@ -22,8 +22,8 @@ public class TestActivity extends Activity {
 			setTranslucentStatus(true);
 		}
 
-		SystemBarTintManager mTintManager;
-		mTintManager=new SystemBarTintManager(this);
+		NotificationsUtils.SystemBarTintManager mTintManager;
+		mTintManager=new NotificationsUtils.SystemBarTintManager(this);
 		mTintManager.setStatusBarTintEnabled(true);
 		mTintManager.setNavigationBarTintEnabled(true);
 

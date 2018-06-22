@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.music.utils.StringUtil;
+import com.music.helpers.StringHelper;
 
 
 @SuppressWarnings("rawtypes")
@@ -80,9 +80,9 @@ public class AlbumInfo implements Parcelable , Comparable{
 		int i=0;
 		boolean flag=false;
 		AlbumInfo albumInfo=(AlbumInfo) arg0;
-		String album_name_first=StringUtil.getPingYin(album_name);
+		String album_name_first= StringHelper.getPingYin(album_name);
 
-		String album_name2_first=StringUtil.getPingYin(albumInfo.album_name);
+		String album_name2_first=StringHelper.getPingYin(albumInfo.album_name);
 		for(;i<album_name_first.length();i++){
 			if(i<album_name2_first.length()){
 				if(album_name_first.charAt(i)!=album_name2_first.charAt(i)){

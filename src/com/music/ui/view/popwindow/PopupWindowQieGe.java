@@ -42,10 +42,10 @@ public class PopupWindowQieGe {
 	private ImageView iv_wenrou;
 	private ImageView iv_putong;
 	private ImageView iv_yongli;
-	
+
 	private TextView oldtv;
 	private ImageView oldiv;
-    
+
 	private int selectColor=-1;
 	public PopupWindowQieGe(Context mContext) {
 		this.mContext = mContext;
@@ -99,26 +99,26 @@ public class PopupWindowQieGe {
 		iv_wenrou = (ImageView) view.findViewById(R.id.iv_wenrou);
 		iv_putong = (ImageView) view.findViewById(R.id.iv_putong);
 		iv_yongli = (ImageView) view.findViewById(R.id.iv_yongli);
-		
+
 		rl_nouse.setOnClickListener(l);
 		rl_wenrou.setOnClickListener(l);
 		rl_putong.setOnClickListener(l);
 		rl_yongli.setOnClickListener(l);
-		
-		
+
+
 		selectColor=mContext.getResources().getColor(R.color.qiege_font_color);
 		setOldView(ApplicationUtil.getQieGeIndex(mContext));
 
 		oldtv.setTextColor(selectColor);
 		oldiv.setVisibility(View.VISIBLE);
 	}
-	
+
 	private OnClickListener l=new OnClickListener() {
-		
+
 		@SuppressLint("ResourceAsColor") @Override
 		public void onClick(View v) {
 			int index=0;
-			
+
 			oldtv.setTextColor(Color.BLACK);
 			oldiv.setVisibility(View.INVISIBLE);
 			switch (v.getId()) {
@@ -142,8 +142,8 @@ public class PopupWindowQieGe {
 				tv_yongli.setTextColor(selectColor);
 				iv_yongli.setVisibility(View.VISIBLE);
 				break;
-			
-				
+
+
 			default:
 				break;
 			}
@@ -152,8 +152,8 @@ public class PopupWindowQieGe {
 			if(p!=null){
 				p.onClick(index);
 			}
-			
-			
+
+
 			popupWindow.dismiss();
 		}
 	};
@@ -183,8 +183,8 @@ public class PopupWindowQieGe {
 			break;
 		}
 	}
-	
+
 	public interface PopupWindowUIOnClickListener{
 		public void onClick(int index);
-	} 
+	}
 }

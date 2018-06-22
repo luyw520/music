@@ -1,8 +1,5 @@
 package com.music.ui.view.gesturepressword;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,13 +10,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.music.lu.R;
-import com.music.utils.ApplicationUtil;
 import com.music.MusicApplication;
+import com.music.lu.R;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
 import com.music.ui.widget.lockpatternview.LockPatternView;
 import com.music.ui.widget.lockpatternview.LockPatternView.Cell;
 import com.music.ui.widget.lockpatternview.LockPatternView.DisplayMode;
+import com.music.utils.ApplicationUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -69,11 +69,11 @@ public class CreateGesturePasswordActivity extends Activity implements
 
 		Continue(R.string.lockpattern_continue_button_text, true),
 		ContinueDisabled(
-				R.string.lockpattern_continue_button_text, false), 
+				R.string.lockpattern_continue_button_text, false),
 		Confirm(
-				R.string.lockpattern_confirm_button_text, true), 
+				R.string.lockpattern_confirm_button_text, true),
 		ConfirmDisabled(
-				R.string.lockpattern_confirm_button_text, false), 
+				R.string.lockpattern_confirm_button_text, false),
 		Ok(
 				android.R.string.ok, true);
 
@@ -100,22 +100,22 @@ public class CreateGesturePasswordActivity extends Activity implements
 		HelpScreen(
 				R.string.lockpattern_settings_help_how_to_record,
 				LeftButtonMode.Gone, RightButtonMode.Ok, ID_EMPTY_MESSAGE,
-				false), 
+				false),
 		ChoiceTooShort(
 				R.string.lockpattern_recording_incorrect_too_short,
 				LeftButtonMode.Retry, RightButtonMode.ContinueDisabled,
-				ID_EMPTY_MESSAGE, true), 
+				ID_EMPTY_MESSAGE, true),
 		FirstChoiceValid(
 				R.string.lockpattern_pattern_entered_header,
 				LeftButtonMode.Retry, RightButtonMode.Continue,
-				ID_EMPTY_MESSAGE, false), 
+				ID_EMPTY_MESSAGE, false),
 		NeedToConfirm(
 				R.string.lockpattern_need_to_confirm, LeftButtonMode.Cancel,
-				RightButtonMode.ConfirmDisabled, ID_EMPTY_MESSAGE, true), 
+				RightButtonMode.ConfirmDisabled, ID_EMPTY_MESSAGE, true),
 		ConfirmWrong(
 				R.string.lockpattern_need_to_unlock_wrong,
 				LeftButtonMode.Cancel, RightButtonMode.ConfirmDisabled,
-				ID_EMPTY_MESSAGE, true), 
+				ID_EMPTY_MESSAGE, true),
 		ChoiceConfirmed(
 				R.string.lockpattern_pattern_confirmed_header,
 				LeftButtonMode.Cancel, RightButtonMode.Confirm,
@@ -184,17 +184,17 @@ public class CreateGesturePasswordActivity extends Activity implements
 		initPreviewViews();
 
 		if (savedInstanceState == null) {//
-			
-			
+
+
 			if(getIntent().getIntExtra("flag", 1)==1){
-				
+
 				updateStage(Stage.Introduction);
 			}else{
-				
+
 				updateStage(Stage.Introduction);
 				updateStage(Stage.HelpScreen);
 			}
-			
+
 		} else {//
 			final String patternString = savedInstanceState
 					.getString(KEY_PATTERN_CHOICE);

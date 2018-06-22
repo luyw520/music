@@ -1,7 +1,7 @@
 package com.music.helpers;
 
 import com.music.bean.MessageEvent;
-import com.music.utils.DebugLog;
+import com.lu.library.util.DebugLog;
 
 import org.greenrobot.eventbus.EventBus;
 

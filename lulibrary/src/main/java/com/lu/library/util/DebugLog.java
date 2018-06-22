@@ -1,4 +1,4 @@
-package com.music.utils;
+package com.lu.library.util;
 
 import android.util.Log;
 

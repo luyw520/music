@@ -1,5 +1,6 @@
-package com.music.ui.widget;
+package com.lu.library.widget;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -7,9 +8,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import com.music.lu.R;
+import com.lu.library.R;
 
-public class CommomDialog extends Dialog implements View.OnClickListener{
+
+public class CommomDialog extends AlertDialog implements View.OnClickListener{
     private TextView contentTxt;
     private TextView titleTxt;
     private TextView submitTxt;
@@ -21,7 +23,7 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
     private String positiveName;
     private String negativeName;
     private String title;
-    private int themeResId=R.style.DialogCommonStyle;
+    private int themeResId= R.style.DialogCommonStyle;
     public CommomDialog(Context context) {
         super(context);
         this.mContext = context;
@@ -101,22 +103,22 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.cancel:
-                if(listener != null){
+            if (v.getId() == R.id.cancel) {
+                if (listener != null) {
                     listener.onClick(this, false);
                 }
-                this.dismiss();
-                break;
-            case R.id.submit:
+            }else{
                 if(listener != null){
                     listener.onClick(this, true);
                 }
-                break;
-        }
+            }
+        this.dismiss();
+
     }
 
     public interface OnCloseListener{
         void onClick(Dialog dialog, boolean confirm);
     }
+
+
 }
