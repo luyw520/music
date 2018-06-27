@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="default_blur_radius">15</integer>
+    <integer name="default_downsample_factor">8</integer>
+    <color name="default_overlay_color">#AAFFFFFF</color>
+
+    <!--acitivity跳转动画时长-->
+    <integer name="activity_anim_duration">80</integer>
+</resources>

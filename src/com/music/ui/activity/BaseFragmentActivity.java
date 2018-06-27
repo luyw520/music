@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
 import com.lu.library.permissiongen.PermissionGen;
 import com.lu.library.util.NotificationsUtils;
+import com.mob.wrappers.AnalySDKWrapper;
 import com.music.MusicApplication;
 import com.music.annotation.ComputeTimeUtil;
 import com.music.bean.MessageEvent;
@@ -107,6 +108,8 @@ public class BaseFragmentActivity extends AppCompatActivity {
 		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);
+		AnalySDKWrapper.trackEvent().withName(getClass().getSimpleName()+",onResume");
+
 //		ViewGroup root = (ViewGroup) this.getWindow().getDecorView();
 //		changeFont(root);
 //		if(SPUtils.ApplicationUtil.getYaoYiYao(this)){

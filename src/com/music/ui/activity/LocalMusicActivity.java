@@ -13,7 +13,9 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -110,6 +112,8 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 
 //	@ViewInject(value = R.id.slidingMenu)
 //	private com.music.ui.widget.slidingmenu.SlidingMenu slidingMenu;
+	@ViewInject(value = R.id.slidingMenu)
+	private DrawerLayout drawerLayout;
 
 	@ViewInject(value = R.id.iv_back)
 	private ImageView iv_back;
@@ -195,6 +199,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 				return false;
 			}
 		});
+
 	}
 
 
@@ -252,6 +257,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 		DBHelper.getInstance().sortMp3InfosByTitleByRx(new BaseObserver<List<MusicInfo>>(){
 			@Override
 			public void onComplete() {
+				super.onComplete();
 				bindData();
 			}
 		});
@@ -443,6 +449,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 //			} else {
 //				iv_back.setImageResource(R.drawable.ic_common_title_bar_back);
 //			}
+			drawerLayout.openDrawer(Gravity.LEFT);
 		}
 	}
 
@@ -493,9 +500,9 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if (myPlayerNewService!=null&&myPlayerNewService.getMediaPlayer().isPlaying()){
-			mHandler.postDelayed(progressRunnable,100);
-		}
+//		if (myPlayerNewService!=null&&myPlayerNewService.getMediaPlayer().isPlaying()){
+//			mHandler.postDelayed(progressRunnable,100);
+//		}
 
 
 	}
@@ -519,24 +526,24 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 	}
 	private Handler mHandler=new Handler();
 	private MyPlayerNewService myPlayerNewService;
-	private Runnable progressRunnable=new Runnable() {
-		@Override
-		public void run() {
-			if (myPlayerNewService==null){
-				myPlayerNewService= MusicApplication.getInstance().getMyPlayerNewService();
-			}
-			if (myPlayerNewService==null){
-				return;
-			}
-			if (myPlayerNewService.getMediaPlayer().isPlaying()){
-				int currentTime=myPlayerNewService.getMediaPlayer().getCurrentPosition();
-				mp3Util.setCurrentTime(currentTime);
-				tv_music_CurrentTime.setText(MediaUtil.formatTime(currentTime));
-				musicTimeProgressView.setCurrentProgress(currentTime);
-			}
-			mHandler.postDelayed(progressRunnable,100);
-		}
-	};
+//	private Runnable progressRunnable=new Runnable() {
+//		@Override
+//		public void run() {
+//			if (myPlayerNewService==null){
+//				myPlayerNewService= MusicApplication.getInstance().getMyPlayerNewService();
+//			}
+//			if (myPlayerNewService==null){
+//				return;
+//			}
+//			if (myPlayerNewService.getMediaPlayer().isPlaying()){
+//				int currentTime=myPlayerNewService.getMediaPlayer().getCurrentPosition();
+//				mp3Util.setCurrentTime(currentTime);
+//				tv_music_CurrentTime.setText(MediaUtil.formatTime(currentTime));
+//				musicTimeProgressView.setCurrentProgress(currentTime);
+//			}
+//			mHandler.postDelayed(progressRunnable,100);
+//		}
+//	};
 
 	public void handleMessage(MessageEvent event){
 		DebugLog.d("接收事件:"+event.toString());
@@ -580,7 +587,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			btn_musicPlaying
 					.setImageResource(R.drawable.img_button_notification_play_play);
 			myNotification.setPlayImageState(false);
-			mHandler.removeCallbacks(progressRunnable);
+//			mHandler.removeCallbacks(progressRunnable);
 		}
 
 		@Override
@@ -589,7 +596,7 @@ public class LocalMusicActivity extends BaseFragmentActivity implements
 			btn_musicPlaying
 					.setImageResource(R.drawable.img_button_notification_play_pause);
 			myNotification.setPlayImageState(true);
-			mHandler.postDelayed(progressRunnable,100);
+//			mHandler.postDelayed(progressRunnable,100);
 		}
 
 	}

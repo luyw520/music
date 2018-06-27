@@ -214,6 +214,11 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 		asyncTaskUtil.setIAsyncTaskCallBack(new FindLrcCallBack());
 		asyncTaskUtil.execute("");
 	}
+
+	/**
+	 * 是否有歌词
+	 */
+	boolean hasLrc=true;
 	private class FindLrcCallBack implements AsyncTaskUtil.IAsyncTaskCallBack {
 		String lrcPath = null;
 		@Override
@@ -221,6 +226,7 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 			if (lrcPath == null) {
 				lyricView.setLyricSentences(null, false);
 				lyricView.setLoadLrc(LyricView.NO_LRC);
+				hasLrc=false;
 			}
 			lyricView.invalidate();
 		}
@@ -482,16 +488,18 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 
 		myPlayerNewService=MusicApplication.getInstance().getMyPlayerNewService();
 	}
-
+	final static int DELAY_PLAYER=100;
 	@Override
 	protected void onResume() {
 		super.onResume();
 		if (myPlayerNewService!=null&&myPlayerNewService.getMediaPlayer().isPlaying()){
-			mHandler.postDelayed(progressRunnable,100);
+			mHandler.removeCallbacks(progressRunnable);
+			mHandler.postDelayed(progressRunnable,DELAY_PLAYER);
 		}
 
 		setBg();
 	}
+
 	private void setBg(){
 		mPersenter.changeBg(this);
 	}
@@ -517,9 +525,26 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 					lyricView.postInvalidate();
 				}
 			}
-			mHandler.postDelayed(progressRunnable,100);
+			if (isPost()){
+				mHandler.postDelayed(progressRunnable,DELAY_PLAYER);
+			}
+
 		}
 	};
+
+	/**
+	 *
+	 * @return
+	 */
+	boolean isPost(){
+		if (!mp3Util.isShowLrc()){
+			return false;
+		}
+		if (!hasLrc){
+			return false;
+		}
+		return true;
+	}
 	/**
 	 *
 	 * @author Administrator
@@ -534,7 +559,8 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 				animatorPlay.start();
 			}
 			iv_needle.startAnimation(animatorNeedlePause);
-			mHandler.postDelayed(progressRunnable,100);
+			mHandler.removeCallbacks(progressRunnable);
+			mHandler.postDelayed(progressRunnable,DELAY_PLAYER);
 		}
 
 		@Override

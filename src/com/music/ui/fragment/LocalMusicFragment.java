@@ -13,12 +13,14 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.lu.library.util.ScreenUtils;
 import com.music.lu.R;
+import com.music.model.MusicModel;
 import com.music.ui.adapter.ViewPagerAdapter;
 import com.music.ui.service.IConstants;
 import com.music.utils.DeBug;
-import com.lu.library.util.ScreenUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +54,7 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 	 * 线占屏幕的几分之几
 	 */
 	private final static int SPLIT_SIZE=2;
+	TextView tv_song;
 //	public static boolean isFirst=true;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -88,6 +91,7 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 		rl_album=(RelativeLayout) view.findViewById(R.id.rl_album);
 		rl_artist=(RelativeLayout) view.findViewById(R.id.rl_artist);
 		rl_song=(RelativeLayout) view.findViewById(R.id.rl_song);
+		tv_song=(TextView) view.findViewById(R.id.tv_song);
 		rl_folder.setOnClickListener(this);
 		rl_album.setOnClickListener(this);
 		rl_artist.setOnClickListener(this);
@@ -104,6 +108,8 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 				.getLayoutParams();
 		lp.width= ScreenUtils.getScreenWidth(getActivity())/SPLIT_SIZE;
 		iv_tabline.setLayoutParams(lp);
+
+		tv_song.append("("+MusicModel.getInstance().getMusicList().size()+")");
 	}
 	private class MyOnPageChangeListener implements OnPageChangeListener{
 		@Override

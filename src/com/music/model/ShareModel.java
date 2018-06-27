@@ -1,17 +1,19 @@
 package com.music.model;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 
+import com.lu.library.util.AsyncTaskUtil;
 import com.lu.library.util.DebugLog;
-import com.music.lu.R;
+import com.lu.library.util.ScreenUtils;
+import com.lu.library.util.image.ImageUtil;
+import com.music.helpers.FileHelper;
 import com.music.utils.DialogUtil;
-import com.umeng.socialize.ShareAction;
+import com.music.utils.ShareListener;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.umeng.socialize.media.UMImage;
-import com.umeng.socialize.media.UMWeb;
-import com.umeng.socialize.shareboard.SnsPlatform;
-import com.umeng.socialize.utils.ShareBoardlistener;
+
+import java.io.File;
 
 public class ShareModel {
 	private static final String QZONE_APP_ID="1104335219";
@@ -84,56 +86,27 @@ public class ShareModel {
 		}
 	};
 	public static String url ="http://mobile.umeng.com/social";
+	static String  path ;
 	/**
 	 * umeng share api
 	 */
 	public void umengShareMusic(final Activity activity) {
-//		TopNoticeDialog.showToast(activity, R.string.no_share);
-//		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(activity,
-//				QZONE_APP_ID, QZONE_APP_KEY);
+		path = FileHelper.imgPathPath() + File.separator + "s_ido_" + System.currentTimeMillis() / 1000 + ".png";
+		ShareListener shareListener=new ShareListener(activity,true);
+		shareListener.path=(path);
+		final Bitmap bitmap= ScreenUtils.captureWithoutStatusBar(activity);
+		new AsyncTaskUtil(new AsyncTaskUtil.IAsyncTaskCallBack() {
+			@Override
+			public Object doInBackground(String... arg0) {
+				ImageUtil.saveImage(bitmap,path,null);
+				return null;
+			}
+			@Override
+			public void onPostExecute(Object result) {
+			}
+		}).execute("");
 
-//		qZoneSsoHandler.addToSocialSDK();
-//		UMQQSsoHandler qHandler = new UMQQSsoHandler(activity, QZONE_APP_ID,
-//				QZONE_APP_KEY);
-//
-//		qHandler.addToSocialSDK();
-//
-//		UMSocialService service = UMServiceFactory
-//				.getUMSocialService("com.umeng.share");
-//
-//
-//		service.setShareContent("hehehe");
-//		service.openShare(activity, false);
-
-
-		  /*增加自定义按钮的分享面板*/
-		ShareAction mShareAction = new ShareAction(activity).setDisplayList(
-				SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN_FAVORITE,
-				SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE)
-				.addButton("复制文本", "复制文本", "umeng_socialize_copy", "umeng_socialize_copy")
-				.addButton("复制链接", "复制链接", "umeng_socialize_copyurl", "umeng_socialize_copyurl")
-				.setShareboardclickCallback(new ShareBoardlistener() {
-					@Override
-					public void onclick(SnsPlatform snsPlatform, SHARE_MEDIA share_media) {
-						if (snsPlatform.mShowWord.equals("复制文本")) {
-							DialogUtil.showToast(null, "复制文本按钮");
-						} else if (snsPlatform.mShowWord.equals("复制链接")) {
-							DialogUtil.showToast(null,"复制链接按钮");
-
-						} else {
-							UMWeb web = new UMWeb(url);
-							web.setTitle("来自分享面板标题");
-							web.setDescription("来自分享面板内容");
-							web.setThumb(new UMImage(activity, R.drawable.lmusic));
-							new ShareAction(activity).withMedia(web)
-									.setPlatform(share_media)
-									.setCallback(mShareListener)
-									.share();
-						}
-					}
-				});
-
-		mShareAction.open();
+		com.music.ui.view.DialogUtil.showShareActivityDialog(activity,shareListener);
 	}
 
 }

@@ -7,7 +7,6 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.os.RemoteException;
 
 import com.lu.library.util.DebugLog;
@@ -42,28 +41,40 @@ public class MyPlayerNewService extends Service {
 	private PlayerHelpler mp3Util;
 	private static final int CURRENT_TIME=2;
 	private static final int DELAY_TIME=100;
-	private Handler handler = new Handler() {
-		@SuppressLint("HandlerLeak") @Override
-		public void handleMessage(Message msg) {
-			if(getMediaPlayer() !=null&& getMediaPlayer().isPlaying()){
-				if(msg.what==CURRENT_TIME){
-					sendCurrentTimeBroadCast();
-					/**
-					 */
+	private static final int CURRENT_TIME_LOOP=1000;
+//	private Handler handler = new Handler() {
+//		@SuppressLint("HandlerLeak") @Override
+//		public void handleMessage(Message msg) {
+//			if(getMediaPlayer() !=null&& getMediaPlayer().isPlaying()){
+//				if(msg.what==CURRENT_TIME){
+//					sendCurrentTimeBroadCast();
+//					/**
+//					 */
 //					handler.sendEmptyMessageDelayed(CURRENT_TIME, DELAY_TIME);
-				}
+//				}
+//
+//
+//			}
+//		}
+//
+//	};
+	private Handler handler = new Handler();
 
-
+	Runnable loopTask=new Runnable() {
+		@Override
+		public void run() {
+			sendCurrentTimeBroadCast();
+			if (getMediaPlayer().isPlaying()){
+				handler.postDelayed(this,CURRENT_TIME_LOOP);
 			}
 		}
-
 	};
+	void sendLoopTask(){
+		handler.removeCallbacks(loopTask);
+		handler.postDelayed(loopTask,CURRENT_TIME_LOOP);
+	}
 	private void sendCurrentTimeBroadCast(){
 		currentTime = getMediaPlayer().getCurrentPosition();
-//		Intent intent = new Intent();
-//		intent.setAction(Constant.MUSIC_CURRENT);
-//		intent.putExtra("currentTime", currentTime);
-//		sendBroadcast(intent);
 		DebugLog.d("发送事件："+ Constant.MUSIC_CURRENT);
 		EventBusHelper.post(new MessageEvent(Constant.MUSIC_CURRENT,currentTime));
 	}
@@ -88,13 +99,9 @@ public class MyPlayerNewService extends Service {
 
 
 	private void cotinuePlay() {
-//		if(!mp3Util.isPlaying()){
 			getMediaPlayer().start();
 			mp3Util.setPlaying(true);
-//			sendBroadcast(new Intent(Constant.MUSIC_PLAYER));
-//			handler.sendEmptyMessage(1);
-//			handler.sendEmptyMessage(CURRENT_TIME);
-//		}
+		sendLoopTask();
 		EventBusHelper.post((Constant.MUSIC_PLAYER));
 	}
 
@@ -185,7 +192,7 @@ public class MyPlayerNewService extends Service {
 		if (null != getMediaPlayer() && getMediaPlayer().isPlaying()) {
 			getMediaPlayer().pause();
 			mp3Util.setPlaying(false);
-
+			handler.removeCallbacks(loopTask);
 			EventBusHelper.post(Constant.MUSIC_PAUSE);
 //			sendBroadcast(new Intent(Constant.MUSIC_PAUSE));
 		}
@@ -208,6 +215,7 @@ public class MyPlayerNewService extends Service {
 				return;
 			}
 			sendDurationBroadCast();
+			sendLoopTask();
 //			sendBroadcast(new Intent(Constant.MUSIC_PLAYER));
 			EventBusHelper.post(new MessageEvent(Constant.MUSIC_PLAYER));
 //			handler.sendEmptyMessage(CURRENT_TIME);
@@ -245,6 +253,7 @@ public class MyPlayerNewService extends Service {
 	@Override
 	public void onDestroy() {
 		DeBug.d(this, "...........................onDestroy");
+		handler.removeCallbacks(loopTask);
 		release();
 	}
 }

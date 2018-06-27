@@ -1,5 +1,6 @@
 apply plugin: 'android'
 apply from:"config.gradle"
+apply from: 'MobSDK.gradle'
 //apply plugin: 'org.greenrobot.greendao'
 buildscript {
     repositories {
@@ -8,6 +9,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.1.0'
+        classpath 'com.mob.sdk:MobSDK:+'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -39,17 +41,17 @@ android {
 //    }
     signingConfigs {
         release {
-            keyAlias 'veryfitplus'
+            keyAlias 'music'
             keyPassword '123456'
-            storeFile file('veryfitplus.keystore')
+            storeFile file('music.keystore')
             storePassword '123456'
 
         }
         config {
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            storeFile file('debug.keystore')
-            keyPassword "android"
+            keyAlias "music"
+            storePassword "123456"
+            storeFile file('music.keystore')
+            keyPassword "123456"
 
         }
     }

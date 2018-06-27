@@ -76,4 +76,7 @@
 
 
     <string name="no_share">暂无分享</string>
+    <string name="sharing_success">分享成功</string>
+    <string name="sharing_cancel">分享取消</string>
+    <string name="sharing_fail">分享失败</string>
 </resources>

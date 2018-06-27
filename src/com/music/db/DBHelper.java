@@ -65,13 +65,15 @@ public class DBHelper {
         if (musicInfoList!=null&&!musicInfoList.isEmpty()){
             receiver.onNext(musicInfoList);
 //            return musicInfoList;
+            receiver.onComplete();
+            return;
         }
         musicInfoList.clear();
         Observable.create(new ObservableOnSubscribe<List<MusicInfo>>() {
             @Override
             public void subscribe(ObservableEmitter<List<MusicInfo>> observableEmitter) throws Exception {
                 MusicInfoDao dao=daoSession.getMusicInfoDao();
-                DebugLog.d(Thread.currentThread());
+                DebugLog.d("subscribe:"+Thread.currentThread().getName());
                 List<MusicInfo> list=dao.queryBuilder().orderAsc(com.music.bean.MusicInfoDao.Properties.TitleKey).list();
                 if (list.isEmpty()){
                     DebugLog.d("本地数据没有，去手机多媒体数据库查询");
@@ -82,6 +84,7 @@ public class DBHelper {
                 }
                 musicInfoList.addAll(list);
                 observableEmitter.onNext(list);
+                observableEmitter.onComplete();
             }
 
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(receiver);

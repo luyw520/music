@@ -7,8 +7,8 @@ import android.os.StrictMode;
 
 import com.facebook.stetho.Stetho;
 import com.lu.library.monitor.BlockDetectByPrinter;
-import com.lu.library.util.CrashHandler;
 import com.lu.library.util.SPUtils;
+import com.mob.MobSDK;
 import com.music.db.DBHelper;
 import com.music.helpers.FileHelper;
 import com.music.helpers.PlayerHelpler;
@@ -22,6 +22,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
 import java.io.File;
@@ -57,15 +58,28 @@ public class MusicApplication extends Application {
 		BlockDetectByPrinter.start();
 		SPUtils.init(this);
 		Stetho.initializeWithDefaults(this);
-		CrashHandler.getInstance().init(this,"lu");
+//		CrashHandler.getInstance().init(this,"lu");
 //		UMAnalyticsConfig.
-		UMShareAPI.init(this,"5b2a150ef43e4809b500000f");
-		init7_0();
 
+		init7_0();
+		initUmeng();
+		initMobSDK();
+	}
+
+	private void initMobSDK() {
+		MobSDK.init(this);
+	}
+
+	private void initUmeng() {
+		UMShareAPI.init(this,"5b2a150ef43e4809b500000f");
 		MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
 		UMConfigure.setLogEnabled(true);
 		UMConfigure.init(this,"5b2a150ef43e4809b500000f","",UMConfigure.DEVICE_TYPE_PHONE,"");
+		PlatformConfig.setWeixin("wx4868b35061f87885", "64020361b8ec4c99936c0e3999a9f249");
+		//豆瓣RENREN平台目前只能在服务器端配置
+		PlatformConfig.setQQZone("1104335219", "J68iUn08AUZwHWrJ");
 	}
+
 	private void init7_0() {
 
 		// android 7.0系统解决拍照的问题
