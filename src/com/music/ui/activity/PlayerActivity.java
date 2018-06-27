@@ -148,7 +148,7 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 		setViewOnclickListener();
 		setPlayType();
 		registerReceiver();
-		findMp3Lrc(true);
+		findMp3Lrc();
 	}
 
 	@Override
@@ -170,13 +170,6 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 		}
 	}
 
-	public void onSuccess(Drawable data) {
-		ll_bg.setBackground(data);
-	}
-
-	public void onFaild(Exception e) {
-
-	}
 
 	@Override
 	public void success(Drawable drawable) {
@@ -194,7 +187,7 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 				int indexOfCurSentence) {
 			lyricModel.putLyric(mp3Util.getCurrentMp3Info().getTitle(),
 					lyricSentences);
-			lyricView.setLyricSentences(lyricSentences, true);
+			lyricView.setLyricSentences(lyricSentences);
 			lyricView.setLoadLrc(LyricView.LRC_LOADED);
 		}
 		@Override
@@ -203,11 +196,10 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 
 	}
 
-	private void findMp3Lrc(boolean isInit) {
+	private void findMp3Lrc() {
 		String title = mp3Util.getCurrentMp3Info().getTitle();
 		if (lyricModel.isCache(title)) {
-			lyricView.setLyricSentences(lyricModel.getLyricSentences(title),
-					isInit);
+			lyricView.setLyricSentences(lyricModel.getLyricSentences(title));
 			lyricView.postInvalidate();
 			return;
 		}
@@ -224,7 +216,7 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 		@Override
 		public void onPostExecute(Object result) {
 			if (lrcPath == null) {
-				lyricView.setLyricSentences(null, false);
+				lyricView.setLyricSentences(null);
 				lyricView.setLoadLrc(LyricView.NO_LRC);
 				hasLrc=false;
 			}
@@ -249,13 +241,21 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 	}
 
 	/**
+	 * 播放专辑动画时长
+	 */
+	final static int DURATION_PLAY_BG=20 * 1000;
+	/**
+	 *播放暂时专辑上面的针选择动画时长
+	 */
+	final static int DURATION_PLAY_PAUSE_NEEDLE=3 * 1000;
+	/**
 	 * 专辑图片的旋转动画
 	 */
 	private void initAnimatorPlay(){
 		if (animatorPlay == null) {
 			animatorPlay = ObjectAnimator.ofFloat(iv_music_album, "rotation",
 					0, 360);
-			animatorPlay.setDuration(20 * 1000);
+			animatorPlay.setDuration(DURATION_PLAY_BG);
 			animatorPlay.setRepeatCount(-1);
 			animatorPlay.setInterpolator(new LinearInterpolator());
 			if (mp3Util.isPlaying()) {
@@ -271,14 +271,14 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 	private void initAnimatorNeedlePause(){
 		if (animatorNeedlePause == null) {
 			animatorNeedlePause = new RotateAnimation(-20, 0, 0, 0);
-			animatorNeedlePause.setDuration(3 * 1000);
+			animatorNeedlePause.setDuration(DURATION_PLAY_PAUSE_NEEDLE);
 			animatorNeedlePause.setFillAfter(true);
 		}
 	}
 	private void initAnimatorNeedlePlay() {
 		if (animatorNeedlePlay == null) {
 			animatorNeedlePlay = new RotateAnimation(0, -20, 0, 0);
-			animatorNeedlePlay.setDuration(3 * 1000);
+			animatorNeedlePlay.setDuration(DURATION_PLAY_PAUSE_NEEDLE);
 			animatorNeedlePlay.setFillAfter(true);
 			if (!mp3Util.isPlaying()) {
 				iv_needle.startAnimation(animatorNeedlePlay);
@@ -345,7 +345,7 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 		if (isShowLrc) {
 			rl_disc.setVisibility(View.GONE);
 			ll_lrc.setVisibility(View.VISIBLE);
-			loadLrc(false);
+			loadLrc();
 		} else {
 			rl_disc.setVisibility(View.VISIBLE);
 			ll_lrc.setVisibility(View.GONE);
@@ -353,7 +353,7 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 	}
 
 	/**
-	 *
+	 *根据播放类型设置图片
 	 */
 	private void setPlayType() {
 		int drawableId;
@@ -382,6 +382,7 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 	}
 
 	/**
+	 * 改变播放模式
 	 */
 	private void changePlayType() {
 		mp3Util.changePlayType();
@@ -402,12 +403,12 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 	}
 
 	/**
-	 * 歌词
+	 * 加载歌词
 	 */
-	private void loadLrc(boolean isInit) {
+	private void loadLrc() {
 		if (mp3Util.isShowLrc()) {
 			lyricView.setLoadLrc(LyricView.LRC_LOADIGN);
-			findMp3Lrc(isInit);
+			findMp3Lrc();
 		}
 
 	}
@@ -586,7 +587,7 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 			musicArtist.setText(mp3Util.getCurrentMp3Info().getArtist());
 			initViewData();
 			lyricView.clear();
-			loadLrc(true);
+			loadLrc();
 		}
 
 		@Override

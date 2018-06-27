@@ -96,7 +96,7 @@ public class LyricView extends View {
 
 	private List<LyricSentence> lyricSentences = new ArrayList<LyricSentence>();
 
-	public void setLyricSentences(List<LyricSentence> l,boolean isInit) {
+	public void setLyricSentences(List<LyricSentence> l) {
 //		DeBug.d(this,"List<LyricSentence>:"+l.toString());
 		if (l != null && lyricSentences.isEmpty()) {
 			lyricSentences.addAll(l);
