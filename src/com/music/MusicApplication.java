@@ -62,7 +62,7 @@ public class MusicApplication extends Application {
 //		UMAnalyticsConfig.
 
 		init7_0();
-		initUmeng();
+//		initUmeng();
 		initMobSDK();
 	}
 

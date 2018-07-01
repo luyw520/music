@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,8 +50,19 @@ public class BaseFragmentActivity extends AppCompatActivity {
 		EventBus.getDefault().register(this);
 
 	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		PermissionGen.onRequestPermissionsResult(this,requestCode,permissions,grantResults);
+	}
+
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void messageEventBus(MessageEvent event){
+		handleMessage(event);
+	}
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void messageEventBus1(MessageEvent event){
 		handleMessage(event);
 	}
 
