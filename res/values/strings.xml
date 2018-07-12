@@ -79,4 +79,6 @@
     <string name="sharing_success">分享成功</string>
     <string name="sharing_cancel">分享取消</string>
     <string name="sharing_fail">分享失败</string>
+    <string name="my_like_song">我喜欢的音乐</string>
+    <string name="song_size">%s首</string>
 </resources>

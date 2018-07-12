@@ -108,7 +108,7 @@ public class WelcomeActivity extends BaseActivity{
 		});
 	}
 	private void startMainActivity(){
-		startActivity(LocalMusicActivity.class);
+		startActivity(MainActivity.class);
 		finish();
 	}
 	private void setChecked(int index){

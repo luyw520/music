@@ -1,24 +1,17 @@
 package com.music.db;
 
-import com.lu.library.base.BaseObserver;
 import com.lu.library.util.DebugLog;
+import com.lu.library.util.ObjecteUtil;
 import com.music.MusicApplication;
 import com.music.bean.DaoMaster;
 import com.music.bean.DaoSession;
 import com.music.bean.MusicInfo;
-import com.music.bean.MusicInfoDao;
-import com.music.model.MusicModel;
+import com.music.bean.MusicList;
+import com.music.bean.MusicListDao;
+import com.music.lu.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.ObservableSource;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 import static com.music.ui.service.IConstants.DB_NAME;
 
@@ -30,81 +23,111 @@ public class DBHelper {
 
     DaoMaster daoMaster;
     DaoSession daoSession;
-    private static DBHelper dbHelper=new DBHelper();
-    private List<MusicInfo> musicInfoList=new ArrayList<>();
-    public static DBHelper getInstance(){
+    private static DBHelper dbHelper = new DBHelper();
+    private List<MusicInfo> musicInfoList = new ArrayList<>();
+
+    public static DBHelper getInstance() {
         return dbHelper;
     }
-    public void init(){
-        DaoMaster.DevOpenHelper openHelper=new DaoMaster.DevOpenHelper(MusicApplication.getInstance(),DB_NAME) ;
-        daoMaster=new DaoMaster(openHelper.getWritableDatabase());
-        daoSession=daoMaster.newSession();
+
+    public void init() {
+        DaoMaster.DevOpenHelper openHelper = new DaoMaster.DevOpenHelper(MusicApplication.getInstance(), DB_NAME);
+        daoMaster = new DaoMaster(openHelper.getWritableDatabase());
+        daoSession = daoMaster.newSession();
     }
-    public void insertOrReplace(MusicInfo musicInfo){
-        com.music.bean.MusicInfoDao dao=daoSession.getMusicInfoDao();
+    public void buildDelete(String musicListName,MusicInfo musicInfo){
+        MusicListDao dao=daoSession.getMusicListDao();
+        dao.queryBuilder().where(MusicListDao.Properties.SongListName.eq(musicListName),MusicListDao.Properties.SongId.eq(musicInfo.getSongId())).buildDelete();
+    }
+    public void insertMusucList(String musicListName,MusicInfo musicInfo){
+        MusicListDao dao=daoSession.getMusicListDao();
+        MusicList musicList=new MusicList();
+        musicList.setSongListName(musicListName);
+        if (musicInfo!=null){
+            List<MusicList> musicListList=dao.queryBuilder().where(MusicListDao.Properties.SongId.eq(musicInfo.getSongId())).list();
+            //该歌单已有该歌曲
+            if (!ObjecteUtil.isCollectionEmpty(musicListList)){
+                DebugLog.d("该歌单也有该歌曲");
+                return;
+            }
+            musicList=new MusicList(musicInfo.getSongId(),musicListName,musicInfo.picUrl);
+        }
+
+
+        dao.insert(musicList);
+    }
+    /**
+     * 获取所有的歌单
+     * @return
+     */
+    public List<MusicList> getMusicList(){
+        MusicListDao dao=daoSession.getMusicListDao();
+        List<MusicList> musicListList=dao.queryBuilder().list();
+        if (ObjecteUtil.isCollectionEmpty(musicListList)){
+            MusicList musicList=new MusicList();
+            musicList.setSongListName(MusicApplication.getInstance().getResources().getString(R.string.my_like_song));
+            musicListList.add(musicList);
+            dao.insert(musicList);
+        }
+        return musicListList;
+    }
+
+//    /**
+//     * 获取所有的歌单
+//     * @return
+//     */
+//    public List<MusicListVO> getMusicList(){
+//        List<MusicListVO> musicListVOList=new ArrayList<>();
+//        MusicListDao dao=daoSession.getMusicListDao();
+//        List<MusicList> musicListList=dao.queryBuilder().list();
+//        if (ObjecteUtil.isCollectionEmpty(musicListList)){
+//            MusicList musicList=new MusicList();
+//            musicList.setSongListName(MusicApplication.getInstance().getResources().getString(R.string.my_like_song));
+//            musicListList.add(musicList);
+//            dao.insert(musicList);
+//        }
+//        musicListVOList.addAll(musicListToMusicListVO(musicListList));
+//        return musicListVOList;
+//    }
+
+//    private List<MusicListVO> musicListToMusicListVO(List<MusicList> musicListList){
+//        List<MusicListVO> musicListVOList=new ArrayList<>();
+//
+//        for (MusicList musicList:musicListList){
+//            MusicListVO musicListVO=new MusicListVO();
+//            musicListVO.musicListName=musicList.getSongListName();
+//            boolean isFind=false;
+//           for (int i=0,size=musicListVOList.size();i<size;i++){
+//               MusicListVO temp= musicListVOList.get(i);
+//               if (temp.musicListName.equals(musicListVO.musicListName)){
+//                   isFind=true;
+//                   temp.songSize++;
+//                   break;
+//               }
+//           }
+//           if (!isFind){
+//               musicListVOList.add(musicListVO);
+//           }
+//        }
+//        return musicListVOList;
+//    }
+
+
+
+
+    public void insertOrReplace(MusicInfo musicInfo) {
+        com.music.bean.MusicInfoDao dao = daoSession.getMusicInfoDao();
         dao.insertOrReplace(musicInfo);
     }
-    public List<MusicInfo> sortMp3InfosByTitle(){
-        if (musicInfoList!=null&&!musicInfoList.isEmpty()){
-            return musicInfoList;
-        }
-        musicInfoList.clear();
-        com.music.bean.MusicInfoDao dao=daoSession.getMusicInfoDao();
-        List<MusicInfo> list=dao.queryBuilder().orderAsc(com.music.bean.MusicInfoDao.Properties.TitleKey).list();
-        if (list.isEmpty()){
-            DebugLog.d("本地数据没有，去手机多媒体数据库查询");
-            list.addAll(MusicModel.getInstance().sortMp3InfosByTitle(MusicApplication.getInstance()));
-        }else{
-            DebugLog.d("从本地数据库获取 ");
-            MusicModel.getInstance().getMusicList().addAll(list);
-        }
-        musicInfoList.addAll(list);
-        return null;
-    }
-    public void sortMp3InfosByTitleByRx(BaseObserver<List<MusicInfo>> receiver){
-        if (musicInfoList!=null&&!musicInfoList.isEmpty()){
-            receiver.onNext(musicInfoList);
-//            return musicInfoList;
-            receiver.onComplete();
-            return;
-        }
-        musicInfoList.clear();
-        Observable.create(new ObservableOnSubscribe<List<MusicInfo>>() {
-            @Override
-            public void subscribe(ObservableEmitter<List<MusicInfo>> observableEmitter) throws Exception {
-                MusicInfoDao dao=daoSession.getMusicInfoDao();
-                DebugLog.d("subscribe:"+Thread.currentThread().getName());
-                List<MusicInfo> list=dao.queryBuilder().orderAsc(com.music.bean.MusicInfoDao.Properties.TitleKey).list();
-                if (list.isEmpty()){
-                    DebugLog.d("本地数据没有，去手机多媒体数据库查询");
-                    list.addAll(MusicModel.getInstance().sortMp3InfosByTitle(MusicApplication.getInstance()));
-                }else{
-                    DebugLog.d("从本地数据库获取 ");
-                    MusicModel.getInstance().getMusicList().addAll(list);
-                }
-                musicInfoList.addAll(list);
-                observableEmitter.onNext(list);
-                observableEmitter.onComplete();
-            }
 
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(receiver);
-    }
-     Observable<MusicInfo> sampleObservable() {   //这个玩意跑在子线程
-        return Observable.defer(new Callable<ObservableSource<MusicInfo>>() {
-            @Override public ObservableSource<MusicInfo> call() throws Exception {
-                com.music.bean.MusicInfoDao dao=daoSession.getMusicInfoDao();
-                List<MusicInfo> list=dao.queryBuilder().orderAsc(com.music.bean.MusicInfoDao.Properties.TitleKey).list();
-                return Observable.fromArray((MusicInfo[])list.toArray());
-            }
-        });
+    public List<MusicInfo> getMusicOrderAscByTitle() {
+        com.music.bean.MusicInfoDao dao = daoSession.getMusicInfoDao();
+        List<MusicInfo> list = dao.queryBuilder().orderAsc(com.music.bean.MusicInfoDao.Properties.TitleKey).list();
+        return list;
     }
 
-    public void setMusicLove(MusicInfo musicInfo){
-       if (musicInfo.getTag()==0){
-           musicInfo.setTag(1);
-       }else{
-           musicInfo.setTag(0);
-       }
-        insertOrReplace(musicInfo);
-    }
+
+
+
+
 }

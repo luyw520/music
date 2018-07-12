@@ -68,24 +68,24 @@ public class MusicModel {
         return musicModel;
     }
 
+//    /**
+//     *
+//     *            local,artist,album,folder
+//     * @return
+//     */
+//    public List<MusicInfo> queryMusicByFolder(String folderPath) {
+//        DebugLog.d("folderPath:"+folderPath);
+//        List<MusicInfo> musicInfos=new ArrayList<>();
+//        for (MusicInfo musicInfo:musicList){
+//            if (musicInfo.getFolder().equals(folderPath)){
+//                musicInfos.add(musicInfo);
+//            }
+//
+//        }
+//        return musicInfos;
+//    }
     /**
-     *
-     *            local,artist,album,folder
-     * @return
-     */
-    public List<MusicInfo> queryMusicByFolder(String folderPath) {
-        DebugLog.d("folderPath:"+folderPath);
-        List<MusicInfo> musicInfos=new ArrayList<>();
-        for (MusicInfo musicInfo:musicList){
-            if (musicInfo.getFolder().equals(folderPath)){
-                musicInfos.add(musicInfo);
-            }
-
-        }
-        return musicInfos;
-    }
-    /**
-     *
+     * 从手机多媒体数据库查询音乐文件
      * @param context
      * @param selections
      * @param selection

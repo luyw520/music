@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.music.bean.MessageEvent;
+import com.music.helpers.EventBusHelper;
 import com.music.lu.R;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -37,7 +37,7 @@ public class BaseFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		EventBus.getDefault().register(this);
+		EventBusHelper.register(this);
 	}
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void messageEventBus(MessageEvent event){
@@ -45,6 +45,6 @@ public class BaseFragment extends Fragment {
 	@Override
 	public void onPause() {
 		super.onPause();
-		EventBus.getDefault().unregister(this);
+		EventBusHelper.unregister(this);
 	}
 }

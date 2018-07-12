@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lu.library.util.ConstantUtil;
+import com.lu.library.util.DebugLog;
 import com.lu.library.util.NotificationsUtils;
 import com.music.ui.view.animator.ActivityAnimator;
 import com.music.utils.DeBug;
@@ -29,11 +30,13 @@ public class BaseActivity extends BaseFragmentActivity implements ConstantUtil {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		super.onCreate(savedInstanceState);
 		ViewUtils.inject(this);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 			setTranslucentStatus(true);
 		}
+		DebugLog.d(getClass().getSimpleName()+":onCreate");
 	}
 
 	@TargetApi(19)

@@ -17,7 +17,7 @@ import io.reactivex.disposables.Disposable;
 public class BaseObserver<T> implements Observer<T> {
     @Override
     public void onSubscribe(Disposable disposable) {
-        DebugLog.d("onSubscribe");
+        DebugLog.d("onSubscribe："+disposable.toString());
         DebugLog.d(Thread.currentThread().getName());
     }
 

@@ -37,5 +37,6 @@
     <color name="half_transparent">#3f000000</color>
 
 
-    <!-- 半透明 -->
+    <color name="list_title_color">#333</color>
+    <color name="list_sub_title_color">#666</color>
 </resources>

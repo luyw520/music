@@ -19,24 +19,23 @@ import com.lu.library.recyclerview.CommonRecyclerViewAdapter;
 import com.lu.library.recyclerview.MultiItemTypeAdapterForRV;
 import com.lu.library.recyclerview.base.CommonRecyclerViewHolder;
 import com.lu.library.recyclerview.wrapper.HeaderAndFooterWrapper;
+import com.lu.library.util.DebugLog;
 import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
-import com.music.db.DBHelper;
 import com.music.helpers.PlayerHelpler;
 import com.music.lu.R;
-import com.music.model.MusicModel;
+import com.music.presenter.LocalMusicPresenter;
 import com.music.ui.adapter.MusicListAdapter;
 import com.music.ui.service.IConstants;
 import com.music.ui.widget.indexablelistview.IndexableListView;
 import com.music.utils.DeBug;
-import com.lu.library.util.DebugLog;
 
 import java.util.List;
 
 /**
  * 所有歌曲
  */
-public class SongFragment extends BaseFragment implements IConstants{
+public class SongFragment extends BaseMVPFragment<LocalMusicPresenter> implements IConstants{
 
 //	protected IMediaService mService;
 	@SuppressWarnings("unused")
@@ -60,6 +59,7 @@ public class SongFragment extends BaseFragment implements IConstants{
 
 	public static final int TYPE_SONG_ALL=0;
 	public static final int TYPE_SONG_FOLDER=1;
+	public static final int TYPE_SONG_LOVER=2;
 	public static final String TYPE_SONG_KEY="TYPE_SONG_KEY";
 	public static final String TYPE_SONG_DATA="TYPE_SONG_DATA";
 	private int type;
@@ -116,10 +116,13 @@ public class SongFragment extends BaseFragment implements IConstants{
 
 		switch (type){
 			case TYPE_SONG_ALL:
-				mp3Infos= MusicModel.getInstance().sortMp3InfosByTitle(getContext());
+				mp3Infos= mPersenter.getCacheMusic();
 				break;
 			case TYPE_SONG_FOLDER:
-				mp3Infos=MusicModel.getInstance().queryMusicByFolder(folderInfo.folder_path);
+				mp3Infos=mPersenter.queryMusicByFolder(folderInfo.folder_path);
+				break;
+			case TYPE_SONG_LOVER:
+
 				break;
 		}
 
@@ -174,7 +177,7 @@ public class SongFragment extends BaseFragment implements IConstants{
 				holder.getView(R.id.albumImage).setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						DBHelper.getInstance().setMusicLove(mp3Info);
+						mPersenter.setMusicLove(mp3Info);
 						adapter.notifyDataSetChanged();
 					}
 				});

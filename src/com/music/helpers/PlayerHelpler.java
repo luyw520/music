@@ -17,7 +17,6 @@ import com.music.model.MusicModel;
 import com.music.ui.service.IMediaService;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.utils.AppConstant;
-import com.music.utils.DeBug;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -191,7 +190,7 @@ public class PlayerHelpler {
 //		mediaUtil = new MediaUtil();
 
 		initCurrentMusicInfo(context);
-		setMusicBaseInfos(MusicModel.getInstance().getMusicList());
+		setMusicBaseInfos(CacheHelper.getInstance().allMusic);
 		isPlaying = false;
 		isSortByTime = false;
 		isShowLrc = true;
@@ -423,6 +422,7 @@ public class PlayerHelpler {
 	public void setMusicBaseInfos(List<MusicInfo> musicBaseInfos) {
 		this.musicBaseInfos.clear();
 		this.musicBaseInfos.addAll(musicBaseInfos);
+		DebugLog.d(TAG, "setMusicBaseInfos-------------size:"+musicBaseInfos.size());
 	}
 
 	/**
@@ -432,7 +432,7 @@ public class PlayerHelpler {
 			int playListType) {
 		// mPlayListType;
 //		if (mPlayListType != playListType) {
-			DeBug.d(TAG, "playListType changed----------------------");
+			DebugLog.d(TAG, "playListType changed----------------------playListType:"+playListType+",size:"+musicBaseInfos.size());
 			mPlayListType = playListType;
 			setMusicBaseInfos(musicBaseInfos);
 //		}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/ivListImg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/lmusic"/>
+    <LinearLayout
+        android:layout_toRightOf="@+id/ivListImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvListTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_like_song"
+        android:textColor="@color/list_title_color"
+        android:textSize="@dimen/list_title_size"/>
+    <TextView
+        android:id="@+id/tvListSubTitle"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/tvListTitle"
+        android:layout_height="wrap_content"
+        android:text="@string/song_size"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/list_sub_title_color"
+        android:textSize="@dimen/list_sub_title_size"/>
+    </LinearLayout>
+</RelativeLayout>
