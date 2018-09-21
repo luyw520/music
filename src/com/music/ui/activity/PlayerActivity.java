@@ -22,7 +22,6 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.lu.library.base.IBaseView;
 import com.lu.library.util.AsyncTaskUtil;
 import com.lu.library.util.DebugLog;
 import com.lu.library.util.image.BitmapUtils;
@@ -38,6 +37,7 @@ import com.music.lu.R;
 import com.music.model.LyricModel;
 import com.music.model.ShareModel;
 import com.music.presenter.ChangeSkinPresenter;
+import com.music.presenter.IChangeSkinView;
 import com.music.presenter.IPlayState;
 import com.music.ui.broadcastreceiver.MyBroadcastReceiver;
 import com.music.ui.service.MyPlayerNewService;
@@ -58,7 +58,7 @@ import static com.music.Constant.MUSIC_PAUSE;
  */
 @SuppressLint("NewApi")
 @ContentView(value = R.layout.activity_play_layout)
-public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> implements IBaseView<Drawable> {
+public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> implements IChangeSkinView {
 	private final static String TAG = "PlayerActivity";
 
 	@ViewInject(value = R.id.musicTitle)
@@ -176,10 +176,6 @@ public class PlayerActivity extends BaseMVPActivity<ChangeSkinPresenter> impleme
 		ll_bg.setBackground(drawable);
 	}
 
-	@Override
-	public void error(Exception e) {
-
-	}
 
 	private class MyLyricListener implements LyricListener {
 		@Override

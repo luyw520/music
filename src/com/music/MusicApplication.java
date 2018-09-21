@@ -2,17 +2,12 @@ package com.music;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.StrictMode;
 
-import com.facebook.stetho.Stetho;
-import com.lu.library.monitor.BlockDetectByPrinter;
-import com.lu.library.util.SPUtils;
+import com.lu.library.LibContext;
 import com.mob.MobSDK;
 import com.music.db.DBHelper;
 import com.music.helpers.FileHelper;
 import com.music.helpers.PlayerHelpler;
-import com.music.model.ScreenManager;
 import com.music.ui.service.MyPlayerNewService;
 import com.music.ui.widget.lockpatternview.LockPatternUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
@@ -32,13 +27,6 @@ public class MusicApplication extends Application {
 	private LockPatternUtils mLockPatternUtils;
 	public static final int DARK_THEME = 0;
 	public static final int LIGHT_THEME = 1;
-	private static SharedPreferences mSharedPreferences;
-	@SuppressWarnings("unused")
-	private ScreenManager screenManager;
-
-	public static SharedPreferences getSharedPreferences() {
-		return mSharedPreferences;
-	}
 	public int getCurrentTheme(){
 		return DARK_THEME;
 	}
@@ -49,21 +37,13 @@ public class MusicApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 		musicApplication=this;
-		screenManager=ScreenManager.getScreenManager();
+		LibContext.getInstance().init(this);
 		PlayerHelpler.init(this);
 		setmLockPatternUtils(new LockPatternUtils(this));
 		initImageLoader(getApplicationContext());
 		DBHelper.getInstance().init();
-		mSharedPreferences=(getSharedPreferences("lu_music",Context.MODE_PRIVATE));
-		BlockDetectByPrinter.start();
-		SPUtils.init(this);
-		Stetho.initializeWithDefaults(this);
-//		CrashHandler.getInstance().init(this,"lu");
-//		UMAnalyticsConfig.
-
-		init7_0();
-//		initUmeng();
 		initMobSDK();
+
 	}
 
 	private void initMobSDK() {
@@ -80,13 +60,6 @@ public class MusicApplication extends Application {
 		PlatformConfig.setQQZone("1104335219", "J68iUn08AUZwHWrJ");
 	}
 
-	private void init7_0() {
-
-		// android 7.0系统解决拍照的问题
-		StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-		StrictMode.setVmPolicy(builder.build());
-		builder.detectFileUriExposure();
-	}
 
 	private void initImageLoader(Context applicationContext) {
 		ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(applicationContext);

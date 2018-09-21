@@ -75,7 +75,7 @@ public class ScreenShotUtil {
 			Log.i(TAG, arg0.toString());
 
 
-			String sctPath= DateUtil.getCurrentDate()+".png";
+			String sctPath= DateUtil.getYearAndMouth()+".png";
 			sctPath= FileHelper.imgPathPath()+File.separator+sctPath;
 			ImageUtil.saveImage(arg0, sctPath, null);
 

@@ -123,10 +123,6 @@ public class LocalMusicPresenter extends BasePresenter {
         return musicListVOList;
     }
 
-    @Override
-    protected void realExeAsyn(Object[] paramses) {
-
-    }
 
     public void setMusicLove(MusicInfo musicInfo) {
         if (musicInfo.getTag() == 0) {

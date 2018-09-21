@@ -81,4 +81,22 @@
     <string name="sharing_fail">分享失败</string>
     <string name="my_like_song">我喜欢的音乐</string>
     <string name="song_size">%s首</string>
+
+
+    <!-- 分享 -->
+    <string name="share_to">分享到</string>
+    <string name="share_to_firends">朋友圈</string>
+    <string name="share_to_wechat">微信</string>
+    <string name="share_to_facebook">Facebook</string>
+    <string name="share_to_qq">QQ</string>
+    <string name="share_to_twitter">Twitter</string>
+    <string name="network_error">网络不给力</string>
+    <string name="access_error">访问出错</string>
+    <string name="share_error_qq">QQ 版本过低或者没有安装，需要升级或安装QQ才能使用!</string>
+    <string name="share_error_wechat">目前您的微信版本过低或未安装微信，需要安装微信才能使用!</string>
+    <string name="share_error_sina">sina 版本过低或者没有安装，需要升级或安装sina才能使用!</string>
+    <string name="share_error_facebook">facebook 版本过低或者没有安装，需要升级或安装facebook才能使用!</string>
+    <string name="share_error_twitter">twitter 版本过低或者没有安装，需要升级或安装twitter才能使用!</string>
+    <string name="share_success_facebook">分享facebook成功</string>
+    <string name="share_success_twitter">分享twitter成功</string>
 </resources>

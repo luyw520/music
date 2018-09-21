@@ -9,7 +9,7 @@ import com.lu.library.base.IBaseView;
  */
 
 public interface ChangeSkinContract {
-    interface View extends IBaseView<Presenter> {
+    interface View extends IBaseView {
         void shoChangSkin(Drawable drawable);
         boolean isActive();
     }

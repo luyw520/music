@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
 import com.lu.library.base.BasePresenter;
-import com.lu.library.base.IBaseView;
 import com.lu.library.util.SPUtils;
 import com.lu.library.util.file.FileUtils;
 import com.music.MusicApplication;
@@ -30,7 +29,7 @@ import static com.music.utils.AppConstant.BG_INDEX_KEY;
  * 切换播放界面背景
  */
 
-public class ChangeSkinPresenter extends BasePresenter<IBaseView<Drawable>,Object> {
+public class ChangeSkinPresenter extends BasePresenter<IChangeSkinView> {
     private ChangeSkinContract.View mChangeSkinView;
     private String apkDir= Environment.getExternalStorageDirectory().getAbsolutePath();
     private String apkName="wyy.apk";
@@ -131,8 +130,4 @@ public class ChangeSkinPresenter extends BasePresenter<IBaseView<Drawable>,Objec
         return null;
     }
 
-    @Override
-    protected void realExeAsyn(Object[] paramses) {
-
-    }
 }

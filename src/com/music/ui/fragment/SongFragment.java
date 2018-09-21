@@ -13,12 +13,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lu.library.overscroll.VerticalOverScrollBounceEffectDecorator;
-import com.lu.library.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
-import com.lu.library.recyclerview.CommonRecyclerViewAdapter;
-import com.lu.library.recyclerview.MultiItemTypeAdapterForRV;
-import com.lu.library.recyclerview.base.CommonRecyclerViewHolder;
-import com.lu.library.recyclerview.wrapper.HeaderAndFooterWrapper;
+import com.lu.library.widget.overscroll.VerticalOverScrollBounceEffectDecorator;
+import com.lu.library.widget.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
+import com.lu.library.widget.recyclerview.CommonRecyclerViewAdapter;
+import com.lu.library.widget.recyclerview.MultiItemTypeAdapterForRV;
+import com.lu.library.widget.recyclerview.base.CommonRecyclerViewHolder;
+import com.lu.library.widget.recyclerview.wrapper.HeaderAndFooterWrapper;
 import com.lu.library.util.DebugLog;
 import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;

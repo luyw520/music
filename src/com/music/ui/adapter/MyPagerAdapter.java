@@ -2,7 +2,7 @@ package com.music.ui.adapter;
 
 import java.util.List;
 
-import com.lu.library.jazzyviewpager.JazzyViewPager;
+import com.lu.library.widget.jazzyviewpager.JazzyViewPager;
 
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
