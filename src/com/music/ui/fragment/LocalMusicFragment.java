@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.lu.library.util.ScreenUtils;
+import com.lu.library.util.ScreenUtil;
 import com.music.lu.R;
 import com.music.model.MusicModel;
 import com.music.ui.adapter.ViewPagerAdapter;
@@ -106,7 +106,7 @@ public class LocalMusicFragment extends Fragment implements IConstants ,OnClickL
 
 		RelativeLayout.LayoutParams lp = (android.widget.RelativeLayout.LayoutParams) iv_tabline
 				.getLayoutParams();
-		lp.width= ScreenUtils.getScreenWidth(getActivity())/SPLIT_SIZE;
+		lp.width= ScreenUtil.getScreenWidth(getActivity())/SPLIT_SIZE;
 		iv_tabline.setLayoutParams(lp);
 
 		tv_song.append("("+MusicModel.getInstance().getMusicList().size()+")");

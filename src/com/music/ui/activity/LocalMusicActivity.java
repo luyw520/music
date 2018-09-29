@@ -19,8 +19,8 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lu.library.base.BaseObserver;
 import com.lu.library.permissiongen.PermissionFail;
 import com.lu.library.permissiongen.PermissionSuccess;
-import com.lu.library.util.DebugLog;
-import com.lu.library.util.PhotoUtils;
+import com.lu.library.log.DebugLog;
+import com.lu.library.util.PhotoUtil;
 import com.music.Constant;
 import com.music.annotation.ComputeTime;
 import com.music.bean.FolderInfo;
@@ -44,9 +44,6 @@ import com.music.utils.MediaUtil;
 
 import java.util.List;
 
-import static com.music.Constant.MUSIC_CURRENT;
-import static com.music.Constant.MUSIC_DURATION;
-import static com.music.Constant.MUSIC_PAUSE;
 import static com.music.utils.PhotoUtils.INTENT_REQUEST_CODE_CAMERA;
 import static com.music.utils.PhotoUtils.INTENT_REQUEST_CODE_CROP;
 
@@ -191,7 +188,7 @@ public class LocalMusicActivity extends BaseMVPActivity<LocalMusicPresenter> imp
 	@PermissionSuccess(requestCode = 200)
 	public void camera(){
 		DebugLog.d("拍照");
-		userHeaderImg = PhotoUtils
+		userHeaderImg = PhotoUtil
 				.takePicture(LocalMusicActivity.this, com.music.utils.PhotoUtils.HEADER_PATH,null);
 
 	}

@@ -3,7 +3,7 @@ package com.music.utils;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
-import com.lu.library.util.DebugLog;
+import com.lu.library.log.DebugLog;
 
 import java.io.BufferedWriter;
 import java.io.File;

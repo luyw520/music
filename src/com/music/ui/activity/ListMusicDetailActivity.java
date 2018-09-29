@@ -24,8 +24,8 @@ import com.lu.library.permissiongen.PermissionSuccess;
 import com.lu.library.widget.recyclerview.CommonRecyclerViewAdapter;
 import com.lu.library.widget.recyclerview.MultiItemTypeAdapterForRV;
 import com.lu.library.widget.recyclerview.base.CommonRecyclerViewHolder;
-import com.lu.library.util.DebugLog;
-import com.lu.library.util.PhotoUtils;
+import com.lu.library.log.DebugLog;
+import com.lu.library.util.PhotoUtil;
 import com.music.Constant;
 import com.music.bean.MessageEvent;
 import com.music.bean.MusicInfo;
@@ -47,9 +47,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.music.Constant.MUSIC_CURRENT;
-import static com.music.Constant.MUSIC_DURATION;
-import static com.music.Constant.MUSIC_PAUSE;
 import static com.music.utils.PhotoUtils.INTENT_REQUEST_CODE_CAMERA;
 import static com.music.utils.PhotoUtils.INTENT_REQUEST_CODE_CROP;
 
@@ -205,7 +202,7 @@ public class ListMusicDetailActivity extends BaseMVPActivity<LocalMusicPresenter
 	@PermissionSuccess(requestCode = 200)
 	public void camera(){
 		DebugLog.d("拍照");
-		userHeaderImg = PhotoUtils
+		userHeaderImg = PhotoUtil
 				.takePicture(ListMusicDetailActivity.this, com.music.utils.PhotoUtils.HEADER_PATH,null);
 
 	}
@@ -337,7 +334,7 @@ public class ListMusicDetailActivity extends BaseMVPActivity<LocalMusicPresenter
 							needPermission(200,new String[]{Manifest.permission.CAMERA});
 							break;
 						case 1:
-							PhotoUtils.selectPhoto(ListMusicDetailActivity.this);
+							PhotoUtil.selectPhoto(ListMusicDetailActivity.this);
 							break;
 						default:
 							break;

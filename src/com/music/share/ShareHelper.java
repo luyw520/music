@@ -6,13 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lu.library.Constant;
+import com.lu.library.log.DebugLog;
 import com.lu.library.util.AsyncTaskUtil;
-import com.lu.library.util.BitmapUtil;
-import com.lu.library.util.DebugLog;
-import com.lu.library.util.FileUtil;
-import com.lu.library.util.NetUtils;
-import com.lu.library.util.ScreenUtils;
+import com.lu.library.util.NetUtil;
+import com.lu.library.util.ScreenUtil;
 import com.lu.library.util.ToastUtil;
+import com.lu.library.util.file.FileUtil;
+import com.lu.library.util.image.BitmapUtil;
 import com.music.lu.R;
 
 import java.util.HashMap;
@@ -107,11 +107,11 @@ public class ShareHelper implements OnShareSelectListener, OnShareListener {
     public void shot() {
         FileUtil.deleteFile(path);
         isShotComplete = false;
-        final Bitmap bitmap = ScreenUtils.takeScreenShot(activity);
+        final Bitmap bitmap = ScreenUtil.takeScreenShot(activity);
         new AsyncTaskUtil(new AsyncTaskUtil.AsyncTaskCallBackAdapter() {
             @Override
             public Object doInBackground(String... arg0) {
-                BitmapUtil.saveBitmap(bitmap, path);
+                BitmapUtil.save(bitmap, path);
                 isShotComplete = true;
                 return null;
             }
@@ -131,8 +131,8 @@ public class ShareHelper implements OnShareSelectListener, OnShareListener {
         new AsyncTaskUtil(new AsyncTaskUtil.AsyncTaskCallBackAdapter() {
             @Override
             public Object doInBackground(String... arg0) {
-                Bitmap bitmap = ScreenUtils.getTotleScreenShot(viewContainer, views);
-                BitmapUtil.saveBitmap(bitmap, path);
+                Bitmap bitmap = ScreenUtil.getTotleScreenShot(viewContainer, views);
+                BitmapUtil.save(bitmap, path);
                 isShotComplete = true;
                 return null;
             }
@@ -182,7 +182,7 @@ public class ShareHelper implements OnShareSelectListener, OnShareListener {
 
     @Override
     public void onShareSelect(int shareType) {
-        if (NetUtils.isConnected(activity)) {
+        if (NetUtil.isConnected(activity)) {
             share(shareType);
         } else {
 //            ToastUtil.showToast(R.string.network_error);

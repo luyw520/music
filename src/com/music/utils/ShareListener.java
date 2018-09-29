@@ -2,7 +2,7 @@ package com.music.utils;
 
 import android.app.Activity;
 
-import com.lu.library.util.DebugLog;
+import com.lu.library.log.DebugLog;
 import com.music.helpers.ShareUtils;
 import com.music.lu.R;
 

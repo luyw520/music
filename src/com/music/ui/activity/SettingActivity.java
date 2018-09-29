@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.lu.library.util.DebugLog;
+import com.lu.library.log.DebugLog;
 import com.music.helpers.PlayerHelpler;
 import com.music.lu.R;
 import com.music.presenter.ChangeSkinContract;

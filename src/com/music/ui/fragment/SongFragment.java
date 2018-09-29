@@ -19,7 +19,7 @@ import com.lu.library.widget.recyclerview.CommonRecyclerViewAdapter;
 import com.lu.library.widget.recyclerview.MultiItemTypeAdapterForRV;
 import com.lu.library.widget.recyclerview.base.CommonRecyclerViewHolder;
 import com.lu.library.widget.recyclerview.wrapper.HeaderAndFooterWrapper;
-import com.lu.library.util.DebugLog;
+import com.lu.library.log.DebugLog;
 import com.music.bean.FolderInfo;
 import com.music.bean.MusicInfo;
 import com.music.helpers.PlayerHelpler;

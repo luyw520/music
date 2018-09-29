@@ -15,7 +15,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.lu.library.util.AsyncTaskUtil;
-import com.lu.library.util.SPUtils;
+import com.lu.library.util.SPUtil;
 import com.music.lu.R;
 import com.music.utils.PhotoUtils;
 
@@ -96,7 +96,7 @@ public class UserManager {
 	}
 	public Bitmap getHeader(Context context){
 		Bitmap bitmap=null;
-		String headerPath= (String) SPUtils.get(HEADER_PATH,"");
+		String headerPath= (String) SPUtil.get(HEADER_PATH,"");
 		try {
 			bitmap=BitmapFactory.decodeFile(headerPath);
 		}catch (Exception e){
@@ -134,7 +134,7 @@ public class UserManager {
 				if (cursor.getCount() > 0 && cursor.moveToFirst()) {
 					String path = cursor.getString(column_index);
 					Bitmap bitmap = BitmapFactory.decodeFile(path);
-					SPUtils.put(HEADER_PATH,path);
+					SPUtil.put(HEADER_PATH,path);
 					if (PhotoUtils.bitmapIsLarge(bitmap)) {
 						PhotoUtils.cropPhoto(context, context, path);
 					} else {
@@ -148,7 +148,7 @@ public class UserManager {
 
 				String path = userHeaderImg;
 				Bitmap bitmap = BitmapFactory.decodeFile(path);
-				SPUtils.put(HEADER_PATH,path);
+				SPUtil.put(HEADER_PATH,path);
 				if (PhotoUtils.bitmapIsLarge(bitmap)) {
 					PhotoUtils.cropPhoto(context, context, path);
 				} else {
@@ -162,7 +162,7 @@ public class UserManager {
 				String path = data.getStringExtra("path");
 				if (path != null) {
 					Bitmap bitmap = BitmapFactory.decodeFile(path);
-					SPUtils.put(HEADER_PATH,path);
+					SPUtil.put(HEADER_PATH,path);
 					if (bitmap != null) {
 						iv_header.setImageBitmap(bitmap);
 					}

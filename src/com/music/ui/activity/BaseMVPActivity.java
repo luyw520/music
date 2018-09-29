@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.lu.library.base.BasePresenter;
 import com.lu.library.base.IBaseView;
-import com.lu.library.util.DebugLog;
+import com.lu.library.log.DebugLog;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lu.library.permissiongen.PermissionGen;
-import com.lu.library.util.NotificationsUtils;
+import com.lu.library.util.NotificationsUtil;
 import com.mob.wrappers.AnalySDKWrapper;
 import com.music.MusicApplication;
 import com.music.annotation.ComputeTimeUtil;
@@ -31,7 +31,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 
 public class BaseFragmentActivity extends AppCompatActivity {
-	protected NotificationsUtils.SystemBarTintManager tintManager;
+	protected NotificationsUtil.SystemBarTintManager tintManager;
 	@SuppressLint("ResourceAsColor")
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	@Override
@@ -42,7 +42,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 //
 		ViewUtils.inject(this);
 		ComputeTimeUtil.inject(this);
-		tintManager = new NotificationsUtils.SystemBarTintManager(this);
+		tintManager = new NotificationsUtil.SystemBarTintManager(this);
 		tintManager.setStatusBarTintEnabled(true);
 		tintManager.setNavigationBarTintEnabled(true);
 
@@ -124,7 +124,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
 //		ViewGroup root = (ViewGroup) this.getWindow().getDecorView();
 //		changeFont(root);
-//		if(SPUtils.ApplicationUtil.getYaoYiYao(this)){
+//		if(SPUtil.ApplicationUtil.getYaoYiYao(this)){
 //			ScreenShotUtil.getInstance().registerShakeToScrShot(this);
 //		}
 

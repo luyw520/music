@@ -7,8 +7,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
 import com.lu.library.base.BasePresenter;
-import com.lu.library.util.SPUtils;
-import com.lu.library.util.file.FileUtils;
+import com.lu.library.util.SPUtil;
+import com.lu.library.util.file.FileUtil;
 import com.music.MusicApplication;
 import com.music.lu.R;
 import com.music.utils.DeBug;
@@ -40,7 +40,7 @@ public class ChangeSkinPresenter extends BasePresenter<IChangeSkinView> {
     }
     private int checkedId=-1;
     public void changeBg(Context context){
-        int checkedIdTemp = (int) SPUtils.get( BG_INDEX_KEY,0);
+        int checkedIdTemp = (int) SPUtil.get( BG_INDEX_KEY,0);
         if (checkedIdTemp!=checkedId){
             checkedId=checkedIdTemp;
             AssetManager assetManager =context.getAssets();
@@ -90,7 +90,7 @@ public class ChangeSkinPresenter extends BasePresenter<IChangeSkinView> {
         try {
             InputStream inputStream=MusicApplication.getInstance().getAssets().open("wyy.apk");
             File file=new File(MusicApplication.getInstance().getCacheDir(),apkName);
-            FileUtils.writeFileFromIS(file,inputStream,false);
+            FileUtil.write(file,inputStream,false);
             filePath=file.getAbsolutePath();
             DeBug.d(this,"........wyy.apk写入SD卡成功:"+filePath);
         } catch (IOException e) {

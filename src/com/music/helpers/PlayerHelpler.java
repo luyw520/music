@@ -9,8 +9,8 @@ import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.lu.library.util.DebugLog;
-import com.lu.library.util.SPUtils;
+import com.lu.library.log.DebugLog;
+import com.lu.library.util.SPUtil;
 import com.music.MusicApplication;
 import com.music.bean.MusicInfo;
 import com.music.model.MusicModel;
@@ -213,8 +213,8 @@ public class PlayerHelpler {
 	 */
 	public void initCurrentMusicInfo(Context context) {
 
-		listPosition = (int) SPUtils.get(LIST_POSITION_KEY, 0);
-		playType = (int) SPUtils.get(context, PLAY_TYPE_KEY, PLAYING_QUEUE);
+		listPosition = (int) SPUtil.get(LIST_POSITION_KEY, 0);
+		playType = (int) SPUtil.get(context, PLAY_TYPE_KEY, PLAYING_QUEUE);
 		// playType=9;
 
 	}
@@ -249,7 +249,7 @@ public class PlayerHelpler {
 			break;
 
 		}
-		SPUtils.put(LIST_POSITION_KEY,listPosition);
+		SPUtil.put(LIST_POSITION_KEY,listPosition);
 		playMusic(listPosition);
 	}
 
@@ -343,8 +343,8 @@ public class PlayerHelpler {
 	/**
 	 */
 	public void saveCurrentMusicInfo(Context context) {
-		SPUtils.put( LIST_POSITION_KEY, listPosition);
-		SPUtils.put(PLAY_TYPE_KEY, playType);
+		SPUtil.put( LIST_POSITION_KEY, listPosition);
+		SPUtil.put(PLAY_TYPE_KEY, playType);
 	}
 
 	private void sendService(int msg, int progress) {

@@ -11,8 +11,10 @@ import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.lu.library.util.DebugLog;
-import com.lu.library.util.image.BitmapUtils;
+import com.lu.library.log.DebugLog;
+import com.lu.library.util.image.BitmapBuilder;
+import com.lu.library.util.image.BitmapTranslater;
+import com.lu.library.util.image.BitmapUtil;
 import com.music.annotation.ComputeTime;
 import com.music.bean.Mp3Info;
 import com.music.bean.MusicInfo;
@@ -155,9 +157,9 @@ public class MediaUtil {
 			}
 		}
 		if (bitmap!=null){
-			DebugLog.d("通过歌曲文件解析图片,大小"+BitmapUtils.getBitmapSize(bitmap));
-			bitmap=BitmapUtils.compressByScale(bitmap,width,height);
-			DebugLog.d("解压后大小"+BitmapUtils.getBitmapSize(bitmap));
+			DebugLog.d("通过歌曲文件解析图片,大小"+ BitmapUtil.getBitmapSize(bitmap));
+			bitmap= BitmapTranslater.compressByScale(bitmap,width,height);
+			DebugLog.d("解压后大小"+ BitmapUtil.getBitmapSize(bitmap));
 		}else{
 			bitmap=getArtwork(context,song_id,album_id,width,height);
 		}
@@ -212,7 +214,7 @@ public class MediaUtil {
 
 		Bitmap bitmap;
 		bitmap=BitmapFactory.decodeResource(context.getResources(),small?R.drawable.lmusic_small:R.drawable.lmusic);
-		DebugLog.d("获取默认的专辑图片.....small:"+small+",大小:"+BitmapUtils.getBitmapSize(bitmap));
+		DebugLog.d("获取默认的专辑图片.....small:"+small+",大小:"+ BitmapUtil.getBitmapSize(bitmap));
 		return bitmap;
 	}
 
@@ -244,9 +246,9 @@ public class MediaUtil {
 			} else {
 				String mUriAlbums = "content://media/external/audio/albums";
 				uri=Uri.parse(mUriAlbums + "/" + Long.toString(albumid));
-				bm= BitmapUtils.getBitmapFromFile(getAlbumImagePath(context,albumid),width,height);
+				bm= BitmapBuilder.getBitmap(getAlbumImagePath(context,albumid),width,height);
 				if (bm!=null){
-					DebugLog.d("通过专辑Id获取到专辑图片...大小"+BitmapUtils.getBitmapSize(bm));
+					DebugLog.d("通过专辑Id获取到专辑图片...大小"+ BitmapUtil.getBitmapSize(bm));
 					return bm;
 				}
 			}
@@ -255,9 +257,9 @@ public class MediaUtil {
 			if (pfd != null) {
 				fd = pfd.getFileDescriptor();
 			}
-			bm=BitmapUtils.getBitmapFromFileDescriptor(fd,width,height);
+			bm= BitmapBuilder.getBitmap(fd,width,height);
 			if (bm!=null){
-				DebugLog.d("通过URI获取专辑:"+uri+",大小"+BitmapUtils.getBitmapSize(bm));
+				DebugLog.d("通过URI获取专辑:"+uri+",大小"+ BitmapUtil.getBitmapSize(bm));
 			}
 
 		} catch (Exception e) {

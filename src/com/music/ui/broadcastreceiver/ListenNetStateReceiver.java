@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import com.lu.library.util.ConnectionUtil;
+import com.lu.library.util.NetUtil;
 import com.music.utils.LogUtil;
 
 public class ListenNetStateReceiver extends BroadcastReceiver {
@@ -21,12 +21,13 @@ public class ListenNetStateReceiver extends BroadcastReceiver {
 
 	@SuppressLint("InlinedApi") @Override
 	public void onReceive(Context context, Intent intent) {
-		boolean isConnected= ConnectionUtil.isNetWorkConnected(context);
+		boolean isConnected= NetUtil.isConnected(context);
 
 		LogUtil.i(this.getClass(), "isConnected="+isConnected);
 
 		if(isConnected){
-			int type= ConnectionUtil.getNetWorkType(context);
+			int type= 0;
+					NetUtil.getNetworkType();
 			netState.connected(type);
 			LogUtil.i(this.getClass(), "type="+type);
 		}else{

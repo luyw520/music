@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.lu.library.util.DebugLog;
+import com.lu.library.log.DebugLog;
 import com.music.lu.R;
 
 import java.io.ByteArrayOutputStream;

@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.lu.library.util.SPUtils;
+import com.lu.library.util.SPUtil;
 import com.music.Constant;
 import com.music.bean.BgBean;
 import com.music.lu.R;
@@ -26,8 +26,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.music.utils.AppConstant.BG_INDEX_KEY;
 
 
 /**
@@ -98,7 +96,7 @@ public class ChangeBgActivity extends BaseActivity {
 				for (int i = 0; i < bgBeans.size(); i++) {
 					bgBeans.get(i).setChecked(i==position?true:false);
 				}
-				SPUtils.put(BG_INDEX_KEY, (position));
+				SPUtil.put(BG_INDEX_KEY, (position));
 				BgBean.setCurrentBitmap(bgBeans.get(position).getBitmap());
 				sendBroadcast(new Intent(Constant.CHANGED_BG));
 				adapter.notifyDataSetChanged();
@@ -109,7 +107,7 @@ public class ChangeBgActivity extends BaseActivity {
 
 	private void initData() {
 
-		checkedId = (int) SPUtils.get( BG_INDEX_KEY,0);
+		checkedId = (int) SPUtil.get( BG_INDEX_KEY,0);
 		bgBeans = new ArrayList<BgBean>();
 		AssetManager assetManager = getAssets();
 

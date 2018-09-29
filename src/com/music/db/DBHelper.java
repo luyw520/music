@@ -1,7 +1,7 @@
 package com.music.db;
 
-import com.lu.library.util.DebugLog;
-import com.lu.library.util.ObjecteUtil;
+import com.lu.library.log.DebugLog;
+import com.lu.library.util.ObjectUtil;
 import com.music.MusicApplication;
 import com.music.bean.DaoMaster;
 import com.music.bean.DaoSession;
@@ -46,7 +46,7 @@ public class DBHelper {
         if (musicInfo!=null){
             List<MusicList> musicListList=dao.queryBuilder().where(MusicListDao.Properties.SongId.eq(musicInfo.getSongId())).list();
             //该歌单已有该歌曲
-            if (!ObjecteUtil.isCollectionEmpty(musicListList)){
+            if (!ObjectUtil.isCollectionEmpty(musicListList)){
                 DebugLog.d("该歌单也有该歌曲");
                 return;
             }
@@ -63,7 +63,7 @@ public class DBHelper {
     public List<MusicList> getMusicList(){
         MusicListDao dao=daoSession.getMusicListDao();
         List<MusicList> musicListList=dao.queryBuilder().list();
-        if (ObjecteUtil.isCollectionEmpty(musicListList)){
+        if (ObjectUtil.isCollectionEmpty(musicListList)){
             MusicList musicList=new MusicList();
             musicList.setSongListName(MusicApplication.getInstance().getResources().getString(R.string.my_like_song));
             musicListList.add(musicList);

@@ -3,10 +3,10 @@ package com.music.model;
 import android.app.Activity;
 import android.graphics.Bitmap;
 
+import com.lu.library.log.DebugLog;
 import com.lu.library.util.AsyncTaskUtil;
-import com.lu.library.util.DebugLog;
-import com.lu.library.util.ScreenUtils;
-import com.lu.library.util.image.ImageUtil;
+import com.lu.library.util.ScreenUtil;
+import com.lu.library.util.image.BitmapUtil;
 import com.music.helpers.FileHelper;
 import com.music.utils.DialogUtil;
 import com.music.utils.ShareListener;
@@ -94,11 +94,11 @@ public class ShareModel {
 		path = FileHelper.imgPathPath() + File.separator + "s_ido_" + System.currentTimeMillis() / 1000 + ".png";
 		ShareListener shareListener=new ShareListener(activity,true);
 		shareListener.path=(path);
-		final Bitmap bitmap= ScreenUtils.captureWithoutStatusBar(activity);
+		final Bitmap bitmap= ScreenUtil.captureWithoutStatusBar(activity);
 		new AsyncTaskUtil(new AsyncTaskUtil.IAsyncTaskCallBack() {
 			@Override
 			public Object doInBackground(String... arg0) {
-				ImageUtil.saveImage(bitmap,path,null);
+				BitmapUtil.save(bitmap,path);
 				return null;
 			}
 			@Override

@@ -2,8 +2,8 @@ package com.music.presenter;
 
 import com.lu.library.base.BaseObserver;
 import com.lu.library.base.BasePresenter;
-import com.lu.library.util.DebugLog;
-import com.lu.library.util.ObjecteUtil;
+import com.lu.library.log.DebugLog;
+import com.lu.library.util.ObjectUtil;
 import com.music.MusicApplication;
 import com.music.bean.MusicInfo;
 import com.music.bean.MusicList;
@@ -60,7 +60,7 @@ public class LocalMusicPresenter extends BasePresenter {
     public List<MusicInfo> getMusicByMusicListName(String musicListName){
         List<MusicInfo> list=new ArrayList<>();
         List<MusicList> musicLists= DBHelper.getInstance().getMusicList();
-        if (ObjecteUtil.isCollectionEmpty(musicLists)){
+        if (ObjectUtil.isCollectionEmpty(musicLists)){
             return list;
         }
         //找到所有歌单
@@ -82,7 +82,7 @@ public class LocalMusicPresenter extends BasePresenter {
     }
     public void getMusicOrderAscByTitle(BaseObserver<List<MusicInfo>> receiver,boolean isCache) {
 
-        if (isCache&&!ObjecteUtil.isCollectionEmpty(CacheHelper.getInstance().allMusic)) {
+        if (isCache&&!ObjectUtil.isCollectionEmpty(CacheHelper.getInstance().allMusic)) {
             receiver.onNext(CacheHelper.getInstance().allMusic);
             receiver.onComplete();
             return;
@@ -114,7 +114,7 @@ public class LocalMusicPresenter extends BasePresenter {
     public List<MusicListVO> getMusicList(){
         List<MusicListVO> musicListVOList=new ArrayList<>();
         List<MusicList> musicListList= DBHelper.getInstance().getMusicList();
-        if (ObjecteUtil.isCollectionEmpty(musicListList)){
+        if (ObjectUtil.isCollectionEmpty(musicListList)){
             MusicList musicList=new MusicList();
             musicList.setSongListName(MusicApplication.getInstance().getResources().getString(R.string.my_like_song));
             musicListList.add(musicList);

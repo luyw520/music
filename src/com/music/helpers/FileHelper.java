@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
-import com.lu.library.util.file.FileUtils;
+import com.lu.library.util.file.FileUtil;
 import com.music.utils.DeBug;
 
 import java.io.File;
@@ -111,7 +111,7 @@ public class FileHelper {
 	 * @param path
 	 */
 	public static void createDirFile(String path) {
-		FileUtils.createOrExistsDir(path);
+		FileUtil.createOrExistsDir(path);
 	}
 	@SuppressLint("NewApi")
 	public static File getDiskCacheDir(Context context,String uniqueName){
@@ -134,7 +134,7 @@ public class FileHelper {
 	 */
 	public static File createNewFile(String path) {
 		File file = new File(path);
-		FileUtils.createOrExistsFile(path);
+		FileUtil.createOrExistsFile(path);
 		return file;
 	}
 
@@ -143,7 +143,7 @@ public class FileHelper {
 	 * @param folderPath
 	 */
 	public static void delFolder(String folderPath) {
-		FileUtils.deleteDir(folderPath);
+		FileUtil.deleteDir(folderPath);
 	}
 
 

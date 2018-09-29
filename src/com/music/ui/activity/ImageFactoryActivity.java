@@ -12,7 +12,7 @@ import android.widget.ViewFlipper;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.lu.library.util.ScreenUtils;
+import com.lu.library.util.ScreenUtil;
 import com.music.lu.R;
 import com.music.ui.view.ImageFactoryCrop;
 import com.music.ui.view.ImageFactoryFliter;
@@ -168,7 +168,7 @@ public class ImageFactoryActivity extends BaseActivity {
 				mImageFactoryCrop = new ImageFactoryCrop(this,
 						mVfFlipper.getChildAt(0));
 //			}
-			mImageFactoryCrop.init(mPath, ScreenUtils.getScreenWidth(this), ScreenUtils.getScreenHeight(this));
+			mImageFactoryCrop.init(mPath, ScreenUtil.getScreenWidth(this), ScreenUtil.getScreenHeight(this));
 			mBtnRight.setText(R.string.next_step);
 //			tv_title.setText(R.string.crop);
 			break;

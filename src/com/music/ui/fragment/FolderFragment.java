@@ -26,7 +26,7 @@ import com.lu.library.adapter.LuAdapter;
 import com.music.ui.service.IConstants;
 import com.music.ui.service.IMediaService;
 import com.music.ui.widget.indexablelistview.IndexableListView;
-import com.lu.library.util.DebugLog;
+import com.lu.library.log.DebugLog;
 import com.music.utils.LogUtil;
 
 import java.util.List;

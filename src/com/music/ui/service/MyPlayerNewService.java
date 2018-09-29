@@ -9,7 +9,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 
-import com.lu.library.util.DebugLog;
+import com.lu.library.log.DebugLog;
 import com.music.Constant;
 import com.music.MusicApplication;
 import com.music.bean.MessageEvent;
