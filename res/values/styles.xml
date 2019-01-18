@@ -157,8 +157,8 @@
     </style>
 
     <style name="dialogAnim" parent="android:Animation">
-        <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>
-        <item name="@android:windowExitAnimation">@anim/dialog_exit</item>
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
     </style>
     <style name="MyDialog" parent="@android:style/Theme.Dialog">
         <!-- 是否有边框 -->

@@ -43,7 +43,7 @@ public class MusicApplication extends Application {
 		initImageLoader(getApplicationContext());
 		DBHelper.getInstance().init();
 		initMobSDK();
-
+		HookUtil.hook();
 	}
 
 	private void initMobSDK() {
