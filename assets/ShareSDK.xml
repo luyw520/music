@@ -42,4 +42,9 @@
 <Meipai Enable="false" />
 <Telegram Enable="false" />
 <Cmcc Enable="false" />
+<Reddit Enable="false" />
+<Telecom Enable="false" />
+<Accountkit Enable="false" />
+<Douyin Enable="false" />
+<Wework Enable="false" />
 </DevInfor>
